@@ -137,17 +137,18 @@
    pkgs.wpsoffice-cn
    pkgs.vim
    pkgs.wget
-   pkgs.firefox
+   #pkgs.firefox
    pkgs.clash-verge-rev 
    pkgs.zed-editor
    pkgs.vscode
    pkgs.google-chrome
-   pkgs.shadowsocks-rust
+   # pkgs.shadowsocks-rust
    pkgs.spotify
    pkgs.obs-studio 
    pkgs.qq
    pkgs.wechat-uos
    pkgs.fish
+   pkgs.nushell
    pkgs.git
    pkgs.rustup
    pkgs.htop
@@ -155,10 +156,8 @@
    pkgs.telegram-desktop
    pkgs.discord
    pkgs.yazi
-   pkgs.wezterm
    pkgs.ghostty
    pkgs.steam
-   pkgs.nushell
    pkgs.fishPlugins.pure
    pkgs.nushellPlugins.gstat
 
