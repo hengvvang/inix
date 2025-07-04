@@ -66,31 +66,32 @@
   #   konsole # Comment out this line if you use KDE's default terminal app
   #   oxygen
   # ];
-
 # ------ Gnome ------
   #  --- before---
   # services.xserver = {
-  #   enable = true; 
-  #   displayManager.gdm.enable = true; 
-  #   desktopManager.gnome.enable = true; 
+  #	enable = true; 
+  #     displayManager.gdm.enable = true; 
+  #     desktopManager.gnome.enable = true; 
   # }
+
   #  --- now ---
   # services = {
   #   desktopManager.gnome.enable = true;
   #   displayManager.gdm.enable = true;
   # };
-
 # ----- cosmic ----- 
   services = {
-     displayManager.cosmic-greeter.enable = true;
-     desktopManager.cosmic.enable = true;
-     desktopManager.cosmic.xwayland.enable = true;
+	displayManager.cosmic-greeter.package = pkgs.cosmic-greeter;
+	displayManager.cosmic-greeter.enable = true;
+	desktopManager.cosmic.enable = true;
+	desktopManager.cosmic.xwayland.enable = true;
   };
   # environment.cosmic.excludePackages = [
-  #    pkgs.cosmic-player
+  #   plasma-browser-integration # Comment out this line if you use KDE Connect
+  #   kdepim-runtime # Unneeded if you use Thunderbird, etc.
+  #   konsole # Comment out this line if you use KDE's default terminal app
+  #   oxygen
   # ];
-# --------------------
-
 
 
   # Enable CUPS to print documents.
@@ -128,8 +129,8 @@
   #       users.hengvvang = import ./home.nix;
   # };
 
+
   programs.fish.enable = true;
-  programs.vim.defaultEditor = true;
 
   environment.systemPackages = with pkgs; [
    pkgs.wget
