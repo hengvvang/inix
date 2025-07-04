@@ -26,18 +26,18 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
 
-   time.timeZone = "Asia/Shanghai";
-   i18n.defaultLocale = "zh_CN.UTF-8";
-   i18n.inputMethod = {
-	 type = "fcitx5";
-	 enable = true;
- 	 fcitx5.addons = with pkgs; [
-	 fcitx5-chinese-addons
-	 fcitx5-gtk
-	 fcitx5-rime
-	 fcitx5-nord
-	];
-   };
+  time.timeZone = "Asia/Shanghai";
+  i18n.defaultLocale = "zh_CN.UTF-8";
+  i18n.inputMethod = {
+        type = "fcitx5";
+        enable = true;
+        fcitx5.addons = with pkgs; [
+        fcitx5-chinese-addons
+        fcitx5-gtk
+        fcitx5-rime
+        fcitx5-nord
+       ];
+  };
 
 
   # 启用 NVIDIA 闭源驱动
@@ -60,26 +60,41 @@
   #   displayManager.sddm.wayland.enable = true;
   # };
 
+  # environment.plasma6.excludePackages = with pkgs.kdePackages; [
+  #   plasma-browser-integration # Comment out this line if you use KDE Connect
+  #   kdepim-runtime # Unneeded if you use Thunderbird, etc.
+  #   konsole # Comment out this line if you use KDE's default terminal app
+  #   oxygen
+  # ];
+
 # ------ Gnome ------
   #  --- before---
   # services.xserver = {
-  #	enable = true; 
-  #     displayManager.gdm.enable = true; 
-  #     desktopManager.gnome.enable = true; 
+  #   enable = true; 
+  #   displayManager.gdm.enable = true; 
+  #   desktopManager.gnome.enable = true; 
   # }
-
   #  --- now ---
+  # services = {
+  #   desktopManager.gnome.enable = true;
+  #   displayManager.gdm.enable = true;
+  # };
+
+# ----- cosmic ----- 
   services = {
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
+     displayManager.cosmic-greeter.enable = true;
+     desktopManager.cosmic.enable = true;
+     desktopManager.cosmic.xwayland.enable = true;
   };
-  # services.displayManager.gdm.enable = true;
-  # services.desktopManager.gnome.enable = true;
-# -----------------  
+  # environment.cosmic.excludePackages = [
+  #    pkgs.cosmic-player
+  # ];
+# --------------------
+
+
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
 
   # Enable sound.
   services.pipewire = {
@@ -99,7 +114,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [];
-    # shell = pkgs.zsh;
+    shell = pkgs.fish;
   };
  
 
@@ -113,8 +128,8 @@
   #       users.hengvvang = import ./home.nix;
   # };
 
-
-
+  programs.fish.enable = true;
+  programs.vim.defaultEditor = true;
 
   environment.systemPackages = with pkgs; [
    pkgs.wget
@@ -138,17 +153,24 @@
    pkgs.docker
    pkgs.telegram-desktop
    pkgs.discord
+   pkgs.yazi
+   pkgs.wezterm
+   pkgs.ghostty
+   pkgs.steam
+   pkgs.nushell
+   pkgs.fishPlugins.pure
+   pkgs.nushellPlugins.gstat
 
    # ---- gnome extentsion ----
-   pkgs.gnome-tweaks # required
-   pkgs.gnomeExtensions.user-themes
-   pkgs.gnomeExtensions.blur-my-shell
-   pkgs.gnomeExtensions.extension-list
-   pkgs.gnomeExtensions.dash-to-dock
-   pkgs.gnomeExtensions.logo-menu
-   pkgs.gnomeExtensions.clipboard-indicator
-   pkgs.gnomeExtensions.caffeine
-   pkgs.gnomeExtensions.kimpanel # fcitx need;   recommand extension: Fcitx HUD  
+   # pkgs.gnome-tweaks # required
+   # pkgs.gnomeExtensions.user-themes
+   # pkgs.gnomeExtensions.blur-my-shell
+   # pkgs.gnomeExtensions.extension-list
+   # pkgs.gnomeExtensions.dash-to-dock
+   # pkgs.gnomeExtensions.logo-menu
+   # pkgs.gnomeExtensions.clipboard-indicator
+   # pkgs.gnomeExtensions.caffeine
+   # pkgs.gnomeExtensions.kimpanel # fcitx need;   recommand extension: Fcitx HUD  
 
    # ---- kde plasma packages ----
    # kdePackages.discover # Optional: Install if you use Flatpak or fwupd firmware update sevice
@@ -162,15 +184,9 @@
    # hardinfo2 # System information and benchmarks for Linux systems
    # haruna # Open source video player built with Qt/QML and libmpv
    # xclip # Tool to access the X clipboard from a console application
-];
+  ];  
 
 
-  # environment.plasma6.excludePackages = with pkgs.kdePackages; [
-  #   plasma-browser-integration # Comment out this line if you use KDE Connect
-  #   kdepim-runtime # Unneeded if you use Thunderbird, etc.
-  #   konsole # Comment out this line if you use KDE's default terminal app
-  #   oxygen
-  # ];
 
   virtualisation.docker.enable = true;
 
