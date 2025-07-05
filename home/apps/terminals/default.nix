@@ -6,10 +6,7 @@
   };
 
   config = lib.mkIf config.myHome.apps.terminals.enable {
-    # 终端层默认值：ghostty默认开启
-    myHome.apps.terminals = {
-      ghostty.enable = lib.mkDefault true;
-    };
+    # 直接配置而不设置过深的层次结构
   };
 
   imports = [
