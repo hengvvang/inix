@@ -2,8 +2,9 @@
 
 {
   # 工具模块入口
-  imports = [
+  imports = lib.optionals config.myHome.toolkits.system.enable [
     ./system
+  ] ++ lib.optionals config.myHome.toolkits.user.enable [
     ./user
   ];
 }
