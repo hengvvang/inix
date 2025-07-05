@@ -30,7 +30,7 @@
   # 系统模块配置 - 完全由主机决定启用哪些模块
   # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
-    desktop.enable = true;      # 桌面环境 - laptop需要图形界面
+    desktop.cosmic.enable = true;      # 桌面环境 - laptop需要图形界面
     hardware.enable = true;     # 硬件配置 - 基础需求
     localization.enable = true; # 本地化配置 - 中文环境
     users.enable = true;        # 用户配置 - 必需

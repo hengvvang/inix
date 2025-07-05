@@ -18,7 +18,7 @@
   };
 
   imports = [
-    ./desktop-environment.nix
+    ./desktop
     ./hardware.nix
     ./localization.nix
     ./users.nix
