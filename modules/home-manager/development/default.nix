@@ -1,11 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  # 开发环境核心模块
   imports = [
-    ./git.nix
-    ./editors.nix
-    ./languages.nix
-    ./embedded.nix
-    ./modern-tools.nix
+    ./version-control
+    ./languages
+    ./embedded
   ];
 }

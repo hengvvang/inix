@@ -1,8 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
+  # Home Manager 用户级配置入口
   imports = [
+    ./apps
     ./development
-    ./shell
+    ./editors
+    ./user-env
+    ./shells
+    ./profiles
+    ./toolkits
   ];
 }
