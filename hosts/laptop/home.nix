@@ -14,13 +14,13 @@
   home.homeDirectory = "/home/hengvvang";
   home.stateVersion = "25.05";
 
-  # 启用 Home Manager 模块 - 使用分层默认值
+  # Home Manager 模块配置 - 完全由主机决定启用哪些模块
+  # 适合 laptop 主机：启用完整的开发和办公环境
   myHome = {
-    # 只需要显式启用顶层模块，子模块将使用各层的默认值
-    apps.enable = true;
-    development.enable = true;  
-    profiles.enable = true;
-    toolkits.enable = true;  # 现在启用工具包来演示分层默认值
+    apps.enable = true;         # 应用程序 - 编辑器、文件管理器等
+    development.enable = true;  # 开发环境 - 编程语言和工具
+    profiles.enable = true;     # 配置文件 - 环境变量、字体等
+    toolkits.enable = true;     # 工具包 - 系统和用户工具
   };
 
   # 核心环境变量

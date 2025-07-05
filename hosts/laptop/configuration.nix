@@ -27,13 +27,14 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  # 启用所有系统模块
+  # 系统模块配置 - 完全由主机决定启用哪些模块
+  # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
-    desktop.enable = true;
-    hardware.enable = true;
-    localization.enable = true;
-    users.enable = true;
-    packages.enable = true;
+    desktop.enable = true;      # 桌面环境 - laptop需要图形界面
+    hardware.enable = true;     # 硬件配置 - 基础需求
+    localization.enable = true; # 本地化配置 - 中文环境
+    users.enable = true;        # 用户配置 - 必需
+    packages.enable = true;     # 系统包 - 完整软件环境
   };
 
   # Some programs need SUID wrappers, can be configured further or are
