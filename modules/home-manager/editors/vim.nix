@@ -4,7 +4,6 @@
   # 基础文本编辑器
   home.packages = with pkgs; [
     vim
-    neovim        # 现代 Vim
     micro         # 简单的终端编辑器
   ];
 

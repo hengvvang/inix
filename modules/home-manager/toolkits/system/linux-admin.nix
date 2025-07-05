@@ -64,9 +64,9 @@
     myip = "curl -s https://httpbin.org/ip | jq -r .origin";
     
     # 文件操作
-    ll = "ls -la";
-    la = "ls -la";
-    tree = "tree -C";
+    ll = lib.mkDefault "ls -la";
+    la = lib.mkDefault "ls -la";
+    tree = lib.mkDefault "tree -C";
     
     # 磁盘使用
     du1 = "du -h --max-depth=1";

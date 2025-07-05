@@ -4,7 +4,6 @@
   # 实用工具
   home.packages = with pkgs; [
     # 文件管理
-    ranger        # 命令行文件管理器
     tree          # 目录树显示
     fd            # 快速文件查找
     ripgrep       # 快速文本搜索

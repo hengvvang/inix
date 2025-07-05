@@ -34,7 +34,12 @@
   # 配置现代工具
   programs = {
     # 现代 ls
-    lsd.enable = true;
+    lsd = {
+      enable = true;
+      enableBashIntegration = false;  # 禁用 bash 别名
+      enableZshIntegration = false;   # 禁用 zsh 别名
+      enableFishIntegration = false;  # 禁用 fish 别名
+    };
     
     # 现代 cat
     bat.enable = true;

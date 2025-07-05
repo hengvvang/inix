@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./communication.nix
     ./terminal.nix
     ./utilities.nix
   ];

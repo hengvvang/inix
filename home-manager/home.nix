@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   # 允许非自由软件
@@ -16,7 +16,7 @@
 
   # 核心环境变量
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = lib.mkDefault "vim";
     #TERMINAL = "alacritty";
   };
 

@@ -3,12 +3,15 @@
 {
   # 嵌入式开发环境配置模块
   home.packages = with pkgs; [
-    # ARM 工具链
-    gcc-arm-embedded     # ARM GCC 编译器
+    # ARM 工具链 - 使用 buildEnv 来解决文件冲突
+    (pkgs.buildEnv {
+      name = "arm-embedded-toolchain";
+      paths = [ gcc-arm-embedded ];
+      ignoreCollisions = true;
+      # 排除与系统 gcc 冲突的手册页面
+      pathsToLink = [ "/bin" "/include" "/lib" "/libexec" ];
+    })
     openocd              # 片上调试器
-    
-    # 调试工具
-    gdb                  # 调试器
     
     # 串口工具
     minicom              # 串口终端
