@@ -1,12 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.apps.terminals.enable = lib.mkEnableOption "终端配置" // {
-    default = false;
-  };
+  options.myHome.apps.terminals.enable = lib.mkEnableOption "终端配置";
 
   config = lib.mkIf config.myHome.apps.terminals.enable {
-    # 直接配置而不设置过深的层次结构
+    # 终端层默认配置：ghostty作为现代终端默认开启
+    myHome.apps.terminals = {
+      ghostty.enable = lib.mkDefault true;
+    };
   };
 
   imports = [

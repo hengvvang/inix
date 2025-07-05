@@ -1,7 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
+  options = {
+    myHome.toolkits.system.hardware.enable = lib.mkEnableOption "系统硬件工具";
+  };
+
+  config = lib.mkIf config.myHome.toolkits.system.hardware.enable {
+    home.packages = with pkgs; [
     neofetch           # 系统信息显示
     lshw               # 硬件信息
     usbutils           # USB 工具
@@ -23,5 +28,6 @@
     # 磁盘使用
     du1 = "du -h --max-depth=1";
     dush = "du -sh";
+  };
   };
 }

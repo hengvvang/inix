@@ -6,7 +6,10 @@
   };
 
   config = lib.mkIf config.myHome.profiles.envVar.enable {
-    # 直接配置而不设置过深的层次结构
+    # 设置环境变量配置的默认值
+    myHome.profiles.envVar = {
+      environment.enable = lib.mkDefault true;
+    };
   };
 
   imports = [

@@ -6,7 +6,15 @@
   };
 
   config = lib.mkIf config.myHome.development.languages.enable {
-    # 直接配置而不设置过深的层次结构
+    # 设置语言模块的默认值
+    myHome.development.languages = {
+      c.enable = lib.mkDefault false;
+      cpp.enable = lib.mkDefault false;
+      javascript.enable = lib.mkDefault true;
+      python.enable = lib.mkDefault true;
+      rust.enable = lib.mkDefault false;
+      typescript.enable = lib.mkDefault false;
+    };
   };
 
   # 开发环境语言模块入口

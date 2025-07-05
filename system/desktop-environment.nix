@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.mySystem.desktop.enable = lib.mkEnableOption "桌面环境" // {
-    default = false;
-  };
+  options.mySystem.desktop.enable = lib.mkEnableOption "桌面环境";
 
   config = lib.mkIf config.mySystem.desktop.enable {
 # ------ Plasma ------

@@ -1,7 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
+  options = {
+    myHome.toolkits.user.utilities.enable = lib.mkEnableOption "用户实用工具";
+  };
+
+  config = lib.mkIf config.myHome.toolkits.user.utilities.enable {
+    home.packages = with pkgs; [
     unzip
     zip
     p7zip
@@ -74,5 +79,6 @@
     
     # Git 增强
     diff = "delta";
+  };
   };
 }

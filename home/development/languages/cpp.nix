@@ -1,8 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
-  # C++ 核心开发环境 - 简化版
-  home.packages = with pkgs; [
+  options = {
+    myHome.development.languages.cpp.enable = lib.mkEnableOption "C++ 开发环境";
+  };
+
+  config = lib.mkIf config.myHome.development.languages.cpp.enable {
+    # C++ 核心开发环境 - 简化版
+    home.packages = with pkgs; [
     # C++ 编译器
     gcc                  # GNU 编译器套件
     
@@ -19,4 +24,5 @@
     # 基础库
     boost                # Boost C++ 库
   ];
+  };
 }

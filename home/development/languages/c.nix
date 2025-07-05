@@ -1,8 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
-  # C 开发环境 - 简化版
-  home.packages = with pkgs; [
+  options = {
+    myHome.development.languages.c.enable = lib.mkEnableOption "C 开发环境";
+  };
+
+  config = lib.mkIf config.myHome.development.languages.c.enable {
+    # C 开发环境 - 简化版
+    home.packages = with pkgs; [
     # C 编译器
     gcc                  # GNU 编译器套件
     
@@ -13,4 +18,5 @@
     # 调试器 - 高优先级，确保这是主要的 gdb
     (lib.hiPrio gdb)     # GNU 调试器
   ];
+  };
 }

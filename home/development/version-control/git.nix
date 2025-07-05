@@ -1,7 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  programs.git = {
+  options = {
+    myHome.development.versionControl.git.enable = lib.mkEnableOption "Git 版本控制";
+  };
+
+  config = lib.mkIf config.myHome.development.versionControl.git.enable {
+    programs.git = {
     enable = true;
     
     # 用户信息
@@ -82,4 +87,5 @@
     # 实用工具
     git-lfs            # Git 大文件支持
   ];
+  };
 }

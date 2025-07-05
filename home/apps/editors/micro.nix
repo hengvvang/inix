@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  options.myHome.apps.editors.micro.enable = lib.mkEnableOption "Micro 编辑器配置";
+
+  config = lib.mkIf config.myHome.apps.editors.micro.enable {
   # Micro 编辑器配置
   programs.micro = {
     enable = true;
@@ -12,5 +15,6 @@
       tabstospaces = true;        # Tab 转换为空格
       syntax = true;              # 语法高亮
     };
+  };
   };
 }

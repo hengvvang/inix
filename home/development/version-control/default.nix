@@ -6,7 +6,11 @@
   };
 
   config = lib.mkIf config.myHome.development.versionControl.enable {
-    # 直接配置而不设置过深的层次结构
+    # 设置版本控制工具的默认值
+    myHome.development.versionControl = {
+      git.enable = lib.mkDefault true;
+      lazygit.enable = lib.mkDefault true;
+    };
   };
 
   imports = [

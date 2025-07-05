@@ -6,7 +6,13 @@
   };
 
   config = lib.mkIf config.myHome.toolkits.system.enable {
-    # 直接配置而不设置过深的层次结构
+    # 设置系统工具的默认值
+    myHome.toolkits.system = {
+      utilities.enable = lib.mkDefault true;
+      hardware.enable = lib.mkDefault true;
+      network.enable = lib.mkDefault true;
+      monitor.enable = lib.mkDefault true;
+    };
   };
 
   imports = [

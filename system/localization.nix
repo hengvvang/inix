@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.mySystem.localization.enable = lib.mkEnableOption "本地化配置" // {
-    default = false;
-  };
+  options.mySystem.localization.enable = lib.mkEnableOption "本地化配置";
 
   config = lib.mkIf config.mySystem.localization.enable {
   # 输入法配置

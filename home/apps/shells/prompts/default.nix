@@ -1,12 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.apps.shells.prompts.enable = lib.mkEnableOption "提示符配置" // {
-    default = false;
-  };
+  options.myHome.apps.shells.prompts.enable = lib.mkEnableOption "提示符配置";
 
   config = lib.mkIf config.myHome.apps.shells.prompts.enable {
-    # 直接配置而不设置过深的层次结构
+    # 提示符层默认配置：starship作为现代提示符默认开启
+    myHome.apps.shells.prompts = {
+      starship.enable = lib.mkDefault true;
+    };
   };
 
   # 提示符模块入口

@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  options.myHome.apps.editors.vscode.enable = lib.mkEnableOption "VSCode 编辑器配置";
+
+  config = lib.mkIf config.myHome.apps.editors.vscode.enable {
   # VS Code 配置
   programs.vscode = {
     enable = true;
@@ -24,5 +27,6 @@
         bradlc.vscode-tailwindcss
       ];
     };
+  };
   };
 }

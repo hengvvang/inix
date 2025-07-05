@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.mySystem.hardware.enable = lib.mkEnableOption "硬件配置" // {
-    default = false;
-  };
+  options.mySystem.hardware.enable = lib.mkEnableOption "硬件配置";
 
   config = lib.mkIf config.mySystem.hardware.enable {
   # NVIDIA 显卡配置

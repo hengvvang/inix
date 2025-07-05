@@ -6,7 +6,10 @@
   };
 
   config = lib.mkIf config.myHome.toolkits.user.enable {
-    # 直接配置而不设置过深的层次结构
+    # 设置用户工具的默认值
+    myHome.toolkits.user = {
+      utilities.enable = lib.mkDefault true;
+    };
   };
 
   imports = [

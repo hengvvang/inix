@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.apps.shells.fish.enable = lib.mkEnableOption "Fish Shell 配置" // {
-    default = false;
-  };
+  options.myHome.apps.shells.fish.enable = lib.mkEnableOption "Fish Shell 配置";
 
   config = lib.mkIf config.myHome.apps.shells.fish.enable {
   # Fish Shell 配置

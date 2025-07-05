@@ -1,8 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
-  # 环境变量配置
-  home.sessionVariables = {
+  options = {
+    myHome.profiles.envVar.environment.enable = lib.mkEnableOption "环境变量配置";
+  };
+
+  config = lib.mkIf config.myHome.profiles.envVar.environment.enable {
+    # 环境变量配置
+    home.sessionVariables = {
     EDITOR = "nvim";
     BROWSER = "zen";
     TERMINAL = "alacritty";
@@ -14,5 +19,6 @@
     # 工具配置
     BAT_THEME = "Dracula";
     MANPAGER = "bat";
+  };
   };
 }

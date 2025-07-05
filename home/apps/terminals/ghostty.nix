@@ -1,10 +1,15 @@
 { config, lib, pkgs, ... }:
 
 {
-  # Ghostty 终端配置 - 现代 GPU 加速终端
-  home.packages = with pkgs; [
-    ghostty                  # Ghostty 终端
-  ];
+  options = {
+    myHome.apps.terminals.ghostty.enable = lib.mkEnableOption "Ghostty 终端";
+  };
+
+  config = lib.mkIf config.myHome.apps.terminals.ghostty.enable {
+    # Ghostty 终端配置 - 现代 GPU 加速终端
+    home.packages = with pkgs; [
+      ghostty                  # Ghostty 终端
+    ];
   
   # Ghostty 配置文件
   home.file.".config/ghostty/config".text = ''
@@ -75,5 +80,6 @@
   home.shellAliases = {
     "ghost" = "ghostty";
     "ghostty-config" = "$EDITOR ~/.config/ghostty/config";
+  };
   };
 }
