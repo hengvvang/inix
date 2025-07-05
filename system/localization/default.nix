@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  # 选项定义移至各子模块
+  # 选项已经在各子模块中定义，这里只做导入
   imports = [
     ./timeZone
     ./inputMethod

@@ -2,10 +2,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.mySystem.desktop.gnome.enable = lib.mkEnableOption "gonme desktop environment" // {
-    default = false; # 默认不开启桌面环境
-  };
-
   config = lib.mkIf config.mySystem.desktop.gnome.enable {
   #  --- before---
   # services.xserver = {
@@ -18,6 +14,7 @@
   services = {
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
+    xserver.enable = true;
   };
 
   environment.systemPackages = [

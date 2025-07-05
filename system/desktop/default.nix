@@ -1,13 +1,15 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.mySystem.desktop.enable = lib.mkEnableOption "Desktop Environment";
-
-  config = lib.mkIf config.mySystem.desktop.enable {
-    mySystem.desktop = {
-      cosmic.enable = lib.mkDefault false;
-      plasma.enable = lib.mkDefault false;
-      gnome.enable = lib.mkDefault false;
+  options.mySystem.desktop = {
+    cosmic = {
+      enable = lib.mkEnableOption "COSMIC 桌面环境";
+    };
+    plasma = {
+      enable = lib.mkEnableOption "KDE Plasma 桌面环境";
+    };
+    gnome = {
+      enable = lib.mkEnableOption "GNOME 桌面环境";
     };
   };
 
