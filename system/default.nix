@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ../lib/options.nix
-  ] ++ lib.optionals config.mySystem.desktop.enable [
+  imports = lib.optionals config.mySystem.desktop.enable [
     ./desktop-environment.nix
   ] ++ lib.optionals config.mySystem.hardware.enable [
     ./hardware.nix

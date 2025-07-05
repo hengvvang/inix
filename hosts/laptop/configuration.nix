@@ -4,6 +4,7 @@
   imports =
     [ 
       ./hardware-configuration.nix
+      ../../lib/options.nix
       ./modules.nix
       # <home-manager/nixos>
       ../../system

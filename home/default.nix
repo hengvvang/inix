@@ -2,9 +2,7 @@
 
 {
   # Home Manager 用户级配置入口
-  imports = [
-    ../lib/options.nix
-  ] ++ lib.optionals config.myHome.apps.enable [
+  imports = lib.optionals config.myHome.apps.enable [
     ./apps
   ] ++ lib.optionals config.myHome.toolkits.enable [
     ./toolkits
