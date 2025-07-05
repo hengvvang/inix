@@ -9,11 +9,4 @@
     users.enable = lib.mkDefault true;
     packages.enable = lib.mkDefault true;
   };
-
-  myHome = {
-    apps.enable = lib.mkDefault true;
-    development.enable = lib.mkDefault true;
-    profiles.enable = lib.mkDefault true;
-    toolkits.enable = lib.mkDefault true;
-  };
 }
