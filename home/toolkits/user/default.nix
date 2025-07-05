@@ -6,10 +6,7 @@
   };
 
   config = lib.mkIf config.myHome.toolkits.user.enable {
-    # 用户工具层默认值：实用工具默认开启
-    myHome.toolkits.user = {
-      utilities.enable = lib.mkDefault true;
-    };
+    # 直接配置而不设置过深的层次结构
   };
 
   imports = [

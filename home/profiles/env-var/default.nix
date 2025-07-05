@@ -6,10 +6,7 @@
   };
 
   config = lib.mkIf config.myHome.profiles.envVar.enable {
-    # 环境变量层默认值：环境变量文件默认开启
-    myHome.profiles.envVar = {
-      environment.enable = lib.mkDefault true;
-    };
+    # 直接配置而不设置过深的层次结构
   };
 
   imports = [

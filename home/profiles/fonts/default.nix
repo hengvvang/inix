@@ -6,10 +6,7 @@
   };
 
   config = lib.mkIf config.myHome.profiles.fonts.enable {
-    # 字体层默认值：字体配置默认开启
-    myHome.profiles.fonts = {
-      fonts.enable = lib.mkDefault true;
-    };
+    # 直接配置而不设置过深的层次结构
   };
 
   imports = [
