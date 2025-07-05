@@ -6,7 +6,6 @@
   
   imports = [
     # 使用新的模块化配置
-    ../../lib/options.nix
     ./modules.nix
     ../../home
   ];

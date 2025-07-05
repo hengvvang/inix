@@ -1,12 +1,16 @@
 { config, lib, pkgs, ... }:
 
 {
+  options.myHome.development.enable = lib.mkEnableOption "开发环境模块";
+
+  config = lib.mkIf config.myHome.development.enable {
+    
+  };
+
   # 开发环境核心模块
-  imports = lib.optionals config.myHome.development.versionControl.enable [
+  imports = [
     ./version-control
-  ] ++ lib.optionals config.myHome.development.languages.enable [
     ./languages
-  ] ++ lib.optionals config.myHome.development.embedded.enable [
     ./embedded
   ];
 }

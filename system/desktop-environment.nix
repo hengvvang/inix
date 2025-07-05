@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  options.mySystem.desktop.enable = lib.mkEnableOption "桌面环境";
+
+  config = lib.mkIf config.mySystem.desktop.enable {
 # ------ Plasma ------
   # services = {
   #   desktopManager.plasma6.enable = true;
@@ -69,4 +72,5 @@
    # haruna # Open source video player built with Qt/QML and libmpv
    # xclip # Tool to access the X clipboard from a console application
   ];
+  };
 }

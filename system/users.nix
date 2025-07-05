@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  options.mySystem.users.enable = lib.mkEnableOption "用户配置";
+
+  config = lib.mkIf config.mySystem.users.enable {
   # 用户配置
   users.users.hengvvang = {
     isNormalUser = true;
@@ -20,4 +23,5 @@
 
   # SSH 配置
   services.openssh.enable = true;
+  };
 }

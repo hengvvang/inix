@@ -1,9 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = lib.optionals config.myHome.profiles.envVar.enable [
+  options.myHome.profiles.enable = lib.mkEnableOption "配置文件模块";
+
+  config = lib.mkIf config.myHome.profiles.enable {
+    
+  };
+
+  imports = [
     ./env-var
-  ] ++ lib.optionals config.myHome.profiles.fonts.enable [
     ./fonts
   ];
 }

@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  options.mySystem.localization.enable = lib.mkEnableOption "本地化配置";
+
+  config = lib.mkIf config.mySystem.localization.enable {
   # 输入法配置
   i18n.inputMethod = {
     type = "fcitx5";
@@ -27,5 +30,6 @@
     LC_PAPER = "zh_CN.UTF-8";
     LC_TELEPHONE = "zh_CN.UTF-8";
     LC_TIME = "zh_CN.UTF-8";
+  };
   };
 }

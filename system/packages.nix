@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  options.mySystem.packages.enable = lib.mkEnableOption "系统包配置";
+
+  config = lib.mkIf config.mySystem.packages.enable {
   environment.systemPackages = with pkgs; [
     # 基础工具
     wget
@@ -41,4 +44,5 @@
     fishPlugins.pure
     nushellPlugins.gstat
   ];
+  };
 }
