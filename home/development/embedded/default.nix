@@ -6,10 +6,7 @@
   };
 
   config = lib.mkIf config.myHome.development.embedded.enable {
-    # 嵌入式层默认值：工具链默认开启
-    myHome.development.embedded = {
-      toolchain.enable = lib.mkDefault true;
-    };
+    # 直接配置而不设置过深的层次结构
   };
 
   # 嵌入式开发模块入口
