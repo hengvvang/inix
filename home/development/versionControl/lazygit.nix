@@ -1,10 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-  options = {
-    myHome.development.versionControl.lazygit.enable = lib.mkEnableOption "Lazygit 终端 Git UI";
-  };
-
-  config = lib.mkIf config.myHome.development.versionControl.lazygit.enable {
+  config = lib.mkIf config.myHome.development.versionControl.lazygit {
     # Lazygit - 优雅的 Git 终端界面
     programs.lazygit = {
     enable = true;

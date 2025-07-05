@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.toolkits.user.utilities.enable = lib.mkEnableOption "用户实用工具";
-  };
-
-  config = lib.mkIf config.myHome.toolkits.user.utilities.enable {
+  config = lib.mkIf config.myHome.toolkits.user.utilities {
     home.packages = with pkgs; [
     unzip
     zip

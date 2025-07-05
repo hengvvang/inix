@@ -14,13 +14,71 @@
   home.homeDirectory = "/home/hengvvang";
   home.stateVersion = "25.05";
 
-  # Home Manager 模块配置 - 完全由主机决定启用哪些模块
-  # 适合 laptop 主机：启用完整的开发和办公环境
+  # Home Manager 模块配置 - 完整的重构后配置
+  # 直接选择具体功能，减少配置层级
   myHome = {
-    apps.enable = true;         # 应用程序 - 编辑器、文件管理器等
-    development.enable = true;  # 开发环境 - 编程语言和工具
-    profiles.enable = true;     # 配置文件 - 环境变量、字体等
-    toolkits.enable = true;     # 工具包 - 系统和用户工具
+    # 应用程序 - 选择具体的应用
+    apps = {
+      editors = {
+        vim = true;              # Vim 编辑器
+        vscode = true;           # VSCode 编辑器
+        # micro = true;          # Micro 编辑器 (可选)
+        # zed = true;            # Zed 编辑器 (可选)
+      };
+      shells = {
+        fish = true;             # Fish Shell
+        aliases = true;          # Shell 别名
+        prompts.starship = true; # Starship 提示符
+        # zsh = true;            # Zsh Shell (可选)
+        # nushell = true;        # Nushell (可选)
+      };
+      terminals = {
+        # ghostty = true;        # Ghostty 终端 (可选)
+      };
+      # yazi = true;             # Yazi 文件管理器 (可选)
+    };
+    
+    # 开发环境 - 选择具体的语言和工具
+    development = {
+      versionControl = {
+        git = true;              # Git 版本控制
+        lazygit = true;          # Lazygit TUI
+      };
+      languages = {
+        rust = true;             # Rust 开发环境
+        python = true;           # Python 开发环境
+        javascript = true;       # JavaScript 开发环境
+        typescript = true;       # TypeScript 开发环境
+        # cpp = true;            # C++ 开发环境 (可选)
+        # c = true;              # C 开发环境 (可选)
+      };
+      embedded = {
+        # toolchain = true;      # 嵌入式工具链 (可选)
+      };
+    };
+    
+    # 配置文件 - 选择具体的配置
+    profiles = {
+      fonts = {
+        fonts = true;            # 字体配置
+      };
+      envVar = {
+        environment = true;      # 环境变量配置
+      };
+    };
+    
+    # 工具包 - 选择具体的工具
+    toolkits = {
+      system = {
+        hardware = true;         # 硬件工具
+        monitor = true;          # 系统监控
+        network = true;          # 网络工具
+        utilities = true;        # 系统工具
+      };
+      user = {
+        utilities = true;        # 用户工具
+      };
+    };
   };
 
   # 核心环境变量

@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.profiles.envVar.environment.enable = lib.mkEnableOption "环境变量配置";
-  };
-
-  config = lib.mkIf config.myHome.profiles.envVar.environment.enable {
+  config = lib.mkIf config.myHome.profiles.envVar.environment {
     # 环境变量配置
     home.sessionVariables = {
     EDITOR = "nvim";

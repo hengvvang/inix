@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.development.languages.rust.enable = lib.mkEnableOption "Rust 开发环境";
-  };
-
-  config = lib.mkIf config.myHome.development.languages.rust.enable {
+  config = lib.mkIf config.myHome.development.languages.rust {
     # Rust 开发环境 - 简化版
     home.packages = with pkgs; [
     # Rust 核心工具链

@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.development.languages.c.enable = lib.mkEnableOption "C 开发环境";
-  };
-
-  config = lib.mkIf config.myHome.development.languages.c.enable {
+  config = lib.mkIf config.myHome.development.languages.c {
     # C 开发环境 - 简化版
     home.packages = with pkgs; [
     # C 编译器

@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.apps.editors.vscode.enable = lib.mkEnableOption "VSCode 编辑器配置";
-
-  config = lib.mkIf config.myHome.apps.editors.vscode.enable {
+  config = lib.mkIf config.myHome.apps.editors.vscode {
   # VS Code 配置
   programs.vscode = {
     enable = true;

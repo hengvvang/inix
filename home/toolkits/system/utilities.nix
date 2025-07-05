@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.toolkits.system.utilities.enable = lib.mkEnableOption "系统实用工具";
-  };
-
-  config = lib.mkIf config.myHome.toolkits.system.utilities.enable {
+  config = lib.mkIf config.myHome.toolkits.system.utilities {
     # Linux 系统工具配置模块 - 日常使用和管理
     home.packages = with pkgs; [
       gnupg              # GPG 加密

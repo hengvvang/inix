@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.development.embedded.toolchain.enable = lib.mkEnableOption "嵌入式开发工具链";
-  };
-
-  config = lib.mkIf config.myHome.development.embedded.toolchain.enable {
+  config = lib.mkIf config.myHome.development.embedded.toolchain {
     # 嵌入式开发环境配置模块
     home.packages = with pkgs; [
     # ARM 工具链 - 使用 buildEnv 来解决文件冲突

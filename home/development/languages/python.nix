@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.development.languages.python.enable = lib.mkEnableOption "Python 开发环境";
-  };
-
-  config = lib.mkIf config.myHome.development.languages.python.enable {
+  config = lib.mkIf config.myHome.development.languages.python {
     # Python 开发环境 - 简化版
     home.packages = with pkgs; [
     # Python 运行时

@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.apps.shells.aliases.enable = lib.mkEnableOption "Shell 别名配置";
-
-  config = lib.mkIf config.myHome.apps.shells.aliases.enable {
+  config = lib.mkIf config.myHome.apps.shells.aliases {
   # 通用 Shell 别名配置 - 所有 Shell 共享的别名
   home.shellAliases = {
     # 现代化工具替代

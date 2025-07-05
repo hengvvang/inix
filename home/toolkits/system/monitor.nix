@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.toolkits.system.monitor.enable = lib.mkEnableOption "系统监控工具";
-  };
-
-  config = lib.mkIf config.myHome.toolkits.system.monitor.enable {
+  config = lib.mkIf config.myHome.toolkits.system.monitor {
     home.packages = with pkgs; [
     htop               # 进程监控
     btop               # 现代系统监控

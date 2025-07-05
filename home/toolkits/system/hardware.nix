@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.toolkits.system.hardware.enable = lib.mkEnableOption "系统硬件工具";
-  };
-
-  config = lib.mkIf config.myHome.toolkits.system.hardware.enable {
+  config = lib.mkIf config.myHome.toolkits.system.hardware {
     home.packages = with pkgs; [
     neofetch           # 系统信息显示
     lshw               # 硬件信息

@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.toolkits.system.network.enable = lib.mkEnableOption "网络工具";
-  };
-
-  config = lib.mkIf config.myHome.toolkits.system.network.enable {
+  config = lib.mkIf config.myHome.toolkits.system.network {
     home.packages = with pkgs; [
     wget               # 文件下载
     curl               # HTTP 客户端

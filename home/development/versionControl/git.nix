@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.development.versionControl.git.enable = lib.mkEnableOption "Git 版本控制";
-  };
-
-  config = lib.mkIf config.myHome.development.versionControl.git.enable {
+  config = lib.mkIf config.myHome.development.versionControl.git {
     programs.git = {
     enable = true;
     

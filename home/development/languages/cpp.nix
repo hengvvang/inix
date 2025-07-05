@@ -1,11 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options = {
-    myHome.development.languages.cpp.enable = lib.mkEnableOption "C++ 开发环境";
-  };
-
-  config = lib.mkIf config.myHome.development.languages.cpp.enable {
+  config = lib.mkIf config.myHome.development.languages.cpp {
     # C++ 核心开发环境 - 简化版
     home.packages = with pkgs; [
     # C++ 编译器

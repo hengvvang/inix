@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.apps.shells.prompts.starship.enable = lib.mkEnableOption "Starship 提示符配置";
-
-  config = lib.mkIf config.myHome.apps.shells.prompts.starship.enable {
+  config = lib.mkIf config.myHome.apps.shells.prompts.starship {
   # Starship 提示符配置 - 现代化跨 Shell 提示符
   programs.starship = {
     enable = true;

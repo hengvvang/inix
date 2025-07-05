@@ -1,15 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.toolkits.user.enable = lib.mkEnableOption "用户工具" // {
-    default = false;
-  };
-
-  config = lib.mkIf config.myHome.toolkits.user.enable {
-    # 设置用户工具的默认值
-    myHome.toolkits.user = {
-      utilities.enable = lib.mkDefault true;
-    };
+  options.myHome.toolkits.user = {
+    utilities = lib.mkEnableOption "用户实用工具";
   };
 
   imports = [
