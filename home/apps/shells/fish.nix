@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
+  options.myHome.apps.shells.fish.enable = lib.mkEnableOption "Fish Shell 配置" // {
+    default = false;
+  };
+
+  config = lib.mkIf config.myHome.apps.shells.fish.enable {
   # Fish Shell 配置
   programs.fish = {
     enable = true;
@@ -8,5 +13,6 @@
       # Fish shell 初始化配置
       set -g fish_greeting ""
     '';
+  };
   };
 }
