@@ -2,87 +2,45 @@
 
 {
   imports = [
-	./apps/zsh.nix
-	./apps/micro.nix
+    # 使用新的模块化配置
+    ../modules/home-manager
+    
+    # 保留原有的应用配置 (可选)
+    # ./apps/zsh.nix
+    # ./apps/micro.nix
   ];
+  
+  # 基础配置
   home.username = "hengvvang";
   home.homeDirectory = "/home/hengvvang";
   home.stateVersion = "25.05";
 
-  home.packages = [
-    pkgs.hello
-    pkgs.htop
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
-  
-  # programs.zsh = {
-  #       enable = true;
-  #       enableCompletion =true;
-  #       autosuggestion.enable = true;
-  #       syntaxHighlighting.enable = true;
-  #       oh-my-zsh = {
-  #       	enable = true;
-  #       	plugins = [ "docker-compose" "docker" ];
-  #       	theme = "dst";
-  #       };
-  #       initContent = ''
-  #       	bindkey '^f' autosuggest-accept
-  #       '';
-  # };
-
-  # programs.fzf = {
-  #       enable = true;
-  #       enableZshIntegration = true;
-  # };
-
-
-
-
-
+  # 基础软件包 (其他包在模块中管理)
+  home.packages = with pkgs; [
+    hello
+    htop
+  ];  # 文件配置示例
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
+    # 可以在这里添加特定的配置文件
+    # 例如：自定义脚本、配置文件等
+    
+    # 示例：创建一个欢迎脚本
+    ".local/bin/welcome".text = ''
+      #!/bin/bash
+      echo "🎉 欢迎使用 NixOS + Home Manager!"
+      echo "📅 今天是: $(date '+%Y年%m月%d日')"
+      echo "🏠 主目录: $HOME"
+      echo "🐚 Shell: $SHELL"
+    '';
   };
 
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/hengvvang/etc/profile.d/hm-session-vars.sh
-  #
+  # 环境变量配置 (模块中也有更详细的配置)
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "micro";
+    BROWSER = "firefox";
+    TERMINAL = "alacritty";
   };
 
+  # 启用 Home Manager
   programs.home-manager.enable = true;
 }
