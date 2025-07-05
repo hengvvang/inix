@@ -5,7 +5,7 @@
     [ 
       ./hardware-configuration.nix
       # <home-manager/nixos>
-      ../modules/nixos/default.nix
+      ../../system
     ];
 
 

@@ -21,7 +21,7 @@
         hengvvang = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./nixos/configuration.nix
+            ./hosts/laptop/configuration.nix
 	    {
 		environment.systemPackages = [ 
 		 zen-browser.packages.${system}.twilight
@@ -34,7 +34,7 @@
         hengvvang = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           modules = [
-            ./home-manager/home.nix
+            ./hosts/laptop/home.nix
           ];
         };
       };

@@ -6,7 +6,7 @@
   
   imports = [
     # 使用新的模块化配置
-    ../modules/home-manager
+    ../../home
   ];
   
   # 基础配置
