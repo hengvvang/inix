@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.users.enable {
+  config = lib.mkIf config.mySystem.users {
     # 用户配置
     users.users.hengvvang = {
       isNormalUser = true;
