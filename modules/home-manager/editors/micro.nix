@@ -1,14 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    nano
-    vim
-    micro
-    vscode
-    zed-editor
-  ];
-  
+  # Micro 编辑器配置
   programs.micro = {
     enable = true;
     settings = {

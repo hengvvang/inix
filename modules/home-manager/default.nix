@@ -6,7 +6,6 @@
     ./apps
     ./development
     ./editors
-    ./user-env
     ./shells
     ./profiles
     ./toolkits

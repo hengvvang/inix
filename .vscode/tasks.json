@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build Home Manager Configuration",
+			"type": "shell",
+			"command": "nix build .#homeConfigurations.hengvvang.activationPackage",
+			"group": "build",
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./vim
-    ./micro
+    ./vim.nix
+    ./micro.nix
     ./zed.nix
     ./vscode.nix
   ];

@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  # 允许非自由软件
+  nixpkgs.config.allowUnfree = true;
+  
   imports = [
     # 使用新的模块化配置
     ../modules/home-manager
