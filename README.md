@@ -84,16 +84,84 @@ myHome = {
 };
 ```
 
+## 分层默认配置系统
+
+本配置系统实现了**三层默认值控制**：
+
+### 第一层：顶层默认策略 (home/default.nix, system/default.nix)
+
+**Home Manager 顶层策略**:
+- `apps.enable = true` - 应用程序默认开启 (用户日常必需)  
+- `development.enable = true` - 开发环境默认开启 (开发者机器)
+- `profiles.enable = true` - 配置文件默认开启 (字体和环境变量重要)
+- `toolkits.enable = false` - 工具包默认关闭 (让用户选择)
+
+**NixOS 系统层策略**:
+- `hardware.enable = true` - 硬件配置默认开启 (系统基础需求)
+- `users.enable = true` - 用户配置默认开启 (系统必需)  
+- `localization.enable = true` - 本地化默认开启 (中文环境常用)
+- `desktop.enable = false` - 桌面环境默认关闭 (让用户选择图形界面)
+- `packages.enable = false` - 系统包默认关闭 (避免过多软件)
+
+### 第二层：功能模块默认策略
+
+每个功能模块在自己的 default.nix 中设置子模块的默认启用策略：
+
+- **development/default.nix**: 版本控制和语言支持默认开启，嵌入式开发默认关闭
+- **profiles/default.nix**: 环境变量和字体配置都默认开启  
+- **toolkits/default.nix**: 用户工具默认开启，系统工具默认关闭
+- **apps/default.nix**: 核心应用(编辑器、yazi、shells)默认开启，终端默认关闭
+
+### 第三层：最底层模块选项
+
+所有最底层模块都有 `enable` 选项，默认值为 `false`，但会被上层默认策略覆盖。
+
+## 配置优先级
+
+1. **主机显式配置** (configuration.nix, home.nix) - 最高优先级
+2. **上层默认策略** (lib.mkDefault) - 中等优先级  
+3. **模块默认值** (default = false) - 最低优先级
+
+## 使用示例
+
+### 基础配置 (依赖分层默认值)
+```nix
+# home.nix - 只启用顶层模块，使用所有默认策略
+myHome = {
+  apps.enable = true;        # → 自动启用编辑器、yazi、shells
+  development.enable = true; # → 自动启用版本控制、语言支持  
+  profiles.enable = true;    # → 自动启用字体、环境变量
+};
+```
+
+### 自定义配置 (覆盖默认值)
+```nix  
+# home.nix - 覆盖特定默认策略
+myHome = {
+  apps.enable = true;
+  development = {
+    enable = true;
+    embedded.enable = true;  # 覆盖默认关闭，启用嵌入式开发
+  };
+  toolkits = {
+    enable = true;           # 覆盖默认关闭
+    system.enable = true;    # 启用系统工具
+  };
+};
+```
+
 ## 使用方法
 
 ### 构建配置
 
 1. **构建 NixOS 配置**:
+
    ```bash
    nix build .#nixosConfigurations.hengvvang.config.system.build.toplevel
    ```
 
 2. **构建 Home Manager 配置**:
+
    ```bash
    nix build .#homeConfigurations.hengvvang.activationPackage
    ```
