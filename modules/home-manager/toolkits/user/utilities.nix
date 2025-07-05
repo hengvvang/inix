@@ -1,33 +1,23 @@
 { config, lib, pkgs, ... }:
 
 {
-  # 现代化 Linux 工具配置模块 - 传统工具的现代替代
   home.packages = with pkgs; [
-    # 现代文件工具
+    unzip
+    zip
+    p7zip
+    jq            # JSON 处理
+    yq            # YAML 处理
+    bat           # 更好的 cat
+    eza           # 更好的 ls
     lsd                # 现代 ls (彩色、图标)
     bat                # 现代 cat (语法高亮)
-    fd                 # 现代 find (更快、更简单)
     ripgrep            # 现代 grep (更快)
-    
-    # 现代系统工具
-    dust               # 现代 du (磁盘使用)
-    duf                # 现代 df (磁盘信息)
-    procs              # 现代 ps (进程信息)
-    
-    # 现代网络工具
-    dog                # 现代 dig (DNS 查询)
-    bandwhich          # 网络使用监控
-    
-    # 导航增强
+    tree          # 目录树显示
+    fd            # 快速文件查找
+    rsync         # 文件同步
     zoxide             # 智能 cd (记录常用目录)
-    
-    # 搜索增强
     fzf                # 模糊搜索工具
-    
-    # Git 增强
     delta              # 更好的 git diff
-    
-    # 终端增强
     starship           # 现代提示符
   ];
   

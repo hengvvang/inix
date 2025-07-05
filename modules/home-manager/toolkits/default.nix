@@ -3,7 +3,7 @@
 {
   # 工具模块入口
   imports = [
-    ./system/linux-admin.nix
-    ./user/replacements.nix
+    ./system
+    ./user
   ];
 }

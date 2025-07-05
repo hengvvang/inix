@@ -2,7 +2,8 @@
 
 {
   imports = [
-    ./terminal.nix
-    ./utilities.nix
+    ./editors
+    ./terminals
+    ./shells
   ];
 }

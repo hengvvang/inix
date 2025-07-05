@@ -3,8 +3,7 @@
 {
   # Ghostty 终端配置 - 现代 GPU 加速终端
   home.packages = with pkgs; [
-    # 注意：Ghostty 可能还没有在 nixpkgs 中，这里使用占位符
-    # ghostty                  # Ghostty 终端
+    ghostty                  # Ghostty 终端
   ];
   
   # Ghostty 配置文件

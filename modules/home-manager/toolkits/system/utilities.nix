@@ -8,38 +8,24 @@
     btop               # 现代系统监控
     iotop              # IO 监控
     nethogs            # 网络监控
-    
+    neofetch           # 系统信息显示
+    lshw               # 硬件信息
+    usbutils           # USB 工具
+    pciutils           # PCI 工具
+    dust               # 现代 du (磁盘使用)
+    duf                # 现代 df (磁盘信息)
+    procs              # 现代 ps (进程信息)
+    ncdu               # 磁盘使用分析
+    killall            # 批量结束进程
+    pstree             # 进程树
     # 网络工具
     wget               # 文件下载
     curl               # HTTP 客户端
     nmap               # 网络扫描
     iperf3             # 网络性能测试
     tcpdump            # 网络包分析
-    
-    # 文件管理
-    tree               # 目录树显示
-    ncdu               # 磁盘使用分析
-    rsync              # 文件同步
-    
-    # 压缩工具
-    zip                # ZIP 压缩
-    unzip              # ZIP 解压
-    p7zip              # 7-Zip 工具
-    
-    # 系统信息
-    neofetch           # 系统信息显示
-    lshw               # 硬件信息
-    usbutils           # USB 工具
-    pciutils           # PCI 工具
-    
-    # 进程管理
-    killall            # 批量结束进程
-    pstree             # 进程树
-    
-    # 文本处理
-    jq                 # JSON 处理
-    yq                 # YAML 处理
-    
+    dog                # 现代 dig (DNS 查询)
+    bandwhich          # 网络使用监控
     # 安全工具
     gnupg              # GPG 加密
     openssh            # SSH 客户端
