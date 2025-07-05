@@ -19,6 +19,7 @@
     in {
       nixosConfigurations = {
         hengvvang = nixpkgs.lib.nixosSystem {
+          inherit system;
           modules = [
             ./nixos/configuration.nix
 	    {
