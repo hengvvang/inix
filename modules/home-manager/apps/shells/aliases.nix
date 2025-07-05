@@ -45,10 +45,6 @@
     "...." = "cd ../../..";
     cd = "z";  # 使用 zoxide
     
-    # 编辑器快捷方式
-    vi = "micro";
-    vim = "micro";
-    nano = "micro";
     
     # 系统信息
     sysinfo = "neofetch";
