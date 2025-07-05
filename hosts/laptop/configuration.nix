@@ -37,7 +37,6 @@
     
     # 本地化配置 - 支持细粒度控制
     localization = {
-      enable = true;
       # 时区选择 (只能选择一个)
       timeZone.shanghai = true;        # 中国上海时区
       # timeZone.newYork = true;       # 美国纽约时区

@@ -2,6 +2,33 @@
 
 {
   config = lib.mkIf config.mySystem.localization.inputMethod.fcitx5 {
+    # 基础本地化设置
+    i18n.defaultLocale = "zh_CN.UTF-8";
+    
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = "zh_CN.UTF-8";
+      LC_IDENTIFICATION = "zh_CN.UTF-8";
+      LC_MEASUREMENT = "zh_CN.UTF-8";
+      LC_MONETARY = "zh_CN.UTF-8";
+      LC_NAME = "zh_CN.UTF-8";
+      LC_NUMERIC = "zh_CN.UTF-8";
+      LC_PAPER = "zh_CN.UTF-8";
+      LC_TELEPHONE = "zh_CN.UTF-8";
+      LC_TIME = "zh_CN.UTF-8";
+    };
+
+    # 字体支持
+    fonts.packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-emoji
+      source-han-sans
+      source-han-serif
+      wqy_microhei
+      wqy_zenhei
+    ];
+
     # Fcitx5 输入法配置
     i18n.inputMethod = {
       type = "fcitx5";
