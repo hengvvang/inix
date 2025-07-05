@@ -20,7 +20,7 @@
   imports = [
     ./desktop
     ./hardware.nix
-    ./localization.nix
+    ./localization
     ./users.nix
     ./packages.nix
   ];

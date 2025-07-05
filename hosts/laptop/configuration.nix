@@ -32,9 +32,21 @@
   mySystem = {
     desktop.cosmic.enable = true;      # 桌面环境 - laptop需要图形界面
     hardware.enable = true;     # 硬件配置 - 基础需求
-    localization.enable = true; # 本地化配置 - 中文环境
     users.enable = true;        # 用户配置 - 必需
     packages.enable = true;     # 系统包 - 完整软件环境
+    
+    # 本地化配置 - 支持细粒度控制
+    localization = {
+      enable = true;
+      # 时区选择 (只能选择一个)
+      timeZone.shanghai = true;        # 中国上海时区
+      # timeZone.newYork = true;       # 美国纽约时区
+      # timeZone.losAngeles = true;    # 美国洛杉矶时区
+      
+      # 输入法选择 (只能选择一个)
+      inputMethod.fcitx5 = true;       # 推荐：Fcitx5 (最新)
+      # inputMethod.ibus = true;       # 备选：IBus
+    };
   };
 
   # Some programs need SUID wrappers, can be configured further or are
