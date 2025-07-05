@@ -14,16 +14,13 @@
   home.homeDirectory = "/home/hengvvang";
   home.stateVersion = "25.05";
 
-  # 启用所有 Home Manager 模块
+  # 启用 Home Manager 模块 - 使用分层默认值
   myHome = {
-    apps = {
-      enable = true;
-      yazi.enable = true;
-      editors.enable = true;
-    };
-    development.enable = true;
+    # 只需要显式启用顶层模块，子模块将使用各层的默认值
+    apps.enable = true;
+    development.enable = true;  
     profiles.enable = true;
-    toolkits.enable = true;
+    toolkits.enable = true;  # 现在启用工具包来演示分层默认值
   };
 
   # 核心环境变量
