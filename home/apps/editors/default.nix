@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.apps.editors.enable = lib.mkEnableOption "编辑器配置";
+  options.myHome.apps.editors.enable = lib.mkEnableOption "编辑器配置" // {
+    default = false;
+  };
 
   config = lib.mkIf config.myHome.apps.editors.enable {
     

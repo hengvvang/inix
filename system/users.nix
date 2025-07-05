@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.mySystem.users.enable = lib.mkEnableOption "用户配置";
+  options.mySystem.users.enable = lib.mkEnableOption "用户配置" // {
+    default = false;
+  };
 
   config = lib.mkIf config.mySystem.users.enable {
   # 用户配置

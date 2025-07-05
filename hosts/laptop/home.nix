@@ -6,7 +6,6 @@
   
   imports = [
     # 使用新的模块化配置
-    ./home-modules.nix
     ../../home
   ];
   
@@ -14,6 +13,18 @@
   home.username = "hengvvang";
   home.homeDirectory = "/home/hengvvang";
   home.stateVersion = "25.05";
+
+  # 启用所有 Home Manager 模块
+  myHome = {
+    apps = {
+      enable = true;
+      yazi.enable = true;
+      editors.enable = true;
+    };
+    development.enable = true;
+    profiles.enable = true;
+    toolkits.enable = true;
+  };
 
   # 核心环境变量
   home.sessionVariables = {

@@ -1,7 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.mySystem.packages.enable = lib.mkEnableOption "系统包配置";
+  options.mySystem.packages.enable = lib.mkEnableOption "系统包配置" // {
+    default = false;
+  };
 
   config = lib.mkIf config.mySystem.packages.enable {
   environment.systemPackages = with pkgs; [

@@ -4,7 +4,6 @@
   imports =
     [ 
       ./hardware-configuration.nix
-      ./modules.nix
       # <home-manager/nixos>
       ../../system
     ];
@@ -27,6 +26,15 @@
   
 
   nixpkgs.config.allowUnfree = true;
+
+  # 启用所有系统模块
+  mySystem = {
+    desktop.enable = true;
+    hardware.enable = true;
+    localization.enable = true;
+    users.enable = true;
+    packages.enable = true;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
