@@ -2,6 +2,7 @@
 
 {
   options.mySystem.services.hardware = {
+    enable = lib.mkEnableOption "硬件服务";
     printing.enable = lib.mkEnableOption "CUPS 打印服务";
     bluetooth.enable = lib.mkEnableOption "蓝牙服务";
     sound.enable = lib.mkEnableOption "PipeWire 音频服务";

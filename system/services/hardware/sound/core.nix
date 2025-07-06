@@ -4,7 +4,6 @@
   config = lib.mkIf (config.mySystem.services.hardware.enable && config.mySystem.services.hardware.sound.enable) {
     # 禁用传统音频服务
     services.pulseaudio.enable = false;
-    sound.enable = false;
     
     # PipeWire 音频服务配置
     services.pipewire = {

@@ -15,9 +15,8 @@
       mplayer
       ffmpeg-full
       
-      # 流媒体工具
-      youtube-dl
-      yt-dlp
+      # 流媒体工具 (使用安全的替代品)
+      yt-dlp  # 替代 youtube-dl
     ];
     
     # MPV 配置

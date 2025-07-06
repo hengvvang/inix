@@ -42,8 +42,8 @@
       };
     };
 
-    # 日志聚合配置
-    services.journald.extraConfig = lib.mkIf (config.mySystem.services.docker.logDriver == "journald") ''
+    # 日志配置
+    services.journald.extraConfig = ''
       # Docker 容器日志配置
       SystemMaxUse=1G
       SystemKeepFree=2G

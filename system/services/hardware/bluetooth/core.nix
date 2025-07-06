@@ -18,6 +18,11 @@
         Policy = {
           AutoEnable = true;
         };
+        
+        A2DP = {
+          SBCQualityMode = "XQ";
+          AACQualityMode = "5";
+        };
       };
     };
 
@@ -31,19 +36,5 @@
 
     # 蓝牙音频支持
     services.blueman.enable = true;
-    
-    # 蓝牙音频编解码器
-    environment.etc = {
-      "bluetooth/main.conf".text = ''
-        [General]
-        Enable=Source,Sink,Media,Socket
-        Experimental=true
-        KernelExperimental=true
-        
-        [A2DP]
-        SBCQualityMode=XQ
-        AACQualityMode=5
-      '';
-    };
   };
 }

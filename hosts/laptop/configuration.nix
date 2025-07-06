@@ -31,7 +31,6 @@
   # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
     desktop.cosmic.enable = true;       # 桌面环境 - laptop需要图形界面
-    hardware.enable = true;             # 硬件配置 - 基础需求
     users.enable = true;                # 用户配置 - 必需
     packages.enable = true;             # 系统包 - 完整软件环境
     services = {
@@ -47,6 +46,7 @@
       
       # 网络服务
       network = {
+        enable = true;                    # 启用网络服务
         # SSH 服务 - 远程访问
         ssh = {
           enable = true;                  # 启用 SSH 服务
@@ -67,6 +67,7 @@
       
       # 多媒体服务
       media = {
+        enable = true;                    # 启用媒体服务
         # 媒体播放器
         players.enable = true;            # 启用多媒体播放器
         
@@ -78,6 +79,7 @@
       
       # 同步和备份服务
       sync = {
+        enable = true;                    # 启用同步服务
         # 文件同步
         syncthing.enable = true;          # 启用 Syncthing
         
@@ -90,9 +92,37 @@
       
       # 硬件服务
       hardware = {
+        enable = true;                    # 启用硬件服务
         sound.enable = true;              # PipeWire 音频
         bluetooth.enable = true;          # 蓝牙支持
         # printing.enable = true;         # 可选：打印服务
+      };
+      
+      # 硬件驱动服务
+      drivers = {
+        enable = true;                    # 启用驱动服务
+        graphics = {
+          enable = true;                  # 启用显卡驱动
+          nvidia = {
+            enable = true;                # NVIDIA 显卡驱动
+            powerManagement = true;       # 电源管理
+            settings = true;              # 设置工具
+          };
+        };
+        input = {
+          enable = true;                  # 启用输入设备
+          touchpad.enable = true;         # 触摸板支持
+        };
+        network = {
+          enable = true;                  # 启用网络驱动
+          wifi.enable = true;             # WiFi 驱动
+          bluetooth.enable = true;        # 蓝牙驱动
+        };
+        storage = {
+          enable = true;                  # 启用存储驱动
+          ssd.enable = true;              # SSD 优化
+          usb.enable = true;              # USB 设备支持
+        };
       };
     };
     

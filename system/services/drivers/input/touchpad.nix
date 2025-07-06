@@ -12,16 +12,5 @@
         disableWhileTyping = true;
       };
     };
-    
-    # X11 触摸板配置
-    services.xserver.libinput = {
-      enable = true;
-      touchpad = {
-        tapping = true;
-        naturalScrolling = true;
-        middleEmulation = true;
-        disableWhileTyping = true;
-      };
-    };
   };
 }
