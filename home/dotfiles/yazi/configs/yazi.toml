@@ -1,0 +1,54 @@
+# Yazi 文件管理器配置 - 外部文件方式
+
+[manager]
+ratio = [1, 4, 3]
+sort_by = "alphabetical"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+linemode = "size"
+show_hidden = false
+show_symlink = true
+scrolloff = 5
+
+[preview]
+tab_size = 2
+max_width = 600
+max_height = 900
+cache_dir = ""
+
+[opener]
+edit = [
+  { run = 'vim "$@"', block = true, for = "unix" },
+]
+open = [
+  { run = 'xdg-open "$@"', desc = "Open" },
+]
+reveal = [
+  { run = 'xdg-open "$(dirname "$0")"', desc = "Reveal" },
+]
+extract = [
+  { run = 'unar "$@"', desc = "Extract here" },
+]
+play = [
+  { run = 'mpv "$@"', orphan = true, for = "unix" },
+]
+
+[open]
+rules = [
+  { name = "*/", use = [ "edit", "open", "reveal" ] },
+  { mime = "text/*", use = [ "edit", "reveal" ] },
+  { mime = "image/*", use = [ "open", "reveal" ] },
+  { mime = "video/*", use = [ "play", "reveal" ] },
+  { mime = "audio/*", use = [ "play", "reveal" ] },
+  { mime = "inode/x-empty", use = [ "edit", "reveal" ] },
+  { mime = "application/json", use = [ "edit", "reveal" ] },
+  { mime = "*/javascript", use = [ "edit", "reveal" ] },
+  { mime = "application/zip", use = [ "extract", "reveal" ] },
+  { mime = "application/gzip", use = [ "extract", "reveal" ] },
+  { mime = "application/x-tar", use = [ "extract", "reveal" ] },
+  { mime = "application/x-bzip", use = [ "extract", "reveal" ] },
+  { mime = "application/x-bzip2", use = [ "extract", "reveal" ] },
+  { mime = "application/x-7z-compressed", use = [ "extract", "reveal" ] },
+  { mime = "application/x-rar", use = [ "extract", "reveal" ] },
+]

@@ -1,0 +1,70 @@
+# Zsh 配置文件 - 外部文件方式
+
+# 历史设置
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE=~/.zsh_history
+setopt SHARE_HISTORY
+setopt HIST_VERIFY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+
+# 自动补全
+autoload -U compinit
+compinit
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# 目录导航
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+
+# 别名
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias grep='grep --color=auto'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Git 别名
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git log --oneline'
+alias gd='git diff'
+alias gb='git branch'
+alias gco='git checkout'
+
+# 现代工具别名
+alias cat='bat'
+alias ls='eza --icons'
+alias tree='eza --tree'
+alias find='fd'
+alias grep='rg'
+alias du='dust'
+alias df='duf'
+alias ps='procs'
+alias top='btop'
+
+# 键绑定
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey '^[[1;5C' forward-word
+bindkey '^[[1;5D' backward-word
+
+# 提示符
+autoload -U colors && colors
+PROMPT='%{$fg[cyan]%}%n@%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}$ '
+
+# 环境变量
+export EDITOR=vim
+export BROWSER=google-chrome
+export TERM=xterm-256color
+
+# 路径设置
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH

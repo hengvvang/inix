@@ -53,6 +53,16 @@
       };
     };
     
+    dotfiles = {
+      enable = true;
+      vim.enable = true;
+      zsh.enable = true;
+      fish.enable = true;
+      nushell.enable = true;
+      yazi.enable = true;
+      ghostty.enable = true;
+    };
+    
     profiles = {
       fonts = {
         fonts.enable = true;            # 字体配置

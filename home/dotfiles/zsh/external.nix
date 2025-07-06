@@ -1,0 +1,8 @@
+{ config, lib, pkgs, ... }:
+
+{
+  config = lib.mkIf config.myHome.dotfiles.zsh.enable {
+    # 方式3: 外部文件引用
+    home.file.".zshrc".source = ./configs/zshrc;
+  };
+}
