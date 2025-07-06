@@ -37,7 +37,7 @@
       inputMethod.ibus.enable = lib.mkDefault false;
     };
     
-    # 服务配置模块
+    # 服务配置模块 - 专注个人电脑使用场景
     services = {
       # Docker 容器服务
       docker = {
@@ -49,38 +49,106 @@
         security.enable = lib.mkDefault false;     # 安全增强
       };
       
-      # Web 服务
-      web.nginx = {
-        enable = lib.mkDefault false;
-        ssl.enable = lib.mkDefault false;          # SSL/TLS 支持
-        cache.enable = lib.mkDefault false;        # 缓存配置
-        security.enable = lib.mkDefault false;     # 安全增强
-      };
-      
       # 网络服务
       network = {
-        tailscale.enable = lib.mkDefault false;    # VPN 服务
-        ssh.enable = lib.mkDefault false;          # SSH 远程访问
+        # SSH 远程访问
+        ssh = {
+          enable = lib.mkDefault false;              # SSH 服务
+          passwordAuth = lib.mkDefault false;        # 密码认证
+          keyAuth = lib.mkDefault false;             # 密钥认证增强
+          hardening = lib.mkDefault false;           # 安全加固
+        };
+        
+        # VPN 服务
+        vpn = {
+          tailscale = {
+            enable = lib.mkDefault false;            # Tailscale VPN
+            exitNode = lib.mkDefault false;          # 出口节点
+            subnet = lib.mkDefault false;            # 子网路由
+            magicDNS = lib.mkDefault false;          # MagicDNS
+          };
+          wireguard = {
+            enable = lib.mkDefault false;            # WireGuard 客户端
+            server = lib.mkDefault false;            # WireGuard 服务器
+          };
+        };
+        
+        # 网络工具
+        tools = {
+          enable = lib.mkDefault false;              # 网络诊断工具
+          monitoring = lib.mkDefault false;          # 网络监控
+          security = lib.mkDefault false;            # 网络安全工具
+        };
       };
       
-      # 媒体服务
+      # 多媒体服务
       media = {
-        jellyfin.enable = lib.mkDefault false;     # 媒体服务器
-        transmission.enable = lib.mkDefault false; # BT 下载客户端
+        # 音视频播放
+        players = {
+          enable = lib.mkDefault false;              # 多媒体播放器
+          mpv = lib.mkDefault false;                 # MPV 增强配置
+          vlc = lib.mkDefault false;                 # VLC 播放器
+          music = lib.mkDefault false;               # 音乐播放器
+        };
+        
+        # 媒体编辑
+        editing = {
+          enable = lib.mkDefault false;              # 媒体编辑工具
+          video = lib.mkDefault false;               # 视频编辑
+          audio = lib.mkDefault false;               # 音频编辑
+          image = lib.mkDefault false;               # 图像编辑
+        };
+        
+        # 流媒体服务 (个人使用)
+        streaming = {
+          jellyfin = {
+            enable = lib.mkDefault false;            # Jellyfin 媒体服务器
+            hardware = lib.mkDefault false;          # 硬件加速
+            plugins = lib.mkDefault false;           # 常用插件
+          };
+          dlna = lib.mkDefault false;                # DLNA 媒体共享
+        };
+        
+        # 下载工具
+        download = {
+          enable = lib.mkDefault false;              # 媒体下载工具
+          youtube = lib.mkDefault false;             # YouTube 下载
+          torrent = lib.mkDefault false;             # BT 客户端
+          aria2 = lib.mkDefault false;               # Aria2 下载管理器
+        };
       };
       
-      # 存储和文件共享服务
-      storage = {
-        samba.enable = lib.mkDefault false;        # Windows 文件共享
-        nfs.enable = lib.mkDefault false;          # Unix/Linux 文件共享
-        syncthing.enable = lib.mkDefault false;    # 点对点文件同步
+      # 同步和备份服务
+      sync = {
+        # 文件同步
+        syncthing = {
+          enable = lib.mkDefault false;              # Syncthing 服务
+          gui.enable = lib.mkDefault false;          # Web 管理界面
+          discovery.enable = lib.mkDefault false;    # 全局发现
+          folders.enable = lib.mkDefault false;      # 预配置文件夹
+        };
+        
+        # 云存储同步
+        cloud = {
+          enable = lib.mkDefault false;              # 云存储工具
+          rclone.enable = lib.mkDefault false;       # Rclone 多云同步
+          dropbox.enable = lib.mkDefault false;      # Dropbox 客户端
+          onedrive.enable = lib.mkDefault false;     # OneDrive 同步
+        };
+        
+        # 备份服务
+        backup = {
+          enable = lib.mkDefault false;              # 本地备份服务
+          rsync.enable = lib.mkDefault false;        # Rsync 增量备份
+          timeshift.enable = lib.mkDefault false;    # 系统快照
+        };
       };
       
-      # 硬件和系统服务
+      # 硬件服务
       hardware = {
-        printing.enable = lib.mkDefault false;     # 打印和扫描
-        bluetooth.enable = lib.mkDefault false;    # 蓝牙连接
-        sound.enable = lib.mkDefault false;        # 音频系统
+        printing.enable = lib.mkDefault false;       # 打印服务
+        bluetooth.enable = lib.mkDefault false;      # 蓝牙支持
+        sound.enable = lib.mkDefault false;          # 音频系统
       };
     };
   };
