@@ -20,24 +20,6 @@
     # 二进制分析
     binutils             # 二进制工具集
     hexdump              # 十六进制查看
-  ];
-  
-  # 嵌入式开发别名
-  home.shellAliases = {
-    # 串口连接
-    serial = "minicom -D";
-    serial-115200 = "minicom -D /dev/ttyUSB0 -b 115200";
-    
-    # OpenOCD
-    ocd = "openocd";
-    
-    # 二进制分析
-    hexdump16 = "hexdump -C";
-    objdump-arm = "arm-none-eabi-objdump";
-    
-    # ARM 编译
-    arm-gcc = "arm-none-eabi-gcc";
-    arm-gdb = "arm-none-eabi-gdb";
-  };
+    ];
   };
 }
