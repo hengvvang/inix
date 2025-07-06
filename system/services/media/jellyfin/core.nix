@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.jellyfin.enable {
+  config = lib.mkIf config.mySystem.services.media.jellyfin.enable {
     # Jellyfin 媒体服务器配置
     services.jellyfin = {
       enable = true;

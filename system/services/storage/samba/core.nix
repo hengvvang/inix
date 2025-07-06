@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.samba.enable {
+  config = lib.mkIf config.mySystem.services.storage.samba.enable {
     # Samba 文件共享服务配置
     services.samba = {
       enable = true;

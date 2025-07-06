@@ -35,6 +35,7 @@
     users.enable = true;                # 用户配置 - 必需
     packages.enable = true;             # 系统包 - 完整软件环境
     services = {
+      # Docker 容器服务 - 完整功能
       docker = {
         enable = true;                    # 启用 Docker 核心服务
         compose.enable = true;            # 启用 Docker Compose
@@ -43,18 +44,34 @@
         # registry.enable = true;         # 可选：本地 Registry
         # security.enable = true;         # 可选：安全增强
       };
-      ssh.enable = true;                  # SSH 服务 - 远程访问
+      
+      # 网络服务
+      network = {
+        ssh.enable = true;                # SSH 服务 - 远程访问
+        tailscale.enable = true;          # Tailscale VPN
+      };
       
       # Web 服务
       web.nginx.enable = true;            # Nginx Web 服务器
       
-      # 网络服务
-      network.tailscale.enable = true;   # Tailscale VPN
+      # 硬件服务
+      hardware = {
+        sound.enable = true;              # PipeWire 音频
+        bluetooth.enable = true;          # 蓝牙支持
+        # printing.enable = true;         # 可选：打印服务
+      };
       
-      # 数据库服务（模块化）
-      databases = {
-        # postgresql.enable = true;       # PostgreSQL 数据库
-        # redis.enable = true;            # Redis 缓存
+      # 存储服务（按需启用）
+      storage = {
+        # samba.enable = true;            # 可选：Windows 文件共享
+        # nfs.enable = true;              # 可选：NFS 网络文件系统
+        # syncthing.enable = true;        # 可选：文件同步
+      };
+      
+      # 媒体服务（按需启用）
+      media = {
+        # jellyfin.enable = true;         # 可选：媒体服务器
+        # transmission.enable = true;     # 可选：BT 下载
       };
     };
     

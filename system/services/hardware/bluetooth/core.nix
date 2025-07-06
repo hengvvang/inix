@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.bluetooth.enable {
+  config = lib.mkIf config.mySystem.services.hardware.bluetooth.enable {
     # 蓝牙服务配置
     hardware.bluetooth = {
       enable = true;

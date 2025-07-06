@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.sound.enable {
+  config = lib.mkIf config.mySystem.services.hardware.sound.enable {
     # PipeWire 音频服务配置
     services.pipewire = {
       enable = true;

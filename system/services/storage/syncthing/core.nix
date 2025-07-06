@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.syncthing.enable {
+  config = lib.mkIf config.mySystem.services.storage.syncthing.enable {
     # Syncthing 文件同步服务配置
     services.syncthing = {
       enable = true;

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.transmission.enable {
+  config = lib.mkIf config.mySystem.services.media.transmission.enable {
     # Transmission BitTorrent 客户端配置
     services.transmission = {
       enable = true;

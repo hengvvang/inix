@@ -5,38 +5,17 @@
     # Docker 核心服务配置
     virtualisation.docker = {
       enable = true;
-      storageDriver = config.mySystem.services.docker.storageDriver;
-      rootless = {
-        enable = false; # 系统级 Docker，非 rootless
-        setSocketVariable = true;
-      };
+      storageDriver = "overlay2";
       
       # 守护进程配置
       daemon.settings = {
-        data-root = config.mySystem.services.docker.dataRoot;
-        log-driver = config.mySystem.services.docker.logDriver;
+        log-driver = "journald";
         log-opts = {
           max-size = "100m";
           max-file = "5";
         };
-        
-        # 性能优化
-        storage-opts = lib.optionals (config.mySystem.services.docker.storageDriver == "overlay2") [
-          "overlay2.override_kernel_check=true"
-        ];
-        
-        # 网络配置
         ip-forward = true;
         iptables = true;
-        
-        # 资源限制
-        default-ulimits = {
-          nofile = {
-            name = "nofile";
-            hard = 64000;
-            soft = 64000;
-          };
-        };
       };
     };
 
@@ -58,19 +37,5 @@
       docker
       docker-client
     ];
-
-    # 自动启动和重启策略
-    systemd.services.docker = {
-      wantedBy = [ "multi-user.target" ];
-      after = [ "network-online.target" ];
-      wants = [ "network-online.target" ];
-      
-      serviceConfig = {
-        Restart = "on-failure";
-        RestartSec = "5s";
-        TimeoutStartSec = "0";
-        TimeoutStopSec = "30s";
-      };
-    };
   };
 }

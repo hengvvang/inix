@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.nfs.enable {
+  config = lib.mkIf config.mySystem.services.storage.nfs.enable {
     # NFS 网络文件系统配置
     services.nfs.server = {
       enable = true;

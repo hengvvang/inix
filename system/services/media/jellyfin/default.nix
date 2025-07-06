@@ -3,8 +3,5 @@
 {
   imports = [
     ./core.nix
-    ./backup.nix
-    ./replication.nix
-    ./monitoring.nix
   ];
 }
