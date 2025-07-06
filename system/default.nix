@@ -33,47 +33,5 @@
       inputMethod.ibus.enable = lib.mkDefault false;
     };
     
-    # 服务配置模块 - 专注个人电脑使用场景
-    services = {
-      # Docker 容器服务
-      docker = {
-        enable = lib.mkDefault false;
-        # 编排工具
-        orchestration.compose = lib.mkDefault false;
-        # 构建工具
-        build.buildkit = lib.mkDefault false;
-        # 存储服务
-        storage.registry = lib.mkDefault false;
-        # 监控服务
-        observability.monitoring = lib.mkDefault false;
-        # 安全功能
-        security.userNamespace = lib.mkDefault false;
-      };
-      
-      # 网络服务
-      network = {
-        enable = lib.mkDefault false;
-        ssh = {
-          enable = lib.mkDefault false;
-          server.passwordAuth = lib.mkDefault false;
-        };
-      };
-      
-      # 多媒体服务
-      media = {
-        enable = lib.mkDefault false;
-        players.enable = lib.mkDefault false;
-        # 注释掉尚未实现的功能模块
-        # editing.enable = lib.mkDefault false;
-        # streaming.enable = lib.mkDefault false;
-        # download.enable = lib.mkDefault false;
-      };
-      
-      # === 硬件驱动服务（真正原子化，每个模块自定义选项） ===
-      drivers.enable = lib.mkDefault false;
-      # 注意：具体的驱动选项由各自模块定义，如：
-      # drivers.nvidia.enable, drivers.nvidia.power.enable 等
-      # drivers.audio.enable, drivers.audio.server.pipewire 等
-    };
   };
 }
