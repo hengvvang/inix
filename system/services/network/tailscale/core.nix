@@ -7,8 +7,10 @@
       enable = true;
       openFirewall = true;
       
-      # 使用用户空间网络（更安全）
-      useRoutingFeatures = "client";
+      # 根据配置选择路由功能
+      useRoutingFeatures = 
+        if config.mySystem.services.network.tailscale.subnet.enable then "both"
+        else "client";
     };
 
     # 确保 Tailscale 包可用
@@ -54,8 +56,5 @@
 
     # 出口节点配置
     networking.firewall.checkReversePath = lib.mkIf config.mySystem.services.network.tailscale.exitNode.enable "loose";
-    
-    # 子网路由配置
-    services.tailscale.useRoutingFeatures = lib.mkIf config.mySystem.services.network.tailscale.subnet.enable "both";
   };
 }
