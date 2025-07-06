@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.dotfiles.vim.enable {
+  config = lib.mkIf (config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.method == "direct") {
     # 方式2: 直接文件写入
     home.file.".vimrc".text = ''
       " Vim 配置文件 - 直接文件写入方式

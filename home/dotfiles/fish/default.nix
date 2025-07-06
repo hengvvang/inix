@@ -6,7 +6,7 @@
     
     # 配置方式选择
     method = lib.mkOption {
-      type = lib.types.enum [ "homemanager" "direct" "external" "template" ];
+      type = lib.types.enum [ "homemanager" "direct" "external" ];
       default = "homemanager";
       description = "Fish 配置方式";
     };
@@ -16,6 +16,5 @@
     ./homemanager.nix
     ./direct.nix
     ./external.nix
-    ./template.nix
   ];
 }

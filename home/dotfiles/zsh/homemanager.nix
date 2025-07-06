@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.dotfiles.zsh.enable {
+  config = lib.mkIf (config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.method == "homemanager") {
     # 方式1: Home Manager 程序模块
     programs.zsh = {
       enable = true;

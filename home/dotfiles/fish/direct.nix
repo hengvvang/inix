@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.dotfiles.fish.enable {
+  config = lib.mkIf (config.myHome.dotfiles.fish.enable && config.myHome.dotfiles.fish.method == "direct") {
     # 方式2: 直接文件写入
     home.file.".config/fish/config.fish".text = ''
       # Fish Shell 配置文件 - 直接文件写入方式

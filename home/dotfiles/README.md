@@ -1,6 +1,6 @@
 # Dotfiles 配置模块
 
-这个模块提供了各种工具的 dotfiles 配置，每个工具都支持4种不同的配置方式，遵循项目的可启用配置风格。
+这个模块提供了各种工具的 dotfiles 配置，每个工具都支持3种不同的配置方式，遵循项目的可启用配置风格。
 
 ## 目录结构
 
@@ -13,7 +13,6 @@ dotfiles/
 │   ├── homemanager.nix  # Home Manager 程序模块方式
 │   ├── direct.nix       # 直接文件写入方式
 │   ├── external.nix     # 外部文件引用方式
-│   ├── template.nix     # 模板化配置方式
 │   └── configs/         # 外部配置文件目录
 │       └── vimrc        # 外部 vimrc 文件
 ├── zsh/                 # Zsh 配置
@@ -21,7 +20,6 @@ dotfiles/
 │   ├── homemanager.nix  # 方式1: Home Manager 程序模块
 │   ├── direct.nix       # 方式2: 直接文件写入
 │   ├── external.nix     # 方式3: 外部文件引用
-│   ├── template.nix     # 方式4: 模板化配置
 │   └── configs/         # 外部配置文件目录
 │       └── zshrc        # 外部 zshrc 文件
 ├── fish/                # Fish 配置
@@ -29,7 +27,6 @@ dotfiles/
 │   ├── homemanager.nix  # 方式1: Home Manager 程序模块
 │   ├── direct.nix       # 方式2: 直接文件写入
 │   ├── external.nix     # 方式3: 外部文件引用
-│   ├── template.nix     # 方式4: 模板化配置
 │   └── configs/         # 外部配置文件目录
 │       ├── config.fish  # 主配置文件
 │       └── functions/   # 函数目录
@@ -40,7 +37,6 @@ dotfiles/
 │   ├── homemanager.nix  # 方式1: Home Manager 程序模块
 │   ├── direct.nix       # 方式2: 直接文件写入
 │   ├── external.nix     # 方式3: 外部文件引用
-│   ├── template.nix     # 方式4: 模板化配置
 │   └── configs/         # 外部配置文件目录
 │       ├── config.nu    # 主配置文件
 │       └── env.nu       # 环境变量配置
@@ -49,7 +45,6 @@ dotfiles/
 │   ├── homemanager.nix  # 方式1: Home Manager 程序模块
 │   ├── direct.nix       # 方式2: 直接文件写入
 │   ├── external.nix     # 方式3: 外部文件引用
-│   ├── template.nix     # 方式4: 模板化配置
 │   └── configs/         # 外部配置文件目录
 │       ├── yazi.toml    # 主配置文件
 │       ├── keymap.toml  # 键位配置
@@ -59,28 +54,26 @@ dotfiles/
     ├── homemanager.nix  # 方式1: Home Manager 程序模块 (有限支持)
     ├── direct.nix       # 方式2: 直接文件写入
     ├── external.nix     # 方式3: 外部文件引用
-    ├── template.nix     # 方式4: 模板化配置
     └── configs/         # 外部配置文件目录
         └── config       # Ghostty 配置文件
 ```
 
 ## 已支持的工具配置
 
-✅ **Vim** - 4种配置方式完整实现  
-✅ **Zsh** - 4种配置方式完整实现  
-✅ **Fish** - 4种配置方式完整实现  
-✅ **Nushell** - 4种配置方式完整实现  
-✅ **Yazi** - 4种配置方式完整实现  
-✅ **Ghostty** - 4种配置方式完整实现  
+✅ **Vim** - 3种配置方式完整实现  
+✅ **Zsh** - 3种配置方式完整实现  
+✅ **Fish** - 3种配置方式完整实现  
+✅ **Nushell** - 3种配置方式完整实现  
+✅ **Yazi** - 3种配置方式完整实现  
+✅ **Ghostty** - 3种配置方式完整实现  
 
-## 四种配置方式对比
+## 三种配置方式对比
 
 | 方式 | 文件名 | 优点 | 缺点 | 推荐场景 |
 |------|--------|------|------|----------|
 | **Home Manager 程序模块** | `homemanager.nix` | 类型安全、Shell集成、验证 | 功能可能有限制 | **推荐** - 主要配置 |
 | **直接文件写入** | `direct.nix` | 完全控制、支持所有功能 | 无类型检查、易出错 | 复杂配置、特殊需求 |
 | **外部文件引用** | `external.nix` | 配置文件独立、易于管理 | 需要额外文件管理 | 大型配置、团队共享 |
-| **模板化配置** | `template.nix` | 动态生成、可定制化 | 复杂度高 | 多环境部署 |
 
 ## 使用方法
 
@@ -115,13 +108,7 @@ myHome = {
     
     vim = {
       enable = true;
-      method = "template";      # 使用模板化配置
-      # 模板配置选项
-      tabSize = 2;
-      leader = ",";
-      colorScheme = "nord";
-      showLineNumbers = true;
-      enableMouse = true;
+      method = "direct";        # 使用直接文件写入配置
     };
     
     zsh = {
@@ -131,20 +118,17 @@ myHome = {
     
     fish = {
       enable = true;
-      method = "template";      # 使用模板化配置
-      # 模板配置选项
-      greeting = "Welcome to Fish!";
-      theme = "nord";
-      enableVI = true;
-      extraAliases = {
-        myalias = "echo 'Hello World'";
-      };
-      extraFunctions = {
-        myfunction = ''
-          echo "This is my custom function"
-          echo "Args: $argv"
-        '';
-      };
+      method = "external";      # 使用外部文件引用
+    };
+    
+    yazi = {
+      enable = true;
+      method = "homemanager";   # 使用 Home Manager 程序模块
+    };
+    
+    ghostty = {
+      enable = true;
+      method = "direct";        # 使用直接文件写入 (默认)
     };
   };
 };

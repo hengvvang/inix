@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.dotfiles.nushell.enable {
+  config = lib.mkIf (config.myHome.dotfiles.nushell.enable && config.myHome.dotfiles.nushell.method == "homemanager") {
     # 方式1: Home Manager 程序模块
     programs.nushell = {
       enable = true;

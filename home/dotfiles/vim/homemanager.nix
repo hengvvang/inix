@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.dotfiles.vim.enable {
+  config = lib.mkIf (config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.method == "homemanager") {
     # 方式1: Home Manager 程序模块
     programs.vim = {
       enable = true;

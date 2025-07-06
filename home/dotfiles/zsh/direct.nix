@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.dotfiles.zsh.enable {
+  config = lib.mkIf (config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.method == "direct") {
     # 方式2: 直接文件写入
     home.file.".zshrc".text = ''
       # Zsh 配置文件 - 直接文件写入方式

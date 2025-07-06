@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.dotfiles.fish.enable {
+  config = lib.mkIf (config.myHome.dotfiles.fish.enable && config.myHome.dotfiles.fish.method == "homemanager") {
     # 方式1: Home Manager 程序模块
     programs.fish = {
       enable = true;

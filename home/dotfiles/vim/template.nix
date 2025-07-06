@@ -2,14 +2,13 @@
 
 {
   # 模板配置选项在 default.nix 中定义
-  config = lib.mkIf config.myHome.dotfiles.vim.enable {
+  config = lib.mkIf (config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.method == "template") {
     # 方式4: 模板化配置
     home.file.".vimrc".text = 
       let
         cfg = config.myHome.dotfiles.vim;
       in ''
-        " Vim 配置文件 - 模板化生成
-        " 生成时间: ${builtins.toString builtins.currentTime}
+        " Vim 配置文件 - 模板化配置
         
         " 基本设置
         ${lib.optionalString cfg.showLineNumbers ''
