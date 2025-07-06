@@ -35,20 +35,39 @@
     users.enable = true;                # 用户配置 - 必需
     packages.enable = true;             # 系统包 - 完整软件环境
     services = {
-      docker.enable = true;              # Docker 服务 - 需要容器支持
-      ssh.enable = true;                 # SSH 服务 - 远程访问
+      docker = {
+        enable = true;                    # 启用 Docker 核心服务
+        compose.enable = true;            # 启用 Docker Compose
+        buildkit.enable = true;           # 启用 Buildkit 构建器
+        monitoring.enable = true;         # 启用监控（Portainer + cAdvisor）
+        # registry.enable = true;         # 可选：本地 Registry
+        # security.enable = true;         # 可选：安全增强
+      };
+      ssh.enable = true;                  # SSH 服务 - 远程访问
+      
+      # Web 服务
+      web.nginx.enable = true;            # Nginx Web 服务器
+      
+      # 网络服务
+      network.tailscale.enable = true;   # Tailscale VPN
+      
+      # 数据库服务（模块化）
+      databases = {
+        # postgresql.enable = true;       # PostgreSQL 数据库
+        # redis.enable = true;            # Redis 缓存
+      };
     };
     
     # 本地化配置 - 支持细粒度控制
     localization = {
       # 时区选择 (只能选择一个)
-      timeZone.shanghai.enable = true;        # 中国上海时区
-      # timeZone.newYork = true;       # 美国纽约时区
-      # timeZone.losAngeles = true;    # 美国洛杉矶时区
+      timeZone.shanghai.enable = true;  # 中国上海时区
+      # timeZone.newYork.enable = true; # 美国纽约时区
+      # timeZone.losAngeles.enable = true; # 美国洛杉矶时区
       
       # 输入法选择 (只能选择一个)
-      inputMethod.fcitx5.enable = true;       # 推荐：Fcitx5 (最新)
-      # inputMethod.ibus = true;       # 备选：IBus
+      inputMethod.fcitx5.enable = true; # 推荐：Fcitx5 (最新)
+      # inputMethod.ibus.enable = true; # 备选：IBus
     };
   };
 
