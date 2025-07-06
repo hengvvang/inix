@@ -64,30 +64,5 @@ in
         "vm.zone_reclaim_mode" = 0;
       })
     ];
-    
-    # 高级优化脚本
-    environment.etc."ssd-advanced.sh" = lib.mkIf (cfg.advanced.powermanagement || cfg.advanced.cache) {
-      text = ''
-        #!/bin/sh
-        # SSD 高级优化脚本
-        echo "=== SSD 高级配置 ==="
-        
-        ${lib.optionalString cfg.advanced.powermanagement ''
-        echo "电源管理状态..."
-        tlp-stat -s 2>/dev/null || echo "TLP 未运行"
-        ''}
-        
-        ${lib.optionalString cfg.advanced.cache ''
-        echo "缓存状态..."
-        cat /proc/bcache/*/state 2>/dev/null || echo "无 bcache 设备"
-        ''}
-        
-        ${lib.optionalString cfg.advanced.raid ''
-        echo "RAID 状态..."
-        cat /proc/mdstat 2>/dev/null || echo "无 RAID 设备"
-        ''}
-      '';
-      mode = "0755";
-    };
   };
 }

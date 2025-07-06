@@ -22,15 +22,9 @@
       };
     };
     
-    # 配置管理脚本
-    environment.systemPackages = [
-      (pkgs.writeShellScriptBin "onedrive-setup" ''
-        #!/bin/bash
-        echo "OneDrive 初始设置..."
-        ${pkgs.onedrive}/bin/onedrive --display-config
-        echo "运行 'onedrive --synchronize' 进行首次同步"
-        echo "然后启用自动同步服务"
-      '')
+    # OneDrive 工具
+    environment.systemPackages = with pkgs; [
+      onedrive
     ];
   };
 }

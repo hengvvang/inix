@@ -6,19 +6,9 @@
     # 网络扫描工具
     (lib.mkIf (config.mySystem.services.network.tools.enable && config.mySystem.services.network.tools.advanced.scanning) {
       environment.systemPackages = with pkgs; [
-        # 端口和服务扫描
+        # 基础网络扫描
         nmap
-        masscan
-        zmap
-        
-        # 网络发现
         arp-scan
-        
-        # 漏洞扫描
-        nikto
-        
-        # 服务枚举
-        enum4linux
       ];
     })
     
@@ -41,20 +31,12 @@
     # 网络自动化工具
     (lib.mkIf (config.mySystem.services.network.tools.enable && config.mySystem.services.network.tools.advanced.automation) {
       environment.systemPackages = with pkgs; [
-        # 网络配置自动化
-        ansible
-        
-        # 网络编程
-        python3Packages.scapy
-        python3Packages.netaddr
-        python3Packages.requests
-        
-        # 网络脚本工具
+        # JSON/YAML 处理
         jq        # JSON 处理
         yq        # YAML 处理
         
-        # API 测试
-        postman
+        # 网络编程基础
+        python3Packages.requests
       ];
     })
   ];

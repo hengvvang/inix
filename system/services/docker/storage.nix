@@ -16,26 +16,8 @@
     };
     
     # 存储管理工具
-    environment.systemPackages = [
-      (pkgs.writeShellScriptBin "docker-storage-cleanup" ''
-        #!/bin/bash
-        echo "Docker 存储清理..."
-        
-        echo "清理未使用的镜像..."
-        docker image prune -f
-        
-        echo "清理未使用的容器..."
-        docker container prune -f
-        
-        echo "清理未使用的数据卷..."
-        docker volume prune -f
-        
-        echo "清理未使用的网络..."
-        docker network prune -f
-        
-        echo "存储清理完成"
-        docker system df
-      '')
+    environment.systemPackages = with pkgs; [
+      docker    # Docker 命令行工具已包含存储清理功能
     ];
   };
 }

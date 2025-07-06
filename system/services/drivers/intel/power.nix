@@ -20,47 +20,6 @@
       powertop              # 电源使用分析
     ];
     
-    # GPU 频率管理脚本
-    environment.systemPackages = [
-      (pkgs.writeShellScriptBin "intel-gpu-freq" ''
-        #!/bin/bash
-        GPU_FREQ_PATH="/sys/class/drm/card0/gt_max_freq_mhz"
-        GPU_MIN_PATH="/sys/class/drm/card0/gt_min_freq_mhz"
-        
-        case "$1" in
-          max)
-            if [ -f "$GPU_FREQ_PATH" ]; then
-              echo "设置 Intel GPU 最大频率..."
-              cat /sys/class/drm/card0/gt_RP0_freq_mhz | sudo tee "$GPU_FREQ_PATH"
-            fi
-            ;;
-          min)
-            if [ -f "$GPU_FREQ_PATH" ]; then
-              echo "设置 Intel GPU 最小频率..."
-              cat /sys/class/drm/card0/gt_RPn_freq_mhz | sudo tee "$GPU_FREQ_PATH"
-            fi
-            ;;
-          auto)
-            if [ -f "$GPU_FREQ_PATH" ]; then
-              echo "设置 Intel GPU 自动频率..."
-              cat /sys/class/drm/card0/gt_RP1_freq_mhz | sudo tee "$GPU_FREQ_PATH"
-            fi
-            ;;
-          status)
-            echo "Intel GPU 频率状态:"
-            if [ -f /sys/class/drm/card0/gt_cur_freq_mhz ]; then
-              echo "当前频率: $(cat /sys/class/drm/card0/gt_cur_freq_mhz) MHz"
-              echo "最大频率: $(cat /sys/class/drm/card0/gt_max_freq_mhz) MHz"
-              echo "最小频率: $(cat /sys/class/drm/card0/gt_min_freq_mhz) MHz"
-            fi
-            ;;
-          *)
-            echo "用法: intel-gpu-freq {max|min|auto|status}"
-            ;;
-        esac
-      '')
-    ];
-    
     # GPU 电源状态监控
     systemd.services.intel-gpu-monitor = {
       description = "Intel GPU 电源监控";

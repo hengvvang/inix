@@ -23,25 +23,9 @@
     
     # 密钥轮换支持
     (lib.mkIf (config.mySystem.services.network.wireguard.enable && config.mySystem.services.network.wireguard.security.keyRotation) {
-      # 密钥轮换脚本
-      environment.systemPackages = [
-        (pkgs.writeShellScriptBin "wg-rotate-keys" ''
-          #!/bin/bash
-          INTERFACE="${config.mySystem.services.network.wireguard.server.interface}"
-          KEY_FILE="/var/lib/wireguard/$INTERFACE.key"
-          
-          echo "轮换 WireGuard 密钥..."
-          
-          # 备份旧密钥
-          cp "$KEY_FILE" "$KEY_FILE.backup.$(date +%s)"
-          
-          # 生成新密钥
-          wg genkey | tee "$KEY_FILE" | wg pubkey
-          
-          echo "新公钥已生成，请更新客户端配置"
-          echo "重启 WireGuard 服务..."
-          systemctl restart "wireguard-$INTERFACE"
-        '')
+      # 密钥轮换支持
+      systemd.tmpfiles.rules = [
+        "d /var/lib/wireguard 0700 root root -"
       ];
       
       # 定期密钥轮换 (可选)

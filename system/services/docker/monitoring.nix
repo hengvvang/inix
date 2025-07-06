@@ -62,50 +62,9 @@
 
     # Docker 监控和管理工具
     environment.systemPackages = with pkgs; [
-      docker-compose
-      ctop  # 容器实时监控
-      dive  # Docker 镜像分析
-      
-      (writeShellScriptBin "docker-monitor" ''
-        #!/bin/bash
-        
-        case "$1" in
-          stats)
-            echo "Docker 容器统计信息:"
-            docker stats --no-stream
-            ;;
-          logs)
-            if [ -z "$2" ]; then
-              echo "Usage: docker-monitor logs <container-name>"
-              exit 1
-            fi
-            docker logs -f --tail 100 "$2"
-            ;;
-          cleanup)
-            echo "清理 Docker 资源..."
-            docker system prune -f
-            docker volume prune -f
-            docker image prune -f
-            ;;
-          health)
-            echo "Docker 系统健康检查:"
-            docker system df
-            echo ""
-            echo "运行中的容器:"
-            docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
-            ;;
-          cadvisor)
-            echo "打开 cAdvisor 监控界面: http://localhost:8080"
-            ;;
-          portainer)
-            echo "打开 Portainer 管理界面: http://localhost:9000"
-            ;;
-          *)
-            echo "Usage: docker-monitor {stats|logs|cleanup|health|cadvisor|portainer}"
-            exit 1
-            ;;
-        esac
-      '')
+      ctop        # 容器实时监控
+      dive        # Docker 镜像分析
+      lazydocker  # Docker TUI管理工具
     ];
 
     # 定期清理任务

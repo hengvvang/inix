@@ -21,32 +21,9 @@
       # };
     };
     
-    # 文件夹管理脚本
-    environment.systemPackages = [
-      (pkgs.writeShellScriptBin "syncthing-add-folder" ''
-        #!/bin/bash
-        if [ $# -lt 2 ]; then
-          echo "用法: syncthing-add-folder <文件夹ID> <路径> [设备ID...]"
-          exit 1
-        fi
-        
-        FOLDER_ID="$1"
-        FOLDER_PATH="$2"
-        shift 2
-        
-        echo "添加同步文件夹: $FOLDER_ID -> $FOLDER_PATH"
-        echo "设备: $@"
-        echo "请手动编辑 NixOS 配置文件添加此文件夹"
-      '')
-      
-      (pkgs.writeShellScriptBin "syncthing-status" ''
-        #!/bin/bash
-        echo "Syncthing 状态:"
-        systemctl status syncthing
-        echo
-        echo "同步状态:"
-        ${pkgs.syncthing}/bin/syncthing cli show system
-      '')
+    # Syncthing CLI 工具
+    environment.systemPackages = with pkgs; [
+      syncthing
     ];
     
     # 预创建常用目录

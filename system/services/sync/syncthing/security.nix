@@ -38,25 +38,9 @@
       verboseReceive = false;  # 可根据需要启用
     };
     
-    # 备份脚本
-    environment.systemPackages = [
-      (pkgs.writeShellScriptBin "syncthing-backup-config" ''
-        #!/bin/bash
-        BACKUP_DIR="/var/backups/syncthing"
-        CONFIG_DIR="${config.mySystem.services.sync.syncthing.service.dataDir}/.config/syncthing"
-        
-        mkdir -p "$BACKUP_DIR"
-        
-        echo "备份 Syncthing 配置..."
-        tar -czf "$BACKUP_DIR/config-$(date +%Y%m%d-%H%M%S).tar.gz" \
-          -C "$(dirname "$CONFIG_DIR")" \
-          "$(basename "$CONFIG_DIR")"
-        
-        echo "备份完成: $BACKUP_DIR"
-        
-        # 保留最近 10 个备份
-        ls -t "$BACKUP_DIR"/config-*.tar.gz | tail -n +11 | xargs -r rm
-      '')
+    # 配置备份目录
+    systemd.tmpfiles.rules = [
+      "d /var/backups/syncthing 0750 syncthing syncthing -"
     ];
     
     # 定期配置备份

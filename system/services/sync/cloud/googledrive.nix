@@ -10,25 +10,6 @@
       environment.systemPackages = with pkgs; [
         rclone
       ];
-      
-      # Google Drive rclone 配置脚本
-      environment.systemPackages = [
-        (pkgs.writeShellScriptBin "gdrive-setup" ''
-          #!/bin/bash
-          echo "配置 Google Drive..."
-          ${pkgs.rclone}/bin/rclone config
-          echo "配置完成后，使用 'rclone sync gdrive: ~/GoogleDrive' 同步"
-        '')
-        
-        (pkgs.writeShellScriptBin "gdrive-sync" ''
-          #!/bin/bash
-          REMOTE="''${1:-gdrive:}"
-          LOCAL="''${2:-$HOME/GoogleDrive}"
-          
-          echo "同步 Google Drive: $REMOTE -> $LOCAL"
-          ${pkgs.rclone}/bin/rclone sync "$REMOTE" "$LOCAL" -P
-        '')
-      ];
     })
     
     # 使用 Insync

@@ -67,68 +67,9 @@
 
     # 安全扫描工具
     environment.systemPackages = with pkgs; [
-      trivy    # 容器安全扫描
-      grype    # 漏洞扫描器
-      syft     # SBOM 生成器
-      
-      (writeShellScriptBin "docker-security-scan" ''
-        #!/bin/bash
-        
-        case "$1" in
-          scan-image)
-            if [ -z "$2" ]; then
-              echo "Usage: docker-security-scan scan-image <image-name>"
-              exit 1
-            fi
-            echo "扫描镜像漏洞: $2"
-            ${trivy}/bin/trivy image "$2"
-            ;;
-          scan-fs)
-            if [ -z "$2" ]; then
-              echo "Usage: docker-security-scan scan-fs <path>"
-              exit 1
-            fi
-            echo "扫描文件系统: $2"
-            ${trivy}/bin/trivy fs "$2"
-            ;;
-          sbom)
-            if [ -z "$2" ]; then
-              echo "Usage: docker-security-scan sbom <image-name>"
-              exit 1
-            fi
-            echo "生成 SBOM: $2"
-            ${syft}/bin/syft "$2" -o json
-            ;;
-          bench)
-            echo "Docker 安全基准检查..."
-            echo "请手动运行 Docker Bench Security:"
-            echo "docker run --rm --net host --pid host --userns host --cap-add audit_control \\"
-            echo "  -e DOCKER_CONTENT_TRUST=\$DOCKER_CONTENT_TRUST \\"
-            echo "  -v /var/lib:/var/lib:ro \\"
-            echo "  -v /var/run/docker.sock:/var/run/docker.sock:ro \\"
-            echo "  -v /usr/lib/systemd:/usr/lib/systemd:ro \\"
-            echo "  -v /etc:/etc:ro --label docker_bench_security \\"
-            echo "  docker/docker-bench-security"
-            ;;
-          runtime-check)
-            echo "检查运行时安全配置..."
-            echo "当前 Docker 配置:"
-            docker info | grep -E "(Security|User|Namespace)"
-            echo ""
-            echo "运行中容器的安全状态:"
-            docker ps --format "table {{.Names}}\t{{.Status}}" | head -10
-            ;;
-          *)
-            echo "Usage: docker-security-scan {scan-image|scan-fs|sbom|bench|runtime-check} [args...]"
-            echo "  scan-image <image>  - 扫描 Docker 镜像漏洞"
-            echo "  scan-fs <path>      - 扫描文件系统"
-            echo "  sbom <image>        - 生成软件清单"
-            echo "  bench               - Docker 安全基准检查"
-            echo "  runtime-check       - 检查运行时安全配置"
-            exit 1
-            ;;
-        esac
-      '')
+      # 安全扫描工具
+      trivy                 # 容器安全扫描
+      docker-bench-security # Docker安全基准测试
     ];
 
     # 容器运行时安全策略

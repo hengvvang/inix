@@ -18,14 +18,9 @@
     
     # 构建缓存优化
     (lib.mkIf (config.mySystem.services.docker.enable && config.mySystem.services.docker.build.cache) {
-      # 构建缓存脚本
-      environment.systemPackages = [
-        (pkgs.writeShellScriptBin "docker-cache-prune" ''
-          #!/bin/bash
-          echo "清理 Docker 构建缓存..."
-          docker builder prune -f
-          echo "缓存清理完成"
-        '')
+      # 构建缓存管理 (Docker CLI 已包含 builder prune 功能)
+      environment.systemPackages = with pkgs; [
+        docker
       ];
     })
     

@@ -2,37 +2,10 @@
 
 {
   config = lib.mkIf (config.mySystem.services.docker.enable && config.mySystem.services.docker.buildkit.enable) {
-    # Buildkit 工具和缓存管理
+    # Buildkit 工具
     environment.systemPackages = with pkgs; [
       docker-buildx
       buildkit
-      
-      (writeShellScriptBin "docker-build-cache-manager" ''
-        #!/bin/bash
-        
-        case "$1" in
-          prune)
-            echo "Pruning Docker build cache..."
-            docker builder prune -f
-            ;;
-          prune-all)
-            echo "Pruning all Docker build cache..."
-            docker builder prune -a -f
-            ;;
-          usage)
-            echo "Docker build cache usage:"
-            docker system df
-            ;;
-          inspect)
-            echo "Docker buildx builders:"
-            docker buildx ls
-            ;;
-          *)
-            echo "Usage: docker-build-cache-manager {prune|prune-all|usage|inspect}"
-            exit 1
-            ;;
-        esac
-      '')
     ];
 
     # Buildkit 配置

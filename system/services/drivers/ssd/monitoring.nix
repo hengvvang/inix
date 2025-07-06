@@ -32,40 +32,7 @@ in
       iostat          # I/O 统计
       hdparm          # 硬盘参数
     ]);
-    
-    # 监控脚本
-    environment.etc."ssd-monitor.sh" = lib.mkIf cfg.monitoring.smart {
-      text = ''
-        #!/bin/sh
-        # SSD 健康监控脚本
-        echo "=== SSD SMART 状态 ==="
-        smartctl -a /dev/nvme0n1 2>/dev/null || smartctl -a /dev/sda
-        
-        echo -e "\n=== SSD 温度 ==="
-        smartctl -A /dev/nvme0n1 | grep Temperature 2>/dev/null || echo "温度信息不可用"
-        
-        echo -e "\n=== 磨损等级 ==="
-        smartctl -A /dev/nvme0n1 | grep "Wear_Leveling\|Media_Wearout" 2>/dev/null || echo "磨损信息不可用"
-      '';
-      mode = "0755";
-    };
-    
-    # 系统监控定时任务
-    systemd.services.ssd-health-check = lib.mkIf cfg.monitoring.smart {
-      description = "SSD Health Check";
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart = "${pkgs.smartmontools}/bin/smartctl -H /dev/nvme0n1";
-      };
-    };
-    
-    systemd.timers.ssd-health-check = lib.mkIf cfg.monitoring.smart {
-      description = "SSD Health Check Timer";
-      wantedBy = [ "timers.target" ];
-      timerConfig = {
-        OnCalendar = "daily";
-        Persistent = true;
-      };
-    };
+  };
+}
   };
 }

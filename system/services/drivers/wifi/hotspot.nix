@@ -60,38 +60,10 @@
       internalInterfaces = [ config.mySystem.services.drivers.wifi.hotspot.interface ];
     };
     
-    # 热点管理脚本
-    environment.systemPackages = [
-      (pkgs.writeShellScriptBin "wifi-hotspot" ''
-        #!/bin/bash
-        INTERFACE="${config.mySystem.services.drivers.wifi.hotspot.interface}"
-        
-        case "$1" in
-          start)
-            echo "启动 WiFi 热点..."
-            systemctl start hostapd
-            systemctl start dnsmasq
-            ;;
-          stop)
-            echo "停止 WiFi 热点..."
-            systemctl stop hostapd
-            systemctl stop dnsmasq
-            ;;
-          restart)
-            echo "重启 WiFi 热点..."
-            systemctl restart hostapd
-            systemctl restart dnsmasq
-            ;;
-          status)
-            echo "WiFi 热点状态:"
-            systemctl status hostapd
-            systemctl status dnsmasq
-            ;;
-          *)
-            echo "用法: wifi-hotspot {start|stop|restart|status}"
-            ;;
-        esac
-      '')
+    # 热点管理工具
+    environment.systemPackages = with pkgs; [
+      hostapd
+      dnsmasq
     ];
   };
 }

@@ -39,38 +39,6 @@
       iotop
     ];
     
-    # GPU 性能模式脚本
-    environment.systemPackages = [
-      (pkgs.writeShellScriptBin "amd-perf-mode" ''
-        #!/bin/bash
-        case "$1" in
-          high)
-            echo "设置高性能模式..."
-            echo "high" | sudo tee /sys/class/drm/card*/device/power_dpm_force_performance_level
-            ;;
-          low)
-            echo "设置节能模式..."
-            echo "low" | sudo tee /sys/class/drm/card*/device/power_dpm_force_performance_level
-            ;;
-          auto)
-            echo "设置自动模式..."
-            echo "auto" | sudo tee /sys/class/drm/card*/device/power_dpm_force_performance_level
-            ;;
-          manual)
-            echo "设置手动模式..."
-            echo "manual" | sudo tee /sys/class/drm/card*/device/power_dpm_force_performance_level
-            ;;
-          status)
-            echo "当前性能模式:"
-            cat /sys/class/drm/card*/device/power_dpm_force_performance_level
-            ;;
-          *)
-            echo "用法: amd-perf-mode {high|low|auto|manual|status}"
-            ;;
-        esac
-      '')
-    ];
-    
     # 设备权限用于性能调节
     services.udev.extraRules = ''
       # AMD GPU 性能控制权限

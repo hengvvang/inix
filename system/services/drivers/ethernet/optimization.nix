@@ -27,38 +27,10 @@
     
     # 网络性能监控工具
     environment.systemPackages = with pkgs; [
+      # 网络监控工具
       iftop             # 网络流量监控
       nethogs           # 进程网络使用
-      bandwhich         # 现代网络监控
       speedtest-cli     # 网速测试
-    ];
-    
-    # 网络优化脚本
-    environment.systemPackages = [
-      (pkgs.writeShellScriptBin "ethernet-optimize" ''
-        #!/bin/bash
-        echo "以太网性能优化..."
-        
-        # 检测以太网接口
-        for iface in $(ls /sys/class/net/ | grep -E '^(eth|eno|enp)'); do
-          if [ -d "/sys/class/net/$iface" ]; then
-            echo "优化接口: $iface"
-            
-            # 启用大接收分段卸载
-            ethtool -K "$iface" gro on 2>/dev/null || true
-            ethtool -K "$iface" lro on 2>/dev/null || true
-            
-            # 优化环形缓冲区
-            ethtool -G "$iface" rx 4096 tx 4096 2>/dev/null || true
-            
-            # 启用硬件卸载
-            ethtool -K "$iface" tso on 2>/dev/null || true
-            ethtool -K "$iface" ufo on 2>/dev/null || true
-          fi
-        done
-        
-        echo "以太网优化完成"
-      '')
     ];
   };
 }

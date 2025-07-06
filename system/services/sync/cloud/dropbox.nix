@@ -23,30 +23,9 @@
       };
     };
     
-    # Dropbox 管理脚本
-    environment.systemPackages = [
-      (pkgs.writeShellScriptBin "dropbox-status" ''
-        #!/bin/bash
-        ${pkgs.dropbox-cli}/bin/dropbox-cli status
-      '')
-      
-      (pkgs.writeShellScriptBin "dropbox-control" ''
-        #!/bin/bash
-        case "$1" in
-          start)
-            ${pkgs.dropbox-cli}/bin/dropbox-cli start
-            ;;
-          stop)
-            ${pkgs.dropbox-cli}/bin/dropbox-cli stop
-            ;;
-          status)
-            ${pkgs.dropbox-cli}/bin/dropbox-cli status
-            ;;
-          *)
-            echo "用法: dropbox-control {start|stop|status}"
-            ;;
-        esac
-      '')
+    # Dropbox 工具
+    environment.systemPackages = with pkgs; [
+      dropbox-cli
     ];
   };
 }

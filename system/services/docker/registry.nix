@@ -60,58 +60,9 @@
 
     # Registry 管理工具
     environment.systemPackages = with pkgs; [
-      (writeShellScriptBin "docker-registry-manager" ''
-        #!/bin/bash
-        
-        REGISTRY_URL="localhost:5000"
-        
-        case "$1" in
-          list)
-            echo "Images in local registry:"
-            curl -s "http://$REGISTRY_URL/v2/_catalog" | ${jq}/bin/jq .
-            ;;
-          tags)
-            if [ -z "$2" ]; then
-              echo "Usage: docker-registry-manager tags <image-name>"
-              exit 1
-            fi
-            echo "Tags for $2:"
-            curl -s "http://$REGISTRY_URL/v2/$2/tags/list" | ${jq}/bin/jq .
-            ;;
-          delete)
-            if [ -z "$2" ] || [ -z "$3" ]; then
-              echo "Usage: docker-registry-manager delete <image-name> <tag>"
-              exit 1
-            fi
-            # 获取镜像摘要
-            DIGEST=$(curl -s -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
-              "http://$REGISTRY_URL/v2/$2/manifests/$3" | ${jq}/bin/jq -r '.config.digest')
-            
-            if [ "$DIGEST" != "null" ]; then
-              curl -X DELETE "http://$REGISTRY_URL/v2/$2/manifests/$DIGEST"
-              echo "Deleted $2:$3"
-            else
-              echo "Image not found: $2:$3"
-            fi
-            ;;
-          gc)
-            echo "Running garbage collection..."
-            docker exec local-registry registry garbage-collect /etc/docker/registry/config.yml
-            ;;
-          push)
-            if [ -z "$2" ]; then
-              echo "Usage: docker-registry-manager push <image-name>"
-              exit 1
-            fi
-            docker tag "$2" "$REGISTRY_URL/$2"
-            docker push "$REGISTRY_URL/$2"
-            ;;
-          *)
-            echo "Usage: docker-registry-manager {list|tags|delete|gc|push} [args...]"
-            exit 1
-            ;;
-        esac
-      '')
+      docker    # Docker CLI 包含注册表管理功能
+      curl      # API 调用工具
+      jq        # JSON 处理工具
     ];
 
     # Docker 配置，信任本地 registry
