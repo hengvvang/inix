@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.desktop.cosmic {
+  config = lib.mkIf config.mySystem.desktop.cosmic.enable {
     # ----- cosmic -----
     services = {
           displayManager.cosmic-greeter.package = pkgs.cosmic-greeter;

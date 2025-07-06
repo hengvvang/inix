@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.desktop.gnome {
+  config = lib.mkIf config.mySystem.desktop.gnome.enable {
   #  --- before---
   # services.xserver = {
   #     enable = true;

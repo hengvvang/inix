@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.packages {
+  config = lib.mkIf config.mySystem.packages.enable {
     environment.systemPackages = with pkgs; [
       # 基础工具
       wget

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.localization.inputMethod.ibus {
+  config = lib.mkIf config.mySystem.localization.inputMethod.ibus.enable {
     # 基础本地化设置
     i18n.defaultLocale = "zh_CN.UTF-8";
     
@@ -58,7 +58,7 @@
     # 确保与其他输入法互斥
     assertions = [
       {
-        assertion = !config.mySystem.localization.inputMethod.fcitx5;
+        assertion = !config.mySystem.localization.inputMethod.fcitx5.enable;
         message = "只能选择一个输入法配置";
       }
     ];

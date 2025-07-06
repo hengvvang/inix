@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.desktop.plasma {
+  config = lib.mkIf config.mySystem.desktop.plasma.enable {
     # ------ Plasma ------
     services = {
       desktopManager.plasma6.enable = true;

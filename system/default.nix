@@ -9,4 +9,18 @@
     ./packages
     ./localization
   ];
+
+  mySystem = {
+    desktop.cosmic.enable = lib.mkDefault false;
+    hardware.enable = lib.mkDefault false;
+    users.enable = lib.mkDefault false;
+    packages.enable = lib.mkDefault false;
+    localization = {
+      timeZone.shanghai.enable = lib.mkDefault false;
+      timeZone.newYork.enable = lib.mkDefault false;
+      timeZone.losAngeles.enable = lib.mkDefault false;
+      inputMethod.fcitx5.enable = lib.mkDefault false;
+      inputMethod.ibus.enable = lib.mkDefault false;
+    };
+  };
 }

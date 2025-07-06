@@ -30,20 +30,20 @@
   # 系统模块配置 - 完全由主机决定启用哪些模块
   # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
-    desktop.cosmic = true;       # 桌面环境 - laptop需要图形界面
-    hardware = true;             # 硬件配置 - 基础需求
-    users = true;                # 用户配置 - 必需
-    packages = true;             # 系统包 - 完整软件环境
+    desktop.cosmic.enable = true;       # 桌面环境 - laptop需要图形界面
+    hardware.enable = true;             # 硬件配置 - 基础需求
+    users.enable = true;                # 用户配置 - 必需
+    packages.enable = true;             # 系统包 - 完整软件环境
     
     # 本地化配置 - 支持细粒度控制
     localization = {
       # 时区选择 (只能选择一个)
-      timeZone.shanghai = true;        # 中国上海时区
+      timeZone.shanghai.enable = true;        # 中国上海时区
       # timeZone.newYork = true;       # 美国纽约时区
       # timeZone.losAngeles = true;    # 美国洛杉矶时区
       
       # 输入法选择 (只能选择一个)
-      inputMethod.fcitx5 = true;       # 推荐：Fcitx5 (最新)
+      inputMethod.fcitx5.enable = true;       # 推荐：Fcitx5 (最新)
       # inputMethod.ibus = true;       # 备选：IBus
     };
   };

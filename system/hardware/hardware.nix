@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.hardware {
+  config = lib.mkIf config.mySystem.hardware.enable {
     # NVIDIA 显卡配置
     services.xserver.videoDrivers = [ "nvidia" ];
     hardware.nvidia = {
