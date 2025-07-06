@@ -16,11 +16,9 @@
       environment.systemPackages = with pkgs; [
         rsync
         grsync  # 图形界面
-      ];
-      
-      # 创建备份脚本
-      environment.systemPackages = [
-        (pkgs.writeShellScriptBin "backup-home" ''
+        
+        # 备份脚本
+        (writeShellScriptBin "backup-home" ''
           #!/usr/bin/env bash
           
           # 配置

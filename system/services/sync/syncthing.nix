@@ -19,28 +19,31 @@
       allowedTCPPorts = [ 8384 ];  # Web GUI
     };
 
-    # 全局发现和中继配置
-    services.syncthing.settings = lib.mkIf config.mySystem.services.sync.syncthing.discovery.enable {
-      options = {
-        globalAnnounceEnabled = true;
-        localAnnounceEnabled = true;
-        relaysEnabled = true;
-      };
-    };
-
-    # 预配置常用文件夹
-    services.syncthing.settings = lib.mkIf config.mySystem.services.sync.syncthing.folders.enable {
-      folders = {
-        "Documents" = {
-          path = "/home/hengvvang/Documents";
-          devices = [ ];  # 需要在 GUI 中添加设备
+    # 扩展配置
+    services.syncthing.settings = lib.mkMerge [
+      # 全局发现和中继配置
+      (lib.mkIf config.mySystem.services.sync.syncthing.discovery.enable {
+        options = {
+          globalAnnounceEnabled = true;
+          localAnnounceEnabled = true;
+          relaysEnabled = true;
         };
-        "Pictures" = {
-          path = "/home/hengvvang/Pictures";
-          devices = [ ];
+      })
+      
+      # 预配置常用文件夹
+      (lib.mkIf config.mySystem.services.sync.syncthing.folders.enable {
+        folders = {
+          "Documents" = {
+            path = "/home/hengvvang/Documents";
+            devices = [ ];  # 需要在 GUI 中添加设备
+          };
+          "Pictures" = {
+            path = "/home/hengvvang/Pictures";
+            devices = [ ];
+          };
         };
-      };
-    };
+      })
+    ];
 
     # 确保用户权限
     users.users.hengvvang.extraGroups = [ "syncthing" ];

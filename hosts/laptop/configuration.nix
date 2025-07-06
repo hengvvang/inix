@@ -47,31 +47,73 @@
       
       # 网络服务
       network = {
-        ssh.enable = true;                # SSH 服务 - 远程访问
-        tailscale.enable = true;          # Tailscale VPN
+        # SSH 服务 - 远程访问
+        ssh = {
+          enable = true;                  # 启用 SSH 服务
+          passwordAuth = true;            # 允许密码认证
+          # keyAuth = true;               # 可选：密钥认证增强
+          # hardening = true;             # 可选：安全加固
+        };
+        
+        # VPN 服务
+        vpn = {
+          tailscale = {
+            enable = true;                # 启用 Tailscale VPN
+            # exitNode = true;            # 可选：作为出口节点
+            # subnet = true;              # 可选：子网路由
+            # magicDNS = true;            # 可选：MagicDNS
+          };
+          # wireguard.enable = true;      # 可选：WireGuard VPN
+        };
+        
+        # 网络工具
+        tools = {
+          enable = true;                  # 基础网络工具
+          # monitoring = true;            # 可选：网络监控工具
+          # security = true;              # 可选：网络安全工具
+        };
       };
       
-      # Web 服务
-      web.nginx.enable = true;            # Nginx Web 服务器
+      # 多媒体服务
+      media = {
+        # 音视频播放器
+        players = {
+          enable = true;                  # 启用多媒体播放器
+          mpv = true;                     # MPV 增强配置
+          vlc = true;                     # VLC 播放器
+          # music = true;                 # 可选：音乐播放器
+        };
+        
+        # 其他媒体功能可按需启用
+        # editing.enable = true;          # 媒体编辑工具
+        # streaming.jellyfin.enable = true; # Jellyfin 媒体服务器
+        # download.enable = true;         # 下载工具
+      };
+      
+      # 同步和备份服务
+      sync = {
+        # 文件同步
+        syncthing = {
+          enable = true;                  # 启用 Syncthing
+          gui.enable = true;              # Web 管理界面
+          discovery.enable = true;        # 全局发现
+          # folders.enable = true;        # 可选：预配置文件夹
+        };
+        
+        # 云存储同步（按需启用）
+        # cloud.rclone.enable = true;     # Rclone 多云同步
+        # cloud.dropbox.enable = true;    # Dropbox 客户端
+        
+        # 备份服务（按需启用）
+        # backup.rsync.enable = true;     # Rsync 增量备份
+        # backup.timeshift.enable = true; # 系统快照
+      };
       
       # 硬件服务
       hardware = {
         sound.enable = true;              # PipeWire 音频
         bluetooth.enable = true;          # 蓝牙支持
         # printing.enable = true;         # 可选：打印服务
-      };
-      
-      # 存储服务（按需启用）
-      storage = {
-        # samba.enable = true;            # 可选：Windows 文件共享
-        # nfs.enable = true;              # 可选：NFS 网络文件系统
-        # syncthing.enable = true;        # 可选：文件同步
-      };
-      
-      # 媒体服务（按需启用）
-      media = {
-        # jellyfin.enable = true;         # 可选：媒体服务器
-        # transmission.enable = true;     # 可选：BT 下载
       };
     };
     
