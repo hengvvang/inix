@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.toolkits.system.hardware {
+  config = lib.mkIf config.myHome.toolkits.system.hardware.enable {
     home.packages = with pkgs; [
     neofetch           # 系统信息显示
     lshw               # 硬件信息

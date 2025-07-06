@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.apps.shells.fish {
+  config = lib.mkIf config.myHome.apps.shells.fish.enable {
   # Fish Shell 配置
   programs.fish = {
     enable = true;

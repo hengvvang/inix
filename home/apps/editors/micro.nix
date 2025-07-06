@@ -1,8 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.apps.editors.micro {
-  # Micro 编辑器配置
+  config = lib.mkIf config.myHome.apps.editors.micro.enable {
   programs.micro = {
     enable = true;
     settings = {

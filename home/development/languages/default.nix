@@ -2,12 +2,12 @@
 
 {
   options.myHome.development.languages = {
-    c = lib.mkEnableOption "C 开发环境";
-    cpp = lib.mkEnableOption "C++ 开发环境";
-    javascript = lib.mkEnableOption "JavaScript 开发环境";
-    python = lib.mkEnableOption "Python 开发环境";
-    rust = lib.mkEnableOption "Rust 开发环境";
-    typescript = lib.mkEnableOption "TypeScript 开发环境";
+    c.enable = lib.mkEnableOption "C 开发环境";
+    cpp.enable = lib.mkEnableOption "C++ 开发环境";
+    javascript.enable = lib.mkEnableOption "JavaScript 开发环境";
+    python.enable = lib.mkEnableOption "Python 开发环境";
+    rust.enable = lib.mkEnableOption "Rust 开发环境";
+    typescript.enable = lib.mkEnableOption "TypeScript 开发环境";
   };
 
   # 开发环境语言模块入口

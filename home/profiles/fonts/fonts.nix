@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.profiles.fonts.fonts {
+  config = lib.mkIf config.myHome.profiles.fonts.fonts.enable {
     # 字体配置
     fonts.fontconfig.enable = true;
     

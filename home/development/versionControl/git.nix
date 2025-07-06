@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.development.versionControl.git {
+  config = lib.mkIf config.myHome.development.versionControl.git.enable {
     programs.git = {
     enable = true;
     

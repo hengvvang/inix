@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.toolkits.system.monitor {
+  config = lib.mkIf config.myHome.toolkits.system.monitor.enable {
     home.packages = with pkgs; [
     htop               # 进程监控
     btop               # 现代系统监控

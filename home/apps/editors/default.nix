@@ -2,10 +2,10 @@
 
 {
   options.myHome.apps.editors = {
-    vim = lib.mkEnableOption "Vim 编辑器配置";
-    vscode = lib.mkEnableOption "VSCode 编辑器配置";
-    micro = lib.mkEnableOption "Micro 编辑器配置";
-    zed = lib.mkEnableOption "Zed 编辑器配置";
+    vim.enable = lib.mkEnableOption "Vim 编辑器配置";
+    vscode.enable = lib.mkEnableOption "VSCode 编辑器配置";
+    micro.enable = lib.mkEnableOption "Micro 编辑器配置";
+    zed.enable = lib.mkEnableOption "Zed 编辑器配置";
   };
 
   imports = [

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.toolkits.user.utilities {
+  config = lib.mkIf config.myHome.toolkits.user.utilities.enable {
     home.packages = with pkgs; [
     unzip
     zip

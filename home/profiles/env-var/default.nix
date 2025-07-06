@@ -2,7 +2,7 @@
 
 {
   options.myHome.profiles.envVar = {
-    environment = lib.mkEnableOption "环境变量配置";
+    environment.enable = lib.mkEnableOption "环境变量配置";
   };
 
   imports = [

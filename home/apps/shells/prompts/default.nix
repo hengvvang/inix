@@ -2,7 +2,7 @@
 
 {
   options.myHome.apps.shells.prompts = {
-    starship = lib.mkEnableOption "Starship 现代化提示符";
+    starship.enable = lib.mkEnableOption "Starship 现代化提示符";
   };
 
   # 提示符模块入口

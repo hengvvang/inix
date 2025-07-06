@@ -2,7 +2,7 @@
 
 {
   options.myHome.toolkits.user = {
-    utilities = lib.mkEnableOption "用户实用工具";
+    utilities.enable = lib.mkEnableOption "用户实用工具";
   };
 
   imports = [

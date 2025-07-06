@@ -2,7 +2,7 @@
 
 {
   options.myHome.apps.terminals = {
-    ghostty = lib.mkEnableOption "Ghostty 终端";
+    ghostty.enable = lib.mkEnableOption "Ghostty 终端";
   };
 
   imports = [

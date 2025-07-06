@@ -2,10 +2,10 @@
 
 {
   options.myHome.apps.shells = {
-    fish = lib.mkEnableOption "Fish Shell 配置";
-    zsh = lib.mkEnableOption "Zsh Shell 配置";
-    nushell = lib.mkEnableOption "Nushell 配置";
-    aliases = lib.mkEnableOption "通用 Shell 别名";
+    fish.enable = lib.mkEnableOption "Fish Shell 配置";
+    zsh.enable = lib.mkEnableOption "Zsh Shell 配置";
+    nushell.enable = lib.mkEnableOption "Nushell 配置";
+    aliases.enable = lib.mkEnableOption "通用 Shell 别名";
     # prompts 选项由 ./prompts 目录定义
   };
 

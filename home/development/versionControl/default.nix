@@ -2,8 +2,8 @@
 
 {
   options.myHome.development.versionControl = {
-    git = lib.mkEnableOption "Git 版本控制";
-    lazygit = lib.mkEnableOption "Lazygit 终端 Git UI";
+    git.enable = lib.mkEnableOption "Git 版本控制";
+    lazygit.enable = lib.mkEnableOption "Lazygit 终端 Git UI";
   };
 
   imports = [

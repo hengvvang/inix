@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.toolkits.system.network {
+  config = lib.mkIf config.myHome.toolkits.system.network.enable {
     home.packages = with pkgs; [
     wget               # 文件下载
     curl               # HTTP 客户端

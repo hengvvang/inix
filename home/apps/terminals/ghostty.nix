@@ -1,10 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.apps.terminals.ghostty {
-    # Ghostty 终端配置 - 现代 GPU 加速终端
+  config = lib.mkIf config.myHome.apps.terminals.ghostty.enable {
     home.packages = with pkgs; [
-      ghostty                  # Ghostty 终端
+      ghostty
     ];
   
   # Ghostty 配置文件

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.development.languages.python {
+  config = lib.mkIf config.myHome.development.languages.python.enable {
     # Python 开发环境 - 简化版
     home.packages = with pkgs; [
     # Python 运行时

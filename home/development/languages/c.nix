@@ -1,8 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.development.languages.c {
-    # C 开发环境 - 简化版
+  config = lib.mkIf config.myHome.development.languages.c.enable {
     home.packages = with pkgs; [
     # C 编译器
     gcc                  # GNU 编译器套件

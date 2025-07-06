@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-  config = lib.mkIf config.myHome.development.versionControl.lazygit {
+  config = lib.mkIf config.myHome.development.versionControl.lazygit.enable {
     # Lazygit - 优雅的 Git 终端界面
     programs.lazygit = {
     enable = true;
