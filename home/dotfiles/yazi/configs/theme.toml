@@ -4,41 +4,41 @@
 cwd = { fg = "cyan" }
 
 # Hovered
-hovered         = { fg = "black", bg = "lightblue" }
+hovered = { fg = "black", bg = "lightblue" }
 preview_hovered = { underline = true }
 
 # Find
-find_keyword  = { fg = "yellow", italic = true }
+find_keyword = { fg = "yellow", italic = true }
 find_position = { fg = "magenta", bg = "reset", italic = true }
 
 # Marker
 marker_selected = { fg = "lightgreen", bg = "lightgreen" }
-marker_copied   = { fg = "lightyellow", bg = "lightyellow" }
-marker_cut      = { fg = "lightred", bg = "lightred" }
+marker_copied = { fg = "lightyellow", bg = "lightyellow" }
+marker_cut = { fg = "lightred", bg = "lightred" }
 
 # Tab
-tab_active   = { fg = "black", bg = "lightblue" }
+tab_active = { fg = "black", bg = "lightblue" }
 tab_inactive = { fg = "white", bg = "darkgray" }
-tab_width    = 1
+tab_width = 1
 
 # Border
 border_symbol = "│"
-border_style  = { fg = "gray" }
+border_style = { fg = "gray" }
 
 [status]
-separator_open  = ""
+separator_open = ""
 separator_close = ""
 separator_style = { fg = "darkgray", bg = "darkgray" }
 
 # Mode
 mode_normal = { fg = "black", bg = "lightblue", bold = true }
 mode_select = { fg = "black", bg = "lightgreen", bold = true }
-mode_unset  = { fg = "black", bg = "lightmagenta", bold = true }
+mode_unset = { fg = "black", bg = "lightmagenta", bold = true }
 
 # Progress
-progress_label  = { bold = true }
+progress_label = { bold = true }
 progress_normal = { fg = "blue", bg = "black" }
-progress_error  = { fg = "red", bg = "black" }
+progress_error = { fg = "red", bg = "black" }
 
 # Permissions
 permissions_t = { fg = "lightgreen" }
@@ -48,44 +48,44 @@ permissions_x = { fg = "lightcyan" }
 permissions_s = { fg = "darkgray" }
 
 [select]
-border   = { fg = "blue" }
-active   = { fg = "magenta" }
+border = { fg = "blue" }
+active = { fg = "magenta" }
 inactive = {}
 
 [input]
-border   = { fg = "blue" }
-title    = {}
-value    = {}
+border = { fg = "blue" }
+title = {}
+value = {}
 selected = { reversed = true }
 
 [completion]
-border   = { fg = "blue" }
-active   = { bg = "darkgray" }
+border = { fg = "blue" }
+active = { bg = "darkgray" }
 inactive = {}
 
 # Icons
 [icon]
-"Desktop/"     = ""
-"Documents/"   = ""
-"Downloads/"   = ""
-"Pictures/"    = ""
-"Music/"       = ""
-"Movies/"      = ""
-"Videos/"      = ""
-"Public/"      = ""
-"Library/"     = ""
+"Desktop/" = ""
+"Documents/" = ""
+"Downloads/" = ""
+"Pictures/" = ""
+"Music/" = ""
+"Movies/" = ""
+"Videos/" = ""
+"Public/" = ""
+"Library/" = ""
 "Development/" = ""
-".config/"     = ""
-".git/"        = ""
-".github/"     = ""
-".gitignore"   = ""
-".gitmodules"  = ""
+".config/" = ""
+".git/" = ""
+".github/" = ""
+".gitignore" = ""
+".gitmodules" = ""
 ".gitattributes" = ""
 "node_modules/" = ""
-"favicon.ico"  = ""
+"favicon.ico" = ""
 "package.json" = ""
 "webpack.config.js" = ""
-".ds_store"    = ""
-".localized"   = ""
-"dockerfile"   = ""
+".ds_store" = ""
+".localized" = ""
+"dockerfile" = ""
 "docker-compose.yml" = ""

@@ -1,56 +1,56 @@
 # Yazi 键位绑定配置 - 外部文件方式
 
 [[manager.prepend_keymap]]
-on = [ "<C-s>" ]
+on = ["<C-s>"]
 run = "search fd"
 desc = "Search files by name using fd"
 
 [[manager.prepend_keymap]]
-on = [ "<C-f>" ]
+on = ["<C-f>"]
 run = "search rg"
 desc = "Search files by content using ripgrep"
 
 [[manager.prepend_keymap]]
-on = [ "<C-n>" ]
+on = ["<C-n>"]
 run = "create"
 desc = "Create a file or directory"
 
 [[manager.prepend_keymap]]
-on = [ "Y" ]
-run = [ "yank --cut" ]
+on = ["Y"]
+run = ["yank --cut"]
 desc = "Cut the selected files"
 
 [[manager.prepend_keymap]]
-on = [ "X" ]
-run = [ "unyank" ]
+on = ["X"]
+run = ["unyank"]
 desc = "Cancel the yank status of files"
 
 [[manager.prepend_keymap]]
-on = [ "T" ]
+on = ["T"]
 run = "plugin --sync smart-enter"
 desc = "Enter the child directory, or open the file"
 
 [[manager.prepend_keymap]]
-on = [ "<C-t>" ]
+on = ["<C-t>"]
 run = "plugin --sync hide-preview"
 desc = "Hide or show the preview pane"
 
 [[manager.prepend_keymap]]
-on = [ "m" ]
+on = ["m"]
 run = "plugin bookmarks --args=save"
 desc = "Save current position as a bookmark"
 
 [[manager.prepend_keymap]]
-on = [ "'" ]
+on = ["'"]
 run = "plugin bookmarks --args=jump"
 desc = "Jump to a bookmark"
 
 [[manager.prepend_keymap]]
-on = [ "b", "d" ]
+on = ["b", "d"]
 run = "plugin bookmarks --args=delete"
 desc = "Delete a bookmark"
 
 [[manager.prepend_keymap]]
-on = [ "b", "D" ]
+on = ["b", "D"]
 run = "plugin bookmarks --args=delete_all"
 desc = "Delete all bookmarks"
