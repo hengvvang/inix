@@ -62,9 +62,6 @@
       fonts = {
         fonts.enable = lib.mkDefault false;
       };
-      envVar = {
-        environment.enable = lib.mkDefault false;
-      };
     };
     toolkits = {
       system = {
