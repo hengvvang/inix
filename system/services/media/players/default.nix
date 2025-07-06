@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.media.enable && config.mySystem.services.media.players.enable) {
+  config = lib.mkIf config.mySystem.services.media.players.enable {
+    # 媒体播放器 - 原子化配置
     environment.systemPackages = with pkgs; [
       # 基础播放器
       mpv
@@ -20,7 +21,7 @@
     ];
     
     # MPV 配置
-    environment.etc = lib.mkIf config.mySystem.services.media.players.enable {
+    environment.etc = {
       "mpv/mpv.conf".text = ''
         hwdec=auto
         vo=gpu

@@ -3,6 +3,9 @@
 {
   options.mySystem.services.network = {
     enable = lib.mkEnableOption "网络服务";
+    
+    # === 原子化网络服务配置 ===
+    # 每个网络服务都是独立的一级选项
     tailscale = {
       enable = lib.mkEnableOption "Tailscale VPN 服务";
       exitNode.enable = lib.mkEnableOption "作为 Tailscale 出口节点";
@@ -26,9 +29,10 @@
   };
 
   imports = [
+    # === 原子化导入：每个功能都有独立的文件夹 ===
     ./ssh
-    ./tailscale.nix
-    ./wireguard.nix
-    ./tools.nix
+    ./tailscale/default.nix
+    ./wireguard/default.nix
+    ./tools/default.nix
   ];
 }

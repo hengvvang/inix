@@ -2,7 +2,7 @@
 
 {
   config = lib.mkMerge [
-    # 基础网络工具
+    # 基础网络工具 - 原子化配置
     (lib.mkIf config.mySystem.services.network.tools.enable {
       environment.systemPackages = with pkgs; [
         # 基础网络工具

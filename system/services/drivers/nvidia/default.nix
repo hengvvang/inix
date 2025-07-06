@@ -2,19 +2,19 @@
 
 {
   config = lib.mkIf config.mySystem.services.drivers.nvidia.enable {
-    # NVIDIA 显卡配置 - 从 system/hardware/hardware.nix 迁移
+    # NVIDIA 显卡配置 - 完全原子化
     services.xserver.videoDrivers = [ "nvidia" ];
     
     hardware.nvidia = {
       modesetting.enable = true;
-      powerManagement.enable = lib.mkDefault config.mySystem.services.drivers.nvidia.powerManagement;
+      powerManagement.enable = lib.mkDefault config.mySystem.services.drivers.nvidiaPowerManagement.enable;
       powerManagement.finegrained = false;
-      open = config.mySystem.services.drivers.nvidia.openSource;  # 可配置开源/闭源驱动
-      nvidiaSettings = config.mySystem.services.drivers.nvidia.settings;  # 可配置设置工具
+      open = config.mySystem.services.drivers.nvidiaOpenSource.enable;  # 原子化开源/闭源选项
+      nvidiaSettings = config.mySystem.services.drivers.nvidiaSettings.enable;  # 原子化设置工具选项
     };
 
     # NVIDIA 相关包
-    environment.systemPackages = lib.optionals config.mySystem.services.drivers.nvidia.settings [
+    environment.systemPackages = lib.optionals config.mySystem.services.drivers.nvidiaSettings.enable [
       pkgs.nvidia-settings
     ];
 

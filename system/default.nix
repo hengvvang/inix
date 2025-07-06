@@ -81,34 +81,32 @@
         backup.enable = lib.mkDefault false;
       };
       
-      # === 原子化硬件驱动服务（已从hardware迁移） ===
+      # === 完全原子化硬件驱动服务（已从hardware迁移） ===
       drivers = {
         enable = lib.mkDefault false;
         
-        # 显卡驱动 - 原子化
-        nvidia = {
-          enable = lib.mkDefault false;
-          openSource = lib.mkDefault false;
-          powerManagement = lib.mkDefault false;
-          settings = lib.mkDefault false;
-        };
+        # 显卡驱动 - 完全原子化，无嵌套
+        nvidia.enable = lib.mkDefault false;
+        nvidiaPowerManagement.enable = lib.mkDefault false;
+        nvidiaSettings.enable = lib.mkDefault false;
+        nvidiaOpenSource.enable = lib.mkDefault false;
         amd.enable = lib.mkDefault false;
         intel.enable = lib.mkDefault false;
         
-        # 输入设备驱动 - 原子化
+        # 输入设备驱动 - 完全原子化
         touchpad.enable = lib.mkDefault false;
         wacom.enable = lib.mkDefault false;
         
-        # 网络驱动 - 原子化
+        # 网络驱动 - 完全原子化
         wifi.enable = lib.mkDefault false;
         bluetooth.enable = lib.mkDefault false;
         ethernet.enable = lib.mkDefault false;
         
-        # 存储驱动 - 原子化
+        # 存储驱动 - 完全原子化
         ssd.enable = lib.mkDefault false;
         usb.enable = lib.mkDefault false;
         
-        # 从hardware迁移的驱动 - 原子化
+        # 从hardware迁移的驱动 - 完全原子化
         audio.enable = lib.mkDefault false;
         printing.enable = lib.mkDefault false;
       };

@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.network.enable && config.mySystem.services.network.wireguard.enable) {
-    # WireGuard 基础工具
+  config = lib.mkIf config.mySystem.services.network.wireguard.enable {
+    # WireGuard VPN 服务 - 原子化配置
     environment.systemPackages = with pkgs; [
       wireguard-tools
       wireguard-go

@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.network.enable && config.mySystem.services.network.tailscale.enable) {
-    # Tailscale VPN 服务
+  config = lib.mkIf config.mySystem.services.network.tailscale.enable {
+    # Tailscale VPN 服务 - 原子化配置
     services.tailscale = {
       enable = true;
       openFirewall = true;
