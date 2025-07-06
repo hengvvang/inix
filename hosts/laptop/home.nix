@@ -67,9 +67,6 @@
       fonts = {
         fonts.enable = true;            # 字体配置
       };
-      envVar = {
-        environment.enable = true;      # 环境变量配置
-      };
     };
     
     # 工具包 - 选择具体的工具
