@@ -59,10 +59,9 @@
   imports = [
     # 模块化服务目录
     ./docker
-    ./web
     ./network
     ./media
-    ./storage
+    ./sync
     ./hardware
   ];
 }

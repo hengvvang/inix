@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.development.docker.enable && config.mySystem.services.development.docker.buildkit.enable) {
+  config = lib.mkIf (config.mySystem.services.docker.enable && config.mySystem.services.docker.buildkit.enable) {
     # Buildkit 工具和缓存管理
     environment.systemPackages = with pkgs; [
       docker-buildx
@@ -36,7 +36,7 @@
     ];
 
     # Buildkit 配置
-    virtualisation.docker.daemon.settings = lib.mkIf config.mySystem.services.development.docker.enable {
+    virtualisation.docker.daemon.settings = lib.mkIf config.mySystem.services.docker.enable {
       features = {
         buildkit = true;
       };

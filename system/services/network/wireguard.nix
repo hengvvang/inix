@@ -29,15 +29,13 @@
         "d /etc/wireguard 0700 root root -"
       ];
       
-      # 管理工具
+      # 管理工具和脚本
       environment.systemPackages = with pkgs; [
         wireguard-tools
         qrencode  # 生成 QR 码分享配置
-      ];
-      
-      # 示例配置生成脚本
-      environment.systemPackages = [
-        (pkgs.writeShellScriptBin "wg-setup" ''
+        
+        # 示例配置生成脚本
+        (writeShellScriptBin "wg-setup" ''
           #!/usr/bin/env bash
           
           # 生成密钥对
