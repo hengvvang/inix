@@ -24,8 +24,15 @@
     
     # 网络服务
     network = {
-      tailscale.enable = lib.mkEnableOption "Tailscale VPN 服务" // { default = false; };
-      ssh.enable = lib.mkEnableOption "SSH 服务配置" // { default = false; };
+      tailscale = {
+        enable = lib.mkEnableOption "Tailscale VPN 服务" // { default = false; };
+        exitNode.enable = lib.mkEnableOption "作为 Tailscale 出口节点" // { default = false; };
+        subnet.enable = lib.mkEnableOption "Tailscale 子网路由" // { default = false; };
+      };
+      ssh = {
+        enable = lib.mkEnableOption "SSH 远程访问服务" // { default = false; };
+        passwordAuth = lib.mkEnableOption "SSH 密码认证" // { default = false; };
+      };
     };
     
     # 媒体服务
@@ -57,8 +64,5 @@
     ./media
     ./storage
     ./hardware
-    
-    # 单文件服务
-    ./ssh.nix
   ];
 }

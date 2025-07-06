@@ -51,5 +51,11 @@
         echo "Tailscale is not connected. Please run: sudo tailscale up"
       '';
     };
+
+    # 出口节点配置
+    networking.firewall.checkReversePath = lib.mkIf config.mySystem.services.network.tailscale.exitNode.enable "loose";
+    
+    # 子网路由配置
+    services.tailscale.useRoutingFeatures = lib.mkIf config.mySystem.services.network.tailscale.subnet.enable "both";
   };
 }
