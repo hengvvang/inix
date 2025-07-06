@@ -51,62 +51,41 @@
         ssh = {
           enable = true;                  # 启用 SSH 服务
           passwordAuth = true;            # 允许密码认证
-          # keyAuth = true;               # 可选：密钥认证增强
-          # hardening = true;             # 可选：安全加固
         };
         
         # VPN 服务
-        vpn = {
-          tailscale = {
-            enable = true;                # 启用 Tailscale VPN
-            # exitNode = true;            # 可选：作为出口节点
-            # subnet = true;              # 可选：子网路由
-            # magicDNS = true;            # 可选：MagicDNS
-          };
-          # wireguard.enable = true;      # 可选：WireGuard VPN
+        tailscale = {
+          enable = true;                  # 启用 Tailscale VPN
+          # exitNode.enable = true;       # 可选：作为出口节点
+          # subnet.enable = true;         # 可选：子网路由
         };
+        # wireguard.enable = true;        # 可选：WireGuard VPN
         
         # 网络工具
-        tools = {
-          enable = true;                  # 基础网络工具
-          # monitoring = true;            # 可选：网络监控工具
-          # security = true;              # 可选：网络安全工具
-        };
+        tools.enable = true;              # 基础网络工具
       };
       
       # 多媒体服务
       media = {
-        # 音视频播放器
-        players = {
-          enable = true;                  # 启用多媒体播放器
-          mpv = true;                     # MPV 增强配置
-          vlc = true;                     # VLC 播放器
-          # music = true;                 # 可选：音乐播放器
-        };
+        # 媒体播放器
+        players.enable = true;            # 启用多媒体播放器
         
         # 其他媒体功能可按需启用
         # editing.enable = true;          # 媒体编辑工具
-        # streaming.jellyfin.enable = true; # Jellyfin 媒体服务器
+        # streaming.enable = true;        # 流媒体工具
         # download.enable = true;         # 下载工具
       };
       
       # 同步和备份服务
       sync = {
         # 文件同步
-        syncthing = {
-          enable = true;                  # 启用 Syncthing
-          gui.enable = true;              # Web 管理界面
-          discovery.enable = true;        # 全局发现
-          # folders.enable = true;        # 可选：预配置文件夹
-        };
+        syncthing.enable = true;          # 启用 Syncthing
         
         # 云存储同步（按需启用）
-        # cloud.rclone.enable = true;     # Rclone 多云同步
-        # cloud.dropbox.enable = true;    # Dropbox 客户端
+        # cloud.enable = true;            # Rclone 多云同步
         
         # 备份服务（按需启用）
-        # backup.rsync.enable = true;     # Rsync 增量备份
-        # backup.timeshift.enable = true; # 系统快照
+        # backup.enable = true;           # 备份工具
       };
       
       # 硬件服务

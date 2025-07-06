@@ -12,16 +12,6 @@
       security.enable = lib.mkEnableOption "Docker 安全增强配置" // { default = false; };
     };
     
-    # Web 服务
-    web = {
-      nginx = {
-        enable = lib.mkEnableOption "Nginx Web 服务器" // { default = false; };
-        ssl.enable = lib.mkEnableOption "Nginx SSL/TLS 支持" // { default = false; };
-        cache.enable = lib.mkEnableOption "Nginx 缓存配置" // { default = false; };
-        security.enable = lib.mkEnableOption "Nginx 安全增强" // { default = false; };
-      };
-    };
-    
     # 网络服务
     network = {
       tailscale = {
@@ -29,23 +19,30 @@
         exitNode.enable = lib.mkEnableOption "作为 Tailscale 出口节点" // { default = false; };
         subnet.enable = lib.mkEnableOption "Tailscale 子网路由" // { default = false; };
       };
+      wireguard = {
+        enable = lib.mkEnableOption "WireGuard VPN 服务" // { default = false; };
+        peers.enable = lib.mkEnableOption "WireGuard 对等连接" // { default = false; };
+      };
       ssh = {
         enable = lib.mkEnableOption "SSH 远程访问服务" // { default = false; };
         passwordAuth = lib.mkEnableOption "SSH 密码认证" // { default = false; };
       };
+      tools.enable = lib.mkEnableOption "网络工具包" // { default = false; };
     };
     
     # 媒体服务
     media = {
-      jellyfin.enable = lib.mkEnableOption "Jellyfin 媒体服务器" // { default = false; };
-      transmission.enable = lib.mkEnableOption "Transmission BitTorrent 客户端" // { default = false; };
+      players.enable = lib.mkEnableOption "媒体播放器" // { default = false; };
+      editing.enable = lib.mkEnableOption "媒体编辑工具" // { default = false; };
+      streaming.enable = lib.mkEnableOption "流媒体工具" // { default = false; };
+      download.enable = lib.mkEnableOption "下载工具" // { default = false; };
     };
     
-    # 存储和文件共享服务
-    storage = {
-      samba.enable = lib.mkEnableOption "Samba 文件共享服务" // { default = false; };
-      nfs.enable = lib.mkEnableOption "NFS 网络文件系统" // { default = false; };
+    # 同步和备份服务
+    sync = {
       syncthing.enable = lib.mkEnableOption "Syncthing 文件同步服务" // { default = false; };
+      cloud.enable = lib.mkEnableOption "云存储同步工具" // { default = false; };
+      backup.enable = lib.mkEnableOption "备份工具" // { default = false; };
     };
     
     # 硬件和系统服务
