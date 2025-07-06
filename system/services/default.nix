@@ -7,7 +7,6 @@
     ./network
     ./media
     ./sync
-    ./hardware
-    ./drivers
+    ./drivers  # 所有硬件功能已迁移到drivers中，实现原子化配置
   ];
 }

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.drivers.enable && config.mySystem.services.drivers.graphics.enable && config.mySystem.services.drivers.graphics.amd.enable) {
+  config = lib.mkIf config.mySystem.services.drivers.amd.enable {
     # AMD 显卡驱动配置
     services.xserver.videoDrivers = [ "amdgpu" ];
     

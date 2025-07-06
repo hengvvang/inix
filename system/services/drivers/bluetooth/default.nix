@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.drivers.enable && config.mySystem.services.drivers.network.enable && config.mySystem.services.drivers.network.bluetooth.enable) {
+  config = lib.mkIf config.mySystem.services.drivers.bluetooth.enable {
     # 蓝牙硬件支持
     hardware.bluetooth = {
       enable = true;

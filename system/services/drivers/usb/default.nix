@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.drivers.enable && config.mySystem.services.drivers.storage.enable && config.mySystem.services.drivers.storage.usb.enable) {
+  config = lib.mkIf config.mySystem.services.drivers.usb.enable {
     # USB 设备支持
     services.udisks2.enable = true;
     services.devmon.enable = true;

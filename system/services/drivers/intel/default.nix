@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.drivers.enable && config.mySystem.services.drivers.graphics.enable && config.mySystem.services.drivers.graphics.intel.enable) {
+  config = lib.mkIf config.mySystem.services.drivers.intel.enable {
     # Intel 显卡驱动配置
     services.xserver.videoDrivers = [ "modesetting" ];
     

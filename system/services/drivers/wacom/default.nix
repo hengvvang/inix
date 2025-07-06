@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.drivers.enable && config.mySystem.services.drivers.input.enable && config.mySystem.services.drivers.input.wacom.enable) {
+  config = lib.mkIf config.mySystem.services.drivers.wacom.enable {
     # Wacom 数位板支持
     services.xserver.wacom.enable = true;
     

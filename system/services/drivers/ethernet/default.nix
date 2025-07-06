@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.drivers.enable && config.mySystem.services.drivers.network.enable && config.mySystem.services.drivers.network.ethernet.enable) {
+  config = lib.mkIf config.mySystem.services.drivers.ethernet.enable {
     # 以太网配置
     networking.useDHCP = false;
     networking.interfaces = {

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.drivers.enable && config.mySystem.services.drivers.storage.enable && config.mySystem.services.drivers.storage.ssd.enable) {
+  config = lib.mkIf config.mySystem.services.drivers.ssd.enable {
     # SSD 优化
     services.fstrim.enable = true;
     
