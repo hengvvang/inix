@@ -1,7 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.hardware.sound.enable {
+  config = lib.mkIf (config.mySystem.services.hardware.enable && config.mySystem.services.hardware.sound.enable) {
+    # 禁用传统音频服务
+    services.pulseaudio.enable = false;
+    sound.enable = false;
+    
     # PipeWire 音频服务配置
     services.pipewire = {
       enable = true;
@@ -21,6 +25,9 @@
           default.clock.max-quantum = 32;
         };
       };
+      
+      # WirePlumber 配置
+      wireplumber.enable = true;
     };
 
     # 音频相关工具
@@ -31,18 +38,19 @@
       pulsemixer   # 命令行音频控制
       alsa-utils   # ALSA 工具
       playerctl    # 媒体播放器控制
+      qpwgraph     # PipeWire 图形界面
+      helvum       # PipeWire 补丁面板
     ];
 
     # 实时音频支持
     security.rtkit.enable = true;
     
-    # 用户组配置
-    users.users.hengvvang.extraGroups = [ "audio" "pipewire" ];
-
-    # 音频设备权限和系统级配置
-    sound.enable = true;
-
-    # WirePlumber 配置
-    services.pipewire.wireplumber.enable = true;
+    # 音频优化
+    security.pam.loginLimits = [
+      { domain = "@audio"; item = "memlock"; type = "-"; value = "unlimited"; }
+      { domain = "@audio"; item = "rtprio"; type = "-"; value = "99"; }
+      { domain = "@audio"; item = "nofile"; type = "soft"; value = "99999"; }
+      { domain = "@audio"; item = "nofile"; type = "hard"; value = "99999"; }
+    ];
   };
 }

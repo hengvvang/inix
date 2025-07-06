@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.hardware.printing.enable {
+  config = lib.mkIf (config.mySystem.services.hardware.enable && config.mySystem.services.hardware.printing.enable) {
     # CUPS 打印服务配置
     services.printing = {
       enable = true;

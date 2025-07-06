@@ -4,7 +4,6 @@
   # 系统模块入口 - 仅做导入，类似 home/default.nix
   imports = [
     ./desktop
-    ./hardware
     ./users
     ./packages
     ./localization
@@ -15,9 +14,6 @@
   mySystem = {
     # 桌面环境模块
     desktop.cosmic.enable = lib.mkDefault false;
-    
-    # 硬件配置模块
-    hardware.enable = lib.mkDefault false;
     
     # 用户配置模块
     users.enable = lib.mkDefault false;
@@ -42,113 +38,87 @@
       # Docker 容器服务
       docker = {
         enable = lib.mkDefault false;
-        compose.enable = lib.mkDefault false;      # Docker Compose 支持
-        buildkit.enable = lib.mkDefault false;     # 构建器增强
-        registry.enable = lib.mkDefault false;     # 本地镜像仓库
-        monitoring.enable = lib.mkDefault false;   # 监控工具
-        security.enable = lib.mkDefault false;     # 安全增强
+        compose.enable = lib.mkDefault false;
+        buildkit.enable = lib.mkDefault false;
+        registry.enable = lib.mkDefault false;
+        monitoring.enable = lib.mkDefault false;
+        security.enable = lib.mkDefault false;
       };
       
       # 网络服务
       network = {
-        # SSH 远程访问
+        enable = lib.mkDefault false;
         ssh = {
-          enable = lib.mkDefault false;              # SSH 服务
-          passwordAuth = lib.mkDefault false;        # 密码认证
-          keyAuth = lib.mkDefault false;             # 密钥认证增强
-          hardening = lib.mkDefault false;           # 安全加固
+          enable = lib.mkDefault false;
+          passwordAuth = lib.mkDefault false;
         };
-        
-        # VPN 服务
-        vpn = {
-          tailscale = {
-            enable = lib.mkDefault false;            # Tailscale VPN
-            exitNode = lib.mkDefault false;          # 出口节点
-            subnet = lib.mkDefault false;            # 子网路由
-            magicDNS = lib.mkDefault false;          # MagicDNS
-          };
-          wireguard = {
-            enable = lib.mkDefault false;            # WireGuard 客户端
-            server = lib.mkDefault false;            # WireGuard 服务器
-          };
+        tailscale = {
+          enable = lib.mkDefault false;
+          exitNode.enable = lib.mkDefault false;
+          subnet.enable = lib.mkDefault false;
         };
-        
-        # 网络工具
-        tools = {
-          enable = lib.mkDefault false;              # 网络诊断工具
-          monitoring = lib.mkDefault false;          # 网络监控
-          security = lib.mkDefault false;            # 网络安全工具
+        wireguard = {
+          enable = lib.mkDefault false;
+          peers.enable = lib.mkDefault false;
         };
+        tools.enable = lib.mkDefault false;
       };
       
       # 多媒体服务
       media = {
-        # 音视频播放
-        players = {
-          enable = lib.mkDefault false;              # 多媒体播放器
-          mpv = lib.mkDefault false;                 # MPV 增强配置
-          vlc = lib.mkDefault false;                 # VLC 播放器
-          music = lib.mkDefault false;               # 音乐播放器
-        };
-        
-        # 媒体编辑
-        editing = {
-          enable = lib.mkDefault false;              # 媒体编辑工具
-          video = lib.mkDefault false;               # 视频编辑
-          audio = lib.mkDefault false;               # 音频编辑
-          image = lib.mkDefault false;               # 图像编辑
-        };
-        
-        # 流媒体服务 (个人使用)
-        streaming = {
-          jellyfin = {
-            enable = lib.mkDefault false;            # Jellyfin 媒体服务器
-            hardware = lib.mkDefault false;          # 硬件加速
-            plugins = lib.mkDefault false;           # 常用插件
-          };
-          dlna = lib.mkDefault false;                # DLNA 媒体共享
-        };
-        
-        # 下载工具
-        download = {
-          enable = lib.mkDefault false;              # 媒体下载工具
-          youtube = lib.mkDefault false;             # YouTube 下载
-          torrent = lib.mkDefault false;             # BT 客户端
-          aria2 = lib.mkDefault false;               # Aria2 下载管理器
-        };
+        enable = lib.mkDefault false;
+        players.enable = lib.mkDefault false;
+        editing.enable = lib.mkDefault false;
+        streaming.enable = lib.mkDefault false;
+        download.enable = lib.mkDefault false;
       };
       
       # 同步和备份服务
       sync = {
-        # 文件同步
-        syncthing = {
-          enable = lib.mkDefault false;              # Syncthing 服务
-          gui.enable = lib.mkDefault false;          # Web 管理界面
-          discovery.enable = lib.mkDefault false;    # 全局发现
-          folders.enable = lib.mkDefault false;      # 预配置文件夹
-        };
-        
-        # 云存储同步
-        cloud = {
-          enable = lib.mkDefault false;              # 云存储工具
-          rclone.enable = lib.mkDefault false;       # Rclone 多云同步
-          dropbox.enable = lib.mkDefault false;      # Dropbox 客户端
-          onedrive.enable = lib.mkDefault false;     # OneDrive 同步
-        };
-        
-        # 备份服务
-        backup = {
-          enable = lib.mkDefault false;              # 本地备份服务
-          rsync.enable = lib.mkDefault false;        # Rsync 增量备份
-          timeshift.enable = lib.mkDefault false;    # 系统快照
-        };
+        enable = lib.mkDefault false;
+        syncthing.enable = lib.mkDefault false;
+        cloud.enable = lib.mkDefault false;
+        backup.enable = lib.mkDefault false;
       };
       
       # 硬件服务
       hardware = {
-        printing.enable = lib.mkDefault false;       # 打印服务
-        bluetooth.enable = lib.mkDefault false;      # 蓝牙支持
-        sound.enable = lib.mkDefault false;          # 音频系统
+        enable = lib.mkDefault false;
+        printing.enable = lib.mkDefault false;
+        bluetooth.enable = lib.mkDefault false;
+        sound.enable = lib.mkDefault false;
+      };
+      
+      # 硬件驱动服务
+      drivers = {
+        enable = lib.mkDefault false;
+        graphics = {
+          enable = lib.mkDefault false;
+          nvidia = {
+            enable = lib.mkDefault false;
+            openSource = lib.mkDefault false;
+            powerManagement = lib.mkDefault false;
+            settings = lib.mkDefault false;
+          };
+          amd.enable = lib.mkDefault false;
+          intel.enable = lib.mkDefault false;
+        };
+        input = {
+          enable = lib.mkDefault false;
+          touchpad.enable = lib.mkDefault false;
+          wacom.enable = lib.mkDefault false;
+        };
+        network = {
+          enable = lib.mkDefault false;
+          wifi.enable = lib.mkDefault false;
+          bluetooth.enable = lib.mkDefault false;
+          ethernet.enable = lib.mkDefault false;
+        };
+        storage = {
+          enable = lib.mkDefault false;
+          ssd.enable = lib.mkDefault false;
+          usb.enable = lib.mkDefault false;
+        };
       };
     };
   };

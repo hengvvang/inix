@@ -7,3 +7,7 @@
     ./backup.nix
   ];
 }
+    ./cloud.nix
+    ./backup.nix
+  ];
+}
