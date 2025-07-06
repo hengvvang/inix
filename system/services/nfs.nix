@@ -32,7 +32,6 @@
     ];
 
     # NFS 客户端支持（如果需要挂载其他 NFS 共享）
-    services.rpcbind.enable = true;
     boot.supportedFilesystems = [ "nfs" ];
   };
 }

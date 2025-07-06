@@ -39,12 +39,8 @@
     # 用户组配置
     users.users.hengvvang.extraGroups = [ "audio" "pipewire" ];
 
-    # 音频设备权限
-    hardware.pulseaudio.enable = false; # 确保 PulseAudio 被禁用
-
-    # 系统级音频配置
+    # 音频设备权限和系统级配置
     sound.enable = true;
-    hardware.pulseaudio.enable = lib.mkForce false;
 
     # WirePlumber 配置
     services.pipewire.wireplumber.enable = true;
