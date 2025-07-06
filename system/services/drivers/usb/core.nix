@@ -25,11 +25,6 @@ in
     services.udev = lib.mkIf cfg.core.hotplug {
       enable = true;
       extraRules = ''
-        # USB 设备热插拔规则
-        SUBSYSTEM=="block", ENV{ID_FS_TYPE}!="", ENV{ID_FS_TYPE}!="swap", \
-        ENV{ID_FS_TYPE}!="LVM2_member", ENV{ID_FS_TYPE}!="crypto_LUKS", \
-        RUN+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /run/media/%i"
-        
         # USB 设备权限
         SUBSYSTEM=="usb", GROUP="plugdev", MODE="0664"
         SUBSYSTEM=="block", SUBSYSTEMS=="usb", GROUP="plugdev", MODE="0664"

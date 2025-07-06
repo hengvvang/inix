@@ -26,7 +26,6 @@
 
     # 性能调优工具
     environment.systemPackages = lib.optionals (config.mySystem.services.drivers.nvidia.performance.coolbits != null || config.mySystem.services.drivers.nvidia.performance.powerLimit != null) (with pkgs; [
-      nvidia-settings
       nvtop
       gpu-burn  # GPU 压力测试
     ]);

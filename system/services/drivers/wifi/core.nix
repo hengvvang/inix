@@ -12,7 +12,7 @@
     
     # 基础 WiFi 工具
     environment.systemPackages = with pkgs; [
-      wireless-tools  # iwconfig, iwlist 等经典工具
+      wirelesstools   # iwconfig, iwlist 等经典工具
       iw             # 现代 WiFi 配置工具
     ];
     

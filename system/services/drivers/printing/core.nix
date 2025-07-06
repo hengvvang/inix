@@ -31,7 +31,7 @@
       # 网络发现工具
       environment.systemPackages = with pkgs; [
         avahi
-        nss-mdns
+        nssmdns  # 正确的包名
       ];
     })
     

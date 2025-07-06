@@ -4,7 +4,7 @@
   config = lib.mkMerge [
     # OpenGL 支持
     (lib.mkIf (config.mySystem.services.drivers.nvidia.enable && config.mySystem.services.drivers.nvidia.graphics.opengl) {
-      hardware.opengl = {
+      hardware.graphics = {
         enable = true;
         # driSupport 选项已被移除
         # driSupport = true;
@@ -17,7 +17,7 @@
 
     # Vulkan 支持
     (lib.mkIf (config.mySystem.services.drivers.nvidia.enable && config.mySystem.services.drivers.nvidia.graphics.vulkan) {
-      hardware.opengl.extraPackages = with pkgs; [
+      hardware.graphics.extraPackages = with pkgs; [
         vulkan-loader
         vulkan-validation-layers
       ];

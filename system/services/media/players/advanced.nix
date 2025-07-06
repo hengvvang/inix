@@ -3,7 +3,7 @@
 {
   config = lib.mkIf config.mySystem.services.media.players.enable {
     # 硬件加速支持
-    hardware.opengl = lib.mkIf config.mySystem.services.media.players.advanced.hwAccel {
+    hardware.graphics = lib.mkIf config.mySystem.services.media.players.advanced.hwAccel {
       enable = true;
       # driSupport 选项已被移除
       # driSupport = true;

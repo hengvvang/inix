@@ -7,7 +7,7 @@
       enable = true;
       storageDriver = "overlay2";
       daemon.settings = {
-        log-driver = "journald";
+        log-driver = "json-file";
         log-opts = {
           max-size = "100m";
           max-file = "5";

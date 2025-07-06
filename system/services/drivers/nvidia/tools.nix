@@ -4,11 +4,7 @@
   config = lib.mkMerge [
     # NVIDIA 设置面板
     (lib.mkIf (config.mySystem.services.drivers.nvidia.enable && config.mySystem.services.drivers.nvidia.tools.settings) {
-      environment.systemPackages = with pkgs; [
-        nvidia-settings
-      ];
-      
-      # 自动启动设置
+      # NVIDIA 设置工具通过驱动包提供
       hardware.nvidia.nvidiaSettings = true;
     })
 

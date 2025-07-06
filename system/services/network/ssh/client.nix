@@ -8,9 +8,8 @@ in
   config = lib.mkIf (cfg.enable && cfg.client.enable) {
     # 基础客户端工具
     environment.systemPackages = with pkgs; [
-      openssh
+      openssh        # 包含ssh-keyscan等工具
       ssh-copy-id    # 密钥复制工具
-      ssh-keyscan    # 密钥扫描工具
       rsync          # 远程同步
     ] ++ lib.optionals cfg.client.mosh [
       mosh           # 移动Shell
@@ -18,7 +17,8 @@ in
 
     # SSH 客户端配置
     programs.ssh = {
-      startAgent = cfg.features.agent;
+      # 禁用 SSH 代理以避免与 GNOME gcr-ssh-agent 冲突
+      startAgent = false;
       extraConfig = ''
         Host *
           ServerAliveInterval 60

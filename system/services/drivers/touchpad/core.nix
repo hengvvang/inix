@@ -26,7 +26,7 @@
     # 触摸板工具
     environment.systemPackages = with pkgs; [
       libinput          # libinput 工具
-      xinput            # X11 输入设备配置
+      xorg.xinput       # X11 输入设备配置
     ];
     
     # 设备权限

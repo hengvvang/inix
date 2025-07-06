@@ -47,7 +47,9 @@ in
     # 自动挂载配置
     services.udisks2.settings = {
       "mount-options.conf" = lib.mkIf cfg.filesystems.ntfs {
-        ntfs_defaults = "uid=1000,gid=100,dmask=022,fmask=133";
+        "ntfs_defaults" = {
+          "defaults" = "uid=1000,gid=100,dmask=022,fmask=133";
+        };
       };
     };
   };
