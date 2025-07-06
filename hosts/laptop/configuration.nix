@@ -37,11 +37,11 @@
       # Docker 容器服务 - 完整功能
       docker = {
         enable = true;                    # 启用 Docker 核心服务
-        compose.enable = true;            # 启用 Docker Compose
-        buildkit.enable = true;           # 启用 Buildkit 构建器
-        monitoring.enable = true;         # 启用监控（Portainer + cAdvisor）
-        # registry.enable = true;         # 可选：本地 Registry
-        # security.enable = true;         # 可选：安全增强
+        orchestration.compose = true;     # 启用 Docker Compose
+        build.buildkit = true;            # 启用 Buildkit 构建器
+        observability.monitoring = true;  # 启用监控（Portainer + cAdvisor）
+        # storage.registry = true;        # 可选：本地 Registry
+        # security.userNamespace = true; # 可选：安全增强
       };
       
       # 网络服务
@@ -50,7 +50,7 @@
         # SSH 服务 - 远程访问
         ssh = {
           enable = true;                  # 启用 SSH 服务
-          passwordAuth = true;            # 允许密码认证
+          server.passwordAuth = true;     # 允许密码认证
         };
       };
       

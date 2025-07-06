@@ -59,11 +59,5 @@
       externalInterface = "eth0";  # 可配置
       internalInterfaces = [ config.mySystem.services.drivers.wifi.hotspot.interface ];
     };
-    
-    # 热点管理工具
-    environment.systemPackages = with pkgs; [
-      hostapd
-      dnsmasq
-    ];
   };
 }

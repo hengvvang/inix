@@ -22,10 +22,18 @@ in
     # 加密存储支持
     boot.initrd.luks.devices = lib.mkIf cfg.security.encryption {};
     
-    environment.systemPackages = lib.optionals cfg.security.encryption (with pkgs; [
-      cryptsetup        # LUKS 加密
-      veracrypt         # VeraCrypt 加密
-    ]);
+    # 安全工具软件包合并
+    environment.systemPackages = lib.flatten [
+      # 加密工具
+      (lib.optionals cfg.security.encryption (with pkgs; [
+        cryptsetup        # LUKS 加密
+        veracrypt         # VeraCrypt 加密
+      ]))
+      # USB 设备控制
+      (lib.optionals cfg.security.whitelist (with pkgs; [
+        usbguard          # USB 设备控制
+      ]))
+    ];
     
     # 只读模式选项
     services.udisks2.settings = lib.mkIf cfg.security.readonly {
@@ -33,12 +41,5 @@ in
         defaults = "ro,nosuid,nodev,noexec";
       };
     };
-    
-    # 安全工具
-    environment.systemPackages = lib.optionals cfg.security.whitelist (with pkgs; [
-      usbguard          # USB 设备控制
-    ]);
-  };
-}
   };
 }

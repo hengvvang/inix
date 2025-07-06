@@ -27,11 +27,7 @@ in
         AllowTcpForwarding = if cfg.features.tunneling then "yes" else "no";
         
         # 基础安全算法（详细安全配置在 security.nix）
-        PubkeyAcceptedKeyTypes = [
-          "ssh-ed25519"
-          "rsa-sha2-256"
-          "rsa-sha2-512"
-        ];
+        PubkeyAcceptedKeyTypes = "ssh-ed25519,rsa-sha2-256,rsa-sha2-512";
       };
     };
 

@@ -6,8 +6,9 @@
     (lib.mkIf (config.mySystem.services.drivers.nvidia.enable && config.mySystem.services.drivers.nvidia.graphics.opengl) {
       hardware.opengl = {
         enable = true;
-        driSupport = true;
-        driSupport32Bit = true;
+        # driSupport 选项已被移除
+        # driSupport = true;
+        # driSupport32Bit = true;
         extraPackages = with pkgs; [
           nvidia-vaapi-driver
         ];

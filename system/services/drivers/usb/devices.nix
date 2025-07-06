@@ -5,27 +5,33 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    # 大容量存储设备
-    boot.kernelModules = lib.optionals cfg.devices.massStorage [
-      "usb-storage"
-      "uas"
-    ];
-    
-    # HID 人机接口设备
-    boot.kernelModules = lib.optionals cfg.devices.hid [
-      "usbhid"
-      "hid-generic"
-    ];
-    
-    # USB 音频设备
-    boot.kernelModules = lib.optionals cfg.devices.audio [
-      "snd-usb-audio"
-    ];
-    
-    # USB 视频设备
-    boot.kernelModules = lib.optionals cfg.devices.video [
-      "uvcvideo"
-      "v4l2loopback"
+    # USB 设备内核模块合并
+    boot.kernelModules = lib.flatten [
+      # 大容量存储设备
+      (lib.optionals cfg.devices.massStorage [
+        "usb-storage"
+        "uas"
+      ])
+      # HID 人机接口设备
+      (lib.optionals cfg.devices.hid [
+        "usbhid"
+        "hid-generic"
+      ])
+      # USB 音频设备
+      (lib.optionals cfg.devices.audio [
+        "snd-usb-audio"
+      ])
+      # USB 视频设备
+      (lib.optionals cfg.devices.video [
+        "uvcvideo"
+        "v4l2loopback"
+      ])
+      # USB 调制解调器
+      (lib.optionals cfg.devices.modem [
+        "cdc_acm"
+        "cdc_wdm"
+        "cdc_ncm"
+      ])
     ];
     
     # USB 打印机
@@ -33,13 +39,6 @@ in
       enable = true;
       drivers = with pkgs; [ cups-filters ];
     };
-    
-    # USB 调制解调器
-    boot.kernelModules = lib.optionals cfg.devices.modem [
-      "cdc_acm"
-      "cdc_wdm"
-      "cdc_ncm"
-    ];
     
     # 设备特定工具
     environment.systemPackages = lib.mkMerge [

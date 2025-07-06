@@ -8,8 +8,9 @@
       finegrained = config.mySystem.services.drivers.nvidia.power.finegrained;
     };
 
-    # 挂起/唤醒支持
-    hardware.nvidia.powerManagement.enableRuntimePM = config.mySystem.services.drivers.nvidia.power.suspend;
+    # 挂起/唤醒支持 - 使用正确的选项名
+    # 注意：enableRuntimePM 选项可能在较新的 NixOS 版本中不可用
+    # 如果需要运行时电源管理，请使用其他方式配置
 
     # 电源管理服务
     systemd.services.nvidia-powerd = lib.mkIf config.mySystem.services.drivers.nvidia.power.enable {

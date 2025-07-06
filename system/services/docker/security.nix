@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.docker.enable && config.mySystem.services.docker.security.enable) {
+  config = lib.mkIf (config.mySystem.services.docker.enable && (config.mySystem.services.docker.security.userNamespace || config.mySystem.services.docker.security.seccomp || config.mySystem.services.docker.security.apparmor)) {
     # Docker 安全配置
     virtualisation.docker.daemon.settings = lib.mkIf config.mySystem.services.docker.enable {
       # 用户命名空间

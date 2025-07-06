@@ -3,7 +3,7 @@
 {
   options.mySystem.services.media = {
     enable = lib.mkEnableOption "媒体服务";
-    players.enable = lib.mkEnableOption "媒体播放器";
+    # players.enable 选项移到 players/default.nix 中定义，避免重复定义
     # 其他功能暂时禁用，只保留已实现的players
     # editing.enable = lib.mkEnableOption "媒体编辑工具";
     # streaming.enable = lib.mkEnableOption "流媒体工具";

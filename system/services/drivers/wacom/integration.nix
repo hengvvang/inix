@@ -5,26 +5,26 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    # Krita 绘画软件集成
-    environment.systemPackages = lib.optionals cfg.integration.krita (with pkgs; [
-      krita
-    ]);
-    
-    # GIMP 图像编辑集成
-    environment.systemPackages = lib.optionals cfg.integration.gimp (with pkgs; [
-      gimp
-      gimpPlugins.gmic
-    ]);
-    
-    # Blender 3D 建模集成
-    environment.systemPackages = lib.optionals cfg.integration.blender (with pkgs; [
-      blender
-    ]);
-    
-    # Inkscape 矢量图形集成
-    environment.systemPackages = lib.optionals cfg.integration.inkscape (with pkgs; [
-      inkscape
-    ]);
+    # 所有 Wacom 集成软件包
+    environment.systemPackages = lib.flatten [
+      # Krita 绘画软件集成
+      (lib.optionals cfg.integration.krita (with pkgs; [
+        krita
+      ]))
+      # GIMP 图像编辑集成
+      (lib.optionals cfg.integration.gimp (with pkgs; [
+        gimp
+        gimpPlugins.gmic
+      ]))
+      # Blender 3D 建模集成
+      (lib.optionals cfg.integration.blender (with pkgs; [
+        blender
+      ]))
+      # Inkscape 矢量图形集成
+      (lib.optionals cfg.integration.inkscape (with pkgs; [
+        inkscape
+      ]))
+    ];
     
     # 应用程序配置
     environment.etc = lib.mkMerge [

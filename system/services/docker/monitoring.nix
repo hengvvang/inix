@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.docker.enable && config.mySystem.services.docker.monitoring.enable) {
+  config = lib.mkIf (config.mySystem.services.docker.enable && config.mySystem.services.docker.observability.monitoring) {
     # Docker 监控服务
     virtualisation.oci-containers.containers = {
       # cAdvisor - 容器性能监控

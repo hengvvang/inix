@@ -6,8 +6,10 @@
     # PipeWire 蓝牙支持
     services.pipewire = {
       enable = true;
-      bluetooth.enable = true;
-      bluetooth.hsphfpd.enable = lib.mkIf config.mySystem.services.drivers.bluetooth.audio.hsp true;
+      # 在新版本中，bluetooth 支持通过 wireplumber 配置
+      wireplumber.enable = true;
+      # bluetooth.enable = true;  # 此选项在新版本中不存在
+      # bluetooth.hsphfpd.enable = lib.mkIf config.mySystem.services.drivers.bluetooth.audio.hsp true;
     };
     
     # 蓝牙音频包

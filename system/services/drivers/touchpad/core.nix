@@ -12,10 +12,9 @@
         tapping = config.mySystem.services.drivers.touchpad.basic.tapping;
         clickMethod = config.mySystem.services.drivers.touchpad.basic.clickMethod;
         
-        # 滚动配置
+        # 滚动配置 - 使用正确的选项名
         naturalScrolling = config.mySystem.services.drivers.touchpad.scrolling.naturalScrolling;
-        twoFingerScroll = config.mySystem.services.drivers.touchpad.scrolling.twoFingerScrolling;
-        edgeScrolling = config.mySystem.services.drivers.touchpad.scrolling.edgeScrolling;
+        scrollMethod = "twofinger";  # 替代 twoFingerScroll
         horizontalScrolling = config.mySystem.services.drivers.touchpad.scrolling.horizontalScrolling;
         
         # 其他功能

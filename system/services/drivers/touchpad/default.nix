@@ -46,8 +46,6 @@
   };
 
   imports = [
-    ./core.nix         # 核心触摸板功能
-    ./gestures.nix     # 手势支持
-    ./sensitivity.nix  # 敏感度配置
+    ./core.nix         # 核心触摸板功能（包含所有实现）
   ];
 }

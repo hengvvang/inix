@@ -28,9 +28,11 @@ in
     boot.swraid.enable = lib.mkIf cfg.advanced.raid true;
     
     # 缓存优化
-    services.bcache = lib.mkIf cfg.advanced.cache {
-      enable = true;
-    };
+    # 注意：services.bcache 在新版本 NixOS 中已移除
+    # 如需缓存支持，请使用其他方案或手动配置
+    # services.bcache = lib.mkIf cfg.advanced.cache {
+    #   enable = true;
+    # };
     
     # 高级工具
     environment.systemPackages = lib.mkMerge [

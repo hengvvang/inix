@@ -5,22 +5,24 @@ let
 in
 {
   config = lib.mkIf (cfg.enable && cfg.scanning.enable) {
-    # SANE 扫描后端
-    hardware.sane = lib.mkIf cfg.scanning.sane {
-      enable = true;
-      extraBackends = with pkgs; [
-        sane-airscan      # 网络扫描器
-        hplipWithPlugin   # HP 扫描器
-      ];
-    };
-    
-    # 网络扫描支持
-    hardware.sane = lib.mkIf cfg.scanning.network {
-      netConf = ''
-        # 网络扫描器配置
-        192.168.0.0/16
-      '';
-    };
+    # SANE 扫描配置合并
+    hardware.sane = lib.mkMerge [
+      # 基础 SANE 配置
+      (lib.mkIf cfg.scanning.sane {
+        enable = true;
+        extraBackends = with pkgs; [
+          sane-airscan      # 网络扫描器
+          hplipWithPlugin   # HP 扫描器
+        ];
+      })
+      # 网络扫描支持
+      (lib.mkIf cfg.scanning.network {
+        netConf = ''
+          # 网络扫描器配置
+          192.168.0.0/16
+        '';
+      })
+    ];
     
     # 扫描工具
     environment.systemPackages = with pkgs; [

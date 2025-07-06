@@ -11,7 +11,10 @@
       pulseaudio = lib.mkEnableOption "PulseAudio 音频服务器";
       jack = lib.mkEnableOption "JACK 专业音频服务器";
     };
-    
+     # === ALSA 音频系统选项 ===
+    alsa = {
+      enable = lib.mkEnableOption "ALSA 音频系统支持" // { default = true; };
+    };
  
     # === 实时音频选项 ===
     realtime = {
@@ -22,6 +25,12 @@
         default = 95;
         description = "实时音频优先级";
       };
+    };
+    
+    # === 音频工具选项 ===
+    tools = {
+      control = lib.mkEnableOption "音频控制工具 (pavucontrol, alsamixer 等)";
+      codecs = lib.mkEnableOption "额外音频编解码器";
     };
     
 

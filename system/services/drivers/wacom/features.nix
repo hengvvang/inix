@@ -15,21 +15,21 @@ in
       enable = true;
     };
     
-    # 旋转支持
-    environment.systemPackages = lib.optionals cfg.features.rotation (with pkgs; [
-      iio-sensor-proxy  # 自动旋转传感器
-    ]);
+    # 软件包组合：旋转支持 + 快捷按键支持
+    environment.systemPackages = lib.flatten [
+      (lib.optionals cfg.features.rotation (with pkgs; [
+        iio-sensor-proxy  # 自动旋转传感器
+      ]))
+      (lib.optionals cfg.features.buttons (with pkgs; [
+        xbindkeys
+        xdotool
+      ]))
+    ];
     
     # 触摸功能
     services.xserver.libinput = lib.mkIf cfg.features.touch {
       touchpad.tapping = true;
     };
-    
-    # 快捷按键支持
-    environment.systemPackages = lib.optionals cfg.features.buttons (with pkgs; [
-      xbindkeys
-      xdotool
-    ]);
     
     # 自定义 udev 规则用于功能配置
     services.udev.extraRules = lib.optionalString cfg.features.pressure ''

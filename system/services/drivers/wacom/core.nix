@@ -32,17 +32,17 @@
         xsetwacom            # X11 Wacom 设置工具
       ];
     })
-  ];
-  
-  # 基础设备权限
-  config = lib.mkIf config.mySystem.services.drivers.wacom.enable {
-    services.udev.extraRules = ''
-      # Wacom 设备权限
-      SUBSYSTEM=="usb", ATTRS{idVendor}=="056a", GROUP="input", MODE="0664"
-      SUBSYSTEM=="hidraw", ATTRS{idVendor}=="056a", GROUP="input", MODE="0664"
-    '';
     
-    # 内核模块
-    boot.kernelModules = [ "wacom" "hid_wacom" ];
-  };
+    # 基础设备权限
+    (lib.mkIf config.mySystem.services.drivers.wacom.enable {
+      services.udev.extraRules = ''
+        # Wacom 设备权限
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="056a", GROUP="input", MODE="0664"
+        SUBSYSTEM=="hidraw", ATTRS{idVendor}=="056a", GROUP="input", MODE="0664"
+      '';
+      
+      # 内核模块
+      boot.kernelModules = [ "wacom" "hid_wacom" ];
+    })
+  ];
 }

@@ -21,7 +21,7 @@ in
       enable = true;
     };
     
-    # 热插拔支持
+    # 热插拔支持和权限配置
     services.udev = lib.mkIf cfg.core.hotplug {
       enable = true;
       extraRules = ''
@@ -29,6 +29,10 @@ in
         SUBSYSTEM=="block", ENV{ID_FS_TYPE}!="", ENV{ID_FS_TYPE}!="swap", \
         ENV{ID_FS_TYPE}!="LVM2_member", ENV{ID_FS_TYPE}!="crypto_LUKS", \
         RUN+="${pkgs.systemd}/bin/systemd-mount --no-block --automount=yes --collect $devnode /run/media/%i"
+        
+        # USB 设备权限
+        SUBSYSTEM=="usb", GROUP="plugdev", MODE="0664"
+        SUBSYSTEM=="block", SUBSYSTEMS=="usb", GROUP="plugdev", MODE="0664"
       '';
     };
     
@@ -40,12 +44,5 @@ in
     
     # USB 权限配置
     users.groups.plugdev = {};
-    
-    # 用户权限设置
-    services.udev.extraRules = ''
-      # USB 设备权限
-      SUBSYSTEM=="usb", GROUP="plugdev", MODE="0664"
-      SUBSYSTEM=="block", SUBSYSTEMS=="usb", GROUP="plugdev", MODE="0664"
-    '';
   };
 }

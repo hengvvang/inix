@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.services.docker.enable && config.mySystem.services.docker.registry.enable) {
+  config = lib.mkIf (config.mySystem.services.docker.enable && config.mySystem.services.docker.storage.registry) {
     # 本地 Docker Registry 服务
     virtualisation.oci-containers.containers.registry = {
       image = "registry:2";

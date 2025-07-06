@@ -5,8 +5,9 @@
     # 硬件加速支持
     hardware.opengl = lib.mkIf config.mySystem.services.media.players.advanced.hwAccel {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      # driSupport 选项已被移除
+      # driSupport = true;
+      # driSupport32Bit = true;
       extraPackages = with pkgs; [
         vaapiIntel
         vaapiVdpau
