@@ -14,5 +14,6 @@
     ./ghostty
     ./git
     ./lazygit
+    ./starship
   ];
 }

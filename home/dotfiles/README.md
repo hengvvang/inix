@@ -71,6 +71,13 @@ dotfiles/
     ├── external.nix     # 方式3: 外部文件引用
     └── configs/         # 外部配置文件目录
         └── config.yml   # Lazygit 配置文件
+└── starship/            # Starship 跨 Shell 提示符配置
+    ├── default.nix      # Starship 主配置 + 选项定义
+    ├── homemanager.nix  # 方式1: Home Manager 程序模块
+    ├── direct.nix       # 方式2: 直接文件写入
+    ├── external.nix     # 方式3: 外部文件引用
+    └── configs/         # 外部配置文件目录
+        └── starship.toml # Starship 配置文件
 ```
 
 ## 已支持的工具配置
@@ -83,6 +90,7 @@ dotfiles/
 ✅ **Ghostty** - 3种配置方式完整实现  
 ✅ **Git** - 3种配置方式完整实现  
 ✅ **Lazygit** - 3种配置方式完整实现  
+✅ **Starship** - 3种配置方式完整实现  
 
 ## 三种配置方式对比
 
@@ -110,6 +118,7 @@ myHome = {
     nushell.enable = true;      # 使用 Home Manager 方式
     yazi.enable = true;         # 使用 Home Manager 方式
     ghostty.enable = true;      # 使用直接文件写入方式
+    starship.enable = true;     # 使用 Home Manager 方式
   };
 };
 ```
@@ -146,6 +155,11 @@ myHome = {
     ghostty = {
       enable = true;
       method = "direct";        # 使用直接文件写入 (默认)
+    };
+    
+    starship = {
+      enable = true;
+      method = "homemanager";   # 使用 Home Manager 程序模块 (默认)
     };
   };
 };
@@ -195,6 +209,32 @@ myHome = {
 - 窗口和标签页设置
 - 键位绑定优化
 
+### Git 配置
+
+- 用户信息和核心设置
+- 常用 Git 别名和快捷命令
+- 全局忽略文件规则
+- Delta 集成（美化 diff 显示）
+- 颜色主题和显示优化
+
+### Lazygit 配置
+
+- 现代化 Git TUI 界面
+- 自定义键位绑定
+- 主题和颜色配置
+- 自定义命令集成
+- 分支和提交可视化
+
+### Starship 配置
+
+- 跨 Shell 统一提示符
+- 智能上下文信息显示（Git、语言版本等）
+- 现代化图标和颜色主题
+- 性能优化和响应式设计
+- 支持 Bash、Zsh、Fish、Nushell
+- 电池状态、命令执行时间显示
+- Nix Shell 环境指示器
+
 ## 自定义配置
 
 每个工具的配置都可以通过覆盖相应的文件来自定义。配置文件位置：
@@ -205,6 +245,9 @@ myHome = {
 - Nushell: `~/.config/nushell/config.nu` 和 `~/.config/nushell/env.nu`
 - Yazi: `~/.config/yazi/yazi.toml`、`~/.config/yazi/keymap.toml`、`~/.config/yazi/theme.toml`
 - Ghostty: `~/.config/ghostty/config`
+- Git: `~/.gitconfig`、`~/.gitignore_global`
+- Lazygit: `~/.config/lazygit/config.yml`
+- Starship: `~/.config/starship.toml`
 
 ## 依赖要求
 
@@ -218,6 +261,7 @@ myHome = {
 - `duf` (替代 df)
 - `procs` (替代 ps)
 - `btop` (替代 top)
+- `starship` (跨 Shell 提示符) - 自动安装
 
 如果这些工具未安装，相关别名将回退到传统工具。
 

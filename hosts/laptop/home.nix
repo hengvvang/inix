@@ -39,6 +39,7 @@
       ghostty.enable = true;
       git.enable = true;
       lazygit.enable = true;
+      starship.enable = true;
     };
     
     profiles = {
