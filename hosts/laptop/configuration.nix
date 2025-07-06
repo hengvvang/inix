@@ -34,6 +34,10 @@
     hardware.enable = true;             # 硬件配置 - 基础需求
     users.enable = true;                # 用户配置 - 必需
     packages.enable = true;             # 系统包 - 完整软件环境
+    services = {
+      docker.enable = true;              # Docker 服务 - 需要容器支持
+      ssh.enable = true;                 # SSH 服务 - 远程访问
+    };
     
     # 本地化配置 - 支持细粒度控制
     localization = {

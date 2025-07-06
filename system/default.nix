@@ -8,6 +8,7 @@
     ./users
     ./packages
     ./localization
+    ./services
   ];
 
   mySystem = {
@@ -21,6 +22,10 @@
       timeZone.losAngeles.enable = lib.mkDefault false;
       inputMethod.fcitx5.enable = lib.mkDefault false;
       inputMethod.ibus.enable = lib.mkDefault false;
+    };
+    services = {
+      docker.enable = lib.mkDefault false;
+      ssh.enable = lib.mkDefault false;
     };
   };
 }

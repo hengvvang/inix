@@ -12,14 +12,7 @@
       ];
       shell = pkgs.fish;
     };
-
     # Fish shell 配置
     programs.fish.enable = true;
-
-    # Docker 配置
-    virtualisation.docker.enable = true;
-
-    # SSH 配置
-    services.openssh.enable = true;
   };
 }
