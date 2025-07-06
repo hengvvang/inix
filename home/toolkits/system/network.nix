@@ -10,12 +10,6 @@
     tcpdump            # 网络包分析
     dog                # 现代 dig (DNS 查询)
     bandwhich          # 网络使用监控
-  ];
-  
-  home.shellAliases = {
-    ports = "netstat -tuln";
-    listen = "netstat -tuln | grep LISTEN";
-    myip = "curl -s https://httpbin.org/ip | jq -r .origin";
-  };
+    ];
   };
 }

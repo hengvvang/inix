@@ -7,9 +7,5 @@
       gnupg              # GPG 加密
       openssh            # SSH 客户端
     ];
-    
-    home.shellAliases = {
-
-    };
   };
 }

@@ -10,9 +10,6 @@
       packages = with pkgs; [
         # 用户特定的包可以在这里定义
       ];
-      shell = pkgs.fish;
     };
-    # Fish shell 配置
-    programs.fish.enable = true;
   };
 }
