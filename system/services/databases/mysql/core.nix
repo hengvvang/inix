@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.mysql.enable {
+  config = lib.mkIf config.mySystem.services.databases.mysql.enable {
     # MySQL 数据库配置
     services.mysql = {
       enable = true;

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.redis.enable {
+  config = lib.mkIf config.mySystem.services.databases.redis.enable {
     # Redis 缓存服务配置
     services.redis.servers.main = {
       enable = true;

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.services.mongodb.enable {
+  config = lib.mkIf config.mySystem.services.databases.mongodb.enable {
     # MongoDB 数据库配置
     services.mongodb = {
       enable = true;
