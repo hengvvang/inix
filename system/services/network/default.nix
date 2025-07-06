@@ -11,8 +11,5 @@
     # 每个模块负责自己的选项定义和子功能实现
     
     ./ssh           # SSH 完整功能模块
-    ./tailscale     # Tailscale 完整功能模块  
-    ./wireguard     # WireGuard 完整功能模块
-    ./tools         # 网络工具完整功能模块
   ];
 }

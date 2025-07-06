@@ -52,16 +52,6 @@
           enable = lib.mkDefault false;
           passwordAuth = lib.mkDefault false;
         };
-        tailscale = {
-          enable = lib.mkDefault false;
-          exitNode.enable = lib.mkDefault false;
-          subnet.enable = lib.mkDefault false;
-        };
-        wireguard = {
-          enable = lib.mkDefault false;
-          peers.enable = lib.mkDefault false;
-        };
-        tools.enable = lib.mkDefault false;
       };
       
       # 多媒体服务
@@ -71,14 +61,6 @@
         editing.enable = lib.mkDefault false;
         streaming.enable = lib.mkDefault false;
         download.enable = lib.mkDefault false;
-      };
-      
-      # 同步和备份服务
-      sync = {
-        enable = lib.mkDefault false;
-        syncthing.enable = lib.mkDefault false;
-        cloud.enable = lib.mkDefault false;
-        backup.enable = lib.mkDefault false;
       };
       
       # === 硬件驱动服务（真正原子化，每个模块自定义选项） ===

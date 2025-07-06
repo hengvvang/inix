@@ -26,19 +26,6 @@
       corectrl          # AMD GPU 控制工具
     ]);
     
-    # 性能监控工具
-    environment.systemPackages = with pkgs; [
-      amdgpu_top        # AMD GPU 监控
-      radeontop         # Radeon 性能监控
-      
-      # 温度监控
-      lm_sensors
-      
-      # 系统监控
-      htop
-      iotop
-    ];
-    
     # 设备权限用于性能调节
     services.udev.extraRules = ''
       # AMD GPU 性能控制权限

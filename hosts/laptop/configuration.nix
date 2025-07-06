@@ -52,17 +52,6 @@
           enable = true;                  # 启用 SSH 服务
           passwordAuth = true;            # 允许密码认证
         };
-        
-        # VPN 服务
-        tailscale = {
-          enable = true;                  # 启用 Tailscale VPN
-          # exitNode.enable = true;       # 可选：作为出口节点
-          # subnet.enable = true;         # 可选：子网路由
-        };
-        # wireguard.enable = true;        # 可选：WireGuard VPN
-        
-        # 网络工具
-        tools.enable = true;              # 基础网络工具
       };
       
       # 多媒体服务
@@ -75,19 +64,6 @@
         # editing.enable = true;          # 媒体编辑工具
         # streaming.enable = true;        # 流媒体工具
         # download.enable = true;         # 下载工具
-      };
-      
-      # 同步和备份服务
-      sync = {
-        enable = true;                    # 启用同步服务
-        # 文件同步
-        syncthing.enable = true;          # 启用 Syncthing
-        
-        # 云存储同步（按需启用）
-        # cloud.enable = true;            # Rclone 多云同步
-        
-        # 备份服务（按需启用）
-        # backup.enable = true;           # 备份工具
       };
       
       # === 原子化硬件驱动服务（已从hardware迁移） ===
