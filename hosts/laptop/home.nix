@@ -15,31 +15,7 @@
   home.stateVersion = "25.05";
 
   myHome = {
-    apps = {
-      editors = {
-        vim.enable = true;
-        vscode.enable = true;
-        # micro.enable = true;
-        zed.enable = true;
-      };
-      shells = {
-        fish.enable = true;
-        aliases.enable = true;
-        prompts.starship.enable = true;
-        zsh.enable = true;
-        nushell.enable = true;
-      };
-      terminals = {
-        ghostty.enable = true;
-      };
-      yazi.enable = true;
-    };
-    
     development = {
-      versionControl = {
-        git.enable = true;
-        lazygit.enable = true;
-      };
       languages = {
         rust.enable = true;
         python.enable = true;
@@ -61,6 +37,8 @@
       nushell.enable = true;
       yazi.enable = true;
       ghostty.enable = true;
+      git.enable = true;
+      lazygit.enable = true;
     };
     
     profiles = {

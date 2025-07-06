@@ -56,6 +56,21 @@ dotfiles/
     ├── external.nix     # 方式3: 外部文件引用
     └── configs/         # 外部配置文件目录
         └── config       # Ghostty 配置文件
+├── git/                 # Git 版本控制配置
+│   ├── default.nix      # Git 主配置 + 选项定义
+│   ├── homemanager.nix  # 方式1: Home Manager 程序模块
+│   ├── direct.nix       # 方式2: 直接文件写入
+│   ├── external.nix     # 方式3: 外部文件引用
+│   └── configs/         # 外部配置文件目录
+│       ├── gitconfig    # Git 配置文件
+│       └── gitignore_global # Git 全局忽略文件
+└── lazygit/             # Lazygit Git TUI 配置
+    ├── default.nix      # Lazygit 主配置 + 选项定义
+    ├── homemanager.nix  # 方式1: Home Manager 程序模块
+    ├── direct.nix       # 方式2: 直接文件写入
+    ├── external.nix     # 方式3: 外部文件引用
+    └── configs/         # 外部配置文件目录
+        └── config.yml   # Lazygit 配置文件
 ```
 
 ## 已支持的工具配置
@@ -66,6 +81,8 @@ dotfiles/
 ✅ **Nushell** - 3种配置方式完整实现  
 ✅ **Yazi** - 3种配置方式完整实现  
 ✅ **Ghostty** - 3种配置方式完整实现  
+✅ **Git** - 3种配置方式完整实现  
+✅ **Lazygit** - 3种配置方式完整实现  
 
 ## 三种配置方式对比
 

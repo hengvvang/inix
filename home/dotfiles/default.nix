@@ -12,5 +12,7 @@
     ./nushell
     ./yazi
     ./ghostty
+    ./git
+    ./lazygit
   ];
 }
