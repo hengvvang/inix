@@ -1,53 +1,40 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkMerge [
-    # 基础 SSH 服务
-    (lib.mkIf config.mySystem.services.network.ssh.enable {
-      services.openssh = {
-        enable = true;
-        settings = {
-          PermitRootLogin = "no";
-          PasswordAuthentication = config.mySystem.services.network.ssh.passwordAuth;
-          X11Forwarding = false;
-          PermitEmptyPasswords = false;
-          UsePAM = true;
-        };
-      };
-
-      # 开放 SSH 端口
-      networking.firewall.allowedTCPPorts = [ 22 ];
-
-      # 基础工具包
-      environment.systemPackages = with pkgs; [
-        openssh
-      ];
-    })
-
-    # 密钥认证增强
-    (lib.mkIf (config.mySystem.services.network.ssh.enable && config.mySystem.services.network.ssh.keyAuth) {
-      services.openssh.settings = {
+  # 基础 SSH 服务实现
+  config = lib.mkIf config.mySystem.services.network.ssh.enable {
+    # 启用 OpenSSH 服务
+    services.openssh = {
+      enable = true;
+      settings = {
+        # 基础安全配置
+        PermitRootLogin = "no";
+        PermitEmptyPasswords = false;
+        UsePAM = true;
+        
+        # 认证方式（在 auth.nix 中进一步配置）
+        PasswordAuthentication = config.mySystem.services.network.ssh.auth.passwordAuth;
         PubkeyAuthentication = true;
-        AuthorizedKeysFile = "/home/%u/.ssh/authorized_keys";
-        ChallengeResponseAuthentication = false;
+        
+        # 禁用不安全的功能
+        X11Forwarding = config.mySystem.services.network.ssh.advanced.x11Forwarding;
+        AllowAgentForwarding = config.mySystem.services.network.ssh.advanced.agent;
+        AllowTcpForwarding = if config.mySystem.services.network.ssh.advanced.portForwarding then "yes" else "no";
       };
-      
-      # 密钥管理工具
-      environment.systemPackages = with pkgs; [
-        ssh-copy-id
-        ssh-audit  # SSH 配置审计
-      ];
-    })
+    };
 
-    # SSH 安全加固
-    (lib.mkIf (config.mySystem.services.network.ssh.enable && config.mySystem.services.network.ssh.hardening) {
-      services.openssh.settings = {
-        # 加密算法限制
-        Ciphers = [
-          "chacha20-poly1305@openssh.com"
-          "aes256-gcm@openssh.com"
-          "aes128-gcm@openssh.com"
-          "aes256-ctr"
+    # 开放 SSH 端口
+    networking.firewall.allowedTCPPorts = [ 22 ];
+
+    # 基础 SSH 工具包
+    environment.systemPackages = with pkgs; [
+      openssh
+    ];
+    
+    # 基础用户配置
+    users.users.root.openssh.authorizedKeys.keys = [];
+  };
+}
           "aes192-ctr"
           "aes128-ctr"
         ];

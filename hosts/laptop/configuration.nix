@@ -91,33 +91,36 @@
       };
       
       # === 原子化硬件驱动服务（已从hardware迁移） ===
+      # === 真正原子化的硬件驱动配置 ===
       drivers = {
-        enable = true;                    # 启用驱动服务
+        enable = true;                    # 启用驱动服务总开关
         
-        # 显卡驱动 - 完全原子化配置，无嵌套
-        nvidia.enable = true;             # NVIDIA 显卡驱动
-        nvidiaPowerManagement.enable = true;  # NVIDIA 电源管理
-        nvidiaSettings.enable = true;     # NVIDIA 设置工具
-        nvidiaOpenSource.enable = false;  # 使用闭源驱动
-        # amd.enable = true;              # AMD 显卡驱动 (按需)
-        # intel.enable = true;            # Intel 显卡驱动 (按需)
+        # NVIDIA 显卡 - 细粒度功能控制
+        nvidia = {
+          enable = true;                  # 基础驱动
+          driver.modesetting = true;      # 模式设置
+          power.enable = true;            # 电源管理
+          graphics.opengl = true;         # OpenGL 支持
+          graphics.vulkan = true;         # Vulkan 支持
+          tools.settings = true;          # 设置工具
+        };
         
-        # 输入设备驱动 - 完全原子化配置
+        # 音频系统 - 细粒度功能控制  
+        audio = {
+          enable = true;                  # 基础音频
+          server.pipewire = true;         # PipeWire 服务器
+          alsa.enable = true;             # ALSA 支持
+          realtime.enable = true;         # 实时音频
+          tools.control = true;           # 控制工具
+        };
+        
+        # 其他驱动保持简单配置
         touchpad.enable = true;           # 触摸板支持
-        # wacom.enable = true;            # Wacom 数位板 (按需)
-        
-        # 网络驱动 - 完全原子化配置
         wifi.enable = true;               # WiFi 驱动
         bluetooth.enable = true;          # 蓝牙驱动
-        # ethernet.enable = true;         # 以太网驱动 (按需)
-        
-        # 存储驱动 - 完全原子化配置
         ssd.enable = true;                # SSD 优化
         usb.enable = true;                # USB 设备支持
-        
-        # 从hardware迁移的驱动 - 完全原子化配置
-        audio.enable = true;              # 音频驱动 (PipeWire)
-        printing.enable = true;           # 打印机驱动 (CUPS)
+        printing.enable = true;           # 打印机驱动
       };
     };
     
