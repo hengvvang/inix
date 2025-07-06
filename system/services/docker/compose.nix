@@ -2,12 +2,48 @@
 
 {
   config = lib.mkIf (config.mySystem.services.docker.enable && config.mySystem.services.docker.compose.enable) {
-    # Docker Compose 支持
+    # Compose 辅助脚本和工具
     environment.systemPackages = with pkgs; [
       docker-compose
-      
-      # V2 Compose 插件（推荐）
       docker-buildx
+      
+      (writeShellScriptBin "docker-compose-manager" ''
+        #!/bin/bash
+        
+        COMPOSE_DIR="/opt/docker-compose/projects"
+        
+        case "$1" in
+          list)
+            echo "Available Docker Compose projects:"
+            ls -la "$COMPOSE_DIR"
+            ;;
+          up)
+            if [ -z "$2" ]; then
+              echo "Usage: docker-compose-manager up <project-name>"
+              exit 1
+            fi
+            cd "$COMPOSE_DIR/$2" && docker-compose up -d
+            ;;
+          down)
+            if [ -z "$2" ]; then
+              echo "Usage: docker-compose-manager down <project-name>"
+              exit 1
+            fi
+            cd "$COMPOSE_DIR/$2" && docker-compose down
+            ;;
+          logs)
+            if [ -z "$2" ]; then
+              echo "Usage: docker-compose-manager logs <project-name>"
+              exit 1
+            fi
+            cd "$COMPOSE_DIR/$2" && docker-compose logs -f
+            ;;
+          *)
+            echo "Usage: docker-compose-manager {list|up|down|logs} [project-name]"
+            exit 1
+            ;;
+        esac
+      '')
     ];
 
     # Compose 项目目录
@@ -48,46 +84,5 @@
             o: bind
             device: /opt/docker-compose/shared
     '';
-
-    # Compose 辅助脚本
-    environment.systemPackages = with pkgs; [
-      (writeShellScriptBin "docker-compose-manager" ''
-        #!/bin/bash
-        
-        COMPOSE_DIR="/opt/docker-compose/projects"
-        
-        case "$1" in
-          list)
-            echo "Available Docker Compose projects:"
-            ls -la "$COMPOSE_DIR"
-            ;;
-          up)
-            if [ -z "$2" ]; then
-              echo "Usage: docker-compose-manager up <project-name>"
-              exit 1
-            fi
-            cd "$COMPOSE_DIR/$2" && docker-compose up -d
-            ;;
-          down)
-            if [ -z "$2" ]; then
-              echo "Usage: docker-compose-manager down <project-name>"
-              exit 1
-            fi
-            cd "$COMPOSE_DIR/$2" && docker-compose down
-            ;;
-          logs)
-            if [ -z "$2" ]; then
-              echo "Usage: docker-compose-manager logs <project-name>"
-              exit 1
-            fi
-            cd "$COMPOSE_DIR/$2" && docker-compose logs -f
-            ;;
-          *)
-            echo "Usage: docker-compose-manager {list|up|down|logs} [project-name]"
-            exit 1
-            ;;
-        esac
-      '')
-    ];
   };
 }

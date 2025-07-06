@@ -2,10 +2,37 @@
 
 {
   config = lib.mkIf (config.mySystem.services.docker.enable && config.mySystem.services.docker.buildkit.enable) {
-    # Docker Buildkit 增强构建支持
+    # Buildkit 工具和缓存管理
     environment.systemPackages = with pkgs; [
       docker-buildx
       buildkit
+      
+      (writeShellScriptBin "docker-build-cache-manager" ''
+        #!/bin/bash
+        
+        case "$1" in
+          prune)
+            echo "Pruning Docker build cache..."
+            docker builder prune -f
+            ;;
+          prune-all)
+            echo "Pruning all Docker build cache..."
+            docker builder prune -a -f
+            ;;
+          usage)
+            echo "Docker build cache usage:"
+            docker system df
+            ;;
+          inspect)
+            echo "Docker buildx builders:"
+            docker buildx ls
+            ;;
+          *)
+            echo "Usage: docker-build-cache-manager {prune|prune-all|usage|inspect}"
+            exit 1
+            ;;
+        esac
+      '')
     ];
 
     # Buildkit 配置
@@ -67,35 +94,5 @@
         ${pkgs.docker-buildx}/bin/docker buildx use multiarch
       '';
     };
-
-    # 构建缓存管理
-    environment.systemPackages = with pkgs; [
-      (writeShellScriptBin "docker-build-cache-manager" ''
-        #!/bin/bash
-        
-        case "$1" in
-          prune)
-            echo "Pruning Docker build cache..."
-            docker builder prune -f
-            ;;
-          prune-all)
-            echo "Pruning all Docker build cache..."
-            docker builder prune -a -f
-            ;;
-          usage)
-            echo "Docker build cache usage:"
-            docker system df
-            ;;
-          inspect)
-            echo "Docker buildx builders:"
-            docker buildx ls
-            ;;
-          *)
-            echo "Usage: docker-build-cache-manager {prune|prune-all|usage|inspect}"
-            exit 1
-            ;;
-        esac
-      '')
-    ];
   };
 }
