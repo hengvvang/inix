@@ -23,9 +23,9 @@
           modules = [
             ./hosts/laptop/configuration.nix
 	    {
-		environment.systemPackages = [ 
-		 zen-browser.packages.${system}.twilight
-		];
+        environment.systemPackages = [ 
+          zen-browser.packages.${system}.twilight
+        ];
 	    }
           ];
         };
