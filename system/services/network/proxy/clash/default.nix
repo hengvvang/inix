@@ -123,10 +123,58 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    # 安装 Clash Meta (支持 TUN 模式)
+    # 安装 Clash Meta 和管理工具
     environment.systemPackages = with pkgs; [
       clash-meta
       curl  # 用于下载订阅
+      (writeShellScriptBin "clash-ctl" ''
+        #!/usr/bin/env bash
+        
+        case "$1" in
+          start)
+            echo "启动 Clash 服务..."
+            sudo systemctl start clash
+            ;;
+          stop)
+            echo "停止 Clash 服务..."
+            sudo systemctl stop clash
+            ;;
+          restart)
+            echo "重启 Clash 服务..."
+            sudo systemctl restart clash
+            ;;
+          status)
+            systemctl status clash
+            ;;
+          logs)
+            journalctl -u clash -f
+            ;;
+          update)
+            echo "更新订阅配置..."
+            sudo systemctl start clash-subscription-update
+            ;;
+          test)
+            echo "测试代理连接..."
+            curl -x http://127.0.0.1:${toString cfg.mixedPort} -I http://www.google.com
+            ;;
+          ui)
+            echo "Clash Web UI: http://localhost:${toString cfg.webPort}"
+            ;;
+          *)
+            echo "用法: clash-ctl {start|stop|restart|status|logs|update|test|ui}"
+            echo ""
+            echo "命令说明:"
+            echo "  start   - 启动 Clash 服务"
+            echo "  stop    - 停止 Clash 服务"
+            echo "  restart - 重启 Clash 服务"
+            echo "  status  - 查看服务状态"
+            echo "  logs    - 查看实时日志"
+            echo "  update  - 更新订阅配置"
+            echo "  test    - 测试代理连接"
+            echo "  ui      - 显示 Web UI 地址"
+            ;;
+        esac
+      '')
     ];
 
     # 创建配置目录和文件
@@ -293,57 +341,5 @@ in
       HTTPS_PROXY = "http://127.0.0.1:${toString cfg.mixedPort}";
       ALL_PROXY = "socks5://127.0.0.1:${toString cfg.mixedPort}";
     };
-
-    # 添加管理脚本
-    environment.systemPackages = [ 
-      (pkgs.writeShellScriptBin "clash-ctl" ''
-        #!/usr/bin/env bash
-        
-        case "$1" in
-          start)
-            echo "启动 Clash 服务..."
-            sudo systemctl start clash
-            ;;
-          stop)
-            echo "停止 Clash 服务..."
-            sudo systemctl stop clash
-            ;;
-          restart)
-            echo "重启 Clash 服务..."
-            sudo systemctl restart clash
-            ;;
-          status)
-            systemctl status clash
-            ;;
-          logs)
-            journalctl -u clash -f
-            ;;
-          update)
-            echo "更新订阅配置..."
-            sudo systemctl start clash-subscription-update
-            ;;
-          test)
-            echo "测试代理连接..."
-            curl -x http://127.0.0.1:${toString cfg.mixedPort} -I http://www.google.com
-            ;;
-          ui)
-            echo "Clash Web UI: http://localhost:${toString cfg.webPort}"
-            ;;
-          *)
-            echo "用法: clash-ctl {start|stop|restart|status|logs|update|test|ui}"
-            echo ""
-            echo "命令说明:"
-            echo "  start   - 启动 Clash 服务"
-            echo "  stop    - 停止 Clash 服务"
-            echo "  restart - 重启 Clash 服务"
-            echo "  status  - 查看服务状态"
-            echo "  logs    - 查看实时日志"
-            echo "  update  - 更新订阅配置"
-            echo "  test    - 测试代理连接"
-            echo "  ui      - 显示 Web UI 地址"
-            ;;
-        esac
-      '')
-    ];
   };
 }

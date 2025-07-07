@@ -64,7 +64,7 @@
     services.network.proxy.clash = {
       enable = true;
       tunMode = true;          # 启用 TUN 模式
-      subscriptionUrl = "";  # 替换为你的订阅链接
+      subscriptionUrl = "https://fba01.fbsubcn01.cc:2096/flydsubal/cymeoq8salu87n34?clash=1&extend=1";  # 替换为你的订阅链接
     };
 
   };

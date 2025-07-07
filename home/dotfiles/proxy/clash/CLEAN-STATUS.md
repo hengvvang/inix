@@ -55,9 +55,22 @@ clash-ctl ui         # 显示 Web UI 地址
 
 ## 🎯 下一步
 
-1. **添加订阅链接**: 在 `configuration.nix` 中替换订阅链接
-2. **重新构建**: `sudo nixos-rebuild switch`
-3. **启动服务**: `clash-ctl start`
-4. **访问 Web UI**: http://localhost:9090
+✅ **构建成功**: `sudo nixos-rebuild switch --flake .#hengvvang` 已完成
+✅ **服务运行**: Clash 服务已自动启动
+✅ **代理测试**: 连接 Google 成功
+✅ **Web UI**: http://localhost:9090 可用
 
-配置已简化并清理完成，核心功能保持完整！
+### 🔗 添加你的订阅链接
+
+在 `configuration.nix` 中更新订阅链接：
+```nix
+services.network.proxy.clash = {
+  enable = true;
+  tunMode = true;
+  subscriptionUrl = "你的真实订阅链接";  # 🔴 请替换
+};
+```
+
+然后重新构建：`sudo nixos-rebuild switch --flake .#hengvvang`
+
+配置已简化并清理完成，核心功能保持完整！🎉
