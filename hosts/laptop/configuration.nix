@@ -87,6 +87,20 @@
       enable = true;                   # 启用服务模块
       network = {
         enable = true;                 # 启用网络服务
+        
+        # SSH 服务配置
+        ssh = {
+          enable = true;               # 🟢 启用 SSH 服务
+          server = {
+            enable = true;             # 启用 SSH 服务端
+            port = 22;                 # SSH 端口
+            passwordAuth = false;      # 禁用密码认证，仅使用密钥认证
+          };
+          client = {
+            enable = true;             # 启用 SSH 客户端工具
+          };
+        };
+        
         proxy = {
           enable = true;               # 启用代理服务模块
           
