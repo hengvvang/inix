@@ -46,18 +46,3 @@ in
     '';
   };
 }
-      ]))
-      # USB 设备控制
-      (lib.optionals cfg.security.whitelist (with pkgs; [
-        usbguard          # USB 设备控制
-      ]))
-    ];
-    
-    # 只读模式选项
-    services.udisks2.settings = lib.mkIf cfg.security.readonly {
-      "mount-options.conf" = {
-        defaults = "ro,nosuid,nodev,noexec";
-      };
-    };
-  };
-}

@@ -1,47 +1,67 @@
 { config, lib, pkgs, ... }:
 
+let
+  cfg = config.mySystem.services.drivers.wacom;
+in
 {
-  # Wacom 数位板驱动模块的完整选项定义
+  # Wacom 数位板驱动模块
   options.mySystem.services.drivers.wacom = {
-    enable = lib.mkEnableOption "Wacom 数位板驱动基础支持";
+    enable = lib.mkEnableOption "Wacom 数位板驱动支持";
     
-    # === 核心驱动选项 ===
+    # 驱动选择
     driver = {
       xorg = lib.mkEnableOption "Xorg Wacom 驱动" // { default = true; };
-      opentablet = lib.mkEnableOption "OpenTabletDriver 开源驱动";
-      legacy = lib.mkEnableOption "传统 Wacom 驱动支持";
+      opentablet = lib.mkEnableOption "OpenTabletDriver 开源驱动" // { default = false; };
     };
     
-    # === 设备功能选项 ===
-    features = {
-      pressure = lib.mkEnableOption "压感支持" // { default = true; };
-      tilt = lib.mkEnableOption "倾斜角度支持";
-      rotation = lib.mkEnableOption "旋转支持";
-      touch = lib.mkEnableOption "触摸功能";
-      buttons = lib.mkEnableOption "快捷按键支持";
-    };
+    # 配置和工具
+    tools = lib.mkEnableOption "配置和校准工具" // { default = true; };
     
-    # === 配置工具选项 ===
-    tools = {
-      gui = lib.mkEnableOption "图形配置工具" // { default = true; };
-      calibration = lib.mkEnableOption "校准工具";
-      mapping = lib.mkEnableOption "区域映射工具";
-      hotkeys = lib.mkEnableOption "快捷键配置";
-    };
-    
-    # === 应用集成选项 ===
+    # 创意应用集成（单独模块）
     integration = {
-      krita = lib.mkEnableOption "Krita 绘画软件集成";
-      gimp = lib.mkEnableOption "GIMP 图像编辑集成";
-      blender = lib.mkEnableOption "Blender 3D 建模集成";
-      inkscape = lib.mkEnableOption "Inkscape 矢量图形集成";
+      enable = lib.mkEnableOption "创意应用集成";
+      painting = lib.mkEnableOption "绘画软件 (Krita, GIMP)" // { default = false; };
+      modeling = lib.mkEnableOption "3D建模软件 (Blender)" // { default = false; };
     };
   };
 
   imports = [
-    ./core.nix         # 核心驱动
-    ./features.nix     # 设备功能
-    ./tools.nix        # 配置工具
-    ./integration.nix  # 应用集成
+    ./integration.nix
   ];
+
+  config = lib.mkIf cfg.enable {
+    # Xorg Wacom 驱动
+    services.xserver.wacom.enable = lib.mkIf cfg.driver.xorg true;
+    
+    # 输入设备支持
+    boot.kernelModules = [ "wacom" ];
+    
+    # 基础 Wacom 包
+    environment.systemPackages = with pkgs; [
+      # 核心驱动和库
+      xf86_input_wacom    # Xorg 驱动
+      libwacom            # Wacom 设备库
+    ]
+    # OpenTabletDriver
+    ++ lib.optionals cfg.driver.opentablet [
+      opentabletdriver    # 开源驱动
+    ]
+    # 配置工具
+    ++ lib.optionals cfg.tools [
+      wacomtablet         # KDE Wacom 配置工具
+      xsetwacom           # 命令行配置工具
+    ];
+    
+    # 设备权限
+    services.udev.extraRules = ''
+      # Wacom 数位板权限
+      ATTRS{idVendor}=="056a", GROUP="input", MODE="0664"
+    '';
+    
+    # 用户组
+    users.groups.input = {};
+    
+    # 自动配置常用 Wacom 设备
+    services.udev.packages = [ pkgs.libwacom ];
+  };
 }

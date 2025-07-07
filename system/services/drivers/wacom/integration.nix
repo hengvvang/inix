@@ -4,64 +4,42 @@ let
   cfg = config.mySystem.services.drivers.wacom;
 in
 {
-  config = lib.mkIf cfg.enable {
-    # 所有 Wacom 集成软件包
-    environment.systemPackages = lib.flatten [
-      # Krita 绘画软件集成
-      (lib.optionals cfg.integration.krita (with pkgs; [
-        krita
-      ]))
-      # GIMP 图像编辑集成
-      (lib.optionals cfg.integration.gimp (with pkgs; [
-        gimp
-        gimpPlugins.gmic
-      ]))
-      # Blender 3D 建模集成
-      (lib.optionals cfg.integration.blender (with pkgs; [
-        blender
-      ]))
-      # Inkscape 矢量图形集成
-      (lib.optionals cfg.integration.inkscape (with pkgs; [
-        inkscape
-      ]))
-    ];
+  # Wacom 创意应用集成实现
+  config = lib.mkIf (cfg.enable && cfg.integration.enable) {
+    # 创意软件包
+    environment.systemPackages = with pkgs; []
+      ++ lib.optionals cfg.integration.painting [
+        # 绘画软件
+        krita           # 专业绘画软件
+        gimp            # 图像编辑
+        gimpPlugins.gmic  # GIMP 增强插件
+        inkscape        # 矢量图形
+        mypaint         # 自然绘画
+      ]
+      ++ lib.optionals cfg.integration.modeling [
+        # 3D建模软件
+        blender         # 3D建模渲染
+      ];
     
-    # 应用程序配置
-    environment.etc = lib.mkMerge [
-      (lib.mkIf cfg.integration.krita {
-        "krita-wacom.conf" = {
-          text = ''
-            # Krita Wacom 配置
-            [Wacom]
-            PressureCurve=0,0,100,100
-            TabletMode=Absolute
-          '';
-          mode = "0644";
-        };
-      })
-      
-      (lib.mkIf cfg.integration.gimp {
-        "gimp-wacom.conf" = {
-          text = ''
-            # GIMP Wacom 配置
-            (tool-options "GimpPaintbrushTool"
-              (pressure-size 0.5)
-              (pressure-opacity 0.8))
-          '';
-          mode = "0644";
-        };
-      })
-    ];
+    # 绘画软件优化配置
+    environment.etc = lib.mkIf cfg.integration.painting {
+      # Krita Wacom 预设配置
+      "xdg/kritarc".text = ''
+        [General]
+        wacomPressureCurve=0,0,1,1
+        wacomTabletSupport=true
+      '';
+    };
     
-    # 环境变量设置
-    environment.variables = lib.mkMerge [
-      (lib.mkIf cfg.integration.krita {
-        KRITA_WACOM_ENABLED = "1";
-      })
-      
-      (lib.mkIf cfg.integration.blender {
-        BLENDER_WACOM_SUPPORT = "1";
-      })
-    ];
+    # Blender Wacom 支持
+    environment.sessionVariables = lib.mkIf cfg.integration.modeling {
+      BLENDER_WACOM = "1";
+    };
+    
+    # 输入设备优化
+    services.xserver.libinput = lib.mkIf cfg.integration.enable {
+      enable = true;
+      touchpad.disableWhileTyping = true;
+    };
   };
 }
