@@ -8,15 +8,6 @@
       ../../system
     ];
 
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = true;
-    powerManagement.finegrained = false;
-    open = false;               # 使用闭源驱动
-    nvidiaSettings = true;      # 安装 nvidia-settings 图形工具
-  };
-
   # 音频配置
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -196,6 +187,35 @@
             gui = true;                # 图形界面管理工具
             cli = true;                # 命令行工具
             debugging = false;         # 调试工具
+          };
+        };
+        
+        # NVIDIA 显卡配置
+        nvidia = {
+          enable = true;               # 🟢 启用 NVIDIA 支持
+          driver = {
+            openSource = false;        # 使用专有驱动（性能更好）
+            modesetting = true;        # 启用 modesetting
+          };
+          power = {
+            enable = true;             # 启用电源管理
+            finegrained = false;       # 细粒度电源管理（可选）
+            suspend = true;            # 挂起/唤醒支持
+          };
+          graphics = {
+            opengl = true;             # OpenGL 硬件加速
+            vulkan = true;             # Vulkan API 支持
+            cuda = false;              # CUDA 计算支持（需要时启用）
+            nvenc = true;              # NVENC 视频编码
+          };
+          tools = {
+            settings = true;           # NVIDIA 设置面板
+            smi = true;                # nvidia-smi 工具
+            persistenced = false;      # 持久化守护进程（可选）
+          };
+          performance = {
+            coolbits = null;           # 超频支持（谨慎使用）
+            powerLimit = null;         # 功耗限制
           };
         };
       };

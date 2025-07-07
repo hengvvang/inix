@@ -11,8 +11,8 @@
     # NVIDIA 系统管理接口
     (lib.mkIf (config.mySystem.services.drivers.nvidia.enable && config.mySystem.services.drivers.nvidia.tools.smi) {
       environment.systemPackages = with pkgs; [
-        nvtop  # GPU 监控工具
-        nvidia-ml-py  # Python 绑定
+        # nvtop 可能不可用，使用其他监控工具
+        # nvidia-ml-py 可能不可用
       ];
     })
 
