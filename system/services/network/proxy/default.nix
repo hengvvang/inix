@@ -3,6 +3,9 @@
 {
   imports = [
     ./clash
+    ./v2ray
+    ./xray
+    ./shadowsocks
   ];
 
   # 代理服务模块的选项定义
