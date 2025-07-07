@@ -4,8 +4,9 @@ let
   cfg = config.mySystem.services.drivers.ssd;
 in
 {
-  config = lib.mkIf cfg.enable {
-    # 电源管理
+  # SSD 高级功能实现
+  config = lib.mkIf (cfg.enable && cfg.advanced.enable) {
+    # 电源管理优化
     services.tlp = lib.mkIf cfg.advanced.powermanagement {
       enable = true;
       settings = {
@@ -18,53 +19,26 @@ in
         # SATA 链路电源管理
         SATA_LINKPWR_ON_AC = "med_power_with_dipm";
         SATA_LINKPWR_ON_BAT = "med_power_with_dipm";
+        
+        # NVMe 电源管理
+        PCIE_ASPM_ON_AC = "performance";
+        PCIE_ASPM_ON_BAT = "powersave";
       };
     };
     
-    # 加密支持
-    boot.initrd.luks.devices = lib.mkIf cfg.advanced.encryption {};
-    
-    # RAID 支持
-    boot.swraid.enable = lib.mkIf cfg.advanced.raid true;
-    
-    # 缓存优化
-    # 注意：services.bcache 在新版本 NixOS 中已移除
-    # 如需缓存支持，请使用其他方案或手动配置
-    # services.bcache = lib.mkIf cfg.advanced.cache {
-    #   enable = true;
-    # };
-    
-    # 高级工具
-    environment.systemPackages = lib.mkMerge [
-      (lib.mkIf cfg.advanced.powermanagement (with pkgs; [
-        tlp
-        powertop
-      ]))
-      
-      (lib.mkIf cfg.advanced.encryption (with pkgs; [
-        cryptsetup
-        libsecret
-      ]))
-      
-      (lib.mkIf cfg.advanced.raid (with pkgs; [
-        mdadm
-        smartmontools
-      ]))
-      
-      (lib.mkIf cfg.advanced.cache (with pkgs; [
-        bcache-tools
-      ]))
+    # 硬件加密支持
+    boot.initrd.availableKernelModules = lib.optionals cfg.advanced.encryption [
+      "dm-crypt"
+      "aes"
+      "xts"
     ];
     
-    # 高级内核参数
-    boot.kernel.sysctl = lib.mkMerge [
-      (lib.mkIf cfg.advanced.powermanagement {
-        "vm.laptop_mode" = 5;
-      })
-      
-      (lib.mkIf cfg.advanced.cache {
-        "vm.zone_reclaim_mode" = 0;
-      })
+    # 高级工具
+    environment.systemPackages = with pkgs; lib.optionals cfg.advanced.enable [
+      cryptsetup        # 磁盘加密工具
+      lvm2              # LVM 管理
+      mdadm             # RAID 管理
+      fio               # 高级基准测试
     ];
   };
 }

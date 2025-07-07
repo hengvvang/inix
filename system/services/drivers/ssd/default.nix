@@ -1,47 +1,77 @@
 { config, lib, pkgs, ... }:
 
+let
+  cfg = config.mySystem.services.drivers.ssd;
+in
 {
-  # SSD 存储驱动模块的完整选项定义
+  # SSD 固态硬盘优化模块
   options.mySystem.services.drivers.ssd = {
-    enable = lib.mkEnableOption "SSD 存储优化支持";
+    enable = lib.mkEnableOption "SSD 固态硬盘优化支持";
     
-    # === 性能优化选项 ===
-    optimization = {
-      trim = lib.mkEnableOption "TRIM 支持" // { default = true; };
-      scheduler = lib.mkEnableOption "I/O 调度器优化" // { default = true; };
-      swap = lib.mkEnableOption "交换分区优化" // { default = true; };
-      filesystem = lib.mkEnableOption "文件系统优化" // { default = true; };
-    };
+    # 基础优化（默认启用）
+    trim = lib.mkEnableOption "TRIM 垃圾回收" // { default = true; };
+    scheduler = lib.mkEnableOption "I/O 调度器优化" // { default = true; };
     
-    # === 监控选项 ===
+    # 监控工具
     monitoring = {
       smart = lib.mkEnableOption "SMART 健康监控" // { default = true; };
-      temperature = lib.mkEnableOption "温度监控";
-      wear = lib.mkEnableOption "磨损监控";
-      performance = lib.mkEnableOption "性能监控";
+      tools = lib.mkEnableOption "监控和管理工具" // { default = true; };
     };
     
-    # === 工具选项 ===
-    tools = {
-      nvme = lib.mkEnableOption "NVMe 管理工具" // { default = true; };
-      analysis = lib.mkEnableOption "分析工具";
-      benchmark = lib.mkEnableOption "基准测试工具";
-      maintenance = lib.mkEnableOption "维护工具";
-    };
-    
-    # === 高级功能选项 ===
+    # 高级功能（企业级，单独模块）
     advanced = {
-      powermanagement = lib.mkEnableOption "电源管理";
-      encryption = lib.mkEnableOption "加密支持";
-      raid = lib.mkEnableOption "RAID 支持";
-      cache = lib.mkEnableOption "缓存优化";
+      enable = lib.mkEnableOption "高级 SSD 功能";
+      powermanagement = lib.mkEnableOption "电源管理优化" // { default = false; };
+      encryption = lib.mkEnableOption "硬件加密支持" // { default = false; };
     };
   };
 
   imports = [
-    ./core.nix         # 核心优化
-    ./monitoring.nix   # 监控功能
-    ./tools.nix        # 管理工具
-    ./advanced.nix     # 高级功能
+    ./advanced.nix
   ];
+
+  config = lib.mkIf cfg.enable {
+    # TRIM 支持
+    services.fstrim = lib.mkIf cfg.trim {
+      enable = true;
+      interval = "weekly";
+    };
+
+    # I/O 调度器优化
+    boot.kernelParams = lib.optionals cfg.scheduler [
+      "elevator=mq-deadline"  # 适合 SSD 的调度器
+    ];
+
+    # 文件系统优化
+    fileSystems = lib.mkIf cfg.scheduler {
+      "/" = {
+        options = [ "noatime" "discard" ];  # SSD 优化选项
+      };
+    };
+
+    # SMART 监控
+    services.smartd = lib.mkIf cfg.monitoring.smart {
+      enable = true;
+      autodetect = true;
+      notifications = {
+        wall.enable = true;
+      };
+    };
+
+    # SSD 管理和监控工具
+    environment.systemPackages = with pkgs; lib.optionals cfg.monitoring.tools [
+      smartmontools      # SMART 工具
+      nvme-cli          # NVMe 管理工具
+      hdparm            # 硬盘参数工具
+      lsblk             # 块设备列表
+      parted            # 分区工具
+    ];
+
+    # 系统优化
+    boot.kernel.sysctl = {
+      # 减少写入次数
+      "vm.swappiness" = lib.mkIf cfg.scheduler 10;
+      "vm.vfs_cache_pressure" = lib.mkIf cfg.scheduler 50;
+    };
+  };
 }
