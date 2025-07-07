@@ -24,9 +24,10 @@
   - 合并: core.nix, graphics.nix, codecs.nix → default.nix, 保留 power.nix
 
 - **NVIDIA 模块** (`system/services/drivers/nvidia/`)
-  - 结构: `default.nix` + 5个功能分层模块
-  - 配置: 多层次 enable 选项，按功能领域分离
-  - 状态: 之前已优化，保持当前结构
+  - 结构: `default.nix` + `performance.nix`
+  - 配置: `enable`, `drivers.{open,legacy}`, `performance.{overclock,cooling,monitoring}`
+  - 合并: core.nix, graphics.nix, power.nix, tools.nix → default.nix
+  - 适配: hardware.opengl.* → hardware.graphics.*, 去除废弃选项
 
 ### 2. 音频系统驱动
 - **Audio 模块** (`system/services/drivers/audio/`)
@@ -111,11 +112,27 @@
 - 便于后续维护和回滚
 
 ## 总结
-- **优化模块数**: 13 个主要驱动模块
-- **删除文件数**: 24 个过度分割子模块
+
+**🎉 NixOS 驱动模块优化任务已全面完成！**
+
+- **优化模块数**: 13 个主要驱动模块全部完成
+- **删除文件数**: 28 个过度分割子模块文件
 - **保留文件数**: 39 个核心模块文件
 - **配置简化**: 统一 enable 风格，减少配置复杂度
-- **功能完整性**: 所有驱动功能完整保留
+- **功能完整性**: 所有驱动功能完整保留，适配最新 NixOS
 - **可维护性**: 大幅提升代码结构和可读性
+- **测试验证**: 所有优化均通过 `nixos-rebuild test` 验证
+
+### 最终优化状态
+
+所有 drivers 目录下的主流模块现已采用统一的层次化 enable 风格：
+- 避免了过度分割（如删除 24+ 个冗余子模块）
+- 避免了一刀切合并（保留了必要的功能分层）
+- 配置选项表达清晰，便于维护和扩展
+- 适配了最新的 NixOS 选项结构（如 hardware.graphics）
+
+**任务状态**: ✅ 已完成
+**配置状态**: ✅ 正常构建
+**优化目标**: ✅ 全部达成
 
 所有优化目标已成功达成，NixOS 驱动模块结构现已达到最佳状态。
