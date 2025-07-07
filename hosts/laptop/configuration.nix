@@ -93,10 +93,10 @@
           # Clash 代理服务
           clash = {
             enable = false;            # 🔴 禁用 - 需要时设为 true
-            tunMode = true;           # TUN 模式（启用时生效）
+            tunMode = false;           # TUN 模式（启用时生效）
             webPort = 9090;           # Web UI 端口
             mixedPort = 7890;         # HTTP/SOCKS5 混合端口
-            subscriptionUrl = "https://your-clash-subscription-url";  # 🔴 替换为你的订阅链接
+            subscriptionUrl = "https://fba01.fbsubcn01.cc:2096/flydsubal/cymeoq8salu87n34?sub=2&extend=1";  # 🔴 替换为你的订阅链接
             autoStart = true;         # 系统启动时自动启动
             updateInterval = "daily"; # 订阅更新间隔
           };
@@ -108,7 +108,7 @@
             httpPort = 8080;          # HTTP 代理端口
             socksPort = 1080;         # SOCKS5 代理端口
             tunPort = 10808;          # TUN 模式端口
-            subscriptionUrl = "https://your-v2ray-subscription-url";  # 🔴 替换为你的订阅链接
+            subscriptionUrl = "https://fba01.fbsubcn01.cc:2096/flydsubal/cymeoq8salu87n34?sub=2&extend=1";  # 🔴 替换为你的订阅链接
             autoStart = false;        # 手动启动（避免与其他代理冲突）
             updateInterval = "daily"; # 订阅更新间隔
           };
@@ -120,7 +120,7 @@
             httpPort = 8081;          # HTTP 代理端口（避免冲突）
             socksPort = 1081;         # SOCKS5 代理端口（避免冲突）
             tunPort = 10809;          # TUN 模式端口（避免冲突）
-            subscriptionUrl = "https://your-xray-subscription-url";   # 🔴 替换为你的订阅链接
+            subscriptionUrl = "https://fba01.fbsubcn01.cc:2096/flydsubal/cymeoq8salu87n34?sub=2&extend=1";   # 🔴 替换为你的订阅链接
             autoStart = false;        # 手动启动（避免与其他代理冲突）
             updateInterval = "daily"; # 订阅更新间隔
           };
