@@ -174,7 +174,7 @@
           enable = true;               # 🟢 启用 NVIDIA 支持
           driver = {
             openSource = false;        # 使用专有驱动（性能更好）
-            modesetting = true;        # 启用 modesetting
+            package = "stable";        # 驱动版本选择
           };
           power = {
             enable = true;             # 启用电源管理
@@ -182,19 +182,14 @@
             suspend = true;            # 挂起/唤醒支持
           };
           graphics = {
-            opengl = true;             # OpenGL 硬件加速
             vulkan = true;             # Vulkan API 支持
             cuda = false;              # CUDA 计算支持（需要时启用）
             nvenc = true;              # NVENC 视频编码
           };
           tools = {
             settings = true;           # NVIDIA 设置面板
-            smi = true;                # nvidia-smi 工具
-            persistenced = false;      # 持久化守护进程（可选）
-          };
-          performance = {
-            coolbits = null;           # 超频支持（谨慎使用）
-            powerLimit = null;         # 功耗限制
+            monitoring = true;         # 性能监控工具
+            overclocking = false;      # 超频工具支持
           };
         };
       };
