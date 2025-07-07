@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
 
-# Direct 方式：直接复制配置文件到用户目录
-# 用户可以直接编辑 ~/.config/clash/config.yaml
-
 let
   cfg = config.myHome.dotfiles.proxy.clash;
 in
@@ -12,29 +9,23 @@ in
       # 直接复制配置文件
       "${cfg.configDir}/config.yaml".source = ./configs/config.yaml;
       
-      # 提供配置管理脚本
-      "${cfg.configDir}/manage.sh" = {
+      # 简单管理脚本
+      "${cfg.configDir}/sync.sh" = {
         text = ''
           #!/usr/bin/env bash
           
-          USER_CONFIG="${cfg.configDir}/config.yaml"
-          SYSTEM_CONFIG="${cfg.systemConfigPath}"
-          
           case "$1" in
-            sync-to-system)
-              echo "同步用户配置到系统..."
-              sudo cp "$USER_CONFIG" "$SYSTEM_CONFIG"
+            to-system)
+              sudo cp ~/.config/clash/config.yaml /etc/clash/config.yaml
               sudo systemctl restart clash
+              echo "配置已同步到系统"
               ;;
-            update-from-system)
-              echo "从系统更新用户配置..."
-              cp "$SYSTEM_CONFIG" "$USER_CONFIG"
-              ;;
-            edit)
-              ''${EDITOR:-vim} "$USER_CONFIG"
+            from-system)
+              cp /etc/clash/config.yaml ~/.config/clash/config.yaml
+              echo "配置已从系统更新"
               ;;
             *)
-              echo "用法: $0 {sync-to-system|update-from-system|edit}"
+              echo "用法: $0 {to-system|from-system}"
               ;;
           esac
         '';

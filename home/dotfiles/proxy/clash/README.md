@@ -1,112 +1,72 @@
-# Clash 代理服务配置说明
+# Clash 代理服务配置
 
 ## 配置结构
 
-```
-system/services/network/proxy/clash/  # 系统服务配置
-home/dotfiles/proxy/clash/            # 用户配置文件
-```
+- `system/services/network/proxy/clash/` - 系统服务配置 (完全独立)
+- `home/dotfiles/proxy/clash/` - 用户配置文件管理
 
-## 启用 Clash 服务
+## 启用配置
 
-在你的系统配置中添加以下配置：
-
-### 1. 系统配置 (configuration.nix 或相关配置文件)
+### 系统配置 (configuration.nix)
 
 ```nix
-{
-  # 启用 Clash 系统服务
-  mySystem.services.network.proxy.clash = {
-    enable = true;
-    configPath = "/etc/clash/config.yaml";
-    webPort = 9090;          # Web UI 端口
-    mixedPort = 7890;        # HTTP/SOCKS5 混合端口
-    tunMode = true;          # 启用 TUN 模式
-    subscriptionUrl = "你的订阅链接";  # 可选：设置订阅链接
-  };
-}
+mySystem.services.network.proxy.clash = {
+  enable = true;
+  tunMode = true;
+  subscriptionUrl = "你的订阅链接";
+  autoStart = true;
+  updateInterval = "daily";
+};
 ```
 
-### 2. Home Manager 配置 (home.nix)
+### 用户配置 (home.nix)
 
 ```nix
-{
-  # 启用 Clash 用户配置
-  myHome.dotfiles.proxy.clash = {
-    enable = true;
-    subscriptionUrl = "你的订阅链接";
-    autoUpdate = false;      # 是否自动更新订阅
-  };
-}
+myHome.dotfiles.proxy.clash = {
+  enable = true;
+  configMethod = "homemanager";  # 或 "direct" 或 "external"
+};
 ```
 
 ## 使用方法
 
-### 1. 手动更新订阅配置
+### 管理服务
 
 ```bash
-# 如果配置了订阅链接，运行更新脚本
-~/.config/clash/update-subscription.sh
+clash-ctl start      # 启动服务
+clash-ctl stop       # 停止服务  
+clash-ctl restart    # 重启服务
+clash-ctl status     # 查看状态
+clash-ctl logs       # 查看日志
+clash-ctl update     # 更新订阅
+clash-ctl test       # 测试连接
+clash-ctl ui         # 显示 Web UI 地址
 ```
 
-### 2. 管理服务
+### Web UI
 
-```bash
-# 启动服务
-sudo systemctl start clash
+访问: <http://localhost:9090>
 
-# 停止服务
-sudo systemctl stop clash
+推荐 UI:
+- Clash Dashboard: <https://clash.razord.top/>
+- Yacd: <http://yacd.haishan.me/>
 
-# 重启服务
-sudo systemctl restart clash
+## 配置方式
 
-# 查看状态
-sudo systemctl status clash
+### 1. Home Manager 模式 (推荐)
+配置由 Nix 管理，修改配置文件后运行 `home-manager switch`
 
-# 查看日志
-sudo journalctl -u clash -f
-```
+### 2. Direct 模式  
+用户可直接编辑 `~/.config/clash/config.yaml`，使用脚本同步到系统
 
-### 3. 访问 Web UI
+### 3. External 模式
+用户配置直接链接到系统配置，修改需要 sudo 权限
 
-打开浏览器访问: http://localhost:9090
+## 重要特性
 
-推荐的 Web UI 界面：
-- Clash Dashboard: https://clash.razord.top/
-- Yacd: http://yacd.haishan.me/
-
-### 4. 代理设置
-
-服务启动后，系统会自动设置以下环境变量：
-- HTTP_PROXY=http://127.0.0.1:7890
-- HTTPS_PROXY=http://127.0.0.1:7890
-- ALL_PROXY=socks5://127.0.0.1:7890
-
-### 5. 订阅链接配置
-
-当你提供订阅链接后，请将其设置在配置中：
-
-```nix
-subscriptionUrl = "https://your-subscription-url";
-```
-
-然后重新构建系统配置：
-
-```bash
-sudo nixos-rebuild switch
-```
-
-## 注意事项
-
-1. **TUN 模式**: 需要 root 权限，自动处理所有网络流量
-2. **订阅更新**: 支持自动或手动更新订阅配置
-3. **配置备份**: 更新订阅时会自动备份当前配置
-4. **防火墙**: 自动配置防火墙规则开放相关端口
-
-## 故障排查
-
-1. 检查服务状态: `sudo systemctl status clash`
-2. 查看日志: `sudo journalctl -u clash -f`
-3. 检查配置文件: `/etc/clash/config.yaml`
-4. 测试连接: `curl -x http://127.0.0.1:7890 http://www.google.com`
+- ✅ TUN 模式透明代理
+- ✅ 自动订阅更新
+- ✅ 完整的管理工具
+- ✅ 三种配置方式
+- ✅ 自动备份恢复
+- ✅ 防火墙集成
