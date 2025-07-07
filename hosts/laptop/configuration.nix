@@ -8,8 +8,6 @@
       ../../system
     ];
 
-  # 这些服务现在通过 mySystem.services.drivers 模块来配置
-  # 见下方 mySystem.services.drivers 配置
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
