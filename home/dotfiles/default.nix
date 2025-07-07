@@ -15,5 +15,6 @@
     ./git
     ./lazygit
     ./starship
+    ./proxy       # 代理配置模块
   ];
 }

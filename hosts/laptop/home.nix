@@ -40,6 +40,12 @@
       git.enable = true;
       lazygit.enable = true;
       starship.enable = true;
+      
+      # Clash 代理配置
+      proxy.clash = {
+        enable = true;
+        configMethod = "homemanager";  # 可选: "direct", "external", "homemanager"
+      };
     };
     
     profiles = {

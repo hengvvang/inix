@@ -61,6 +61,12 @@
       timeZone.shanghai.enable = true;
       inputMethod.fcitx5.enable = true;
     };
+    services.network.proxy.clash = {
+      enable = true;
+      tunMode = true;          # 启用 TUN 模式
+      subscriptionUrl = "";  # 替换为你的订阅链接
+    };
+
   };
 
   # Some programs need SUID wrappers, can be configured further or are
