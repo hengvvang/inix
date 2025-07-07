@@ -24,7 +24,7 @@
   };
 
   imports = [
-    ./ssd
+    ./ssd.nix
     ./advanced.nix
   ];
 
