@@ -8,21 +8,8 @@
       ../../system
     ];
 
-  # 音频配置
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
-
-  # 触摸板支持
-  services.libinput.enable = true;
-
-  # 打印支持
-  services.printing.enable = true;
+  # 这些服务现在通过 mySystem.services.drivers 模块来配置
+  # 见下方 mySystem.services.drivers 配置
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -76,6 +63,14 @@
     # 服务配置
     services = {
       enable = true;                   # 启用服务模块
+      
+      # Docker 容器服务配置
+      docker = {
+        enable = true;                 # 🟢 启用 Docker 服务
+        compose = true;                # 启用 Docker Compose
+        monitoring = false;            # 可选：容器监控工具 (ctop)
+      };
+      
       network = {
         enable = true;                 # 启用网络服务
         
@@ -164,6 +159,43 @@
       # 硬件驱动配置
       drivers = {
         enable = true;                 # 🟢 启用硬件驱动模块
+        
+        # 音频驱动配置
+        audio = {
+          enable = true;               # 🟢 启用音频驱动 (PipeWire + ALSA)
+          controls = true;             # 启用音频控制工具
+        };
+        
+        # 触摸板驱动配置
+        touchpad = {
+          enable = true;               # 🟢 启用触摸板驱动 (libinput)
+          gestures = false;            # 可选：启用手势支持
+        };
+        
+        # 打印驱动配置
+        printing = {
+          enable = true;               # 🟢 启用打印功能 (CUPS)
+          service = {
+            discovery = true;          # 网络打印机自动发现
+            sharing = false;           # 打印机网络共享
+          };
+          scanning = {
+            enable = true;             # 启用扫描功能
+            network = false;           # 网络扫描支持
+          };
+          tools = {
+            gui = true;                # 图形管理工具
+            maintenance = false;       # 打印机维护工具
+          };
+          # 根据需要启用特定品牌驱动
+          drivers = {
+            hp = false;                # HP 打印机驱动
+            canon = false;             # Canon 打印机驱动
+            epson = false;             # Epson 打印机驱动
+            brother = false;           # Brother 打印机驱动
+          };
+        };
+        
         bluetooth = {
           enable = true;               # 启用蓝牙支持
           gui = true;                  # 图形管理工具
