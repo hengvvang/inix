@@ -41,10 +41,16 @@
       lazygit.enable = true;
       starship.enable = true;
       
-      # Clash 代理配置
-      proxy.clash = {
-        enable = true;
-        configMethod = "homemanager";  # 可选: "direct", "external", "homemanager"
+      # 代理服务用户配置 - 预设所有选项，默认禁用，按需启用
+      proxy = {
+        # Clash 用户配置
+        clash = {
+          enable = false;                    # 🔴 禁用 - 需要时设为 true
+          configMethod = "homemanager";      # 配置方式: "direct" | "external" | "homemanager"
+        };
+        
+        # 注意：其他代理服务（V2Ray, Xray, Shadowsocks）目前只有系统服务配置
+        # 如需要用户端配置文件管理，可以后续扩展 dotfiles 模块
       };
     };
     
