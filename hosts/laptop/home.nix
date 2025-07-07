@@ -15,61 +15,69 @@
   home.stateVersion = "25.05";
 
   myHome = {
+    # 开发环境配置
     development = {
+      enable = true;                     # 启用开发环境模块
       languages = {
-        rust.enable = true;
-        python.enable = true;
-        javascript.enable = true;
-        typescript.enable = true;
-        cpp.enable = true;
-        c.enable = true;
+        enable = true;                   # 启用编程语言支持
+        rust.enable = true;              # Rust 开发环境
+        python.enable = true;            # Python 开发环境
+        javascript.enable = true;        # JavaScript 开发环境
+        typescript.enable = true;        # TypeScript 开发环境
+        cpp.enable = true;               # C++ 开发环境
+        c.enable = true;                 # C 开发环境
       };
       embedded = {
-        toolchain.enable = true;
+        enable = true;                   # 启用嵌入式开发
+        toolchain.enable = true;         # 嵌入式工具链
       };
     };
     
+    # Dotfiles 配置管理
     dotfiles = {
-      enable = true;
-      vim.enable = true;
-      zsh.enable = true;
-      fish.enable = true;
-      nushell.enable = true;
-      yazi.enable = true;
-      ghostty.enable = true;
-      git.enable = true;
-      lazygit.enable = true;
-      starship.enable = true;
+      enable = true;                     # 启用 dotfiles 模块
+      vim.enable = true;                 # Vim 配置
+      zsh.enable = true;                 # Zsh 配置
+      fish.enable = true;                # Fish 配置
+      nushell.enable = true;             # Nushell 配置
+      yazi.enable = true;                # Yazi 文件管理器
+      ghostty.enable = true;             # Ghostty 终端
+      git.enable = true;                 # Git 配置
+      lazygit.enable = true;             # LazyGit 配置
+      starship.enable = true;            # Starship 提示符
       
-      # 代理服务用户配置 - 预设所有选项，默认禁用，按需启用
+      # 代理服务用户配置
       proxy = {
-        # Clash 用户配置
+        enable = true;                   # 启用代理配置模块
         clash = {
-          enable = false;                    # 🔴 禁用 - 需要时设为 true
-          configMethod = "homemanager";      # 配置方式: "direct" | "external" | "homemanager"
+          enable = false;                # 🔴 禁用 - 需要时设为 true
+          configMethod = "homemanager";  # 配置方式: "direct" | "external" | "homemanager"
         };
-        
-        # 注意：其他代理服务（V2Ray, Xray, Shadowsocks）目前只有系统服务配置
-        # 如需要用户端配置文件管理，可以后续扩展 dotfiles 模块
       };
     };
     
+    # 用户配置档案
     profiles = {
+      enable = true;                     # 启用配置档案模块
       fonts = {
-        fonts.enable = true;            # 字体配置
+        enable = true;                   # 启用字体配置
+        fonts.enable = true;             # 字体包
       };
     };
     
-    # 工具包 - 选择具体的工具
+    # 工具包配置
     toolkits = {
+      enable = true;                     # 启用工具包模块
       system = {
-        hardware.enable = true;         # 硬件工具
-        monitor.enable = true;          # 系统监控
-        network.enable = true;          # 网络工具
-        utilities.enable = true;        # 系统工具
+        enable = true;                   # 启用系统工具包
+        hardware.enable = true;          # 硬件工具
+        monitor.enable = true;           # 系统监控
+        network.enable = true;           # 网络工具
+        utilities.enable = true;         # 系统工具
       };
       user = {
-        utilities.enable = true;        # 用户工具
+        enable = true;                   # 启用用户工具包
+        utilities.enable = true;         # 用户工具
       };
     };
   };

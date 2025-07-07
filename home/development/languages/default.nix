@@ -2,6 +2,7 @@
 
 {
   options.myHome.development.languages = {
+    enable = lib.mkEnableOption "编程语言开发环境支持";
     c.enable = lib.mkEnableOption "C 开发环境";
     cpp.enable = lib.mkEnableOption "C++ 开发环境";
     javascript.enable = lib.mkEnableOption "JavaScript 开发环境";

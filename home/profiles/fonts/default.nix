@@ -2,7 +2,8 @@
 
 {
   options.myHome.profiles.fonts = {
-    fonts.enable = lib.mkEnableOption "字体配置";
+    enable = lib.mkEnableOption "字体配置支持";
+    fonts.enable = lib.mkEnableOption "字体包";
   };
 
   imports = [
