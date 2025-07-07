@@ -1,43 +1,45 @@
 { config, lib, pkgs, ... }:
 
+let
+  cfg = config.mySystem.services.drivers.audio;
+in
 {
-  # 音频驱动模块的选项定义
+  # 音频驱动模块 - 极简版
   options.mySystem.services.drivers.audio = {
-    enable = lib.mkEnableOption "音频驱动基础支持";
-    
-    # === 音频服务器选项 ===
-    server = {
-      pipewire = lib.mkEnableOption "PipeWire 音频服务器" // { default = true; };
-      pulseaudio = lib.mkEnableOption "PulseAudio 音频服务器";
-      jack = lib.mkEnableOption "JACK 专业音频服务器";
-    };
-     # === ALSA 音频系统选项 ===
-    alsa = {
-      enable = lib.mkEnableOption "ALSA 音频系统支持" // { default = true; };
-    };
- 
-    # === 实时音频选项 ===
-    realtime = {
-      enable = lib.mkEnableOption "实时音频支持 (RTKit)";
-      lowLatency = lib.mkEnableOption "低延迟音频配置";
-      priority = lib.mkOption {
-        type = lib.types.int;
-        default = 95;
-        description = "实时音频优先级";
-      };
-    };
-    
-    # === 音频工具选项 ===
-    tools = {
-      control = lib.mkEnableOption "音频控制工具 (pavucontrol, alsamixer 等)";
-      codecs = lib.mkEnableOption "额外音频编解码器";
-    };
-    
+    enable = lib.mkEnableOption "音频驱动支持";
+    controls = lib.mkEnableOption "音频控制工具" // { default = true; };
+  };
 
-    imports = [
-      # === 模块化导入：每个功能独立文件 ===
-      ./server.nix        # 音频服务器配置
-      ./realtime.nix      # 实时音频配置
+  config = lib.mkIf cfg.enable {
+    # 现代音频系统：PipeWire（替代 PulseAudio）
+    services.pulseaudio.enable = false;
+    security.rtkit.enable = true;
+    
+    services.pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;  # PulseAudio 兼容性
+      wireplumber.enable = true;
+    };
+
+    # 音频设备权限
+    users.groups.audio = {};
+    
+    # 音频控制工具
+    environment.systemPackages = with pkgs; [
+      alsa-utils        # ALSA 工具集
+    ] ++ lib.optionals cfg.controls [
+      pavucontrol       # PipeWire/PulseAudio 图形控制面板
+      pulsemixer        # 终端音频混音器
+      helvum            # PipeWire 图形连接器
     ];
+
+    # 音频设备 udev 规则
+    services.udev.extraRules = ''
+      # 音频设备权限
+      SUBSYSTEM=="sound", GROUP="audio", MODE="0664"
+      KERNEL=="controlC[0-9]*", GROUP="audio", MODE="0664"
+    '';
   };
 }
