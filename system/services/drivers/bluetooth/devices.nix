@@ -5,7 +5,7 @@
   config = lib.mkMerge [
     # 输入设备支持
     (lib.mkIf (config.mySystem.services.drivers.bluetooth.enable && config.mySystem.services.drivers.bluetooth.devices.input) {
-      hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket,Control";
+      hardware.bluetooth.settings.General.Enable = lib.mkForce "Source,Sink,Media,Socket,Control";
     })
     
     # HID 设备支持
@@ -24,7 +24,7 @@
     
     # 串口设备支持
     (lib.mkIf (config.mySystem.services.drivers.bluetooth.enable && config.mySystem.services.drivers.bluetooth.devices.serial) {
-      hardware.bluetooth.settings.General.Enable = "Source,Sink,Media,Socket,Serial";
+      hardware.bluetooth.settings.General.Enable = lib.mkForce "Source,Sink,Media,Socket,Serial";
     })
   ];
 }

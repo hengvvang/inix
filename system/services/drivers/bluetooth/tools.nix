@@ -17,7 +17,7 @@
     (lib.mkIf (config.mySystem.services.drivers.bluetooth.enable && config.mySystem.services.drivers.bluetooth.tools.cli) {
       environment.systemPackages = with pkgs; [
         bluetuith         # TUI 蓝牙管理器
-        bluetoothctl      # 命令行蓝牙控制
+        # bluetoothctl 已包含在 bluez 中（core.nix 已安装）
       ];
     })
     

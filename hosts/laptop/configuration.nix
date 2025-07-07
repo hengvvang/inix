@@ -169,6 +169,36 @@
           download = true;             # yt-dlp 下载工具
         };
       };
+      
+      # 硬件驱动配置
+      drivers = {
+        enable = true;                 # 🟢 启用硬件驱动模块
+        bluetooth = {
+          enable = true;               # 启用蓝牙支持
+          core = {
+            powerOnBoot = true;        # 开机自动启动蓝牙
+            experimental = true;       # 启用实验性功能
+            fastConnectable = false;   # 禁用快速连接（节能）
+          };
+          audio = {
+            enable = true;             # 启用蓝牙音频
+            a2dp = true;               # A2DP 高质量音频
+            hsp = false;               # HSP 耳机配置文件
+            codec = "sbc";             # 默认音频编解码器
+          };
+          devices = {
+            input = true;              # 输入设备支持（键盘、鼠标）
+            hid = true;                # HID 设备支持
+            gamepad = false;           # 游戏手柄支持
+            serial = false;            # 串口设备支持
+          };
+          tools = {
+            gui = true;                # 图形界面管理工具
+            cli = true;                # 命令行工具
+            debugging = false;         # 调试工具
+          };
+        };
+      };
     };
 
   };

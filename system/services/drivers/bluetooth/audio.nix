@@ -19,10 +19,10 @@
     ];
     
     # 蓝牙音频配置
-    hardware.bluetooth.settings = {
+    hardware.bluetooth.settings = lib.mkIf config.mySystem.services.drivers.bluetooth.audio.a2dp {
       General = {
-        # A2DP 高质量音频
-        Enable = lib.mkIf config.mySystem.services.drivers.bluetooth.audio.a2dp "Source,Sink,Media";
+        # A2DP 高质量音频 - 使用 mkDefault 避免冲突
+        Enable = lib.mkDefault "Source,Sink,Media";
       };
     };
   };
