@@ -9,6 +9,6 @@
 
   imports = [
     ./touchpad.nix
-  ]
+  ];
 
 }
