@@ -166,14 +166,7 @@
         enable = true;                 # 🟢 启用硬件驱动模块
         bluetooth = {
           enable = true;               # 启用蓝牙支持
-          powerOnBoot = true;          # 开机自动启动蓝牙
-          experimental = true;         # 启用实验性功能
-          audio = {
-            enable = true;             # 启用蓝牙音频
-            a2dp = true;               # A2DP 高质量音频
-          };
           gui = true;                  # 图形管理工具
-          inputDevices = true;         # 输入设备支持（键盘、鼠标）
         };
         
         # NVIDIA 显卡配置
