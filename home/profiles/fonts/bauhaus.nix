@@ -8,7 +8,6 @@
       inter                # 现代几何无衬线字体
       
       # 编程字体 - 几何简洁
-      ibm-plex-mono        # IBM 现代几何等宽字体
       jetbrains-mono       # 现代几何等宽字体
       
       # 显示字体 - 构成主义风格
