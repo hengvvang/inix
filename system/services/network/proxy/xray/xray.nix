@@ -28,6 +28,100 @@ let
             "auth": "noauth",
             "udp": true
           }
+        }${lib.optionalString cfg.tunMode '',
+        {
+          "tag": "tun",
+          "port": ${toString cfg.tunPort},
+          "protocol": "dokodemo-door",
+          "settings": {
+            "address": "127.0.0.1",
+            "port": ${toString cfg.tunPort},
+            "network": "tcp,udp",
+            "followRedirect": true
+          },
+          "streamSettings": {
+            "sockopt": {
+              "tproxy": "tun"
+            }
+          }
+        }''}
+      ],
+      "outbounds": [
+        {
+          "tag": "direct",
+          "protocol": "freedom"
+        },
+        {
+          "tag": "blocked",
+          "protocol": "blackhole"
+        }
+      ],
+      "routing": {
+        "rules": [
+          {
+            "type": "field",
+            "ip": ["geoip:private"],
+            "outboundTag": "direct"
+          },
+          {
+            "type": "field",
+            "ip": ["geoip:cn"],
+            "outboundTag": "direct"
+          }
+        ]
+      }${lib.optionalString cfg.tunMode '',
+      "tun": {
+        "tag": "tun",
+        "stack": "system",
+        "mtu": 1500,
+        "name": "xray-tun",
+        "inet4_address": "172.20.0.1/30",
+        "inet6_address": "fdfe:dcba:9877::1/126",
+        "auto_route": true,
+        "strict_route": true,
+        "sniff": true,
+        "sniff_override_destination": true
+      }''}
+    }
+  '';
+
+  # TUN 模式配置文件内容
+  tunConfig = ''
+    {
+      "log": {
+        "access": "/var/log/xray/access.log",
+        "error": "/var/log/xray/error.log",
+        "loglevel": "info"
+      },
+      "inbounds": [
+        {
+          "tag": "tun-in",
+          "protocol": "tun",
+          "settings": {
+            "tag": "tun"
+          },
+          "streamSettings": {
+            "sockopt": {
+              "tproxy": "tun"
+            }
+          }
+        },
+        {
+          "tag": "http",
+          "port": ${toString cfg.httpPort},
+          "protocol": "http",
+          "settings": {
+            "allowTransparent": false
+          }
+        },
+        {
+          "tag": "socks",
+          "port": ${toString cfg.socksPort},
+          "protocol": "socks",
+          "settings": {
+            "auth": "noauth",
+            "udp": true
+          }
         }
       ],
       "outbounds": [
@@ -53,6 +147,18 @@ let
             "outboundTag": "direct"
           }
         ]
+      },
+      "tun": {
+        "tag": "tun",
+        "stack": "system",
+        "mtu": 1500,
+        "name": "xray-tun",
+        "inet4_address": "172.20.0.1/30",
+        "inet6_address": "fdfe:dcba:9877::1/126",
+        "auto_route": true,
+        "strict_route": true,
+        "sniff": true,
+        "sniff_override_destination": true
       }
     }
   '';
@@ -125,7 +231,7 @@ in
 
     # 创建默认配置文件
     environment.etc."xray/config.json" = lib.mkIf (cfg.subscriptionUrl == null) {
-      text = defaultConfig;
+      text = if cfg.tunMode then tunConfig else defaultConfig;
       mode = "0644";
     };
 
@@ -224,6 +330,10 @@ in
         ProtectHome = true;
         ReadWritePaths = [ "/var/lib/xray" "/etc/xray" "/var/log/xray" ];
         
+        # TUN 模式需要的网络权限
+        AmbientCapabilities = lib.optional cfg.tunMode "CAP_NET_ADMIN";
+        CapabilityBoundingSet = lib.optional cfg.tunMode "CAP_NET_ADMIN";
+        
         # 日志配置
         StandardOutput = "journal";
         StandardError = "journal";
@@ -240,13 +350,13 @@ in
             else
               echo "订阅配置下载失败，使用默认配置"
               cat > ${cfg.configPath} << 'EOF'
-        ${defaultConfig}
+        ${if cfg.tunMode then tunConfig else defaultConfig}
         EOF
             fi
           '' else ''
             echo "使用默认配置"
             cat > ${cfg.configPath} << 'EOF'
-        ${defaultConfig}
+        ${if cfg.tunMode then tunConfig else defaultConfig}
         EOF
           ''}
         fi
@@ -260,8 +370,30 @@ in
 
     # 防火墙配置
     networking.firewall = {
-      allowedTCPPorts = [ cfg.httpPort cfg.socksPort ];
-      allowedUDPPorts = [ cfg.socksPort ];
+      allowedTCPPorts = [ cfg.httpPort cfg.socksPort ] ++ lib.optional cfg.tunMode cfg.tunPort;
+      allowedUDPPorts = [ cfg.socksPort ] ++ lib.optional cfg.tunMode cfg.tunPort;
+      # TUN 模式需要的额外配置
+      extraCommands = lib.mkIf cfg.tunMode ''
+        # 允许 Xray TUN 接口流量
+        iptables -I INPUT -i xray-tun -j ACCEPT
+        iptables -I FORWARD -i xray-tun -j ACCEPT
+        iptables -I FORWARD -o xray-tun -j ACCEPT
+      '';
+    };
+
+    # TUN 模式系统配置
+    boot.kernel.sysctl = lib.mkIf cfg.tunMode {
+      "net.ipv4.ip_forward" = 1;
+      "net.ipv6.conf.all.forwarding" = 1;
+      "net.core.default_qdisc" = "fq";
+      "net.ipv4.tcp_congestion_control" = "bbr";
+    };
+
+    # 系统环境变量 (仅在非 TUN 模式时设置)
+    environment.variables = lib.mkIf (!cfg.tunMode) {
+      HTTP_PROXY = "http://127.0.0.1:${toString cfg.httpPort}";
+      HTTPS_PROXY = "http://127.0.0.1:${toString cfg.httpPort}";
+      ALL_PROXY = "socks5://127.0.0.1:${toString cfg.socksPort}";
     };
   };
 }
