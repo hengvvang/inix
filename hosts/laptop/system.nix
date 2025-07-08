@@ -4,7 +4,6 @@
   imports =
     [ 
       ./hardware.nix
-      # <home-manager/nixos>
       ../../system
       ../../pkgs/system.nix
     ];
