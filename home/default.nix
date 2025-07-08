@@ -3,7 +3,7 @@
 {
   imports = [
     ./toolkits
-    ./development
+    ./develop
     ./profiles
     ./dotfiles
   ];
