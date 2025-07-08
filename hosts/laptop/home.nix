@@ -80,7 +80,7 @@
       text.enable = true;                # 文本处理工具
       network.enable = true;             # 网络工具
       monitor.enable = true;             # 系统监控工具
-      development.enable = true;         # 开发辅助工具
+      develop.enable = true;         # 开发辅助工具
     };
   };
 

@@ -5,7 +5,6 @@
     ./develop
     ./profiles
     ./dotfiles
-    ../pkgs
   ];
 
   myHome = {
@@ -54,18 +53,4 @@
     };
   };
   
-  # 包管理配置
-  myPkgs = {
-    enable = lib.mkDefault false;               # 包管理模块总开关
-    
-    # 命令行工具包配置
-    toolkits = {
-      enable = lib.mkDefault false;
-      files.enable = lib.mkDefault false;         # 文件管理工具
-      text.enable = lib.mkDefault false;          # 文本处理工具
-      network.enable = lib.mkDefault false;       # 网络工具
-      monitor.enable = lib.mkDefault false;       # 系统监控工具
-      development.enable = lib.mkDefault false;   # 开发辅助工具
-    };
-  };
 }
