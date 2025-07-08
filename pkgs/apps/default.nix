@@ -53,7 +53,7 @@
   imports = [
     ./shells.nix
     ./terminals.nix
-    ./development.nix
+    ./develop.nix
     ./browsers.nix
     ./communication.nix
     ./media.nix

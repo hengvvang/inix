@@ -25,7 +25,7 @@
     };
     
     # 开发工具
-    development = {
+    develop = {
       enable = lib.mkEnableOption "开发辅助工具";
     };
   };
@@ -35,6 +35,6 @@
     ./text.nix
     ./network.nix
     ./monitor.nix
-    ./development.nix
+    ./develop.nix
   ];
 }
