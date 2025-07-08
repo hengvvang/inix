@@ -6,6 +6,7 @@
     ./v2ray
     ./xray
     ./shadowsocks
+    ./sing-box
   ];
 
   # 代理服务模块的选项定义

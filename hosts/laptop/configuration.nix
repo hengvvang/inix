@@ -131,6 +131,18 @@
             autoStart = false;        # 手动启动（避免与其他代理冲突）
             updateInterval = "daily"; # 订阅更新间隔
           };
+          
+          # sing-box 代理服务 
+          sing-box = {
+            enable = false;           # 🔴 禁用 - 需要时设为 true
+            tunMode = true;           # TUN 模式透明代理
+            webPort = 9091;           # Web UI 端口（避免与 Clash 冲突）
+            mixedPort = 7891;         # HTTP/SOCKS5 混合端口（避免与 Clash 冲突）
+            subscriptionUrl = "https://fba01.fbsubcn01.cc:2096/flydsubal/cymeoq8salu87n34?sub=2&extend=1";  # 🔴 替换为你的订阅链接
+            autoStart = false;        # 手动启动（避免与其他代理冲突）
+            updateInterval = "daily"; # 订阅更新间隔
+            logLevel = "info";        # 日志级别
+          };
         };
       };
       
