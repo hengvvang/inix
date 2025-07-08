@@ -2,8 +2,8 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.git.enable && config.myHome.dotfiles.git.method == "external") {
-    # 方式3: 外部文件引用
+    # 外部文件引用 - 演示用简化配置
     home.file.".gitconfig".source = ./configs/gitconfig;
-    home.file.".gitignore_global".source = ./configs/gitignore_global;
+    # 注意：此方式需要手动维护 configs/ 目录下的配置文件
   };
 }

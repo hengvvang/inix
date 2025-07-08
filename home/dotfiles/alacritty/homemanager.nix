@@ -7,11 +7,9 @@
       enable = true;
       settings = {
         # 环境变量
-        env = {
-          TERM = "alacritty";
-        };
+        env.TERM = "alacritty";
 
-        # 窗口设置
+        # 窗口设置 - 现代化外观
         window = {
           dimensions = {
             columns = 120;
@@ -31,7 +29,7 @@
           };
         };
 
-        # 字体设置
+        # 字体设置 - 舒适的编程字体
         font = {
           normal = {
             family = "JetBrainsMono Nerd Font";
@@ -52,13 +50,13 @@
           size = 13;
         };
 
-        # 滚动设置
+        # 滚动设置 - 人体工程学优化
         scrolling = {
           history = 10000;
           multiplier = 3;
         };
 
-        # 光标设置
+        # 光标设置 - 现代化光标
         cursor = {
           style = {
             shape = "Block";
@@ -72,7 +70,7 @@
         # 实时重载配置
         live_config_reload = true;
 
-        # 鼠标设置
+        # 鼠标设置 - 人体工程学优化
         mouse = {
           hide_when_typing = true;
           bindings = [
@@ -87,7 +85,7 @@
           save_to_clipboard = true;
         };
 
-        # 键位绑定
+        # 键位绑定 - 主流快捷键
         keyboard.bindings = [
           # 基本操作
           { key = "C"; mods = "Control|Shift"; action = "Copy"; }
@@ -107,7 +105,7 @@
           { key = "Space"; mods = "Control|Shift"; action = "ToggleViMode"; }
         ];
 
-        # 主题配置 - Tokyo Night
+        # 主题配置 - Tokyo Night (现代化暗色主题)
         colors = {
           primary = {
             background = "#1a1b26";
