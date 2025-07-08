@@ -15,10 +15,10 @@
         relativenumber = true;
         shiftwidth = 2;
         tabstop = 2;
-        softtabstop = 2;
       };
       
       extraConfig = ''
+        set softtabstop=2
         set cursorline
         set showcmd
         set wildmenu
