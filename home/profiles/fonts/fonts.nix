@@ -24,7 +24,6 @@
       nerd-fonts.hack
       nerd-fonts.meslo-lg
       nerd-fonts.ubuntu-mono
-      nerd-fonts.cascadia-code
       
       # 系统字体
       liberation_ttf
