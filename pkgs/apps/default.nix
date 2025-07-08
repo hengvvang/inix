@@ -15,7 +15,7 @@
     };
     
     # 开发工具
-    development = {
+    develop = {
       enable = lib.mkEnableOption "开发工具";
     };
     

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myPkgs.apps.development.enable {
+  config = lib.mkIf config.myPkgs.apps.develop.enable {
     environment.systemPackages = with pkgs; [
       vim             # Vim 编辑器
       vscode          # Visual Studio Code

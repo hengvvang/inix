@@ -255,7 +255,7 @@
       enable = true;                     # 启用系统应用模块
       shells.enable = true;              # Shell 工具
       terminals.enable = true;           # 终端工具
-      development.enable = true;         # 开发工具
+      develop.enable = true;         # 开发工具
       browsers.enable = true;            # 浏览器
       communication.enable = true;       # 通讯工具
       media.enable = true;               # 媒体工具
