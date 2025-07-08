@@ -37,17 +37,61 @@
     # Dotfiles 配置管理
     dotfiles = {
       enable = true;                     # 启用 dotfiles 模块
-      vim.enable = true;                 # Vim 配置
-      zsh.enable = true;                 # Zsh 配置
-      fish.enable = true;                # Fish 配置
-      nushell.enable = true;             # Nushell 配置
-      yazi.enable = true;                # Yazi 文件管理器
-      ghostty.enable = true;             # Ghostty 终端
-      alacritty.enable = true;           # Alacritty 终端 (新增)
-      tmux.enable = true;                # Tmux 会话管理 (新增)
-      git.enable = true;                 # Git 配置
-      lazygit.enable = true;             # LazyGit 配置
-      starship.enable = true;            # Starship 提示符
+      
+      vim = {
+        enable = true;                   # Vim 配置
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
+      
+      zsh = {
+        enable = true;                   # Zsh 配置
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
+      
+      fish = {
+        enable = true;                   # Fish 配置
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
+      
+      nushell = {
+        enable = true;                   # Nushell 配置
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
+      
+      yazi = {
+        enable = true;                   # Yazi 文件管理器
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
+      
+      ghostty = {
+        enable = true;                   # Ghostty 终端
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
+      
+      alacritty = {
+        enable = true;                   # Alacritty 终端 (新增)
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
+      
+      tmux = {
+        enable = true;                   # Tmux 会话管理 (新增)
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
+      
+      git = {
+        enable = true;                   # Git 配置
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
+      
+      lazygit = {
+        enable = true;                   # LazyGit 配置
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
+      
+      starship = {
+        enable = true;                   # Starship 提示符
+        # method = "homemanager";        # 可省略，因为是默认值
+      };
       
       # 代理服务用户配置
       proxy = {
