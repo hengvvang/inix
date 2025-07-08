@@ -12,13 +12,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "hengvvang";
-
-  # Pick only one of the below networking options.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-
   nixpkgs.config.allowUnfree = true;
 
   # 系统模块配置 - 完全由主机决定启用哪些模块
@@ -27,7 +20,7 @@
     # 桌面环境配置
     desktop = {
       enable = true;                   # 启用桌面环境模块
-      cosmic.enable = true;            # 使用 COSMIC 桌面环境
+      preset = "cosmic";               # 使用 COSMIC 桌面环境
     };
     
     # 用户管理配置
@@ -40,7 +33,7 @@
       enable = true;                   # 启用本地化模块
       timeZone = {
         enable = true;                 # 启用时区配置
-        shanghai.enable = true;        # 使用上海时区
+        preset = "shanghai";           # 使用上海时区
       };
       inputMethod = {
         enable = true;                 # 启用输入法配置
@@ -61,6 +54,26 @@
       
       network = {
         enable = true;                 # 启用网络服务
+        
+        # 基础网络配置
+        basic = {
+          enable = true;               # 🟢 启用基础网络配置
+          hostname = "hengvvang";      # 系统主机名
+          networkManager = {
+            enable = true;             # 启用 NetworkManager
+            wifi = {
+              enable = true;           # 启用 WiFi 支持
+              powersave = true;        # 启用节能模式
+            };
+            ethernet = {
+              enable = true;           # 启用以太网支持
+            };
+          };
+          tools = {
+            enable = true;             # 启用网络诊断工具
+            gui = true;                # 启用图形化管理工具
+          };
+        };
         
         # SSH 服务配置
         ssh = {
