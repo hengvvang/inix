@@ -6,7 +6,7 @@
     ./desktop
     ./users
     ./packages
-    ./localization
+    ./locale
     ./services
   ];
 
@@ -29,7 +29,7 @@
     };
     
     # 本地化配置模块
-    localization = {
+    locale = {
       enable = lib.mkDefault false;
       # 时区配置（只能选择一个）
       timeZone = {

@@ -46,7 +46,7 @@
     };
 
     # 本地化配置
-    localization = {
+    locale = {
       enable = true;                   # 启用本地化模块
       timeZone = {
         enable = true;                 # 启用时区配置
