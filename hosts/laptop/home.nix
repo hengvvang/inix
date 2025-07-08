@@ -64,7 +64,7 @@
       enable = true;                     # 启用配置档案模块
       fonts = {
         enable = true;                   # 启用字体配置
-        fonts.enable = true;             # 字体包
+        preset = "nordic";               # 选择字体风格
       };
     };
   };

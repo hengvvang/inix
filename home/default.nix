@@ -48,7 +48,6 @@
       enable = lib.mkDefault false;
       fonts = {
         enable = lib.mkDefault false;
-        fonts.enable = lib.mkDefault false;
       };
     };
   };
