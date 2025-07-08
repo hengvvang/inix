@@ -7,6 +7,7 @@
   imports = [
     # 使用新的模块化配置
     ../../home
+    ../../pkgs/home.nix
   ];
   
   # 基础配置

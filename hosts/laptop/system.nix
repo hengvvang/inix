@@ -6,7 +6,7 @@
       ./hardware.nix
       # <home-manager/nixos>
       ../../system
-      ../../pkgs
+      ../../pkgs/system.nix
     ];
 
   # Bootloader

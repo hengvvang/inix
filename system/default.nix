@@ -22,11 +22,6 @@
       enable = lib.mkDefault false;
     };
     
-    # 系统应用模块
-    apps = {
-      enable = lib.mkDefault false;
-    };
-    
     # 本地化配置模块
     locale = {
       enable = lib.mkDefault false;
