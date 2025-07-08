@@ -18,7 +18,6 @@
       
       # 特色字体 - 赛博朋克元素
       hack-font            # 黑客风格等宽字体
-      anonymous-pro        # 匿名风格编程字体
       
       # 系统字体
       noto-fonts

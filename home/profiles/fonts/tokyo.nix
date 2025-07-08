@@ -19,9 +19,6 @@
       source-han-serif     # Adobe 思源宋体
       noto-fonts-cjk-serif # Google 传统中文
       
-      # 日文字体
-      noto-fonts-cjk       # 完整 CJK 字体包
-      
       # 系统字体
       noto-fonts
       noto-fonts-emoji
