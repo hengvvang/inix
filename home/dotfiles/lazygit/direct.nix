@@ -2,102 +2,91 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.lazygit.enable && config.myHome.dotfiles.lazygit.method == "direct") {
-    # 方式2: 直接文件写入
     home.file.".config/lazygit/config.yml".text = ''
       gui:
-        # 界面主题
+        showIcons: true
+        nerdFontsVersion: "3"
         theme:
           lightTheme: false
           activeBorderColor:
-            - cyan
+            - "#89b4fa"
             - bold
           inactiveBorderColor:
-            - default
+            - "#45475a"
           optionsTextColor:
-            - blue
+            - "#89b4fa"
           selectedLineBgColor:
-            - default
+            - "#313244"
           selectedRangeBgColor:
-            - blue
+            - "#313244"
           cherryPickedCommitBgColor:
-            - cyan
+            - "#45475a"
           cherryPickedCommitFgColor:
-            - blue
+            - "#89b4fa"
           unstagedChangesColor:
-            - red
-          defaultFgColor:
-            - default
-        
-        # 界面设置
+            - "#f38ba8"
+        scrollHeight: 2
+        scrollPastBottom: true
         sidePanelWidth: 0.3333
         expandFocusedSidePanel: false
-        mainPanelSplitMode: flexible
-        language: auto
+        mainPanelSplitMode: "flexible"
+        language: "en"
         timeFormat: "02 Jan 06 15:04 MST"
         shortTimeFormat: "15:04"
-        showListFooter: true
+        commitLength:
+          show: true
+        mouseEvents: true
+        skipDiscardChangeWarning: false
+        skipStashWarning: false
         showFileTree: true
+        showListFooter: true
         showRandomTip: true
-        showCommandLog: true
+        showBranchCommitHash: false
         showBottomLine: true
         showPanelJumps: true
-        showBranchCommitHash: false
-        showIcons: false
-
+        showCommandLog: true
+        showFileIcons: true
+        commandLogSize: 8
+        splitDiff: "auto"
+        skipRewordInEditorWarning: false
+        border: "single"
+        
       git:
         paging:
           colorArg: always
           pager: delta --dark --paging=never
-        
         commit:
           signOff: false
-          autoWrapCommitMessage: true
-          autoWrapWidth: 72
-        
         merging:
           manualCommit: false
           args: ""
-        
+        log:
+          order: "topo-order"
+          showGraph: "when-maximised"
+          showWholeGraph: false
         skipHookPrefix: WIP
         autoFetch: true
         autoRefresh: true
+        fetchAll: true
         branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --"
-        allBranchesLogCmd: "git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium"
+        allBranchesLogCmd: "git log --graph --all --color=always --abbrev-commit --decorate --date=relative --pretty=medium"
         overrideGpg: false
         disableForcePushing: false
         parseEmoji: false
-
+        diffContextSize: 3
+        truncateCopiedCommitHashesTo: 12
+        
       update:
         method: prompt
         days: 14
-
+        
       refresher:
         refreshInterval: 10
         fetchInterval: 60
-
+        
       confirmOnQuit: false
       quitOnTopLevelReturn: false
-
-      # 自定义命令
-      customCommands:
-        - key: 'C'
-          command: 'git cz'
-          description: 'commit with commitizen'
-          context: 'files'
-          loadingText: 'opening commitizen commit tool'
-          subprocess: true
-        - key: '<c-r>'
-          command: 'gh pr create --fill'
-          description: 'create pull request'
-          context: 'localBranches'
-          loadingText: 'creating pull request'
-
-      # 服务设置
-      services:
-        'github.com': 'github:{{owner}}/{{repo}}'
-        'gitlab.com': 'gitlab:{{owner}}/{{repo}}'
-
-      # 快捷键设置
+      
       keybinding:
         universal:
           quit: 'q'
@@ -113,6 +102,8 @@
           nextPage: '.'
           gotoTop: '<'
           gotoBottom: '>'
+          scrollLeft: 'H'
+          scrollRight: 'L'
           prevBlock: '<left>'
           nextBlock: '<right>'
           prevBlock-alt: 'h'
@@ -120,7 +111,7 @@
           jumpToBlock: ['1', '2', '3', '4', '5']
           nextMatch: 'n'
           prevMatch: 'N'
-          optionMenu: 'x'
+          optionMenu: '<disabled>'
           optionMenu-alt1: '?'
           select: '<space>'
           goInto: '<enter>'
@@ -153,16 +144,17 @@
           diffingMenu-alt: '<c-e>'
           copyToClipboard: '<c-o>'
           submitEditorText: '<enter>'
-          appendNewline: '<a-enter>'
           extrasMenu: '@'
           toggleWhitespaceInDiffView: '<c-w>'
           increaseContextInDiffView: '}'
           decreaseContextInDiffView: '{'
-        
+          increaseRenameSimilarityThreshold: ')'
+          decreaseRenameSimilarityThreshold: '('
+          openDiffTool: '<c-t>'
         status:
           checkForUpdate: 'u'
           recentRepos: '<enter>'
-        
+          allBranchesLogGraph: 'a'
         files:
           commitChanges: 'c'
           commitChangesWithoutHook: 'w'
@@ -176,7 +168,8 @@
           viewResetOptions: 'D'
           fetch: 'f'
           toggleTreeView: '`'
-        
+          openMergeTool: 'M'
+          openStatusFilter: '<c-b>'
         branches:
           createPullRequest: 'o'
           viewPullRequestOptions: 'O'
@@ -187,10 +180,10 @@
           mergeIntoCurrentBranch: 'M'
           viewGitFlowOptions: 'i'
           fastForward: 'f'
+          createTag: 'T'
           pushTag: 'P'
           setUpstream: 'u'
           fetchRemote: 'f'
-        
         commits:
           squashDown: 's'
           renameCommit: 'r'
@@ -213,20 +206,15 @@
           copyCommitMessageToClipboard: '<c-y>'
           openLogMenu: '<c-l>'
           viewBisectOptions: 'b'
-        
         stash:
           popStash: 'g'
           renameStash: 'r'
-        
         commitFiles:
           checkoutCommitFile: 'c'
-        
         main:
-          toggleDragSelect: 'v'
-          toggleDragSelect-alt: 'V'
           toggleSelectHunk: 'a'
           pickBothHunks: 'b'
-        
+          editSelectHunk: 'E'
         submodules:
           init: 'i'
           update: 'u'

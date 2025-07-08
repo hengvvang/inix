@@ -1,25 +1,11 @@
 { config, lib, pkgs, ... }:
 
-let
-  cfg = config.myHome.dotfiles.proxy.clash;
-in
 {
-  config = lib.mkIf (cfg.enable && cfg.configMethod == "external") {
-    home.file = {
-      # 创建到系统配置的软链接
-      "${cfg.configDir}/config.yaml" = {
-        source = config.lib.file.mkOutOfStoreSymlink "/etc/clash/config.yaml";
-      };
-      
-      # 简单说明
-      "${cfg.configDir}/README.md".text = ''
-        # Clash 外部配置模式
-        
-        配置文件链接到: /etc/clash/config.yaml
-        
-        编辑配置: sudo vim /etc/clash/config.yaml
-        重启服务: clash-ctl restart
-      '';
-    };
+  config = lib.mkIf (config.myHome.dotfiles.proxy.enable && config.myHome.dotfiles.proxy.method == "external" && config.myHome.dotfiles.proxy.clash.enable) {
+    # 方式3: 外部文件引用（演示用）
+    # 特点：引用外部配置文件，便于独立管理和分享
+    
+    home.file.".config/clash/config.yaml".source = ./configs/config.yaml;
+    home.file.".config/clash/Country.mmdb".source = ./configs/Country.mmdb;
   };
 }

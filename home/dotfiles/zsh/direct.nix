@@ -2,38 +2,26 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.method == "direct") {
-    # 方式2: 直接文件写入
     home.file.".zshrc".text = ''
-      # Zsh 配置文件 - 直接文件写入方式
+      # Zsh 基础配置
+      export HISTFILE=~/.zsh_history
+      export HISTSIZE=10000
+      export SAVEHIST=10000
+      setopt HIST_IGNORE_DUPS
+      setopt HIST_FIND_NO_DUPS
+      setopt HIST_REDUCE_BLANKS
       
-      # 历史设置
-      HISTSIZE=10000
-      SAVEHIST=10000
-      HISTFILE=~/.zsh_history
-      setopt SHARE_HISTORY
-      setopt HIST_VERIFY
-      setopt HIST_IGNORE_ALL_DUPS
-      setopt HIST_IGNORE_SPACE
+      # 环境变量
+      export EDITOR=vim
+      export BROWSER=google-chrome
+      export TERM=xterm-256color
       
-      # 自动补全
-      autoload -U compinit
-      compinit
-      zstyle ':completion:*' menu select
-      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-      
-      # 目录导航
-      setopt AUTO_CD
-      setopt AUTO_PUSHD
-      setopt PUSHD_IGNORE_DUPS
-      
-      # 别名
-      alias ll='ls -alF'
-      alias la='ls -A'
-      alias l='ls -CF'
-      alias grep='grep --color=auto'
+      # 基础别名
+      alias ll='ls -la'
+      alias la='ls -a'
+      alias l='ls'
       alias ..='cd ..'
       alias ...='cd ../..'
-      alias ....='cd ../../..'
       
       # Git 别名
       alias gs='git status'
@@ -41,39 +29,19 @@
       alias gc='git commit'
       alias gp='git push'
       alias gl='git log --oneline'
-      alias gd='git diff'
-      alias gb='git branch'
-      alias gco='git checkout'
       
       # 现代工具别名
       alias cat='bat'
-      alias ls='eza --icons'
-      alias tree='eza --tree'
       alias find='fd'
       alias grep='rg'
-      alias du='dust'
-      alias df='duf'
-      alias ps='procs'
-      alias top='btop'
       
-      # 键绑定
-      bindkey '^[[A' history-substring-search-up
-      bindkey '^[[B' history-substring-search-down
-      bindkey '^[[1;5C' forward-word
-      bindkey '^[[1;5D' backward-word
+      # 快捷函数
+      mkcd() {
+        mkdir -p "$1" && cd "$1"
+      }
       
-      # 提示符
-      autoload -U colors && colors
-      PROMPT='%{$fg[cyan]%}%n@%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}$ '
-      
-      # 环境变量
-      export EDITOR=vim
-      export BROWSER=google-chrome
-      export TERM=xterm-256color
-      
-      # 路径设置
-      export PATH=$HOME/.local/bin:$PATH
-      export PATH=$HOME/.cargo/bin:$PATH
+      # 简单提示符
+      PS1="%n@%m:%~$ "
     '';
   };
 }
