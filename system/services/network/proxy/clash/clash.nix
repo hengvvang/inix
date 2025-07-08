@@ -81,7 +81,7 @@ in
     # 安装 Clash Meta 和管理工具
     environment.systemPackages = with pkgs; [
       clash-meta
-      mihomo
+      # mihomo
       curl  # 用于下载订阅
       (writeShellScriptBin "clash-ctl" ''
         #!/usr/bin/env bash
