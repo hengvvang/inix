@@ -66,21 +66,20 @@
         fonts.enable = true;             # 字体包
       };
     };
+  };
+
+  # 包管理配置
+  myPkgs = {
+    enable = true;                       # 启用包管理模块
     
-    # 工具包配置
+    # 命令行工具包配置
     toolkits = {
       enable = true;                     # 启用工具包模块
-      system = {
-        enable = true;                   # 启用系统工具包
-        hardware.enable = true;          # 硬件工具
-        monitor.enable = true;           # 系统监控
-        network.enable = true;           # 网络工具
-        utilities.enable = true;         # 系统工具
-      };
-      user = {
-        enable = true;                   # 启用用户工具包
-        utilities.enable = true;         # 用户工具
-      };
+      files.enable = true;               # 文件管理工具
+      text.enable = true;                # 文本处理工具
+      network.enable = true;             # 网络工具
+      monitor.enable = true;             # 系统监控工具
+      development.enable = true;         # 开发辅助工具
     };
   };
 

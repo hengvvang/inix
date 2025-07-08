@@ -6,6 +6,7 @@
       ./hardware.nix
       # <home-manager/nixos>
       ../../system
+      ../../pkgs
     ];
 
   # Bootloader
@@ -38,11 +39,6 @@
     # 用户管理配置
     users = {
       enable = true;                   # 启用用户配置模块
-    };
-    
-    # 系统包管理配置
-    packages = {
-      enable = true;                   # 启用系统包模块
     };
 
     # 本地化配置
@@ -249,8 +245,26 @@
   # programs.gnupg.agent = {
   #   enable = true;
   #   enableSSHSupport = true;
-  # };
+  #  };
 
+  # 包管理配置
+  myPkgs = {
+    enable = true;                       # 启用包管理模块
+    
+    # 系统应用管理配置
+    apps = {
+      enable = true;                     # 启用系统应用模块
+      shells.enable = true;              # Shell 工具
+      terminals.enable = true;           # 终端工具
+      development.enable = true;         # 开发工具
+      browsers.enable = true;            # 浏览器
+      communication.enable = true;       # 通讯工具
+      media.enable = true;               # 媒体工具
+      office.enable = true;              # 办公工具
+      gaming.enable = true;              # 游戏娱乐
+      network.enable = true;             # 网络工具
+    };
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

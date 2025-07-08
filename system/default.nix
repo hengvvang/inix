@@ -5,7 +5,6 @@
   imports = [
     ./desktop
     ./users
-    ./packages
     ./locale
     ./services
   ];
@@ -23,8 +22,8 @@
       enable = lib.mkDefault false;
     };
     
-    # 系统包模块
-    packages = {
+    # 系统应用模块
+    apps = {
       enable = lib.mkDefault false;
     };
     

@@ -1,5 +1,12 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  # 自定义包 - 预留文件
+  options.myPkgs = {
+    enable = lib.mkEnableOption "包管理模块支持";
+  };
+
+  imports = [
+    ./toolkits
+    ./apps
+  ];
 }

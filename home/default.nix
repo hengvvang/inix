@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ./toolkits
     ./develop
     ./profiles
     ./dotfiles
+    ../pkgs
   ];
 
   myHome = {
@@ -52,21 +52,20 @@
         fonts.enable = lib.mkDefault false;
       };
     };
+  };
+  
+  # 包管理配置
+  myPkgs = {
+    enable = lib.mkDefault false;               # 包管理模块总开关
     
-    # 工具包配置
+    # 命令行工具包配置
     toolkits = {
       enable = lib.mkDefault false;
-      system = {
-        enable = lib.mkDefault false;
-        hardware.enable = lib.mkDefault false;
-        monitor.enable = lib.mkDefault false;
-        network.enable = lib.mkDefault false;
-        utilities.enable = lib.mkDefault false;
-      };
-      user = {
-        enable = lib.mkDefault false;
-        utilities.enable = lib.mkDefault false;
-      };
+      files.enable = lib.mkDefault false;         # 文件管理工具
+      text.enable = lib.mkDefault false;          # 文本处理工具
+      network.enable = lib.mkDefault false;       # 网络工具
+      monitor.enable = lib.mkDefault false;       # 系统监控工具
+      development.enable = lib.mkDefault false;   # 开发辅助工具
     };
   };
 }
