@@ -36,7 +36,6 @@
       window-padding-x = 8
       window-padding-y = 8
       window-decoration = true
-      window-opacity = 0.95
       window-title-font-family = "FiraCode Nerd Font"
       
       # 主题设置 (Catppuccin Macchiato)
@@ -70,22 +69,6 @@
       copy-on-select = false
       confirm-close-surface = false
       shell-integration = fish
-      
-      # 键位绑定
-      keybind = ctrl+shift+c=copy_to_clipboard
-      keybind = ctrl+shift+v=paste_from_clipboard
-      keybind = ctrl+shift+t=new_tab
-      keybind = ctrl+shift+w=close_surface
-      keybind = ctrl+shift+n=new_window
-      keybind = ctrl+shift+enter=new_split:right
-      keybind = ctrl+shift+minus=new_split:down
-      keybind = ctrl+shift+left=goto_split:left
-      keybind = ctrl+shift+right=goto_split:right
-      keybind = ctrl+shift+up=goto_split:up
-      keybind = ctrl+shift+down=goto_split:down
-      keybind = ctrl+shift+equal=increase_font_size:1
-      keybind = ctrl+shift+minus=decrease_font_size:1
-      keybind = ctrl+shift+zero=reset_font_size
       
       # 性能设置
       unfocused-split-opacity = 0.7
