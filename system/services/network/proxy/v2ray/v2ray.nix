@@ -35,13 +35,16 @@ let
           "protocol": "dokodemo-door",
           "settings": {
             "address": "127.0.0.1",
-            "port": ${toString cfg.tunPort},
             "network": "tcp,udp",
             "followRedirect": true
           },
+          "sniffing": {
+            "enabled": true,
+            "destOverride": ["http", "tls"]
+          },
           "streamSettings": {
             "sockopt": {
-              "tproxy": "tun"
+              "tproxy": "redirect"
             }
           }
         }''}
@@ -69,19 +72,7 @@ let
             "outboundTag": "direct"
           }
         ]
-      }${lib.optionalString cfg.tunMode '',
-      "tun": {
-        "tag": "tun",
-        "stack": "system",
-        "mtu": 1500,
-        "name": "v2ray-tun",
-        "inet4_address": "172.19.0.1/30",
-        "inet6_address": "fdfe:dcba:9876::1/126",
-        "auto_route": true,
-        "strict_route": true,
-        "sniff": true,
-        "sniff_override_destination": true
-      }''}
+      }
     }
   '';
 
@@ -96,13 +87,20 @@ let
       "inbounds": [
         {
           "tag": "tun-in",
-          "protocol": "tun",
+          "protocol": "dokodemo-door",
+          "port": ${toString cfg.tunPort},
           "settings": {
-            "tag": "tun"
+            "address": "127.0.0.1",
+            "network": "tcp,udp",
+            "followRedirect": true
+          },
+          "sniffing": {
+            "enabled": true,
+            "destOverride": ["http", "tls"]
           },
           "streamSettings": {
             "sockopt": {
-              "tproxy": "tun"
+              "tproxy": "redirect"
             }
           }
         },
@@ -147,18 +145,6 @@ let
             "outboundTag": "direct"
           }
         ]
-      },
-      "tun": {
-        "tag": "tun",
-        "stack": "system",
-        "mtu": 1500,
-        "name": "v2ray-tun",
-        "inet4_address": "172.19.0.1/30",
-        "inet6_address": "fdfe:dcba:9876::1/126",
-        "auto_route": true,
-        "strict_route": true,
-        "sniff": true,
-        "sniff_override_destination": true
       }
     }
   '';

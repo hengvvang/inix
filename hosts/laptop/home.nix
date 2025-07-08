@@ -48,7 +48,7 @@
       
       # 代理服务用户配置
       proxy = {
-        enable = true;                   # 启用代理配置模块
+        enable = false;                   # 启用代理配置模块
         clash = {
           enable = false;                # 🔴 禁用 - 需要时设为 true
           configMethod = "homemanager";  # 配置方式: "direct" | "external" | "homemanager"

@@ -291,8 +291,8 @@ in
       '';
     };
 
-    # 系统环境变量 (可选)
-    environment.variables = {
+    # 系统环境变量 (仅在非 TUN 模式时设置)
+    environment.variables = lib.mkIf (!cfg.tunMode) {
       HTTP_PROXY = "http://127.0.0.1:${toString cfg.mixedPort}";
       HTTPS_PROXY = "http://127.0.0.1:${toString cfg.mixedPort}";
       ALL_PROXY = "socks5://127.0.0.1:${toString cfg.mixedPort}";

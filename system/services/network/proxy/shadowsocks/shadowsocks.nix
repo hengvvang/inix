@@ -236,5 +236,11 @@ in
       allowedTCPPorts = [ cfg.localPort ];
       allowedUDPPorts = [ cfg.localPort ];
     };
+
+    # 系统环境变量
+    environment.variables = {
+      # Shadowsocks 使用 SOCKS5 代理
+      ALL_PROXY = "socks5://127.0.0.1:${toString cfg.localPort}";
+    };
   };
 }
