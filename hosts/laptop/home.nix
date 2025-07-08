@@ -42,6 +42,8 @@
       nushell.enable = true;             # Nushell 配置
       yazi.enable = true;                # Yazi 文件管理器
       ghostty.enable = true;             # Ghostty 终端
+      alacritty.enable = true;           # Alacritty 终端 (新增)
+      tmux.enable = true;                # Tmux 会话管理 (新增)
       git.enable = true;                 # Git 配置
       lazygit.enable = true;             # LazyGit 配置
       starship.enable = true;            # Starship 提示符

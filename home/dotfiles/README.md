@@ -1,13 +1,230 @@
-# Dotfiles 配置模块
+# 人体工程学 Dotfiles 配置指南
 
-这个模块提供了各种工具的 dotfiles 配置，每个工具都支持3种不同的配置方式，遵循项目的可启用配置风格。
+这个配置提供了一个现代化、符合人体工程学的终端和shell环境，包含了以下主要组件：
 
-## 目录结构
+- **终端**: Ghostty (主要) + Alacritty (备选)
+- **Shell**: Fish (主要) + Zsh (备选)
+- **会话管理**: Tmux
+- **提示符**: Starship
+- **文件管理**: Yazi
+- **现代化工具**: 替代传统命令行工具
+
+## 🎯 人体工程学特性
+
+### 1. 键位优化
+- **Tmux 前缀键**: `Ctrl+a` (比 `Ctrl+b` 更易按)
+- **快速面板切换**: Vi 风格的 `hjkl` 键位
+- **智能补全**: Fish shell 的自动建议
+- **模糊搜索**: 使用 `fzf` 进行快速文件/目录搜索
+
+### 2. 视觉优化
+- **Tokyo Night 主题**: 护眼的暗色主题
+- **Nerd Font 字体**: 带图标的 JetBrains Mono
+- **美观的提示符**: 双行显示，信息丰富
+- **语法高亮**: 所有工具都支持语法高亮
+
+### 3. 效率提升
+- **现代化工具**: 使用 `eza`、`bat`、`fd` 等替代传统工具
+- **智能导航**: `zoxide` 智能目录跳转
+- **Git 集成**: 丰富的 Git 别名和状态显示
+- **自动建议**: Fish shell 的智能命令建议
+
+## 🚀 快速开始
+
+### 1. 启用配置
+
+在 `hosts/laptop/home.nix` 中启用需要的组件：
+
+```nix
+dotfiles = {
+  enable = true;
+  fish.enable = true;      # Fish shell
+  ghostty.enable = true;   # Ghostty 终端
+  alacritty.enable = true; # Alacritty 终端 (备选)
+  tmux.enable = true;      # Tmux 会话管理
+  starship.enable = true;  # Starship 提示符
+  yazi.enable = true;      # Yazi 文件管理器
+  # ... 其他配置
+};
+```
+
+### 2. 构建配置
 
 ```bash
-dotfiles/
-├── default.nix           # 主配置入口
-├── README.md            # 说明文档
+nix build .#homeConfigurations.hengvvang.activationPackage
+```
+
+### 3. 激活配置
+
+```bash
+./result/activate
+```
+
+## 🔧 工具使用指南
+
+### Fish Shell 快捷键
+
+- **自动补全**: `Tab` 键
+- **接受建议**: `Ctrl+f` 或 `→`
+- **历史搜索**: `Ctrl+r` (向后) / `Ctrl+s` (向前)
+- **单词跳转**: `Ctrl+←` / `Ctrl+→`
+
+### Tmux 快捷键 (前缀键: `Ctrl+a`)
+
+#### 基本操作
+- `Ctrl+a + r`: 重载配置
+- `Ctrl+a + |`: 垂直分割
+- `Ctrl+a + -`: 水平分割
+- `Ctrl+a + c`: 新建窗口
+
+#### 面板导航
+- `Ctrl+a + h/j/k/l`: Vi 风格面板切换
+- `Ctrl+a + H/J/K/L`: 调整面板大小
+- `Ctrl+a + m`: 面板最大化/最小化
+
+#### 窗口管理
+- `Alt+h/l`: 切换窗口
+- `Alt+1~9`: 快速切换到指定窗口
+- `Ctrl+a + S`: 同步面板输入
+
+### 现代化工具别名
+
+#### 文件操作
+- `ll`: `eza -la --icons --group-directories-first`
+- `tree`: `eza --tree --icons`
+- `cat`: `bat --paging=never`
+- `find`: `fd`
+
+#### 系统监控
+- `top`: `btop`
+- `ps`: `procs`
+- `du`: `dust`
+- `df`: `duf`
+
+#### Git 操作
+- `g`: `git`
+- `gs`: `git status`
+- `gaa`: `git add --all`
+- `gcm`: `git commit -m`
+- `gp`: `git push`
+- `gl`: `git log --oneline --graph`
+
+### 自定义函数
+
+#### 文件管理
+- `mkcd <dir>`: 创建目录并进入
+- `extract <file>`: 智能解压缩
+- `backup <file>`: 创建时间戳备份
+
+#### 快速搜索
+- `fe`: 模糊搜索文件并编辑
+- `fcd`: 模糊搜索目录并进入
+
+#### 实用工具
+- `weather [city]`: 查看天气
+- `cheat <command>`: 查看命令速查表
+- `myip`: 获取公网IP
+- `localip`: 获取本地IP
+
+## 🎨 主题和字体
+
+### 主题配置
+- **终端主题**: Tokyo Night
+- **颜色方案**: 护眼的暗色主题
+- **透明度**: 95% (可调整)
+
+### 字体配置
+- **主要字体**: JetBrainsMono Nerd Font
+- **字体大小**: 13px (Alacritty) / 13px (Ghostty)
+- **字体特性**: 等宽、连字符、图标支持
+
+## 🛠️ 自定义配置
+
+### 修改配置方法
+每个组件都支持三种配置方式：
+
+1. **homemanager**: 使用 Nix Home Manager 配置 (推荐)
+2. **direct**: 直接写入配置文件
+3. **external**: 外部配置文件引用
+
+### 配置文件位置
+- **Fish**: `~/.config/fish/config.fish`
+- **Ghostty**: `~/.config/ghostty/config`
+- **Alacritty**: `~/.config/alacritty/alacritty.toml`
+- **Tmux**: `~/.config/tmux/tmux.conf`
+- **Starship**: `~/.config/starship.toml`
+
+### 字体自定义
+可以在 `home/profiles/fonts/fonts.nix` 中添加更多字体：
+
+```nix
+home.packages = with pkgs; [
+  # 添加你喜欢的字体
+  your-favorite-font
+];
+```
+
+## 📈 性能优化
+
+### 启动速度优化
+- Fish shell 使用延迟加载
+- Starship 使用缓存机制
+- Tmux 插件按需加载
+
+### 内存使用优化
+- 工具选择轻量级替代品
+- 合理设置历史记录限制
+- 优化字体渲染设置
+
+## 🔍 故障排除
+
+### 常见问题
+
+1. **字体显示问题**
+   - 确保安装了 Nerd Font
+   - 检查终端字体设置
+   - 更新 fontconfig 缓存
+
+2. **颜色显示问题**
+   - 检查 `$TERM` 环境变量
+   - 确保终端支持 256 色
+   - 验证主题配置
+
+3. **快捷键不工作**
+   - 检查键位冲突
+   - 确认配置文件语法
+   - 重启终端或重载配置
+
+### 日志查看
+```bash
+# Fish shell 日志
+fish --debug
+
+# Tmux 日志
+tmux display-message -p "#{version}"
+
+# Starship 日志
+starship explain
+```
+
+## 🎯 下一步
+
+1. **个性化定制**: 根据个人习惯调整键位和主题
+2. **工作流集成**: 配置项目特定的环境和工具
+3. **插件扩展**: 添加更多有用的插件和脚本
+4. **备份配置**: 定期备份和版本控制你的配置
+
+## 🤝 贡献
+
+如果你有任何改进建议或发现了问题，欢迎：
+
+1. 提交 Issue 反馈问题
+2. 提交 Pull Request 贡献代码
+3. 分享你的配置经验
+
+---
+
+享受你的新终端环境！🎉
 ├── vim/                 # Vim 配置
 │   ├── default.nix      # Vim 主配置 + 选项定义
 │   ├── homemanager.nix  # Home Manager 程序模块方式

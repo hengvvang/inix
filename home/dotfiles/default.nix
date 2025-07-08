@@ -12,6 +12,8 @@
     ./nushell
     ./yazi
     ./ghostty
+    ./alacritty     # 新增 Alacritty 终端
+    ./tmux          # 新增 Tmux 会话管理
     ./git
     ./lazygit
     ./starship
