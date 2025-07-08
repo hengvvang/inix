@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.development.languages.rust.enable {
+  config = lib.mkIf config.myHome.develop.languages.rust.enable {
     # Rust 开发环境 - 简化版
     home.packages = with pkgs; [
     # Rust 核心工具链

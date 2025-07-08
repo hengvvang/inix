@@ -27,7 +27,7 @@
     };
     
     # 开发环境配置
-    development = {
+    develop = {
       enable = lib.mkDefault false;
       languages = {
         enable = lib.mkDefault false;

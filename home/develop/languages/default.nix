@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.development.languages = {
+  options.myHome.develop.languages = {
     enable = lib.mkEnableOption "编程语言开发环境支持";
     c.enable = lib.mkEnableOption "C 开发环境";
     cpp.enable = lib.mkEnableOption "C++ 开发环境";

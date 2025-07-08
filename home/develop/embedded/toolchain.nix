@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.development.embedded.toolchain.enable {
+  config = lib.mkIf config.myHome.develop.embedded.toolchain.enable {
     home.packages = with pkgs; [
     # ARM 工具链 - 使用 buildEnv 来解决文件冲突
     (pkgs.buildEnv {

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myHome.development.languages.cpp.enable {
+  config = lib.mkIf config.myHome.develop.languages.cpp.enable {
     # C++ 核心开发环境 - 简化版
     home.packages = with pkgs; [
     # C++ 编译器

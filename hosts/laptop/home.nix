@@ -16,7 +16,7 @@
 
   myHome = {
     # 开发环境配置
-    development = {
+    develop = {
       enable = true;                     # 启用开发环境模块
       languages = {
         enable = true;                   # 启用编程语言支持
