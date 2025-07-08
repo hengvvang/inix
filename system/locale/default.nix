@@ -7,9 +7,18 @@
     # 时区配置选项
     timeZone = {
       enable = lib.mkEnableOption "时区配置支持";
-      shanghai.enable = lib.mkEnableOption "上海时区 (Asia/Shanghai)";
-      newYork.enable = lib.mkEnableOption "纽约时区 (America/New_York)";
-      losAngeles.enable = lib.mkEnableOption "洛杉矶时区 (America/Los_Angeles)";
+      preset = lib.mkOption {
+        type = lib.types.enum [ "shanghai" "newYork" "losAngeles" "london" "tokyo" ];
+        default = "shanghai";
+        description = ''
+          时区预设配置:
+          - shanghai: 上海时区 (Asia/Shanghai) - 中国标准时间
+          - newYork: 纽约时区 (America/New_York) - 美国东部时间
+          - losAngeles: 洛杉矶时区 (America/Los_Angeles) - 美国西部时间
+          - london: 伦敦时区 (Europe/London) - 格林威治标准时间
+          - tokyo: 东京时区 (Asia/Tokyo) - 日本标准时间
+        '';
+      };
     };
     
     # 输入法配置选项

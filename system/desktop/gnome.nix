@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.mySystem.desktop.gnome.enable {
+  config = lib.mkIf (config.mySystem.desktop.enable && config.mySystem.desktop.preset == "gnome") {
   #  --- before---
   # services.xserver = {
   #     enable = true;

@@ -3,9 +3,17 @@
 {
   options.mySystem.desktop = {
     enable = lib.mkEnableOption "桌面环境支持";
-    cosmic.enable = lib.mkEnableOption "COSMIC 桌面环境";
-    plasma.enable = lib.mkEnableOption "KDE Plasma 桌面环境";
-    gnome.enable = lib.mkEnableOption "GNOME 桌面环境";
+    
+    preset = lib.mkOption {
+      type = lib.types.enum [ "gnome" "plasma" "cosmic" ];
+      default = "gnome";
+      description = ''
+        桌面环境预设配置:
+        - gnome: GNOME 桌面环境，简洁现代的用户体验
+        - plasma: KDE Plasma 桌面环境，功能丰富可定制性强
+        - cosmic: COSMIC 桌面环境，System76 开发的现代桌面
+      '';
+    };
   };
 
   imports = [

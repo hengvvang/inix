@@ -64,14 +64,6 @@
         SDL_IM_MODULE = "fcitx";
         GLFW_IM_MODULE = "ibus";
       };
-
-      # 确保与其他输入法互斥
-      assertions = [
-        {
-          assertion = !config.mySystem.locale.inputMethod.ibus.enable;
-          message = "只能选择一个输入法配置";
-        }
-      ];
     })
 
     # IBus 配置
@@ -128,14 +120,6 @@
         SDL_IM_MODULE = "ibus";
         GLFW_IM_MODULE = "ibus";
       };
-
-      # 确保与其他输入法互斥
-      assertions = [
-        {
-          assertion = !config.mySystem.locale.inputMethod.fcitx5.enable;
-          message = "只能选择一个输入法配置";
-        }
-      ];
     })
   ];
 }
