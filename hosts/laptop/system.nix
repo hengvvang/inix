@@ -14,6 +14,9 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  # 启用 fish shell 程序
+  programs.fish.enable = true;
+
   users.users.hengvvang = {
     isNormalUser = true;
     description = "hengvvang";
@@ -21,6 +24,7 @@
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
     ];
+    shell = pkgs.fish;
   };
   
   users.users.zlritsu = {
@@ -30,6 +34,7 @@
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
     ];
+    shell = pkgs.fish;
   };
 
   # 系统模块配置 - 完全由主机决定启用哪些模块
