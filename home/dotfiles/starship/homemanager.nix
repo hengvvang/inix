@@ -148,7 +148,7 @@
           detect_files = ["Cargo.toml"];
         };
         
-        go = {
+        golang = {
           format = "[ � $version ]($style)";
           version_format = "v$version";
           style = "bright-cyan bold";
