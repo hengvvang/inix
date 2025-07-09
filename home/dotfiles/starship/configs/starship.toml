@@ -105,9 +105,6 @@ format = "[ ⚙️ $number ]($style)"
 symbol = "⚙️ "
 style = "bright-red bold"
 
-# 右侧提示符
-right_format = "$time"
-
 [time]
 disabled = false
 format = "[ 🕐 $time ]($style)"
