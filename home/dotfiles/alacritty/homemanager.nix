@@ -68,7 +68,7 @@
         };
 
         # 实时重载配置
-        live_config_reload = true;
+        general.live_config_reload = true;
 
         # 鼠标设置 - 人体工程学优化
         mouse = {
