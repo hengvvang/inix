@@ -79,18 +79,6 @@
         gl = "git log --oneline";
         gd = "git diff";
         
-        # 现代化工具替代 (如果安装了的话)
-        cat = "bat --style=plain";
-        tree = "eza --tree";
-        find = "fd";
-        top = "htop";
-        
-        # Nix 相关
-        nr = "nix run";
-        ns = "nix search";
-        nd = "nix develop";
-        nb = "nix build";
-        
         # 系统信息
         ports = "netstat -tulanp";
         mount = "mount | column -t";
@@ -111,39 +99,6 @@
         
         # === 实用函数 ===
         
-        # 创建目录并进入
-        mkcd() {
-          mkdir -p "$1" && cd "$1"
-        }
-        
-        # 快速搜索文件
-        ff() {
-          find . -type f -iname "*$1*" 2>/dev/null
-        }
-        
-        # 显示路径中的目录
-        path() {
-          echo "$PATH" | tr ':' '\n' | nl
-        }
-        
-        # 快速返回父目录
-        up() {
-          local d=""
-          local limit="$1"
-          
-          if [ -z "$limit" ] || [ "$limit" -le 0 ]; then
-            limit=1
-          fi
-          
-          for ((i=1; i<=limit; i++)); do
-            d="../$d"
-          done
-          
-          if [ "$d" != "" ]; then
-            cd "$d" || return
-          fi
-        }
-        
         # 获取公网IP
         myip() {
           curl -s ifconfig.me
@@ -161,20 +116,7 @@
           fi
         fi
         
-        # === 开发工具集成 ===
-        
-        # Node.js 版本管理
-        if [ -d "$HOME/.nvm" ]; then
-          export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-        fi
-        
-        # Rust 环境
-        if [ -f "$HOME/.cargo/env" ]; then
-          source "$HOME/.cargo/env"
-        fi
-        
+
         # === 终端标题设置 ===
         case "$TERM" in
           xterm*|rxvt*)
@@ -195,15 +137,6 @@
       
       # 登录脚本
       profileExtra = ''
-        # 登录时执行的脚本
-        
-        # 设置默认权限
-        umask 022
-        
-        # 启动SSH代理 (如果需要)
-        if [ -z "$SSH_AUTH_SOCK" ]; then
-          eval "$(ssh-agent -s)" > /dev/null 2>&1
-        fi
       '';
       
       # Bash 补全
@@ -212,36 +145,5 @@
       # 集成其他工具
       # Starship 会自动集成，无需手动配置
     };
-    
-    # 确保相关包可用
-    home.packages = with pkgs; [
-      # 基础工具
-      coreutils
-      findutils
-      gnugrep        # 修正：使用 gnugrep 而不是 grep
-      gnused         # 修正：使用 gnused 而不是 sed
-      gawk
-      
-      # 现代化替代工具
-      bat           # cat 的现代化替代
-      eza           # ls 的现代化替代
-      fd            # find 的现代化替代
-      ripgrep       # grep 的现代化替代
-      htop          # top 的现代化替代
-      
-      # 压缩工具
-      unzip
-      p7zip
-      
-      # 网络工具
-      curl
-      wget
-      
-      # 开发工具
-      git
-      
-      # 系统信息
-      neofetch
-    ];
   };
 }

@@ -72,19 +72,8 @@
       alias gp='git push'
       alias gl='git log --oneline'
       alias gd='git diff'
-      
-      # 现代化工具替代
-      alias cat='bat --style=plain'
-      alias tree='eza --tree'
-      alias find='fd'
-      alias top='htop'
-      
-      # Nix 相关
-      alias nr='nix run'
-      alias ns='nix search'
-      alias nd='nix develop'
-      alias nb='nix build'
-      
+
+
       # 系统信息
       alias ports='netstat -tulanp'
       alias mount='mount | column -t'
@@ -94,69 +83,7 @@
       alias vimrc='$EDITOR ~/.vimrc'
       
       # === 实用函数 ===
-      
-      # 创建目录并进入
-      mkcd() {
-        mkdir -p "$1" && cd "$1"
-      }
-      
-      # 提取各种压缩文件
-      extract() {
-        if [ -f "$1" ]; then
-          case "$1" in
-            *.tar.bz2)   tar xjf "$1"     ;;
-            *.tar.gz)    tar xzf "$1"     ;;
-            *.bz2)       bunzip2 "$1"     ;;
-            *.rar)       unrar x "$1"     ;;
-            *.gz)        gunzip "$1"      ;;
-            *.tar)       tar xf "$1"      ;;
-            *.tbz2)      tar xjf "$1"     ;;
-            *.tgz)       tar xzf "$1"     ;;
-            *.zip)       unzip "$1"       ;;
-            *.Z)         uncompress "$1"  ;;
-            *.7z)        7z x "$1"        ;;
-            *.xz)        unxz "$1"        ;;
-            *.lzma)      unlzma "$1"      ;;
-            *)           echo "不支持的文件格式: '$1'" ;;
-          esac
-        else
-          echo "文件不存在: '$1'"
-        fi
-      }
-      
-      # 快速搜索文件
-      ff() {
-        find . -type f -iname "*$1*" 2>/dev/null
-      }
-      
-      # 快速搜索目录
-      fd() {
-        find . -type d -iname "*$1*" 2>/dev/null
-      }
-      
-      # 显示路径中的目录
-      path() {
-        echo "$PATH" | tr ':' '\n' | nl
-      }
-      
-      # 快速返回父目录
-      up() {
-        local d=""
-        local limit="$1"
-        
-        if [ -z "$limit" ] || [ "$limit" -le 0 ]; then
-          limit=1
-        fi
-        
-        for ((i=1; i<=limit; i++)); do
-          d="../$d"
-        done
-        
-        if [ "$d" != "" ]; then
-          cd "$d" || return
-        fi
-      }
-      
+
       # 获取公网IP
       myip() {
         curl -s ifconfig.me
@@ -179,20 +106,6 @@
         elif [ -f /etc/bash_completion ]; then
           . /etc/bash_completion
         fi
-      fi
-      
-      # === 开发工具集成 ===
-      
-      # Node.js 版本管理
-      if [ -d "$HOME/.nvm" ]; then
-        export NVM_DIR="$HOME/.nvm"
-        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-        [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-      fi
-      
-      # Rust 环境
-      if [ -f "$HOME/.cargo/env" ]; then
-        source "$HOME/.cargo/env"
       fi
       
       # === 终端标题设置 ===
@@ -236,42 +149,5 @@
         source "$HOME/.bashrc"
       fi
     '';
-    
-    # 确保相关包可用
-    home.packages = with pkgs; [
-      bash
-      bash-completion
-      
-      # 现代化工具
-      bat
-      eza
-      fd
-      ripgrep
-      htop
-      
-      # 基础工具
-      coreutils
-      findutils
-      gnugrep        # 修正：使用 gnugrep 而不是 grep
-      gnused         # 修正：使用 gnused 而不是 sed
-      gawk
-      
-      # 压缩工具
-      unzip
-      p7zip
-      
-      # 网络工具
-      curl
-      wget
-      
-      # 开发工具
-      git
-      
-      # 系统信息
-      neofetch
-      
-      # Starship 提示符
-      starship
-    ];
   };
 }
