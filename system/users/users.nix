@@ -11,5 +11,14 @@
         # 用户特定的包可以在这里定义
       ];
     };
+    
+    users.users.zlritsu = {
+      isNormalUser = true;
+      description = "zlritsu";
+      extraGroups = [ "networkmanager" "wheel" "docker" ];
+      packages = with pkgs; [
+        # 用户特定的包可以在这里定义
+      ];
+    };
   };
 }

@@ -35,6 +35,20 @@
           inherit pkgs;
           modules = [
             ./hosts/laptop/home.nix
+            {
+              home.username = "hengvvang";
+              home.homeDirectory = "/home/hengvvang";
+            }
+          ];
+        };
+        zlritsu = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          modules = [
+            ./hosts/laptop/home.nix
+            {
+              home.username = "zlritsu";
+              home.homeDirectory = "/home/zlritsu";
+            }
           ];
         };
       };

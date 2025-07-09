@@ -11,8 +11,8 @@
   ];
   
   # 基础配置
-  home.username = "hengvvang";
-  home.homeDirectory = "/home/hengvvang";
+  home.username = lib.mkDefault "hengvvang";
+  home.homeDirectory = lib.mkDefault "/home/${config.home.username}";
   home.stateVersion = "25.05";
 
   myHome = {
