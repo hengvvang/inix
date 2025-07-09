@@ -31,17 +31,6 @@ alias gc = git commit
 alias gp = git push
 alias gl = git log --oneline
 
-# 现代工具别名
-alias cat = bat
-alias find = fd
-alias grep = rg
-
-# 快捷函数
-def mkcd [dir: string] {
-  mkdir $dir
-  cd $dir
-}
-
 # 配置设置
 $env.config = {
     show_banner: false

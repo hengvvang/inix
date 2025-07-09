@@ -294,16 +294,6 @@
         gb = "git branch";
         gco = "git checkout";
         
-        # 现代工具别名
-        cat = "bat";
-        find = "fd";
-        grep = "rg";
-        du = "dust";
-        df = "duf";
-        ps = "procs";
-        top = "btop";
-        ping = "gping";
-        
         # 便捷别名
         cp = "cp -i";
         mv = "mv -i";
