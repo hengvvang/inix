@@ -76,10 +76,6 @@
       # 禁用 wpa_supplicant（与 NetworkManager 冲突）
       networking.wireless.enable = false;
       
-      # 用户组权限 - 确保用户在 networkmanager 组中
-      users.users.hengvvang = lib.mkIf config.mySystem.users.enable {
-        extraGroups = [ "networkmanager" ];
-      };
     })
 
     # wpa_supplicant 配置（NetworkManager 的替代方案）

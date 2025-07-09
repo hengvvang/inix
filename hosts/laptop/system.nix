@@ -14,6 +14,24 @@
 
   nixpkgs.config.allowUnfree = true;
 
+  users.users.hengvvang = {
+    isNormalUser = true;
+    description = "hengvvang";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    packages = with pkgs; [
+      # 用户特定的包可以在这里定义
+    ];
+  };
+  
+  users.users.zlritsu = {
+    isNormalUser = true;
+    description = "zlritsu";
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    packages = with pkgs; [
+      # 用户特定的包可以在这里定义
+    ];
+  };
+
   # 系统模块配置 - 完全由主机决定启用哪些模块
   # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
@@ -23,10 +41,6 @@
       preset = "cosmic";               # 使用 COSMIC 桌面环境
     };
     
-    # 用户管理配置
-    users = {
-      enable = true;                   # 启用用户配置模块
-    };
 
     # 本地化配置
     locale = {
