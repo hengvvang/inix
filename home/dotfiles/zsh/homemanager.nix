@@ -45,14 +45,15 @@
         setopt AUTO_PUSHD
         setopt PUSHD_IGNORE_DUPS
         
+        # 让 Starship 接管提示符，禁用自定义 PROMPT
         autoload -U colors && colors
-        PROMPT='%{$fg[cyan]%}%n@%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}$ '
       '';
       
       oh-my-zsh = {
         enable = true;
         plugins = [ "git" "sudo" "z" "fzf" ];
-        theme = "robbyrussell";
+        # 禁用 oh-my-zsh 主题，让 Starship 接管
+        theme = "";
       };
     };
   };
