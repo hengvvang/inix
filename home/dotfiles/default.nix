@@ -8,6 +8,7 @@
   imports = [
     ./vim
     ./zsh
+    ./bash          # 新增 Bash Shell 配置
     ./fish
     ./nushell
     ./yazi

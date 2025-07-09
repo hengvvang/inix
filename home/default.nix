@@ -13,6 +13,7 @@
       enable = lib.mkDefault false;
       vim.enable = lib.mkDefault false;
       zsh.enable = lib.mkDefault false;
+      bash.enable = lib.mkDefault false;
       fish.enable = lib.mkDefault false;
       nushell.enable = lib.mkDefault false;
       yazi.enable = lib.mkDefault false;

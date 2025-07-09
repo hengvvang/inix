@@ -74,6 +74,7 @@
         dotfiles = {
           vim.enable = true;
           zsh.enable = true;
+          bash.enable = true;         # 启用 Bash 配置
           fish.enable = false;
           nushell.enable = true;
           yazi.enable = true;
