@@ -18,15 +18,15 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       nixosConfigurations = {
-        hengvvang = nixpkgs.lib.nixosSystem {
+        laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             ./hosts/laptop/system.nix
-	    {
-        environment.systemPackages = [ 
-          zen-browser.packages.${system}.twilight
-        ];
-	    }
+            {
+            environment.systemPackages = [ 
+              zen-browser.packages.${system}.twilight
+            ];
+            }
           ];
         };
       };

@@ -58,7 +58,7 @@
         # 基础网络配置
         basic = {
           enable = true;               # 🟢 启用基础网络配置
-          hostname = "hengvvang";      # 系统主机名
+          hostname = "laptop";      # 系统主机名
           networkManager = {
             enable = true;             # 启用 NetworkManager
             wifi = {
