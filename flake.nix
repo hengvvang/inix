@@ -36,8 +36,7 @@
           modules = [
             ./hosts/laptop/home.nix
             {
-              home.username = "hengvvang";
-              home.homeDirectory = "/home/hengvvang";
+              user = "hengvvang";  # 设置用户类型
             }
           ];
         };
@@ -46,49 +45,10 @@
           modules = [
             ./hosts/laptop/home.nix
             {
-              home.username = "zlritsu";
-              home.homeDirectory = "/home/zlritsu";
+              user = "zlritsu";    # 设置用户类型
             }
           ];
         };
       };
     };
 }
-
-
-
-
-# {
-#   description = "";
-# 
-#   inputs = {
-#     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-#     home-manager = {
-#       url = github:nix-community/home-manager;
-#       inputs.nixpkgs.follows = "nixpkgs";
-#     };
-#   };
-# 
-#   outputs = { nixpkgs, home-manager,  ... }:
-#   let
-#     system = "x86_64-linux";
-#   in
-#   {
-#     nixosConfigurations = {
-#       hengvvang = nixpkgs.lib.nixosSystem {
-#         inherit system;
-#         modules = [
-#           ./nixos/configuration.nix
-#           home-manager.nixosModules.home-manager
-#           {
-#             home-manager = {
-#               useUserPackages = true;
-#               useGlobalPkgs = true;
-#               users.hengvvang = ./home-manager/home.nix;
-#             };
-#           }
-#         ];
-#       };
-#     };
-#   };
-# }
