@@ -35,11 +35,11 @@
           }
           
           # 编辑模式
-          edit_mode: emacs
+          edit_mode: vi
           
           # 表格显示
           table: {
-            mode: auto
+            mode: markdown
             index_mode: always
             show_empty: true
             trim: {
@@ -100,9 +100,6 @@
               if (term size).columns >= 100 { table -e } else { table }
             }
           }
-          
-          # Shell 集成
-          shell_integration: true
           
           # 菜单样式
           menus: [
@@ -308,7 +305,6 @@
         ping = "gping";
         
         # 便捷别名
-        mkdir = "mkdir -p";
         cp = "cp -i";
         mv = "mv -i";
         rm = "rm -i";
