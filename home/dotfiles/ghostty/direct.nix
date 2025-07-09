@@ -24,17 +24,14 @@
       # 滚动设置
       scrollback-limit = 10000
       
-      # 透明度
-      window-opacity = 0.95
-      
-      # 快捷键
+      # 快捷键绑定
       keybind = ctrl+shift+c=copy_to_clipboard
       keybind = ctrl+shift+v=paste_from_clipboard
       keybind = ctrl+shift+t=new_tab
       keybind = ctrl+shift+w=close_surface
       keybind = ctrl+shift+n=new_window
-      keybind = ctrl+plus=increase_font_size
-      keybind = ctrl+minus=decrease_font_size
+      keybind = ctrl+equal=increase_font_size:1
+      keybind = ctrl+minus=decrease_font_size:1
       keybind = ctrl+zero=reset_font_size
     '';
   };
