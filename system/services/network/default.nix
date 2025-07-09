@@ -10,7 +10,7 @@
     # === 真正原子化：每个网络服务在自己的目录中定义所有选项 ===
     # 每个模块负责自己的选项定义和子功能实现
     
-    ./basic.nix     # 基础网络配置模块 (hostname, networkmanager)
+    ./manager       # 网络管理器模块 (NetworkManager/wpa_supplicant)
     ./ssh           # SSH 完整功能模块
     ./proxy         # 代理服务模块
   ];

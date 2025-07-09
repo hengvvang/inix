@@ -69,20 +69,11 @@
       network = {
         enable = true;                 # 启用网络服务
         
-        # 基础网络配置
-        basic = {
-          enable = true;               # 🟢 启用基础网络配置
-          hostname = "laptop";      # 系统主机名
-          networkManager = {
-            enable = true;             # 启用 NetworkManager
-            wifi = {
-              enable = true;           # 启用 WiFi 支持
-              powersave = true;        # 启用节能模式
-            };
-            ethernet = {
-              enable = true;           # 启用以太网支持
-            };
-          };
+        # 网络管理器配置
+        manager = {
+          enable = true;               # 🟢 启用网络管理器
+          hostname = "laptop";         # 系统主机名
+          preset = "networkmanager";   # 使用 wpa_supplicant
           tools = {
             enable = true;             # 启用网络诊断工具
             gui = true;                # 启用图形化管理工具
