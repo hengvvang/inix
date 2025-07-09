@@ -20,6 +20,7 @@
         "...." = "cd ../../..";
         
         # Git 简化命令
+        g = "git";
         gs = "git status";
         ga = "git add";
         gc = "git commit";
@@ -27,14 +28,14 @@
         gl = "git log --oneline --graph";
         gd = "git diff";
         
-        # 现代工具替代
-        cat = "bat --style=auto";
-        find = "fd";
-        grep = "rg";
-        du = "dust";
-        df = "duf";
-        ps = "procs";
-        top = "btop";
+        
+        # 系统信息
+        ports = "netstat -tulanp";
+        h = "history";
+        
+        # 快速编辑配置
+        fishrc = "$EDITOR ~/.config/fish/config.fish";
+        vimrc = "$EDITOR ~/.vimrc";
       };
       
       # Shell 初始化
@@ -46,28 +47,40 @@
         set -gx EDITOR nvim
         set -gx TERM xterm-256color
         
+        # Starship 配置
+        set -gx STARSHIP_CONFIG ~/.config/starship.toml
+        
         # 路径设置
         fish_add_path ~/.local/bin
         fish_add_path ~/.cargo/bin
+        
+        # 现代化工具设置
+        set -gx BAT_THEME "TwoDark"
+        set -gx FZF_DEFAULT_OPTS "--height 40% --border --preview 'bat --color=always {}'"
       '';
       
       # 实用函数
       functions = {
-        mkcd = {
-          description = "创建目录并进入";
+        
+        myip = {
+          description = "获取公网IP";
           body = ''
-            mkdir -p $argv
-            and cd $argv
+            curl -s ifconfig.me
           '';
         };
         
-        fzf_cd = {
-          description = "使用fzf选择目录";
+        server = {
+          description = "快速启动HTTP服务器";
           body = ''
-            cd (find . -type d | fzf)
+            set -l port 8000
+            if test (count $argv) -gt 0
+              set port $argv[1]
+            end
+            echo "启动HTTP服务器在端口 $port"
+            python3 -m http.server $port
           '';
         };
-      };
+        
       
       # 交互式Shell设置
       interactiveShellInit = ''
@@ -75,9 +88,26 @@
         bind \e\[1\;5C forward-word
         bind \e\[1\;5D backward-word
         
+        # Ctrl+F 使用fzf搜索文件
+        bind \cf 'fzf_cd'
+        
         # 历史设置
         set -g fish_history_timeout 60
+        
+        # 禁用fish自带的提示符（使用Starship）
+        functions --erase fish_prompt
+        functions --erase fish_right_prompt
+        
+        
+        # 设置终端标题
+        function fish_title
+          # 显示当前目录和命令
+          echo (prompt_pwd) (__fish_git_prompt " (%s)")
+        end
       '';
+      };
     };
   };
 }
+
+

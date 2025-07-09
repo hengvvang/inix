@@ -75,7 +75,7 @@
           vim.enable = true;
           zsh.enable = true;
           bash.enable = true;         # 启用 Bash 配置
-          fish.enable = false;
+          fish.enable = true;         # 启用 Fish 配置
           nushell.enable = true;
           yazi.enable = true;
           ghostty.enable = true;
