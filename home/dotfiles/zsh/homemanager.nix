@@ -194,8 +194,7 @@
           "npm"                 # NPM 补全
           "pip"                 # Python pip 补全
           "rust"                # Rust 补全
-          "cargo"               # Cargo 补全
-          
+
           # 系统工具
           "extract"             # 通用解压
           "safe-paste"          # 安全粘贴
