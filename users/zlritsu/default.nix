@@ -33,11 +33,11 @@
         dotfiles.enable = true;
         profiles.enable = true;
       };
-        toolkits = {
-          enable = true;
-          files.enable = true;
-          text.enable = true;
-        };
+      
+      myPkgs.toolkits = {
+        enable = true;
+        files.enable = true;
+        text.enable = true;
       };
       
       programs.home-manager.enable = true;
@@ -130,7 +130,6 @@
           };
         };
       };
-      
     })
   ];
 }
