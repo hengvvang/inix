@@ -36,15 +36,6 @@
       
       myPkgs = {
         enable = true;
-        apps = {
-          enable = true;
-          terminals.enable = true;
-          shells.enable = true;
-          develop.enable = true;
-          browsers.enable = true;
-          media.enable = true;
-          office.enable = true;
-        };
         toolkits = {
           enable = true;
           files.enable = true;
@@ -141,11 +132,6 @@
           };
         };
       };
-      
-      myPkgs.apps = {
-        communication.enable = true;
-        gaming.enable = true;  # 在 daily 主机启用游戏
-      };
     })
     
     # work 主机特定配置
@@ -191,12 +177,6 @@
             preset = "professional";  # 专业字体配置
           };
         };
-      };
-      
-      myPkgs.apps = {
-        communication.enable = true;  # 沟通工具
-        media.enable = false;         # 工作环境不需要媒体软件
-        gaming.enable = false;        # 工作环境不启用游戏
       };
     })
   ];

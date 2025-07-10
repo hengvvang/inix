@@ -95,12 +95,6 @@
             enable = true;             # 启用 SSH 客户端工具
           };
         };
-        
-        # VPN 服务配置 - 工作环境可能需要
-        vpn = {
-          enable = true;               # 启用 VPN 服务
-          openvpn.enable = true;       # 启用 OpenVPN
-        };
       };
     };
   };
