@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "tokyo") {
+  config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "tokyo") {
     home.packages = with pkgs; [
       # 主要字体 - 日式简约现代
       noto-fonts-cjk-sans  # Google 现代中日韩字体

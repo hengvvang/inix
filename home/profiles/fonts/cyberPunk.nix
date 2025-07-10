@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "cyberPunk") {
+  config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "cyberPunk") {
     home.packages = with pkgs; [
       # 主要编程字体 - 赛博朋克科技感
       fira-code            # 连字编程字体，科技感十足

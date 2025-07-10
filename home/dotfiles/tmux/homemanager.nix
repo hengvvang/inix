@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.tmux.enable && config.myHome.dotfiles.tmux.method == "homemanager") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && config.myHome.dotfiles.tmux.method == "homemanager") {
     programs.tmux = {
       enable = true;
       terminal = "tmux-256color";

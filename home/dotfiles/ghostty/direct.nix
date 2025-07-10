@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.method == "direct") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.method == "direct") {
     home.file.".config/ghostty/config".text = ''
       # Ghostty 基础配置
       

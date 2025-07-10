@@ -56,6 +56,7 @@
       
       myHome = {
         develop = {
+          enable = true;              # 显式启用开发环境
           # 按语言直接配置
           rust = {
             enable = true;
@@ -71,6 +72,7 @@
         };
         
         dotfiles = {
+          enable = true;              # 显式启用点文件配置
           vim.enable = true;
           zsh.enable = true;
           bash.enable = true;         # 启用 Bash 配置
@@ -87,6 +89,7 @@
         };
         
         profiles = {
+          enable = true;              # 显式启用配置档案
           fonts = {
             enable = true;
             preset = "bauhaus";
@@ -107,6 +110,7 @@
       
       myHome = {
         develop = {
+          enable = true;                # 显式启用开发环境
           # 按语言直接配置
           rust = {
             enable = true;
@@ -119,6 +123,7 @@
         };
         
         dotfiles = {
+          enable = true;                  # 显式启用点文件配置
           vim.enable = true;
           zsh.enable = false;             # 不使用 zsh
           fish.enable = true;             # 使用 fish
@@ -134,6 +139,7 @@
         };
         
         profiles = {
+          enable = true;                  # 显式启用配置档案
           fonts = {
             enable = true;
             preset = "nordic";            # 使用不同的字体主题

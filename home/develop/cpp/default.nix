@@ -6,7 +6,7 @@
     embedded.enable = lib.mkEnableOption "C/C++ 嵌入式开发环境";
   };
 
-  config = lib.mkIf config.myHome.develop.cpp.enable {
+  config = lib.mkIf (config.myHome.develop.enable && config.myHome.develop.cpp.enable) {
     # C/C++ 核心开发环境
     home.packages = with pkgs; [
       # 编译器

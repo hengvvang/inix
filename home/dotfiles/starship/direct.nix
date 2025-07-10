@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.starship.enable && config.myHome.dotfiles.starship.method == "direct") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.enable && config.myHome.dotfiles.starship.method == "direct") {
     # 方式2: 直接文件写入
     home.file.".config/starship.toml".text = ''
       # Starship 配置 - 直接文件写入方式

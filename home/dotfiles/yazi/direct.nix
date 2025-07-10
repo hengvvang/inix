@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "direct") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "direct") {
     # 方式2: 直接文件写入
     home.file.".config/yazi/yazi.toml".text = ''
       # Yazi 文件管理器配置 - 直接文件写入方式

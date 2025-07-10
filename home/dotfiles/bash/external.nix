@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.method == "external") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.method == "external") {
     # 外部文件引用方式配置 Bash
     
     home.file.".bashrc".source = ./configs/bashrc;

@@ -5,7 +5,7 @@
     enable = lib.mkEnableOption "Python 开发环境";
   };
 
-  config = lib.mkIf config.myHome.develop.python.enable {
+  config = lib.mkIf (config.myHome.develop.enable && config.myHome.develop.python.enable) {
     # Python 开发环境配置
     home.packages = with pkgs; [
       # Python 运行时

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.method == "homemanager") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.method == "homemanager") {
     # 方式1: Home Manager 程序模块
     # 注意：Ghostty 可能没有官方的 Home Manager 模块，所以使用文件配置
     home.packages = with pkgs; [ ghostty ];

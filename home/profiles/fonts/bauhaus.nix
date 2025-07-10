@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "bauhaus") {
+  config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "bauhaus") {
     home.packages = with pkgs; [
       # 主要字体 - 包豪斯几何风格
       source-sans-pro      # Adobe 现代几何设计

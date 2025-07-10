@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.tmux.enable && 
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && 
                     config.myHome.dotfiles.tmux.method == "direct") {
     home.packages = with pkgs; [ tmux ];
     

@@ -6,7 +6,7 @@
     embedded.enable = lib.mkEnableOption "Rust 嵌入式开发环境";
   };
 
-  config = lib.mkIf config.myHome.develop.rust.enable {
+  config = lib.mkIf (config.myHome.develop.enable && config.myHome.develop.rust.enable) {
     # Rust 开发环境基础配置
     home.packages = with pkgs; [
       # Rust 核心工具链

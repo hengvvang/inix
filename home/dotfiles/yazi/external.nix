@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "external") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "external") {
     # 方式3: 外部文件引用
     home.file.".config/yazi/yazi.toml".source = ./configs/yazi.toml;
     home.file.".config/yazi/keymap.toml".source = ./configs/keymap.toml;
