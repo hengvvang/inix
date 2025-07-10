@@ -78,7 +78,7 @@
         manager = {
           enable = true;               # 🟢 启用网络管理器
           hostname = "laptop";         # 系统主机名
-          preset = "networkmanager";   # 使用 wpa_supplicant
+          preset = "networkmanager";
           tools = {
             enable = true;             # 启用网络诊断工具
             gui = true;                # 启用图形化管理工具
@@ -169,7 +169,7 @@
         };
         audio = {
           enable = true;               # 启用音频播放器
-          spotify = false;             # Spotify（需要时启用）
+          spotify = true;              # Spotify（需要时启用）
           audacious = false;           # Audacious
         };
         codecs = {
