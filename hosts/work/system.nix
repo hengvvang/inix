@@ -3,7 +3,7 @@
 {
   imports =
     [ 
-      ../laptop/hardware.nix  # 使用 laptop 的硬件配置
+      ./hardware.nix  # 使用 laptop 的硬件配置
       ../../system
       ../../pkgs/system.nix
     ];
