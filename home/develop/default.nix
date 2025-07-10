@@ -5,9 +5,12 @@
     enable = lib.mkEnableOption "开发环境支持";
   };
 
-  # 开发环境核心模块 - 仅做导入
+  # 开发环境核心模块 - 按语言直接导入
   imports = [
-    ./languages
-    ./embedded
+    ./rust       # Rust 开发环境
+    ./python     # Python 开发环境  
+    ./javascript # JavaScript 开发环境
+    ./typescript # TypeScript 开发环境
+    ./cpp        # C/C++ 开发环境
   ];
 }

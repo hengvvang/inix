@@ -29,18 +29,17 @@
     # 开发环境配置
     develop = {
       enable = lib.mkDefault false;
-      languages = {
+      # 按语言直接配置
+      rust = {
         enable = lib.mkDefault false;
-        rust.enable = lib.mkDefault false;
-        python.enable = lib.mkDefault false;
-        javascript.enable = lib.mkDefault false;
-        typescript.enable = lib.mkDefault false;
-        cpp.enable = lib.mkDefault false;
-        c.enable = lib.mkDefault false;
+        embedded.enable = lib.mkDefault false;
       };
-      embedded = {
+      python.enable = lib.mkDefault false;
+      javascript.enable = lib.mkDefault false;
+      typescript.enable = lib.mkDefault false;
+      cpp = {
         enable = lib.mkDefault false;
-        toolchain.enable = lib.mkDefault false;
+        embedded.enable = lib.mkDefault false;
       };
     };
     

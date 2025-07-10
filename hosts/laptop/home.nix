@@ -56,18 +56,17 @@
       
       myHome = {
         develop = {
-          languages = {
+          # 按语言直接配置
+          rust = {
             enable = true;
-            rust.enable = true;
-            python.enable = true;
-            javascript.enable = true;
-            typescript.enable = true;
-            cpp.enable = true;
-            c.enable = true;
+            embedded.enable = true;   # 启用 Rust 嵌入式开发
           };
-          embedded = {
+          python.enable = true;
+          javascript.enable = true;
+          typescript.enable = true;
+          cpp = {
             enable = true;
-            toolchain.enable = true;
+            embedded.enable = true;   # 启用 C/C++ 嵌入式开发
           };
         };
         
@@ -108,19 +107,15 @@
       
       myHome = {
         develop = {
-          languages = {
+          # 按语言直接配置
+          rust = {
             enable = true;
-            rust.enable = true;
-            python.enable = true;
-            javascript.enable = true;
-            typescript.enable = false;    # 不需要 TypeScript
-            cpp.enable = false;           # 不需要 C++
-            c.enable = false;             # 不需要 C
+            embedded.enable = false;    # 不需要嵌入式开发
           };
-          embedded = {
-            enable = false;               # 不需要嵌入式开发
-            toolchain.enable = false;
-          };
+          python.enable = true;
+          javascript.enable = true;
+          typescript.enable = false;    # 不需要 TypeScript
+          cpp.enable = false;           # 不需要 C/C++
         };
         
         dotfiles = {
