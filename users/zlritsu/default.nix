@@ -33,15 +33,6 @@
         dotfiles.enable = true;
         profiles.enable = true;
       };
-      
-      myPkgs = {
-        enable = true;
-        apps = {
-          enable = true;
-          terminals.enable = true;
-          shells.enable = true;
-          browsers.enable = true;
-        };
         toolkits = {
           enable = true;
           files.enable = true;
@@ -75,7 +66,7 @@
           enable = true;
           fonts = {
             enable = true;
-            preset = "minimal";
+            preset = "nordic";
           };
         };
       };
@@ -104,14 +95,9 @@
           enable = true;
           fonts = {
             enable = true;
-            preset = "minimal";
+            preset = "forest";
           };
         };
-      };
-      
-      myPkgs.apps = {
-        media.enable = true;         # 日常主机启用媒体软件
-        gaming.enable = true;        # 日常主机启用游戏
       };
     })
     
@@ -140,16 +126,11 @@
           enable = true;
           fonts = {
             enable = true;
-            preset = "minimal";
+            preset = "cyberPunk";
           };
         };
       };
       
-      myPkgs.apps = {
-        office.enable = true;        # 工作主机启用办公软件
-        media.enable = false;        # 工作环境不需要媒体软件
-        gaming.enable = false;       # 工作环境不启用游戏
-      };
     })
   ];
 }

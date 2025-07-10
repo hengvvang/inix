@@ -141,16 +141,10 @@
           enable = true;
           # 工作环境的开发配置
           rust.enable = true;
-          python = {
-            enable = true;
-            datascience.enable = true; # 启用数据科学库
-          };
+          python.enable = true;
           javascript.enable = true;
           typescript.enable = true;
-          cpp = {
-            enable = true;
-            enterprise.enable = true;  # 启用企业级 C++ 开发工具
-          };
+          cpp.enable = true;
         };
         
         dotfiles = {
@@ -174,7 +168,7 @@
           enable = true;
           fonts = {
             enable = true;
-            preset = "professional";  # 专业字体配置
+            preset = "tokyo";  # 专业字体配置
           };
         };
       };
