@@ -20,7 +20,7 @@
   users.users.hengvvang = {
     isNormalUser = true;
     description = "hengvvang";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak"];
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
     ];
@@ -30,7 +30,7 @@
   users.users.zlritsu = {
     isNormalUser = true;
     description = "zlritsu";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak"];
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
     ];

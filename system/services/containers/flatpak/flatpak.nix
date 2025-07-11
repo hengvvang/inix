@@ -55,8 +55,5 @@ in
         RemainAfterExit = true;
       };
     };
-
-    # 用户权限配置
-    users.users.hengvvang.extraGroups = [ "flatpak" ];
   };
 }
