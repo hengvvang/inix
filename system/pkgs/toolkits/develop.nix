@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myPkgs.toolkits.development.enable {
-    home.packages = with pkgs; [
+  config = lib.mkIf config.mySystem.pkgs.toolkits.develop.enable {
+    environment.systemPackages = with pkgs; [
       # 性能测试
       hyperfine       # 基准测试工具
       

@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myPkgs.toolkits.text.enable {
-    home.packages = with pkgs; [
+  config = lib.mkIf config.mySystem.pkgs.toolkits.text.enable {
+    environment.systemPackages = with pkgs; [
       # 文本搜索和处理
       ripgrep         # 现代 grep (rg - 更快搜索)
       choose          # 更好的 cut

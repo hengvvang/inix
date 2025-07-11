@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myPkgs.toolkits.files.enable {
-    home.packages = with pkgs; [
+  config = lib.mkIf config.mySystem.pkgs.toolkits.files.enable {
+    environment.systemPackages = with pkgs; [
       # 压缩工具
       unzip
       zip

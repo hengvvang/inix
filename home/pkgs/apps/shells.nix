@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myPkgs.apps.shells.enable {
-    environment.systemPackages = with pkgs; [
+  config = lib.mkIf config.myHome.pkgs.apps.shells.enable {
+    home.packages = with pkgs; [
       fish            # Fish shell
       nushell         # Nushell
     ];

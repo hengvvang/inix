@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myPkgs.apps = {
-    enable = lib.mkEnableOption "系统应用支持";
+  options.myHome.pkgs.apps = {
+    enable = lib.mkEnableOption "Home Manager 应用支持";
     
     # Shell 工具
     shells = {

@@ -28,6 +28,14 @@
       gaming.enable = true;
       network.enable = true;
     };
+    toolkits = {
+      enable = true;
+      files.enable = true;
+      text.enable = true;
+      network.enable = true;
+      monitor.enable = true;
+      develop.enable = true;
+    };
   };
 
   # 启用 fish shell 程序

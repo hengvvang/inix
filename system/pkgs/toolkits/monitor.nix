@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myPkgs.toolkits.monitor.enable {
-    home.packages = with pkgs; [
+  config = lib.mkIf config.mySystem.pkgs.toolkits.monitor.enable {
+    environment.systemPackages = with pkgs; [
       # 进程监控
       htop            # 进程监控
       btop            # 现代系统监控

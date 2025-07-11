@@ -28,6 +28,14 @@
       gaming.enable = true;
       network.enable = true;
     };
+    toolkits = {
+      enable = true;
+      files.enable = true;
+      text.enable = true;
+      network.enable = true;
+      monitor.enable = true;
+      develop.enable = true;
+    };
   };
 
   # 启用 fish shell 程序
@@ -290,25 +298,6 @@
       };
     };
 
-  };
-
-  # 包管理配置
-  myPkgs = {
-    enable = true;                       # 启用包管理模块
-    
-    # 系统应用管理配置
-    apps = {
-      enable = true;                     # 启用系统应用模块
-      shells.enable = true;              # Shell 工具
-      terminals.enable = true;           # 终端工具
-      develop.enable = true;         # 开发工具
-      browsers.enable = true;            # 浏览器
-      communication.enable = true;       # 通讯工具
-      media.enable = true;               # 媒体工具
-      office.enable = true;              # 办公工具
-      gaming.enable = true;              # 游戏娱乐
-      network.enable = true;             # 网络工具
-    };
   };
 
 

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myPkgs.toolkits = {
+  options.mySystem.pkgs.toolkits = {
     enable = lib.mkEnableOption "命令行工具包支持";
     
     # 文件管理工具

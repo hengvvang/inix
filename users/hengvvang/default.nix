@@ -41,6 +41,18 @@
             monitor.enable = true;
             develop.enable = true;
           };
+          apps = {
+            enable = true;
+            shells.enable = true;
+            terminals.enable = true;
+            develop.enable = true;
+            browsers.enable = true;
+            communication.enable = true;
+            media.enable = true;
+            office.enable = true;
+            gaming.enable = true;
+            network.enable = true;
+          };
         };
       };
       

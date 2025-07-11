@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf config.myPkgs.apps.communication.enable {
-    environment.systemPackages = with pkgs; [
+  config = lib.mkIf config.myHome.pkgs.apps.communication.enable {
+    home.packages = with pkgs; [
       telegram-desktop # Telegram
       discord         # Discord
       qq              # QQ

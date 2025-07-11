@@ -7,5 +7,6 @@
 
   imports = [
     ./apps
+    ./toolkits
   ];
 }
