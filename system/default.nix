@@ -6,6 +6,7 @@
     ./desktop
     ./locale
     ./services
+    ./pkgs
   ];
 
 }

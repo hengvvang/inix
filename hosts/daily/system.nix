@@ -5,7 +5,6 @@
     [ 
       ./hardware.nix  # 使用 laptop 的硬件配置
       ../../system
-      ../../pkgs/system.nix
     ];
 
   # Bootloader
@@ -13,6 +12,23 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs.config.allowUnfree = true;
+
+  # 系统级应用配置
+  mySystem.pkgs = {
+    enable = true;
+    apps = {
+      enable = true;
+      shells.enable = true;
+      terminals.enable = true;
+      develop.enable = true;
+      browsers.enable = true;
+      communication.enable = true;
+      media.enable = true;
+      office.enable = true;
+      gaming.enable = true;
+      network.enable = true;
+    };
+  };
 
   # 启用 fish shell 程序
   programs.fish.enable = true;

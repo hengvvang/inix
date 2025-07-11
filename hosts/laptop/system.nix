@@ -5,7 +5,6 @@
     [ 
       ./hardware.nix
       ../../system
-      ../../pkgs/system.nix
     ];
 
   # Bootloader
@@ -13,6 +12,23 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs.config.allowUnfree = true;
+
+  # 系统级应用配置
+  mySystem.pkgs = {
+    enable = true;
+    apps = {
+      enable = true;
+      shells.enable = true;
+      terminals.enable = true;
+      develop.enable = true;
+      browsers.enable = true;
+      communication.enable = true;
+      media.enable = true;
+      office.enable = true;
+      gaming.enable = true;
+      network.enable = true;
+    };
+  };
 
   # 启用 fish shell 程序
   programs.fish.enable = true;
@@ -258,7 +274,7 @@
           power = {
             enable = true;             # 启用电源管理
             finegrained = false;       # 细粒度电源管理（可选）
-            suspend = true;            # 挂起/唤醒支持
+            suspend = true;            # 挂起/唔醒支持
           };
           graphics = {
             vulkan = true;             # Vulkan API 支持
@@ -275,14 +291,6 @@
     };
 
   };
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  #  };
 
   # 包管理配置
   myPkgs = {
@@ -302,8 +310,6 @@
       network.enable = true;             # 网络工具
     };
   };
-
-  # system.copySystemConfiguration = true;
 
 
   # nix.settings.substituters = lib.mkForce [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"

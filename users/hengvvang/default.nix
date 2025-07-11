@@ -4,7 +4,6 @@
   imports = [
     # 使用新的模块化配置
     ../../home
-    ../../pkgs/home.nix
   ];
   
   # 主机选项
@@ -32,17 +31,16 @@
         develop.enable = true;
         dotfiles.enable = true;
         profiles.enable = true;
-      };
-      
-      myPkgs = {
-        enable = true;
-        toolkits = {
+        pkgs = {
           enable = true;
-          files.enable = true;
-          text.enable = true;
-          network.enable = true;
-          monitor.enable = true;
-          develop.enable = true;
+          toolkits = {
+            enable = true;
+            files.enable = true;
+            text.enable = true;
+            network.enable = true;
+            monitor.enable = true;
+            develop.enable = true;
+          };
         };
       };
       

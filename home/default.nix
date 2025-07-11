@@ -5,5 +5,6 @@
     ./develop
     ./profiles
     ./dotfiles
+    ./pkgs
   ];
 }
