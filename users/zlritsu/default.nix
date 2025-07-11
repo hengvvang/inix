@@ -4,7 +4,6 @@
   imports = [
     # 使用新的模块化配置
     ../../home
-    ../../pkgs/home.nix
   ];
   
   # 主机选项
@@ -32,12 +31,29 @@
         develop.enable = true;
         dotfiles.enable = true;
         profiles.enable = true;
-      };
-      
-      myPkgs.toolkits = {
-        enable = true;
-        files.enable = true;
-        text.enable = true;
+        pkgs = {
+          enable = true;
+          toolkits = {
+            enable = true;
+            files.enable = true;
+            text.enable = true;
+            network.enable = false;    # zlritsu 轻量级配置
+            monitor.enable = false;    # zlritsu 轻量级配置
+            develop.enable = false;    # zlritsu 轻量级配置
+          };
+          apps = {
+            enable = true;
+            shells.enable = true;
+            terminals.enable = true;
+            develop.enable = false;    # zlritsu 轻量级配置
+            browsers.enable = true;
+            communication.enable = false;  # zlritsu 轻量级配置
+            media.enable = true;
+            office.enable = false;     # zlritsu 轻量级配置
+            gaming.enable = false;     # zlritsu 轻量级配置
+            network.enable = false;    # zlritsu 轻量级配置
+          };
+        };
       };
       
       programs.home-manager.enable = true;
