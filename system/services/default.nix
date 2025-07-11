@@ -6,7 +6,7 @@
   };
 
   imports = [
-    ./docker
+    ./containers
     ./network
     ./media
     ./drivers

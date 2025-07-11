@@ -64,11 +64,31 @@
     services = {
       enable = true;                   # 启用服务模块
       
-      # Docker 容器服务配置
-      docker = {
-        enable = true;                 # 🟢 启用 Docker 服务
-        compose = true;                # 启用 Docker Compose
-        monitoring = false;            # 可选：容器监控工具 (ctop)
+      # 容器服务配置
+      containers = {
+        enable = true;                 # 启用容器服务模块
+        
+        # Docker 容器服务配置
+        docker = {
+          enable = true;               # 启用 Docker 服务
+          compose = true;              # 启用 Docker Compose
+          monitoring = true;           # 启用容器监控工具
+          rootless = false;            # 使用标准 Docker 模式
+          nvidia = false;              # 暂不启用 NVIDIA GPU 支持
+          registry = {
+            enable = false;            # 暂不启用本地 Registry
+            port = 5000;              # Registry 端口
+          };
+        };
+        
+        # Flatpak 容器服务配置
+        flatpak = {
+          enable = true;               # 启用 Flatpak 服务
+          flathub = true;              # 启用 Flathub 仓库
+          fonts = true;                # 启用字体支持
+          themes = true;               # 启用主题支持
+          xdgPortal = true;            # 启用 XDG 门户支持
+        };
       };
       
       network = {

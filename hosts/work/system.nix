@@ -20,7 +20,7 @@
   users.users.hengvvang = {
     isNormalUser = true;
     description = "hengvvang";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" ];  # 工作环境移除 docker 组
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
     ];
@@ -30,7 +30,7 @@
   users.users.zlritsu = {
     isNormalUser = true;
     description = "zlritsu";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" ];  # 工作环境移除 docker 组
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
     ];
@@ -62,11 +62,31 @@
     services = {
       enable = true;                   # 启用服务模块
       
-      # Docker 容器服务配置
-      docker = {
-        enable = true;                 # 启用 Docker 服务
-        compose = true;                # 启用 Docker Compose
-        monitoring = true;             # 启用容器监控工具
+      # 容器服务配置 - 工作环境禁用
+      containers = {
+        enable = false;                # 🔴 禁用容器服务模块 (工作环境)
+        
+        # Docker 容器服务配置 - 禁用
+        docker = {
+          enable = false;              # 🔴 禁用 Docker 服务
+          compose = false;             # 禁用 Docker Compose
+          monitoring = false;          # 禁用容器监控工具
+          rootless = false;            # 不使用 Rootless 模式
+          nvidia = false;              # 不启用 NVIDIA GPU 支持
+          registry = {
+            enable = false;            # 不启用本地 Registry
+            port = 5000;              # Registry 端口
+          };
+        };
+        
+        # Flatpak 容器服务配置 - 禁用
+        flatpak = {
+          enable = false;              # 🔴 禁用 Flatpak 服务
+          flathub = false;             # 禁用 Flathub 仓库
+          fonts = false;               # 禁用字体支持
+          themes = false;              # 禁用主题支持
+          xdgPortal = false;           # 禁用 XDG 门户支持
+        };
       };
       
       network = {
