@@ -11,19 +11,28 @@
       url = "github:hengvvang/zen-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    stylix = {
+      url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = {self, nixpkgs, home-manager, zen-browser, ... }:
+  outputs = {self, nixpkgs, home-manager, zen-browser, stylix, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
       
-      # 定义通用模块列表，可被多个主机配置共享
-      commonModules = [
+      # 定义通用系统模块列表，可被多个主机配置共享
+      commonSystemModules = [
         {
           environment.systemPackages = [ 
             zen-browser.packages.${system}.twilight
           ];
         }
+      ];
+      
+      # 定义通用的 Home Manager 模块列表
+      commonHomeModules = [
+        stylix.homeModules.stylix
       ];
     in {
       nixosConfigurations = {
@@ -32,12 +41,7 @@
           inherit system;
           modules = [
             ./hosts/laptop/system.nix
-            {
-            environment.systemPackages = [ 
-              zen-browser.packages.${system}.twilight
-            ];
-            }
-          ];
+          ] ++ commonSystemModules;
         };
         
         # 新增日常使用主机配置
@@ -45,7 +49,7 @@
           inherit system;
           modules = [
             ./hosts/daily/system.nix
-          ] ++ commonModules;
+          ] ++ commonSystemModules;
         };
         
         # 新增工作主机配置
@@ -53,7 +57,7 @@
           inherit system;
           modules = [
             ./hosts/work/system.nix
-          ] ++ commonModules;
+          ] ++ commonSystemModules;
         };
       };
       
@@ -66,7 +70,7 @@
             {
               host = "laptop";
             }
-          ];
+          ] ++ commonHomeModules;
         };
         
         "zlritsu@laptop" = home-manager.lib.homeManagerConfiguration {
@@ -76,7 +80,7 @@
             {
               host = "laptop";
             }
-          ];
+          ] ++ commonHomeModules;
         };
         
         # daily主机上的用户配置
@@ -87,7 +91,7 @@
             {
               host = "daily";
             }
-          ];
+          ] ++ commonHomeModules;
         };
         
         "zlritsu@daily" = home-manager.lib.homeManagerConfiguration {
@@ -97,7 +101,7 @@
             {
               host = "daily";
             }
-          ];
+          ] ++ commonHomeModules;
         };
         
         # work主机上的用户配置
@@ -108,7 +112,7 @@
             {
               host = "work";
             }
-          ];
+          ] ++ commonHomeModules;
         };
         
         "zlritsu@work" = home-manager.lib.homeManagerConfiguration {
@@ -118,7 +122,7 @@
             {
               host = "work";
             }
-          ];
+          ] ++ commonHomeModules;
         };
       };
     };
