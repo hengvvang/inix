@@ -34,8 +34,11 @@
           enable = true;
           stylix = {
             enable = true;
-            # 使用默认壁纸路径 (home/profiles/stylix/wallpapers/sea.jpg)
             polarity = "dark";
+            wallpapers = {
+              enable = true;
+              preset = "forest";  # zlritsu 使用不同的预设壁纸
+            };
             fonts = {
               enable = true;
               # 轻量级字体配置

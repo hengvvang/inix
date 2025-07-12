@@ -34,8 +34,11 @@
           enable = true;
           stylix = {
             enable = true;
-            # image = ./assets/wallpapers/sea.jpg;  # 可以自定义壁纸路径，但先使用默认的
             polarity = "dark";
+            wallpapers = {
+              enable = true;
+              preset = "sea";  # 或者使用 custom = ./assets/wallpapers/my-wallpaper.jpg;
+            };
             fonts = {
               enable = true;
               # 使用默认字体配置，也可以自定义
