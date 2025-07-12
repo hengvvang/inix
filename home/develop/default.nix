@@ -12,5 +12,6 @@
     ./javascript # JavaScript 开发环境
     ./typescript # TypeScript 开发环境
     ./cpp        # C/C++ 开发环境
+    ./devenv     # devenv 开发环境管理
   ];
 }

@@ -100,6 +100,12 @@
       myHome = {
         develop = {
           enable = true;
+          # 启用 devenv 项目环境管理
+          devenv = {
+            enable = true;
+            shell = "fish";     # 使用 fish shell
+            templates = true;   # 安装项目模板
+          };
           # 按语言直接配置
           rust = {
             enable = true;
