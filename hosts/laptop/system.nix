@@ -12,7 +12,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   nixpkgs.config.allowUnfree = true;
-
+  
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "hengvvang" "zlritsu" ];
+  };
   # 启用 fish shell 程序
   programs.fish.enable = true;
 
@@ -311,6 +315,5 @@
 
   system.stateVersion = "25.05";
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 }
 
