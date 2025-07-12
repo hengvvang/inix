@@ -33,7 +33,7 @@
         profiles = {
           enable = true;
           stylix = {
-            enable = true;
+            enable = false;
             polarity = "dark";
             wallpapers = {
               enable = true;
