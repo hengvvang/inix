@@ -72,26 +72,28 @@
           };
         };
         pkgs = {
-          enable = true;
+          enable = true;                # 启用用户包管理
+          # 工具包配置 - 从系统配置迁移，zlritsu 使用轻量级配置
           toolkits = {
-            enable = true;
-            files.enable = true;
-            text.enable = true;
-            network.enable = false;    # zlritsu 轻量级配置
-            monitor.enable = false;    # zlritsu 轻量级配置
-            develop.enable = false;    # zlritsu 轻量级配置
+            enable = true;              # 启用工具包模块
+            files.enable = true;        # 启用文件管理工具
+            text.enable = true;         # 启用文本处理工具
+            network.enable = false;     # zlritsu 轻量级配置 - 禁用网络工具
+            monitor.enable = false;     # zlritsu 轻量级配置 - 禁用监控工具
+            develop.enable = false;     # zlritsu 轻量级配置 - 禁用开发工具
           };
+          # 应用程序配置 - 从系统配置迁移，zlritsu 使用轻量级配置
           apps = {
-            enable = true;
-            shells.enable = true;
-            terminals.enable = true;
-            develop.enable = false;    # zlritsu 轻量级配置
-            browsers.enable = true;
-            communication.enable = false;  # zlritsu 轻量级配置
-            media.enable = true;
-            office.enable = false;     # zlritsu 轻量级配置
-            gaming.enable = false;     # zlritsu 轻量级配置
-            network.enable = false;    # zlritsu 轻量级配置
+            enable = true;              # 启用应用程序模块
+            shells.enable = true;       # 启用 shell 程序
+            terminals.enable = true;    # 启用终端应用
+            develop.enable = false;     # zlritsu 轻量级配置 - 禁用开发工具
+            browsers.enable = true;     # 启用浏览器
+            communication.enable = false;  # zlritsu 轻量级配置 - 禁用通讯软件
+            media.enable = true;        # 启用媒体应用
+            office.enable = false;      # zlritsu 轻量级配置 - 禁用办公软件
+            gaming.enable = false;      # zlritsu 轻量级配置 - 禁用游戏
+            network.enable = false;     # zlritsu 轻量级配置 - 禁用网络工具
           };
         };
       };

@@ -43,32 +43,32 @@
   # 系统模块配置 - 完全由主机决定启用哪些模块
   # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
-    # 系统级应用配置
+    # 系统级应用配置 - 仅启用开发工具，其他软件包通过用户配置管理
     pkgs = {
       enable = true;                   # 启用系统包管理模块
       
-      # 应用程序配置
+      # 应用程序配置 - 仅启用开发工具
       apps = {
         enable = true;                 # 启用应用程序模块
-        shells.enable = true;          # 启用 shell 程序 (zsh, fish, etc.)
-        terminals.enable = true;       # 启用终端应用 (alacritty, kitty, etc.)
-        develop.enable = true;         # 启用开发工具 (编辑器, IDE, etc.)
-        browsers.enable = true;        # 启用浏览器 (firefox, chromium, etc.)
-        communication.enable = true;   # 启用通讯软件 (telegram, discord, etc.)
-        media.enable = true;           # 启用媒体应用 (mpv, vlc, spotify, etc.)
-        office.enable = true;          # 启用办公软件 (libreoffice, etc.)
-        gaming.enable = true;          # 启用游戏相关 (steam, lutris, etc.)
-        network.enable = true;         # 启用网络工具 (wireshark, nmap, etc.)
+        shells.enable = false;         # 禁用 - 在用户配置中启用
+        terminals.enable = false;      # 禁用 - 在用户配置中启用
+        develop.enable = true;         # 保持启用开发工具（系统级）
+        browsers.enable = false;       # 禁用 - 在用户配置中启用
+        communication.enable = false;  # 禁用 - 在用户配置中启用
+        media.enable = false;          # 禁用 - 在用户配置中启用
+        office.enable = false;         # 禁用 - 在用户配置中启用
+        gaming.enable = false;         # 禁用 - 在用户配置中启用
+        network.enable = false;        # 禁用 - 在用户配置中启用
       };
       
-      # 工具包配置
+      # 工具包配置 - 禁用，转移到用户配置
       toolkits = {
-        enable = true;                 # 启用工具包模块
-        files.enable = true;           # 启用文件管理工具 (ranger, nnn, etc.)
-        text.enable = true;            # 启用文本处理工具 (grep, sed, awk, etc.)
-        network.enable = true;         # 启用网络工具包 (curl, wget, etc.)
-        monitor.enable = true;         # 启用系统监控工具 (htop, btop, etc.)
-        develop.enable = true;         # 启用开发工具包 (git, make, etc.)
+        enable = false;                # 禁用 - 在用户配置中启用
+        files.enable = false;          # 禁用 - 在用户配置中启用
+        text.enable = false;           # 禁用 - 在用户配置中启用
+        network.enable = false;        # 禁用 - 在用户配置中启用
+        monitor.enable = false;        # 禁用 - 在用户配置中启用
+        develop.enable = false;        # 禁用 - 在用户配置中启用
       };
     };
     
