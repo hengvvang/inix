@@ -37,7 +37,7 @@
             polarity = "dark";
             wallpapers = {
               enable = true;
-              preset = "sea";  # 或者使用 custom = ./assets/wallpapers/my-wallpaper.jpg;
+              preset = "sea";
             };
             fonts = {
               enable = true;

@@ -1,39 +1,9 @@
 { config, pkgs, lib, ... }:
 
 {
-  options.myHome.profiles.stylix.targets = {
-    enable = lib.mkEnableOption "Stylix 目标应用配置";
-    
-    # 终端应用
-    terminals = {
-      alacritty.enable = lib.mkEnableOption "Alacritty 主题";
-      kitty.enable = lib.mkEnableOption "Kitty 主题";
-    };
-    
-    # 编辑器
-    editors = {
-      vim.enable = lib.mkEnableOption "Vim 主题";
-      neovim.enable = lib.mkEnableOption "Neovim 主题";
-    };
-    
-    # 工具
-    tools = {
-      tmux.enable = lib.mkEnableOption "Tmux 主题";
-      bat.enable = lib.mkEnableOption "Bat 主题";
-      fzf.enable = lib.mkEnableOption "Fzf 主题";
-    };
-    
-    # 桌面环境
-    desktop = {
-      gtk.enable = lib.mkEnableOption "GTK 主题";
-    };
-    
-    # 浏览器
-    browsers = {
-      firefox.enable = lib.mkEnableOption "Firefox 主题";
-    };
-  };
-
+  # 此模块仅处理目标应用的配置实现
+  # options 已在 default.nix 中定义
+  
   config = lib.mkIf (config.myHome.profiles.stylix.enable && config.myHome.profiles.stylix.targets.enable) {
     stylix.targets = {
       # 终端应用
