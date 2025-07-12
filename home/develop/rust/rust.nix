@@ -6,11 +6,9 @@
     (lib.mkIf (config.myHome.develop.enable && config.myHome.develop.rust.enable) {
       home.packages = with pkgs; [
         # Rust 核心工具链
-        rustc                # Rust 编译器
-        cargo                # Rust 包管理器和构建工具
-        rust-analyzer        # Rust 语言服务器
-        rustfmt              # 代码格式化工具
-        clippy               # Rust linter
+        rustup               # Rust 版本管理工具（包含 cargo、rustc、rust-analyzer 等）
+        # 注意：rustfmt、clippy、rust-analyzer 等工具通过 rustup 组件安装
+        # 可以使用：rustup component add rustfmt clippy rust-analyzer
       ];
     })
     
@@ -28,6 +26,7 @@
         openocd              # 片上调试器
         minicom              # 串口终端
         picocom              # 轻量串口工具
+        probe-rs-tools
         
         # 嵌入式开发工具
         binutils            # 二进制工具
