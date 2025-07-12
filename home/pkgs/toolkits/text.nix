@@ -21,8 +21,7 @@
       # 文档工具
       tealdeer        # 快速 man 页面 (tldr)
       
-      # 开发环境
-      direnv          # 目录环境变量
+      # 开发环境（direnv 已移至 devenv 模块统一管理）
       
       # 安全工具
       age             # 现代文件加密

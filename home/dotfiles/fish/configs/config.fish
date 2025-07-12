@@ -180,9 +180,7 @@ if command -v starship >/dev/null 2>&1
     starship init fish | source
 end
 
-if command -v direnv >/dev/null 2>&1
-    direnv hook fish | source
-end
+# direnv 集成已移至 devenv 模块统一管理
 
 # 自动补全增强
 set -g fish_complete_path $fish_complete_path ~/.config/fish/completions

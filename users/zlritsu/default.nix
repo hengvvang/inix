@@ -104,11 +104,13 @@
       myHome = {
         develop = {
           enable = true;
-          # 启用 devenv 项目环境管理 - 轻量级配置
+          # devenv 项目环境管理配置 - 轻量级
           devenv = {
-            enable = true;
-            shell = "fish";     # 使用 fish shell
-            templates = false;  # zlritsu 轻量级配置，不安装额外模板工具
+            enable = true;        # 启用 devenv
+            autoSwitch = true;    # 启用自动环境切换（direnv）
+            shell = "fish";       # 使用 fish shell
+            templates = false;    # 轻量级配置，不安装额外模板工具
+            cache = true;         # 启用构建缓存优化
           };
           # 轻量级开发配置
           python.enable = true;
@@ -139,11 +141,13 @@
       myHome = {
         develop = {
           enable = true;
-          # 启用 devenv 项目环境管理 - 轻量级配置
+          # devenv 项目环境管理配置 - 轻量级
           devenv = {
-            enable = true;
-            shell = "fish";     # 使用 fish shell
-            templates = false;  # zlritsu 轻量级配置，不安装额外模板工具
+            enable = true;        # 启用 devenv
+            autoSwitch = true;    # 启用自动环境切换（direnv）
+            shell = "fish";       # 使用 fish shell
+            templates = false;    # 轻量级配置，不安装额外模板工具
+            cache = true;         # 启用构建缓存优化
           };
           # 轻量级开发配置
           python.enable = true;
@@ -174,11 +178,13 @@
       myHome = {
         develop = {
           enable = true;
-          # 启用 devenv 项目环境管理 - 轻量级配置
+          # devenv 项目环境管理配置 - 轻量级
           devenv = {
-            enable = true;
-            shell = "fish";     # 使用 fish shell
-            templates = false;  # zlritsu 轻量级配置，不安装额外模板工具
+            enable = true;        # 启用 devenv
+            autoSwitch = true;    # 启用自动环境切换（direnv）
+            shell = "fish";       # 使用 fish shell
+            templates = false;    # 轻量级配置，不安装额外模板工具
+            cache = true;         # 启用构建缓存优化
           };
           # 轻量级开发配置
           python.enable = true;

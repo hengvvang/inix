@@ -100,11 +100,13 @@
       myHome = {
         develop = {
           enable = true;
-          # 启用 devenv 项目环境管理
+          # devenv 项目环境管理配置
           devenv = {
-            enable = true;
-            shell = "fish";     # 使用 fish shell
-            templates = true;   # 安装项目模板
+            enable = true;        # 启用 devenv
+            autoSwitch = true;    # 启用自动环境切换（direnv）
+            shell = "fish";       # 使用 fish shell
+            templates = true;     # 安装项目模板工具（完整功能）
+            cache = true;         # 启用构建缓存优化
           };
           # 按语言直接配置
           rust = {
@@ -152,6 +154,14 @@
       myHome = {
         develop = {
           enable = true;
+          # devenv 项目环境管理配置 - daily 主机
+          devenv = {
+            enable = true;        # 启用 devenv
+            autoSwitch = true;    # 启用自动环境切换（direnv）
+            shell = "fish";       # 使用 fish shell
+            templates = false;    # 轻量级配置，不安装额外模板工具
+            cache = true;         # 启用构建缓存优化
+          };
           rust.enable = true;
           python.enable = true;
           javascript.enable = true;
@@ -191,6 +201,14 @@
       myHome = {
         develop = {
           enable = true;
+          # devenv 项目环境管理配置 - work 主机
+          devenv = {
+            enable = true;        # 启用 devenv
+            autoSwitch = true;    # 启用自动环境切换（direnv）
+            shell = "fish";       # 使用 fish shell
+            templates = false;    # 工作环境轻量级配置
+            cache = true;         # 启用构建缓存优化
+          };
           # 工作环境的开发配置
           rust.enable = true;
           python.enable = true;
