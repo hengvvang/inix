@@ -7,19 +7,35 @@
     ./colors.nix
   ];
 
-  # 根据主机类型应用不同主题
-  stylix = {
-    enable = true;
-    autoEnable = false;  # 禁用自动启用，手动控制目标
+  options.myHome.profiles.theme = {
+    enable = lib.mkEnableOption "主题配置支持";
     
-    # 根据主机选择壁纸
-    image = 
-      if (config.host or "") == "laptop" then ./wallpapers/sea.jpg
-      else if (config.host or "") == "daily" then ./wallpapers/sea.jpg
-      else if (config.host or "") == "work" then ./wallpapers/sea.jpg
-      else ./wallpapers/sea.jpg; # 默认壁纸
+    # 壁纸选择选项
+    wallpaper = lib.mkOption {
+      type = lib.types.str;
+      default = "sea";
+      description = "选择壁纸主题";
+      example = "sea";
+    };
+    
+    # 主题极性选项
+    polarity = lib.mkOption {
+      type = lib.types.enum [ "light" "dark" ];
+      default = "dark";
+      description = "主题极性";
+    };
+  };
+
+  config = lib.mkIf config.myHome.profiles.theme.enable {
+    stylix = {
+      enable = true;
+      autoEnable = false;  # 禁用自动启用，手动控制目标
       
-    # 工作环境使用深色主题
-    polarity = if (config.host or "") == "work" then "dark" else "dark";
+      # 壁纸配置
+      image = ./wallpapers + "/${config.myHome.profiles.theme.wallpaper}.jpg";
+      
+      # 主题极性
+      polarity = config.myHome.profiles.theme.polarity;
+    };
   };
 }

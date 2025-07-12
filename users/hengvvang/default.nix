@@ -30,7 +30,24 @@
       myHome = {
         develop.enable = true;
         dotfiles.enable = true;
-        profiles.enable = true;
+        profiles = {
+          enable = true;
+          theme = {
+            enable = true;
+            wallpaper = "sea";
+            polarity = "dark";
+            fonts.enable = true;
+            targets = {
+              gtk.enable = true;
+              tmux.enable = true;
+              vim.enable = true;
+              neovim.enable = true;
+              firefox.enable = true;
+              bat.enable = true;
+              fzf.enable = true;
+            };
+          };
+        };
         pkgs = {
           enable = true;
           toolkits = {

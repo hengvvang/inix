@@ -30,7 +30,24 @@
       myHome = {
         develop.enable = true;
         dotfiles.enable = true;
-        profiles.enable = true;
+        profiles = {
+          enable = true;
+          theme = {
+            enable = true;
+            wallpaper = "sea";
+            polarity = "dark";
+            fonts.enable = true;
+            targets = {
+              gtk.enable = true;
+              tmux.enable = false;  # zlritsu 不使用 tmux
+              vim.enable = true;
+              neovim.enable = false;  # zlritsu 只用基础 vim
+              firefox.enable = true;
+              bat.enable = false;     # zlritsu 轻量级配置
+              fzf.enable = false;     # zlritsu 轻量级配置
+            };
+          };
+        };
         pkgs = {
           enable = true;
           toolkits = {
