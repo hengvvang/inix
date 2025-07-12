@@ -63,12 +63,12 @@
       
       # 工具包配置 - 禁用，转移到用户配置
       toolkits = {
-        enable = false;                # 禁用 - 在用户配置中启用
-        files.enable = false;          # 禁用 - 在用户配置中启用
-        text.enable = false;           # 禁用 - 在用户配置中启用
-        network.enable = false;        # 禁用 - 在用户配置中启用
-        monitor.enable = false;        # 禁用 - 在用户配置中启用
-        develop.enable = false;        # 禁用 - 在用户配置中启用
+        enable = false;               # 禁用 - 在用户配置中启用
+        files.enable = false;         # 禁用 - 在用户配置中启用
+        text.enable = false;          # 禁用 - 在用户配置中启用
+        network.enable = false;       # 禁用 - 在用户配置中启用
+        monitor.enable = false;       # 禁用 - 在用户配置中启用
+        develop.enable = false;       # 禁用 - 在用户配置中启用
       };
     };
     

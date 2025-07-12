@@ -5,6 +5,7 @@
     environment.systemPackages = with pkgs; [
       vim             # Vim 编辑器
       git             # Git 版本控制
+      # yazi            # 文件管理器
     ];
   };
 }
