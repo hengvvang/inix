@@ -32,19 +32,39 @@
         dotfiles.enable = true;
         profiles = {
           enable = true;
-          theme = {
+          stylix = {
             enable = true;
-            wallpaper = "sea";
+            # 使用默认壁纸路径 (home/profiles/stylix/wallpapers/sea.jpg)
             polarity = "dark";
-            fonts.enable = true;
+            fonts = {
+              enable = true;
+              # 轻量级字体配置
+              sizes = {
+                applications = 10;  # 更小的字体
+                terminal = 11;
+              };
+            };
             targets = {
-              gtk.enable = true;
-              tmux.enable = false;  # zlritsu 不使用 tmux
-              vim.enable = true;
-              neovim.enable = false;  # zlritsu 只用基础 vim
-              firefox.enable = true;
-              bat.enable = false;     # zlritsu 轻量级配置
-              fzf.enable = false;     # zlritsu 轻量级配置
+              enable = true;
+              terminals = {
+                alacritty.enable = false;
+                kitty.enable = false;  # zlritsu 不使用高级终端
+              };
+              editors = {
+                vim.enable = true;
+                neovim.enable = false;  # zlritsu 只用基础 vim
+              };
+              tools = {
+                tmux.enable = false;  # zlritsu 不使用 tmux
+                bat.enable = false;   # 轻量级配置
+                fzf.enable = false;   # 轻量级配置
+              };
+              desktop = {
+                gtk.enable = true;    # 基础 GTK 主题
+              };
+              browsers = {
+                firefox.enable = true;
+              };
             };
           };
         };
