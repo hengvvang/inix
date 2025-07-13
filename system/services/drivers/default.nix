@@ -29,5 +29,8 @@
     
     # === 外设设备驱动模块 ===
     ./printing      # 打印机驱动 (CUPS + 扫描仪)
+    
+    # === 调试开发驱动模块 ===
+    ./debug         # 调试探针支持 (ST-Link + J-Link + DAPLink)
   ];
 }

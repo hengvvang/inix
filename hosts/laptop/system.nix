@@ -23,7 +23,7 @@
   users.users.hengvvang = {
     isNormalUser = true;
     description = "hengvvang";
-    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" ];
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
     ];
@@ -33,7 +33,7 @@
   users.users.zlritsu = {
     isNormalUser = true;
     description = "zlritsu";
-    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak"];
+    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" ];
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
     ];
@@ -302,6 +302,15 @@
             monitoring = true;         # 性能监控工具
             overclocking = false;      # 超频工具支持
           };
+        };
+        
+        # 调试探针配置
+        debug = {
+          enable = true;               # 🟢 启用调试探针支持
+          stlink = true;               # ST-Link 调试器
+          jlink = true;                # J-Link 调试器
+          daplink = true;              # DAPLink 调试器
+          blackmagic = true;           # Black Magic Probe
         };
       };
     };
