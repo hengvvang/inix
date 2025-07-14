@@ -24,7 +24,7 @@
       
       # 文件管理器
       yazi            # 现代文件管理器
-      ranger          # 另一个终端文件管理器
+      #ranger          # 另一个终端文件管理器
       
       # 文件工具
       hexyl           # 十六进制查看器
@@ -35,6 +35,7 @@
       
       # 硬件信息
       neofetch        # 系统信息显示
+      fastfetch
       lshw            # 硬件信息
       usbutils        # USB 工具
       pciutils        # PCI 工具

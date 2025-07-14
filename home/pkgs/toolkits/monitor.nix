@@ -8,6 +8,7 @@
       btop            # 现代系统监控
       procs           # 现代 ps (进程信息)
       pstree          # 进程树
+      bottom
       
       # 系统监控
       iotop           # IO 监控
