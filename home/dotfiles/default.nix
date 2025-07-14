@@ -18,6 +18,7 @@
     ./git
     ./lazygit
     ./starship
+    ./qutebrowser   # 新增 Qutebrowser 浏览器配置
     ./proxy       # 代理配置模块
   ];
 }

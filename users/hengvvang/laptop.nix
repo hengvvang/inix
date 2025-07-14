@@ -40,7 +40,15 @@
         git.enable = true;
         lazygit.enable = true;
         starship.enable = true;
+        qutebrowser.enable = true;  # 启用 Qutebrowser 配置
         proxy.enable = false;
+      };
+      
+      # 包管理配置
+      pkgs = {
+        apps = {
+          browsers.enable = true;  # 启用浏览器应用包
+        };
       };
       
       profiles = {
