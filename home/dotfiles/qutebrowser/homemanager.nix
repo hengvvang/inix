@@ -17,17 +17,18 @@
         n = "https://search.nixos.org/packages?query={}";  # Nix 包搜索
       };
       
-      # 键位绑定 - 基于 Zen Browser 快捷键配置
+      # 键位绑定 - 完全基于 Zen Browser 官方快捷键
       keyBindings = {
         normal = {
-          # === 标签管理 (基于 Zen Browser) ===
-          "<Ctrl+t>" = "open -t";                    # 新标签
-          "<Ctrl+w>" = "tab-close";                  # 关闭标签
-          "<Ctrl+Shift+t>" = "undo";                 # 恢复关闭的标签
-          "<Ctrl+Shift+w>" = "close";                # 关闭窗口
-          "<Ctrl+q>" = "close";                      # 退出应用
+          # === 窗口和标签管理 (Window & Tab Management) ===
+          "<Ctrl+t>" = "open -t";                    # 新标签 (New Tab)
+          "<Ctrl+w>" = "tab-close";                  # 关闭标签 (Close Tab)
+          "<Ctrl+Shift+w>" = "close";                # 关闭窗口 (Close Window)
+          "<Ctrl+q>" = "close";                      # 退出应用 (Quit Application)
+          "<Ctrl+Shift+t>" = "undo";                 # 恢复关闭的标签 (Restore Last Closed Tab)
+          "<Ctrl+Shift+n>" = "open -w";              # 撤销关闭窗口 (Undo Close Window)
           
-          # 标签切换 (Zen Browser 风格)
+          # 标签切换 (Tab Navigation)
           "<Ctrl+Tab>" = "tab-next";                 # 下一个标签
           "<Ctrl+Shift+Tab>" = "tab-prev";           # 上一个标签
           "<Alt+1>" = "tab-focus 1";                 # 切换到标签 1
@@ -40,53 +41,69 @@
           "<Alt+8>" = "tab-focus 8";                 # 切换到标签 8
           "<Alt+9>" = "tab-focus -1";                # 切换到最后一个标签
           
-          # === 导航 (基于 Zen Browser) ===
-          "<Alt+Left>" = "back";                     # 后退
-          "<Alt+Right>" = "forward";                 # 前进
-          "<Ctrl+[>" = "back";                       # 后退 (替代)
-          "<Ctrl+]>" = "forward";                    # 前进 (替代)
-          "<Ctrl+r>" = "reload";                     # 刷新页面
-          "<Ctrl+Shift+r>" = "reload --force";       # 强制刷新
-          "<Ctrl+h>" = "set-cmd-text -s :history ";  # 历史记录
+          # === 导航 (Navigation) ===
+          "<Alt+Left>" = "back";                     # 后退 (Go Back)
+          "<Alt+Right>" = "forward";                 # 前进 (Go Forward)
+          "<Ctrl+[>" = "back";                       # 后退替代 (Navigate Back Alternative)
+          "<Ctrl+]>" = "forward";                    # 前进替代 (Navigate Forward Alternative)
+          "<Alt+Home>" = "home";                     # 首页 (Go Home)
+          "<Ctrl+r>" = "reload";                     # 刷新页面 (Reload Page)
+          "<Ctrl+Shift+r>" = "reload --force";       # 强制刷新 (Reload Page Skip Cache)
+          "<Ctrl+h>" = "set-cmd-text -s :history ";  # 历史记录 (Go to History)
+          "<Ctrl+Shift+p>" = "open -p";              # 隐私浏览 (Open Private Browsing Window)
           
-          # === 搜索和查找 (基于 Zen Browser) ===
-          "<Ctrl+k>" = "set-cmd-text -s :open ";     # 搜索聚焦
-          "<Ctrl+j>" = "set-cmd-text -s :open ";     # 搜索聚焦 (替代)
-          "<Ctrl+f>" = "search";                     # 页面查找
-          "<Ctrl+g>" = "search-next";                # 查找下一个
-          "<Ctrl+Shift+g>" = "search-prev";          # 查找上一个
+          # === 搜索和查找 (Search & Find) ===
+          "<Ctrl+k>" = "set-cmd-text -s :open ";     # 搜索聚焦 (Focus Search)
+          "<Ctrl+j>" = "set-cmd-text -s :open ";     # 搜索聚焦替代 (Focus Search Alternative)
+          "<Ctrl+f>" = "search";                     # 页面查找 (Find on Page)
+          "<Ctrl+g>" = "search-next";                # 查找下一个 (Find Again)
+          "<Ctrl+Shift+g>" = "search-prev";          # 查找上一个 (Find Previous)
           
-          # === 页面操作 (基于 Zen Browser) ===
-          "<Ctrl+l>" = "set-cmd-text -s :open ";     # 地址栏
-          "<Alt+d>" = "set-cmd-text -s :open ";      # 地址栏 (替代)
-          "<Ctrl+s>" = "download";                   # 保存页面
-          "<Ctrl+p>" = "print";                      # 打印页面
-          "<Ctrl+u>" = "view-source";                # 查看源码
+          # === 页面操作 (Page Operations) ===
+          "<Ctrl+l>" = "set-cmd-text -s :open ";     # 地址栏 (Open Location)
+          "<Alt+d>" = "set-cmd-text -s :open ";      # 地址栏替代 (Open Location Alternative)
+          "<Ctrl+s>" = "download";                   # 保存页面 (Save Page)
+          "<Ctrl+p>" = "print";                      # 打印页面 (Print Page)
+          "<Ctrl+u>" = "view-source";                # 查看源码 (View Page Source)
           
-          # === 书签 (基于 Zen Browser) ===
-          "<Ctrl+d>" = "bookmark-add";               # 添加书签
-          "<Ctrl+Shift+d>" = "bookmark-add";         # 添加书签 (替代)
-          "<Ctrl+Shift+o>" = "set-cmd-text -s :bookmark-load ";  # 书签库
-          "<Ctrl+b>" = "set-cmd-text -s :bookmark-load ";        # 书签侧栏
+          # === 历史和书签 (History & Bookmarks) ===
+          "<Ctrl+Shift+h>" = "set-cmd-text -s :history ";  # 显示所有历史 (Show All History)
+          "<Ctrl+d>" = "bookmark-add";               # 添加书签 (Bookmark This Page)
+          "<Ctrl+Shift+d>" = "bookmark-add";         # 添加书签替代 (Bookmark This Page Alternative)
+          "<Ctrl+Shift+o>" = "set-cmd-text -s :bookmark-load ";  # 书签库 (Show Bookmarks Library)
           
-          # === 媒体和显示 (基于 Zen Browser) ===
-          "<Ctrl+m>" = "tab-mute";                   # 静音切换
-          "<Ctrl+minus>" = "zoom-out";               # 缩小
-          "<Ctrl+plus>" = "zoom-in";                 # 放大
+          # === 媒体和显示 (Media & Display) ===
+          "<Ctrl+m>" = "tab-mute";                   # 静音切换 (Toggle Mute)
+          "<Ctrl+minus>" = "zoom-out";               # 缩小 (Zoom Out)
+          "<Ctrl+plus>" = "zoom-in";                 # 放大 (Zoom In)
           "<Ctrl+equal>" = "zoom-in";                # 放大 (不需要 Shift)
-          "<Ctrl+0>" = "zoom";                       # 重置缩放
+          "<Ctrl+0>" = "zoom";                       # 重置缩放 (Reset Zoom Level)
+          "<Ctrl+Shift+s>" = "screenshot";           # 截图 (Take Screenshot)
           
-          # === 开发者工具 (基于 Zen Browser) ===
-          "<Ctrl+Shift+i>" = "devtools";             # 开发者工具
-          "<Ctrl+Shift+j>" = "devtools";             # 浏览器控制台
-          "<Ctrl+Shift+k>" = "devtools";             # Web 控制台
+          # === 开发者工具 (Developer Tools) ===
+          "<Ctrl+Shift+i>" = "devtools";             # 开发者工具 (Toggle DevTools)
+          "<Ctrl+Shift+j>" = "devtools";             # 浏览器控制台 (Toggle Browser Console)
+          "<Ctrl+Shift+k>" = "devtools";             # Web 控制台 (Toggle Web Console)
+          "<Ctrl+Shift+m>" = "devtools";             # 响应式设计模式 (Toggle Responsive Design Mode)
+          "<Ctrl+Shift+l>" = "devtools";             # 检查器 (Toggle Inspector)
+          "<Ctrl+Shift+z>" = "devtools";             # JavaScript 调试器 (Toggle JavaScript Debugger)
+          "<Ctrl+Shift+e>" = "devtools";             # 网络监视器 (Toggle Network Monitor)
           "<F12>" = "devtools";                      # 开发者工具 (传统)
           
-          # === 其他功能 (基于 Zen Browser) ===
-          "<Ctrl+o>" = "set-cmd-text :open ";        # 打开文件
-          "<F11>" = "fullscreen";                    # 全屏切换
-          "<Escape>" = "stop";                       # 停止加载
-          "<Ctrl+Shift+Delete>" = "clear-cookies";   # 清除浏览数据
+          # === Zen 特色功能 (Zen Features) ===
+          "<Ctrl+Shift+c>" = "yank url";             # 复制当前 URL (Copy Current URL)
+          "<Alt+Shift+Ctrl+c>" = "yank pretty-url";  # 复制 URL 为 Markdown (Copy Current URL as Markdown)
+          "<Alt+b>" = "sidebar";                     # 切换侧栏宽度 (Toggle Sidebar Width)
+          
+          # === 其他功能 (Other Features) ===
+          "<Ctrl+Shift+y>" = "downloads";            # 打开下载 (Open Downloads)
+          "<Ctrl+Shift+a>" = "set-cmd-text -s :help "; # 打开扩展 (Open Add-ons)
+          "<Ctrl+o>" = "set-cmd-text :open ";        # 打开文件 (Open File)
+          "<F11>" = "fullscreen";                    # 全屏切换 (Enter/Exit Full Screen)
+          "<Escape>" = "stop";                       # 停止加载 (Stop Loading)
+          "<Ctrl+b>" = "set-cmd-text -s :bookmark-load ";    # 显示书签侧栏 (Show Bookmarks Sidebar)
+          "<Ctrl+Shift+b>" = "bookmark-toolbar";     # 显示书签工具栏 (Show Bookmarks Toolbar)
+          "<Ctrl+Shift+Delete>" = "clear-cookies";   # 清除浏览数据 (Clear Browsing Data)
           
           # === 保留 vim 风格导航 (可选) ===
           "H" = "back";                              # vim 风格后退

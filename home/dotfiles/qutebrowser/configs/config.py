@@ -42,60 +42,104 @@ c.url.searchengines = {
 c.url.default_page = 'about:blank'
 c.url.start_pages = ['about:blank']
 
-# 键位绑定 - 人体工程学
-# 标签导航
-config.bind('J', 'tab-next')
-config.bind('K', 'tab-prev')
-config.bind('gt', 'tab-next')
-config.bind('gT', 'tab-prev')
+# 键位绑定 - Zen Browser 官方快捷键兼容
 
-# 标签管理
-config.bind('d', 'tab-close')
-config.bind('u', 'undo')
-config.bind('D', 'tab-close --opposite')
+# === 标签管理 (Window & Tab Management) ===
+config.bind('<Ctrl+t>', 'open -t')                 # New Tab
+config.bind('<Ctrl+w>', 'tab-close')               # Close Tab
+config.bind('<Ctrl+Shift+w>', 'close')             # Close Window
+config.bind('<Ctrl+q>', 'quit')                    # Quit Application
+config.bind('<Ctrl+Shift+t>', 'undo')              # Restore Last Closed Tab
+config.bind('<Ctrl+Shift+n>', 'undo')              # Undo Close Window (映射到恢复标签)
 
-# 页面操作
-config.bind('r', 'reload')
-config.bind('R', 'reload --force')
-config.bind('H', 'back')
-config.bind('L', 'forward')
+# 标签选择 (Alt + 1-8 选择标签 1-8, Alt + 9 选择最后一个标签)
+config.bind('<Alt+1>', 'tab-focus 1')
+config.bind('<Alt+2>', 'tab-focus 2')
+config.bind('<Alt+3>', 'tab-focus 3')
+config.bind('<Alt+4>', 'tab-focus 4')
+config.bind('<Alt+5>', 'tab-focus 5')
+config.bind('<Alt+6>', 'tab-focus 6')
+config.bind('<Alt+7>', 'tab-focus 7')
+config.bind('<Alt+8>', 'tab-focus 8')
+config.bind('<Alt+9>', 'tab-focus -1')  # 最后一个标签
 
-# 导航和搜索
-config.bind('o', 'set-cmd-text -s :open ')
-config.bind('O', 'set-cmd-text -s :open -t ')
-config.bind('go', 'set-cmd-text :open {url}')
-config.bind('gO', 'set-cmd-text :open -t {url}')
+# 标签切换
+config.bind('<Ctrl+Tab>', 'tab-next')             # Next Tab
+config.bind('<Ctrl+Shift+Tab>', 'tab-prev')       # Previous Tab
 
-# 书签
-config.bind('m', 'bookmark-add')
-config.bind('b', 'set-cmd-text -s :bookmark-load ')
+# === 导航 (Navigation) ===
+config.bind('<Alt+Left>', 'back')                 # Go Back
+config.bind('<Alt+Right>', 'forward')             # Go Forward
+config.bind('<Ctrl+[>', 'back')                   # Navigate Back (Alternative)
+config.bind('<Ctrl+]>', 'forward')                # Navigate Forward (Alternative)
+config.bind('<Alt+Home>', 'home')                 # Go Home
+config.bind('<Ctrl+r>', 'reload')                 # Reload Page
+config.bind('<Ctrl+Shift+r>', 'reload --force')   # Reload Page (Skip Cache)
+config.bind('<Ctrl+h>', 'history')                # Go to History
+config.bind('<Ctrl+Shift+p>', 'open -p')          # Open Private Window
 
-# 缩放
-config.bind('+', 'zoom-in')
-config.bind('=', 'zoom-in')
-config.bind('-', 'zoom-out')
-config.bind('0', 'zoom')
+# === 搜索和查找 (Search & Find) ===
+config.bind('<Ctrl+k>', 'set-cmd-text -s :open ')  # Focus Search
+config.bind('<Ctrl+j>', 'set-cmd-text -s :open ')  # Focus Search (Alternative)
+config.bind('<Ctrl+f>', 'search')                  # Find on Page
+config.bind('<Ctrl+g>', 'search-next')             # Find Next
+config.bind('<Ctrl+Shift+g>', 'search-prev')       # Find Previous
 
-# 滚动增强
-config.bind('<Ctrl+d>', 'scroll-page 0 0.5')
-config.bind('<Ctrl+u>', 'scroll-page 0 -0.5')
-config.bind('gg', 'scroll-to-perc 0')
-config.bind('G', 'scroll-to-perc')
+# === 页面操作 (Page Operations) ===
+config.bind('<Ctrl+l>', 'set-cmd-text -s :open ')  # Open Location (URL Bar)
+config.bind('<Alt+d>', 'set-cmd-text -s :open ')   # Open Location (Alternative)
+config.bind('<Ctrl+s>', 'download')                # Save Page
+config.bind('<Ctrl+p>', 'print')                   # Print Page
+config.bind('<Ctrl+u>', 'view-source')             # View Page Source
 
-# 常用快捷键
-config.bind('<Ctrl+l>', 'set-cmd-text -s :open ')
-config.bind('<Ctrl+r>', 'reload')
-config.bind('<Ctrl+w>', 'tab-close')
-config.bind('<Ctrl+t>', 'open -t')
-config.bind('<Ctrl+Shift+t>', 'undo')
+# === 历史和书签 (History & Bookmarks) ===
+config.bind('<Ctrl+Shift+h>', 'history')           # Show All History
+config.bind('<Ctrl+d>', 'bookmark-add')            # Bookmark This Page
+config.bind('<Ctrl+Shift+d>', 'bookmark-add')      # Bookmark This Page (Alternative)
+config.bind('<Ctrl+Shift+o>', 'set-cmd-text -s :bookmark-load ')  # Show Bookmarks
 
-# 开发者工具
-config.bind('<F12>', 'devtools')
-config.bind('<Ctrl+Shift+I>', 'devtools')
+# === 媒体和显示 (Media & Display) ===
+config.bind('<Ctrl+m>', 'tab-mute')                # Toggle Mute
+config.bind('<Ctrl+->', 'zoom-out')                # Zoom Out
+config.bind('<Ctrl++>', 'zoom-in')                 # Zoom In
+config.bind('<Ctrl+=>', 'zoom-in')                 # Zoom In (Alternative)
+config.bind('<Ctrl+0>', 'zoom')                    # Reset Zoom
+config.bind('<Ctrl+Shift+s>', 'screenshot')        # Take Screenshot
 
-# 快速导航
-config.bind('gi', 'hint inputs')  # 跳转到输入框
+# === 开发者工具 (Developer Tools) ===
+config.bind('<Ctrl+Shift+i>', 'devtools')          # Toggle DevTools
+config.bind('<Ctrl+Shift+j>', 'devtools')          # Toggle Browser Console
+config.bind('<Ctrl+Shift+m>', 'devtools')          # Toggle Responsive Design Mode
+config.bind('<Ctrl+Shift+k>', 'devtools')          # Toggle Web Console
+config.bind('<F12>', 'devtools')                   # Toggle DevTools (F12)
+
+# === 其他功能 (Other Features) ===
+config.bind('<Ctrl+Shift+y>', 'download')          # Open Downloads
+config.bind('<Ctrl+o>', 'set-cmd-text -s :open ')  # Open File
+config.bind('<F11>', 'fullscreen')                 # Enter/Exit Full Screen
+config.bind('<Escape>', 'stop')                    # Stop Loading
+config.bind('<Ctrl+b>', 'set-cmd-text -s :bookmark-load ')  # Show Bookmarks
+config.bind('<Ctrl+Shift+Delete>', 'clear-cookies') # Clear Browsing Data
+
+# === Vim 风格增强（保留部分，与 Zen 不冲突）===
+config.bind('J', 'tab-next')                       # vim: 下个标签
+config.bind('K', 'tab-prev')                       # vim: 上个标签
+config.bind('H', 'back')                           # vim: 后退
+config.bind('L', 'forward')                        # vim: 前进
+config.bind('gg', 'scroll-to-perc 0')              # vim: 滚动到顶部
+config.bind('G', 'scroll-to-perc')                 # vim: 滚动到底部
+config.bind('d', 'tab-close')                      # vim: 关闭标签
+config.bind('u', 'undo')                           # vim: 撤销
+config.bind('r', 'reload')                         # vim: 刷新
+config.bind('o', 'set-cmd-text -s :open ')         # vim: 打开
+config.bind('O', 'set-cmd-text -s :open -t ')      # vim: 新标签打开
+config.bind('yy', 'yank url')                      # vim: 复制 URL
+config.bind('yt', 'yank title')                    # vim: 复制标题
+
+# === 智能导航 ===
+config.bind('gi', 'hint inputs')                   # 跳转到输入框
 config.bind('gf', 'hint links spawn mpv {hint-url}')  # 用 mpv 播放链接
+config.bind('<Ctrl+Shift+c>', 'yank url')          # 复制当前 URL
 
 # 智能 hints - 提升点击效率
 c.hints.chars = 'asdfghjkl'  # 左手键位，更快
