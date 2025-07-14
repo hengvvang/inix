@@ -185,7 +185,7 @@
         zoom.levels = [ "50%" "67%" "75%" "90%" "100%" "110%" "125%" "150%" "175%" "200%" ];
         
         # 编辑器
-        editor.command = [ "nvim" "{file}" ];
+        editor.command = [ "vim" "{file}" ];
         
         # 补全设置 - 提升效率
         completion.height = "40%";  # 适中的高度
