@@ -65,7 +65,7 @@
 
       profiles = {
         fonts = {
-          preset = "professional";  # 专业工作字体
+          preset = "nordic";  # 专业工作字体
         };
         stylix = {
           enable = true;

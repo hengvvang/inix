@@ -66,7 +66,7 @@
 
       profiles = {
         fonts = {
-          preset = "comfort";   # 日常使用舒适字体
+          preset = "ocean";   # 日常使用舒适字体
         };
         stylix = {
           enable = false;

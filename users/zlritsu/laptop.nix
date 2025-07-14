@@ -67,7 +67,7 @@
       
       profiles = {
         fonts = {
-          preset = "minimal";   # 轻量级字体配置
+          preset = "zen";   # 简洁专注的字体配置
         };
         stylix = {
           enable = true;
