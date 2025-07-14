@@ -221,7 +221,7 @@
         };
         audio = {
           enable = true;               # 启用音频播放器
-          spotify = true;              # Spotify（需要时启用）
+          spotify = false;              # Spotify（需要时启用）
           audacious = false;           # Audacious
         };
         codecs = {
