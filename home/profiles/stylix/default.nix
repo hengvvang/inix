@@ -17,7 +17,7 @@
       
       # 预设壁纸选择
       preset = lib.mkOption {
-        type = lib.types.enum [ "sea" "forest" "mountain" "city" "abstract" ];
+        type = lib.types.enum [ "sea" "home" "maori" "pixabay" "blue-sky"];
         default = "sea";
         description = "预设壁纸选择";
       };
@@ -147,6 +147,11 @@
       # 浏览器
       browsers = {
         firefox.enable = lib.mkEnableOption "Firefox 主题";
+      };
+      
+      # 输入法
+      inputMethods = {
+        fcitx5.enable = lib.mkEnableOption "Fcitx5 主题";
       };
     };
   };

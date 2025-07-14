@@ -88,22 +88,25 @@
             enable = true;
             terminals = {
               alacritty.enable = false;
-              kitty.enable = false;  # zlritsu 不使用高级终端
+              kitty.enable = false;
             };
             editors = {
-              vim.enable = true;
-              neovim.enable = false;  # zlritsu 只用基础 vim
+              vim.enable = false;
+              neovim.enable = false;
             };
             tools = {
-              tmux.enable = false;  # zlritsu 不使用 tmux
-              bat.enable = false;   # 轻量级配置
-              fzf.enable = false;   # 轻量级配置
+              tmux.enable = false;
+              bat.enable = false;
+              fzf.enable = false;
             };
             desktop = {
-              gtk.enable = true;    # 基础 GTK 主题
+              gtk.enable = false;
             };
             browsers = {
-              firefox.enable = true;
+              firefox.enable = false;
+            };
+            inputMethods = {
+              fcitx5.enable = true;
             };
           };
         };

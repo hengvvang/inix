@@ -76,11 +76,12 @@
           preset = "bauhaus";
         };
         stylix = {
-          enable = false;
+          enable = true;
           polarity = "dark";
           wallpapers = {
             enable = true;
-            preset = "sea";
+            #preset = "maori";
+            custom = ./../../home/profiles/stylix/wallpapers/swirl-loop.jpeg;
           };
           fonts = {
             enable = true;
@@ -89,23 +90,26 @@
           targets = {
             enable = true;
             terminals = {
-              alacritty.enable = false;  # 避免与现有 alacritty 配置冲突
-              kitty.enable = true;
+              alacritty.enable = false;
+              kitty.enable = false;
             };
             editors = {
-              vim.enable = true;
-              neovim.enable = true;
+              vim.enable = false;
+              neovim.enable = false;
             };
             tools = {
-              tmux.enable = true;
-              bat.enable = true;
-              fzf.enable = true;
+              tmux.enable = false;
+              bat.enable = false;
+              fzf.enable = false;
             };
             desktop = {
-              gtk.enable = true;
+              gtk.enable = false;
             };
             browsers = {
-              firefox.enable = true;
+              firefox.enable = false;
+            };
+            inputMethods = {
+              fcitx5.enable = true;
             };
           };
         };

@@ -24,6 +24,9 @@
       
       # 浏览器
       firefox.enable = config.myHome.profiles.stylix.targets.browsers.firefox.enable;
+      
+      # 输入法
+      fcitx5.enable = config.myHome.profiles.stylix.targets.inputMethods.fcitx5.enable;
     };
     
     # 透明度配置
