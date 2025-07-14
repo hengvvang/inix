@@ -40,7 +40,7 @@
         laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./hosts/laptop/system.nix
+            ./hosts/laptop
           ] ++ commonSystemModules;
         };
         
@@ -48,7 +48,7 @@
         daily = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./hosts/daily/system.nix
+            ./hosts/daily
           ] ++ commonSystemModules;
         };
         
@@ -56,7 +56,7 @@
         work = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            ./hosts/work/system.nix
+            ./hosts/work
           ] ++ commonSystemModules;
         };
       };

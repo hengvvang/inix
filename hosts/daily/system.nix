@@ -1,41 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware.nix  # 使用 laptop 的硬件配置
-      ../../system
-    ];
-
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  nixpkgs.config.allowUnfree = true;
-
-  # 启用 fish shell 程序
-  programs.fish.enable = true;
-
-  users.users.hengvvang = {
-    isNormalUser = true;
-    description = "hengvvang";
-    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak"];
-    packages = with pkgs; [
-      # 用户特定的包可以在这里定义
-    ];
-    shell = pkgs.fish;
-  };
-  
-  users.users.zlritsu = {
-    isNormalUser = true;
-    description = "zlritsu";
-    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak"];
-    packages = with pkgs; [
-      # 用户特定的包可以在这里定义
-    ];
-    shell = pkgs.fish;
-  };
-
   # 系统模块配置 - 日常使用主机配置
   mySystem = {
     # 系统级应用配置
@@ -147,6 +112,4 @@
     };
   };
 
-  # 此配置文件生成的系统版本，切勿更改
-  system.stateVersion = "25.05";
 }

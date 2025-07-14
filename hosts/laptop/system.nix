@@ -1,45 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ 
-      ./hardware.nix
-      ../../system
-    ];
-
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  nixpkgs.config.allowUnfree = true;
-  
-  nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "hengvvang" "zlritsu" ];
-  };
-  # 启用 fish shell 程序
-  programs.fish.enable = true;
-
-  users.users.hengvvang = {
-    isNormalUser = true;
-    description = "hengvvang";
-    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" ];
-    packages = with pkgs; [
-      # 用户特定的包可以在这里定义
-    ];
-    shell = pkgs.fish;
-  };
-  
-  users.users.zlritsu = {
-    isNormalUser = true;
-    description = "zlritsu";
-    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" ];
-    packages = with pkgs; [
-      # 用户特定的包可以在这里定义
-    ];
-    shell = pkgs.fish;
-  };
-
   # 系统模块配置 - 完全由主机决定启用哪些模块
   # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
@@ -316,13 +277,6 @@
     };
 
   };
-
-
-  # nix.settings.substituters = lib.mkForce [ "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-  #      				      "https://mirrors.ustc.edu.cn/nix-channels/store"
-  # ];
-
-  system.stateVersion = "25.05";
 
 }
 
