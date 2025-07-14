@@ -1,11 +1,9 @@
-# Qutebrowser 快速标记 - External 方式
 google https://www.google.com
 github https://github.com
+
+nixos https://nixos.org
+nix-search https://search.nixos.org/packages
+home-manager https://nix-community.github.io/home-manager/
+
 youtube https://www.youtube.com
 wikipedia https://zh.wikipedia.org
-nixos https://nixos.org
-home-manager https://nix-community.github.io/home-manager/
-nix-packages https://search.nixos.org/packages
-reddit https://www.reddit.com
-stackoverflow https://stackoverflow.com
-archwiki https://wiki.archlinux.org

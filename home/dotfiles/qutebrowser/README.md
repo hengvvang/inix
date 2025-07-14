@@ -15,17 +15,124 @@ home/dotfiles/qutebrowser/
     └── quickmarks        # 快速书签
 ```
 
-## 配置特性
+## 配置特性 🚀
 
-### 🎯 核心功能
+### 🎯 Zen Browser 兼容性
+- **完整快捷键映射**：与 Zen Browser 快捷键 100% 兼容
+- **无缝迁移体验**：零学习成本，直接使用熟悉的快捷键
+- **功能增强**：在保持兼容的基础上添加了 vim 风格的额外操作
+- **渐进式学习**：可选的高级快捷键，逐步提升效率
+
+### 🔧 核心功能
 - **三种配置方式**：Home Manager 模块、直接文件、外部文件引用
-- **深色模式**：启用网页深色模式
-- **隐私保护**：禁用第三方 Cookie、地理位置、通知
-- **键位绑定**：类 Vim 键位绑定
-- **搜索引擎**：预配置多种搜索引擎
-- **下载管理**：自动下载到 ~/Downloads
+- **智能搜索**：增量搜索，智能大小写，Nix 包搜索
+- **隐私保护**：禁用第三方 Cookie、地理位置、通知，基础广告拦截
+- **性能优化**：50MB 缓存，快速补全，10秒下载清理
 
-### 🔧 配置选项
+### ⌨️ 键位绑定（Zen Browser 兼容）
+
+#### 标签管理
+| 按键 | 功能 | 兼容性 |
+|------|------|--------|
+| `Ctrl+T` | 新标签 | ✅ Zen Browser |
+| `Ctrl+W` | 关闭标签 | ✅ Zen Browser |
+| `Ctrl+Shift+T` | 恢复关闭的标签 | ✅ Zen Browser |
+| `Ctrl+Shift+W` | 关闭窗口 | ✅ Zen Browser |
+| `Ctrl+Tab` | 下一个标签 | ✅ Zen Browser |
+| `Ctrl+Shift+Tab` | 上一个标签 | ✅ Zen Browser |
+| `Alt+1-8` | 切换到指定标签 | ✅ Zen Browser |
+| `Alt+9` | 切换到最后标签 | ✅ Zen Browser |
+
+#### 导航操作
+| 按键 | 功能 | 兼容性 |
+|------|------|--------|
+| `Alt+←` | 后退 | ✅ Zen Browser |
+| `Alt+→` | 前进 | ✅ Zen Browser |
+| `Ctrl+[` | 后退 (替代) | ✅ Zen Browser |
+| `Ctrl+]` | 前进 (替代) | ✅ Zen Browser |
+| `Ctrl+R` | 刷新页面 | ✅ Zen Browser |
+| `Ctrl+Shift+R` | 强制刷新 | ✅ Zen Browser |
+
+#### 搜索和查找
+| 按键 | 功能 | 兼容性 |
+|------|------|--------|
+| `Ctrl+K` | 搜索聚焦 | ✅ Zen Browser |
+| `Ctrl+J` | 搜索聚焦 (替代) | ✅ Zen Browser |
+| `Ctrl+F` | 页面查找 | ✅ Zen Browser |
+| `Ctrl+G` | 查找下一个 | ✅ Zen Browser |
+| `Ctrl+Shift+G` | 查找上一个 | ✅ Zen Browser |
+
+#### 页面操作
+| 按键 | 功能 | 兼容性 |
+|------|------|--------|
+| `Ctrl+L` | 地址栏聚焦 | ✅ Zen Browser |
+| `Alt+D` | 地址栏聚焦 (替代) | ✅ Zen Browser |
+| `Ctrl+D` | 添加书签 | ✅ Zen Browser |
+| `Ctrl+Shift+D` | 添加书签 (替代) | ✅ Zen Browser |
+| `Ctrl+B` | 书签管理 | ✅ Zen Browser |
+
+#### 缩放控制
+| 按键 | 功能 | 兼容性 |
+|------|------|--------|
+| `Ctrl++` | 放大 | ✅ Zen Browser |
+| `Ctrl+=` | 放大 (无 Shift) | ✅ Zen Browser |
+| `Ctrl+-` | 缩小 | ✅ Zen Browser |
+| `Ctrl+0` | 重置缩放 | ✅ Zen Browser |
+
+#### 开发者工具
+| 按键 | 功能 | 兼容性 |
+|------|------|--------|
+| `F12` | 开发者工具 | ✅ Zen Browser |
+| `Ctrl+Shift+I` | 开发者工具 | ✅ Zen Browser |
+| `Ctrl+Shift+J` | 浏览器控制台 | ✅ Zen Browser |
+| `Ctrl+Shift+K` | Web 控制台 | ✅ Zen Browser |
+
+#### 额外功能（vim 风格）
+| 按键 | 功能 | 说明 |
+|------|------|------|
+| `o` | 快速打开 | vim 风格 |
+| `O` | 新标签打开 | vim 风格 |
+| `b` | 书签加载 | 快速访问 |
+| `m` | 添加书签 | vim 风格 |
+| `gg` | 滚动到顶部 | vim 风格 |
+| `G` | 滚动到底部 | vim 风格 |
+| `H` | 后退 | vim 风格 |
+| `L` | 前进 | vim 风格 |
+| `gi` | 跳转到输入框 | 智能导航 |
+
+#### 快速搜索
+| 按键 | 功能 | 说明 |
+|------|------|------|
+| `sg` | Google 搜索 | 快速搜索 |
+| `sd` | DuckDuckGo 搜索 | 隐私搜索 |
+| `sy` | YouTube 搜索 | 视频搜索 |
+| `sn` | Nix 包搜索 | 开发专用 |
+
+#### 复制操作
+| 按键 | 功能 | 说明 |
+|------|------|------|
+| `yy` | 复制 URL | vim 风格 |
+| `yt` | 复制标题 | vim 风格 |
+| `ym` | 复制格式化 URL | Markdown 格式 |
+
+### 🔍 搜索引擎（精简高效）
+
+| 关键字 | 搜索引擎 | 用途 |
+|--------|----------|------|
+| 默认 | Google | 通用搜索 |
+| `g` | Google | 显式 Google 搜索 |
+| `d` | DuckDuckGo | 隐私搜索 |
+| `gh` | GitHub | 代码搜索 |
+| `w` | Wikipedia (中文) | 知识搜索 |
+| `y` | YouTube | 视频搜索 |
+| `n` | Nix Packages | 包搜索 |
+
+### 📦 附加工具
+
+配置自动安装：
+- `mpv` - 视频播放器，集成链接播放（`gf` 快捷键）
+
+### 🚀 配置选项
 
 在用户配置中启用：
 ```nix
@@ -39,41 +146,6 @@ myHome.dotfiles.qutebrowser = {
 - `"homemanager"` - 使用 Home Manager 程序模块（默认，推荐）
 - `"direct"` - 直接写入配置文件
 - `"external"` - 引用外部配置文件
-
-### ⌨️ 键位绑定
-
-| 按键 | 功能 | 描述 |
-|------|------|------|
-| `J` | tab-next | 下一个标签页 |
-| `K` | tab-prev | 上一个标签页 |
-| `d` | tab-close | 关闭标签页 |
-| `u` | undo | 恢复关闭的标签页 |
-| `r` | reload | 刷新页面 |
-| `R` | reload --force | 强制刷新页面 |
-| `M` | bookmark-add | 添加书签 |
-| `gb` | bookmark-load | 加载书签 |
-| `gh` | history | 打开历史记录 |
-| `F12` | devtools | 开发者工具 |
-| `=` | zoom-in | 放大 |
-| `-` | zoom-out | 缩小 |
-| `0` | zoom | 重置缩放 |
-
-### 🔍 搜索引擎
-
-| 关键字 | 搜索引擎 |
-|--------|----------|
-| `g` | Google |
-| `b` | Bing |
-| `d` | DuckDuckGo |
-| `gh` | GitHub |
-| `w` | Wikipedia (中文) |
-| `y` | YouTube |
-
-### 📦 附加工具
-
-配置自动安装以下工具：
-- `yt-dlp` - YouTube 视频下载
-- `mpv` - 视频播放器
 
 ## 启用配置
 
@@ -142,5 +214,8 @@ myHome.dotfiles.qutebrowser = {
 
 ## 更多信息
 
+- **Zen Browser 快捷键映射**：查看 [ZEN_MAPPING.md](./ZEN_MAPPING.md) 获取完整的快捷键对照表
+- **优化说明**：查看 [OPTIMIZATION.md](./OPTIMIZATION.md) 了解配置优化详情
 - Qutebrowser 官方文档：https://qutebrowser.org/doc/
 - Home Manager 手册：https://nix-community.github.io/home-manager/
+- Zen Browser 官方文档：https://docs.zen-browser.app/
