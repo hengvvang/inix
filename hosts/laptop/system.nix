@@ -19,7 +19,7 @@
         media.enable = false;          # 禁用 - 在用户配置中启用
         office.enable = false;         # 禁用 - 在用户配置中启用
         gaming.enable = false;         # 禁用 - 在用户配置中启用
-        network.enable = false;        # 禁用 - 在用户配置中启用
+        network.enable = true;
       };
       
       # 工具包配置 - 禁用，转移到用户配置
@@ -134,7 +134,7 @@
             enable = true;             # 🟢 启用 Clash GUI 客户端
             tunMode = true;            # 🟢 启用 TUN 模式（虚拟网卡）
             capabilities = true;       # 🟢 启用网络管理权限
-            client = "clash-nyanpasu"; # 使用 clash-nyanpasu 客户端
+            client = "clash-verge-rev";
           };
           
           # Clash 代理服务

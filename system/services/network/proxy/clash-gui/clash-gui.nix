@@ -12,7 +12,7 @@ let
   
   # 客户端二进制文件名
   clientBinary = {
-    "clash-verge-rev" = "clash-verge-rev";
+    "clash-verge-rev" = "clash-verge";
     "clash-nyanpasu" = "clash-nyanpasu";
     "flclash" = "flclash";
   }.${cfg.client};

@@ -21,7 +21,7 @@
     # 客户端选择
     client = lib.mkOption {
       type = lib.types.enum [ "clash-verge-rev" "clash-nyanpasu" "flclash" ];
-      default = "clash-nyanpasu";
+      default = "clash-verge-rev";
       description = "选择 Clash 客户端实现";
     };
   };
