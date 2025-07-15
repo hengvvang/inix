@@ -15,10 +15,10 @@
         waningGibbous.enable = true;
         
         # 🌗 下弦月
-        lastQuarter.enable = false;
+        lastQuarter.enable = true;
         
         # 🌒 残月
-        waningCrescent.enable = false;
+        waningCrescent.enable = true;
         
         # 🌑 新月
         newMoon.enable = true;
