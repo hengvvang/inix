@@ -8,20 +8,19 @@
     pkgs = {
       enable = true;                   # 启用系统包管理模块
       
-      # 月相应用分类系统 - 基础配置
       apps = {
         enable = true;
         
-        # � 亏凸月 - 高级生产力工具
-        waningGibbous.enable = false;
+        # 🌖 亏凸月
+        waningGibbous.enable = true;
         
-        # � 下弦月 - 媒体和创意工具
+        # 🌗 下弦月
         lastQuarter.enable = false;
         
-        # � 残月 - 通讯娱乐套件
+        # 🌒 残月
         waningCrescent.enable = false;
         
-        # � 新月 - 系统核心基础
+        # 🌑 新月
         newMoon.enable = true;
       };
       
@@ -29,16 +28,16 @@
       toolkits = {
         enable = true;
         
-        # � 峨眉月 - 基础终端增强
-        waxingCrescent.enable = true;
+        # 🌒 峨眉月
+        waxingCrescent.enable = false;
         
-        # 🌓 上弦月 - 高级终端和基础开发
+        # 🌓 上弦月
         firstQuarter.enable = false;
         
-        # 🌔 盈凸月 - 完整开发环境
+        # 🌔 盈凸月
         waxingGibbous.enable = false;
         
-        # 🌕 满月 - 桌面办公套件
+        # 🌕 满月
         fullMoon.enable = false;
       };
     };
