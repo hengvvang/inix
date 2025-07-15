@@ -35,7 +35,7 @@
         nushell.enable = true;
         yazi.enable = true;
         ghostty.enable = true;
-        alacritty.enable = true;
+        alacritty.enable = false;
         tmux.enable = true;
         git.enable = true;
         lazygit.enable = true;

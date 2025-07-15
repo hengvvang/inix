@@ -131,7 +131,7 @@
           
           # Clash 图形界面客户端
           clash-gui = {
-            enable = true;             # 🟢 启用 Clash GUI 客户端
+            enable = false;             # 🟢 启用 Clash GUI 客户端
             tunMode = true;            # 🟢 启用 TUN 模式（虚拟网卡）
             capabilities = true;       # 🟢 启用网络管理权限
             client = "clash-verge-rev";
