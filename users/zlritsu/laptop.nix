@@ -74,7 +74,7 @@
           polarity = "dark";
           wallpapers = {
             enable = true;
-            preset = "forest";  # zlritsu 使用不同的预设壁纸
+            preset = "sea";  # zlritsu 使用不同的预设壁纸
           };
           fonts = {
             enable = true;

@@ -68,6 +68,44 @@
         fonts = {
           preset = "bauhaus";
         };
+        stylix = {
+          enable = true;
+          polarity = "dark";
+          wallpapers = {
+            enable = true;
+            #preset = "maori";
+            custom = ./../../home/profiles/stylix/wallpapers/swirl-loop.jpeg;
+          };
+          fonts = {
+            enable = true;
+            # 使用默认字体配置，也可以自定义
+          };
+          targets = {
+            enable = true;
+            terminals = {
+              alacritty.enable = false;
+              kitty.enable = false;
+            };
+            editors = {
+              vim.enable = false;
+              neovim.enable = false;
+            };
+            tools = {
+              tmux.enable = false;
+              bat.enable = false;
+              fzf.enable = false;
+            };
+            desktop = {
+              gtk.enable = false;
+            };
+            browsers = {
+              firefox.enable = false;
+            };
+            inputMethods = {
+              fcitx5.enable = true;
+            };
+          };
+        };
       };
     };
   };
