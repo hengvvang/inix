@@ -13,5 +13,6 @@
     ./manager       # 网络管理器模块 (NetworkManager/wpa_supplicant)
     ./ssh           # SSH 完整功能模块
     ./proxy         # 代理服务模块
+    ./virtualInterface  # 虚拟网卡支持模块
   ];
 }

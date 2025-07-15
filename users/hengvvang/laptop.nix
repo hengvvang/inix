@@ -67,7 +67,7 @@
           media.enable = true;        # 启用媒体应用 (mpv, vlc, spotify, etc.)
           office.enable = true;       # 启用办公软件 (libreoffice, etc.)
           gaming.enable = true;       # 启用游戏相关 (steam, lutris, etc.)
-          network.enable = true;      # 启用网络工具 (wireshark, nmap, etc.)
+          network.enable = false;     # 🔴 禁用用户级网络工具（由系统级管理）
         };
       };
       

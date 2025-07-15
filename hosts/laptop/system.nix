@@ -111,17 +111,40 @@
           };
         };
         
+        # 虚拟网卡支持（TUN/TAP）
+        virtualInterface = {
+          enable = true;               # 🟢 启用虚拟网卡支持
+          tun = true;                  # 启用 TUN 支持
+          tap = false;                 # 禁用 TAP 支持
+          forwarding = {
+            ipv4 = true;               # 启用 IPv4 转发
+            ipv6 = false;              # 禁用 IPv6 转发
+          };
+          tools = {
+            basic = true;              # 启用基础网络工具
+            bridge = false;            # 禁用网桥工具
+          };
+        };
+        
         proxy = {
           enable = true;               # 启用代理服务模块
           
+          # Clash 图形界面客户端
+          clash-gui = {
+            enable = true;             # 🟢 启用 Clash GUI 客户端
+            tunMode = true;            # 🟢 启用 TUN 模式（虚拟网卡）
+            capabilities = true;       # 🟢 启用网络管理权限
+            client = "clash-nyanpasu"; # 使用 clash-nyanpasu 客户端
+          };
+          
           # Clash 代理服务
           clash = {
-            enable = false;            # 🔴 禁用 - 需要时设为 true
-            tunMode = false;           # TUN 模式（启用时生效）
+            enable = false;            # 🔴 禁用系统级 Clash（使用客户端代替）
+            tunMode = true;            # 🟢 启用 TUN 模式（虚拟网卡）
             webPort = 9090;           # Web UI 端口
             mixedPort = 7890;         # HTTP/SOCKS5 混合端口
             subscriptionUrl = "https://fba01.fbsubcn01.cc:2096/flydsubal/cymeoq8salu87n34?sub=2&extend=1";  # 🔴 替换为你的订阅链接
-            autoStart = true;         # 系统启动时自动启动
+            autoStart = false;        # 手动启动（避免与 clash-gui 冲突）
             updateInterval = "daily"; # 订阅更新间隔
           };
           

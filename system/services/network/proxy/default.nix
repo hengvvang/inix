@@ -3,6 +3,7 @@
 {
   imports = [
     ./clash
+    ./clash-gui
     ./v2ray
     ./xray
     ./shadowsocks
