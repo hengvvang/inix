@@ -2,39 +2,33 @@
 
 {
   options.mySystem.pkgs.toolkits = {
-    enable = lib.mkEnableOption "命令行工具包支持";
+    enable = lib.mkEnableOption "工具包模块";
     
-    # 文件管理工具
-    files = {
-      enable = lib.mkEnableOption "文件管理工具";
+    # 🌒 峨眉月 - 基础终端增强
+    waxingCrescent = {
+      enable = lib.mkEnableOption "峨眉月 - 基础终端增强";
     };
     
-    # 文本处理工具
-    text = {
-      enable = lib.mkEnableOption "文本处理工具";
+    # 🌓 上弦月 - 高级终端和基础开发
+    firstQuarter = {
+      enable = lib.mkEnableOption "上弦月 - 高级终端和基础开发";
     };
     
-    # 网络工具
-    network = {
-      enable = lib.mkEnableOption "网络工具";
+    # 🌔 盈凸月 - 完整开发环境
+    waxingGibbous = {
+      enable = lib.mkEnableOption "盈凸月 - 完整开发环境";
     };
     
-    # 系统监控工具
-    monitor = {
-      enable = lib.mkEnableOption "系统监控工具";
-    };
-    
-    # 开发工具
-    develop = {
-      enable = lib.mkEnableOption "开发辅助工具";
+    # 🌕 满月 - 桌面办公套件
+    fullMoon = {
+      enable = lib.mkEnableOption "满月 - 桌面办公套件";
     };
   };
 
   imports = [
-    ./files.nix
-    ./text.nix
-    ./network.nix
-    ./monitor.nix
-    ./develop.nix
+    ./waxing-crescent.nix
+    ./first-quarter.nix
+    ./waxing-gibbous.nix
+    ./full-moon.nix
   ];
 }

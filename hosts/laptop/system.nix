@@ -8,28 +8,38 @@
     pkgs = {
       enable = true;                   # 启用系统包管理模块
       
-      # 应用程序配置 - 仅启用开发工具
+      # 月相应用分类系统 - 基础配置
       apps = {
-        enable = true;                 # 启用应用程序模块
-        shells.enable = false;         # 禁用 - 在用户配置中启用
-        terminals.enable = false;      # 禁用 - 在用户配置中启用
-        develop.enable = true;         # 保持启用开发工具（系统级）
-        browsers.enable = false;       # 禁用 - 在用户配置中启用
-        communication.enable = false;  # 禁用 - 在用户配置中启用
-        media.enable = false;          # 禁用 - 在用户配置中启用
-        office.enable = false;         # 禁用 - 在用户配置中启用
-        gaming.enable = false;         # 禁用 - 在用户配置中启用
-        network.enable = true;
+        enable = true;
+        
+        # � 亏凸月 - 高级生产力工具
+        waningGibbous.enable = false;
+        
+        # � 下弦月 - 媒体和创意工具
+        lastQuarter.enable = false;
+        
+        # � 残月 - 通讯娱乐套件
+        waningCrescent.enable = false;
+        
+        # � 新月 - 系统核心基础
+        newMoon.enable = true;
       };
       
-      # 工具包配置 - 禁用，转移到用户配置
+      # 工具包配置
       toolkits = {
-        enable = false;               # 禁用 - 在用户配置中启用
-        files.enable = false;         # 禁用 - 在用户配置中启用
-        text.enable = false;          # 禁用 - 在用户配置中启用
-        network.enable = false;       # 禁用 - 在用户配置中启用
-        monitor.enable = false;       # 禁用 - 在用户配置中启用
-        develop.enable = false;       # 禁用 - 在用户配置中启用
+        enable = true;
+        
+        # � 峨眉月 - 基础终端增强
+        waxingCrescent.enable = true;
+        
+        # 🌓 上弦月 - 高级终端和基础开发
+        firstQuarter.enable = false;
+        
+        # 🌔 盈凸月 - 完整开发环境
+        waxingGibbous.enable = false;
+        
+        # 🌕 满月 - 桌面办公套件
+        fullMoon.enable = false;
       };
     };
     

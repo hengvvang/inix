@@ -7,28 +7,38 @@
     pkgs = {
       enable = true;                   # 启用系统包管理模块
       
-      # 应用程序配置
+      # 月相应用分类系统 - 日常使用配置
       apps = {
-        enable = true;                 # 启用应用程序模块
-        shells.enable = true;          # 启用 shell 程序 (zsh, fish, etc.)
-        terminals.enable = true;       # 启用终端应用 (alacritty, kitty, etc.)
-        develop.enable = true;         # 启用开发工具 (编辑器, IDE, etc.)
-        browsers.enable = true;        # 启用浏览器 (firefox, chromium, etc.)
-        communication.enable = true;   # 启用通讯软件 (telegram, discord, etc.)
-        media.enable = true;           # 启用媒体应用 (mpv, vlc, spotify, etc.)
-        office.enable = true;          # 启用办公软件 (libreoffice, etc.)
-        gaming.enable = true;          # 启用游戏相关 (steam, lutris, etc.)
-        network.enable = true;         # 启用网络工具 (wireshark, nmap, etc.)
+        enable = true;
+        
+        # � 亏凸月 - 高级生产力工具
+        waningGibbous.enable = false;
+        
+        # � 下弦月 - 媒体和创意工具
+        lastQuarter.enable = true;
+        
+        # � 残月 - 通讯娱乐套件
+        waningCrescent.enable = true;
+        
+        # � 新月 - 系统核心基础
+        newMoon.enable = true;
       };
       
       # 工具包配置
       toolkits = {
-        enable = true;                 # 启用工具包模块
-        files.enable = true;           # 启用文件管理工具 (ranger, nnn, etc.)
-        text.enable = true;            # 启用文本处理工具 (grep, sed, awk, etc.)
-        network.enable = true;         # 启用网络工具包 (curl, wget, etc.)
-        monitor.enable = true;         # 启用系统监控工具 (htop, btop, etc.)
-        develop.enable = true;         # 启用开发工具包 (git, make, etc.)
+        enable = true;
+        
+        # � 峨眉月 - 基础终端增强
+        waxingCrescent.enable = true;
+        
+        # 🌓 上弦月 - 高级终端和基础开发
+        firstQuarter.enable = true;
+        
+        # 🌔 盈凸月 - 完整开发环境
+        waxingGibbous.enable = false;
+        
+        # 🌕 满月 - 桌面办公套件
+        fullMoon.enable = true;
       };
     };
     

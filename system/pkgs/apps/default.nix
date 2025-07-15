@@ -2,63 +2,33 @@
 
 {
   options.mySystem.pkgs.apps = {
-    enable = lib.mkEnableOption "系统应用支持";
+    enable = lib.mkEnableOption "应用软件模块";
     
-    # Shell 工具
-    shells = {
-      enable = lib.mkEnableOption "Shell 工具";
+    # � 亏凸月 - 高级生产力工具
+    waningGibbous = {
+      enable = lib.mkEnableOption "亏凸月 - 高级生产力工具" // { default = false; };
     };
     
-    # 终端工具
-    terminals = {
-      enable = lib.mkEnableOption "终端工具";
+    # � 下弦月 - 媒体和创意工具
+    lastQuarter = {
+      enable = lib.mkEnableOption "下弦月 - 媒体和创意工具" // { default = false; };
     };
     
-    # 开发工具
-    develop = {
-      enable = lib.mkEnableOption "开发工具";
+    # � 残月 - 通讯娱乐套件
+    waningCrescent = {
+      enable = lib.mkEnableOption "残月 - 通讯娱乐套件" // { default = false; };
     };
     
-    # 浏览器
-    browsers = {
-      enable = lib.mkEnableOption "浏览器";
-    };
-    
-    # 通讯工具
-    communication = {
-      enable = lib.mkEnableOption "通讯工具";
-    };
-    
-    # 媒体工具
-    media = {
-      enable = lib.mkEnableOption "媒体工具";
-    };
-    
-    # 办公工具
-    office = {
-      enable = lib.mkEnableOption "办公工具";
-    };
-    
-    # 游戏娱乐
-    gaming = {
-      enable = lib.mkEnableOption "游戏娱乐";
-    };
-    
-    # 网络工具
-    network = {
-      enable = lib.mkEnableOption "网络工具";
+    # � 新月 - 系统核心基础
+    newMoon = {
+      enable = lib.mkEnableOption "新月 - 系统核心基础" // { default = false; };
     };
   };
 
   imports = [
-    ./shells.nix
-    ./terminals.nix
-    ./develop.nix
-    ./browsers.nix
-    ./communication.nix
-    ./media.nix
-    ./office.nix
-    ./gaming.nix
-    ./network.nix
+    ./waning-gibbous.nix
+    ./last-quarter.nix
+    ./waning-crescent.nix
+    ./new-moon.nix
   ];
 }
