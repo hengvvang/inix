@@ -8,7 +8,8 @@
       obs-studio
       yazi
       vscode
-      #zed-editor
+      zed-editor
+      google-chrome
     ];
   };
 }
