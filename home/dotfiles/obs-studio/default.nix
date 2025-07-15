@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.dotfiles.obs = {
+  options.myHome.dotfiles.obs-studio = {
     enable = lib.mkEnableOption "OBS Studio 配置";
     
     # 配置方式选择

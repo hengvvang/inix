@@ -7,8 +7,14 @@
     environment.systemPackages = with pkgs; [
       # OBS Studio with plugins properly integrated
       (wrapOBS {
-        plugins = with obs-studio-plugins; [
+        plugins = with pkgs.obs-studio-plugins; [
+          wlrobs
           input-overlay
+          obs-backgroundremoval
+          obs-pipewire-audio-capture
+          obs-vaapi #optional AMD hardware acceleration
+          obs-gstreamer
+          obs-vkcapture
         ];
       })
       yazi

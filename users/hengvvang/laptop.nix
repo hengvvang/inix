@@ -41,7 +41,7 @@
         lazygit.enable = true;
         starship.enable = true;
         qutebrowser.enable = true;  # 启用 Qutebrowser 配置
-        obs.enable = false;          # 启用 OBS Studio 配置
+        obs-studio.enable = false;   # 启用 OBS Studio 配置
         proxy.enable = false;
       };
       

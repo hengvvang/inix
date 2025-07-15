@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.obs.enable && 
-                     config.myHome.dotfiles.obs.method == "direct") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.obs-studio.enable && 
+                     config.myHome.dotfiles.obs-studio.method == "direct") {
     
     # 直接方式配置 - 演示用
     home.activation.obsConfig = lib.hm.dag.entryAfter ["writeBoundary"] ''
