@@ -9,12 +9,11 @@
       # 基础搜索引擎配置 - 优化常用引擎
       searchEngines = {
         DEFAULT = "https://www.google.com/search?q={}";
-        g = "https://www.google.com/search?q={}";
-        d = "https://duckduckgo.com/?q={}";
-        gh = "https://github.com/search?q={}";
-        w = "https://zh.wikipedia.org/wiki/{}";
-        y = "https://www.youtube.com/results?search_query={}";
-        n = "https://search.nixos.org/packages?query={}";  # Nix 包搜索
+        # g = "https://www.google.com/search?q={}";
+        # d = "https://duckduckgo.com/?q={}";
+        # gh = "https://github.com/search?q={}";
+        # w = "https://zh.wikipedia.org/wiki/{}";
+        # y = "https://www.youtube.com/results?search_query={}";
       };
       
       # 键位绑定 - 完全基于 Zen Browser 官方快捷键

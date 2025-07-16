@@ -40,27 +40,21 @@
 
       pkgs = {
         enable = true;                # 启用用户包管理
-        # 工具包配置 - 从系统配置迁移，zlritsu 使用轻量级配置
+        # 工具包配置 - 月相主题设计，zlritsu 使用轻量级配置
         toolkits = {
           enable = true;              # 启用工具包模块
-          files.enable = true;        # 启用文件管理工具
-          text.enable = true;         # 启用文本处理工具
-          network.enable = false;     # zlritsu 轻量级配置 - 禁用网络工具
-          monitor.enable = false;     # zlritsu 轻量级配置 - 禁用监控工具
-          develop.enable = false;     # zlritsu 轻量级配置 - 禁用开发工具
+          waxingCrescent.enable = true;  # 🌒 峨眉月 - 基础家庭工具
+          firstQuarter.enable = false;   # 🌓 上弦月 - 开发和终端工具 (轻量级禁用)
+          waxingGibbous.enable = false;  # 🌔 盈凸月 - 高级工具套件 (轻量级禁用)
+          fullMoon.enable = false;       # 🌕 满月 - 完整工具生态 (轻量级禁用)
         };
-        # 应用程序配置 - 从系统配置迁移，zlritsu 使用轻量级配置
+        # 应用程序配置 - 月相主题设计，zlritsu 使用轻量级配置
         apps = {
           enable = true;              # 启用应用程序模块
-          shells.enable = true;       # 启用 shell 程序
-          terminals.enable = true;    # 启用终端应用
-          develop.enable = false;     # zlritsu 轻量级配置 - 禁用开发工具
-          browsers.enable = true;     # 启用浏览器
-          communication.enable = false;  # zlritsu 轻量级配置 - 禁用通讯软件
-          media.enable = true;        # 启用媒体应用
-          office.enable = false;      # zlritsu 轻量级配置 - 禁用办公软件
-          gaming.enable = false;      # zlritsu 轻量级配置 - 禁用游戏
-          network.enable = false;     # zlritsu 轻量级配置 - 禁用网络工具
+          waningCrescent.enable = true;  # 🌘 残月 - 基础应用核心
+          lastQuarter.enable = false;    # 🌗 下弦月 - 开发和终端应用 (轻量级禁用)
+          waningGibbous.enable = false;  # 🌖 亏凸月 - 桌面生产力套件 (轻量级禁用)
+          newMoon.enable = false;        # 🌑 新月 - 完整应用生态 (轻量级禁用)
         };
       };
 

@@ -4,9 +4,10 @@
 
 {
   config = lib.mkIf config.mySystem.pkgs.apps.newMoon.enable {
-    environment.systemPackages = with pkgs; [
-      spotify
-      #cider-2
+    environment.systemPackages = [
+      pkgs.spotify
+      #pkgs.cider-2
+      pkgs.kdePackages.kdenlive
     ];
   };
 }

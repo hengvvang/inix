@@ -17,6 +17,7 @@
           obs-vkcapture
         ];
       })
+      tmux
       yazi
       vscode
       zed-editor
