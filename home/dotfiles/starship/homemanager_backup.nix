@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.enable && config.myHome.dotfiles.starship.method == "homemanager") {
-    # 🌟 Starship - 极致炫酷的未来感终端提示符
+    # Starship - 现代化跨Shell提示符
     programs.starship = {
       enable = true;
       enableBashIntegration = true;
@@ -11,24 +11,36 @@
       enableNushellIntegration = true;
       
       settings = {
-        # 🌈 赛博朋克风格主布局 - 完整图标与Nerd Font支持
+        # 🌟 未来感炫酷布局 - 赛博朋克风格 (完整图标支持)
         format = ''
           [](fg:#ff006e)$os[](bg:#ff006e fg:#8338ec)[](bg:#8338ec fg:#3a86ff)[](bg:#3a86ff fg:#06ffa5)[](bg:#06ffa5 fg:#ffbe0b)[](bg:#ffbe0b fg:#fb5607)[](bg:#fb5607 fg:#ff006e)
           [](fg:#ff006e)$username[](bg:#ff006e fg:#8338ec)$hostname[](bg:#8338ec fg:#3a86ff)$directory[](bg:#3a86ff fg:#06ffa5)$git_branch[](bg:#06ffa5 fg:#ffbe0b)$git_status[](bg:#ffbe0b fg:#fb5607)$package$nix_shell[](bg:#fb5607 fg:#313244)
           [](fg:#cba6f7)$fill[󰞒](fg:#f38ba8)$nodejs[󰞒](fg:#a6e3a1)$python[󰞒](fg:#fab387)$rust[󰞒](fg:#89dceb)$golang[󰞒](fg:#f9e2af)$java[󰞒](fg:#89b4fa)$docker_context[󰞒](fg:#cdd6f4)$cmd_duration[](fg:#a6e3a1)$character'';
-        
-        # 🔮 右侧炫光状态栏 - 实时系统监控
-        right_format = "[](fg:#cba6f7)$time[](fg:#f38ba8)$battery[](fg:#a6e3a1)$memory_usage[](fg:#89b4fa)";
-        
         add_newline = true;
         
-        # ⚡ 炫彩填充器 - 动态光效连接线
+        # 🔮 右侧炫光状态栏
+        right_format = "[](fg:#cba6f7)$time[](fg:#f38ba8)$battery[](fg:#a6e3a1)$memory_usage[](fg:#89b4fa)";
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
+      
+      settings = {
+        # � 未来感炫酷布局 - 赛博朋克风格
+        format = ''
+          [](fg:#ff006e)$os[](bg:#ff006e fg:#8338ec)[](bg:#8338ec fg:#3a86ff)[](bg:#3a86ff fg:#06ffa5)[](bg:#06ffa5 fg:#ffbe0b)[](bg:#ffbe0b fg:#fb5607)[](bg:#fb5607 fg:#ff006e)
+          [](fg:#ff006e)$username[](bg:#ff006e fg:#8338ec)$hostname[](bg:#8338ec fg:#3a86ff)$directory[](bg:#3a86ff fg:#06ffa5)$git_branch[](bg:#06ffa5 fg:#ffbe0b)$git_status[](bg:#ffbe0b fg:#fb5607)$package$nix_shell[](bg:#fb5607 fg:#313244)
+          [](fg:#cba6f7)$fill[󰞒](fg:#f38ba8)$nodejs[󰞒](fg:#a6e3a1)$python[󰞒](fg:#fab387)$rust[󰞒](fg:#89dceb)$golang[󰞒](fg:#f9e2af)$java[󰞒](fg:#89b4fa)$docker_context[󰞒](fg:#cdd6f4)$cmd_duration[](fg:#a6e3a1)$character'';
+        add_newline = true;
+        
+        # 🔮 右侧炫光状态栏
+        right_format = "[](fg:#cba6f7)$time[](fg:#f38ba8)$battery[](fg:#a6e3a1)$memory_usage[](fg:#89b4fa)";
+        
+        # � 炫彩填充器 - 动态光效
         fill = {
           symbol = "━";
           style = "fg:#585b70";
         };
         
-        # 🖥️ 操作系统 - 未来科技标识
+        # � 操作系统 - 未来科技标识
         os = {
           format = "[  $symbol  ](fg:#11111b bg:#ff006e bold)";
           disabled = false;
@@ -48,7 +60,7 @@
           };
         };
         
-        # 💫 超级炫酷提示符 - 量子箭头
+        # ⚡ 超级炫酷提示符
         character = {
           success_symbol = "[❯❯❯](fg:#a6e3a1 bold)";
           error_symbol = "[❯❯❯](fg:#f38ba8 bold)";
@@ -56,7 +68,7 @@
           vimcmd_symbol = "[❮❮❮](fg:#f9e2af bold)";
         };
         
-        # 👤 用户名 - 赛博朋克用户标识
+        # � 用户名 - 赛博朋克用户标识
         username = {
           style_user = "fg:#11111b bg:#ff006e bold";
           style_root = "fg:#11111b bg:#f38ba8 bold";
@@ -65,7 +77,7 @@
           show_always = true;
         };
         
-        # 🌐 主机名 - 网络节点显示
+        # � 主机名 - 网络节点显示
         hostname = {
           ssh_only = false;
           ssh_symbol = " 󰒋 ";
@@ -74,7 +86,7 @@
           disabled = false;
         };
         
-        # 📁 目录 - 全息路径显示
+        # �️ 目录 - 全息路径显示
         directory = {
           style = "fg:#11111b bg:#3a86ff bold";
           format = "[  󰉋 $path  ]($style)";
@@ -102,7 +114,7 @@
           };
         };
         
-        # 🌿 Git 分支 - 量子版本控制
+        # � Git 分支 - 量子版本控制
         git_branch = {
           symbol = "󰘬";
           style = "fg:#11111b bg:#06ffa5 bold";
@@ -145,7 +157,7 @@
           disabled = false;
         };
         
-        # ❄️ Nix Shell - 冰晶环境指示
+        # ❄️ Nix Shell - 冰晶环境
         nix_shell = {
           format = "[  󱄅 $state  ](fg:#11111b bg:#fb5607 bold)";
           pure_msg = "pure";
@@ -154,7 +166,7 @@
           disabled = false;
         };
         
-        # 🟩 Node.js - 现代JavaScript运行时
+        # � 编程语言 - 全息技术栈
         nodejs = {
           format = "[ 󰎙 $version ](fg:#11111b bg:#f38ba8 bold)";
           version_format = "v$version";
@@ -163,7 +175,6 @@
           detect_folders = ["node_modules"];
         };
         
-        # 🐍 Python - 智能脚本语言
         python = {
           format = "[ 󰌠 $version ](fg:#11111b bg:#a6e3a1 bold)";
           version_format = "v$version";
@@ -171,7 +182,6 @@
           python_binary = ["python" "python3" "python2"];
         };
         
-        # 🦀 Rust - 系统级安全编程
         rust = {
           format = "[ 󱘗 $version ](fg:#11111b bg:#fab387 bold)";
           version_format = "v$version";
@@ -179,7 +189,6 @@
           detect_files = ["Cargo.toml"];
         };
         
-        # 🔷 Go - 高效并发语言
         golang = {
           format = "[ 󰟓 $version ](fg:#11111b bg:#89dceb bold)";
           version_format = "v$version";
@@ -187,7 +196,6 @@
           detect_files = ["go.mod" "go.sum"];
         };
         
-        # ☕ Java - 企业级开发平台
         java = {
           format = "[ 󰬷 $version ](fg:#11111b bg:#f9e2af bold)";
           version_format = "v$version";
@@ -195,14 +203,14 @@
           detect_files = ["pom.xml" "build.gradle.kts"];
         };
         
-        # 🐳 Docker - 容器化宇宙
+        # 🐳 Docker - 容器宇宙
         docker_context = {
           format = "[ 󰡨 $context ](fg:#11111b bg:#89b4fa bold)";
           only_with_files = true;
           detect_files = ["docker-compose.yml" "Dockerfile"];
         };
         
-        # 🕐 时间 - 全息时钟显示
+        # 🕐 时间 - 全息时钟
         time = {
           disabled = false;
           format = "[  󰥔 $time  ](fg:#11111b bg:#cba6f7 bold)";
@@ -210,7 +218,7 @@
           utc_time_offset = "local";
         };
         
-        # 🔋 电池 - 能量核心监控
+        # 🔋 电池 - 能量核心
         battery = {
           full_symbol = "󰁹";
           charging_symbol = "󰂄";
@@ -237,7 +245,7 @@
           disabled = false;
         };
         
-        # 🧠 内存使用率 - 神经网络监控
+        # 🧠 内存 - 神经网络监控
         memory_usage = {
           disabled = false;
           threshold = 70;

@@ -9,8 +9,15 @@
       roboto               # Google 几何设计
       ubuntu_font_family   # Ubuntu 几何风格
       
-      # 编程字体 - 几何简洁
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "Iosevka" "IBMPlexMono" ]; })
+      # 完整 Nerd Font 支持 - 几何简洁风格
+      (nerdfonts.override { 
+        fonts = [ 
+          "JetBrainsMono" "Iosevka" "IBMPlexMono" "Ubuntu" "RobotoMono"
+          "SourceCodePro" "Hack" "FiraCode" "CascadiaCode" "SpaceMono"
+          "InconsolataGo" "DroidSansMono" "DejaVuSansMono" "LiberationMono"
+          "UbuntuMono" "Meslo" "AnonymousPro" "ProFont" "ProggyClean"
+        ]; 
+      })
       monaspace            # GitHub 现代编程字体
       jetbrains-mono       # 现代几何等宽字体
       iosevka             # 现代几何编程字体
@@ -25,19 +32,28 @@
       source-han-sans      # Adobe 思源黑体
       sarasa-gothic       # 更纱黑体，几何风格
       
-      # 系统字体
+      # 系统字体和图标支持
       noto-fonts
       noto-fonts-emoji
+      noto-fonts-extra
       liberation_ttf
+      font-awesome        # Font Awesome 图标字体
+      material-design-icons # Material Design 图标
     ];
 
-    # 字体配置
+    # 字体配置 - 优化几何美学
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
         serif = [ "Source Serif Pro" "Source Han Serif SC" ];
         sansSerif = [ "Inter" "Roboto" "Source Han Sans SC" "LXGW WenKai" ];
-        monospace = [ "IBM Plex Mono Nerd Font" "Monaspace Neon" "Iosevka" ];
+        monospace = [ 
+          "JetBrains Mono Nerd Font" 
+          "Iosevka Nerd Font" 
+          "IBM Plex Mono Nerd Font" 
+          "Ubuntu Mono Nerd Font"
+          "Monaspace Neon" 
+        ];
         emoji = [ "Noto Color Emoji" ];
       };
     };

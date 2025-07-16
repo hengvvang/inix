@@ -5,7 +5,16 @@
   config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "sakura") {
     home.packages = with pkgs; [
       # 主力编程字体
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "Iosevka" "CascadiaCode" ]; })
+      # 完整 Nerd Font 支持 - 樱花优雅风格
+      (nerdfonts.override { 
+        fonts = [ 
+          "JetBrainsMono" "FiraCode" "Iosevka" "CascadiaCode" "SourceCodePro"
+          "RobotoMono" "Hack" "Ubuntu" "UbuntuMono" "DejaVuSansMono"
+          "InconsolataGo" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
+          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
+          "VictorMono" "BigBlueTerminal" "Terminus"
+        ]; 
+      })
       monaspace
       
       # 中文字体 - 优雅的中日文支持
@@ -31,16 +40,35 @@
       jetbrains-mono
       cascadia-code
       victor-mono
+      
+      # 图标和符号字体
+      font-awesome
+      material-design-icons
+      powerline-fonts
+      noto-fonts-emoji-blob-bin
+      openmoji-color
+      twemoji-color-font
     ];
 
-    # 字体配置
+    # 字体配置 - 樱花优雅风格
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        sansSerif = [ "Inter" "Noto Sans CJK SC" "LXGW WenKai" ];
-        serif = [ "Source Serif Pro" "Noto Serif CJK SC" "LXGW WenKai" ];
-        monospace = [ "JetBrains Mono Nerd Font" "Monaspace Neon" "LXGW WenKai Mono" ];
-        emoji = [ "Noto Color Emoji" ];
+        sansSerif = [ 
+          "Inter" "Noto Sans CJK SC" "LXGW WenKai" 
+          "Font Awesome 6 Free" "Material Design Icons"
+        ];
+        serif = [ 
+          "Source Serif Pro" "Noto Serif CJK SC" "LXGW WenKai"
+          "Klee One" "Zen Old Mincho"
+        ];
+        monospace = [ 
+          "JetBrains Mono Nerd Font" "Monaspace Neon Var" "LXGW WenKai Mono"
+          "Cascadia Code NF" "Victor Mono Nerd Font" "Iosevka Nerd Font"
+        ];
+        emoji = [ 
+          "Noto Color Emoji" "OpenMoji Color" "Twemoji" "Font Awesome 6 Free"
+        ];
       };
     };
   };

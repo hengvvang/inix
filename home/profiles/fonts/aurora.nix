@@ -5,7 +5,16 @@
   config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "aurora") {
     home.packages = with pkgs; [
       # 主力编程字体 - 现代科技感
-      (nerdfonts.override { fonts = [ "CascadiaCode" "FiraCode" "VictorMono" "Iosevka" ]; })
+      # 完整 Nerd Font 支持 - 极光绚烂风格
+      (nerdfonts.override { 
+        fonts = [ 
+          "CascadiaCode" "FiraCode" "VictorMono" "Iosevka" "JetBrainsMono"
+          "SourceCodePro" "RobotoMono" "Hack" "Ubuntu" "UbuntuMono"
+          "DejaVuSansMono" "InconsolataGo" "SpaceMono" "DroidSansMono"
+          "Meslo" "AnonymousPro" "LiberationMono" "ProFont" "ProggyClean"
+          "GoMono" "Agave" "BigBlueTerminal" "Terminus"
+        ]; 
+      })
       monaspace
       
       # 中文字体 - 现代设计
@@ -30,15 +39,34 @@
       fira-code
       victor-mono
       cascadia-code
+      
+      # 图标和符号字体
+      font-awesome
+      material-design-icons
+      powerline-fonts
+      noto-fonts-emoji-blob-bin
+      openmoji-color
+      twemoji-color-font
     ];
 
+    # 字体配置 - 极光绚烂风格
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        sansSerif = [ "Inter" "Roboto" "Sarasa Gothic SC" ];
-        serif = [ "Source Serif Pro" "Noto Serif CJK SC" ];
-        monospace = [ "Cascadia Code Nerd Font" "Monaspace Krypton" "Victor Mono" ];
-        emoji = [ "Noto Color Emoji" ];
+        sansSerif = [ 
+          "Inter" "Roboto" "Sarasa Gothic SC"
+          "Font Awesome 6 Free" "Material Design Icons"
+        ];
+        serif = [ 
+          "Source Serif Pro" "Noto Serif CJK SC" "Sarasa Gothic SC"
+        ];
+        monospace = [ 
+          "Cascadia Code Nerd Font" "Monaspace Krypton Var" "Victor Mono Nerd Font"
+          "Fira Code Nerd Font" "JetBrains Mono Nerd Font" "Iosevka Nerd Font"
+        ];
+        emoji = [ 
+          "Noto Color Emoji" "OpenMoji Color" "Twemoji" "Font Awesome 6 Free"
+        ];
       };
     };
   };

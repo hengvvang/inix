@@ -14,8 +14,15 @@
       source-sans-pro      # 友好易读
       ubuntu_font_family   # Ubuntu 温暖字体
       
-      # 编程字体 - 温和舒适
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" "Iosevka" ]; })
+      # 完整 Nerd Font 支持 - 森林温和风格
+      (nerdfonts.override { 
+        fonts = [ 
+          "FiraCode" "JetBrainsMono" "Iosevka" "SourceCodePro" "RobotoMono"
+          "Hack" "CascadiaCode" "Ubuntu" "UbuntuMono" "DejaVuSansMono"
+          "InconsolataGo" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
+          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
+        ]; 
+      })
       monaspace            # GitHub 现代编程字体
       fira-code            # 连字编程字体
       source-code-pro      # 人文主义等宽字体
@@ -28,21 +35,36 @@
       source-han-serif     # Adobe 思源宋体
       sarasa-gothic       # 更纱黑体
       
-      # 系统字体
+      # 系统字体和图标支持
       noto-fonts
       noto-fonts-emoji
+      noto-fonts-extra
       liberation_ttf
       dejavu_fonts
+      font-awesome        # Font Awesome 图标字体
+      material-design-icons # Material Design 图标
+      powerline-fonts     # Powerline 字体支持
     ];
 
-    # 字体配置
+    # 字体配置 - 森林自然风格
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [ "Source Serif Pro" "Merriweather" "Source Han Serif SC" "LXGW WenKai" ];
-        sansSerif = [ "Open Sans" "Lato" "Source Han Sans SC" "LXGW WenKai" ];
-        monospace = [ "Fira Code Nerd Font" "Monaspace Neon" "Sarasa Gothic SC" ];
-        emoji = [ "Noto Color Emoji" ];
+        serif = [ 
+          "Source Serif Pro" "Merriweather" "Source Han Serif SC" "LXGW WenKai"
+          "Font Awesome 6 Free"
+        ];
+        sansSerif = [ 
+          "Open Sans" "Lato" "Source Han Sans SC" "LXGW WenKai"
+          "Font Awesome 6 Free" "Material Design Icons"
+        ];
+        monospace = [ 
+          "Fira Code Nerd Font" "Monaspace Neon Var" "Sarasa Gothic SC"
+          "JetBrains Mono Nerd Font" "Source Code Pro Nerd Font"
+        ];
+        emoji = [ 
+          "Noto Color Emoji" "OpenMoji Color" "Twemoji" "Font Awesome 6 Free"
+        ];
       };
     };
   };

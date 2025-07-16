@@ -3,8 +3,15 @@
 {
   config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "cyberPunk") {
     home.packages = with pkgs; [
-      # 主要编程字体 - 赛博朋克科技感
-      (nerdfonts.override { fonts = [ "FiraCode" "CascadiaCode" "VictorMono" "Hack" ]; })
+      # 完整 Nerd Font 支持 - 赛博朋克科技感
+      (nerdfonts.override { 
+        fonts = [ 
+          "FiraCode" "CascadiaCode" "VictorMono" "Hack" "JetBrainsMono"
+          "Iosevka" "SourceCodePro" "RobotoMono" "SpaceMono" "InconsolataGo"
+          "DroidSansMono" "DejaVuSansMono" "UbuntuMono" "Meslo" "AnonymousPro"
+          "ProFont" "ProggyClean" "BigBlueTerminal" "Terminus" "GoMono"
+        ]; 
+      })
       monaspace            # GitHub 现代编程字体族
       fira-code            # 连字编程字体，科技感十足
       jetbrains-mono       # 现代等宽字体
@@ -27,19 +34,30 @@
       hack-font            # 黑客风格等宽字体
       iosevka             # 现代编程字体
       
-      # 系统字体
+      # 系统字体和图标支持
       noto-fonts
       noto-fonts-emoji
+      noto-fonts-extra
       liberation_ttf
+      font-awesome        # Font Awesome 图标字体
+      material-design-icons # Material Design 图标
+      powerline-fonts     # Powerline 字体支持
     ];
 
-    # 字体配置
+    # 字体配置 - 赛博朋克风格优化
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
         serif = [ "Noto Serif" "Source Han Serif SC" ];
         sansSerif = [ "Inter" "Roboto" "Source Han Sans SC" "LXGW WenKai" ];
-        monospace = [ "Fira Code Nerd Font" "Monaspace Krypton" "Victor Mono" ];
+        monospace = [ 
+          "Fira Code Nerd Font" 
+          "Cascadia Code Nerd Font"
+          "Victor Mono Nerd Font"
+          "Hack Nerd Font"
+          "JetBrains Mono Nerd Font"
+          "Monaspace Krypton" 
+        ];
         emoji = [ "Noto Color Emoji" ];
       };
     };

@@ -5,7 +5,16 @@
   config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "ocean") {
     home.packages = with pkgs; [
       # 主力编程字体 - 清晰流畅
-      (nerdfonts.override { fonts = [ "FiraCode" "Iosevka" "JetBrainsMono" "Hack" "SourceCodePro" ]; })
+      # 完整 Nerd Font 支持 - 海洋深邃风格
+      (nerdfonts.override { 
+        fonts = [ 
+          "FiraCode" "Iosevka" "JetBrainsMono" "Hack" "SourceCodePro"
+          "RobotoMono" "CascadiaCode" "Ubuntu" "UbuntuMono" "DejaVuSansMono"
+          "InconsolataGo" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
+          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
+          "VictorMono" "BigBlueTerminal" "Terminus"
+        ]; 
+      })
       monaspace
       
       # 中文字体 - 现代简洁
@@ -30,15 +39,34 @@
       source-code-pro
       hack-font
       iosevka
+      
+      # 图标和符号字体
+      font-awesome
+      material-design-icons
+      powerline-fonts
+      noto-fonts-emoji-blob-bin
+      openmoji-color
+      twemoji-color-font
     ];
 
+    # 字体配置 - 海洋深邃风格
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        sansSerif = [ "Roboto" "Noto Sans CJK SC" "Sarasa Gothic SC" ];
-        serif = [ "Source Serif Pro" "Noto Serif CJK SC" ];
-        monospace = [ "Fira Code Nerd Font" "Monaspace Argon" "LXGW WenKai Mono" ];
-        emoji = [ "Noto Color Emoji" ];
+        sansSerif = [ 
+          "Roboto" "Noto Sans CJK SC" "Sarasa Gothic SC"
+          "Font Awesome 6 Free" "Material Design Icons"
+        ];
+        serif = [ 
+          "Source Serif Pro" "Noto Serif CJK SC" "Sarasa Gothic SC"
+        ];
+        monospace = [ 
+          "Fira Code Nerd Font" "Monaspace Argon Var" "LXGW WenKai Mono"
+          "Hack Nerd Font" "Iosevka Nerd Font" "Source Code Pro Nerd Font"
+        ];
+        emoji = [ 
+          "Noto Color Emoji" "OpenMoji Color" "Twemoji" "Font Awesome 6 Free"
+        ];
       };
     };
   };

@@ -5,7 +5,15 @@
   config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "zen") {
     home.packages = with pkgs; [
       # 主力编程字体 - 专注清晰
-      (nerdfonts.override { fonts = [ "Iosevka" "JetBrainsMono" "InconsolataGo" ]; })
+      # 完整 Nerd Font 支持 - 禅意宁静风格
+      (nerdfonts.override { 
+        fonts = [ 
+          "Iosevka" "JetBrainsMono" "InconsolataGo" "SourceCodePro" "FiraCode"
+          "RobotoMono" "Hack" "CascadiaCode" "Ubuntu" "UbuntuMono"
+          "DejaVuSansMono" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
+          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
+        ]; 
+      })
       monaspace
       
       # 中文字体 - 传统与现代融合
@@ -29,14 +37,32 @@
       iosevka
       jetbrains-mono
       inconsolata-go
+      
+      # 系统字体和图标支持
+      noto-fonts
+      noto-fonts-emoji
+      noto-fonts-extra
+      liberation_ttf
+      dejavu_fonts
+      font-awesome        # Font Awesome 图标字体
+      material-design-icons # Material Design 图标
+      powerline-fonts     # Powerline 字体支持
     ];
 
+    # 字体配置 - 禅意美学优化
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
         sansSerif = [ "Inter" "Source Han Sans SC" "LXGW WenKai" ];
-        serif = [ "Source Serif Pro" "Source Han Serif SC" ];
-        monospace = [ "Iosevka Nerd Font" "Monaspace Xenon" "LXGW WenKai Mono" ];
+        serif = [ "Source Serif Pro" "Source Han Serif SC" "LXGW WenKai" ];
+        monospace = [ 
+          "Iosevka Nerd Font" 
+          "JetBrains Mono Nerd Font"
+          "Inconsolata Go Nerd Font"
+          "Source Code Pro Nerd Font"
+          "Monaspace Xenon" 
+          "LXGW WenKai Mono" 
+        ];
         emoji = [ "Noto Color Emoji" ];
       };
     };

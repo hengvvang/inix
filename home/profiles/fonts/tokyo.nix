@@ -7,7 +7,15 @@
       noto-fonts-cjk-sans  # Google 现代中日韩字体
       
       # 编程字体 - 现代简洁
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" "Iosevka" "CascadiaCode" ]; })
+      (nerdfonts.override { 
+        fonts = [ 
+          "JetBrainsMono" "FiraCode" "Iosevka" "CascadiaCode" "SourceCodePro"
+          "RobotoMono" "Hack" "Ubuntu" "UbuntuMono" "DejaVuSansMono"
+          "InconsolataGo" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
+          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
+          "VictorMono" "BigBlueTerminal" "Terminus"
+        ]; 
+      })
       monaspace            # GitHub 现代编程字体
       source-code-pro      # 简洁专业
       jetbrains-mono       # 现代等宽字体
@@ -31,19 +39,29 @@
       klee-one            # 日式手写风格
       zen-old-mincho      # 禅古明朝体
       
-      # 系统字体
+      # 系统字体和图标支持
       noto-fonts
       noto-fonts-emoji
+      noto-fonts-extra
       liberation_ttf
+      font-awesome        # Font Awesome 图标字体
+      material-design-icons # Material Design 图标
     ];
 
-    # 字体配置
+    # 字体配置 - 东京风格优化
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
         serif = [ "Source Han Serif SC" "Noto Serif CJK SC" "LXGW WenKai" ];
-        sansSerif = [ "Inter" "Source Han Sans SC" "Roboto" "LXGW WenKai" ];
-        monospace = [ "JetBrains Mono Nerd Font" "Monaspace Argon" "Sarasa Gothic SC" ];
+        sansSerif = [ "Inter" "Source Han Sans SC" "Noto Sans CJK SC" "Roboto" ];
+        monospace = [ 
+          "JetBrains Mono Nerd Font" 
+          "Fira Code Nerd Font"
+          "Cascadia Code Nerd Font"
+          "Source Code Pro Nerd Font"
+          "Monaspace Neon" 
+          "Sarasa Gothic SC" 
+        ];
         emoji = [ "Noto Color Emoji" ];
       };
     };
