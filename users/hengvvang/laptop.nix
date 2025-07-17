@@ -73,39 +73,54 @@
         };
         stylix = {
           enable = true;
-          polarity = "dark";
+          # polarity = "dark";  # ❌ 注释掉，沿用系统配置 (dark)
+          # 或者覆盖: polarity = "light";  # ✅ 用户偏好覆盖系统配置
+          
           wallpapers = {
             enable = true;
-            #preset = "maori";
-            custom = ./../../home/profiles/stylix/wallpapers/swirl-loop.jpeg;
+            # preset = "maori";  # ❌ 注释掉，使用自定义壁纸
+            custom = ./../../home/profiles/stylix/wallpapers/swirl-loop.jpeg;  # ✅ 覆盖系统壁纸
           };
+          
           fonts = {
             enable = true;
-            # 使用默认字体配置，也可以自定义
+            # 📝 可以选择性覆盖系统字体配置
+            # names.monospace = "Fira Code Nerd Font Mono";  # 覆盖系统字体
+            sizes = {
+              # terminal = 14;  # 覆盖系统终端字体大小 (系统默认: 12)
+              # applications = 12;  # 覆盖系统应用字体大小 (系统默认: 11)
+            };
           };
+          
           targets = {
             enable = true;
+            
             terminals = {
-              alacritty.enable = false;
-              kitty.enable = false;
+              alacritty.enable = false;  # ✅ 覆盖系统默认 (true -> false)，避免冲突
+              kitty.enable = false;      # ❌ 保持系统默认 (false)
             };
+            
             editors = {
-              vim.enable = false;
-              neovim.enable = false;
+              vim.enable = false;        # ✅ 覆盖系统默认 (true -> false)
+              neovim.enable = true;      # ❌ 保持系统默认 (true)
             };
+            
             tools = {
-              tmux.enable = false;
-              bat.enable = false;
-              fzf.enable = false;
+              tmux.enable = true;        # ✅ 用户启用
+              bat.enable = true;         # ✅ 用户启用
+              fzf.enable = true;         # ✅ 用户启用
             };
+            
             desktop = {
-              gtk.enable = false;
+              gtk.enable = true;         # ❌ 沿用系统配置，通常不需要用户级覆盖
             };
+            
             browsers = {
-              firefox.enable = false;
+              firefox.enable = true;     # ❌ 保持系统默认 (true)
             };
+            
             inputMethods = {
-              fcitx5.enable = true;
+              fcitx5.enable = true;      # ✅ 用户启用输入法主题
             };
           };
         };

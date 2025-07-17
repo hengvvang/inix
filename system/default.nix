@@ -7,6 +7,7 @@
     ./locale
     ./services
     ./pkgs
+    ./profiles    # ✅ 添加 profiles 模块
   ];
 
 }

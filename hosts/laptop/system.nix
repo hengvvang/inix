@@ -4,6 +4,50 @@
   # 系统模块配置 - 完全由主机决定启用哪些模块
   # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
+    # 🚧 暂时注释掉系统 profiles 配置，等模块完善后再启用
+    # profiles = {
+    #   stylix = {
+    #     enable = true;
+    #     polarity = "dark";
+    #     wallpapers = {
+    #       enable = true;
+    #       preset = "sea";
+    #     };
+    #     fonts = {
+    #       enable = true;
+    #     };
+    #     targets = {
+    #       enable = true;
+    #       boot = {
+    #         grub.enable = true;
+    #         plymouth.enable = true;
+    #       };
+    #       display = {
+    #         lightdm.enable = false;
+    #         gdm.enable = true;
+    #         sddm.enable = false;
+    #       };
+    #       desktop = {
+    #         gtk.enable = true;
+    #         qt.enable = true;
+    #       };
+    #       userDefaults = {
+    #         terminals = {
+    #           alacritty.enable = true;
+    #           kitty.enable = false;
+    #         };
+    #         editors = {
+    #           vim.enable = true;
+    #           neovim.enable = true;
+    #         };
+    #         browsers = {
+    #           firefox.enable = true;
+    #         };
+    #       };
+    #     };
+    #   };
+    # };
+    
     # 系统级应用配置 - 仅启用开发工具，其他软件包通过用户配置管理
     pkgs = {
       enable = true;                   # 启用系统包管理模块

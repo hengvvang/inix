@@ -23,6 +23,7 @@
       
       # 定义通用系统模块列表，可被多个主机配置共享
       commonSystemModules = [
+        stylix.nixosModules.stylix  # ✅ 添加系统级 Stylix 模块
         {
           environment.systemPackages = [ 
             zen-browser.packages.${system}.twilight
