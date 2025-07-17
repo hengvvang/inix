@@ -42,6 +42,7 @@
         starship.enable = true;
         qutebrowser.enable = false;  # 启用 Qutebrowser 配置
         obs-studio.enable = false;   # 启用 OBS Studio 配置
+        mpd.enable = true;            # 🟢 启用 MPD 音乐播放器配置
         proxy.enable = false;
       };
       

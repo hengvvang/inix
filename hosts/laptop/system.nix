@@ -226,6 +226,14 @@
           enable = true;               # 启用流媒体工具
           download = true;             # yt-dlp 下载工具
         };
+        
+        # MPD 音乐播放器守护进程配置
+        mpd = {
+          enable = true;               # 🟢 启用 MPD 服务
+          musicDirectory = "/home/hengvvang/Music";  # 音乐目录
+          port = 6600;                 # MPD 服务端口
+          httpPort = 8000;             # HTTP 音频流端口
+        };
       };
       
       # 硬件驱动配置

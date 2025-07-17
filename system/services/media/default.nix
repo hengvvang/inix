@@ -31,10 +31,31 @@
       enable = lib.mkEnableOption "流媒体工具";
       download = lib.mkEnableOption "yt-dlp 下载工具" // { default = true; };
     };
+    
+    # MPD 音乐播放器守护进程
+    mpd = {
+      enable = lib.mkEnableOption "MPD 音乐播放器守护进程";
+      musicDirectory = lib.mkOption {
+        type = lib.types.str;
+        default = "/home/music";
+        description = "音乐文件目录路径";
+      };
+      port = lib.mkOption {
+        type = lib.types.int;
+        default = 6600;
+        description = "MPD 服务端口";
+      };
+      httpPort = lib.mkOption {
+        type = lib.types.nullOr lib.types.int;
+        default = 8000;
+        description = "HTTP 音频流端口，设为 null 禁用";
+      };
+    };
   };
 
   imports = [
     ./media.nix
+    ./mpd.nix
   ];
 
 }
