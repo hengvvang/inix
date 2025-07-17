@@ -11,24 +11,24 @@
       enableNushellIntegration = true;
       
       settings = {
-        # 🤖 EVA-01 终极战斗终端 - Evangelion Unit-01 主题
+          # [╭─](fg:#32CD32 bold)$hostname$username
+          # [├─](fg:#32CD32 bold)$directory$git_branch$git_status
+          # [╰─](fg:#32CD32 bold)[](fg:#32CD32 bold)$character'';
         format = ''
-          [╭─](fg:#8A2BE2 bold)[◤](fg:#32CD32 bold)[◢](fg:#FF4500 bold)[EVA-01](fg:#8A2BE2 bold)[◤](fg:#32CD32 bold)[◢](fg:#FF4500 bold)$os$username$hostname
-          [├─](fg:#8A2BE2 bold)[◆](fg:#32CD32 bold)$directory[◆](fg:#FF4500 bold)$git_branch$git_status$nix_shell
-          [├─](fg:#8A2BE2 bold)[◇](fg:#32CD32 bold)$nodejs$python$rust$golang$java$docker_context$cmd_duration[◇](fg:#FF4500 bold)
-          [├─](fg:#8A2BE2 bold)[▲](fg:#32CD32 bold)$battery$memory_usage$custom.cpu_temp$custom.audio_status[▲](fg:#FF4500 bold)
-          [╰─](fg:#8A2BE2 bold)[▶](fg:#32CD32 bold)$character'';
-        
-        right_format = ''[◀](fg:#8A2BE2 bold)[⏰](fg:#32CD32 bold)$time[◢](fg:#FF4500 bold)'';
-        
+          [╭─](fg:#32CD32 bold)$hostname$username$directory$git_branch$git_status
+          [╰─](fg:#32CD32 bold)[](fg:#32CD32 bold)$character'';
+
+
+        right_format = ''$cmd_duration[┋](fg:#8A2BE2 bold)[⏰](fg:#32CD32 bold)$time[◢](fg:#FF4500 bold)$battery'';
+
         add_newline = true;
         
         # 🤖 EVA-01 操作系统标识 - 战斗界面风格
         os = {
-          format = "[◤](fg:#8A2BE2 bold)[ $symbol ](fg:#32CD32 bold)[◢](fg:#FF4500 bold)";
+          format = "[「](fg:#8A2BE2 bold)[ $symbol ](fg:#FF4500 bold)[」](#32CD32 bold)";
           disabled = false;
           symbols = {
-            NixOS = "❄️";
+            NixOS = "❄";
             Ubuntu = "🔶";
             Debian = "🌀";
             Arch = "⚡";
@@ -45,33 +45,31 @@
         
         # ⚡ EVA-01 同步率指示器 - AT Field 激活状态
         character = {
-          success_symbol = "[◢◤](fg:#32CD32 bold)[▶](fg:#32CD32 bold)[◤◢](fg:#32CD32 bold)";
-          error_symbol = "[◢◤](fg:#FF0000 bold)[▶](fg:#FF0000 bold)[◤◢](fg:#FF0000 bold)";
-          vicmd_symbol = "[◢◤](fg:#FF4500 bold)[◀](fg:#FF4500 bold)[◤◢](fg:#FF4500 bold)";
+          success_symbol = "[⟨](fg:#8A2BE2 bold)[/](fg:#FF4500 bold)[⟩](fg:#8A2BE2 bold)";
+          error_symbol = "[⟨](fg:#8A2BE2 bold)[✘](fg:#FF4500 bold)[⟩](fg:#8A2BE2 bold)";
+          vicmd_symbol = "[⟨](fg:#8A2BE2 bold)[/](fg:#FF4500 bold)[⟩](fg:#8A2BE2 bold)";
         };
-        
-        # 👤 驾驶员身份识别 - NERV 人员系统
-        username = {
-          style_user = "fg:#32CD32 bold";
-          style_root = "fg:#FF0000 bold";
-          format = "[◤](fg:#8A2BE2 bold)[ $user ](bold $style)[◢](fg:#FF4500 bold)";
-          disabled = false;
-          show_always = true;
-        };
-        
-        # 🌐 MAGI 终端节点 - 三贤人系统连接
+
         hostname = {
           ssh_only = false;
           ssh_symbol = "⟷";
-          format = "[◇](fg:#8A2BE2 bold)[ $hostname$ssh_symbol ](fg:#32CD32 bold)[◇](fg:#FF4500 bold)";
+          format = "[「](fg:#8A2BE2 bold)[ $hostname$ssh_symbol ](fg:#FF4500 bold)[」](#32CD32 bold)";
           trim_at = ".";
           disabled = false;
         };
         
-        # 📁 东京-3 文件系统导航
+        
+        username = {
+          style_user = "fg:#32CD32 bold";
+          style_root = "fg:#FF0000 bold";
+          format = "[「](fg:#8A2BE2 bold)[ $user ](fg:#FF4500 bold)[」](#32CD32 bold)";
+          disabled = false;
+          show_always = true;
+        };
+        
         directory = {
           style = "fg:#8A2BE2 bold";
-          format = "[◢](fg:#32CD32 bold)[ $path ](bold $style)[◤](fg:#FF4500 bold)";
+          format = "[](fg:#32CD32 bold)[ $path ](bold $style)[](fg:#FF4500 bold)";
           truncation_length = 4;
           truncation_symbol = "⟨…⟩/";
           truncate_to_repo = true;
@@ -80,33 +78,30 @@
           read_only_style = "fg:#FF0000";
         };
         
-        # 🌿 LCL 版本控制系统 - 生命之树分支
         git_branch = {
-          symbol = "🌿";
+          symbol = "[branch:](fg:#8A2BE2 bold)";
           style = "fg:#32CD32 bold";
           format = "[◤](fg:#8A2BE2 bold)[ $symbol$branch ](bold $style)[◢](fg:#FF4500 bold)";
           truncation_length = 15;
           truncation_symbol = "⟨…⟩";
         };
         
-        # 🎯 AT Field 状态监控 - 同步率显示
         git_status = {
           style = "fg:#32CD32 bold";
-          format = "[◇](fg:#8A2BE2 bold)[$all_status$ahead_behind ](bold $style)[◇](fg:#FF4500 bold)";
+          format = "[](fg:#8A2BE2 bold)[$all_status$ahead_behind ](bold $style)[](fg:#FF4500 bold)";
           conflicted = "⚠️$count";
           ahead = "⬆️$count";
           behind = "⬇️$count";
           diverged = "↕️$ahead_count⬇️$behind_count";
           up_to_date = "✅";
           untracked = "❓$count";
-          stashed = "💾$count";
-          modified = "📝$count";
-          staged = "➕$count";
-          renamed = "📛$count";
-          deleted = "🗑️$count";
+          stashed = "[stashed](fg:#8A2BE2 bold)$count";
+          modified = "[modified:](fg:#8A2BE2 bold)$count";
+          staged = "[staged:](fg:#8A2BE2 bold)$count";
+          renamed = "[renamed:](fg:#8A2BE2 bold)$count";
+          deleted = "[deleted:](fg:#8A2BE2 bold)$count";
         };
         
-        # ❄️ NERV Nix 环境模拟器
         nix_shell = {
           format = "[◢](fg:#8A2BE2 bold)[❄️nix:$state ](fg:#00BFFF bold)[◤](fg:#FF4500 bold)";
           pure_msg = "PURE";
@@ -115,7 +110,6 @@
           disabled = false;
         };
         
-        # 📟 开发环境监控系统 - MAGI 超级计算机
         nodejs = {
           format = "[⬢](fg:#32CD32 bold)[js:$version ](fg:#32CD32 bold)";
           version_format = "$version";
@@ -169,19 +163,19 @@
         # 🕐 NERV 标准时间 - 使徒来袭警报系统
         time = {
           disabled = false;
-          format = "[◤](fg:#8A2BE2 bold)[ $time ](fg:#32CD32 bold)[◢](fg:#FF4500 bold)";
+          format = "[](fg:#8A2BE2 bold)[ $time ](fg:#32CD32 bold)[](fg:#FF4500 bold)";
           time_format = "%H:%M:%S";
           utc_time_offset = "local";
         };
         
-        # 🔋 系统状态监控 - EVA-01 电源管理
+        # 🔋 系统状态监控 - EV-01 电源管理
         battery = {
           full_symbol = "🔋";
           charging_symbol = "⚡";
           discharging_symbol = "🪫";
           unknown_symbol = "❓";
           empty_symbol = "💀";
-          format = "[◇](fg:#8A2BE2 bold)[$symbol$percentage ](fg:#32CD32 bold)[◇](fg:#FF4500 bold)";
+          format = "[⚡](fg:#8A2BE2 bold)[$symbol$percentage ](fg:#32CD32 bold)[⚡](fg:#FF4500 bold)";
           display = [
             {
               threshold = 10;
