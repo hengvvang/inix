@@ -11,6 +11,7 @@
       
       # Nix 系统管理工具
       nh                    # NixOS/Home Manager 助手
+      nom                   # NixOS 选项管理工具
       nix-output-monitor    # 美化 Nix 构建输出 (nom)
       nix-tree             # 查看 Nix store 依赖关系
       nixos-rebuild        # NixOS 系统重建工具
