@@ -43,8 +43,8 @@
           enable = true;              # 启用工具包模块
           waxingCrescent.enable = true;  # 🌒 峨眉月
           firstQuarter.enable = true;    # 🌓 上弦月
-          waxingGibbous.enable = true;   # 🌔 盈凸月
-          fullMoon.enable = true;       # 🌕 满月
+          waxingGibbous.enable = false;   # 🌔 盈凸月
+          fullMoon.enable = false;       # 🌕 满月
         };
         apps = {
           enable = true;              # 启用应用程序模块
