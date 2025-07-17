@@ -89,9 +89,9 @@
           conflicted = "[  conficted:](fg:#8A2BE2 bold)$count";
           ahead = "[  ahead:](fg:#8A2BE2 bold)$count";
           behind = "[  behind:](fg:#8A2BE2 bold)$count";
-          diverged = "↕️$ahead_count⬇️$behind_count";
+          diverged = "[  ahead_count:](fg:#8A2BE2 bold)$ahead_count[  behind_count:](fg:#8A2BE2 bold)$behind_count";
           up_to_date = "  ⥮";
-          untracked = "❓$count";
+          untracked = "[  untracked:](fg:#8A2BE2 bold)$count";
           stashed = "[ stashed](fg:#8A2BE2 bold)$count";
           modified = "[ modified:](fg:#8A2BE2 bold)$count";
           staged = "[ staged:](fg:#8A2BE2 bold)$count";
