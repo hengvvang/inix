@@ -82,17 +82,17 @@
         git_branch = {
           symbol = "[branch:](fg:#8A2BE2 bold)";
           style = "fg:#32CD32 bold";
-          format = "[](fg:#8A2BE2 bold)[ $symbol$branch ](bold $style)[](fg:#FF4500 bold)";
+          format = "[「](fg:#F05033 bold)[ $symbol$branch ](bold $style)[](fg:#FF4500 bold)";
           truncation_length = 15;
           truncation_symbol = "⟨…⟩";
         };
         
         git_status = {
           style = "fg:#32CD32 bold";
-          format = "[](fg:#8A2BE2 bold)[$all_status$ahead_behind ](bold $style)[](fg:#FF4500 bold)";
+          format = "[](fg:#FF4500 bold)[$all_status$ahead_behind ](bold $style)[」](fg:#F05033 bold)";
           conflicted = "[  conficted:](fg:#8A2BE2 bold)$count";
-          ahead = "[  ⥣ahead:](fg:#8A2BE2 bold)$count";
-          behind = "[  ⥥behind:](fg:#8A2BE2 bold)$count";
+          ahead = "[  ahead:](fg:#8A2BE2 bold)$count";
+          behind = "[  behind:](fg:#8A2BE2 bold)$count";
           diverged = "↕️$ahead_count⬇️$behind_count";
           up_to_date = "  ⥮";
           untracked = "❓$count";
