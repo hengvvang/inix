@@ -5,64 +5,87 @@ let
   cfg = config.mySystem.services.media.mpd;
 in
 {
-  options.mySystem.services.media.mpd = {
-    enable = lib.mkEnableOption "MPD 音乐播放器守护进程";
-    
-    musicDirectory = lib.mkOption {
-      type = lib.types.str;
-      default = "/home/music";
-      description = "音乐文件目录路径";
-    };
-    
-    dataDir = lib.mkOption {
-      type = lib.types.str;
-      default = "/var/lib/mpd";
-      description = "MPD 数据目录";
-    };
-    
-    port = lib.mkOption {
-      type = lib.types.int;
-      default = 6600;
-      description = "MPD 服务端口";
-    };
-    
-    httpPort = lib.mkOption {
-      type = lib.types.nullOr lib.types.int;
-      default = 8000;
-      description = "HTTP 音频流端口，设为 null 禁用";
-    };
-    
-    user = lib.mkOption {
-      type = lib.types.str;
-      default = "mpd";
-      description = "MPD 运行用户";
-    };
-    
-    group = lib.mkOption {
-      type = lib.types.str;
-      default = "mpd";
-      description = "MPD 运行用户组";
-    };
-    
-    enablePulseaudio = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-      description = "启用 PulseAudio/PipeWire 音频输出";
-    };
-    
-    enableAlsa = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "启用 ALSA 音频输出";
-    };
-  };
-
   config = lib.mkIf cfg.enable {
     # 安装 MPD 和相关工具
     environment.systemPackages = with pkgs; [
       mpd           # Music Player Daemon
       mpc-cli       # MPD 命令行客户端
       ncmpcpp       # NCurses MPD 客户端（可选的图形化客户端）
+      
+      # MPD 管理脚本
+      (writeShellScriptBin "mpd-ctl" ''
+        #!/usr/bin/env bash
+        
+        case "$1" in
+          start)
+            echo "启动 MPD 服务..."
+            sudo systemctl start mpd
+            ;;
+          stop)
+            echo "停止 MPD 服务..."
+            sudo systemctl stop mpd
+            ;;
+          restart)
+            echo "重启 MPD 服务..."
+            sudo systemctl restart mpd
+            ;;
+          status)
+            echo "MPD 服务状态:"
+            sudo systemctl status mpd
+            ;;
+          update)
+            echo "更新 MPD 数据库..."
+            mpc update
+            ;;
+          rescan)
+            echo "重新扫描 MPD 数据库..."
+            mpc rescan
+            ;;
+          config)
+            echo "MPD 配置信息:"
+            echo "服务端口: ${toString cfg.port}"
+            echo "音乐目录: ${cfg.musicDirectory}"
+            echo "数据目录: ${cfg.dataDir}"
+            ${lib.optionalString (cfg.httpPort != null) ''
+            echo "HTTP 流端口: ${toString cfg.httpPort}"
+            echo "HTTP 流地址: http://localhost:${toString cfg.httpPort}"
+            ''}
+            echo "配置文件: /etc/mpd.conf"
+            ;;
+          edit-config)
+            echo "编辑 MPD 配置文件..."
+            sudo nano /etc/mpd.conf
+            ;;
+          logs)
+            echo "查看 MPD 日志..."
+            sudo journalctl -u mpd -f
+            ;;
+          test-audio)
+            echo "测试音频输出..."
+            if command -v speaker-test >/dev/null 2>&1; then
+              speaker-test -t sine -f 1000 -l 1
+            else
+              echo "请安装 alsa-utils 包来测试音频"
+            fi
+            ;;
+          *)
+            echo "用法: mpd-ctl {start|stop|restart|status|update|rescan|config|edit-config|logs|test-audio}"
+            echo ""
+            echo "命令说明:"
+            echo "  start       - 启动 MPD 服务"
+            echo "  stop        - 停止 MPD 服务"
+            echo "  restart     - 重启 MPD 服务"
+            echo "  status      - 显示 MPD 服务状态"
+            echo "  update      - 更新音乐数据库（增量）"
+            echo "  rescan      - 重新扫描音乐数据库（完整）"
+            echo "  config      - 显示配置信息"
+            echo "  edit-config - 编辑配置文件"
+            echo "  logs        - 查看实时日志"
+            echo "  test-audio  - 测试音频输出"
+            exit 1
+            ;;
+        esac
+      '')
     ];
 
     # 创建 MPD 用户和组
@@ -182,76 +205,5 @@ in
 
     # PulseAudio/PipeWire 访问权限
     security.rtkit.enable = lib.mkIf cfg.enablePulseaudio true;
-
-    # 创建便于管理的脚本
-    environment.systemPackages = with pkgs; [
-      (writeShellScriptBin "mpd-ctl" ''
-        #!/usr/bin/env bash
-        
-        case "$1" in
-          start)
-            echo "启动 MPD 服务..."
-            sudo systemctl start mpd
-            ;;
-          stop)
-            echo "停止 MPD 服务..."
-            sudo systemctl stop mpd
-            ;;
-          restart)
-            echo "重启 MPD 服务..."
-            sudo systemctl restart mpd
-            ;;
-          status)
-            systemctl status mpd
-            ;;
-          logs)
-            journalctl -u mpd -f
-            ;;
-          update)
-            echo "更新音乐数据库..."
-            ${mpc-cli}/bin/mpc update
-            ;;
-          stats)
-            echo "MPD 统计信息:"
-            ${mpc-cli}/bin/mpc stats
-            ;;
-          current)
-            echo "当前播放:"
-            ${mpc-cli}/bin/mpc current
-            ;;
-          config)
-            echo "MPD 配置信息:"
-            echo "服务端口: ${toString cfg.port}"
-            echo "音乐目录: ${cfg.musicDirectory}"
-            echo "数据目录: ${cfg.dataDir}"
-            ${lib.optionalString (cfg.httpPort != null) ''
-            echo "HTTP 流端口: ${toString cfg.httpPort}"
-            echo "HTTP 流地址: http://localhost:${toString cfg.httpPort}"
-            ''}
-            ;;
-          clients)
-            echo "推荐的 MPD 客户端:"
-            echo "  rmpc       - 现代化 Rust MPD 客户端 (已安装)"
-            echo "  ncmpcpp    - NCurses 客户端 (已安装)"
-            echo "  mpc        - 命令行客户端 (已安装)"
-            ;;
-          *)
-            echo "用法: mpd-ctl {start|stop|restart|status|logs|update|stats|current|config|clients}"
-            echo ""
-            echo "命令说明:"
-            echo "  start    - 启动 MPD 服务"
-            echo "  stop     - 停止 MPD 服务"
-            echo "  restart  - 重启 MPD 服务"
-            echo "  status   - 查看服务状态"
-            echo "  logs     - 查看实时日志"
-            echo "  update   - 更新音乐数据库"
-            echo "  stats    - 显示 MPD 统计信息"
-            echo "  current  - 显示当前播放歌曲"
-            echo "  config   - 显示配置信息"
-            echo "  clients  - 显示推荐客户端"
-            ;;
-        esac
-      '')
-    ];
   };
 }
