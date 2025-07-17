@@ -11,296 +11,219 @@
       enableNushellIntegration = true;
       
       settings = {
-        # 🤖 EVA-01 福音战士终极赛博朋克矩阵 - AT力场全开！
+        # 🤖 EVA-01 终极战斗终端 - Evangelion Unit-01 主题
         format = ''
-          [━━━╺](fg:#9966ff bold)[](bg:#9966ff fg:#6600cc)$os[](bg:#6600cc fg:#00ff41)$username[](bg:#00ff41 fg:#ff6600)$hostname[](bg:#ff6600 fg:#9966ff)$directory[](bg:#9966ff fg:#00ff41)$git_branch$git_status[](bg:#00ff41 fg:#ff6600)$package$nix_shell[](fg:#ff6600)
-          [━━━┫](fg:#9966ff bold)$fill[◈](fg:#00ff41 bold)$nodejs[◈](fg:#ff6600 bold)$python[◈](fg:#9966ff bold)$rust[◈](fg:#00ff41 bold)$golang[◈](fg:#ff6600 bold)$java[◈](fg:#9966ff bold)$docker_context[◈](fg:#00ff41 bold)$cmd_duration[](fg:#9966ff)
-          [━━━╸](fg:#9966ff bold)$character'';
+          [╭─](fg:#8A2BE2 bold)[◤](fg:#32CD32 bold)[◢](fg:#FF4500 bold)[EVA-01](fg:#8A2BE2 bold)[◤](fg:#32CD32 bold)[◢](fg:#FF4500 bold)$os$username$hostname
+          [├─](fg:#8A2BE2 bold)[◆](fg:#32CD32 bold)$directory[◆](fg:#FF4500 bold)$git_branch$git_status$nix_shell
+          [├─](fg:#8A2BE2 bold)[◇](fg:#32CD32 bold)$nodejs$python$rust$golang$java$docker_context$cmd_duration[◇](fg:#FF4500 bold)
+          [├─](fg:#8A2BE2 bold)[▲](fg:#32CD32 bold)$battery$memory_usage$custom.cpu_temp$custom.audio_status[▲](fg:#FF4500 bold)
+          [╰─](fg:#8A2BE2 bold)[▶](fg:#32CD32 bold)$character'';
         
-        # 🌟 EVA-01 右侧 A.T.力场监控面板 - 同步率显示
-        right_format = ''
-          [▓▓](fg:#ff6600 bold)$battery[▓▓](fg:#9966ff bold)$memory_usage[▓▓](fg:#00ff41 bold)$time[▓▓](fg:#ff6600 bold)'';
+        right_format = ''[◀](fg:#8A2BE2 bold)[⏰](fg:#32CD32 bold)$time[◢](fg:#FF4500 bold)'';
         
         add_newline = true;
         
-        # ⚡ EVA-01 量子连接线 - A.T.力场波动
-        fill = {
-          symbol = "═";
-          style = "fg:#6600cc bold";
-        };
-        
-        # 🤖 EVA-01 操作系统核心 - NERV总部认证
+        # 🤖 EVA-01 操作系统标识 - 战斗界面风格
         os = {
-          format = "[ $symbol ](fg:#ffffff bg:#6600cc bold)";
+          format = "[◤](fg:#8A2BE2 bold)[ $symbol ](fg:#32CD32 bold)[◢](fg:#FF4500 bold)";
           disabled = false;
           symbols = {
-            NixOS = "󱄅";
-            Ubuntu = "󰕈";
-            Debian = "";
-            Arch = "󰣇";
-            Fedora = "󰣛";
-            Manjaro = "";
-            openSUSE = "";
-            CentOS = "";
-            RedHat = "󱄛";
-            Linux = "󰌽";
-            Macos = "";
-            Windows = "󰍲";
+            NixOS = "❄️";
+            Ubuntu = "🔶";
+            Debian = "🌀";
+            Arch = "⚡";
+            Fedora = "🔷";
+            Manjaro = "🟢";
+            openSUSE = "🟩";
+            CentOS = "🔴";
+            Redhat = "🔺";
+            Linux = "🐧";
+            Macos = "🍎";
+            Windows = "🪟";
           };
         };
         
-        # ⚡ EVA-01 终极指令提示符 - AT力场展开！
+        # ⚡ EVA-01 同步率指示器 - AT Field 激活状态
         character = {
-          success_symbol = "[❯❯❯❯❯](fg:#00ff41 bold blink)";
-          error_symbol = "[❯❯❯❯❯](fg:#ff3030 bold blink)";
-          vicmd_symbol = "[❮❮❮❮❮](fg:#ff6600 bold blink)";
-          vimcmd_symbol = "[❮❮❮❮❮](fg:#ff6600 bold blink)";
+          success_symbol = "[◢◤](fg:#32CD32 bold)[▶](fg:#32CD32 bold)[◤◢](fg:#32CD32 bold)";
+          error_symbol = "[◢◤](fg:#FF0000 bold)[▶](fg:#FF0000 bold)[◤◢](fg:#FF0000 bold)";
+          vicmd_symbol = "[◢◤](fg:#FF4500 bold)[◀](fg:#FF4500 bold)[◤◢](fg:#FF4500 bold)";
         };
         
-        # 👤 EVA驾驶员身份 - 适格者认证系统
+        # 👤 驾驶员身份识别 - NERV 人员系统
         username = {
-          style_user = "fg:#ffffff bg:#00ff41 bold";
-          style_root = "fg:#ffffff bg:#ff3030 bold";
-          format = "[ 🤖 $user ](bold $style)";
+          style_user = "fg:#32CD32 bold";
+          style_root = "fg:#FF0000 bold";
+          format = "[◤](fg:#8A2BE2 bold)[ $user ](bold $style)[◢](fg:#FF4500 bold)";
           disabled = false;
           show_always = true;
         };
         
-        # 🌐 NERV终端节点 - 第三新东京市网络
+        # 🌐 MAGI 终端节点 - 三贤人系统连接
         hostname = {
           ssh_only = false;
-          ssh_symbol = " 🔗 ";
-          format = "[ 🏢 $hostname$ssh_symbol ](fg:#000000 bg:#ff6600 bold)";
+          ssh_symbol = "⟷";
+          format = "[◇](fg:#8A2BE2 bold)[ $hostname$ssh_symbol ](fg:#32CD32 bold)[◇](fg:#FF4500 bold)";
           trim_at = ".";
           disabled = false;
         };
         
-        # 📁 MAGI系统目录 - 超级计算机数据路径
+        # 📁 东京-3 文件系统导航
         directory = {
-          style = "fg:#ffffff bg:#9966ff bold";
-          format = "[ 📂 $path ](bold $style)";
+          style = "fg:#8A2BE2 bold";
+          format = "[◢](fg:#32CD32 bold)[ $path ](bold $style)[◤](fg:#FF4500 bold)";
           truncation_length = 4;
-          truncation_symbol = "…/";
+          truncation_symbol = "⟨…⟩/";
           truncate_to_repo = true;
           home_symbol = "🏠";
-          read_only = " 🔒";
-          read_only_style = "fg:#ff3030";
-          substitutions = {
-            "Documents" = "📋 文档";
-            "Downloads" = "⬇️ 下载";
-            "Music" = "🎵 音乐";
-            "Pictures" = "🖼️ 图片";
-            "Videos" = "🎥 视频";
-            "Desktop" = "🖥️ 桌面";
-            "Projects" = "🚀 项目";
-            ".config" = "⚙️ 配置";
-            ".ssh" = "🔐 密钥";
-            "dev" = "💻 开发";
-            "src" = "📜 源码";
-            ".git" = "🌿 仓库";
-            "node_modules" = "📦 依赖";
-            "target" = "🎯 构建";
-            "build" = "🔨 构建";
-            "dist" = "📤 发布";
-            "public" = "🌐 公开";
-          };
+          read_only = "🔒";
+          read_only_style = "fg:#FF0000";
         };
         
-        # 🌿 EVA版本控制核心 - 生命之树分支系统
+        # 🌿 LCL 版本控制系统 - 生命之树分支
         git_branch = {
-          symbol = "🌳";
-          style = "fg:#ffffff bg:#00ff41 bold";
-          format = "[ $symbol $branch ](bold $style)";
-          truncation_length = 18;
-          truncation_symbol = "…";
-          always_show_remote = false;
+          symbol = "🌿";
+          style = "fg:#32CD32 bold";
+          format = "[◤](fg:#8A2BE2 bold)[ $symbol$branch ](bold $style)[◢](fg:#FF4500 bold)";
+          truncation_length = 15;
+          truncation_symbol = "⟨…⟩";
         };
         
-        # 🎯 EVA同步状态 - AT力场波动监测
+        # 🎯 AT Field 状态监控 - 同步率显示
         git_status = {
-          style = "fg:#000000 bg:#00ff41 bold";
-          format = "[$all_status$ahead_behind ](bold $style)";
-          conflicted = " ⚔️";
-          ahead = " ⬆️$count";
-          behind = " ⬇️$count";
-          diverged = " 🔄$ahead_count⬇️$behind_count";
-          up_to_date = " ✅";
-          untracked = " ❓$count";
-          stashed = " 📦$count";
-          modified = " ✏️$count";
-          staged = " ➕$count";
-          renamed = " 🔄$count";
-          deleted = " ❌$count";
+          style = "fg:#32CD32 bold";
+          format = "[◇](fg:#8A2BE2 bold)[$all_status$ahead_behind ](bold $style)[◇](fg:#FF4500 bold)";
+          conflicted = "⚠️$count";
+          ahead = "⬆️$count";
+          behind = "⬇️$count";
+          diverged = "↕️$ahead_count⬇️$behind_count";
+          up_to_date = "✅";
+          untracked = "❓$count";
+          stashed = "💾$count";
+          modified = "📝$count";
+          staged = "➕$count";
+          renamed = "📛$count";
+          deleted = "🗑️$count";
         };
         
-        # 📦 EVA装备包 - 武器系统版本
-        package = {
-          format = "[ 🛡️ v$version ](fg:#ffffff bg:#ff6600 bold)";
-          version_format = "$version";
-          display_private = false;
-          disabled = false;
-        };
-        
-        # ⚡ EVA激活时间 - 同步率计算器
-        cmd_duration = {
-          min_time = 200;
-          format = "[ ⚡ $duration ](fg:#ffffff bg:#ff6600 bold)";
-          show_milliseconds = true;
-          disabled = false;
-        };
-        
-        # ❄️ EVA-Nix环境 - 第三使徒冰晶系统
+        # ❄️ NERV Nix 环境模拟器
         nix_shell = {
-          format = "[ ❄️ $state ](fg:#ffffff bg:#9966ff bold)";
-          pure_msg = "纯净🔮";
-          impure_msg = "混沌🌪️";
-          unknown_msg = "未知🔥";
+          format = "[◢](fg:#8A2BE2 bold)[❄️nix:$state ](fg:#00BFFF bold)[◤](fg:#FF4500 bold)";
+          pure_msg = "PURE";
+          impure_msg = "IMPURE";
+          unknown_msg = "UNKNOWN";
           disabled = false;
         };
         
-        # � Node.js - 第四使徒运行时
+        # 📟 开发环境监控系统 - MAGI 超级计算机
         nodejs = {
-          format = "[📗$version](fg:#00ff41 bold blink)";
+          format = "[⬢](fg:#32CD32 bold)[js:$version ](fg:#32CD32 bold)";
           version_format = "$version";
           detect_extensions = ["js" "mjs" "cjs" "ts" "mts" "cts"];
           detect_files = ["package.json" ".node-version" ".nvmrc"];
           detect_folders = ["node_modules"];
         };
         
-        # 🐍 Python - 第五使徒智能体
         python = {
-          format = "[🐍$version](fg:#ff6600 bold blink)";
+          format = "[🐍](fg:#FFD700 bold)[py:$version ](fg:#FFD700 bold)";
           version_format = "$version";
           pyenv_version_name = false;
           python_binary = ["python" "python3" "python2"];
         };
         
-        # 🦀 Rust - 第六使徒系统核心
         rust = {
-          format = "[🦀$version](fg:#9966ff bold blink)";
+          format = "[⚙️](fg:#FF4500 bold)[rs:$version ](fg:#FF4500 bold)";
           version_format = "$version";
           detect_extensions = ["rs"];
           detect_files = ["Cargo.toml"];
         };
         
-        # 🔷 Go - 第七使徒并发引擎
         golang = {
-          format = "[🔷$version](fg:#00ff41 bold blink)";
+          format = "[🐹](fg:#00ADD8 bold)[go:$version ](fg:#00ADD8 bold)";
           version_format = "$version";
           detect_extensions = ["go"];
           detect_files = ["go.mod" "go.sum"];
         };
         
-        # ☕ Java - 第八使徒企业战舰
         java = {
-          format = "[☕$version](fg:#ff6600 bold blink)";
+          format = "[☕](fg:#ED8B00 bold)[java:$version ](fg:#ED8B00 bold)";
           version_format = "$version";
           detect_extensions = ["java" "class" "jar"];
           detect_files = ["pom.xml" "build.gradle.kts"];
         };
         
-        # 🐳 Docker - 第九使徒容器矩阵
         docker_context = {
-          format = "[🐳$context](fg:#9966ff bold blink)";
+          format = "[🐳](fg:#2496ED bold)[dock:$context ](fg:#2496ED bold)";
           only_with_files = true;
           detect_files = ["docker-compose.yml" "Dockerfile"];
         };
         
-        # 🕐 EVA计时系统 - NERV标准时间
+        # ⚡ 战斗执行时间分析
+        cmd_duration = {
+          min_time = 500;
+          format = "[⚡](fg:#FFD700 bold)[took:$duration ](fg:#FF4500 bold)";
+          show_milliseconds = false;
+          disabled = false;
+        };
+        
+        # 🕐 NERV 标准时间 - 使徒来袭警报系统
         time = {
           disabled = false;
-          format = "[ 🕐 $time ](fg:#000000 bg:#00ff41 bold)";
+          format = "[◤](fg:#8A2BE2 bold)[ $time ](fg:#32CD32 bold)[◢](fg:#FF4500 bold)";
           time_format = "%H:%M:%S";
           utc_time_offset = "local";
         };
         
-        # 🔋 EVA能源核心 - S²机关监控
+        # 🔋 系统状态监控 - EVA-01 电源管理
         battery = {
           full_symbol = "🔋";
           charging_symbol = "⚡";
           discharging_symbol = "🪫";
           unknown_symbol = "❓";
           empty_symbol = "💀";
-          format = "[ $symbol $percentage ](fg:#ffffff bg:#ff6600 bold)";
-          
+          format = "[◇](fg:#8A2BE2 bold)[$symbol$percentage ](fg:#32CD32 bold)[◇](fg:#FF4500 bold)";
           display = [
             {
-              threshold = 15;
-              style = "fg:#ffffff bg:#ff3030 bold blink";
+              threshold = 10;
+              style = "fg:#FF0000 bold";
+            }
+            {
+              threshold = 30;
+              style = "fg:#FF4500 bold";
             }
             {
               threshold = 50;
-              style = "fg:#000000 bg:#ff6600 bold";
+              style = "fg:#FFD700 bold";
             }
             {
-              threshold = 80;
-              style = "fg:#000000 bg:#00ff41 bold";
+              threshold = 100;
+              style = "fg:#32CD32 bold";
             }
           ];
-          
-          disabled = false;
         };
         
-        # 🧠 MAGI系统内存 - 三贤人监控
+        # 💾 内存使用监控 - LCL 液体容量显示
         memory_usage = {
           disabled = false;
-          threshold = 60;
-          format = "[ 🧠 $ram ](fg:#ffffff bg:#9966ff bold)";
-          symbol = "🧠";
-          style = "bold";
-        };
-        
-        # 🎵 EVA音频矩阵 - 第十使徒音波攻击
-        custom.music = {
-          command = "playerctl --player=spotify metadata --format '{{ artist }} - {{ title }}' 2>/dev/null || echo ''";
-          when = "playerctl --player=spotify status 2>/dev/null | grep -q 'Playing'";
-          format = "[ 🎵 $output ](fg:#ff6600 bold)";
-          symbol = "🎵";
-          disabled = false;
-        };
-        
-        # 🌡️ EVA核心温度 - 暴走警告系统
-        custom.cpu_temp = {
-          command = "sensors 2>/dev/null | grep 'Package id 0' | awk '{print $4}' | sed 's/+//;s/°C.*/°C/' || echo ''";
-          when = "command -v sensors >/dev/null";
-          format = "[ 🌡️ $output ](fg:#ff3030 bold)";
-          symbol = "🌡️";
-          disabled = false;
-        };
-        
-        # 📡 NERV通讯网络 - 第三新东京市连接
-        custom.network = {
-          command = "nmcli -t -f NAME connection show --active 2>/dev/null | head -1 || echo 'Offline'";
-          when = "command -v nmcli >/dev/null";
-          format = "[ 📡 $output ](fg:#00ff41 bold)";
-          symbol = "📡";
-          disabled = false;
-        };
-        
-        # 💾 MAGI存储监控 - 数据湖容量检测
-        custom.disk_usage = {
-          command = "df -h / | awk 'NR==2 {print $5}' | sed 's/%//' || echo ''";
-          when = "true";
-          format = "[ 💾 $output% ](fg:#9966ff bold)";
+          threshold = 70;
           symbol = "💾";
+          style = "fg:#FF4500 bold";
+          format = "[◢](fg:#8A2BE2 bold)[$symbol$ram($ram_pct) ](bold $style)[◤](fg:#32CD32 bold)";
+        };
+        
+        # 🌡️ CPU 温度监控 - AT Field 发热警告
+        custom.cpu_temp = {
+          command = "if command -v sensors >/dev/null 2>&1; then sensors 2>/dev/null | grep -E 'Core 0|Package id 0' | head -1 | grep -o '+[0-9]*' | head -1 | sed 's/+//'; else echo 'N/A'; fi";
+          when = "true";
+          format = "[🌡️](fg:#FF4500 bold)[$output°C ](fg:#FFD700 bold)";
           disabled = false;
         };
         
-        # 🤖 EVA同步率显示 - 驾驶员状态监控
-        custom.eva_sync = {
-          command = "echo '$(shuf -i 90-100 -n 1)%'";
+        # 🎵 音频状态 - EVA-01 战斗音效系统  
+        custom.audio_status = {
+          command = "if command -v pactl >/dev/null 2>&1; then pactl get-sink-volume @DEFAULT_SINK@ 2>/dev/null | grep -o '[0-9]*%' | head -1 || echo 'N/A'; else echo 'N/A'; fi";
           when = "true";
-          format = "[ 🤖 同步率$output ](fg:#00ff41 bold blink)";
-          symbol = "🤖";
-          disabled = false;
-        };
-        
-        # ⚠️ AT力场状态 - 绝对恐怖领域
-        custom.at_field = {
-          command = "echo '$(shuf -i 80-100 -n 1)%'";
-          when = "true";
-          format = "[ ⚠️ AT力场$output ](fg:#ff6600 bold blink)";
-          symbol = "⚠️";
+          format = "[🎵](fg:#32CD32 bold)[$output ](fg:#8A2BE2 bold)";
           disabled = false;
         };
       };
