@@ -19,7 +19,7 @@
           [ ](fg:#32CD32 bold)[](fg:#32CD32 bold)$character'';
 
 
-        right_format = ''$cmd_duration[](fg:#8A2BE2 bold)[⏰](fg:#32CD32 bold)$time[](fg:#FF4500 bold)$battery'';
+        right_format = ''$cmd_duration[](fg:#32CD32 bold)$time[](fg:#FF4500 bold)'';
 
         add_newline = true;
         
@@ -70,7 +70,7 @@
         
         directory = {
           style = "fg:#8A2BE2 bold";
-          format = "[](fg:#32CD32 bold)[ $path ](bold $style)[](fg:#FF4500 bold)";
+          format = "[「](fg:#32CD32 bold)[ $path ]($style bold)[」](#32CD32 bold)";
           truncation_length = 4;
           truncation_symbol = "../";
           truncate_to_repo = true;
@@ -112,14 +112,15 @@
         
         cmd_duration = {
           min_time = 500;
-          format = "[⚡](fg:#FFD700 bold)[took:$duration ](fg:#FF4500 bold)";
+          # format = "[⚡](fg:#FFD700 bold)[took:$duration ](fg:#FF4500 bold)";
+          format = "[took:](fg:#8A2BE2 bold)[$duration ](fg:#32CD32 bold)[](fg:#FF4500 bold)";
           show_milliseconds = false;
           disabled = false;
         };
         
         time = {
           disabled = false;
-          format = "[](fg:#8A2BE2 bold)[ $time ](fg:#32CD32 bold)[](fg:#FF4500 bold)";
+          format = "[time:](fg:#8A2BE2 bold)[$time ](fg:#32CD32 bold)[](fg:#FF4500 bold)";
           time_format = "%H:%M:%S";
           utc_time_offset = "local";
         };
