@@ -74,8 +74,8 @@
           truncation_length = 4;
           truncation_symbol = "../";
           truncate_to_repo = true;
-          home_symbol = "🏠";
-          read_only = "🔒";
+          home_symbol = "home";
+          read_only = "read-only";
           read_only_style = "fg:#FF0000";
         };
         
@@ -91,10 +91,10 @@
           style = "fg:#32CD32 bold";
           format = "[](fg:#8A2BE2 bold)[$all_status$ahead_behind ](bold $style)[](fg:#FF4500 bold)";
           conflicted = "[  conficted:](fg:#8A2BE2 bold)$count";
-          ahead = "[  ahead:](fg:#8A2BE2 bold)$count";
-          behind = "[  behind:](fg:#8A2BE2 bold)$count";
+          ahead = "[  ⥣ahead:](fg:#8A2BE2 bold)$count";
+          behind = "[  ⥥behind:](fg:#8A2BE2 bold)$count";
           diverged = "↕️$ahead_count⬇️$behind_count";
-          up_to_date = "✅";
+          up_to_date = "  ⥮";
           untracked = "❓$count";
           stashed = "[ stashed](fg:#8A2BE2 bold)$count";
           modified = "[ modified:](fg:#8A2BE2 bold)$count";
@@ -120,7 +120,7 @@
         
         time = {
           disabled = false;
-          format = "[time:](fg:#8A2BE2 bold)[$time ](fg:#32CD32 bold)[](fg:#FF4500 bold)";
+          format = "[Τ:](fg:#8A2BE2 bold)[$time ](fg:#32CD32 bold)[](fg:#FF4500 bold)";
           time_format = "%H:%M:%S";
           utc_time_offset = "local";
         };
