@@ -1,4 +1,4 @@
-# 🌗 下弦月 - 开发和终端应用
+# 🌗 下弦月
 
 { config, lib, pkgs, ... }:
 
@@ -6,16 +6,38 @@
   config = lib.mkIf config.myHome.pkgs.apps.lastQuarter.enable {
     home.packages = with pkgs; [
       
-      # 开发编辑器 (注释掉的可根据需要启用)
-      # vscode          # Visual Studio Code
-      # zed-editor      # Zed 编辑器
+      ghostty
+
+      qutebrowser
       
-      # 进阶终端工具
-      alacritty         # 现代终端
-      kitty             # 另一个现代终端
+      google-chrome
+      #firefox
       
-      # 文件管理器
-      yazi              # 现代文件管理器
+      telegram-desktop
+      discord
+      qq
+      wechat-uos
+      
+      wpsoffice-cn
+      pot
+      
+      spotify
+      vlc
+
+
+
+      programs.obs-studio = {
+        enable = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          wlrobs
+          obs-backgroundremoval
+          obs-pipewire-audio-capture
+        ];
+      };
+
+      # clash-verge-rev   # 代理工具（主要）
+      # clash-nyanpasu    # 代理工具（备用）
+      # clash-meta        # Clash 内核
       
     ];
   };
