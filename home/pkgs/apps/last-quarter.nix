@@ -25,22 +25,19 @@
       
       spotify
       vlc
-
-
-
-      programs.obs-studio = {
-        enable = true;
-        plugins = with pkgs.obs-studio-plugins; [
-          wlrobs
-          obs-backgroundremoval
-          obs-pipewire-audio-capture
-        ];
-      };
-
+      rmpc
       # clash-verge-rev   # 代理工具（主要）
       # clash-nyanpasu    # 代理工具（备用）
       # clash-meta        # Clash 内核
       
     ];
+    programs.obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+      ];
+    };
   };
 }

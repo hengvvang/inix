@@ -2,7 +2,6 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.enable && config.myHome.dotfiles.starship.method == "homemanager") {
-    # 🌟 Starship - 极致炫酷的未来感终端提示符
     programs.starship = {
       enable = true;
       enableBashIntegration = true;
