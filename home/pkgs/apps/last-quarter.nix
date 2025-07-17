@@ -8,6 +8,8 @@
       
       ghostty
 
+      lazygit
+
       qutebrowser
       
       google-chrome
