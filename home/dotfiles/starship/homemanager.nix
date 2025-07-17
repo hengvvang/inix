@@ -11,9 +11,7 @@
       enableNushellIntegration = true;
       
       settings = {
-          # [╭─](fg:#32CD32 bold)$hostname$username
-          # [├─](fg:#32CD32 bold)$directory$git_branch$git_status
-          # [╰─](fg:#32CD32 bold)[](fg:#32CD32 bold)$character'';
+
         format = ''
           [](fg:#32CD32 bold)$hostname$username$directory$git_branch$git_status
           [ ](fg:#32CD32 bold)[](fg:#32CD32 bold)$character'';
@@ -28,21 +26,20 @@
           disabled = false;
           symbols = {
             NixOS = "❄";
-            Ubuntu = "🔶";
-            Debian = "🌀";
-            Arch = "⚡";
-            Fedora = "🔷";
-            Manjaro = "🟢";
-            openSUSE = "🟩";
-            CentOS = "🔴";
-            Redhat = "🔺";
-            Linux = "🐧";
-            Macos = "🍎";
-            Windows = "🪟";
+            Ubuntu = "";
+            Debian = "";
+            Arch = "";
+            Fedora = "";
+            Manjaro = "";
+            openSUSE = "";
+            CentOS = "";
+            Redhat = "";
+            Linux = "";
+            Macos = "";
+            Windows = "";
           };
         };
         
-        # ⚡ EVA-01 同步率指示器 - AT Field 激活状态
         character = {
           success_symbol = "[/](fg:#32CD32 bold)[/](fg:#8A2BE2 bold)[:](fg:#32CD32 bold)";
           error_symbol = "[/](fg:#32CD32 bold)[/](fg:#8A2BE2 bold)[:](fg:#FF4500 bold)";
@@ -51,7 +48,7 @@
 
         hostname = {
           ssh_only = false;
-          ssh_symbol = "⟷";
+          ssh_symbol = "∅";
           # format = "[「](fg:#8A2BE2 bold)[host/:](fg:#8A2BE2 bold)[ $hostname$ssh_symbol ](fg:#32CD32 bold)[」](fg:#8A2BE2 bold)";
           format = "[「](fg:#32CD32 bold)[user/:](fg:#32CD32 bold)[ $hostname$ssh_symbol ](fg:#8A2BE2 bold)[」](fg:#32CD32 bold)";
           trim_at = ".";
