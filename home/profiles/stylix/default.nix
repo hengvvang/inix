@@ -148,12 +148,57 @@
       browsers = {
         firefox.enable = lib.mkEnableOption "Firefox 主题";
       };
-      
-      # 输入法
-      inputMethods = {
-        fcitx5.enable = lib.mkEnableOption "Fcitx5 主题";
+         # 输入法
+    inputMethods = {
+      fcitx5.enable = lib.mkEnableOption "Fcitx5 主题";
+    };
+  };
+  
+  # 颜色自定义配置
+  colors = {
+    enable = lib.mkEnableOption "Stylix 自定义颜色配置";
+    
+    scheme = lib.mkOption {
+      type = lib.types.enum [ 
+        # 🎨 自定义主题
+        "warm-white"        # 🤍 简约白色暖色调（推荐亮色主题）
+        "cool-blue"         # 🩵 冷静蓝色主题
+        "forest-green"      # 🌿 森林绿色主题 
+        "sunset-orange"     # 🧡 日落橙色主题
+        "lavender-purple"   # 💜 薰衣草紫色主题
+        "dark-elegant"      # 🖤 优雅深色主题
+        
+        # 🔄 动态主题
+        "auto"              # 从壁纸自动生成
+        
+        # 🔥 热门预设主题
+        "gruvbox-light"     # Gruvbox 亮色
+        "gruvbox-dark-hard" # Gruvbox 深色
+        "solarized-light"   # Solarized 亮色
+        "solarized-dark"    # Solarized 深色
+        "nord"              # Nord 北欧风
+        "dracula"           # Dracula 吸血鬼
+        "tokyo-night"       # 东京夜色
+        "catppuccin-latte"  # Catppuccin 亮色
+        "catppuccin-mocha"  # Catppuccin 深色
+        "one-light"         # Atom One 亮色
+        "one-dark"          # Atom One 深色
+      ];
+      default = "warm-white";  # 🤍 默认使用简约白色暖色调
+      description = "颜色方案选择";
+    };
+    
+    # 自定义颜色覆盖
+    override = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      default = {};
+      description = "自定义颜色覆盖 (base00-base0F)";
+      example = {
+        base00 = "ffffff";  # 背景
+        base05 = "000000";  # 前景
       };
     };
+  };
   };
 
   imports = [
@@ -170,12 +215,17 @@
       autoEnable = false;  # 完全手动控制
       
       # 基础配置
-      image = 
+      image = lib.mkIf (!config.myHome.profiles.stylix.colors.enable || config.myHome.profiles.stylix.colors.scheme == "auto") (
         if config.myHome.profiles.stylix.wallpapers.custom != null
         then config.myHome.profiles.stylix.wallpapers.custom
-        else ./wallpapers + "/${config.myHome.profiles.stylix.wallpapers.preset}.jpg";
+        else ./wallpapers + "/${config.myHome.profiles.stylix.wallpapers.preset}.jpg"
+      );
         
       polarity = config.myHome.profiles.stylix.polarity;
+      
+      # 颜色覆盖
+      override = lib.mkIf (config.myHome.profiles.stylix.colors.override != {}) 
+        config.myHome.profiles.stylix.colors.override;
     };
   };
 }

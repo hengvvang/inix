@@ -70,55 +70,70 @@
           preset = "tokyo";
         };
         stylix = {
-          enable = false;
-          # polarity = "dark";  # ❌ 注释掉，沿用系统配置 (dark)
-          # 或者覆盖: polarity = "light";  # ✅ 用户偏好覆盖系统配置
+          enable = true;                      # ✅ 启用 Stylix 主题系统
+          polarity = "light";                 # 🌞 切换到亮色模式（简约白色主题）
+          
+          # 🎨 启用自定义颜色配置
+          colors = {
+            enable = true;                    # ✅ 启用自定义颜色
+            scheme = "catppuccin-latte";            # 🤍 使用简约白色暖色调主题
+          };
           
           wallpapers = {
-            enable = true;
-            # preset = "maori";  # ❌ 注释掉，使用自定义壁纸
-            custom = ./../../home/profiles/stylix/wallpapers/swirl-loop.jpeg;  # ✅ 覆盖系统壁纸
+            enable = false;                   # ❌ 禁用壁纸（使用纯色背景）
           };
           
           fonts = {
             enable = true;
-            # 📝 可以选择性覆盖系统字体配置
-            # names.monospace = "Fira Code Nerd Font Mono";  # 覆盖系统字体
+            names = {
+              monospace = "JetBrainsMono Nerd Font Mono";  # ✅ 优质等宽字体
+              sansSerif = "Noto Sans";                     # ✅ 现代无衬线字体
+              serif = "Noto Serif";                        # ✅ 经典衬线字体
+              emoji = "Noto Color Emoji";                  # ✅ 彩色表情字体
+            };
             sizes = {
-              # terminal = 14;  # 覆盖系统终端字体大小 (系统默认: 12)
-              # applications = 12;  # 覆盖系统应用字体大小 (系统默认: 11)
+              terminal = 14;      # ✅ 终端字体大小（适合开发）
+              applications = 12;  # ✅ 应用字体大小（舒适阅读）
+              desktop = 11;       # ✅ 桌面字体大小（界面元素）
+              popups = 11;        # ✅ 弹窗字体大小（提示信息）
             };
           };
-          
+
           targets = {
             enable = true;
             
+            # 🖥️ 终端应用主题（简约白色）
             terminals = {
-              alacritty.enable = false;  # ✅ 覆盖系统默认 (true -> false)，避免冲突
-              kitty.enable = false;      # ❌ 保持系统默认 (false)
+              alacritty.enable = false;       # ❌ 禁用 Alacritty（使用 Ghostty）
+              kitty.enable = true;            # ✅ 启用 Kitty 主题（备用终端）
             };
             
+            # ✏️ 编辑器主题（简约白色）
             editors = {
-              vim.enable = false;        # ✅ 覆盖系统默认 (true -> false)
-              neovim.enable = true;      # ❌ 保持系统默认 (true)
+              vim.enable = true;              # ✅ 启用 Vim 主题
+              neovim.enable = true;           # ✅ 启用 Neovim 主题
             };
             
+            # 🛠️ 工具主题（简约白色）
             tools = {
-              tmux.enable = true;        # ✅ 用户启用
-              bat.enable = true;         # ✅ 用户启用
-              fzf.enable = true;         # ✅ 用户启用
+              tmux.enable = true;             # ✅ 启用 Tmux 主题
+              bat.enable = true;              # ✅ 启用 Bat 主题
+              fzf.enable = true;              # ✅ 启用 Fzf 主题
             };
             
+            # 🖼️ 桌面环境主题（简约白色）
             desktop = {
-              gtk.enable = true;         # ❌ 沿用系统配置，通常不需要用户级覆盖
+              gtk.enable = true;              # ✅ 启用 GTK 主题（应用一致性）
             };
             
+            # 🌐 浏览器主题（简约白色）
             browsers = {
-              firefox.enable = true;     # ❌ 保持系统默认 (true)
+              firefox.enable = true;          # ✅ 启用 Firefox 主题
             };
             
+            # ⌨️ 输入法主题（简约白色）
             inputMethods = {
-              fcitx5.enable = true;      # ✅ 用户启用输入法主题
+              fcitx5.enable = true;           # ✅ 启用 Fcitx5 主题（中文输入法）
             };
           };
         };

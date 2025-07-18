@@ -7,7 +7,7 @@
     profiles = {
       enable = true;
       fonts = {
-        enable = true;
+        enable = false;
         preset = "zen";
       };
     #   stylix = {
