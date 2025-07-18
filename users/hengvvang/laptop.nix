@@ -70,7 +70,7 @@
           preset = "tokyo";
         };
         stylix = {
-          enable = true;                      # ✅ 启用 Stylix 主题系统
+          enable = false;                      # ✅ 启用 Stylix 主题系统
           polarity = "light";                 # 🌞 切换到亮色模式（简约白色主题）
           
           # 🎨 启用自定义颜色配置
@@ -105,13 +105,13 @@
             # 🖥️ 终端应用主题（简约白色）
             terminals = {
               alacritty.enable = false;       # ❌ 禁用 Alacritty（使用 Ghostty）
-              kitty.enable = true;            # ✅ 启用 Kitty 主题（备用终端）
+              kitty.enable = false;            # ✅ 启用 Kitty 主题（备用终端）
             };
             
             # ✏️ 编辑器主题（简约白色）
             editors = {
               vim.enable = true;              # ✅ 启用 Vim 主题
-              neovim.enable = true;           # ✅ 启用 Neovim 主题
+              neovim.enable = false;           # ✅ 启用 Neovim 主题
             };
             
             # 🛠️ 工具主题（简约白色）
@@ -128,7 +128,7 @@
             
             # 🌐 浏览器主题（简约白色）
             browsers = {
-              firefox.enable = true;          # ✅ 启用 Firefox 主题
+              firefox.enable = false;          # ✅ 启用 Firefox 主题
             };
             
             # ⌨️ 输入法主题（简约白色）
