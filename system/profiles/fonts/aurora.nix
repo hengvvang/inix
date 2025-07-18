@@ -5,17 +5,28 @@
     # 系统级字体包配置 - 极光风格
     fonts.packages = with pkgs; [
 
-      (nerdfonts.override { 
-        fonts = [ 
-          "CascadiaCode" "FiraCode" "VictorMono" "Iosevka" "JetBrainsMono"
-          "SourceCodePro" "RobotoMono" "Hack" "Ubuntu" "UbuntuMono"
-          "DejaVuSansMono" "InconsolataGo" "SpaceMono" "DroidSansMono"
-          "Meslo" "AnonymousPro" "LiberationMono" "ProFont" "ProggyClean"
-          "GoMono" "Agave" "BigBlueTerminal" "Terminus"
-        ]; 
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.roboto-mono
+      nerd-fonts.hack
+      nerd-fonts.caskaydia-mono      # Cascadia Code 的 nerd-fonts 版本
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.inconsolata-go
+      nerd-fonts.space-mono
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.meslo-lg
+      nerd-fonts.anonymice
+      nerd-fonts.liberation
+      nerd-fonts.profont
+      nerd-fonts.proggy-clean-tt
+      nerd-fonts.go-mono
+      nerd-fonts.agave
+
       monaspace
-      
       # 中文字体 - 现代设计
       lxgw-wenkai
       noto-fonts-cjk-sans

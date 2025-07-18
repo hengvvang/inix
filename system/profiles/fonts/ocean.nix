@@ -4,17 +4,27 @@
 {
   config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "ocean") {
     fonts.packages = with pkgs; [
-      # 主力编程字体 - 清晰流畅
-      # 完整 Nerd Font 支持 - 海洋深邃风格
-      (nerd-fonts.override { 
-        fonts = [ 
-          "FiraCode" "Iosevka" "JetBrainsMono" "Hack" "SourceCodePro"
-          "RobotoMono" "CascadiaCode" "Ubuntu" "UbuntuMono" "DejaVuSansMono"
-          "InconsolataGo" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
-          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
-          "VictorMono" "BigBlueTerminal" "Terminus"
-        ]; 
-      })
+
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.roboto-mono
+      nerd-fonts.hack
+      nerd-fonts.caskaydia-mono      # Cascadia Code 的 nerd-fonts 版本
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.inconsolata-go
+      nerd-fonts.space-mono
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.meslo-lg
+      nerd-fonts.anonymice
+      nerd-fonts.liberation
+      nerd-fonts.profont
+      nerd-fonts.proggy-clean-tt
+      nerd-fonts.go-mono
+      nerd-fonts.agave
       monaspace
       
       # 中文字体 - 现代简洁

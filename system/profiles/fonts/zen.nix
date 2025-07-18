@@ -3,14 +3,28 @@
 {
   config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "zen") {
     fonts.packages = with pkgs; [
-      (nerdfonts.override { 
-        fonts = [ 
-          "Iosevka" "JetBrainsMono" "InconsolataGo" "SourceCodePro" "FiraCode"
-          "RobotoMono" "Hack" "CascadiaCode" "Ubuntu" "UbuntuMono"
-          "DejaVuSansMono" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
-          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
-        ]; 
-      })
+
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.roboto-mono
+      nerd-fonts.hack
+      nerd-fonts.caskaydia-mono      # Cascadia Code 的 nerd-fonts 版本
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.inconsolata-go
+      nerd-fonts.space-mono
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.meslo-lg
+      nerd-fonts.anonymice
+      nerd-fonts.liberation
+      nerd-fonts.profont
+      nerd-fonts.proggy-clean-tt
+      nerd-fonts.go-mono
+      nerd-fonts.agave
+
       monaspace
       
       # 中文字体 - 传统与现代融合

@@ -10,15 +10,28 @@
       roboto               # Google 几何设计
       ubuntu_font_family   # Ubuntu 几何风格
       
-      # 完整 Nerd Font 支持 - 几何简洁风格
-      (nerd-fonts.override { 
-        fonts = [ 
-          "JetBrainsMono" "Iosevka" "IBMPlexMono" "Ubuntu" "RobotoMono"
-          "SourceCodePro" "Hack" "FiraCode" "CascadiaCode" "SpaceMono"
-          "InconsolataGo" "DroidSansMono" "DejaVuSansMono" "LiberationMono"
-          "UbuntuMono" "Meslo" "AnonymousPro" "ProFont" "ProggyClean"
-        ]; 
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.roboto-mono
+      nerd-fonts.hack
+      nerd-fonts.caskaydia-mono      # Cascadia Code 的 nerd-fonts 版本
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.inconsolata-go
+      nerd-fonts.space-mono
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.meslo-lg
+      nerd-fonts.anonymice
+      nerd-fonts.liberation
+      nerd-fonts.profont
+      nerd-fonts.proggy-clean-tt
+      nerd-fonts.go-mono
+      nerd-fonts.agave
+      
+
       monaspace            # GitHub 现代编程字体
       jetbrains-mono       # 现代几何等宽字体
       iosevka             # 现代几何编程字体
