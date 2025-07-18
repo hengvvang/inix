@@ -10,46 +10,6 @@
         enable = false;
         preset = "zen";
       };
-    #   stylix = {
-    #     enable = true;
-    #     polarity = "dark";
-    #     wallpapers = {
-    #       enable = true;
-    #       preset = "sea";
-    #     };
-    #     fonts = {
-    #       enable = true;
-    #     };
-    #     targets = {
-    #       enable = true;
-    #       boot = {
-    #         grub.enable = true;
-    #         plymouth.enable = true;
-    #       };
-    #       display = {
-    #         lightdm.enable = false;
-    #         gdm.enable = true;
-    #         sddm.enable = false;
-    #       };
-    #       desktop = {
-    #         gtk.enable = true;
-    #         qt.enable = true;
-    #       };
-    #       userDefaults = {
-    #         terminals = {
-    #           alacritty.enable = true;
-    #           kitty.enable = false;
-    #         };
-    #         editors = {
-    #           vim.enable = true;
-    #           neovim.enable = true;
-    #         };
-    #         browsers = {
-    #           firefox.enable = true;
-    #         };
-    #       };
-    #     };
-    #   };
     };
     
     # 系统级应用配置 - 仅启用开发工具，其他软件包通过用户配置管理

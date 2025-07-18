@@ -116,43 +116,66 @@
       };
     };
     
-    # 系统目标应用配置 - 主要是系统级组件
+    # 系统目标应用配置 - 仅包含确定存在的系统级组件
     targets = {
       enable = lib.mkEnableOption "系统级 Stylix 目标应用配置";
       
-      # 系统启动和登录
+      # 系统启动
       boot = {
         grub.enable = lib.mkEnableOption "GRUB 引导主题";
-        plymouth.enable = lib.mkEnableOption "Plymouth 启动画面主题";
-      };
-      
-      # 登录管理器
-      display = {
-        lightdm.enable = lib.mkEnableOption "LightDM 登录主题";
-        gdm.enable = lib.mkEnableOption "GDM 登录主题";
-        sddm.enable = lib.mkEnableOption "SDDM 登录主题";
       };
       
       # 系统级桌面环境
       desktop = {
         gtk.enable = lib.mkEnableOption "系统级 GTK 主题";
-        qt.enable = lib.mkEnableOption "系统级 Qt 主题";
       };
       
-      # 用户应用的系统默认值（用户可覆盖）
-      userDefaults = {
-        terminals = {
-          alacritty.enable = lib.mkEnableOption "系统默认 Alacritty 主题";
-          kitty.enable = lib.mkEnableOption "系统默认 Kitty 主题";
-        };
-        
-        editors = {
-          vim.enable = lib.mkEnableOption "系统默认 Vim 主题";
-          neovim.enable = lib.mkEnableOption "系统默认 Neovim 主题";
-        };
-        
-        browsers = {
-          firefox.enable = lib.mkEnableOption "系统默认 Firefox 主题";
+      # 系统控制台
+      console.enable = lib.mkEnableOption "系统控制台主题";
+    };
+    
+    # 颜色自定义配置 - 与 home 版本保持一致
+    colors = {
+      enable = lib.mkEnableOption "系统级 Stylix 自定义颜色配置";
+      
+      scheme = lib.mkOption {
+        type = lib.types.enum [ 
+          # 🎨 自定义主题
+          "warm-white"        # 🤍 简约白色暖色调（推荐亮色主题）
+          "cool-blue"         # 🩵 冷静蓝色主题
+          "forest-green"      # 🌿 森林绿色主题 
+          "sunset-orange"     # 🧡 日落橙色主题
+          "lavender-purple"   # 💜 薰衣草紫色主题
+          "dark-elegant"      # 🖤 优雅深色主题
+          
+          # 🔄 动态主题
+          "auto"              # 从壁纸自动生成
+          
+          # 🔥 热门预设主题
+          "gruvbox-light"     # Gruvbox 亮色
+          "gruvbox-dark-hard" # Gruvbox 深色
+          "solarized-light"   # Solarized 亮色
+          "solarized-dark"    # Solarized 深色
+          "nord"              # Nord 北欧风
+          "dracula"           # Dracula 吸血鬼
+          "tokyo-night"       # 东京夜色
+          "catppuccin-latte"  # Catppuccin 亮色
+          "catppuccin-mocha"  # Catppuccin 深色
+          "one-light"         # Atom One 亮色
+          "one-dark"          # Atom One 深色
+        ];
+        default = "warm-white";  # 🤍 默认使用简约白色暖色调
+        description = "系统颜色方案选择";
+      };
+      
+      # 自定义颜色覆盖
+      override = lib.mkOption {
+        type = lib.types.attrsOf lib.types.str;
+        default = {};
+        description = "系统自定义颜色覆盖 (base00-base0F)";
+        example = {
+          base00 = "ffffff";  # 背景
+          base05 = "000000";  # 前景
         };
       };
     };
@@ -162,7 +185,7 @@
     ./wallpapers.nix
     ./fonts.nix
     ./targets.nix
-    # ./colors.nix  # 可以复用 home 版本的逻辑
+    ./colors.nix
   ];
 
   # 系统级 Stylix 配置 - 为所有用户提供基础
@@ -172,12 +195,17 @@
       autoEnable = false;  # 完全手动控制，避免意外启用
       
       # 系统基础配置
-      image = 
+      image = lib.mkIf (!config.mySystem.profiles.stylix.colors.enable || config.mySystem.profiles.stylix.colors.scheme == "auto") (
         if config.mySystem.profiles.stylix.wallpapers.custom != null
         then config.mySystem.profiles.stylix.wallpapers.custom
-        else ./wallpapers + "/${config.mySystem.profiles.stylix.wallpapers.preset}.jpg";
+        else ./wallpapers + "/${config.mySystem.profiles.stylix.wallpapers.preset}.jpg"
+      );
         
       polarity = config.mySystem.profiles.stylix.polarity;
+      
+      # 颜色覆盖
+      override = lib.mkIf (config.mySystem.profiles.stylix.colors.override != {}) 
+        config.mySystem.profiles.stylix.colors.override;
       
       # 系统级字体配置
       fonts = lib.mkIf config.mySystem.profiles.stylix.fonts.enable {
