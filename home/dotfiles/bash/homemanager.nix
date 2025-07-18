@@ -53,7 +53,9 @@
         rm = "rm -i";
         cp = "cp -i";
         mv = "mv -i";
-        
+
+        zed = "zeditor";        
+
         # 目录操作
         ".." = "cd ..";
         "..." = "cd ../..";

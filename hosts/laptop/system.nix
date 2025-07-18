@@ -161,7 +161,7 @@
         
         # 虚拟网卡支持（TUN/TAP）
         virtualInterface = {
-          enable = false;               # 🟢 启用虚拟网卡支持
+          enable = true;               # 🟢 启用虚拟网卡支持
           tun = true;                  # 启用 TUN 支持
           tap = false;                 # 禁用 TAP 支持
           forwarding = {
@@ -187,7 +187,7 @@
           
           # Clash 代理服务
           clash = {
-            enable = false;
+            enable = true;
             tunMode = true;            # 🟢 启用 TUN 模式（虚拟网卡）
             webPort = 9090;           # Web UI 端口
             mixedPort = 7890;         # HTTP/SOCKS5 混合端口

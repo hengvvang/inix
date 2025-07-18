@@ -13,7 +13,8 @@
         la = "eza -A --icons";
         l = "eza -CF --icons";
         tree = "eza --tree --icons";
-        
+        zed = "zeditor";
+
         # 导航快捷键
         ".." = "cd ..";
         "..." = "cd ../..";

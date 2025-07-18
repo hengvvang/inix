@@ -12,7 +12,7 @@
 
       qutebrowser
       
-      google-chrome
+      #google-chrome
       #firefox
       
       telegram-desktop

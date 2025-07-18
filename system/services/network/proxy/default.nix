@@ -1,6 +1,10 @@
 { config, lib, pkgs, ... }:
 
 {
+  options.mySystem.services.network.proxy = {
+    enable = lib.mkEnableOption "代理服务支持";
+  };
+
   imports = [
     ./clash
     ./clash-gui
@@ -10,8 +14,4 @@
     ./sing-box
   ];
 
-  # 代理服务模块的选项定义
-  options.mySystem.services.network.proxy = {
-    enable = lib.mkEnableOption "代理服务支持";
-  };
 }

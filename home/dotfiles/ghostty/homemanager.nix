@@ -10,7 +10,7 @@
       # Ghostty 终端配置 - Home Manager 方式
       
       # 字体设置
-      font-family = "FiraCode Nerd Font"
+      # font-family = "FiraCode Nerd Font"
       font-size = 12
       font-feature = +ss01
       font-feature = +ss02

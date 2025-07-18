@@ -7,12 +7,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser = {
-      url = "github:hengvvang/zen-browser";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     stylix = {
       url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zen-browser = {
+      url = "github:hengvvang/zen-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -23,7 +23,7 @@
       
       # 定义通用系统模块列表，可被多个主机配置共享
       commonSystemModules = [
-        stylix.nixosModules.stylix  # ✅ 添加系统级 Stylix 模块
+        stylix.nixosModules.stylix  # 添加系统级 Stylix 模块
         {
           environment.systemPackages = [ 
             zen-browser.packages.${system}.twilight
