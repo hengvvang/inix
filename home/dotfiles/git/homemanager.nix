@@ -234,7 +234,7 @@
       extraConfig = {
         # === 核心设置 ===
         core = {
-          editor = "nvim";            # 默认编辑器
+          editor = "vim";            # 默认编辑器
           autocrlf = "input";         # 行尾转换（Linux/macOS 推荐）
           safecrlf = true;            # 安全的行尾转换
           filemode = true;            # 文件权限检测
@@ -317,9 +317,9 @@
         
         # === 性能优化 ===
         pack = {
-          threads = "0";              # 使用所有可用 CPU 核心
-          deltaCacheSize = "2g";      # delta 缓存大小
-          windowMemory = "1g";        # 窗口内存大小
+          # threads = "0";              # 使用所有可用 CPU 核心
+          # deltaCacheSize = "2g";      # delta 缓存大小
+          # windowMemory = "1g";        # 窗口内存大小
         };
         
         # === 其他有用设置 ===
@@ -346,15 +346,15 @@
         
         # === 网络设置 ===
         http = {
-          postBuffer = "524288000";   # 50MB 缓冲区
-          lowSpeedLimit = "1000";     # 最低速度限制
-          lowSpeedTime = "60";        # 最低速度时间
+          # postBuffer = "524288000";   # 50MB 缓冲区
+          # lowSpeedLimit = "1000";     # 最低速度限制
+          # lowSpeedTime = "60";        # 最低速度时间
         };
         
         # === 清理设置 ===
         gc = {
-          auto = "6700";              # 自动垃圾回收阈值
-          autoPackLimit = "50";       # 自动打包限制
+          # auto = "6700";              # 自动垃圾回收阈值
+          # autoPackLimit = "50";       # 自动打包限制
         };
       };
     };
