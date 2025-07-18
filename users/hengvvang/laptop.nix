@@ -72,7 +72,7 @@
           preset = "bauhaus";
         };
         stylix = {
-          enable = true;
+          enable = false;
           # polarity = "dark";  # ❌ 注释掉，沿用系统配置 (dark)
           # 或者覆盖: polarity = "light";  # ✅ 用户偏好覆盖系统配置
           

@@ -4,8 +4,12 @@
   # 系统模块配置 - 完全由主机决定启用哪些模块
   # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
-    # 🚧 暂时注释掉系统 profiles 配置，等模块完善后再启用
-    # profiles = {
+    profiles = {
+      enable = true;                # 启用系统配置模块
+      fonts = {
+        enable = true;              # 启用字体配置模块
+        preset = "forest";          # 使用森林风格字体配置
+      };
     #   stylix = {
     #     enable = true;
     #     polarity = "dark";
@@ -46,7 +50,7 @@
     #       };
     #     };
     #   };
-    # };
+    };
     
     # 系统级应用配置 - 仅启用开发工具，其他软件包通过用户配置管理
     pkgs = {
