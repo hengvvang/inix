@@ -14,26 +14,22 @@
       # 系统级 Stylix 主题配置
       stylix = {
         enable = true;
-        polarity = "dark";  # 使用暗色主题
-        
-        # 壁纸配置
+        polarity = "dark";
         wallpapers = {
+
           enable = false;
-          preset = "sea";  # 使用海洋主题壁纸
+          preset = "sea";
         };
         
-        # 字体配置
         fonts = {
-          enable = false;  # 启用系统级字体配置
+          enable = false;
         };
         
-        # 颜色配置
         colors = {
           enable = true;
-          scheme = "catppuccin-latte";  # 使用 Catppuccin 主题
+          scheme = "catppuccin-latte";
         };
         
-        # 目标应用配置
         targets = {
           enable = true;
           
@@ -53,9 +49,8 @@
       };
     };
     
-    # 系统级应用配置 - 仅启用开发工具，其他软件包通过用户配置管理
     pkgs = {
-      enable = true;                   # 启用系统包管理模块
+      enable = true;     
       
       apps = {
         enable = true;
@@ -73,7 +68,6 @@
         newMoon.enable = true;
       };
       
-      # 工具包配置
       toolkits = {
         enable = true;
         
@@ -91,29 +85,25 @@
       };
     };
     
-    # 桌面环境配置
     desktop = {
       enable = true;                   # 启用桌面环境模块
       preset = "cosmic";               # 使用 COSMIC 桌面环境
     };
     
-
-    # 本地化配置
     locale = {
-      enable = true;                   # 启用本地化模块
+      enable = true;
       timeZone = {
-        enable = true;                 # 启用时区配置
-        preset = "shanghai";           # 使用上海时区
+        enable = true;
+        preset = "shanghai";
       };
       inputMethod = {
-        enable = true;                 # 启用输入法配置
-        fcitx5.enable = true;          # 使用 fcitx5 输入法
+        enable = true;
+        fcitx5.enable = true;
       };
     };
     
-    # 服务配置
     services = {
-      enable = true;                   # 启用服务模块
+      enable = true;
       
       # 容器服务配置
       containers = {
@@ -171,7 +161,7 @@
         
         # 虚拟网卡支持（TUN/TAP）
         virtualInterface = {
-          enable = true;               # 🟢 启用虚拟网卡支持
+          enable = false;               # 🟢 启用虚拟网卡支持
           tun = true;                  # 启用 TUN 支持
           tap = false;                 # 禁用 TAP 支持
           forwarding = {
@@ -197,7 +187,7 @@
           
           # Clash 代理服务
           clash = {
-            enable = false;            # 🔴 禁用系统级 Clash（使用客户端代替）
+            enable = true;
             tunMode = true;            # 🟢 启用 TUN 模式（虚拟网卡）
             webPort = 9090;           # Web UI 端口
             mixedPort = 7890;         # HTTP/SOCKS5 混合端口

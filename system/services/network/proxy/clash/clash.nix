@@ -82,7 +82,6 @@ in
     environment.systemPackages = with pkgs; [
       clash-meta
       # mihomo
-      curl  # 用于下载订阅
       (writeShellScriptBin "clash-ctl" ''
         #!/usr/bin/env bash
         
@@ -270,10 +269,8 @@ in
       '';
     };
 
-    # TUN 模式系统配置
+    # TUN 模式系统配置（IP 转发由 virtualInterface 模块统一管理）
     boot.kernel.sysctl = lib.mkIf cfg.tunMode {
-      "net.ipv4.ip_forward" = 1;
-      "net.ipv6.conf.all.forwarding" = 1;
       "net.core.default_qdisc" = "fq";
       "net.ipv4.tcp_congestion_control" = "bbr";
     };
