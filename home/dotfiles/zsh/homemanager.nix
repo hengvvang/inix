@@ -2,215 +2,241 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.method == "homemanager") {
+    # Zsh Shell 配置 - 使用 Home Manager
     programs.zsh = {
       enable = true;
-      enableCompletion = true;
-      autosuggestion.enable = true;
-      syntaxHighlighting.enable = true;
       
-      # 历史配置 - 增强版
+      # 自动补全配置
+      enableCompletion = true;           # 启用命令补全 (推荐)
+      autosuggestion.enable = true;      # 启用自动建议 (基于历史记录)
+      syntaxHighlighting.enable = true;  # 启用语法高亮
+      
+      # 自动切换目录 - 输入目录名即可切换
+      autocd = true;                     # 启用autocd功能
+      
+      # 历史记录配置
       history = {
-        size = 50000;  # 增加历史记录数量
-        save = 50000;
-        path = "${config.xdg.dataHome}/zsh/history";
-        ignoreDups = true;
-        ignoreSpace = true;
-        extended = true;
-        share = true;  # 在多个会话间共享历史
-        expireDuplicatesFirst = true;
+        size = 10000;                    # 内存中保存的历史命令数量
+        save = 100000;                   # 文件中保存的历史命令数量
+        path = "$HOME/.zsh_history";     # 历史文件路径
+        ignoreDups = true;               # 忽略重复命令
+        ignoreSpace = true;              # 忽略以空格开头的命令
+        expireDuplicatesFirst = true;    # 优先删除重复的历史记录
+        extended = true;                 # 保存命令执行时间
+        share = true;                    # 在多个shell会话间共享历史
       };
       
-      # 环境变量
-      sessionVariables = {
-        EDITOR = "vim";
-        BROWSER = "google-chrome";
-        TERM = "xterm-256color";
-        # 语言和编码设置
-        LANG = "en_US.UTF-8";
-        LC_ALL = "en_US.UTF-8";
-        # 提升开发体验
-        BAT_THEME = "TwoDark";
-        MANPAGER = "sh -c 'col -bx | bat -l man -p'";
-        # FZF 配置
-        FZF_DEFAULT_OPTS = "--height 40% --layout=reverse --border";
-      };
-      
-      # 实用别名 - 现代化工具替代
+      # 简化的别名配置 - 仅保留最常用的
       shellAliases = {
-        # 基础命令增强
-        ll = "eza -alF --icons --git";
-        la = "eza -A --icons";
-        l = "eza -CF --icons";
-        tree = "eza --tree --icons";
-
-        zed = "zeditor"; 
+        # 文件操作增强
+        ll = "ls -alF --color=auto";
+        la = "ls -A --color=auto";
+        l = "ls -CF --color=auto";
         
-        # 导航快捷键
+        # Git核心命令
+        g = "git";
+        gs = "git status";
+        
+        # 快速导航
         ".." = "cd ..";
         "..." = "cd ../..";
-        "...." = "cd ../../..";
-        "....." = "cd ../../../..";
-        
-        # Git 简化命令（与 Oh-My-Zsh git 插件协同）
-        gs = "git status";
-        ga = "git add";
-        gaa = "git add --all";
-        gc = "git commit";
-        gcm = "git commit -m";
-        gp = "git push";
-        gl = "git log --oneline --graph --decorate";
-        gd = "git diff";
-        gco = "git checkout";
-        gb = "git branch";
-        gf = "git fetch";
-        gpl = "git pull";
-        
-
-        # 安全操作
-        rm = "rm -i";
-        cp = "cp -i";
-        mv = "mv -i";
-        
-        # 快速编辑
-        zshrc = "$EDITOR ~/.zshrc";
-        vimrc = "$EDITOR ~/.vimrc";
-        
-        # 网络工具
-        ping = "ping -c 5";
         
         # 系统信息
-        ports = "netstat -tulanp";
-        
-        # 开发快捷键
-        serve = "python3 -m http.server";
-        myip = "curl http://ipecho.net/plain; echo";
-        
-        # Nix 快捷键
-        nix-search = "nix search nixpkgs";
-        nix-shell-p = "nix-shell -p";
+        df = "df -h";                    # 人类可读的磁盘使用情况
+        du = "du -h";                    # 人类可读的目录大小
+        free = "free -h";                # 人类可读的内存使用情况
       };
       
-      # ZSH 高级配置
+      # Shell选项配置
+      defaultKeymap = "emacs";           # 默认键映射模式 (emacs/vi)
+      
+      # 自定义补全初始化
+      completionInit = ''
+        # 补全系统配置
+        autoload -Uz compinit
+        compinit
+        
+        # 补全样式配置
+        zstyle ':completion:*' menu select                    # 使用菜单选择补全
+        zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'   # 大小写不敏感匹配
+        zstyle ':completion:*' list-colors ""                 # 使用默认颜色
+        zstyle ':completion:*:descriptions' format '%B%d%b'   # 补全分组描述格式
+        zstyle ':completion:*:warnings' format 'No matches for: %d'  # 无匹配时的提示
+        
+        # 路径补全优化
+        zstyle ':completion:*' squeeze-slashes true           # 压缩多个斜杠
+        zstyle ':completion:*' special-dirs true              # 补全 . 和 ..
+      '';
+      
+      # 交互式Shell初始化
       initContent = ''
-        # 补全系统优化
-        zstyle ':completion:*' menu select
-        zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-        zstyle ':completion:*' list-colors ""
-        zstyle ':completion:*:default' list-colors ''${(s.:.)LS_COLORS}
-        zstyle ':completion:*' special-dirs true
-        zstyle ':completion:*' squeeze-slashes true
+        # 登录时的特定设置
+        if [[ -o login ]]; then
+          # 设置umask
+          umask 022
+          
+          # 检查SSH代理
+          if [ -z "$SSH_AUTH_SOCK" ] && command -v ssh-agent >/dev/null; then
+            eval "$(ssh-agent -s)" >/dev/null
+          fi
+        fi
         
-        # 历史搜索优化
-        autoload -U up-line-or-beginning-search
-        autoload -U down-line-or-beginning-search
-        zle -N up-line-or-beginning-search
-        zle -N down-line-or-beginning-search
-        bindkey "^[[A" up-line-or-beginning-search
-        bindkey "^[[B" down-line-or-beginning-search
+        # 核心环境变量
+        export EDITOR="''${EDITOR:-vim}"
+        export VISUAL="''${VISUAL:-$EDITOR}"
+        export PAGER="''${PAGER:-less}"
+        export TERM="''${TERM:-xterm-256color}"
         
-        # ZSH 选项设置
-        setopt AUTO_CD                 # 自动进入目录
-        setopt AUTO_PUSHD              # 自动推送目录到栈
-        setopt PUSHD_IGNORE_DUPS       # 忽略重复目录
-        setopt PUSHD_MINUS             # 交换 +/- 的含义
-        setopt EXTENDED_GLOB           # 扩展的通配符
-        setopt HIST_VERIFY             # 历史展开后再执行
-        setopt HIST_REDUCE_BLANKS      # 删除多余空格
-        setopt HIST_IGNORE_ALL_DUPS    # 忽略所有重复
-        setopt HIST_SAVE_NO_DUPS       # 保存时忽略重复
-        setopt HIST_FIND_NO_DUPS       # 搜索时忽略重复
-        setopt SHARE_HISTORY           # 共享历史
-        setopt APPEND_HISTORY          # 追加历史
-        setopt INC_APPEND_HISTORY      # 实时追加历史
-        setopt CORRECT                 # 命令纠错
-        setopt COMPLETE_IN_WORD        # 在单词中间补全
-        setopt ALWAYS_TO_END           # 补全后光标移到末尾
+        # 路径配置
+        typeset -U path                  # 确保PATH中没有重复项
+        path=(~/.local/bin ~/.cargo/bin $path)
         
-        # 键绑定
-        bindkey '^R' history-incremental-search-backward  # Ctrl+R 历史搜索
-        bindkey '^S' history-incremental-search-forward   # Ctrl+S 前向搜索
-        bindkey '^[[Z' reverse-menu-complete               # Shift+Tab 反向补全
+        # 现代化工具配置
+        export BAT_THEME="''${BAT_THEME:-TwoDark}"
+        export FZF_DEFAULT_OPTS="''${FZF_DEFAULT_OPTS:---height 40% --border}"
+        export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
         
-        # 快速跳转函数
+        # Zsh选项配置
+        setopt AUTO_CD                   # 自动切换目录
+        setopt AUTO_PUSHD               # 自动将目录推入栈
+        setopt PUSHD_IGNORE_DUPS        # 忽略重复的目录
+        setopt PUSHD_MINUS              # 交换 +/- 的含义
+        setopt EXTENDED_GLOB            # 扩展通配符
+        setopt GLOB_DOTS                # 通配符匹配点文件
+        setopt NUMERIC_GLOB_SORT        # 数字排序
+        setopt NO_CASE_GLOB             # 大小写不敏感通配符
+        
+        # 历史记录选项
+        setopt HIST_VERIFY              # 历史扩展前确认
+        setopt HIST_NO_STORE            # 不保存history命令
+        setopt HIST_REDUCE_BLANKS       # 去除多余空格
+        
+        # 作业控制
+        setopt NOTIFY                   # 立即通知后台作业状态变化
+        setopt NO_HUP                   # shell退出时不发送HUP信号给作业
+        
+        # 输入/输出
+        setopt CORRECT                  # 命令纠错
+        setopt NO_CORRECT_ALL           # 不纠错参数
+        setopt INTERACTIVE_COMMENTS     # 允许交互式注释
+        
+        # 键绑定配置
+        bindkey '^[[1;5C' forward-word     # Ctrl+Right: 前进一个单词
+        bindkey '^[[1;5D' backward-word    # Ctrl+Left: 后退一个单词
+        bindkey '^[[3~' delete-char        # Delete键
+        bindkey '^[[H' beginning-of-line   # Home键
+        bindkey '^[[F' end-of-line         # End键
+        
+        # 自定义函数
+        
+        # 获取公网IP
+        function myip() {
+          curl -s ifconfig.me
+        }
+        
+        # 快速创建目录并进入
         function mkcd() {
-          mkdir -p "$1" && cd "$1"
+          mkdir -p "$@" && cd "$_"
         }
         
-        # 快速备份函数
-        function bak() {
-          cp "$1" "$1.bak"
+        # 快速查找文件
+        function ff() {
+          find . -type f -name "*$1*" 2>/dev/null
         }
         
-        # 快速查找并编辑
-        function fe() {
-          local file
-          file=$(fd --type f | fzf) && $EDITOR "$file"
+        # 快速查找目录
+        function fdd() {
+          find . -type d -name "*$1*" 2>/dev/null
         }
         
-        # 快速查找并进入目录
-        function fcd() {
-          local dir
-          dir=$(fd --type d | fzf) && cd "$dir"
+        # 快速HTTP服务器
+        function serve() {
+          local port=''${1:-8000}
+          echo "在端口 $port 启动HTTP服务器..."
+          python3 -m http.server $port
         }
         
-        # Git 快速提交
-        function gac() {
-          git add -A && git commit -m "$1"
+        # 简单的系统信息
+        function sysinfo() {
+          echo "系统信息:"
+          echo "操作系统: $(uname -s)"
+          echo "内核版本: $(uname -r)"
+          echo "主机名: $(hostname)"
+          echo "当前用户: $(whoami)"
+          echo "Shell: $SHELL"
+          echo "终端: $TERM"
         }
         
+        # 快速备份文件
+        function backup() {
+          cp "$1" "$1.bak.$(date +%Y%m%d_%H%M%S)"
+        }
         
-        # 让 Starship 接管提示符
-        autoload -U colors && colors
+        # 解压万能函数
+        function extract() {
+          if [ -f "$1" ]; then
+            case "$1" in
+              *.tar.bz2)   tar xjf "$1"     ;;
+              *.tar.gz)    tar xzf "$1"     ;;
+              *.bz2)       bunzip2 "$1"     ;;
+              *.rar)       unrar x "$1"     ;;
+              *.gz)        gunzip "$1"      ;;
+              *.tar)       tar xf "$1"      ;;
+              *.tbz2)      tar xjf "$1"     ;;
+              *.tgz)       tar xzf "$1"     ;;
+              *.zip)       unzip "$1"       ;;
+              *.Z)         uncompress "$1"  ;;
+              *.7z)        7z x "$1"        ;;
+              *)           echo "'$1' 无法解压" ;;
+            esac
+          else
+            echo "'$1' 不是有效的文件"
+          fi
+        }
         
-        # 加载 FZF 如果可用
-        if command -v fzf-share >/dev/null; then
-          source "$(fzf-share)/key-bindings.zsh"
-          source "$(fzf-share)/completion.zsh"
+        # 如果存在本地配置文件则加载
+        [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+        
+        # 欢迎信息（简洁版）
+        if [[ $- == *i* ]] && [[ -z $ZSH_DISABLE_GREETING ]]; then
+          echo "欢迎使用 Zsh! 输入 'sysinfo' 查看系统信息"
         fi
       '';
       
-      # Oh-My-Zsh 配置 - 强化版
+      # 环境变量配置
+      envExtra = ''
+        # 附加环境变量设置
+        # 这些变量会在shell初始化之前设置
+        export LESSHISTFILE="-"  # 禁用less历史文件
+        export MANPAGER="less -X"  # man页面分页器设置
+      '';
+      
+      # 配置目录
+      dotDir = ".config/zsh";             # zsh配置目录 (相对于HOME)
+      
+      # Oh My Zsh 配置（可选，默认关闭）
       oh-my-zsh = {
-        enable = true;
-        # 精选插件组合
-        plugins = [
-          # Git 相关
-          "git"
-          "gitignore"
-          "github"
-          
-          # 命令增强
-          "sudo"                 # 双击 ESC 添加 sudo
-          "command-not-found"    # 命令未找到建议
-          "colored-man-pages"    # 彩色 man 页面
-          "colorize"            # 语法高亮
-          
-          # 导航和搜索
-          "z"                   # 智能跳转
-          "fzf"                 # 模糊搜索
-          "history-substring-search"  # 历史子串搜索
-          
-          # 开发工具
-          "docker"              # Docker 补全
-          "docker-compose"      # Docker Compose 补全
-          "npm"                 # NPM 补全
-          "pip"                 # Python pip 补全
-          "rust"                # Rust 补全
-
-          # 系统工具
-          "extract"             # 通用解压
-          "safe-paste"          # 安全粘贴
-          "web-search"          # 网络搜索
-          
-          # 生产力
-          "copypath"            # 复制路径
-          "copyfile"            # 复制文件内容
-          "copybuffer"          # 复制缓冲区
-        ];
-        
-        # 禁用 oh-my-zsh 主题，让 Starship 接管
-        theme = "";
+        enable = false;                  # 默认关闭，避免过度配置
+        # 如果启用，可以配置以下选项：
+        # plugins = [ "git" "sudo" "docker" "kubectl" ];
+        # theme = "robbyrussell";
+        # custom = "$HOME/.oh-my-zsh/custom";
       };
+      
+      # Zsh插件配置（轻量级替代oh-my-zsh）
+      plugins = [
+        # 可以在这里添加轻量级插件
+        # 例如：z跳转、fzf集成等
+        # {
+        #   name = "zsh-z";
+        #   src = pkgs.fetchFromGitHub {
+        #     owner = "agkozak";
+        #     repo = "zsh-z";
+        #     rev = "v1.12";
+        #     sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+        #   };
+        # }
+      ];
     };
   };
 }
