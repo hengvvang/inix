@@ -82,6 +82,7 @@ in
     environment.systemPackages = with pkgs; [
       clash-meta
       # mihomo
+      curl
       (writeShellScriptBin "clash-ctl" ''
         #!/usr/bin/env bash
         

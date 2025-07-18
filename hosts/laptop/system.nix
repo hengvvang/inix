@@ -187,7 +187,7 @@
           
           # Clash 代理服务
           clash = {
-            enable = true;
+            enable = false;
             tunMode = true;            # 🟢 启用 TUN 模式（虚拟网卡）
             webPort = 9090;           # Web UI 端口
             mixedPort = 7890;         # HTTP/SOCKS5 混合端口
@@ -199,7 +199,7 @@
           # V2Ray 代理服务
           v2ray = {
             enable = false;           # 🔴 禁用 - 需要时设为 true
-            tunMode = false;          # TUN 模式透明代理
+            tunMode = true;          # TUN 模式透明代理
             httpPort = 8080;          # HTTP 代理端口
             socksPort = 1080;         # SOCKS5 代理端口
             tunPort = 10808;          # TUN 模式端口
@@ -211,7 +211,7 @@
           # Xray 代理服务
           xray = {
             enable = false;           # 🔴 禁用 - 需要时设为 true
-            tunMode = false;          # TUN 模式透明代理
+            tunMode = true;          # TUN 模式透明代理
             httpPort = 8081;          # HTTP 代理端口（避免冲突）
             socksPort = 1081;         # SOCKS5 代理端口（避免冲突）
             tunPort = 10809;          # TUN 模式端口（避免冲突）
