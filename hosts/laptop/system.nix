@@ -10,6 +10,47 @@
         enable = false;
         preset = "zen";
       };
+      
+      # 系统级 Stylix 主题配置
+      stylix = {
+        enable = true;
+        polarity = "dark";  # 使用暗色主题
+        
+        # 壁纸配置
+        wallpapers = {
+          enable = false;
+          preset = "sea";  # 使用海洋主题壁纸
+        };
+        
+        # 字体配置
+        fonts = {
+          enable = false;  # 启用系统级字体配置
+        };
+        
+        # 颜色配置
+        colors = {
+          enable = true;
+          scheme = "catppuccin-latte";  # 使用 Catppuccin 主题
+        };
+        
+        # 目标应用配置
+        targets = {
+          enable = true;
+          
+          # 系统启动
+          boot = {
+            grub.enable = true;  # 启用 GRUB 引导主题
+          };
+          
+          # 系统级桌面环境
+          desktop = {
+            gtk.enable = true;   # 启用系统级 GTK 主题
+          };
+          
+          # 系统控制台
+          console.enable = true; # 启用控制台主题
+        };
+      };
     };
     
     # 系统级应用配置 - 仅启用开发工具，其他软件包通过用户配置管理

@@ -49,7 +49,7 @@
           ssh_only = false;
           ssh_symbol = "∅";
           # format = "[「](fg:#8A2BE2 bold)[host/:](fg:#8A2BE2 bold)[ $hostname$ssh_symbol ](fg:#32CD32 bold)[」](fg:#8A2BE2 bold)";
-          format = "[「](fg:#32CD32 bold)[user/:](fg:#32CD32 bold)[ $hostname$ssh_symbol ](fg:#8A2BE2 bold)[」](fg:#32CD32 bold)";
+          format = "[「](fg:#32CD32 bold)[host/:](fg:#32CD32 bold)[ $hostname$ssh_symbol ](fg:#8A2BE2 bold)[」](fg:#32CD32 bold)";
           trim_at = ".";
           disabled = false;
         };
