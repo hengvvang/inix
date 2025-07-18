@@ -1,4 +1,4 @@
-# 🎨 Stylix 主题图库
+ Stylix 主题图库
 
 这个文档展示了所有可用的 Stylix 主题选项。你可以在 `laptop.nix` 中通过修改 `colors.scheme` 来切换主题。
 

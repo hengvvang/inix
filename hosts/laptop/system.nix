@@ -13,7 +13,7 @@
       
       # 系统级 Stylix 主题配置
       stylix = {
-        enable = false;
+        enable = true;
         polarity = "dark";  # 使用暗色主题
         
         # 壁纸配置

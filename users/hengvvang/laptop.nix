@@ -40,9 +40,9 @@
         git.enable = true;
         lazygit.enable = true;
         starship.enable = true;
-        qutebrowser.enable = false;  # 启用 Qutebrowser 配置
-        obs-studio.enable = false;   # 启用 OBS Studio 配置
-        mpd.enable = true;            # 🟢 启用 MPD 音乐播放器配置
+        qutebrowser.enable = false;
+        obs-studio.enable = false;
+        mpd.enable = true;
         proxy.enable = false;
       };
       
@@ -70,8 +70,8 @@
           preset = "tokyo";
         };
         stylix = {
-          enable = false;                      # ✅ 启用 Stylix 主题系统
-          polarity = "light";                 # 🌞 切换到亮色模式（简约白色主题）
+          enable = true;                      # ✅ 启用 Stylix 主题系统
+          polarity = "dark";
           
           # 🎨 启用自定义颜色配置
           colors = {
@@ -80,11 +80,16 @@
           };
           
           wallpapers = {
-            enable = false;                   # ❌ 禁用壁纸（使用纯色背景）
+            enable = false;                    # ✅ 启用壁纸
+            # preset = "tokyo";
+            # custom = {
+            #   url = "https://example.com/path/to/your/wallpaper.jpg";  # ✅ 自定义壁纸 URL
+            #   position = "center";  # ✅ 壁纸位置（center, fill, stretch 等）
+            # };
           };
           
           fonts = {
-            enable = true;
+            enable = false;
             names = {
               monospace = "JetBrainsMono Nerd Font Mono";  # ✅ 优质等宽字体
               sansSerif = "Noto Sans";                     # ✅ 现代无衬线字体
@@ -92,48 +97,42 @@
               emoji = "Noto Color Emoji";                  # ✅ 彩色表情字体
             };
             sizes = {
-              terminal = 14;      # ✅ 终端字体大小（适合开发）
+              terminal = 16;      # ✅ 终端字体大小（适合开发）
               applications = 12;  # ✅ 应用字体大小（舒适阅读）
-              desktop = 11;       # ✅ 桌面字体大小（界面元素）
-              popups = 11;        # ✅ 弹窗字体大小（提示信息）
+              desktop = 12;       # ✅ 桌面字体大小（界面元素）
+              popups = 12;        # ✅ 弹窗字体大小（提示信息）
             };
           };
 
           targets = {
             enable = true;
             
-            # 🖥️ 终端应用主题（简约白色）
             terminals = {
-              alacritty.enable = false;       # ❌ 禁用 Alacritty（使用 Ghostty）
-              kitty.enable = false;            # ✅ 启用 Kitty 主题（备用终端）
+              alacritty.enable = false;
+              kitty.enable = false;
             };
             
-            # ✏️ 编辑器主题（简约白色）
             editors = {
-              vim.enable = true;              # ✅ 启用 Vim 主题
-              neovim.enable = false;           # ✅ 启用 Neovim 主题
+              vim.enable = true;
+              neovim.enable = false;
             };
             
-            # 🛠️ 工具主题（简约白色）
             tools = {
-              tmux.enable = true;             # ✅ 启用 Tmux 主题
-              bat.enable = true;              # ✅ 启用 Bat 主题
-              fzf.enable = true;              # ✅ 启用 Fzf 主题
+              tmux.enable = true;
+              bat.enable = true;
+              fzf.enable = true;
             };
             
-            # 🖼️ 桌面环境主题（简约白色）
             desktop = {
               gtk.enable = true;              # ✅ 启用 GTK 主题（应用一致性）
             };
             
-            # 🌐 浏览器主题（简约白色）
             browsers = {
-              firefox.enable = false;          # ✅ 启用 Firefox 主题
+              firefox.enable = false;
             };
             
-            # ⌨️ 输入法主题（简约白色）
             inputMethods = {
-              fcitx5.enable = true;           # ✅ 启用 Fcitx5 主题（中文输入法）
+              fcitx5.enable = true;
             };
           };
         };
