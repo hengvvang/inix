@@ -6,40 +6,84 @@
     programs.fish = {
       enable = true;
       
-      # 实用别名 - 现代化工具替代
+      # 包配置 - 使用默认fish包，也可以指定特定版本
+      # package = pkgs.fish;  # 默认值，通常不需要显式设置
+      
+      # 自动生成补全 - 基于已安装的man页面自动生成命令补全
+      generateCompletions = true;  # 默认值：true，建议保持开启
+      
+      # 偏好缩写而非别名 - 当其他模块定义别名时优先使用缩写
+      preferAbbrs = true;  # 默认值：false，设为true以优先使用缩写
+      
+      # 简化的别名配置 - 仅保留最常用的
       shellAliases = {
-        # 基础命令增强
+        # 现代化工具替代
         ll = "eza -alF --icons";
-        la = "eza -A --icons";
-        l = "eza -CF --icons";
         tree = "eza --tree --icons";
-        zed = "zeditor";
-
-        # 导航快捷键
-        ".." = "cd ..";
-        "..." = "cd ../..";
-        "...." = "cd ../../..";
         
-        # Git 简化命令
+        # Git 核心命令
         g = "git";
         gs = "git status";
-        ga = "git add";
-        gc = "git commit";
-        gp = "git push";
-        gl = "git log --oneline --graph";
-        gd = "git diff";
         
-        
-        # 系统信息
-        ports = "netstat -tulanp";
-        h = "history";
-        
-        # 快速编辑配置
-        fishrc = "$EDITOR ~/.config/fish/config.fish";
-        vimrc = "$EDITOR ~/.vimrc";
+        # 快速导航
+        ".." = "cd ..";
       };
       
-      # Shell 初始化
+      # 缩写配置 - Fish特有功能，输入后自动扩展为完整命令
+      shellAbbrs = {
+        # Git 工作流缩写
+        gco = "git checkout";
+        gst = "git status";
+        gaa = "git add --all";
+        gcm = "git commit -m";
+        gp = "git push";
+        gl = "git log --oneline --graph --decorate";
+        gd = "git diff";
+        gb = "git branch";
+        
+        # 系统管理缩写
+        ll = "eza -alF --icons";
+        la = "eza -A --icons";
+        lt = "eza --tree --icons";
+        
+        # 导航缩写
+        ".." = "cd ..";
+        "..." = "cd ../..";
+        
+        # 实用工具缩写
+        cat = "bat";  # 使用bat替代cat
+        find = "fd";  # 使用fd替代find
+        grep = "rg";  # 使用ripgrep替代grep
+        
+        # 特殊位置缩写 - 可以在命令中任何位置扩展
+        "-h" = {
+          position = "anywhere";
+          expansion = "--help";
+        };
+        "-v" = {
+          position = "anywhere"; 
+          expansion = "--version";
+        };
+      };
+      
+      # 插件配置 - 扩展Fish功能
+      plugins = [
+        # z - 智能目录跳转插件
+        {
+          name = "z";
+          src = pkgs.fetchFromGitHub {
+            owner = "jethrokuan";
+            repo = "z";
+            rev = "ddeb28a7b6a1f0ec6dae40c636e5ca4908ad160a";
+            sha256 = "0c5i7sdrsp0q3vbziqzdyqn4fmp235ax4mn4zslrswvn8g3fvdyh";
+          };
+        }
+        
+        # 其他插件可以在这里添加
+        # 例如：fzf fish集成、git提示等
+      ];
+      
+      # Shell初始化 - 在所有shell启动时执行（包括非交互式）
       shellInit = ''
         # 简洁的欢迎信息
         set -g fish_greeting ""
@@ -48,67 +92,103 @@
         set -gx EDITOR nvim
         set -gx TERM xterm-256color
         
-        # Starship 配置
-        set -gx STARSHIP_CONFIG ~/.config/starship.toml
-        
-        # 路径设置
+        # 路径配置
         fish_add_path ~/.local/bin
         fish_add_path ~/.cargo/bin
         
-        # 现代化工具设置
+        # 现代化工具配置
         set -gx BAT_THEME "TwoDark"
-        set -gx FZF_DEFAULT_OPTS "--height 40% --border --preview 'bat --color=always {}'"
+        set -gx FZF_DEFAULT_OPTS "--height 40% --border"
       '';
       
-      # 实用函数
-      functions = {
+      # 登录Shell初始化 - 仅在登录shell启动时执行
+      loginShellInit = ''
+        # 登录时的特定设置
+        # 例如：启动SSH代理、设置特殊权限等
+        # 通常保持为空，除非有特殊需求
+      '';
+      
+      # 交互式Shell初始化 - 仅在交互式shell启动时执行
+      interactiveShellInit = ''
+        # 键绑定配置
+        bind \e\[1\;5C forward-word      # Ctrl+Right: 前进一个单词
+        bind \e\[1\;5D backward-word     # Ctrl+Left: 后退一个单词
+        bind \cf 'fzf_cd'                # Ctrl+F: fzf目录导航
         
+        # 历史设置
+        set -g fish_history_timeout 60   # 历史超时时间
+        
+        # 禁用Fish默认提示符（如果使用Starship等外部提示符）
+        # functions --erase fish_prompt
+        # functions --erase fish_right_prompt
+        
+        # Starship提示符配置（如果使用）
+        # set -gx STARSHIP_CONFIG ~/.config/starship.toml
+        
+        # 终端标题设置
+        function fish_title
+          echo (prompt_pwd) (__fish_git_prompt " (%s)")
+        end
+      '';
+      
+      # 最后执行的初始化 - 在所有其他初始化完成后执行
+      shellInitLast = ''
+        # 最后的配置调整
+        # 例如：覆盖其他模块的设置、加载用户特定配置等
+        
+        # 如果存在本地配置文件则加载
+        if test -f ~/.config/fish/local.fish
+          source ~/.config/fish/local.fish
+        end
+      '';
+      
+      
+      # 函数定义 - 简化为几个核心实用函数
+      functions = {
+        # 获取公网IP
         myip = {
-          description = "获取公网IP";
+          description = "获取公网IP地址";
           body = ''
             curl -s ifconfig.me
           '';
         };
         
-        server = {
-          description = "快速启动HTTP服务器";
+        # 快速HTTP服务器
+        serve = {
+          description = "在当前目录启动HTTP服务器";
+          argumentNames = [ "port" ];
           body = ''
             set -l port 8000
             if test (count $argv) -gt 0
               set port $argv[1]
             end
-            echo "启动HTTP服务器在端口 $port"
+            echo "在端口 $port 启动HTTP服务器..."
             python3 -m http.server $port
           '';
         };
         
-      
-      # 交互式Shell设置
-      interactiveShellInit = ''
-        # 现代化键绑定
-        bind \e\[1\;5C forward-word
-        bind \e\[1\;5D backward-word
-        
-        # Ctrl+F 使用fzf搜索文件
-        bind \cf 'fzf_cd'
-        
-        # 历史设置
-        set -g fish_history_timeout 60
-        
-        # 禁用fish自带的提示符（使用Starship）
-        functions --erase fish_prompt
-        functions --erase fish_right_prompt
-        
-        
-        # 设置终端标题
-        function fish_title
-          # 显示当前目录和命令
-          echo (prompt_pwd) (__fish_git_prompt " (%s)")
-        end
-      '';
+        # FZF目录导航
+        fzf_cd = {
+          description = "使用fzf进行目录导航";
+          body = ''
+            set -l dir (find . -type d 2>/dev/null | fzf)
+            if test -n "$dir"
+              cd "$dir"
+              commandline -f repaint
+            end
+          '';
+        };
       };
     };
+    
+    # 相关工具配置建议
+    # 可以在其他模块中配置这些工具以增强Fish体验：
+    # - programs.starship.enable = true;      # 现代化提示符
+    # - programs.zoxide.enable = true;        # 智能目录跳转（替代z插件）
+    # - programs.fzf.enable = true;           # 模糊查找
+    # - programs.bat.enable = true;           # 语法高亮的cat替代
+    # - programs.eza.enable = true;           # 现代化ls替代
+    # - programs.ripgrep.enable = true;       # 快速文本搜索
+    # - programs.fd.enable = true;            # 快速文件查找
   };
 }
-
-

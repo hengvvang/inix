@@ -17,7 +17,7 @@
       signing = {
         key = null;              # GPG 密钥指纹，null 表示使用默认密钥
         signByDefault = false;   # 是否默认签名所有提交，false 节省时间
-        format = "openpgp";      # 签名格式：openpgp, x509, ssh
+        # format = "openpgp";    # 暂时注释掉这行以避免配置冲突
         signer = null;           # 自定义签名工具路径，null 使用默认
       };
       

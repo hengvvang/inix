@@ -106,8 +106,8 @@ in
       pavucontrol   # 音频控制面板
     ];
 
-    # 创建音乐目录
-    home.file."Music/.keep".text = "";
+    # 创建音乐目录 (暂时注释掉以避免权限问题)
+    # home.file."Music/.keep".text = "";
     
     # 创建桌面启动器
     home.file.".local/share/applications/rmpc.desktop".text = ''
