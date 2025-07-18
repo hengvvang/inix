@@ -47,7 +47,6 @@
       # 编程字体
       iosevka
       jetbrains-mono
-      inconsolata-go
       
       # 系统字体和图标支持
       noto-fonts

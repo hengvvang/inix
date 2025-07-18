@@ -41,10 +41,6 @@
       noto-fonts
       noto-fonts-emoji
       
-      # 特色字体 - 日式风格
-      klee-one
-      zen-old-mincho
-      
       # 终端和编辑器字体
       fira-code
       jetbrains-mono

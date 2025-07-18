@@ -47,10 +47,6 @@
       noto-fonts-cjk-serif # Google 传统中文
       sarasa-gothic       # 更纱黑体
       
-      # 日文特色字体
-      klee-one            # 日式手写风格
-      zen-old-mincho      # 禅古明朝体
-      
       # 系统字体和图标支持
       noto-fonts
       noto-fonts-emoji

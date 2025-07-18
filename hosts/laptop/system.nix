@@ -5,10 +5,10 @@
   # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
     profiles = {
-      enable = true;                # 启用系统配置模块
+      enable = true;
       fonts = {
-        enable = true;              # 启用字体配置模块
-        preset = "forest";          # 使用森林风格字体配置
+        enable = true;
+        preset = "zen";
       };
     #   stylix = {
     #     enable = true;

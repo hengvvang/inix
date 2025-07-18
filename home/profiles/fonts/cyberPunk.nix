@@ -3,15 +3,28 @@
 {
   config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "cyberPunk") {
     home.packages = with pkgs; [
-      # 完整 Nerd Font 支持 - 赛博朋克科技感
-      (nerdfonts.override { 
-        fonts = [ 
-          "FiraCode" "CascadiaCode" "VictorMono" "Hack" "JetBrainsMono"
-          "Iosevka" "SourceCodePro" "RobotoMono" "SpaceMono" "InconsolataGo"
-          "DroidSansMono" "DejaVuSansMono" "UbuntuMono" "Meslo" "AnonymousPro"
-          "ProFont" "ProggyClean" "BigBlueTerminal" "Terminus" "GoMono"
-        ]; 
-      })
+
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.roboto-mono
+      nerd-fonts.hack
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.inconsolata-go
+      nerd-fonts.space-mono
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.meslo-lg
+      nerd-fonts.anonymice
+      nerd-fonts.liberation
+      nerd-fonts.profont
+      nerd-fonts.proggy-clean-tt
+      nerd-fonts.go-mono
+      nerd-fonts.agave
+
       monaspace            # GitHub 现代编程字体族
       fira-code            # 连字编程字体，科技感十足
       jetbrains-mono       # 现代等宽字体

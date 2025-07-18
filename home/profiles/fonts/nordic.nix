@@ -8,15 +8,27 @@
       source-sans-pro      # Adobe 清晰易读的无衬线字体
       work-sans            # 工作场景优化的简约字体
       
-      # 完整 Nerd Font 支持 - 北欧简约风格
-      (nerdfonts.override { 
-        fonts = [ 
-          "JetBrainsMono" "FiraCode" "Iosevka" "SourceCodePro" "RobotoMono"
-          "Hack" "CascadiaCode" "Ubuntu" "UbuntuMono" "DejaVuSansMono"
-          "InconsolataGo" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
-          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
-        ]; 
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.roboto-mono
+      nerd-fonts.hack
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.inconsolata-go
+      nerd-fonts.space-mono
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.meslo-lg
+      nerd-fonts.anonymice
+      nerd-fonts.liberation
+      nerd-fonts.profont
+      nerd-fonts.proggy-clean-tt
+      nerd-fonts.go-mono
+      nerd-fonts.agave
+
       monaspace           # GitHub 的现代编程字体
       source-code-pro     # Adobe 简洁编程字体
       roboto-mono         # Google 简约等宽字体

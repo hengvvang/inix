@@ -9,15 +9,27 @@
       source-serif-pro     # Adobe 现代衬线字体
       crimson              # 优雅的阅读字体
       
-      # 完整 Nerd Font 支持 - 复古经典风格
-      (nerdfonts.override { 
-        fonts = [ 
-          "InconsolataGo" "SourceCodePro" "JetBrainsMono" "DejaVuSansMono"
-          "LiberationMono" "DroidSansMono" "AnonymousPro" "ProFont"
-          "ProggyClean" "Terminus" "FiraCode" "Iosevka" "Hack"
-          "RobotoMono" "SpaceMono" "UbuntuMono" "CascadiaCode" "Meslo"
-        ]; 
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.roboto-mono
+      nerd-fonts.hack
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.inconsolata-go
+      nerd-fonts.space-mono
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.meslo-lg
+      nerd-fonts.anonymice
+      nerd-fonts.liberation
+      nerd-fonts.profont
+      nerd-fonts.proggy-clean-tt
+      nerd-fonts.go-mono
+      nerd-fonts.agave
+
       monaspace            # GitHub 现代编程字体
       courier-prime        # 现代复古等宽字体
       inconsolata          # 现代复古等宽字体

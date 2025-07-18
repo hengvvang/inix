@@ -5,15 +5,27 @@
   config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "sakura") {
     home.packages = with pkgs; [
 
-      (nerdfonts.override { 
-        fonts = [ 
-          "JetBrainsMono" "FiraCode" "Iosevka" "CascadiaCode" "SourceCodePro"
-          "RobotoMono" "Hack" "Ubuntu" "UbuntuMono" "DejaVuSansMono"
-          "InconsolataGo" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
-          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
-          "VictorMono" "BigBlueTerminal" "Terminus"
-        ]; 
-      })
+      nerd-fonts.fira-code
+      nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
+      nerd-fonts.sauce-code-pro
+      nerd-fonts.roboto-mono
+      nerd-fonts.hack
+      nerd-fonts.caskaydia-mono
+      nerd-fonts.ubuntu
+      nerd-fonts.ubuntu-mono
+      nerd-fonts.dejavu-sans-mono
+      nerd-fonts.inconsolata-go
+      nerd-fonts.space-mono
+      nerd-fonts.droid-sans-mono
+      nerd-fonts.meslo-lg
+      nerd-fonts.anonymice
+      nerd-fonts.liberation
+      nerd-fonts.profont
+      nerd-fonts.proggy-clean-tt
+      nerd-fonts.go-mono
+      nerd-fonts.agave
+
       monaspace
       
       # 中文字体 - 优雅的中日文支持
@@ -29,10 +41,6 @@
       source-serif-pro
       noto-fonts
       noto-fonts-emoji
-      
-      # 特色字体 - 日式风格
-      klee-one
-      zen-old-mincho
       
       # 终端和编辑器字体
       fira-code

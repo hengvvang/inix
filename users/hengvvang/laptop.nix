@@ -46,30 +46,28 @@
         proxy.enable = false;
       };
       
-      # 包管理配置
       pkgs = {
-        enable = true;                # 启用用户包管理
-        # 工具包配置 - 月相主题设计
+        enable = true;
         toolkits = {
           enable = true;              # 启用工具包模块
-          waxingCrescent.enable = true;  # 🌒 峨眉月 - 基础家庭工具
-          firstQuarter.enable = true;    # 🌓 上弦月 - 开发和终端工具
-          waxingGibbous.enable = true;   # 🌔 盈凸月 - 高级工具套件
-          fullMoon.enable = false;       # 🌕 满月 - 完整工具生态
+          waxingCrescent.enable = true;  # 🌒 峨眉月
+          firstQuarter.enable = true;    # 🌓 上弦月
+          waxingGibbous.enable = true;   # 🌔 盈凸月
+          fullMoon.enable = false;       # 🌕 满月 
         };
-        # 应用程序配置 - 月相主题设计
         apps = {
-          enable = true;              # 启用应用程序模块
-          waningCrescent.enable = true;  # 🌘 残月 - 基础应用核心
-          lastQuarter.enable = true;     # 🌗 下弦月 - 开发和终端应用
-          waningGibbous.enable = false;  # 🌖 亏凸月 - 桌面生产力套件
-          newMoon.enable = false;        # 🌑 新月 - 完整应用生态
+          waningCrescent.enable = true;  # 🌘 残月
+          lastQuarter.enable = true;     # 🌗 下弦月
+          waningGibbous.enable = false;  # 🌖 亏凸月
+          newMoon.enable = false;        # 🌑 新月 
         };
       };
       
       profiles = {
+        enable = true;
         fonts = {
-          preset = "bauhaus";
+          enable = true;
+          preset = "tokyo";
         };
         stylix = {
           enable = false;
