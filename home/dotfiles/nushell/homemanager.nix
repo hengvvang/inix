@@ -7,305 +7,250 @@
     programs.nushell = {
       enable = true;
       
-      # 主配置文件
-      configFile.text = ''
-        # Nushell 现代化配置
-        $env.config = {
-          show_banner: false
-          
-          # 智能补全
-          completions: {
-            case_sensitive: false
-            quick: true
-            partial: true
-            algorithm: "fuzzy"
-            external: {
-              enable: true
-              max_results: 100
-              completer: null
-            }
-          }
-          
-          # 历史记录
-          history: {
-            max_size: 100000
-            sync_on_enter: true
-            file_format: "plaintext"
-            isolation: false
-          }
-          
-          # 编辑模式
-          edit_mode: vi
-          
-          # 表格显示
-          table: {
-            mode: markdown
-            index_mode: always
-            show_empty: true
-            trim: {
-              methodology: wrapping
-              wrapping_try_keep_words: true
-              truncating_suffix: "..."
-            }
-          }
-          
-          # 光标形状
-          cursor_shape: {
-            emacs: line
-            vi_insert: line
-            vi_normal: block
-          }
-          
-          # 颜色配置
-          color_config: {
-            separator: white
-            leading_trailing_space_bg: { attr: n }
-            header: green_bold
-            empty: blue
-            bool: {
-              true: light_cyan
-              false: light_red
-            }
-            int: white
-            filesize: cyan
-            duration: white
-            date: purple
-            range: white
-            float: white
-            string: white
-            nothing: white
-            binary: white
-            cellpath: white
-            row_index: green_bold
-            record: white
-            list: white
-            block: white
-            hints: dark_gray
-          }
-          
-          # 钩子
-          hooks: {
-            pre_prompt: [{ ||
-              null
-            }]
-            pre_execution: [{ ||
-              null
-            }]
-            env_change: {
-              PWD: [{ |before, after|
-                null
-              }]
-            }
-            display_output: { ||
-              if (term size).columns >= 100 { table -e } else { table }
-            }
-          }
-          
-          # 菜单样式
-          menus: [
-            {
-              name: completion_menu
-              only_buffer_difference: false
-              marker: "| "
-              type: {
-                  layout: columnar
-                  columns: 4
-                  col_width: 20
-                  col_padding: 2
-              }
-              style: {
-                  text: green
-                  selected_text: green_reverse
-                  description_text: yellow
-              }
-            }
-            {
-              name: history_menu
-              only_buffer_difference: true
-              marker: "? "
-              type: {
-                  layout: list
-                  page_size: 10
-              }
-              style: {
-                  text: green
-                  selected_text: green_reverse
-                  description_text: yellow
-              }
-            }
-            {
-              name: help_menu
-              only_buffer_difference: true
-              marker: "? "
-              type: {
-                  layout: description
-                  columns: 4
-                  col_width: 20
-                  col_padding: 2
-                  selection_rows: 4
-                  description_rows: 10
-              }
-              style: {
-                  text: green
-                  selected_text: green_reverse
-                  description_text: yellow
-              }
-            }
-          ]
-          
-          # 键位绑定
-          keybindings: [
-            {
-              name: completion_menu
-              modifier: none
-              keycode: tab
-              mode: [emacs vi_normal vi_insert]
-              event: {
-                until: [
-                  { send: menu name: completion_menu }
-                  { send: menunext }
-                  { edit: complete }
-                ]
-              }
-            }
-            {
-              name: history_menu
-              modifier: control
-              keycode: char_r
-              mode: [emacs, vi_insert, vi_normal]
-              event: { send: menu name: history_menu }
-            }
-            {
-              name: help_menu
-              modifier: none
-              keycode: f1
-              mode: [emacs, vi_insert, vi_normal]
-              event: { send: menu name: help_menu }
-            }
-          ]
-        }
-        
-        # 自定义命令
-        def mkcd [dir: string] {
-          mkdir $dir
-          cd $dir
-        }
-        
-        def la [] {
-          ls -la
-        }
-        
-        def weather [city?: string] {
-          let location = if ($city == null) { "Shanghai" } else { $city }
-          http get $"https://wttr.in/($location)?format=3"
-        }
-        
-        def extract [file: string] {
-          if ($file | path exists) {
-            let ext = ($file | path parse | get extension)
-            match $ext {
-              "zip" => { unzip $file }
-              "tar" => { tar -xf $file }
-              "gz" => { 
-                if ($file | str ends-with ".tar.gz") {
-                  tar -xzf $file
-                } else {
-                  gunzip $file
-                }
-              }
-              "bz2" => {
-                if ($file | str ends-with ".tar.bz2") {
-                  tar -xjf $file
-                } else {
-                  bunzip2 $file
-                }
-              }
-              "7z" => { 7z x $file }
-              "rar" => { unrar x $file }
-              _ => { echo $"Cannot extract ($file): unsupported format" }
-            }
-          } else {
-            echo $"File ($file) does not exist"
-          }
-        }
-      '';
+      # Nushell 包版本配置
+      # 使用默认包，如需特定版本可指定: pkgs.nushell
+      package = pkgs.nushell;
       
-      # 环境配置
-      envFile.text = ''
-        # Nushell 环境配置
-        $env.EDITOR = "vim"
-        $env.BROWSER = "google-chrome"
-        $env.TERM = "xterm-256color"
-        $env.COLORTERM = "truecolor"
+      # 核心配置设置 - 影响 Nushell 的行为和外观
+      settings = {
+        # 启动横幅控制 - 关闭启动时的欢迎信息
+        show_banner = false;
         
-        # 路径设置
-        $env.PATH = ($env.PATH | split row (char esep) | prepend $"($env.HOME)/.local/bin" | prepend $"($env.HOME)/.cargo/bin")
+        # 历史记录配置
+        history = {
+          # 使用 SQLite 格式存储历史（推荐，性能更好）
+          format = "sqlite";
+          # 历史记录文件位置（默认值）
+          # file_format = "sqlite";
+          # 最大历史条目数
+          max_size = 100000;
+          # 同步间隔（毫秒）
+          sync_on_enter = true;
+        };
         
-        # 自定义提示符
-        def create_left_prompt [] {
-          let home = $nu.home-path
-          let dir = (
-            if ($env.PWD | path relative-to $home | is-empty) {
-              "~"
-            } else {
-              ($env.PWD | str replace $home "~")
-            }
-          )
-          
-          let user = (whoami)
-          let host = (hostname)
-          
-          $"(ansi cyan_bold)($user)@($host)(ansi reset):(ansi blue_bold)($dir)(ansi reset)$ "
-        }
+        # 自动补全配置
+        completions = {
+          # 补全算法：prefix（前缀匹配）或 fuzzy（模糊匹配）
+          algorithm = "fuzzy";
+          # 补全菜单是否区分大小写
+          case_sensitive = false;
+          # 快速补全（在输入时立即显示）
+          quick = true;
+          # 部分补全（允许部分匹配的结果）
+          partial = true;
+          # 外部命令补全
+          external = {
+            enable = true;
+            # 最大补全结果数
+            max_results = 100;
+            # 补全超时（毫秒）
+            completer = null; # 使用默认
+          };
+        };
         
-        def create_right_prompt [] {
-          let time_segment = ([
-            (date now | format date '%H:%M:%S')
-          ] | str join)
-          
-          $"(ansi green)($time_segment)(ansi reset)"
-        }
+        # 表格显示配置
+        table = {
+          # 表格显示模式：rounded, heavy, compact, light, thin, none
+          mode = "rounded";
+          # 表格索引模式：always, never, auto
+          index_mode = "auto";
+          # 表格标题是否显示
+          show_empty = true;
+          # 表格分页
+          page_size = 25;
+        };
         
-        $env.PROMPT_COMMAND = {|| create_left_prompt }
-        $env.PROMPT_COMMAND_RIGHT = {|| create_right_prompt }
-        $env.PROMPT_INDICATOR = "〉"
-        $env.PROMPT_INDICATOR_VI_INSERT = ": "
-        $env.PROMPT_INDICATOR_VI_NORMAL = "〉"
-        $env.PROMPT_MULTILINE_INDICATOR = "::: "
-      '';
+        # 错误处理配置
+        error_style = "fancy"; # fancy 或 plain
+        
+        # 光标形状配置
+        cursor_shape = {
+          # 插入模式光标：line, block, underscore
+          insert = "line";
+          # 普通模式光标  
+          normal = "block";
+        };
+        
+        # 颜色配置
+        color_config = {
+          # 使用默认颜色主题
+          # 可选：dark, light 或自定义配置
+          # 这里使用默认值
+        };
+        
+        # 文件大小格式：binary (1024) 或 decimal (1000)
+        filesize = {
+          metric = false; # 使用二进制（1024）
+          format = "auto"; # auto, b, kb, mb, gb, tb, pb
+        };
+        
+        # 浮点数显示精度
+        float_precision = 4;
+        
+        # 使用 ANSI 颜色
+        use_ansi_coloring = true;
+        
+        # 编辑模式：emacs 或 vi
+        edit_mode = "emacs";
+        
+        # Shell 集成功能
+        shell_integration = {
+          # 启用右侧提示符集成
+          osc2 = true;
+          # 启用终端标题设置
+          osc7 = true;
+          # 启用终端序列集成
+          osc8 = true;
+          # 启用终端重置
+          osc9_9 = false;
+          # 启用工作目录报告
+          osc133 = true;
+          # 启用终端标记
+          osc633 = true;
+          # 重置应用模式
+          reset_application_mode = true;
+        };
+        
+        # 钩子配置（保持空，避免复杂脚本）
+        hooks = {
+          pre_prompt = [ ];
+          pre_execution = [ ];
+          env_change = {
+            PWD = [ ];
+          };
+          display_output = [ ];
+          command_not_found = [ ];
+        };
+        
+        # 菜单配置
+        menus = [
+          # 补全菜单配置
+          {
+            name = "completion_menu";
+            only_buffer_difference = false;
+            marker = "| ";
+            type = {
+              layout = "columnar";
+              columns = 4;
+              col_width = 20;
+              col_padding = 2;
+            };
+            style = {
+              text = "green";
+              selected_text = "green_reverse";
+              description_text = "yellow";
+            };
+          }
+          # 历史菜单配置
+          {
+            name = "history_menu";
+            only_buffer_difference = true;
+            marker = "? ";
+            type = {
+              layout = "list";
+              page_size = 10;
+            };
+            style = {
+              text = "green";
+              selected_text = "green_reverse";
+              description_text = "yellow";
+            };
+          }
+        ];
+        
+        # 快捷键绑定（保持最小化配置）
+        keybindings = [
+          {
+            name = "completion_menu";
+            modifier = "none";
+            keycode = "tab";
+            mode = "emacs";
+            event = { send = "menu"; name = "completion_menu"; };
+          }
+          {
+            name = "history_menu";
+            modifier = "control";
+            keycode = "char_r";
+            mode = "emacs"; 
+            event = { send = "menu"; name = "history_menu"; };
+          }
+        ];
+      };
       
-      # 现代化别名
+      # 环境变量配置 - 设置 Nushell 专用的环境变量
+      environmentVariables = {
+        # 编辑器配置
+        EDITOR = "nvim";
+        # 分页器配置  
+        PAGER = "less";
+        # 默认浏览器
+        BROWSER = "firefox";
+        # Nushell 配置目录
+        NU_CONFIG_DIR = "$HOME/.config/nushell";
+        # 禁用遥测（如果需要）
+        # NU_DISABLE_TELEMETRY = "1";
+      };
+      
+      # 基础命令别名（仅包含最常用的几个）
       shellAliases = {
-        # 基础命令
+        # 文件操作别名
         ll = "ls -la";
         la = "ls -a";
-        l = "ls";
-        ".." = "cd ..";
-        "..." = "cd ../..";
-        "...." = "cd ../../..";
-
-        zed = "zeditor";
-        
         # Git 别名
+        g = "git";
         gs = "git status";
-        ga = "git add";
-        gc = "git commit";
-        gp = "git push";
-        gl = "git log --oneline";
-        gd = "git diff";
-        gb = "git branch";
-        gco = "git checkout";
-        
-        # 便捷别名
-        cp = "cp -i";
-        mv = "mv -i";
-        rm = "rm -i";
-        
-        # 网络和系统
-        ports = "ss -tuln";
-        myip = "curl -s https://ipinfo.io/ip";
-        weather = "curl -s wttr.in/Shanghai";
+        # 系统别名
+        cls = "clear";
       };
+      
+      # 插件配置 - 添加有用的 Nushell 插件
+      plugins = with pkgs.nushellPlugins; [
+        # 格式化插件 - 支持更多文件格式
+        # formats
+        # 查询插件 - 增强查询功能
+        # query
+        # 网络插件 - 网络相关功能
+        # net
+        # 注意：这些插件需要在 nixpkgs 中可用才能启用
+      ];
+      
+      # 额外配置 - 用于添加自定义 Nushell 代码
+      extraConfig = ''
+        # 自定义提示符（简单配置）
+        $env.PROMPT_INDICATOR = "❯ "
+        $env.PROMPT_INDICATOR_VI_INSERT = ": "
+        $env.PROMPT_INDICATOR_VI_NORMAL = "❯ "
+        
+        # 设置 ls 的默认颜色
+        $env.LS_COLORS = (vivid generate molokai | str trim)
+        
+        # 启动时的简单欢迎信息（如果需要）
+        # print "Welcome to Nushell!"
+      '';
+      
+      # 额外环境配置 - 添加到环境变量文件
+      extraEnv = ''
+        # PATH 配置示例
+        # $env.PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
+        
+        # 自定义环境转换器
+        $env.ENV_CONVERSIONS = {
+          "PATH": {
+            from_string: { |s| $s | split row (char esep) | path expand --no-symlink }
+            to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
+          }
+        }
+      '';
+      
+      # 登录时执行的配置
+      extraLogin = ''
+        # 登录时的初始化脚本
+        # 这里可以添加登录时需要执行的命令
+        
+        # 示例：设置代理（如果需要）
+        # $env.HTTP_PROXY = "http://proxy.example.com:8080"
+        # $env.HTTPS_PROXY = "http://proxy.example.com:8080"
+      '';
     };
   };
 }
