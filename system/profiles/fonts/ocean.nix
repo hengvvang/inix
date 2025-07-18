@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "ocean") {
+  config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "ocean") {
     fonts.packages = with pkgs; [
       # 主力编程字体 - 清晰流畅
       # 完整 Nerd Font 支持 - 海洋深邃风格

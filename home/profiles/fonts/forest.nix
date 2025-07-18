@@ -3,7 +3,7 @@
 {
   config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "forest") {
     home.packages = with pkgs; [
-      # 主要字体 - 自然有机风格
+
       source-serif-pro     # 温暖的阅读字体
       merriweather         # 自然优雅的衬线
       crimson              # 优雅的阅读字体

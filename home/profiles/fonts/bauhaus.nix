@@ -9,7 +9,6 @@
       roboto               # Google 几何设计
       ubuntu_font_family   # Ubuntu 几何风格
       
-      # 完整 Nerd Font 支持 - 几何简洁风格
       (nerdfonts.override { 
         fonts = [ 
           "JetBrainsMono" "Iosevka" "IBMPlexMono" "Ubuntu" "RobotoMono"

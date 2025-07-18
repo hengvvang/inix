@@ -1,11 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
-  # 系统 profiles 模块入口 - 对应 home/profiles
+  options.mySystem.profiles = {
+    enable = lib.mkEnableOption "系统配置支持";
+  };
+
   imports = [
     ./stylix
-    ./fonts        # ✅ 字体配置模块
-    # ./desktop    # 未来扩展
-    # ./security   # 未来扩展
+    ./fonts
   ];
 }

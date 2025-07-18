@@ -2,10 +2,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "ocean") {
+  config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "ocean") {
     home.packages = with pkgs; [
-      # 主力编程字体 - 清晰流畅
-      # 完整 Nerd Font 支持 - 海洋深邃风格
+
       (nerdfonts.override { 
         fonts = [ 
           "FiraCode" "Iosevka" "JetBrainsMono" "Hack" "SourceCodePro"
@@ -49,7 +48,6 @@
       twemoji-color-font
     ];
 
-    # 字体配置 - 海洋深邃风格
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {

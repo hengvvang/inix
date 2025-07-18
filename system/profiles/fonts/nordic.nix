@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "nordic") {
+  config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "nordic") {
     fonts.packages = with pkgs; [
       # 主要字体 - 北欧简约风格
       inter                # 现代几何设计，简洁优雅

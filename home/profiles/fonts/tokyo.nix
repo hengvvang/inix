@@ -48,7 +48,6 @@
       material-design-icons # Material Design 图标
     ];
 
-    # 字体配置 - 东京风格优化
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "cyberPunk") {
+  config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "cyberPunk") {
     fonts.packages = with pkgs; [
       # 完整 Nerd Font 支持 - 赛博朋克科技感
       (nerd-fonts.override { 

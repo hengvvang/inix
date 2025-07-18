@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "bauhaus") {
+  config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "bauhaus") {
     # 系统级字体包配置 - 包豪斯几何风格
     fonts.packages = with pkgs; [
       # 主要字体 - 包豪斯几何风格

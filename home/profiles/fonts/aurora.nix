@@ -2,10 +2,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "aurora") {
+  config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "aurora") {
     home.packages = with pkgs; [
-      # 主力编程字体 - 现代科技感
-      # 完整 Nerd Font 支持 - 极光绚烂风格
+      
       (nerdfonts.override { 
         fonts = [ 
           "CascadiaCode" "FiraCode" "VictorMono" "Iosevka" "JetBrainsMono"
@@ -49,7 +48,6 @@
       twemoji-color-font
     ];
 
-    # 字体配置 - 极光绚烂风格
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {

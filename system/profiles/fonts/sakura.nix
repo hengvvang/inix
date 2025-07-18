@@ -1,43 +1,73 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "sakura") {
+  config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "sakura") {
     # 系统级字体包配置 - 樱花风格
     fonts.packages = with pkgs; [
-      # 主要字体 - 优雅日式风格
-      noto-fonts           # 优雅现代设计
-      source-sans-pro      # Adobe 优雅设计
       
-      # Nerd Font 支持 - 优雅风格
       (nerdfonts.override { 
         fonts = [ 
-          "JetBrainsMono" "SourceCodePro" "Iosevka" "RobotoMono"
-          "FiraCode" "UbuntuMono" "CascadiaCode" "Meslo"
+          "JetBrainsMono" "FiraCode" "Iosevka" "CascadiaCode" "SourceCodePro"
+          "RobotoMono" "Hack" "Ubuntu" "UbuntuMono" "DejaVuSansMono"
+          "InconsolataGo" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
+          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
+          "VictorMono" "BigBlueTerminal" "Terminus"
         ]; 
       })
+      monaspace
       
-      # 中文字体 - 优雅风格
-      lxgw-wenkai         # 优雅中文字体
+      # 中文字体 - 优雅的中日文支持
+      lxgw-wenkai
       noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       source-han-sans
+      source-han-serif
       
-      # 基础字体
+      # 西文字体 - 现代简约
+      inter
+      source-sans-pro
+      source-serif-pro
+      noto-fonts
       noto-fonts-emoji
+      
+      # 特色字体 - 日式风格
+      klee-one
+      zen-old-mincho
+      
+      # 终端和编辑器字体
+      fira-code
+      jetbrains-mono
+      cascadia-code
+      victor-mono
+      
+      # 图标和符号字体
       font-awesome
+      material-design-icons
+      powerline-fonts
+      noto-fonts-emoji-blob-bin
+      openmoji-color
+      twemoji-color-font
     ];
 
     # 系统级字体配置
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [ "Noto Serif" "Source Han Serif SC" ];
-        sansSerif = [ "Noto Sans" "LXGW WenKai" "Source Han Sans SC" ];
-        monospace = [ 
-          "JetBrains Mono Nerd Font" 
-          "Iosevka Nerd Font"
-          "Fira Code Nerd Font"
+        sansSerif = [ 
+          "Inter" "Noto Sans CJK SC" "LXGW WenKai" 
+          "Font Awesome 6 Free" "Material Design Icons"
         ];
-        emoji = [ "Noto Color Emoji" ];
+        serif = [ 
+          "Source Serif Pro" "Noto Serif CJK SC" "LXGW WenKai"
+          "Klee One" "Zen Old Mincho"
+        ];
+        monospace = [ 
+          "JetBrains Mono Nerd Font" "Monaspace Neon Var" "LXGW WenKai Mono"
+          "Cascadia Code NF" "Victor Mono Nerd Font" "Iosevka Nerd Font"
+        ];
+        emoji = [ 
+          "Noto Color Emoji" "OpenMoji Color" "Twemoji" "Font Awesome 6 Free"
+        ];
       };
     };
   };

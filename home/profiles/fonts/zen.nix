@@ -2,10 +2,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "zen") {
+  config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "zen") {
     home.packages = with pkgs; [
-      # 主力编程字体 - 专注清晰
-      # 完整 Nerd Font 支持 - 禅意宁静风格
       (nerdfonts.override { 
         fonts = [ 
           "Iosevka" "JetBrainsMono" "InconsolataGo" "SourceCodePro" "FiraCode"

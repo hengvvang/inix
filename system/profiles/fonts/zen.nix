@@ -1,40 +1,63 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "zen") {
-    # 系统级字体包配置 - 禅意风格
+  config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "zen") {
     fonts.packages = with pkgs; [
-      # 主要字体 - 宁静专注风格
-      source-sans-pro      # 简洁专注
-      noto-fonts           # 宁静设计
-      
-      # Nerd Font 支持 - 专注风格
       (nerdfonts.override { 
         fonts = [ 
-          "JetBrainsMono" "SourceCodePro" "DejaVuSansMono" 
-          "UbuntuMono" "Meslo" "AnonymousPro"
+          "Iosevka" "JetBrainsMono" "InconsolataGo" "SourceCodePro" "FiraCode"
+          "RobotoMono" "Hack" "CascadiaCode" "Ubuntu" "UbuntuMono"
+          "DejaVuSansMono" "SpaceMono" "DroidSansMono" "Meslo" "AnonymousPro"
+          "LiberationMono" "ProFont" "ProggyClean" "GoMono" "Agave"
         ]; 
       })
+      monaspace
       
-      # 中文字体 - 禅意风格
-      lxgw-wenkai         # 文雅字体
+      # 中文字体 - 传统与现代融合
+      lxgw-wenkai
       noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      source-han-sans
+      source-han-serif
       
-      # 基础字体
+      # 西文字体 - 简约优雅
+      inter
+      source-sans-pro
+      source-serif-pro
+      noto-fonts
+      
+      # 特色字体 - 禅意设计
+      inconsolata
+      ubuntu_font_family
+      
+      # 编程字体
+      iosevka
+      jetbrains-mono
+      inconsolata-go
+      
+      # 系统字体和图标支持
+      noto-fonts
       noto-fonts-emoji
-      font-awesome
+      noto-fonts-extra
+      liberation_ttf
+      dejavu_fonts
+      font-awesome        # Font Awesome 图标字体
+      material-design-icons # Material Design 图标
+      powerline-fonts     # Powerline 字体支持
     ];
 
-    # 系统级字体配置
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        serif = [ "Noto Serif" "Source Han Serif SC" ];
-        sansSerif = [ "Source Sans Pro" "LXGW WenKai" "Source Han Sans SC" ];
+        sansSerif = [ "Inter" "Source Han Sans SC" "LXGW WenKai" ];
+        serif = [ "Source Serif Pro" "Source Han Serif SC" "LXGW WenKai" ];
         monospace = [ 
-          "JetBrains Mono Nerd Font" 
+          "Iosevka Nerd Font" 
+          "JetBrains Mono Nerd Font"
+          "Inconsolata Go Nerd Font"
           "Source Code Pro Nerd Font"
-          "DejaVu Sans Mono Nerd Font"
+          "Monaspace Xenon" 
+          "LXGW WenKai Mono" 
         ];
         emoji = [ "Noto Color Emoji" ];
       };

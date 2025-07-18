@@ -2,10 +2,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "sakura") {
+  config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "sakura") {
     home.packages = with pkgs; [
-      # 主力编程字体
-      # 完整 Nerd Font 支持 - 樱花优雅风格
+
       (nerdfonts.override { 
         fonts = [ 
           "JetBrainsMono" "FiraCode" "Iosevka" "CascadiaCode" "SourceCodePro"

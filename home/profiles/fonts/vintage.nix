@@ -3,7 +3,7 @@
 {
   config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "vintage") {
     home.packages = with pkgs; [
-      # 主要字体 - 复古经典风格
+
       liberation_ttf       # 包含 Times New Roman 风格字体
       dejavu_fonts         # 经典字体包
       source-serif-pro     # Adobe 现代衬线字体
