@@ -18,8 +18,7 @@
         
         # 历史记录配置
         history = {
-          # 使用 SQLite 格式存储历史（推荐，性能更好）
-          format = "sqlite";
+          # SQLite 格式在新版本中是默认的，不需要显式设置
           # 历史记录文件位置（默认值）
           # file_format = "sqlite";
           # 最大历史条目数
@@ -56,19 +55,21 @@
           index_mode = "auto";
           # 表格标题是否显示
           show_empty = true;
-          # 表格分页
-          page_size = 25;
+          # page_size 在新版本中已移除
         };
         
         # 错误处理配置
         error_style = "fancy"; # fancy 或 plain
         
-        # 光标形状配置
+        # 编辑模式：emacs 或 vi
+        edit_mode = "emacs";
+        
+        # 光标形状配置（新版本语法）
         cursor_shape = {
-          # 插入模式光标：line, block, underscore
-          insert = "line";
-          # 普通模式光标  
-          normal = "block";
+          # 编辑模式下的光标形状
+          emacs = "line";     # line, block, underscore
+          vi_insert = "line";
+          vi_normal = "block";
         };
         
         # 颜色配置
@@ -78,20 +79,11 @@
           # 这里使用默认值
         };
         
-        # 文件大小格式：binary (1024) 或 decimal (1000)
-        filesize = {
-          metric = false; # 使用二进制（1024）
-          format = "auto"; # auto, b, kb, mb, gb, tb, pb
-        };
-        
         # 浮点数显示精度
         float_precision = 4;
         
         # 使用 ANSI 颜色
         use_ansi_coloring = true;
-        
-        # 编辑模式：emacs 或 vi
-        edit_mode = "emacs";
         
         # Shell 集成功能
         shell_integration = {
@@ -213,12 +205,6 @@
         $env.PROMPT_INDICATOR = "❯ "
         $env.PROMPT_INDICATOR_VI_INSERT = ": "
         $env.PROMPT_INDICATOR_VI_NORMAL = "❯ "
-        
-        # 设置 ls 的默认颜色
-        $env.LS_COLORS = (vivid generate molokai | str trim)
-        
-        # 启动时的简单欢迎信息（如果需要）
-        # print "Welcome to Nushell!"
       '';
       
       # 额外环境配置 - 添加到环境变量文件
