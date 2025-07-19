@@ -71,13 +71,6 @@
         " ===== 基础键位映射 =====
         let mapleader = " "       " 设置 leader 键
         
-        " 清除搜索高亮
-        nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
-        
-        " 快速保存
-        nnoremap <C-s> :w<CR>
-        inoremap <C-s> <Esc>:w<CR>a
-        
         " ===== 文件类型特定设置 =====
         autocmd FileType python setlocal tabstop=4 shiftwidth=4
         autocmd FileType nix setlocal tabstop=2 shiftwidth=2

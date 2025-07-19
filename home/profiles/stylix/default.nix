@@ -171,20 +171,41 @@
         # 🔄 动态主题
         "auto"              # 从壁纸自动生成
         
+        # 🌹 Rose Pine 系列
+        "rose-pine"         # Rose Pine 标准版
+        "rose-pine-moon"    # Rose Pine Moon 月夜版
+        "rose-pine-dawn"    # Rose Pine Dawn 晨曦版
+        
+        # 😺 Catppuccin 系列
+        "catppuccin-latte"  # Catppuccin 拿铁（浅色）
+        "catppuccin-frappe" # Catppuccin 法芮（中度深色）
+        "catppuccin-macchiato" # Catppuccin 玛奇朵（深色）
+        "catppuccin-mocha"  # Catppuccin 摩卡（最深色）
+        
         # 🔥 热门预设主题
         "gruvbox-light"     # Gruvbox 亮色
         "gruvbox-dark-hard" # Gruvbox 深色
+        "gruvbox-dark-medium" # Gruvbox 中度深色
+        "gruvbox-dark-soft" # Gruvbox 柔和深色
         "solarized-light"   # Solarized 亮色
         "solarized-dark"    # Solarized 深色
         "nord"              # Nord 北欧风
         "dracula"           # Dracula 吸血鬼
         "tokyo-night"       # 东京夜色
-        "catppuccin-latte"  # Catppuccin 亮色
-        "catppuccin-mocha"  # Catppuccin 深色
+        "tokyo-night-light" # 东京夜色 浅色版
+        "tokyo-night-storm" # 东京夜色 暴风版
         "one-light"         # Atom One 亮色
         "one-dark"          # Atom One 深色
+        "monokai"           # Monokai 经典
+        "github-light"      # GitHub 浅色
+        "github-dark"       # GitHub 深色
+        "material-darker"   # Material Darker
+        "material-palenight" # Material Palenight
+        "ayu-light"         # Ayu 浅色
+        "ayu-mirage"        # Ayu 海市蜃楼
+        "ayu-dark"          # Ayu 深色
       ];
-      default = "warm-white";  # 🤍 默认使用简约白色暖色调
+      default = "rose-pine";  # 🌹 默认使用 Rose Pine
       description = "颜色方案选择";
     };
     
