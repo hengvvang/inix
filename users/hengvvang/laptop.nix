@@ -45,6 +45,10 @@
         mpd.enable = true;
         proxy.enable = false;
         zellij.enable = true;
+        rio = {
+          enable = true;
+          method = "homemanager";  # 使用 Home Manager 管理 Rio
+        };
       };
       
       pkgs = {
