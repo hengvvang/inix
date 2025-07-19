@@ -13,14 +13,14 @@ layout {
     // 主工作区
     tab name="Main" focus=true {
         pane split_direction="vertical" {
-            pane size="70%" {
+            pane size="60%" {
                 // 主编辑器区域
             }
-            pane size="30%" split_direction="horizontal" {
-                pane size="60%" {
+            pane size="40%" split_direction="horizontal" {
+                pane size="50%" {
                     // 终端区域
                 }
-                pane size="40%" {
+                pane size="50%" {
                     // 工具区域
                 }
             }
