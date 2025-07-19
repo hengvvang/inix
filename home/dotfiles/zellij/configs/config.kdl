@@ -1,8 +1,17 @@
 // 主题配置 - 可选择的主题:
-// - catppuccin-mocha (当前使用)
-// - rose-pine, nord, tokyo-night, dracula
+// Catppuccin 系列:
+// - catppuccin-latte (浅色主题)
+// - catppuccin-frappe (中等深色主题)  
+// - catppuccin-macchiato (深色主题)
+// - catppuccin-mocha (最深色主题)
+// Rose Pine 系列:
+// - rose-pine-base (标准深色主题)
+// - rose-pine-moon (月夜主题)
+// - rose-pine-dawn (晨光浅色主题)
+// 其他主题:
+// - nord, tokyo-night, dracula
 // - gruvbox-dark, onedark, solarized-dark
-theme "rose-pine"
+theme "tokyo-night"
 
 // 默认 Shell - 设置为 fish shell
 default_shell "fish"

@@ -6,10 +6,10 @@
       enable = true;
       
       # Shell integrations - 启用与shell的集成
-      enableBashIntegration = false;  # 根据需要启用bash集成
+      enableBashIntegration = true;  # 根据需要启用bash集成
       enableFishIntegration = true;   # 你使用fish shell，启用fish集成
-      enableZshIntegration = false;   # 根据需要启用zsh集成
-      enableNushellIntegration = false;  # 根据需要启用nushell集成
+      enableZshIntegration = true;   # 根据需要启用zsh集成
+      enableNushellIntegration = true;  # 根据需要启用nushell集成
       
       # Shell wrapper name - shell包装器名称，默认为"ya"
       shellWrapperName = "ya";

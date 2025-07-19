@@ -55,31 +55,7 @@
       
       # 交互式Shell初始化
       initContent = ''
-        # 登录时的特定设置
-        if [[ -o login ]]; then
-          # 设置umask
-          umask 022
-          
-          # 检查SSH代理
-          if [ -z "$SSH_AUTH_SOCK" ] && command -v ssh-agent >/dev/null; then
-            eval "$(ssh-agent -s)" >/dev/null
-          fi
-        fi
-        
-        # 核心环境变量
         export EDITOR="''${EDITOR:-vim}"
-        export VISUAL="''${VISUAL:-$EDITOR}"
-        export PAGER="''${PAGER:-less}"
-        export TERM="''${TERM:-xterm-256color}"
-        
-        # 路径配置
-        typeset -U path                  # 确保PATH中没有重复项
-        path=(~/.local/bin ~/.cargo/bin $path)
-        
-        # 现代化工具配置
-        export BAT_THEME="''${BAT_THEME:-TwoDark}"
-        export FZF_DEFAULT_OPTS="''${FZF_DEFAULT_OPTS:---height 40% --border}"
-        export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
         
         # Zsh选项配置
         setopt AUTO_CD                   # 自动切换目录
@@ -94,106 +70,16 @@
         # 历史记录选项
         setopt HIST_VERIFY              # 历史扩展前确认
         setopt HIST_NO_STORE            # 不保存history命令
-        setopt HIST_REDUCE_BLANKS       # 去除多余空格
         
-        # 作业控制
-        setopt NOTIFY                   # 立即通知后台作业状态变化
-        setopt NO_HUP                   # shell退出时不发送HUP信号给作业
         
         # 输入/输出
         setopt CORRECT                  # 命令纠错
         setopt NO_CORRECT_ALL           # 不纠错参数
         setopt INTERACTIVE_COMMENTS     # 允许交互式注释
-        
-        # 键绑定配置
-        bindkey '^[[1;5C' forward-word     # Ctrl+Right: 前进一个单词
-        bindkey '^[[1;5D' backward-word    # Ctrl+Left: 后退一个单词
-        bindkey '^[[3~' delete-char        # Delete键
-        bindkey '^[[H' beginning-of-line   # Home键
-        bindkey '^[[F' end-of-line         # End键
-        
-        # 自定义函数
-        
-        # 获取公网IP
-        function myip() {
-          curl -s ifconfig.me
-        }
-        
-        # 快速创建目录并进入
-        function mkcd() {
-          mkdir -p "$@" && cd "$_"
-        }
-        
-        # 快速查找文件
-        function ff() {
-          find . -type f -name "*$1*" 2>/dev/null
-        }
-        
-        # 快速查找目录
-        function fdd() {
-          find . -type d -name "*$1*" 2>/dev/null
-        }
-        
-        # 快速HTTP服务器
-        function serve() {
-          local port=''${1:-8000}
-          echo "在端口 $port 启动HTTP服务器..."
-          python3 -m http.server $port
-        }
-        
-        # 简单的系统信息
-        function sysinfo() {
-          echo "系统信息:"
-          echo "操作系统: $(uname -s)"
-          echo "内核版本: $(uname -r)"
-          echo "主机名: $(hostname)"
-          echo "当前用户: $(whoami)"
-          echo "Shell: $SHELL"
-          echo "终端: $TERM"
-        }
-        
-        # 快速备份文件
-        function backup() {
-          cp "$1" "$1.bak.$(date +%Y%m%d_%H%M%S)"
-        }
-        
-        # 解压万能函数
-        function extract() {
-          if [ -f "$1" ]; then
-            case "$1" in
-              *.tar.bz2)   tar xjf "$1"     ;;
-              *.tar.gz)    tar xzf "$1"     ;;
-              *.bz2)       bunzip2 "$1"     ;;
-              *.rar)       unrar x "$1"     ;;
-              *.gz)        gunzip "$1"      ;;
-              *.tar)       tar xf "$1"      ;;
-              *.tbz2)      tar xjf "$1"     ;;
-              *.tgz)       tar xzf "$1"     ;;
-              *.zip)       unzip "$1"       ;;
-              *.Z)         uncompress "$1"  ;;
-              *.7z)        7z x "$1"        ;;
-              *)           echo "'$1' 无法解压" ;;
-            esac
-          else
-            echo "'$1' 不是有效的文件"
-          fi
-        }
-        
-        # 如果存在本地配置文件则加载
-        [ -f ~/.zshrc.local ] && source ~/.zshrc.local
-        
-        # 欢迎信息（简洁版）
-        if [[ $- == *i* ]] && [[ -z $ZSH_DISABLE_GREETING ]]; then
-          echo "欢迎使用 Zsh! 输入 'sysinfo' 查看系统信息"
-        fi
       '';
       
       # 环境变量配置
       envExtra = ''
-        # 附加环境变量设置
-        # 这些变量会在shell初始化之前设置
-        export LESSHISTFILE="-"  # 禁用less历史文件
-        export MANPAGER="less -X"  # man页面分页器设置
       '';
       
       # 配置目录
