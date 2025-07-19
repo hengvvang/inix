@@ -1,109 +1,215 @@
+// ============================================================================
+// Zellij 终端复用器配置文件
+// ============================================================================
+// 作者: hengvvang
+// 说明: 这是一个优化过的 Zellij 配置，包含 Vi 风格的键位绑定
+// 文档: https://zellij.dev/documentation/
+// ============================================================================
+
+// 主题配置 - 可选择的主题:
+// - catppuccin-mocha (当前使用)
+// - rose-pine, nord, tokyo-night, dracula
+// - gruvbox-dark, onedark, solarized-dark
 theme "catppuccin-mocha"
+
+// 默认 Shell - 设置为 fish shell
 default_shell "fish"
+
+// 默认布局 - 启动时使用的布局
 default_layout "default"
 
+// ============================================================================
+// 界面和行为配置
+// ============================================================================
+
+// 显示窗格边框 - 帮助区分不同的窗格
 pane_frames true
+
+// 启用鼠标模式 - 支持鼠标操作（点击、拖拽等）
 mouse_mode true
+
+// 复制命令 - 使用 Wayland 剪贴板（适用于现代 Linux 桌面）
 copy_command "wl-copy"
+
+// 剪贴板类型 - primary 表示选择即复制的剪贴板
 copy_clipboard "primary"
+
+// 滚动缓冲区编辑器 - 查看历史输出时使用的编辑器
 scrollback_editor "vim"
 
+// 会话序列化 - 保存和恢复会话状态
 session_serialization true
+
+// 自动布局 - 根据终端大小自动调整布局
 auto_layout true
 
 
+// ============================================================================
+// 键位绑定配置
+// ============================================================================
+// 说明: 使用 Vi 风格的键位绑定，与 Home Manager 配置保持一致
+// 模式说明:
+//   - normal: 默认模式，用于基本操作
+//   - pane: 窗格管理模式
+//   - tab: 标签页管理模式  
+//   - resize: 调整窗格大小模式
+//   - scroll: 滚动浏览模式
+//   - session: 会话管理模式
+// ============================================================================
+
 keybinds {
+    // ------------------------------------------------------------------------
+    // 普通模式 (Normal Mode) - 默认模式，包含最常用的快捷键
+    // ------------------------------------------------------------------------
     normal {
-        // 基础控制
-        bind "Ctrl q" { Quit; }
-        bind "Ctrl d" { Detach; }
+        // === 基础控制 ===
+        bind "Ctrl q" { Quit; }                    // 退出 Zellij
+        bind "Ctrl d" { Detach; }                  // 分离会话（后台运行）
         
-        // 窗格导航 - Vi风格（与 HM 一致）
-        bind "Alt h" { MoveFocus "Left"; }
-        bind "Alt j" { MoveFocus "Down"; }
-        bind "Alt k" { MoveFocus "Up"; }
-        bind "Alt l" { MoveFocus "Right"; }
+        // === 窗格导航 - Vi 风格 (hjkl) ===
+        // 使用 Alt + hjkl 在窗格间移动焦点
+        bind "Alt h" { MoveFocus "Left"; }         // 移动到左侧窗格
+        bind "Alt j" { MoveFocus "Down"; }         // 移动到下方窗格  
+        bind "Alt k" { MoveFocus "Up"; }           // 移动到上方窗格
+        bind "Alt l" { MoveFocus "Right"; }        // 移动到右侧窗格
         
-        // 窗格分割 - 使用 v 和 s（与 HM 一致）
-        bind "Alt v" { NewPane "Right"; }   // 垂直分割
-        bind "Alt s" { NewPane "Down"; }    // 水平分割
+        // === 窗格分割 ===
+        bind "Alt v" { NewPane "Right"; }          // 垂直分割（在右侧创建新窗格）
+        bind "Alt s" { NewPane "Down"; }           // 水平分割（在下方创建新窗格）
         
-        // 标签页管理（与 HM 一致）
-        bind "Alt n" { NewTab; }
-        bind "Alt 1" { GoToTab 1; }
-        bind "Alt 2" { GoToTab 2; }
-        bind "Alt 3" { GoToTab 3; }
-        bind "Alt 4" { GoToTab 4; }
-        bind "Alt 5" { GoToTab 5; }
+        // === 标签页管理 ===
+        bind "Alt n" { NewTab; }                   // 创建新标签页
+        bind "Alt 1" { GoToTab 1; }                // 跳转到标签页 1
+        bind "Alt 2" { GoToTab 2; }                // 跳转到标签页 2
+        bind "Alt 3" { GoToTab 3; }                // 跳转到标签页 3
+        bind "Alt 4" { GoToTab 4; }                // 跳转到标签页 4
+        bind "Alt 5" { GoToTab 5; }                // 跳转到标签页 5
         
-        // 模式切换（与 HM 一致）
-        bind "Ctrl p" { SwitchToMode "Pane"; }
-        bind "Ctrl t" { SwitchToMode "Tab"; }
-        bind "Ctrl r" { SwitchToMode "Resize"; }
-        bind "Ctrl s" { SwitchToMode "Scroll"; }
-        bind "Ctrl o" { SwitchToMode "Session"; }
+        // === 模式切换 ===
+        // 使用 Ctrl + 字母键切换到特定模式
+        bind "Ctrl p" { SwitchToMode "Pane"; }     // 切换到窗格管理模式
+        bind "Ctrl t" { SwitchToMode "Tab"; }      // 切换到标签页管理模式
+        bind "Ctrl r" { SwitchToMode "Resize"; }   // 切换到调整大小模式
+        bind "Ctrl s" { SwitchToMode "Scroll"; }   // 切换到滚动浏览模式
+        bind "Ctrl o" { SwitchToMode "Session"; }  // 切换到会话管理模式
         
-        // 快速功能
-        bind "Ctrl f" { ToggleFocusFullscreen; }
-        bind "Ctrl z" { TogglePaneFrames; }
-        bind "Alt x" { CloseFocus; }
+        // === 快速功能 ===
+        bind "Ctrl f" { ToggleFocusFullscreen; }   // 切换当前窗格全屏显示
+        bind "Ctrl z" { TogglePaneFrames; }        // 切换窗格边框显示
+        bind "Alt x" { CloseFocus; }               // 关闭当前焦点窗格
     }
     
+    // ------------------------------------------------------------------------
+    // 窗格管理模式 (Pane Mode) - 专注于窗格操作
+    // ------------------------------------------------------------------------
+    // 进入方式: Ctrl+p，退出方式: Esc
     pane {
-        bind "h" { MoveFocus "Left"; }
-        bind "j" { MoveFocus "Down"; }
-        bind "k" { MoveFocus "Up"; }
-        bind "l" { MoveFocus "Right"; }
-        bind "n" { NewPane; }
-        bind "x" { CloseFocus; }
-        bind "f" { ToggleFocusFullscreen; }
-        bind "z" { TogglePaneFrames; }
-        bind "Esc" { SwitchToMode "Normal"; }
+        bind "h" { MoveFocus "Left"; }             // 移动到左侧窗格
+        bind "j" { MoveFocus "Down"; }             // 移动到下方窗格
+        bind "k" { MoveFocus "Up"; }               // 移动到上方窗格
+        bind "l" { MoveFocus "Right"; }            // 移动到右侧窗格
+        bind "n" { NewPane; }                      // 创建新窗格（自动选择方向）
+        bind "x" { CloseFocus; }                   // 关闭当前窗格
+        bind "f" { ToggleFocusFullscreen; }        // 切换全屏显示
+        bind "z" { TogglePaneFrames; }             // 切换边框显示
+        bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
+    // ------------------------------------------------------------------------
+    // 标签页管理模式 (Tab Mode) - 专注于标签页操作
+    // ------------------------------------------------------------------------
+    // 进入方式: Ctrl+t，退出方式: Esc
     tab {
-        bind "h" { GoToPreviousTab; }
-        bind "l" { GoToNextTab; }
-        bind "n" { NewTab; }
-        bind "x" { CloseTab; }
-        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
-        bind "1" { GoToTab 1; SwitchToMode "Normal"; }
-        bind "2" { GoToTab 2; SwitchToMode "Normal"; }
-        bind "3" { GoToTab 3; SwitchToMode "Normal"; }
-        bind "4" { GoToTab 4; SwitchToMode "Normal"; }
-        bind "5" { GoToTab 5; SwitchToMode "Normal"; }
-        bind "Esc" { SwitchToMode "Normal"; }
+        bind "h" { GoToPreviousTab; }              // 切换到上一个标签页
+        bind "l" { GoToNextTab; }                  // 切换到下一个标签页
+        bind "n" { NewTab; }                       // 创建新标签页
+        bind "x" { CloseTab; }                     // 关闭当前标签页
+        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; } // 重命名标签页
+        bind "1" { GoToTab 1; SwitchToMode "Normal"; }  // 跳转到标签页 1 并返回普通模式
+        bind "2" { GoToTab 2; SwitchToMode "Normal"; }  // 跳转到标签页 2 并返回普通模式
+        bind "3" { GoToTab 3; SwitchToMode "Normal"; }  // 跳转到标签页 3 并返回普通模式
+        bind "4" { GoToTab 4; SwitchToMode "Normal"; }  // 跳转到标签页 4 并返回普通模式
+        bind "5" { GoToTab 5; SwitchToMode "Normal"; }  // 跳转到标签页 5 并返回普通模式
+        bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
+    // ------------------------------------------------------------------------
+    // 窗格大小调整模式 (Resize Mode) - 精确调整窗格尺寸
+    // ------------------------------------------------------------------------
+    // 进入方式: Ctrl+r，退出方式: Esc
     resize {
-        bind "h" { Resize "Left"; }
-        bind "j" { Resize "Down"; }
-        bind "k" { Resize "Up"; }
-        bind "l" { Resize "Right"; }
-        bind "=" { Resize "Increase"; }
-        bind "-" { Resize "Decrease"; }
-        bind "Esc" { SwitchToMode "Normal"; }
+        bind "h" { Resize "Left"; }                // 向左调整边界
+        bind "j" { Resize "Down"; }                // 向下调整边界
+        bind "k" { Resize "Up"; }                  // 向上调整边界
+        bind "l" { Resize "Right"; }               // 向右调整边界
+        bind "=" { Resize "Increase"; }            // 增加当前窗格大小
+        bind "-" { Resize "Decrease"; }            // 减少当前窗格大小
+        bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
+    // ------------------------------------------------------------------------
+    // 滚动浏览模式 (Scroll Mode) - 浏览历史输出
+    // ------------------------------------------------------------------------
+    // 进入方式: Ctrl+s，退出方式: Esc
+    // 用于查看窗格中的历史输出，类似于 tmux 的 copy-mode
     scroll {
-        bind "j" { ScrollDown; }
-        bind "k" { ScrollUp; }
-        bind "d" { HalfPageScrollDown; }
-        bind "u" { HalfPageScrollUp; }
-        bind "Esc" { SwitchToMode "Normal"; }
+        bind "j" { ScrollDown; }                   // 向下滚动一行
+        bind "k" { ScrollUp; }                     // 向上滚动一行
+        bind "d" { HalfPageScrollDown; }           // 向下滚动半页（类似 vim）
+        bind "u" { HalfPageScrollUp; }             // 向上滚动半页（类似 vim）
+        bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
+    // ------------------------------------------------------------------------
+    // 会话管理模式 (Session Mode) - 管理 Zellij 会话
+    // ------------------------------------------------------------------------
+    // 进入方式: Ctrl+o，退出方式: Esc
     session {
-        bind "d" { Detach; }
-        bind "Esc" { SwitchToMode "Normal"; }
+        bind "d" { Detach; }                       // 分离当前会话（会话继续在后台运行）
+        bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
+    // ------------------------------------------------------------------------
+    // 锁定模式 (Locked Mode) - 防止意外按键
+    // ------------------------------------------------------------------------
+    // 在此模式下，所有快捷键都被禁用，防止误操作
     locked {
-        bind "Ctrl g" { SwitchToMode "Normal"; }
+        bind "Ctrl g" { SwitchToMode "Normal"; }   // 解锁并返回普通模式
     }
     
+    // ------------------------------------------------------------------------
+    // 重命名标签页模式 (Rename Tab Mode) - 输入新的标签页名称
+    // ------------------------------------------------------------------------
+    // 从标签页模式按 'r' 进入此模式
     renametab {
-        bind "Enter" { SwitchToMode "Normal"; }
-        bind "Esc" { UndoRenameTab; SwitchToMode "Normal"; }
+        bind "Enter" { SwitchToMode "Normal"; }    // 确认重命名并返回普通模式
+        bind "Esc" { UndoRenameTab; SwitchToMode "Normal"; } // 取消重命名并返回普通模式
     }
 }
+
+// ============================================================================
+// 配置文件结尾
+// ============================================================================
+// 
+// 常用快捷键总结:
+// ----------------
+// Ctrl+q     - 退出 Zellij
+// Ctrl+d     - 分离会话
+// Alt+hjkl   - 窗格导航
+// Alt+v/s    - 垂直/水平分割
+// Alt+n      - 新建标签页
+// Alt+1-5    - 切换标签页
+// Ctrl+f     - 切换全屏
+// Alt+x      - 关闭窗格
+//
+// 模式切换:
+// ---------
+// Ctrl+p     - 窗格管理模式
+// Ctrl+t     - 标签页管理模式
+// Ctrl+r     - 调整大小模式
+// Ctrl+s     - 滚动浏览模式
+// Ctrl+o     - 会话管理模式
+// Esc        - 返回普通模式
+//
+// 更多信息请参阅: /home/hengvvang/inix/home/dotfiles/zellij/THEMES.md
+// ============================================================================
