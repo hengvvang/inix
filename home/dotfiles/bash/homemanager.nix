@@ -5,7 +5,8 @@
     # Bash Shell 配置 - 使用 Home Manager
     programs.bash = {
       enable = true;
-      
+      package = pkgs.bash;  # 使用默认的 Bash 包
+
       # 历史记录配置
       historySize = 10000;                    # 内存中历史记录数量
       historyFileSize = 100000;               # 文件中历史记录数量

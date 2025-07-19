@@ -5,7 +5,9 @@
     programs.vim = {
       # 启用 Vim
       enable = true;
-      
+
+      # 注意：package 选项是只读的，由 Home Manager 自动管理      
+
       # 基础设置 - 使用 Home Manager 的声明式配置
       settings = {
         # 基础编辑器设置

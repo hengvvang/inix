@@ -6,6 +6,8 @@
       # 基本启用设置
       enable = true;
       
+      package = pkgs.tmux;  # 使用默认的 tmux 包
+      
       # Shell 设置
       shell = "${pkgs.fish}/bin/fish";  # 使用 fish shell
       terminal = "tmux-256color";       # 终端类型，支持真彩色

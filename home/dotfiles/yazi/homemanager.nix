@@ -4,123 +4,208 @@
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "homemanager") {
     programs.yazi = {
       enable = true;
-      enableZshIntegration = true;
-      enableBashIntegration = true;
-      enableFishIntegration = true;
-      enableNushellIntegration = true;
       
+      # Shell integrations - 启用与shell的集成
+      enableBashIntegration = false;  # 根据需要启用bash集成
+      enableFishIntegration = true;   # 你使用fish shell，启用fish集成
+      enableZshIntegration = false;   # 根据需要启用zsh集成
+      enableNushellIntegration = false;  # 根据需要启用nushell集成
+      
+      # Shell wrapper name - shell包装器名称，默认为"ya"
+      shellWrapperName = "ya";
+
+      # 主要配置 - 对应yazi.toml
       settings = {
+        # 管理器配置
         manager = {
-          show_hidden = false;
-          show_symlink = true;
-          sort_by = "alphabetical";
-          sort_dir_first = true;
-          sort_reverse = false;
-          linemode = "none";
-          mouse_events = [ "click" "scroll" ];
-          scrolloff = 5;
-          ratio = [ 1 4 3 ];
+          # 布局比例 [父目录, 当前目录, 预览] - 可调整面板宽度比例
+          ratio = [ 1 3 4 ];
+          
+          # 排序设置
+          sort_by = "natural";        # 自然排序(1.md < 2.md < 10.md), 可选: "mtime", "size", "extension", "alphabetical", "random"
+          sort_sensitive = false;     # 不区分大小写排序
+          sort_reverse = false;       # 不反向排序
+          sort_dir_first = true;      # 目录优先显示
+          sort_translit = false;      # 不进行字符音译(用于匈牙利语等)
+          
+          # 显示设置
+          show_hidden = false;        # 不显示隐藏文件，按 . 键可临时切换
+          show_symlink = true;        # 显示符号链接路径
+          linemode = "size";         # 行模式显示文件大小，可选: "none", "size", "mtime", "permissions", "owner"
+          
+          # 滚动设置
+          scrolloff = 5;             # 光标上下保留的行数，大于屏幕一半则居中
+          
+          # 鼠标事件 - 插件系统可接收的鼠标事件类型
+          mouse_events = [ "click" "scroll" ];  # 可选: "click", "scroll", "touch", "move", "drag"
+          
+          # 终端标题格式 - {cwd}表示当前工作目录
+          title_format = "Yazi: {cwd}";
         };
-        
+
+        # 预览配置
         preview = {
-          tab_size = 2;
-          max_width = 600;
-          max_height = 900;
-          cache_dir = "";
-          image_filter = "triangle";
-          image_quality = 75;
-          sixel_fraction = 15;
-          ueberzug_scale = 1.0;
-          ueberzug_offset = [ 0 0 0 0 ];
+          # 文本预览
+          wrap = "no";               # 代码预览中不换行，可选: "yes", "no"
+          tab_size = 4;              # Tab字符的宽度(空格数)
+          
+          # 图片预览
+          max_width = 600;           # 图片预览最大宽度，更改后需运行 yazi --clear-cache
+          max_height = 900;          # 图片预览最大高度
+          # cache_dir = "";          # 缓存目录，默认使用系统缓存目录
+          
+          # 图片渲染设置
+          image_delay = 30;          # 发送图片预览数据前等待的毫秒数，减少滚动时的卡顿
+          image_filter = "triangle"; # 图片缩放滤镜，可选: "nearest", "triangle", "catmull-rom", "lanczos3"
+          image_quality = 75;        # 图片预缓存质量(50-90)，值越大质量越好但CPU消耗更大
+          
+          # Ueberzug设置(用于某些终端的图片显示)
+          # ueberzug_scale = 1.0;    # Ueberzug图片缩放比例
+          # ueberzug_offset = [ 0.0 0.0 0.0 0.0 ];  # Ueberzug图片偏移量
         };
-        
-        opener = {
-          edit = [
-            { run = "vim \"$@\""; desc = "Edit with Vim"; }
-            { run = "code \"$@\""; desc = "Edit with VS Code"; }
+
+        # 任务配置
+        tasks = {
+          micro_workers = 10;        # 微任务最大并发数
+          macro_workers = 25;        # 宏任务最大并发数
+          bizarre_retry = 5;         # 异常失败时的最大重试次数
+          suppress_preload = false;  # 不抑制预加载任务显示
+          
+          # 图片处理限制
+          image_alloc = 536870912;   # 单张图片解码的最大内存分配(512MB)，0为无限制  
+          image_bound = [ 0 0 ];     # 单张图片解码的最大尺寸[宽度, 高度]，0为无限制
+        };
+
+        # 插件配置
+        plugin = {
+          # 预加载器配置 - 在后台预加载文件信息
+          prepend_preloaders = [
+            # 可以添加自定义预加载器
+            # { mime = "image/heic"; run = "heic"; }
           ];
-          open = [
-            { run = "xdg-open \"$@\""; desc = "Open with default app"; }
-          ];
-          reveal = [
-            { run = "xdg-open \"$(dirname \"$0\")\""; desc = "Reveal in file manager"; }
-          ];
-          extract = [
-            { run = "unar \"$@\""; desc = "Extract archive"; }
-          ];
-          play = [
-            { run = "mpv \"$@\""; desc = "Play with mpv"; }
+          
+          # 预览器配置 - 文件预览插件
+          prepend_previewers = [
+            # 可以添加自定义预览器  
+            # { name = "*.md"; run = "markdown"; }
           ];
         };
-        
-        open = {
-          rules = [
-            { name = "*/"; use = [ "edit" "open" "reveal" ]; }
-            { mime = "text/*"; use = [ "edit" "reveal" ]; }
-            { mime = "image/*"; use = [ "open" "reveal" ]; }
-            { mime = "video/*"; use = [ "play" "reveal" ]; }
-            { mime = "audio/*"; use = [ "play" "reveal" ]; }
-            { mime = "inode/x-empty"; use = [ "edit" "reveal" ]; }
-            { mime = "application/json"; use = [ "edit" "reveal" ]; }
-            { mime = "*/javascript"; use = [ "edit" "reveal" ]; }
-            { mime = "application/zip"; use = [ "extract" "reveal" ]; }
-            { mime = "application/gzip"; use = [ "extract" "reveal" ]; }
-            { mime = "application/x-tar"; use = [ "extract" "reveal" ]; }
-          ];
+
+        # 输入框配置
+        input = {
+          cursor_blink = true;       # 启用光标闪烁
+          
+          # 各种输入框的标题配置
+          cd_title = "Change directory:";
+          create_title = [ "Create:" "Create directory:" ];
+          rename_title = "Rename:";
+          filter_title = "Filter:";
+          find_title = [ "Find next:" "Find previous:" ];
+          search_title = "Search via {n}:";
+          shell_title = [ "Shell:" "Shell (block):" ];
+        };
+
+        # 确认对话框配置
+        confirm = {
+          # 各种操作的确认对话框标题
+          trash_title = "Move {n} selected file{s} to trash? (y/N)";
+          delete_title = "Delete {n} selected file{s} permanently? (y/N)";
+        };
+
+        # 选择器配置
+        pick = {
+          open_title = "Open with:";
+        };
+
+        # Which面板配置(快捷键提示面板)
+        which = {
+          sort_by = "none";          # 候选项排序方式: "none", "key", "desc"
+          sort_sensitive = false;    # 不区分大小写排序
+          sort_reverse = false;      # 不反向排序
+          sort_translit = false;     # 不进行字符音译
+        };
+
+        # 日志配置
+        log = {
+          enabled = false;           # 默认关闭日志，需要调试时可开启
         };
       };
-      
+
+      # 快捷键配置 - 对应keymap.toml
       keymap = {
+        # 管理器模式快捷键
         manager.prepend_keymap = [
-          # { on = [ "l" ]; run = "plugin --sync smart-enter"; desc = "Enter the child directory, or open the file"; }
-          # { on = [ "t" ]; run = "create"; desc = "Create a new file or directory"; }
-          # { on = [ "r" ]; run = "rename --cursor=before_ext"; desc = "Rename a file or directory"; }
-          # { on = [ "D" ]; run = "remove"; desc = "Move the files to the trash"; }
-          # { on = [ "f" ]; run = "filter --smart"; desc = "Filter the files"; }
-          # { on = [ "F" ]; run = "find --smart"; desc = "Find files by name"; }
-          # { on = [ "s" ]; run = "search fd"; desc = "Search files by content"; }
-          # { on = [ "S" ]; run = "search rg"; desc = "Search files by content using ripgrep"; }
-          # { on = [ "z" ]; run = "plugin zoxide"; desc = "Jump to a directory using zoxide"; }
-          # { on = [ "c" "m" ]; run = "plugin chmod"; desc = "Change permissions"; }
-          # { on = [ "c" "d" ]; run = "cd"; desc = "Change directory"; }
-          # { on = [ "g" "h" ]; run = "cd ~"; desc = "Go to home directory"; }
-          # { on = [ "g" "c" ]; run = "cd ~/.config"; desc = "Go to config directory"; }
-          # { on = [ "g" "d" ]; run = "cd ~/Downloads"; desc = "Go to downloads directory"; }
-          # { on = [ "g" "t" ]; run = "cd /tmp"; desc = "Go to temporary directory"; }
-          # { on = [ "g" "D" ]; run = "cd ~/Desktop"; desc = "Go to desktop directory"; }
-          # { on = [ "g" "." ]; run = "cd ~/.local/share"; desc = "Go to local share directory"; }
+          # 一些常用的快捷键示例
+          { run = "escape"; on = [ "<Esc>" ]; }         # ESC键退出当前模式
+          { run = "quit"; on = [ "q" ]; }               # q键退出程序  
+          { run = "close"; on = [ "<C-q>" ]; }          # Ctrl+q退出程序
+          # 可以根据个人习惯添加更多快捷键
         ];
-        
+
+        # 输入模式快捷键
         input.prepend_keymap = [
-          # { on = [ "Enter" ]; run = "close --submit"; desc = "Submit the input"; }
-          # { on = [ "Escape" ]; run = "close"; desc = "Cancel the input"; }
-          # { on = [ "C-c" ]; run = "close"; desc = "Cancel the input"; }
+          { run = "close"; on = [ "<C-q>" ]; }          # Ctrl+q关闭输入框
+          { run = "close --submit"; on = [ "<Enter>" ]; } # Enter提交输入
+          { run = "escape"; on = [ "<Esc>" ]; }         # ESC取消输入
+          { run = "backspace"; on = [ "<Backspace>" ]; } # 退格键删除字符
         ];
       };
-      
+
+      # 主题配置 - 对应theme.toml，可以自定义颜色
       theme = {
-        status = {
-          # separator_open = "";
-          # separator_close = "";
-          # separator_style = { fg = "#45475a"; bg = "#45475a"; };
-        };
-        
+        # 文件类型颜色配置
         filetype = {
           rules = [
-            { mime = "image/*"; fg = "#f9e2af"; }
-            { mime = "video/*"; fg = "#fab387"; }
-            { mime = "audio/*"; fg = "#89b4fa"; }
-            { mime = "application/zip"; fg = "#f38ba8"; }
-            { mime = "application/gzip"; fg = "#f38ba8"; }
-            { mime = "application/x-tar"; fg = "#f38ba8"; }
-            { mime = "application/x-bzip2"; fg = "#f38ba8"; }
-            { mime = "application/x-7z-compressed"; fg = "#f38ba8"; }
-            { mime = "application/x-rar"; fg = "#f38ba8"; }
-            { mime = "application/pdf"; fg = "#f7768e"; }
-            { name = "*/"; fg = "#7aa2f7"; }
-            { name = "*"; fg = "#c0caf5"; }
+            # 常见文件类型颜色设置
+            { fg = "#7AD9E5"; mime = "image/*"; }         # 图片文件 - 青色
+            { fg = "#F3D398"; mime = "video/*"; }         # 视频文件 - 黄色  
+            { fg = "#F3D398"; mime = "audio/*"; }         # 音频文件 - 黄色
+            { fg = "#CD9EFC"; mime = "application/zip"; } # 压缩文件 - 紫色
+            { fg = "#CD9EFC"; mime = "application/gzip"; } # gzip文件 - 紫色
+            { fg = "#A6E3A1"; mime = "text/*"; }          # 文本文件 - 绿色
           ];
         };
+      };
+
+      # Lua插件配置文件 - 对应init.lua
+      initLua = ''
+        -- Yazi Lua初始化配置
+        -- 可以在这里添加自定义的Lua脚本来扩展Yazi功能
+        
+        -- 示例：自定义状态栏
+        -- function Status:name()
+        --   local h = cx.active.current.hovered
+        --   if not h then
+        --     return ui.Span("")
+        --   end
+        --   return ui.Span(" " .. h.name)
+        -- end
+        
+        -- 可以添加更多自定义函数和配置
+      '';
+
+      # 插件配置 - 安装的Yazi插件
+      plugins = {
+        # 这里可以添加从GitHub等安装的Yazi插件
+        # 示例插件配置：
+        # "plugin-name" = pkgs.fetchFromGitHub {
+        #   owner = "plugin-author";
+        #   repo = "plugin-repo";
+        #   rev = "commit-hash";
+        #   sha256 = "hash";
+        # };
+      };
+
+      # 主题包配置 - 预制主题
+      flavors = {
+        # 可以添加从GitHub等安装的主题包
+        # 示例主题配置：
+        # "theme-name" = pkgs.fetchFromGitHub {
+        #   owner = "theme-author";
+        #   repo = "theme-repo"; 
+        #   rev = "commit-hash";
+        #   sha256 = "hash";
+        # };
       };
     };
   };

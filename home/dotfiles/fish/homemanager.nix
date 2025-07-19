@@ -7,7 +7,7 @@
       enable = true;
       
       # 包配置 - 使用默认fish包，也可以指定特定版本
-      # package = pkgs.fish;  # 默认值，通常不需要显式设置
+      package = pkgs.fish;  # 默认值，通常不需要显式设置
       
       # 自动生成补全 - 基于已安装的man页面自动生成命令补全
       generateCompletions = true;  # 默认值：true，建议保持开启

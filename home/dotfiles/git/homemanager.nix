@@ -58,76 +58,76 @@
       # ===== 全局忽略文件 =====
       ignores = [
         # === 系统文件 ===
-        ".DS_Store"              # macOS
-        ".DS_Store?"
-        "._*"
-        ".Spotlight-V100"
-        ".Trashes"
-        "ehthumbs.db"           # Windows
-        "Thumbs.db"
-        "Desktop.ini"
-        "$RECYCLE.BIN/"
+        # ".DS_Store"              # macOS
+        # ".DS_Store?"
+        # "._*"
+        # ".Spotlight-V100"
+        # ".Trashes"
+        # "ehthumbs.db"           # Windows
+        # "Thumbs.db"
+        # "Desktop.ini"
+        # "$RECYCLE.BIN/"
         
         # === 编辑器和 IDE ===
-        "*.swp"                 # Vim
-        "*.swo"
-        "*~"
-        ".vscode/"              # VS Code
-        ".idea/"                # IntelliJ
-        "*.iml"
-        ".eclipse/"
-        ".metadata/"
-        ".project"
-        ".classpath"
-        ".settings/"
+        # "*.swp"                 # Vim
+        # "*.swo"
+        # "*~"
+        # ".vscode/"              # VS Code
+        # ".idea/"                # IntelliJ
+        # "*.iml"
+        # ".eclipse/"
+        # ".metadata/"
+        # ".project"
+        # ".classpath"
+        # ".settings/"
         
         # === 备份和临时文件 ===
-        "*.tmp"
-        "*.temp"
-        "*.bak"
-        "*.backup"
-        "*.orig"
-        "*.rej"
-        "*~"
-        "#*#"
-        ".#*"
+        # "*.tmp"
+        # "*.temp"
+        # "*.bak"
+        # "*.backup"
+        # "*.orig"
+        # "*.rej"
+        # "*~"
+        # "#*#"
+        # ".#*"
         
         # === 日志文件 ===
-        "*.log"
-        "logs/"
-        "npm-debug.log*"
-        "yarn-debug.log*"
-        "yarn-error.log*"
+        # "*.log"
+        # "logs/"
+        # "npm-debug.log*"
+        # "yarn-debug.log*"
+        # "yarn-error.log*"
         
         # === 构建输出 ===
-        "node_modules/"         # Node.js
-        "target/"               # Rust, Java
-        "build/"                # 通用构建目录
-        "dist/"                 # 分发目录
-        "out/"
-        ".cache/"
-        ".next/"                # Next.js
-        ".nuxt/"                # Nuxt.js
-        ".parcel-cache/"        # Parcel
+        # "node_modules/"         # Node.js
+        # "target/"               # Rust, Java
+        # "build/"                # 通用构建目录
+        # "dist/"                 # 分发目录
+        # "out/"
+        # ".cache/"
+        # ".next/"                # Next.js
+        # ".nuxt/"                # Nuxt.js
+        # ".parcel-cache/"        # Parcel
         
         # === 环境和配置文件 ===
-        ".env"
-        ".env.*"
-        "!.env.example"
-        ".envrc"
-        ".direnv/"
+        # ".env"
+        # ".env.*"
+        # "!.env.example"
+        # ".envrc"
+        # ".direnv/"
         
         # === 压缩包 ===
-        "*.zip"
-        "*.tar.gz"
-        "*.tgz"
-        "*.rar"
-        "*.7z"
+        # "*.zip"
+        # "*.tar.gz"
+        # "*.tgz"
+        # "*.rar"
+        # "*.7z"
         
         # === Nix 相关 ===
-        "result"                # Nix build 结果
-        "result-*"
-        ".direnv/"
+        # "result"                # Nix build 结果
+        # "result-*"
+        # ".direnv/"
       ];
       
       # ===== Git 属性配置 =====
