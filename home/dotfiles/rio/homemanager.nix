@@ -45,8 +45,8 @@
           
           # 常规字体
           regular = {
-            # family = "Noto Sans Mono";
-            family = "Monaspace Argon Frozen";
+            family = "Noto Sans Mono";
+            # family = "Monaspace Argon Frozen";
             style = "Normal";
             width = "Normal";
             weight = 300;
@@ -54,8 +54,8 @@
           
           # 粗体字体
           bold = {
-            # family = "Noto Sans Mono";
-            family = "Monaspace Argon Frozen";
+            family = "Noto Sans Mono";
+            # family = "Monaspace Argon Frozen";
             style = "Normal"; 
             width = "Normal";
             weight = 500;
@@ -63,8 +63,8 @@
           
           # 斜体字体
           italic = {
-            # family = "Noto Sans Mono";
-            family = "Monaspace Argon Frozen";
+            family = "Noto Sans Mono";
+            # family = "Monaspace Argon Frozen";
             style = "Italic";
             width = "Normal";
             weight = 300;
@@ -72,8 +72,8 @@
           
           # 粗斜体字体
           bold-italic = {
-            # family = "Noto Sans Mono";
-            family = "Monaspace Argon Frozen";
+            family = "Noto Sans Mono";
+            # family = "Monaspace Argon Frozen";
             style = "Italic";
             width = "Normal";
             weight = 500;

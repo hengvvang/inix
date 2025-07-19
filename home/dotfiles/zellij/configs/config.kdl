@@ -31,7 +31,7 @@ scrollback_editor "vim"
 session_serialization true
 
 // 自动布局 - 根据终端大小自动调整布局
-auto_layout true
+// auto_layout true  // 禁用以使用纯净的默认布局
 
 
 // 键位绑定配置
