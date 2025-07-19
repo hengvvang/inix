@@ -43,8 +43,8 @@
             "Alt l" = { MoveFocus = "Right"; };
             
             # 窗格分割
-            "Alt |" = { NewPane = "Right"; };
-            "Alt -" = { NewPane = "Down"; };
+            "Alt v" = { NewPane = "Right"; };  # 使用 v (vertical) 替代 |
+            "Alt s" = { NewPane = "Down"; };   # 使用 s (split) 替代 -
             
             # 标签页管理
             "Alt n" = { NewTab = {}; };
@@ -55,8 +55,8 @@
             "Alt 5" = { GoToTab = 5; };
             
             # 标签页导航
-            "Alt [" = { GoToPreviousTab = {}; };
-            "Alt ]" = { GoToNextTab = {}; };
+            "Alt u" = { GoToPreviousTab = {}; };  # u = up/previous
+            "Alt i" = { GoToNextTab = {}; };      # i = next (adjacent to u)
             
             # 模式切换
             "Ctrl p" = { SwitchToMode = "Pane"; };
