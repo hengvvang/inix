@@ -43,8 +43,8 @@ keybinds {
         bind "Alt 5" { GoToTab 5; }
         
         // 标签页导航
-        bind "Alt h" { GoToPreviousTab; }
-        bind "Alt l" { GoToNextTab; }
+        bind "Alt [" { GoToPreviousTab; }
+        bind "Alt ]" { GoToNextTab; }
         
         // 模式切换
         bind "Ctrl p" { SwitchToMode "Pane"; }

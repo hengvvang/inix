@@ -44,7 +44,10 @@
         obs-studio.enable = false;
         mpd.enable = true;
         proxy.enable = false;
-        zellij.enable = true;
+        zellij = {
+          enable = true;
+          method = "homemanager";  # 使用 Home Manager 原生模块管理
+        };
         rio = {
           enable = true;
           method = "homemanager";  # 使用 Home Manager 管理 Rio

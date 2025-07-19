@@ -54,6 +54,10 @@
             "Alt 4" = { GoToTab = 4; };
             "Alt 5" = { GoToTab = 5; };
             
+            # 标签页导航
+            "Alt [" = { GoToPreviousTab = {}; };
+            "Alt ]" = { GoToNextTab = {}; };
+            
             # 模式切换
             "Ctrl p" = { SwitchToMode = "Pane"; };
             "Ctrl t" = { SwitchToMode = "Tab"; };
