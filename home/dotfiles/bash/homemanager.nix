@@ -25,12 +25,7 @@
       
       # 简单的命令别名 (象征性配置)
       shellAliases = {
-        ll = "ls -alF";
-        la = "ls -A";
-        l = "ls -CF";
-        grep = "grep --color=auto";
-        fgrep = "fgrep --color=auto";
-        egrep = "egrep --color=auto";
+        zj = "zellij";
       };
       
       # Bash 选项配置

@@ -180,11 +180,11 @@
       # 环境变量配置 - 设置 Nushell 专用的环境变量
       environmentVariables = {
         # 编辑器配置
-        EDITOR = "nvim";
+        EDITOR = "vim";
         # 分页器配置  
         PAGER = "less";
         # 默认浏览器
-        BROWSER = "firefox";
+        # BROWSER = "firefox";
         # Nushell 配置目录
         NU_CONFIG_DIR = "$HOME/.config/nushell";
         # 禁用遥测（如果需要）
@@ -193,14 +193,7 @@
       
       # 基础命令别名（仅包含最常用的几个）
       shellAliases = {
-        # 文件操作别名
-        ll = "ls -la";
-        la = "ls -a";
-        # Git 别名
-        g = "git";
-        gs = "git status";
-        # 系统别名
-        cls = "clear";
+        zj = "zellij";
       };
       
       # 插件配置 - 添加有用的 Nushell 插件

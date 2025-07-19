@@ -28,25 +28,8 @@
         share = true;                    # 在多个shell会话间共享历史
       };
       
-      # 简化的别名配置 - 仅保留最常用的
       shellAliases = {
-        # 文件操作增强
-        ll = "ls -alF --color=auto";
-        la = "ls -A --color=auto";
-        l = "ls -CF --color=auto";
-        
-        # Git核心命令
-        g = "git";
-        gs = "git status";
-        
-        # 快速导航
-        ".." = "cd ..";
-        "..." = "cd ../..";
-        
-        # 系统信息
-        df = "df -h";                    # 人类可读的磁盘使用情况
-        du = "du -h";                    # 人类可读的目录大小
-        free = "free -h";                # 人类可读的内存使用情况
+        zj = "zellij";
       };
       
       # Shell选项配置

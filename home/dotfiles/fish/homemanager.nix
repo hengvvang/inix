@@ -6,8 +6,7 @@
     programs.fish = {
       enable = true;
       
-      # 包配置 - 使用默认fish包，也可以指定特定版本
-      package = pkgs.fish;  # 默认值，通常不需要显式设置
+      package = pkgs.fish;
       
       # 自动生成补全 - 基于已安装的man页面自动生成命令补全
       generateCompletions = true;  # 默认值：true，建议保持开启
@@ -17,53 +16,29 @@
       
       # 简化的别名配置 - 仅保留最常用的
       shellAliases = {
-        # 现代化工具替代
-        ll = "eza -alF --icons";
-        tree = "eza --tree --icons";
-        
-        # Git 核心命令
-        g = "git";
-        gs = "git status";
-        
-        # 快速导航
+
+        zj = "zellij";
         ".." = "cd ..";
       };
       
       # 缩写配置 - Fish特有功能，输入后自动扩展为完整命令
       shellAbbrs = {
-        # Git 工作流缩写
-        gco = "git checkout";
-        gst = "git status";
-        gaa = "git add --all";
-        gcm = "git commit -m";
-        gp = "git push";
-        gl = "git log --oneline --graph --decorate";
-        gd = "git diff";
-        gb = "git branch";
-        
-        # 系统管理缩写
-        ll = "eza -alF --icons";
-        la = "eza -A --icons";
-        lt = "eza --tree --icons";
+        # 终端工具缩写
+        zj = "zellij";
         
         # 导航缩写
         ".." = "cd ..";
         "..." = "cd ../..";
-        
-        # 实用工具缩写
-        cat = "bat";  # 使用bat替代cat
-        find = "fd";  # 使用fd替代find
-        grep = "rg";  # 使用ripgrep替代grep
         
         # 特殊位置缩写 - 可以在命令中任何位置扩展
         "-h" = {
           position = "anywhere";
           expansion = "--help";
         };
-        "-v" = {
-          position = "anywhere"; 
-          expansion = "--version";
-        };
+        # "-v" = {
+        #   position = "anywhere"; 
+        #   expansion = "--version";
+        # };
       };
       
       # 插件配置 - 扩展Fish功能
