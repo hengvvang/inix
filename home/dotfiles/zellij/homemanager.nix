@@ -55,8 +55,8 @@
             "Alt 5" = { GoToTab = 5; };
             
             # 标签页导航
-            "Alt u" = { GoToPreviousTab = {}; };  # u = up/previous
-            "Alt i" = { GoToNextTab = {}; };      # i = next (adjacent to u)
+            "Alt [" = { GoToPreviousTab = {}; };
+            "Alt ]" = { GoToNextTab = {}; };
             
             # 模式切换
             "Ctrl p" = { SwitchToMode = "Pane"; };
