@@ -44,6 +44,7 @@
         obs-studio.enable = false;
         mpd.enable = true;
         proxy.enable = false;
+        zellij.enable = true;
       };
       
       pkgs = {

@@ -1,8 +1,86 @@
-# Rio Terminal 现代化终端配置
+# Rio Terminal Home Manager 配置说明
 
-Rio 是一个基于 WebGPU 的现代化终端模拟器，提供 GPU 加速渲染和出色的性能表现。
+## 配置概述
 
-## 配置特点
+Rio 是一个现代化的 GPU 加速终端模拟器，本配置文件提供了完整的 Home Manager 原生配置选项。
+
+## 主要配置特性
+
+### 字体配置
+- **主字体**: FiraCode Nerd Font (支持编程连字和图标)
+- **字体大小**: 14px (可根据显示器调整)
+- **字体特性**: 启用了 Stylistic Sets (ss02, ss03, ss05)
+- **符号映射**: 为 Powerline 和 Nerd Font 图标配置了特殊字符映射
+
+### 窗口设置
+- **初始尺寸**: 1000x700 像素
+- **窗口模式**: 窗口化 (可选择最大化或全屏)
+- **装饰**: 启用原生窗口装饰
+- **透明度**: 默认不透明 (可调整为半透明)
+
+### 导航/标签
+- **导航模式**: Bookmark (书签式导航)
+- **分屏支持**: 启用分屏功能
+- **智能隐藏**: 单标签时自动隐藏导航栏
+- **颜色自动化**: 
+  - Vim/Neovim: 红色标签
+  - Git 工具: 绿色标签
+
+### 渲染性能
+- **性能模式**: 高性能
+- **渲染后端**: 自动选择最佳后端
+- **优化策略**: 失焦和遮挡时停止渲染
+- **渲染策略**: 事件驱动 (节能)
+
+### Shell 集成
+- **默认 Shell**: Fish shell
+- **启动参数**: --login (加载完整环境)
+- **环境变量**: 自动设置 TERM 和 COLORTERM
+
+### 键盘和输入
+- **IME 支持**: 启用 IME 光标定位 (改善中文输入)
+- **控制序列**: 保持 ALT 键控制序列
+- **光标设置**: 块状光标，关闭闪烁
+
+## 可选配置
+
+### 主题支持
+取消注释 `theme = "dracula"` 行并在 `~/.config/rio/themes/` 目录下放置主题文件。
+
+### 背景效果
+可以启用:
+- 窗口透明度 (`opacity < 1.0`)
+- 背景模糊 (`blur = true`)
+- 背景图片 (配置 `window.background-image`)
+
+### 着色器效果
+在非 GL 后端下可以启用 CRT 等复古效果:
+```nix
+renderer.filters = ["NewPixieCrt"];
+```
+
+### 平台特定配置
+已包含 Linux 特定配置，可以添加 Windows 或 macOS 的专用设置。
+
+## 使用建议
+
+1. **性能优化**: 当前配置已优化性能，保持失焦渲染禁用
+2. **字体选择**: 确保系统已安装 FiraCode Nerd Font
+3. **颜色主题**: 建议使用外部主题文件而非内联颜色定义
+4. **开发环境**: 配置的编辑器快捷键使用 Neovim
+
+## 故障排除
+
+- 如果字体显示异常，检查 `fonts.disable-warnings-not-found` 设置
+- 如果性能问题，可以降低 `renderer.performance` 为 "Low"
+- 如果输入法问题，确保 `keyboard.ime-cursor-positioning` 启用
+
+## 相关文件
+
+- `homemanager.nix`: 本配置文件 (Home Manager 原生)
+- `direct.nix`: 简化的直接文件管理方式
+- `external.nix`: 外部配置文件方式
+- `configs/config.toml`: 外部 TOML 配置文件
 
 ### 🚀 三种配置方式
 

@@ -211,7 +211,8 @@
       # 剪贴板工具（Wayland）
       wl-clipboard
       # 可选：主题和字体
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+      nerd-fonts.fira-code
+      nerd-fonts.droid-sans-mono
     ];
   };
 }
