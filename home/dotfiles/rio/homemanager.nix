@@ -4,7 +4,7 @@
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rio.enable && config.myHome.dotfiles.rio.method == "homemanager") {
     programs.rio = {
       enable = true;
-      package = pkgs.rio;  # 使用系统包管理的 Rio
+      package = pkgs.rio;
       
       settings = {
         # === 基础外观配置 ===
@@ -42,34 +42,38 @@
           
           # 常规字体
           regular = {
-            family = "FiraCode Nerd Font";
+            family ="Monaspace Neon Var";
+            # family = "Noto Sans Mono";
             style = "Normal";
             width = "Normal";
-            weight = 400;
+            weight = 300;
           };
           
           # 粗体字体
           bold = {
-            family = "FiraCode Nerd Font";
+            family ="Monaspace Neon Var";
+            # family = "Noto Sans Mono";
             style = "Normal"; 
             width = "Normal";
-            weight = 700;
+            weight = 500;
           };
           
           # 斜体字体
           italic = {
-            family = "FiraCode Nerd Font";
+            # family = "Noto Sans Mono";
+            family ="Monaspace Neon Var";
             style = "Italic";
             width = "Normal";
-            weight = 400;
+            weight = 300;
           };
           
           # 粗斜体字体
           bold-italic = {
-            family = "FiraCode Nerd Font";
+            # family = "Noto Sans Mono";
+            family ="Monaspace Neon Var";
             style = "Italic";
             width = "Normal";
-            weight = 700;
+            weight = 500;
           };
           
           # 表情符号字体 (可选)
@@ -109,7 +113,7 @@
           opacity = 1.0;
           
           # 背景模糊效果 - 需要重启生效
-          blur = false;
+          blur = true;
           
           # macOS 特定配置
           # macos-use-unified-titlebar = false;
@@ -241,7 +245,7 @@
         
         # === 编辑器配置 ===
         editor = {
-          program = "nvim";  # 配置文件编辑器
+          program = "vim";  # 配置文件编辑器
           args = [];
         };
         
