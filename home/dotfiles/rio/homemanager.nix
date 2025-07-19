@@ -15,7 +15,7 @@
         theme = "rose-pine";  # 取消注释以使用主题，需要主题文件
         
         # 确认退出提示 - 防止意外关闭
-        confirm-before-quit = true;
+        confirm-before-quit = false;
         
         # 行高设置 - 改善可读性
         line-height = 1.1;

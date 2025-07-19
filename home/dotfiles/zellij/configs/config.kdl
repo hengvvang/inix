@@ -7,7 +7,8 @@ theme "rose-pine"
 // 默认 Shell - 设置为 fish shell
 default_shell "fish"
 
-// 默认布局 - 启动时使用的布局
+// 默认布局 - 使用 Zellij 内置默认布局
+// 不指定 default_layout，让 Zellij 使用其内置默认行为
 // default_layout "dev"
 
 // 界面和行为配置
@@ -145,7 +146,7 @@ keybinds clear-defaults=true {
         bind "PageUp" { PageScrollUp; }            // 向上翻页
         bind "Ctrl d" { HalfPageScrollDown; }      // Ctrl+d 向下滚动半页
         bind "Ctrl u" { HalfPageScrollUp; }        // Ctrl+u 向上滚动半页
-        bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; } // 搜索模式
+        bind "/" { SwitchToMode "EnterSearch"; }   // 搜索模式
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
@@ -185,15 +186,12 @@ keybinds clear-defaults=true {
     search {
         bind "n" { Search "down"; }                // 查找下一个匹配项
         bind "p" { Search "up"; }                  // 查找上一个匹配项
-        bind "c" { SearchToggleOption "CaseSensitive"; } // 切换大小写敏感
-        bind "w" { SearchToggleOption "Wrap"; }    // 切换环绕搜索
-        bind "o" { SearchToggleOption "WholeWord"; } // 切换全词匹配
         bind "Esc" { SwitchToMode "Scroll"; }      // 返回滚动模式
     }
     
     // 进入搜索输入模式 (Enter Search Mode)
     entersearch {
-        // bind "Enter" { SwitchToMode "Search"; }    // 开始搜索并进入搜索模式
+        bind "Enter" { SwitchToMode "Search"; }    // 开始搜索并进入搜索模式
         bind "Esc" { SwitchToMode "Scroll"; }      // 取消搜索并返回滚动模式
     }
     
@@ -236,6 +234,4 @@ keybinds clear-defaults=true {
 // 搜索模式功能:
 // -----------
 // n/p        - 下一个/上一个匹配
-// c          - 切换大小写敏感
-// w          - 切换环绕搜索
-// o          - 切换全词匹配
+// Esc        - 返回滚动模式
