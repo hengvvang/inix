@@ -2,6 +2,9 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rio.enable && config.myHome.dotfiles.rio.method == "homemanager") {
+    # 部署主题文件到正确位置
+    home.file.".config/rio/themes".source = ./configs/themes;
+    
     programs.rio = {
       enable = true;
       package = pkgs.rio;
@@ -9,13 +12,13 @@
       settings = {
         # === 基础外观配置 ===
         # 主题设置 - 禁用内联颜色定义，使用主题文件
-        # theme = "dracula";  # 取消注释以使用主题，需要主题文件
+        theme = "rose-pine";  # 取消注释以使用主题，需要主题文件
         
         # 确认退出提示 - 防止意外关闭
         confirm-before-quit = true;
         
         # 行高设置 - 改善可读性
-        line-height = 1.2;
+        line-height = 1.1;
         
         # 隐藏鼠标光标当输入时
         hide-mouse-cursor-when-typing = true;
@@ -42,8 +45,8 @@
           
           # 常规字体
           regular = {
-            family ="Monaspace Neon Var";
             # family = "Noto Sans Mono";
+            family = "Monaspace Argon Frozen";
             style = "Normal";
             width = "Normal";
             weight = 300;
@@ -51,8 +54,8 @@
           
           # 粗体字体
           bold = {
-            family ="Monaspace Neon Var";
             # family = "Noto Sans Mono";
+            family = "Monaspace Argon Frozen";
             style = "Normal"; 
             width = "Normal";
             weight = 500;
@@ -61,7 +64,7 @@
           # 斜体字体
           italic = {
             # family = "Noto Sans Mono";
-            family ="Monaspace Neon Var";
+            family = "Monaspace Argon Frozen";
             style = "Italic";
             width = "Normal";
             weight = 300;
@@ -70,7 +73,7 @@
           # 粗斜体字体
           bold-italic = {
             # family = "Noto Sans Mono";
-            family ="Monaspace Neon Var";
+            family = "Monaspace Argon Frozen";
             style = "Italic";
             width = "Normal";
             weight = 500;
@@ -92,8 +95,8 @@
         
         # === 光标配置 ===
         cursor = {
-          shape = "block";  # 选项: 'block', 'underline', 'beam'
-          blinking = false;  # 关闭闪烁以提高性能
+          shape = "beam";  # 选项: 'block', 'underline', 'beam'
+          blinking = true;
           blinking-interval = 800;  # 闪烁间隔 (350-1200ms)
         };
         
