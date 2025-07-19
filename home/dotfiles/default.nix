@@ -15,6 +15,7 @@
     ./ghostty
     ./alacritty     # 新增 Alacritty 终端
     ./tmux          # 新增 Tmux 会话管理
+    ./zellij        # 新增 Zellij 终端多路复用器
     ./git
     ./lazygit
     ./starship
