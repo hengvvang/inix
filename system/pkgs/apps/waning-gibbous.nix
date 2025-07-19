@@ -5,10 +5,15 @@
 {
   config = lib.mkIf config.mySystem.pkgs.apps.waningGibbous.enable {
     environment.systemPackages = with pkgs; [
-      nano
+
       vim
       git
-      
+      nano
+      rio
+      yazi
+      zellij
+      vscode
+      zed-editor
       # Nix 系统管理工具
       nh                    # NixOS/Home Manager 助手
       nom                   # NixOS 选项管理工具
