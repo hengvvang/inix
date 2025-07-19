@@ -1,16 +1,15 @@
-// Catppuccin Mocha 主题
 themes {
     catppuccin-mocha {
-        bg "#1e1e2e"
-        fg "#cdd6f4"
-        red "#f38ba8"
-        green "#a6e3a1"
-        blue "#89b4fa"
-        yellow "#f9e2af"
-        magenta "#f5c2e7"
-        orange "#fab387"
-        cyan "#94e2d5"
-        black "#181825"
-        white "#f5e0dc"
+        bg "#1e1e2e"      // 背景色
+        fg "#cdd6f4"      // 前景色  
+        red "#f38ba8"     // 红色
+        green "#a6e3a1"   // 绿色
+        blue "#89b4fa"    // 蓝色
+        yellow "#f9e2af"  // 黄色
+        magenta "#f5c2e7" // 洋红色
+        orange "#fab387"  // 橙色
+        cyan "#94e2d5"    // 青色
+        black "#181825"   // 黑色
+        white "#f5e0dc"   // 白色
     }
 }

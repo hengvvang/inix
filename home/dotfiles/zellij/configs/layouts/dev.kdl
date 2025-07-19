@@ -1,4 +1,4 @@
-// 开发专用布局
+// 开发布局 - 专业开发环境
 layout {
     default_tab_template {
         pane size=1 borderless=true {
@@ -10,6 +10,7 @@ layout {
         }
     }
     
+    // 主代码区
     tab name="Code" focus=true {
         pane split_direction="horizontal" {
             pane split_direction="vertical" size="70%" {
@@ -17,7 +18,7 @@ layout {
                     // 主编辑器
                 }
                 pane size="35%" {
-                    // 终端/调试
+                    // 开发终端
                 }
             }
             pane size="30%" split_direction="vertical" {
@@ -25,35 +26,32 @@ layout {
                     // 文件浏览器
                 }
                 pane size="50%" {
-                    // Git/工具
+                    // Git 工具
                 }
             }
         }
     }
     
+    // 测试区
     tab name="Test" {
         pane split_direction="horizontal" {
-            pane size="50%" {
+            pane size="60%" {
                 // 测试运行
             }
-            pane size="50%" {
+            pane size="40%" {
                 // 测试结果/日志
             }
         }
     }
     
+    // 监控区
     tab name="Monitor" {
         pane split_direction="vertical" {
             pane size="50%" {
-                // 系统监控
+                command "htop"
             }
-            pane size="50%" split_direction="horizontal" {
-                pane size="50%" {
-                    // 日志
-                }
-                pane size="50%" {
-                    // 性能
-                }
+            pane size="50%" {
+                // 日志或其他监控
             }
         }
     }

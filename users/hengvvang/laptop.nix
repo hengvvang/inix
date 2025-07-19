@@ -28,6 +28,7 @@
       };
       
       dotfiles = {
+        enable = true;  # 启用 dotfiles 模块
         vim.enable = true;
         zsh.enable = true;
         bash.enable = true;
@@ -46,7 +47,7 @@
         proxy.enable = false;
         zellij = {
           enable = true;
-          method = "homemanager";  # 使用 Home Manager 原生模块管理
+          method = "external";     # 使用外部配置文件方式
         };
         rio = {
           enable = true;

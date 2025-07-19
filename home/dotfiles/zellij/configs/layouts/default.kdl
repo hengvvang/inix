@@ -1,4 +1,4 @@
-// 默认开发布局
+// 默认布局 - 简洁实用的开发环境
 layout {
     default_tab_template {
         pane size=1 borderless=true {
@@ -10,25 +10,27 @@ layout {
         }
     }
     
-    tab name="Editor" focus=true {
+    // 主工作区
+    tab name="Main" focus=true {
         pane split_direction="vertical" {
-            pane size="80%" {
+            pane size="70%" {
                 // 主编辑器区域
             }
-            pane size="20%" split_direction="horizontal" {
+            pane size="30%" split_direction="horizontal" {
                 pane size="60%" {
-                    // 终端
+                    // 终端区域
                 }
                 pane size="40%" {
-                    // 文件浏览器或其他工具
+                    // 工具区域
                 }
             }
         }
     }
     
+    // 纯终端
     tab name="Terminal" {
         pane {
-            // 纯终端环境
+            // 全屏终端
         }
     }
 }
