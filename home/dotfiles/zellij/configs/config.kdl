@@ -23,7 +23,7 @@ scrollback_editor "vim"
 session_serialization true
 
 // 自动布局 - 根据终端大小自动调整布局
-// auto_layout true
+auto_layout true
 
 
 // 模式说明:
@@ -56,7 +56,9 @@ keybinds clear-defaults=true {
         bind "Alt s" { NewPane "Down"; }           // 水平分割（在下方创建新窗格）
         
         // === 标签页管理 ===
-        bind "Alt n" { NewTab; }                   // 创建新标签页
+        bind "Alt c" { NewTab; }                 // 关闭当前标签页
+        bind "Alt w" { CloseTab; }                 // 关闭当前标签页
+
         bind "Alt 1" { GoToTab 1; }                // 跳转到标签页 1
         bind "Alt 2" { GoToTab 2; }                // 跳转到标签页 2
         bind "Alt 3" { GoToTab 3; }                // 跳转到标签页 3
@@ -69,25 +71,32 @@ keybinds clear-defaults=true {
         
         // === 模式切换 ===
         // 使用 Ctrl + 字母键切换到特定模式
+        bind "Ctrl l" { SwitchToMode "Locked"; }   // 切换到锁定模式
         bind "Ctrl p" { SwitchToMode "Pane"; }     // 切换到窗格管理模式
         bind "Ctrl t" { SwitchToMode "Tab"; }      // 切换到标签页管理模式
         bind "Ctrl r" { SwitchToMode "Resize"; }   // 切换到调整大小模式
-        bind "Ctrl s" { SwitchToMode "Scroll"; }   // 切换到滚动浏览模式
-        bind "Ctrl o" { SwitchToMode "Session"; }  // 切换到会话管理模式
         bind "Ctrl m" { SwitchToMode "Move"; }     // 切换到移动模式
-        bind "Ctrl l" { SwitchToMode "Locked"; }   // 切换到锁定模式
-        
+
+        bind "Ctrl s" { SwitchToMode "Scroll"; }   // 切换到滚动浏览模式
+
+        bind "Ctrl o" { SwitchToMode "Session"; }  // 切换到会话管理模式
+
         bind "Ctrl f" { ToggleFocusFullscreen; }   // 切换当前窗格全屏显示
+
         bind "Ctrl z" { TogglePaneFrames; }        // 切换窗格边框显示
-        bind "Alt x" { CloseFocus; }               // 关闭当前焦点窗格
+
         bind "Ctrl c" { Copy; }                    // 复制模式（如果有选择的文本）
-        
+
+        bind "Alt n" { NewPane; }                  // 创建新窗格（自动方向）
+        bind "Alt x" { CloseFocus; }               // 关闭当前焦点窗格
+
+
         bind "Alt [" { PreviousSwapLayout; }       // 上一个布局
         bind "Alt ]" { NextSwapLayout; }           // 下一个布局
+
         bind "Alt ," { GoToPreviousTab; }          // 上一个标签页
         bind "Alt ." { GoToNextTab; }              // 下一个标签页
-        bind "Alt w" { CloseTab; }                 // 关闭当前标签页
-        bind "Alt c" { NewPane; }                  // 创建新窗格（自动方向）
+
         
         // === 会话和窗口操作 ===
         bind "Ctrl w" { SwitchToMode "Session"; }  // 快速进入会话管理模式
@@ -169,7 +178,6 @@ keybinds clear-defaults=true {
     
     // 滚动浏览模式 (Scroll Mode) - 浏览历史输出
     // 进入方式: Ctrl+s，退出方式: Esc
-    // 用于查看窗格中的历史输出，类似于 tmux 的 copy-mode
     scroll {
         bind "j" { ScrollDown; }                   // 向下滚动一行
         bind "k" { ScrollUp; }                     // 向上滚动一行
