@@ -3,7 +3,7 @@
 # 基于人体工程学和现代设计原则
 # ================================
 
-[manager]
+[magr]
 # 排序方式 - 智能混合排序
 sort_by = "alphabetical"
 sort_sensitive = false

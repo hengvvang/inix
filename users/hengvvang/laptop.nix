@@ -34,7 +34,6 @@
         bash.enable = true;
         fish.enable = true;
         nushell.enable = true;
-        yazi.enable = true;
         ghostty.enable = true;
         alacritty.enable = false;
         tmux.enable = true;
@@ -45,13 +44,17 @@
         obs-studio.enable = false;
         mpd.enable = true;
         proxy.enable = false;
+        yazi = {
+          enable = true;
+          method = "homemanager";
+        };
         zellij = {
           enable = true;
-          method = "external";     # 使用外部配置文件方式
+          method = "external";
         };
         rio = {
           enable = true;
-          method = "homemanager";  # 使用 Home Manager 管理 Rio
+          method = "homemanager";
         };
       };
       

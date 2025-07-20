@@ -23,7 +23,7 @@ separator_open = ""
 separator_close = ""
 
 # ===== 管理器主题 - 注重可读性和视觉层次 =====
-[manager]
+[mgr]
 # 光标和选择样式
 cwd = { fg = "cyan", bold = true }
 hovered = { bg = "darkgray", bold = true }
