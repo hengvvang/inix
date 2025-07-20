@@ -1,26 +1,9 @@
-// 主题配置 - 可选择的主题:
-// Catppuccin 系列:
-// - catppuccin-latte (浅色主题)
-// - catppuccin-frappe (中等深色主题)  
-// - catppuccin-macchiato (深色主题)
-// - catppuccin-mocha (最深色主题)
-// Rose Pine 系列:
-// - rose-pine-base (标准深色主题)
-// - rose-pine-moon (月夜主题)
-// - rose-pine-dawn (晨光浅色主题)
-// 其他主题:
-// - nord, tokyo-night, dracula
-// - gruvbox-dark, onedark, solarized-dark
 theme "tokyo-night"
 
-// 默认 Shell - 设置为 fish shell
 default_shell "fish"
 
-// 默认布局 - 使用 Zellij 内置默认布局
-// 不指定 default_layout，让 Zellij 使用其内置默认行为
-// default_layout "dev"
+default_layout "default"
 
-// 界面和行为配置
 // 显示窗格边框 - 帮助区分不同的窗格
 pane_frames true
 
@@ -40,10 +23,9 @@ scrollback_editor "vim"
 session_serialization true
 
 // 自动布局 - 根据终端大小自动调整布局
-// auto_layout true  // 禁用以使用纯净的默认布局
+// auto_layout true
 
 
-// 键位绑定配置
 // 模式说明:
 //   - normal: 默认模式，用于基本操作
 //   - pane: 窗格管理模式
@@ -54,19 +36,16 @@ session_serialization true
 //   - session: 会话管理模式
 //   - move: 移动窗格位置模式
 //   - locked: 锁定模式（防止误操作）
-//   - tmux: Tmux 兼容模式
 //   - renametab: 重命名标签页模式
+//   - renamepane: 重命名窗格模式
 //   - entersearch: 搜索输入模式
 
 keybinds clear-defaults=true {
-    // 普通模式 (Normal Mode) - 默认模式，包含最常用的快捷键
     normal {
         // === 基础控制 ===
         bind "Ctrl q" { Quit; }                    // 退出 Zellij
         bind "Ctrl d" { Detach; }                  // 分离会话（后台运行）
         
-        // === 窗格导航 - Vi 风格 (hjkl) ===
-        // 使用 Alt + hjkl 在窗格间移动焦点
         bind "Alt h" { MoveFocus "Left"; }         // 移动到左侧窗格
         bind "Alt j" { MoveFocus "Down"; }         // 移动到下方窗格  
         bind "Alt k" { MoveFocus "Up"; }           // 移动到上方窗格
@@ -83,6 +62,10 @@ keybinds clear-defaults=true {
         bind "Alt 3" { GoToTab 3; }                // 跳转到标签页 3
         bind "Alt 4" { GoToTab 4; }                // 跳转到标签页 4
         bind "Alt 5" { GoToTab 5; }                // 跳转到标签页 5
+        bind "Alt 6" { GoToTab 6; }                // 跳转到标签页 6
+        bind "Alt 7" { GoToTab 7; }                // 跳转到标签页 7
+        bind "Alt 8" { GoToTab 8; }                // 跳转到标签页 8
+        bind "Alt 9" { GoToTab 9; }                // 跳转到标签页 9
         
         // === 模式切换 ===
         // 使用 Ctrl + 字母键切换到特定模式
@@ -94,11 +77,28 @@ keybinds clear-defaults=true {
         bind "Ctrl m" { SwitchToMode "Move"; }     // 切换到移动模式
         bind "Ctrl l" { SwitchToMode "Locked"; }   // 切换到锁定模式
         
-        // === 快速功能 ===
         bind "Ctrl f" { ToggleFocusFullscreen; }   // 切换当前窗格全屏显示
         bind "Ctrl z" { TogglePaneFrames; }        // 切换窗格边框显示
         bind "Alt x" { CloseFocus; }               // 关闭当前焦点窗格
         bind "Ctrl c" { Copy; }                    // 复制模式（如果有选择的文本）
+        
+        bind "Alt [" { PreviousSwapLayout; }       // 上一个布局
+        bind "Alt ]" { NextSwapLayout; }           // 下一个布局
+        bind "Alt ," { GoToPreviousTab; }          // 上一个标签页
+        bind "Alt ." { GoToNextTab; }              // 下一个标签页
+        bind "Alt w" { CloseTab; }                 // 关闭当前标签页
+        bind "Alt c" { NewPane; }                  // 创建新窗格（自动方向）
+        
+        // === 会话和窗口操作 ===
+        bind "Ctrl w" { SwitchToMode "Session"; }  // 快速进入会话管理模式
+        bind "Ctrl e" { EditScrollback; }          // 用编辑器打开当前窗格历史
+        bind "Ctrl y" { ToggleActiveSyncTab; }     // 切换同步输入到所有窗格
+        
+        // === 剪贴板和复制 ===
+        bind "Ctrl Shift c" { Copy; }              // 强制复制（如果选择了文本）
+        
+        // === 高级功能 ===  
+        bind "Alt Tab" { SwitchFocus; }            // 在窗格间循环切换
     }
     
     // 窗格管理模式 (Pane Mode) - 专注于窗格操作
@@ -109,9 +109,19 @@ keybinds clear-defaults=true {
         bind "k" { MoveFocus "Up"; }               // 移动到上方窗格
         bind "l" { MoveFocus "Right"; }            // 移动到右侧窗格
         bind "n" { NewPane; }                      // 创建新窗格（自动选择方向）
+        bind "d" { NewPane "Down"; }               // 创建下方窗格
+        bind "c" { NewPane "Right"; }              // 创建右侧窗格
         bind "x" { CloseFocus; }                   // 关闭当前窗格
-        bind "f" { ToggleFocusFullscreen; }        // 切换全屏显示
+        bind "m" { ToggleFocusFullscreen; }        // 切换全屏显示
         bind "z" { TogglePaneFrames; }             // 切换边框显示
+        bind "f" { ToggleFloatingPanes; }          // 切换浮动窗格
+        bind "e" { TogglePaneEmbedOrFloating; }    // 切换窗格嵌入或浮动
+        bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; } // 重命名窗格
+        bind "Left" { MoveFocus "Left"; }          // 箭头键 - 向左移动焦点
+        bind "Right" { MoveFocus "Right"; }        // 箭头键 - 向右移动焦点
+        bind "Up" { MoveFocus "Up"; }              // 箭头键 - 向上移动焦点
+        bind "Down" { MoveFocus "Down"; }          // 箭头键 - 向下移动焦点
+        bind "p" { SwitchFocus; }                  // 在窗格间循环切换焦点
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
@@ -123,11 +133,19 @@ keybinds clear-defaults=true {
         bind "n" { NewTab; }                       // 创建新标签页
         bind "x" { CloseTab; }                     // 关闭当前标签页
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; } // 重命名标签页
+        bind "s" { ToggleActiveSyncTab; }          // 切换同步输入到所有窗格
+        bind "[" { PreviousSwapLayout; }           // 上一个布局
+        bind "]" { NextSwapLayout; }               // 下一个布局
         bind "1" { GoToTab 1; SwitchToMode "Normal"; }  // 跳转到标签页 1 并返回普通模式
         bind "2" { GoToTab 2; SwitchToMode "Normal"; }  // 跳转到标签页 2 并返回普通模式
         bind "3" { GoToTab 3; SwitchToMode "Normal"; }  // 跳转到标签页 3 并返回普通模式
         bind "4" { GoToTab 4; SwitchToMode "Normal"; }  // 跳转到标签页 4 并返回普通模式
         bind "5" { GoToTab 5; SwitchToMode "Normal"; }  // 跳转到标签页 5 并返回普通模式
+        bind "6" { GoToTab 6; SwitchToMode "Normal"; }  // 跳转到标签页 6 并返回普通模式
+        bind "7" { GoToTab 7; SwitchToMode "Normal"; }  // 跳转到标签页 7 并返回普通模式
+        bind "8" { GoToTab 8; SwitchToMode "Normal"; }  // 跳转到标签页 8 并返回普通模式
+        bind "9" { GoToTab 9; SwitchToMode "Normal"; }  // 跳转到标签页 9 并返回普通模式
+        bind "Tab" { ToggleTab; }                  // 切换到最近使用的标签页
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
@@ -138,8 +156,14 @@ keybinds clear-defaults=true {
         bind "j" { Resize "Down"; }                // 向下调整边界
         bind "k" { Resize "Up"; }                  // 向上调整边界
         bind "l" { Resize "Right"; }               // 向右调整边界
+        bind "Left" { Resize "Left"; }             // 箭头键向左调整
+        bind "Down" { Resize "Down"; }             // 箭头键向下调整
+        bind "Up" { Resize "Up"; }                 // 箭头键向上调整
+        bind "Right" { Resize "Right"; }           // 箭头键向右调整
         bind "=" { Resize "Increase"; }            // 增加当前窗格大小
+        bind "+" { Resize "Increase"; }            // 增加当前窗格大小
         bind "-" { Resize "Decrease"; }            // 减少当前窗格大小
+        bind "_" { Resize "Decrease"; }            // 减少当前窗格大小
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
@@ -153,9 +177,17 @@ keybinds clear-defaults=true {
         bind "u" { HalfPageScrollUp; }             // 向上滚动半页（类似 vim）
         bind "PageDown" { PageScrollDown; }        // 向下翻页
         bind "PageUp" { PageScrollUp; }            // 向上翻页
+        bind "Down" { ScrollDown; }                // 箭头键向下
+        bind "Up" { ScrollUp; }                    // 箭头键向上
         bind "Ctrl d" { HalfPageScrollDown; }      // Ctrl+d 向下滚动半页
         bind "Ctrl u" { HalfPageScrollUp; }        // Ctrl+u 向上滚动半页
-        bind "/" { SwitchToMode "EnterSearch"; }   // 搜索模式
+        bind "Ctrl f" { PageScrollDown; }          // Ctrl+f 向下翻页
+        bind "Ctrl b" { PageScrollUp; }            // Ctrl+b 向上翻页
+        bind "/" { SwitchToMode "EnterSearch"; SearchInput 0; } // 搜索模式
+        bind "G" { ScrollToBottom; }               // 跳转到底部
+        bind "g" { ScrollToTop; }                  // 跳转到顶部
+        bind "s" { SwitchToMode "Search"; }        // 进入搜索模式
+        bind "e" { EditScrollback; SwitchToMode "Normal"; } // 用编辑器打开滚动缓冲区
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
@@ -174,6 +206,10 @@ keybinds clear-defaults=true {
         bind "j" { MovePane "Down"; }              // 向下移动当前窗格
         bind "k" { MovePane "Up"; }                // 向上移动当前窗格
         bind "l" { MovePane "Right"; }             // 向右移动当前窗格
+        bind "Left" { MovePane "Left"; }           // 箭头键向左移动窗格
+        bind "Down" { MovePane "Down"; }           // 箭头键向下移动窗格  
+        bind "Up" { MovePane "Up"; }               // 箭头键向上移动窗格
+        bind "Right" { MovePane "Right"; }         // 箭头键向右移动窗格
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
     
@@ -190,11 +226,19 @@ keybinds clear-defaults=true {
         bind "Esc" { UndoRenameTab; SwitchToMode "Normal"; } // 取消重命名并返回普通模式
     }
     
+    // 重命名窗格模式 (Rename Pane Mode) - 输入新的窗格名称
+    // 从窗格模式按 'c' 进入此模式
+    renamepane {
+        bind "Enter" { SwitchToMode "Normal"; }    // 确认重命名并返回普通模式
+        bind "Esc" { UndoRenamePane; SwitchToMode "Normal"; } // 取消重命名并返回普通模式
+    }
+    
     // 搜索模式 (Search Mode) - 在滚动缓冲区中搜索
     // 从滚动模式按 '/' 进入此模式
     search {
         bind "n" { Search "down"; }                // 查找下一个匹配项
         bind "p" { Search "up"; }                  // 查找上一个匹配项
+        bind "N" { Search "up"; }                  // 查找上一个匹配项（大写 N）
         bind "Esc" { SwitchToMode "Scroll"; }      // 返回滚动模式
     }
     
@@ -205,24 +249,45 @@ keybinds clear-defaults=true {
     }
     
 }
+    
+
+// 插件配置
+plugins {
+    tab-bar { path "tab-bar"; }
+    status-bar { path "status-bar"; }
+    strider { path "strider"; }
+    compact-bar { path "compact-bar"; }
+}
 
 // 配置文件结尾
 // 
-// 常用快捷键总结:
-// ----------------
+// 完整快捷键总结:
+// ==================
 // Ctrl+q     - 退出 Zellij
 // Ctrl+d     - 分离会话
 // Alt+hjkl   - 窗格导航
-// Alt+v/s    - 垂直/水平分割
+// Alt+v/s    - 垂直/水平分割  
+// Alt+c      - 创建新窗格（自动方向）
 // Alt+n      - 新建标签页
-// Alt+1-5    - 切换标签页
-// Ctrl+f     - 切换全屏
+// Alt+1-9    - 切换标签页
+// Alt+,/.    - 上一个/下一个标签页
+// Alt+w      - 关闭当前标签页
 // Alt+x      - 关闭窗格
+// Alt+[/]    - 上一个/下一个布局
+// Alt+Tab    - 在窗格间循环切换
+// Ctrl+f     - 切换全屏
+// Ctrl+z     - 切换窗格边框
 // Ctrl+c     - 复制模式
-// Ctrl+a     - Tmux 兼容模式
+// Ctrl+Shift+c - 强制复制
+// Ctrl+e     - 用编辑器打开历史输出
+// Ctrl+y     - 切换同步输入
+// Ctrl+g     - 快速锁定
+// Ctrl+w     - 快速会话管理
+// F11        - 快速全屏
+// F12        - 快速边框切换
 //
-// 模式切换:
-// ---------
+// 模式切换快捷键:
+// ===============
 // Ctrl+p     - 窗格管理模式
 // Ctrl+t     - 标签页管理模式
 // Ctrl+r     - 调整大小模式
@@ -230,17 +295,83 @@ keybinds clear-defaults=true {
 // Ctrl+o     - 会话管理模式
 // Ctrl+m     - 移动模式
 // Ctrl+l     - 锁定模式
-// Ctrl+a     - Tmux 兼容模式
 // Esc        - 返回普通模式
 //
-// 滚动模式功能:
-// -----------
+// 滚动模式功能 (Ctrl+s):
+// ====================
 // j/k        - 上下滚动
 // d/u        - 半页滚动
+// g/G        - 跳转到顶部/底部
+// Ctrl+f/b   - 翻页滚动
+// Up/Down    - 箭头键滚动
 // /          - 搜索文本
+// s          - 进入搜索模式
+// e          - 用编辑器打开历史输出
 // PageUp/Down - 翻页
+// Esc        - 返回普通模式
 //
-// 搜索模式功能:
-// -----------
-// n/p        - 下一个/上一个匹配
+// 搜索模式功能 (从滚动模式按 /):
+// =============================
+// n/p/N      - 下一个/上一个匹配
 // Esc        - 返回滚动模式
+//
+// 窗格管理模式功能 (Ctrl+p):
+// =========================
+// hjkl       - 移动焦点
+// 箭头键      - 移动焦点
+// n/d/c      - 新建窗格（自动/下方/右侧）
+// x          - 关闭窗格
+// m          - 切换全屏
+// z          - 切换边框
+// f          - 切换浮动窗格
+// e          - 切换嵌入/浮动
+// r          - 重命名窗格
+// p          - 循环切换窗格焦点
+// Esc        - 返回普通模式
+//
+// 标签页管理模式功能 (Ctrl+t):
+// ===========================
+// h/l        - 上一个/下一个标签页
+// n          - 新建标签页
+// x          - 关闭标签页
+// r          - 重命名标签页
+// s          - 切换同步输入
+// [/]        - 切换布局
+// 1-9        - 跳转到指定标签页
+// Tab        - 切换到最近标签页
+// Esc        - 返回普通模式
+//
+// 调整大小模式功能 (Ctrl+r):
+// =========================
+// hjkl       - Vi风格调整
+// 箭头键      - 调整窗格边界
+// +/=        - 增加窗格大小
+// -/_        - 减少窗格大小
+// Esc        - 返回普通模式
+//
+// 移动模式功能 (Ctrl+m):
+// =====================
+// hjkl       - Vi风格移动窗格
+// 箭头键      - 移动窗格位置
+// Esc        - 返回普通模式
+//
+// 会话管理模式功能 (Ctrl+o):
+// =========================
+// d          - 分离会话
+// Esc        - 返回普通模式
+//
+// 锁定模式功能 (Ctrl+l):
+// =====================
+// Ctrl+l     - 解锁回到普通模式
+//
+// 重命名模式功能:
+// ==============
+// Enter      - 确认重命名
+// Esc        - 取消重命名
+//
+// 插件说明:
+// =========
+// tab-bar    - 标签页栏插件
+// status-bar - 状态栏插件  
+// strider    - 文件浏览器插件
+// compact-bar- 紧凑状态栏插件
