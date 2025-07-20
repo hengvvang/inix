@@ -12,8 +12,8 @@
       settings = {
         # === 基础外观配置 ===
         # 主题设置 - 禁用内联颜色定义，使用主题文件
-        theme = "rose-pine";  # 取消注释以使用主题，需要主题文件
-        
+        theme = "tokyo-night";  # 取消注释以使用主题，需要主题文件
+
         # 确认退出提示 - 防止意外关闭
         confirm-before-quit = false;
         
@@ -181,7 +181,7 @@
           mode = "Windowed";
           
           # 窗口装饰: "Enabled", "Disabled", "Transparent", "Buttonless"
-          decorations = "Enabled";
+          decorations = "Disabled";  # 禁用窗口装饰以获得更简洁的外观
           
           # 窗口透明度 (0.0-1.0)
           opacity = 1.0;
@@ -208,7 +208,7 @@
           use-split = true;
           
           # 未聚焦分屏的透明度
-          unfocused-split-opacity = 0.8;
+          unfocused-split-opacity = 0.7;
           
           # 单标签时隐藏导航栏
           hide-if-single = true;
