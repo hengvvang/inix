@@ -46,7 +46,6 @@
           # 常规字体
           regular = {
             family = "Noto Sans Mono";
-            # family = "Monaspace Argon Frozen";
             style = "Normal";
             width = "Normal";
             weight = 300;

@@ -85,7 +85,7 @@
           # 🎨 启用自定义颜色配置
           colors = {
             enable = true;                    # ✅ 启用自定义颜色
-            scheme = "catppuccin-latte";            # 🤍 使用简约白色暖色调主题
+            scheme = "dark-elegant";
           };
           
           wallpapers = {
