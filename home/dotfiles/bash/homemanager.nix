@@ -26,6 +26,7 @@
       # 简单的命令别名 (象征性配置)
       shellAliases = {
         zj = "zellij";
+        zed = "zeditor";
       };
       
       # Bash 选项配置

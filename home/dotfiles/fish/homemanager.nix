@@ -25,6 +25,7 @@
       shellAbbrs = {
         # 终端工具缩写
         zj = "zellij";
+        zed = "zeditor";
         
         # 导航缩写
         ".." = "cd ..";

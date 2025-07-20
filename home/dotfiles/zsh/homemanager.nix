@@ -30,6 +30,7 @@
       
       shellAliases = {
         zj = "zellij";
+        zed = "zeditor";
       };
       
       # Shell选项配置
