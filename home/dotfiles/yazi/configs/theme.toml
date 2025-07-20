@@ -1,91 +1,346 @@
-# Yazi 主题配置 - 外部文件方式
+# ================================
+# Yazi 现代化主题配置 (theme.toml)
+# 基于现代设计原则和视觉舒适性优化
+# ================================
 
-[manager]
-cwd = { fg = "cyan" }
-
-# Hovered
-hovered = { fg = "black", bg = "lightblue" }
-preview_hovered = { underline = true }
-
-# Find
-find_keyword = { fg = "yellow", italic = true }
-find_position = { fg = "magenta", bg = "reset", italic = true }
-
-# Marker
-marker_selected = { fg = "lightgreen", bg = "lightgreen" }
-marker_copied = { fg = "lightyellow", bg = "lightyellow" }
-marker_cut = { fg = "lightred", bg = "lightred" }
-
-# Tab
-tab_active = { fg = "black", bg = "lightblue" }
-tab_inactive = { fg = "white", bg = "darkgray" }
-tab_width = 1
-
-# Border
-border_symbol = "│"
-border_style = { fg = "gray" }
-
+# ===== 状态栏配置 - 简洁现代设计 =====
 [status]
 separator_open = ""
 separator_close = ""
-separator_style = { fg = "darkgray", bg = "darkgray" }
+separator_style = { fg = "darkgray" }
 
-# Mode
-mode_normal = { fg = "black", bg = "lightblue", bold = true }
-mode_select = { fg = "black", bg = "lightgreen", bold = true }
-mode_unset = { fg = "black", bg = "lightmagenta", bold = true }
+# 状态栏各部分样式
+[status.left]
+separator_open = ""
+separator_close = ""
 
-# Progress
-progress_label = { bold = true }
-progress_normal = { fg = "blue", bg = "black" }
-progress_error = { fg = "red", bg = "black" }
+[status.center]
+separator_open = ""
+separator_close = ""
 
-# Permissions
-permissions_t = { fg = "lightgreen" }
-permissions_r = { fg = "lightyellow" }
-permissions_w = { fg = "lightred" }
-permissions_x = { fg = "lightcyan" }
-permissions_s = { fg = "darkgray" }
+[status.right]
+separator_open = ""
+separator_close = ""
 
-[select]
-border = { fg = "blue" }
-active = { fg = "magenta" }
-inactive = {}
+# ===== 管理器主题 - 注重可读性和视觉层次 =====
+[manager]
+# 光标和选择样式
+cwd = { fg = "cyan", bold = true }
+hovered = { bg = "darkgray", bold = true }
+preview_hovered = { bg = "gray" }
 
+# 文件查找匹配高亮
+find_keyword = { fg = "yellow", bold = true, italic = true, underline = true }
+find_position = { fg = "magenta", bg = "darkgray", bold = true }
+
+# 标记文件样式
+marker_copied = { fg = "lightgreen", bg = "darkgreen" }
+marker_cut = { fg = "lightred", bg = "darkred" }
+marker_selected = { fg = "lightyellow", bg = "darkyellow" }
+
+# 标签页样式
+tab_active = { fg = "lightblue", bold = true }
+tab_inactive = { fg = "darkgray" }
+tab_width = 1
+
+# 边框样式 - 现代简约风格
+border_symbol = "│"
+border_style = { fg = "gray" }
+
+# ===== 文件和目录样式 - 基于文件类型的视觉区分 =====
+[filetype]
+
+# 目录样式
+rules = [
+    # 目录 - 蓝色系，突出显示
+    { mime = "inode/directory", fg = "lightblue", bold = true },
+
+    # 可执行文件 - 绿色，表示可运行
+    { name = "*", is = "exec", fg = "lightgreen", bold = true },
+
+    # ===== 开发文件 =====
+    # 配置文件 - 黄色系
+    { name = "*.toml", fg = "yellow" },
+    { name = "*.yaml", fg = "yellow" },
+    { name = "*.yml", fg = "yellow" },
+    { name = "*.json", fg = "yellow" },
+    { name = "*.xml", fg = "yellow" },
+    { name = "*.ini", fg = "yellow" },
+    { name = "*.conf", fg = "yellow" },
+    { name = "*.config", fg = "yellow" },
+
+    # 代码文件 - 青色系
+    { name = "*.rs", fg = "cyan" },
+    { name = "*.py", fg = "cyan" },
+    { name = "*.js", fg = "cyan" },
+    { name = "*.ts", fg = "cyan" },
+    { name = "*.jsx", fg = "cyan" },
+    { name = "*.tsx", fg = "cyan" },
+    { name = "*.go", fg = "cyan" },
+    { name = "*.c", fg = "cyan" },
+    { name = "*.cpp", fg = "cyan" },
+    { name = "*.h", fg = "cyan" },
+    { name = "*.hpp", fg = "cyan" },
+    { name = "*.java", fg = "cyan" },
+    { name = "*.kt", fg = "cyan" },
+    { name = "*.swift", fg = "cyan" },
+    { name = "*.php", fg = "cyan" },
+    { name = "*.rb", fg = "cyan" },
+    { name = "*.lua", fg = "cyan" },
+    { name = "*.vim", fg = "cyan" },
+    { name = "*.fish", fg = "cyan" },
+    { name = "*.zsh", fg = "cyan" },
+    { name = "*.bash", fg = "cyan" },
+    { name = "*.sh", fg = "cyan" },
+
+    # Web 前端文件 - 橙色系
+    { name = "*.html", fg = "lightyellow" },
+    { name = "*.htm", fg = "lightyellow" },
+    { name = "*.css", fg = "lightyellow" },
+    { name = "*.scss", fg = "lightyellow" },
+    { name = "*.sass", fg = "lightyellow" },
+    { name = "*.less", fg = "lightyellow" },
+    { name = "*.vue", fg = "lightyellow" },
+    { name = "*.svelte", fg = "lightyellow" },
+
+    # Markdown 和文档 - 白色系
+    { name = "*.md", fg = "white", bold = true },
+    { name = "*.markdown", fg = "white", bold = true },
+    { name = "*.rst", fg = "white" },
+    { name = "*.txt", fg = "white" },
+    { name = "*.rtf", fg = "white" },
+    { name = "README*", fg = "white", bold = true },
+    { name = "LICENSE*", fg = "white", bold = true },
+    { name = "CHANGELOG*", fg = "white", bold = true },
+
+    # ===== 媒体文件 =====
+    # 图片 - 紫色系
+    { name = "*.jpg", fg = "lightmagenta" },
+    { name = "*.jpeg", fg = "lightmagenta" },
+    { name = "*.png", fg = "lightmagenta" },
+    { name = "*.gif", fg = "lightmagenta" },
+    { name = "*.bmp", fg = "lightmagenta" },
+    { name = "*.tiff", fg = "lightmagenta" },
+    { name = "*.tga", fg = "lightmagenta" },
+    { name = "*.svg", fg = "lightmagenta" },
+    { name = "*.ico", fg = "lightmagenta" },
+    { name = "*.webp", fg = "lightmagenta" },
+    { name = "*.avif", fg = "lightmagenta" },
+
+    # 视频 - 红色系
+    { name = "*.mp4", fg = "lightred" },
+    { name = "*.avi", fg = "lightred" },
+    { name = "*.mkv", fg = "lightred" },
+    { name = "*.mov", fg = "lightred" },
+    { name = "*.wmv", fg = "lightred" },
+    { name = "*.flv", fg = "lightred" },
+    { name = "*.webm", fg = "lightred" },
+    { name = "*.m4v", fg = "lightred" },
+
+    # 音频 - 品红色系
+    { name = "*.mp3", fg = "magenta" },
+    { name = "*.flac", fg = "magenta" },
+    { name = "*.wav", fg = "magenta" },
+    { name = "*.aac", fg = "magenta" },
+    { name = "*.ogg", fg = "magenta" },
+    { name = "*.m4a", fg = "magenta" },
+    { name = "*.opus", fg = "magenta" },
+
+    # ===== 压缩文件 - 灰色系 =====
+    { name = "*.zip", fg = "darkgray", bold = true },
+    { name = "*.tar", fg = "darkgray", bold = true },
+    { name = "*.gz", fg = "darkgray", bold = true },
+    { name = "*.bz2", fg = "darkgray", bold = true },
+    { name = "*.xz", fg = "darkgray", bold = true },
+    { name = "*.7z", fg = "darkgray", bold = true },
+    { name = "*.rar", fg = "darkgray", bold = true },
+
+    # ===== 其他文件类型 =====
+    # 数据库文件
+    { name = "*.db", fg = "blue" },
+    { name = "*.sqlite", fg = "blue" },
+    { name = "*.sqlite3", fg = "blue" },
+
+    # 字体文件
+    { name = "*.ttf", fg = "yellow" },
+    { name = "*.otf", fg = "yellow" },
+    { name = "*.woff", fg = "yellow" },
+    { name = "*.woff2", fg = "yellow" },
+
+    # PDF 和办公文档
+    { name = "*.pdf", fg = "red" },
+    { name = "*.doc", fg = "blue" },
+    { name = "*.docx", fg = "blue" },
+    { name = "*.xls", fg = "green" },
+    { name = "*.xlsx", fg = "green" },
+    { name = "*.ppt", fg = "red" },
+    { name = "*.pptx", fg = "red" },
+
+    # 临时和备份文件 - 暗色处理
+    { name = "*.tmp", fg = "darkgray" },
+    { name = "*.temp", fg = "darkgray" },
+    { name = "*.bak", fg = "darkgray" },
+    { name = "*.backup", fg = "darkgray" },
+    { name = "*~", fg = "darkgray" },
+    { name = "*.swp", fg = "darkgray" },
+    { name = "*.swo", fg = "darkgray" },
+    { name = ".DS_Store", fg = "darkgray" },
+    { name = "Thumbs.db", fg = "darkgray" },
+
+    # 隐藏文件 - 稍微暗一点
+    { name = ".*", fg = "darkgray" },
+]
+
+# ===== 输入框主题 - 现代输入体验 =====
 [input]
-border = { fg = "blue" }
-title = {}
-value = {}
-selected = { reversed = true }
+border = { fg = "lightblue" }
+title = { fg = "lightblue", bold = true }
+value = { fg = "white" }
+selected = { bg = "lightblue", fg = "black" }
 
+# ===== 选择框主题 =====
+[select]
+border = { fg = "lightgreen" }
+active = { fg = "lightgreen", bold = true }
+inactive = { fg = "gray" }
+
+# ===== 任务管理器主题 =====
+[tasks]
+border = { fg = "lightcyan" }
+title = { fg = "lightcyan", bold = true }
+hovered = { fg = "lightcyan", underline = true }
+
+# ===== 弹窗和确认对话框主题 =====
+[which]
+mask = { bg = "black" }
+rest = { fg = "darkgray" }
+cand = { fg = "lightcyan" }
+desc = { fg = "gray" }
+separator = " → "
+separator_style = { fg = "darkgray" }
+
+[confirm]
+border = { fg = "yellow" }
+title = { fg = "yellow", bold = true }
+content = { fg = "white" }
+
+# ===== 帮助页面主题 =====
+[help]
+border = { fg = "lightmagenta" }
+title = { fg = "lightmagenta", bold = true }
+on = { fg = "lightgreen" }
+run = { fg = "lightblue" }
+desc = { fg = "white" }
+hovered = { underline = true }
+
+# ===== 完成提示主题 =====
 [completion]
-border = { fg = "blue" }
-active = { bg = "darkgray" }
-inactive = {}
+border = { fg = "lightcyan" }
+active = { bg = "lightcyan", fg = "black" }
+inactive = { fg = "gray" }
 
-# Icons
+# ===== 图标配置 - 现代化图标集 =====
 [icon]
-"Desktop/" = ""
-"Documents/" = ""
-"Downloads/" = ""
-"Pictures/" = ""
-"Music/" = ""
-"Movies/" = ""
-"Videos/" = ""
-"Public/" = ""
-"Library/" = ""
-"Development/" = ""
-".config/" = ""
-".git/" = ""
-".github/" = ""
-".gitignore" = ""
-".gitmodules" = ""
-".gitattributes" = ""
-"node_modules/" = ""
-"favicon.ico" = ""
-"package.json" = ""
-"webpack.config.js" = ""
-".ds_store" = ""
-".localized" = ""
-"dockerfile" = ""
-"docker-compose.yml" = ""
+rules = [
+    # 目录图标
+    { name = "*/", text = "📁" },
+    { name = ".config/", text = "⚙️" },
+    { name = ".git/", text = "🌿" },
+    { name = "node_modules/", text = "📦" },
+    { name = "target/", text = "🎯" },
+    { name = "build/", text = "🏗️" },
+    { name = "dist/", text = "📤" },
+    { name = "src/", text = "📂" },
+    { name = "docs/", text = "📚" },
+    { name = "test*/", text = "🧪" },
+
+    # 开发文件图标
+    { name = "*.rs", text = "🦀" },
+    { name = "*.py", text = "🐍" },
+    { name = "*.js", text = "🟨" },
+    { name = "*.ts", text = "🔷" },
+    { name = "*.jsx", text = "⚛️" },
+    { name = "*.tsx", text = "⚛️" },
+    { name = "*.go", text = "🐹" },
+    { name = "*.java", text = "☕" },
+    { name = "*.c", text = "🔵" },
+    { name = "*.cpp", text = "🔵" },
+    { name = "*.php", text = "🐘" },
+    { name = "*.rb", text = "💎" },
+    { name = "*.swift", text = "🐦" },
+    { name = "*.kt", text = "🟣" },
+    { name = "*.lua", text = "🌙" },
+
+    # Web 文件
+    { name = "*.html", text = "🌐" },
+    { name = "*.css", text = "🎨" },
+    { name = "*.scss", text = "🎨" },
+    { name = "*.vue", text = "💚" },
+    { name = "*.svelte", text = "🧡" },
+
+    # 配置文件
+    { name = "*.json", text = "📋" },
+    { name = "*.toml", text = "⚙️" },
+    { name = "*.yaml", text = "📄" },
+    { name = "*.yml", text = "📄" },
+    { name = "*.xml", text = "📄" },
+    { name = "*.ini", text = "⚙️" },
+    { name = "package.json", text = "📦" },
+    { name = "Cargo.toml", text = "📦" },
+    { name = "Dockerfile", text = "🐳" },
+
+    # 文档文件
+    { name = "*.md", text = "📝" },
+    { name = "*.txt", text = "📄" },
+    { name = "README*", text = "📖" },
+    { name = "LICENSE*", text = "⚖️" },
+    { name = "CHANGELOG*", text = "📋" },
+
+    # 媒体文件
+    { name = "*.png", text = "🖼️" },
+    { name = "*.jpg", text = "🖼️" },
+    { name = "*.gif", text = "🎞️" },
+    { name = "*.svg", text = "🎨" },
+    { name = "*.mp4", text = "🎬" },
+    { name = "*.mp3", text = "🎵" },
+    { name = "*.wav", text = "🎶" },
+    { name = "*.flac", text = "🎶" },
+
+    # 压缩文件
+    { name = "*.zip", text = "🗜️" },
+    { name = "*.tar", text = "📦" },
+    { name = "*.gz", text = "🗜️" },
+
+    # 数据文件
+    { name = "*.db", text = "🗄️" },
+    { name = "*.sqlite", text = "🗄️" },
+    { name = "*.pdf", text = "📑" },
+
+    # 特殊文件
+    { name = ".*", text = "👁️" },            # 隐藏文件
+    { name = "*", is = "exec", text = "⚡" }, # 可执行文件
+]
+
+# ===== 符号配置 - 现代化符号集 =====
+[symbol]
+# 文件类型符号
+file = "📄"
+folder = "📁"
+folder_open = "📂"
+
+# 链接符号
+link = "🔗"
+broken_link = "💔"
+
+# Git 状态符号
+git_modified = "●"
+git_added = "+"
+git_deleted = "✗"
+git_renamed = "→"
+git_copied = "⇒"
+git_untracked = "?"
+
+# 其他符号
+selected = "✓"
+cut = "✂️"
+copied = "📋"

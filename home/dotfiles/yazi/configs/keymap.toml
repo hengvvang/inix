@@ -1,56 +1,214 @@
-# Yazi 键位绑定配置 - 外部文件方式
+# ================================
+# Yazi 人体工程学键位映射 (keymap.toml)
+# 基于现代键盘布局和手指自然位置优化
+# ================================
 
-[[manager.prepend_keymap]]
-on = ["<C-s>"]
-run = "search fd"
-desc = "Search files by name using fd"
+[manager]
 
-[[manager.prepend_keymap]]
-on = ["<C-f>"]
-run = "search rg"
-desc = "Search files by content using ripgrep"
+# ===== 基础导航 - 使用 Vim 风格，减少手指移动 =====
+keymap = [
+    # 方向移动 - Vim 标准键位
+    { on = "k", run = "arrow -1", desc = "上移" },
+    { on = "j", run = "arrow 1", desc = "下移" },
+    { on = "h", run = "leave", desc = "返回父目录" },
+    { on = "l", run = "enter", desc = "进入目录/打开文件" },
 
-[[manager.prepend_keymap]]
-on = ["<C-n>"]
-run = "create"
-desc = "Create a file or directory"
+    # 快速跳转 - 大幅提升导航效率
+    { on = "K", run = "arrow -5", desc = "上移5行" },
+    { on = "J", run = "arrow 5", desc = "下移5行" },
+    { on = "g g", run = "arrow -99999999", desc = "跳转到顶部" },
+    { on = "G", run = "arrow 99999999", desc = "跳转到底部" },
 
-[[manager.prepend_keymap]]
-on = ["Y"]
-run = ["yank --cut"]
-desc = "Cut the selected files"
+    # 分页导航 - 减少重复操作
+    { on = "<C-u>", run = "arrow -50%", desc = "上翻半页" },
+    { on = "<C-d>", run = "arrow 50%", desc = "下翻半页" },
+    { on = "<C-b>", run = "arrow -100%", desc = "上翻一页" },
+    { on = "<C-f>", run = "arrow 100%", desc = "下翻一页" },
 
-[[manager.prepend_keymap]]
-on = ["X"]
-run = ["unyank"]
-desc = "Cancel the yank status of files"
+    # ===== 选择操作 - 直观的选择机制 =====
+    { on = "<Space>", run = "select --state=none", desc = "切换选择状态" },
+    { on = "v", run = "visual_mode", desc = "进入可视选择模式" },
+    { on = "V", run = "visual_mode --unset", desc = "取消可视选择" },
+    { on = "<C-a>", run = "select_all --state=true", desc = "全选" },
+    { on = "<C-r>", run = "select_all --state=none", desc = "反选" },
 
-[[manager.prepend_keymap]]
-on = ["T"]
-run = "plugin --sync smart-enter"
-desc = "Enter the child directory, or open the file"
+    # ===== 文件操作 - 常用操作快捷键 =====
+    # 复制粘贴 - 与系统快捷键保持一致
+    { on = "y", run = "yank", desc = "复制" },
+    { on = "x", run = "yank --cut", desc = "剪切" },
+    { on = "p", run = "paste", desc = "粘贴" },
+    { on = "P", run = "paste --force", desc = "强制粘贴覆盖" },
 
-[[manager.prepend_keymap]]
-on = ["<C-t>"]
-run = "plugin --sync hide-preview"
-desc = "Hide or show the preview pane"
+    # 删除操作 - 安全的删除机制
+    { on = "d", run = "remove", desc = "删除到回收站" },
+    { on = "D", run = "remove --permanently", desc = "永久删除" },
 
-[[manager.prepend_keymap]]
-on = ["m"]
-run = "plugin bookmarks --args=save"
-desc = "Save current position as a bookmark"
+    # 创建操作 - 快速创建文件和文件夹
+    { on = "a", run = "create", desc = "新建文件/文件夹" },
+    { on = "A", run = "create --dir", desc = "新建文件夹" },
 
-[[manager.prepend_keymap]]
-on = ["'"]
-run = "plugin bookmarks --args=jump"
-desc = "Jump to a bookmark"
+    # 重命名 - 单键操作提升效率
+    { on = "r", run = "rename --cursor=before_ext", desc = "重命名文件" },
 
-[[manager.prepend_keymap]]
-on = ["b", "d"]
-run = "plugin bookmarks --args=delete"
-desc = "Delete a bookmark"
+    # ===== 搜索和跳转 - 快速定位功能 =====
+    { on = "/", run = "find --smart", desc = "智能搜索" },
+    { on = "?", run = "find --previous", desc = "反向搜索" },
+    { on = "n", run = "find_arrow", desc = "下一个搜索结果" },
+    { on = "N", run = "find_arrow --previous", desc = "上一个搜索结果" },
 
-[[manager.prepend_keymap]]
-on = ["b", "D"]
-run = "plugin bookmarks --args=delete_all"
-desc = "Delete all bookmarks"
+    # 跳转到特定目录
+    { on = "g h", run = "cd ~", desc = "跳转到主目录" },
+    { on = "g c", run = "cd ~/.config", desc = "跳转到配置目录" },
+    { on = "g d", run = "cd ~/Downloads", desc = "跳转到下载目录" },
+    { on = "g D", run = "cd ~/Documents", desc = "跳转到文档目录" },
+    { on = "g p", run = "cd ~/Pictures", desc = "跳转到图片目录" },
+    { on = "g v", run = "cd ~/Videos", desc = "跳转到视频目录" },
+    { on = "g m", run = "cd ~/Music", desc = "跳转到音乐目录" },
+
+    # ===== 视图和显示控制 =====
+    # 隐藏文件切换 - 单键切换提升效率
+    { on = ".", run = "hidden toggle", desc = "切换显示隐藏文件" },
+
+    # 排序方式 - 快速切换排序
+    { on = "s a", run = "sort alphabetical --dir-first", desc = "按名称排序" },
+    { on = "s A", run = "sort alphabetical --reverse --dir-first", desc = "按名称逆序" },
+    { on = "s c", run = "sort created --dir-first", desc = "按创建时间排序" },
+    { on = "s C", run = "sort created --reverse --dir-first", desc = "按创建时间逆序" },
+    { on = "s m", run = "sort modified --dir-first", desc = "按修改时间排序" },
+    { on = "s M", run = "sort modified --reverse --dir-first", desc = "按修改时间逆序" },
+    { on = "s s", run = "sort size --dir-first", desc = "按大小排序" },
+    { on = "s S", run = "sort size --reverse --dir-first", desc = "按大小逆序" },
+    { on = "s e", run = "sort extension --dir-first", desc = "按扩展名排序" },
+
+    # 显示模式切换
+    { on = "m s", run = "linemode size", desc = "显示文件大小" },
+    { on = "m p", run = "linemode permissions", desc = "显示权限" },
+    { on = "m m", run = "linemode mtime", desc = "显示修改时间" },
+    { on = "m o", run = "linemode owner", desc = "显示所有者" },
+
+    # ===== 标签和窗口管理 =====
+    # 标签操作 - 类似浏览器的标签管理
+    { on = "t", run = "tab_create --current", desc = "新建标签页" },
+    { on = "T", run = "tab_create", desc = "新建标签页(从根目录)" },
+    { on = "1", run = "tab_switch 0", desc = "切换到标签1" },
+    { on = "2", run = "tab_switch 1", desc = "切换到标签2" },
+    { on = "3", run = "tab_switch 2", desc = "切换到标签3" },
+    { on = "4", run = "tab_switch 3", desc = "切换到标签4" },
+    { on = "5", run = "tab_switch 4", desc = "切换到标签5" },
+    { on = "[", run = "tab_switch -1 --relative", desc = "上一个标签" },
+    { on = "]", run = "tab_switch 1 --relative", desc = "下一个标签" },
+    { on = "{", run = "tab_swap -1", desc = "左移标签" },
+    { on = "}", run = "tab_swap 1", desc = "右移标签" },
+    { on = "w", run = "tab_close", desc = "关闭当前标签" },
+
+    # ===== 系统集成操作 =====
+    # 终端和外部程序
+    { on = "!", run = "shell --block --confirm", desc = "打开终端命令" },
+    { on = "<C-s>", run = "shell 'sync' --confirm", desc = "同步文件系统" },
+
+    # 复制路径到剪贴板
+    { on = "c p", run = "copy path", desc = "复制当前路径" },
+    { on = "c d", run = "copy dirname", desc = "复制目录路径" },
+    { on = "c f", run = "copy filename", desc = "复制文件名" },
+    { on = "c n", run = "copy name_without_ext", desc = "复制文件名(无扩展名)" },
+
+    # ===== 帮助和退出 =====
+    { on = "~", run = "help", desc = "显示帮助" },
+    { on = "q", run = "quit", desc = "退出" },
+    { on = "Q", run = "quit --no-cwd-file", desc = "退出(不保存当前目录)" },
+    { on = "<C-z>", run = "suspend", desc = "挂起到后台" },
+
+    # ===== 特殊功能 =====
+    # 刷新当前目录
+    { on = "<F5>", run = "refresh", desc = "刷新" },
+    { on = "<C-l>", run = "refresh", desc = "刷新" },
+
+    # Undo/Redo 操作
+    { on = "u", run = "undo", desc = "撤销操作" },
+    { on = "<C-r>", run = "redo", desc = "重做操作" },
+]
+
+# ===== 任务管理器键位 =====
+[tasks]
+keymap = [
+    { on = "k", run = "arrow -1", desc = "上移" },
+    { on = "j", run = "arrow 1", desc = "下移" },
+    { on = "<Enter>", run = "inspect", desc = "查看任务详情" },
+    { on = "x", run = "cancel", desc = "取消任务" },
+    { on = "q", run = "close", desc = "关闭任务管理器" },
+]
+
+# ===== 选择模式键位 =====
+[select]
+keymap = [
+    { on = "k", run = "arrow -1", desc = "上移" },
+    { on = "j", run = "arrow 1", desc = "下移" },
+    { on = "K", run = "arrow -5", desc = "上移5行" },
+    { on = "J", run = "arrow 5", desc = "下移5行" },
+    { on = "<Enter>", run = "close --submit", desc = "确认选择" },
+    { on = "<Esc>", run = "close", desc = "取消选择" },
+    { on = "q", run = "close", desc = "取消选择" },
+]
+
+# ===== 输入模式键位 =====
+[input]
+keymap = [
+    # 基本编辑
+    { on = "<C-a>", run = "move -999", desc = "光标移到行首" },
+    { on = "<C-e>", run = "move 999", desc = "光标移到行尾" },
+    { on = "<C-h>", run = "backspace", desc = "退格" },
+    { on = "<C-d>", run = "delete", desc = "删除" },
+    { on = "<C-u>", run = "kill bol", desc = "删除到行首" },
+    { on = "<C-k>", run = "kill eol", desc = "删除到行尾" },
+    { on = "<C-w>", run = "kill backward", desc = "删除前一个词" },
+
+    # 历史记录导航
+    { on = "<C-p>", run = "history previous", desc = "上一个历史记录" },
+    { on = "<C-n>", run = "history next", desc = "下一个历史记录" },
+
+    # 确认和取消
+    { on = "<Enter>", run = "close --submit", desc = "确认输入" },
+    { on = "<Esc>", run = "close", desc = "取消输入" },
+    { on = "<C-c>", run = "close", desc = "取消输入" },
+
+    # 粘贴
+    { on = "<C-v>", run = "paste", desc = "粘贴" },
+]
+
+# ===== 确认对话框键位 =====
+[confirm]
+keymap = [
+    { on = "k", run = "arrow -1", desc = "上移" },
+    { on = "j", run = "arrow 1", desc = "下移" },
+    { on = "<Enter>", run = "close --submit", desc = "确认" },
+    { on = "<Esc>", run = "close", desc = "取消" },
+    { on = "q", run = "close", desc = "取消" },
+    { on = "n", run = "close", desc = "否" },
+    { on = "y", run = "close --submit", desc = "是" },
+]
+
+# ===== 完成模式键位 =====
+[completion]
+keymap = [
+    { on = "<C-n>", run = "arrow 1", desc = "下一个" },
+    { on = "<C-p>", run = "arrow -1", desc = "上一个" },
+    { on = "<Tab>", run = "arrow 1", desc = "下一个" },
+    { on = "<S-Tab>", run = "arrow -1", desc = "上一个" },
+    { on = "<Enter>", run = "close --submit", desc = "确认补全" },
+    { on = "<Esc>", run = "close", desc = "取消补全" },
+]
+
+# ===== 帮助页面键位 =====
+[help]
+keymap = [
+    { on = "k", run = "arrow -1", desc = "上移" },
+    { on = "j", run = "arrow 1", desc = "下移" },
+    { on = "K", run = "arrow -5", desc = "上移5行" },
+    { on = "J", run = "arrow 5", desc = "下移5行" },
+    { on = "<C-u>", run = "arrow -50%", desc = "上翻半页" },
+    { on = "<C-d>", run = "arrow 50%", desc = "下翻半页" },
+    { on = "g g", run = "arrow -999999", desc = "跳到顶部" },
+    { on = "G", run = "arrow 999999", desc = "跳到底部" },
+    { on = "q", run = "close", desc = "关闭帮助" },
+    { on = "<Esc>", run = "close", desc = "关闭帮助" },
+]
