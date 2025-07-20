@@ -17,7 +17,7 @@
       # 主要配置 - 对应yazi.toml
       settings = {
         # 管理器配置
-        manager = {
+        mgr = {
           # 布局比例 [父目录, 当前目录, 预览] - 可调整面板宽度比例
           ratio = [ 1 3 4 ];
           
@@ -134,7 +134,7 @@
       # 快捷键配置 - 对应keymap.toml
       keymap = {
         # 管理器模式快捷键
-        manager.prepend_keymap = [
+        mgr.prepend_keymap = [
           # 一些常用的快捷键示例
           { run = "escape"; on = [ "<Esc>" ]; }         # ESC键退出当前模式
           { run = "quit"; on = [ "q" ]; }               # q键退出程序  
@@ -151,8 +151,15 @@
         ];
       };
 
-      # 主题配置 - 对应theme.toml，可以自定义颜色
+      # 主题配置 - 对应theme.toml
       theme = {
+        # Flavor配置 - 这是正确的设置主题的方式
+        flavor = {
+          # dark = "catppuccin-latte";  # 设置深色模式主题
+          # light = "catppuccin-latte";  # 如果需要，也可以设置浅色模式主题
+        };
+        
+        # 可以在这里覆盖 flavor 的某些颜色设置
         # 文件类型颜色配置
         filetype = {
           rules = [
@@ -171,6 +178,23 @@
       initLua = ''
         -- Yazi Lua初始化配置
         -- 可以在这里添加自定义的Lua脚本来扩展Yazi功能
+        
+        -- 主题配置说明：
+        -- 默认主题已设置为 "catppuccin-frappe"（在 theme.toml 的 [flavor] 部分）
+        -- 
+        -- 你也可以通过以下方式临时切换主题：
+        -- 1. 在 yazi 中按 T 键选择主题
+        -- 2. 设置环境变量: export YAZI_FLAVOR="catppuccin-frappe"
+        -- 3. 使用命令行参数: yazi --flavor=catppuccin-frappe
+        --
+        -- 要永久更改默认主题，请修改 homemanager.nix 中的 theme.flavor.dark 配置
+
+        -- 可用的主题：
+        -- - catppuccin-frappe (当前默认)
+        -- - catppuccin-mocha
+        -- - catppuccin-macchiato  
+        -- - catppuccin-latte
+        -- - dracula
         
         -- 示例：自定义状态栏
         -- function Status:name()
@@ -198,6 +222,43 @@
 
       # 主题包配置 - 预制主题
       flavors = {
+        # Catppuccin 主题系列 - 现代化暖色调主题
+        "catppuccin-mocha" = pkgs.fetchFromGitHub {
+          owner = "yazi-rs";
+          repo = "flavors";
+          rev = "main";  # 使用最新的 main 分支
+          sha256 = "sha256-RtunaCs1RUfzjefFLFu5qLRASbyk5RUILWTdavThRkc=";
+        } + "/catppuccin-mocha.yazi";
+        
+        "catppuccin-macchiato" = pkgs.fetchFromGitHub {
+          owner = "yazi-rs";
+          repo = "flavors";
+          rev = "main";
+          sha256 = "sha256-RtunaCs1RUfzjefFLFu5qLRASbyk5RUILWTdavThRkc=";
+        } + "/catppuccin-macchiato.yazi";
+        
+        "catppuccin-frappe" = pkgs.fetchFromGitHub {
+          owner = "yazi-rs";
+          repo = "flavors";
+          rev = "main";
+          sha256 = "sha256-RtunaCs1RUfzjefFLFu5qLRASbyk5RUILWTdavThRkc=";
+        } + "/catppuccin-frappe.yazi";
+        
+        "catppuccin-latte" = pkgs.fetchFromGitHub {
+          owner = "yazi-rs";
+          repo = "flavors";
+          rev = "main";
+          sha256 = "sha256-RtunaCs1RUfzjefFLFu5qLRASbyk5RUILWTdavThRkc=";
+        } + "/catppuccin-latte.yazi";
+        
+        # Dracula 主题 - 经典深色主题
+        "dracula" = pkgs.fetchFromGitHub {
+          owner = "yazi-rs";
+          repo = "flavors";
+          rev = "main";
+          sha256 = "sha256-RtunaCs1RUfzjefFLFu5qLRASbyk5RUILWTdavThRkc=";
+        } + "/dracula.yazi";
+        
         # 可以添加从GitHub等安装的主题包
         # 示例主题配置：
         # "theme-name" = pkgs.fetchFromGitHub {
