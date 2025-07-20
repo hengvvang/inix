@@ -45,37 +45,39 @@
           
           # 常规字体
           regular = {
-            family = "Noto Sans Mono";
+            family = "LXGW WenKai Mono";
+            # family = "Noto Sans Mono";
+            # family = "Source Code Pro";
             style = "Normal";
             width = "Normal";
-            weight = 300;
+            weight = 500;
           };
           
           # 粗体字体
           bold = {
-            family = "Noto Sans Mono";
-            # family = "Monaspace Argon Frozen";
+            family = "LXGW WenKai Mono";
+            # family = "Noto Sans Mono";
             style = "Normal"; 
             width = "Normal";
-            weight = 500;
+            weight = 700;
           };
           
           # 斜体字体
           italic = {
-            family = "Noto Sans Mono";
-            # family = "Monaspace Argon Frozen";
+            family = "LXGW WenKai Mono";
+            # family = "Noto Sans Mono";
             style = "Italic";
             width = "Normal";
-            weight = 300;
+            weight = 500;
           };
           
           # 粗斜体字体
           bold-italic = {
-            family = "Noto Sans Mono";
-            # family = "Monaspace Argon Frozen";
+            family = "LXGW WenKai Mono";
+            # family = "Noto Sans Mono";
             style = "Italic";
             width = "Normal";
-            weight = 500;
+            weight = 700;
           };
           
           # 表情符号字体 (可选)
@@ -83,12 +85,82 @@
           #   family = "Noto Color Emoji";
           # };
           
-          # 符号映射 - 用于 Powerline 等特殊字符
+          # 符号映射 - 将特定 Unicode 范围的字符映射到 Nerd Font
+          # 这样可以在使用中文字体的同时显示编程图标和符号
           symbol-map = [
-            # Powerline 符号
-            { start = "E0B0"; end = "E0BF"; font-family = "FiraCode Nerd Font"; }
-            # 其他图标符号
+            # === Nerd Font 核心图标范围 ===
+            # 私有使用区域 - 大部分 Nerd Font 图标都在这里
             { start = "E000"; end = "F8FF"; font-family = "FiraCode Nerd Font"; }
+            { start = "F0000"; end = "FFFFD"; font-family = "FiraCode Nerd Font"; }
+            { start = "100000"; end = "10FFFD"; font-family = "FiraCode Nerd Font"; }
+            
+            # === 具体图标库 ===
+            # Font Awesome - 最常用的图标库
+            { start = "F000"; end = "F2E0"; font-family = "FiraCode Nerd Font"; }
+            
+            # Material Design Icons - Google 设计图标
+            { start = "F500"; end = "FD46"; font-family = "FiraCode Nerd Font"; }
+            
+            # Octicons - GitHub 图标
+            { start = "F400"; end = "F4A9"; font-family = "FiraCode Nerd Font"; }
+            
+            # Devicons - 开发工具图标
+            { start = "E700"; end = "E7C5"; font-family = "FiraCode Nerd Font"; }
+            
+            # Codicons - VS Code 图标
+            { start = "EA60"; end = "EBEB"; font-family = "FiraCode Nerd Font"; }
+            
+            # Weather Icons - 天气图标
+            { start = "E300"; end = "E3EB"; font-family = "FiraCode Nerd Font"; }
+            
+            # Seti-UI + Custom - 文件类型图标
+            { start = "E5FA"; end = "E6AC"; font-family = "FiraCode Nerd Font"; }
+            
+            # Font Logos - 品牌和技术 Logo
+            { start = "F300"; end = "F372"; font-family = "FiraCode Nerd Font"; }
+            
+            # === Powerline 符号 ===
+            # 用于状态栏和提示符的特殊字符
+            { start = "E0A0"; end = "E0A3"; font-family = "FiraCode Nerd Font"; }
+            { start = "E0B0"; end = "E0C8"; font-family = "FiraCode Nerd Font"; }
+            { start = "E0CA"; end = "E0CA"; font-family = "FiraCode Nerd Font"; }
+            { start = "E0CC"; end = "E0D7"; font-family = "FiraCode Nerd Font"; }
+            
+            # === Unicode 符号区域 ===
+            # 箭头符号
+            { start = "2190"; end = "21FF"; font-family = "FiraCode Nerd Font"; }
+            
+            # 数学操作符
+            { start = "2200"; end = "22FF"; font-family = "FiraCode Nerd Font"; }
+            
+            # 技术符号 (包含电源符号等)
+            { start = "2300"; end = "23FF"; font-family = "FiraCode Nerd Font"; }
+            
+            # 盒子绘制字符 - 用于表格和边框
+            { start = "2500"; end = "257F"; font-family = "FiraCode Nerd Font"; }
+            
+            # 块元素 - 用于进度条等
+            { start = "2580"; end = "259F"; font-family = "FiraCode Nerd Font"; }
+            
+            # 几何形状
+            { start = "25A0"; end = "25FF"; font-family = "FiraCode Nerd Font"; }
+            
+            # 杂项符号 (包含很多常用符号)
+            { start = "2600"; end = "26FF"; font-family = "FiraCode Nerd Font"; }
+            
+            # 装饰符号
+            { start = "2700"; end = "27BF"; font-family = "FiraCode Nerd Font"; }
+            
+            # === 其他范围 ===
+            # Heavy Angle Brackets
+            { start = "E6AD"; end = "E6B1"; font-family = "FiraCode Nerd Font"; }
+            
+            # Box Drawing (扩展)
+            { start = "E6B2"; end = "E6B9"; font-family = "FiraCode Nerd Font"; }
+            
+            # IEC Power Symbols
+            { start = "23FB"; end = "23FE"; font-family = "FiraCode Nerd Font"; }
+            { start = "2B58"; end = "2B58"; font-family = "FiraCode Nerd Font"; }
           ];
         };
         
