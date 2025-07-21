@@ -26,33 +26,17 @@
     home.file.".config/yazi/flavors/.keep".text = "";
     
     # Rose Pine 系列主题
-    home.file.".config/yazi/flavors/rose-pine.yazi/flavor.toml".source = ./configs/flavors/rose-pine.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/rose-pine.yazi/tmtheme.xml".source = ./configs/flavors/rose-pine.yazi/tmtheme.xml;
-    
-    home.file.".config/yazi/flavors/rose-pine-dawn.yazi/flavor.toml".source = ./configs/flavors/rose-pine-dawn.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/rose-pine-dawn.yazi/tmtheme.xml".source = ./configs/flavors/rose-pine-dawn.yazi/tmtheme.xml;
-    
-    # Rose Pine Moon 完整主题文件
-    home.file.".config/yazi/flavors/rose-pine-moon.yazi/flavor.toml".source = ./configs/flavors/rose-pine-moon.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/rose-pine-moon.yazi/tmtheme.xml".source = ./configs/flavors/rose-pine-moon.yazi/tmtheme.xml;
-    home.file.".config/yazi/flavors/rose-pine-moon.yazi/README.md".source = ./configs/flavors/rose-pine-moon.yazi/README.md;
-    home.file.".config/yazi/flavors/rose-pine-moon.yazi/LICENSE".source = ./configs/flavors/rose-pine-moon.yazi/LICENSE;
-    home.file.".config/yazi/flavors/rose-pine-moon.yazi/LICENSE-tmtheme".source = ./configs/flavors/rose-pine-moon.yazi/LICENSE-tmtheme;
+    home.file.".config/yazi/flavors/rose-pine.yazi".source = ./configs/flavors/rose-pine.yazi;
+    home.file.".config/yazi/flavors/rose-pine-moon.yazi".source = ./configs/flavors/rose-pine-moon.yazi;
+    home.file.".config/yazi/flavors/rose-pine-dawn.yazi".source = ./configs/flavors/rose-pine-dawn.yazi;
     
     # Catppuccin 系列主题
-    home.file.".config/yazi/flavors/catppuccin-mocha.yazi/flavor.toml".source = ./configs/flavors/catppuccin-mocha.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/catppuccin-mocha.yazi/tmtheme.xml".source = ./configs/flavors/catppuccin-mocha.yazi/tmtheme.xml;
+    home.file.".config/yazi/flavors/catppuccin-mocha.yazi".source = ./configs/flavors/catppuccin-mocha.yazi;
+    home.file.".config/yazi/flavors/catppuccin-latte.yazi".source = ./configs/flavors/catppuccin-latte.yazi;
     
-    home.file.".config/yazi/flavors/catppuccin-latte.yazi/flavor.toml".source = ./configs/flavors/catppuccin-latte.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/catppuccin-latte.yazi/tmtheme.xml".source = ./configs/flavors/catppuccin-latte.yazi/tmtheme.xml;
+    home.file.".config/yazi/flavors/darcula.yazi".source = ./configs/flavors/darcula.yazi;
     
-    # Darcula 系列主题
-    home.file.".config/yazi/flavors/darcula.yazi/flavor.toml".source = ./configs/flavors/darcula.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/darcula.yazi/tmtheme.xml".source = ./configs/flavors/darcula.yazi/tmtheme.xml;
-    
-    # One Dark 系列主题
-    home.file.".config/yazi/flavors/one-dark.yazi/flavor.toml".source = ./configs/flavors/one-dark.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/one-dark.yazi/tmtheme.xml".source = ./configs/flavors/one-dark.yazi/tmtheme.xml;
+    home.file.".config/yazi/flavors/one-dark.yazi".source = ./configs/flavors/one-dark.yazi;
 
 
     # ===== 包依赖确保 =====
