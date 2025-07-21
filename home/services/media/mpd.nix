@@ -6,10 +6,9 @@
 with lib;
 
 let
-  cfg = config.myHome.dotfiles.mpd;
+  cfg = config.myHome.services.media.mpd;
 in {
-  options.myHome.dotfiles.mpd = {
-    enable = mkEnableOption "启用 MPD 用户级音乐播放服务";
+  options.myHome.services.media.mpd = {
     
     musicDirectory = mkOption {
       type = types.str;

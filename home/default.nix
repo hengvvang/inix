@@ -6,5 +6,6 @@
     ./profiles
     ./dotfiles
     ./pkgs
+    ./services
   ];
 }
