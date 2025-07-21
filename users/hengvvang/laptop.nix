@@ -43,6 +43,7 @@
         qutebrowser.enable = false;
         obs-studio.enable = false;
         mpd.enable = true;
+        rmpc.enable = true;
         proxy.enable = false;
         yazi = {
           enable = true;
