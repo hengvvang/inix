@@ -269,9 +269,10 @@
         # MPD 音乐播放器守护进程配置
         mpd = {
           enable = true;               # 🟢 启用 MPD 服务
-          musicDirectory = "/home/hengvvang/Music";  # 音乐目录
+          musicDirectory = "/srv/music";  # 改为系统级音乐目录
           port = 6600;                 # MPD 服务端口
           httpPort = 8000;             # HTTP 音频流端口
+          enableFileOutput = false;    # 暂时禁用 FIFO 输出避免崩溃
         };
       };
       
