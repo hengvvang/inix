@@ -54,7 +54,7 @@ border_symbol = "│"
 border_style = { fg = "#6e6a86" } # muted
 
 # Syntax highlighting
-syntect_theme = ""
+syntect_theme = "tmtheme.xml"
 
 # : }}}
 

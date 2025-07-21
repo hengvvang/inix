@@ -26,17 +26,23 @@
     home.file.".config/yazi/flavors/.keep".text = "";
     
     # Rose Pine 系列主题
-    home.file.".config/yazi/flavors/rose-pine.yazi/flavor.toml".source = ./configs/flavors/rose-pine.toml;
-    home.file.".config/yazi/flavors/rose-pine-dawn.yazi/flavor.toml".source = ./configs/flavors/rose-pine-dawn.toml;
-    home.file.".config/yazi/flavors/rose-pine-moon.yazi/flavor.toml".source = ./configs/flavors/rose-pine-moon.toml;
+    home.file.".config/yazi/flavors/rose-pine.yazi/flavor.toml".source = ./configs/flavors/rose-pine.yazi/flavor.toml;
+    home.file.".config/yazi/flavors/rose-pine-dawn.yazi/flavor.toml".source = ./configs/flavors/rose-pine-dawn.yazi/flavor.toml;
+    
+    # Rose Pine Moon 完整主题文件
+    home.file.".config/yazi/flavors/rose-pine-moon.yazi/flavor.toml".source = ./configs/flavors/rose-pine-moon.yazi/flavor.toml;
+    home.file.".config/yazi/flavors/rose-pine-moon.yazi/tmtheme.xml".source = ./configs/flavors/rose-pine-moon.yazi/tmtheme.xml;
+    home.file.".config/yazi/flavors/rose-pine-moon.yazi/README.md".source = ./configs/flavors/rose-pine-moon.yazi/README.md;
+    home.file.".config/yazi/flavors/rose-pine-moon.yazi/LICENSE".source = ./configs/flavors/rose-pine-moon.yazi/LICENSE;
+    home.file.".config/yazi/flavors/rose-pine-moon.yazi/LICENSE-tmtheme".source = ./configs/flavors/rose-pine-moon.yazi/LICENSE-tmtheme;
     
     # Catppuccin 系列主题
-    home.file.".config/yazi/flavors/catppuccin-mocha.yazi/flavor.toml".source = ./configs/flavors/catppuccin-mocha.toml;
-    home.file.".config/yazi/flavors/catppuccin-latte.yazi/flavor.toml".source = ./configs/flavors/catppuccin-latte.toml;
+    home.file.".config/yazi/flavors/catppuccin-mocha.yazi/flavor.toml".source = ./configs/flavors/catppuccin-mocha.yazi/flavor.toml;
+    home.file.".config/yazi/flavors/catppuccin-latte.yazi/flavor.toml".source = ./configs/flavors/catppuccin-latte.yazi/flavor.toml;
     
     # Darcula 系列主题
-    home.file.".config/yazi/flavors/darcula.yazi/flavor.toml".source = ./configs/flavors/darcula.toml;
-    home.file.".config/yazi/flavors/one-dark.yazi/flavor.toml".source = ./configs/flavors/one-dark.toml;
+    home.file.".config/yazi/flavors/darcula.yazi/flavor.toml".source = ./configs/flavors/darcula.yazi/flavor.toml;
+    home.file.".config/yazi/flavors/one-dark.yazi/flavor.toml".source = ./configs/flavors/one-dark.yazi/flavor.toml;
 
 
     # ===== 包依赖确保 =====
