@@ -36,27 +36,16 @@
             "Ctrl q" = { Quit = {}; };
             "Ctrl d" = { Detach = {}; };
             
-            # 窗格管理
-            "Alt h" = { MoveFocus = "Left"; };
-            "Alt j" = { MoveFocus = "Down"; };
-            "Alt k" = { MoveFocus = "Up"; };
-            "Alt l" = { MoveFocus = "Right"; };
-            
             # 窗格分割
             "Alt v" = { NewPane = "Right"; };  # 使用 v (vertical) 替代 |
             "Alt s" = { NewPane = "Down"; };   # 使用 s (split) 替代 -
             
             # 标签页管理
-            "Alt n" = { NewTab = {}; };
-            "Alt 1" = { GoToTab = 1; };
-            "Alt 2" = { GoToTab = 2; };
-            "Alt 3" = { GoToTab = 3; };
-            "Alt 4" = { GoToTab = 4; };
-            "Alt 5" = { GoToTab = 5; };
+            "Alt t" = { NewTab = {}; };
             
             # 标签页导航
-            # "Alt [" = { GoToPreviousTab = {}; };
-            # "Alt ]" = { GoToNextTab = {}; };
+            "Alt [" = { GoToPreviousTab = {}; };
+            "Alt ]" = { GoToNextTab = {}; };
             
             # 模式切换
             "Ctrl p" = { SwitchToMode = "Pane"; };
@@ -84,7 +73,7 @@
             "h" = { GoToPreviousTab = {}; };
             "l" = { GoToNextTab = {}; };
             "n" = { NewTab = {}; };
-            "x" = { CloseTab = {}; };
+            "q" = { CloseTab = {}; };
             "r" = { SwitchToMode = "RenameTab"; TabNameInput = []; };
             "Esc" = { SwitchToMode = "Normal"; };
           };

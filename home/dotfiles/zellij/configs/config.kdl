@@ -1,18 +1,16 @@
-// theme "catppuccin-mocha"
-// theme "dracula"
 theme "tokyo-night"
 
 default_shell "fish"
 
 default_layout "default"
 
-// 显示窗格边框 - 帮助区分不同的窗格
-pane_frames true
+// 显示窗格边框
+pane_frames false
 
-// 启用鼠标模式 - 支持鼠标操作（点击、拖拽等）
+// 启用鼠标模式
 mouse_mode true
 
-// 复制命令 - 使用 Wayland 剪贴板（适用于现代 Linux 桌面）
+// 复制命令 - 使用 Wayland 剪贴板
 copy_command "wl-copy"
 
 // 剪贴板类型 - primary 表示选择即复制的剪贴板
@@ -47,20 +45,46 @@ keybinds clear-defaults=true {
         bind "Ctrl q" { Quit; }                    // 退出 Zellij
         bind "Ctrl d" { Detach; }                  // 分离会话（后台运行）
 
+        // === 切换模式 ===
+        bind "Ctrl l" { SwitchToMode "Locked"; }
+        bind "Ctrl p" { SwitchToMode "Pane"; }
+        bind "Ctrl t" { SwitchToMode "Tab"; }
+        bind "Ctrl r" { SwitchToMode "Resize"; }
+        bind "Ctrl m" { SwitchToMode "Move"; }
+        bind "Ctrl s" { SwitchToMode "Scroll"; }
+        bind "Ctrl o" { SwitchToMode "Session"; }
+
+        // === 会话和窗口操作 ===
+        bind "Ctrl e" { EditScrollback; }          // 用编辑器打开当前窗格历史
+        bind "Ctrl y" { ToggleActiveSyncTab; }     // 切换同步输入到所有窗格
+
+        bind "Ctrl f" { ToggleFocusFullscreen; }   // 切换当前窗格全屏显示
+        bind "Ctrl z" { TogglePaneFrames; }        // 切换窗格边框显示
+
+        bind "Ctrl c" { Copy; }                    // 复制模式（如果有选择的文本）
+        bind "Ctrl Shift c" { Copy; }              // 强制复制（如果选择了文本）
+    
+        bind "Alt n" { NewPane; }                  // 创建新窗格（自动方向）
+        bind "Alt x" { CloseFocus; }               // 关闭当前焦点窗格
+        bind "Alt v" { NewPane "Right"; }          // 垂直分割（在右侧创建新窗格）
+        bind "Alt s" { NewPane "Down"; }           // 水平分割（在下方创建新窗格）
+
+       // 导航
         bind "Alt h" { MoveFocus "Left"; }
         bind "Alt j" { MoveFocus "Down"; }
         bind "Alt k" { MoveFocus "Up"; }
         bind "Alt l" { MoveFocus "Right"; }
 
-        // === 窗格分割 ===
-        bind "Alt v" { NewPane "Right"; }          // 垂直分割（在右侧创建新窗格）
-        bind "Alt s" { NewPane "Down"; }           // 水平分割（在下方创建新窗格）
+        bind "Alt f" { ToggleFocusFullscreen; }   // 切换当前窗格全屏显示
+        bind "Alt z" { TogglePaneFrames; }        // 切换窗格边框显示
+        
 
-        // === 标签页管理 ===
+
+        // --- 标签页管理 ---
         bind "Alt t" { NewTab; }
         bind "Alt q" { CloseTab; }
 
-        bind "Alt 1" { GoToTab 1; }                // 跳转到标签页 1
+        bind "Alt 1" { GoToTab 1; }
         bind "Alt 2" { GoToTab 2; }
         bind "Alt 3" { GoToTab 3; }
         bind "Alt 4" { GoToTab 4; }
@@ -70,38 +94,12 @@ keybinds clear-defaults=true {
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
 
-        bind "Ctrl l" { SwitchToMode "Locked"; }
-        bind "Ctrl p" { SwitchToMode "Pane"; }
-        bind "Ctrl t" { SwitchToMode "Tab"; }
-        bind "Ctrl r" { SwitchToMode "Resize"; }
-        bind "Ctrl m" { SwitchToMode "Move"; }
-        bind "Ctrl s" { SwitchToMode "Scroll"; }
-        bind "Ctrl o" { SwitchToMode "Session"; }
-
-        bind "Ctrl f" { ToggleFocusFullscreen; }   // 切换当前窗格全屏显示
-        bind "Ctrl z" { TogglePaneFrames; }        // 切换窗格边框显示
-        bind "Ctrl c" { Copy; }                    // 复制模式（如果有选择的文本）
-
-
-        bind "Alt n" { NewPane; }                  // 创建新窗格（自动方向）
-        bind "Alt x" { CloseFocus; }               // 关闭当前焦点窗格
+        bind "Alt [" { GoToPreviousTab; }          // 上一个标签页
+        bind "Alt ]" { GoToNextTab; }              // 下一个标签页
 
         bind "Alt ," { PreviousSwapLayout; }       // 上一个布局
         bind "Alt ." { NextSwapLayout; }           // 下一个布局
 
-        bind "Alt [" { GoToPreviousTab; }          // 上一个标签页
-        bind "Alt ]" { GoToNextTab; }              // 下一个标签页
-
-
-        // === 会话和窗口操作 ===
-        bind "Ctrl w" { SwitchToMode "Session"; }  // 快速进入会话管理模式
-        bind "Ctrl e" { EditScrollback; }          // 用编辑器打开当前窗格历史
-        bind "Ctrl y" { ToggleActiveSyncTab; }     // 切换同步输入到所有窗格
-
-        // === 剪贴板和复制 ===
-        bind "Ctrl Shift c" { Copy; }              // 强制复制（如果选择了文本）
-
-        // === 高级功能 ===
         bind "Alt Tab" { SwitchFocus; }            // 在窗格间循环切换
     }
 
@@ -130,28 +128,28 @@ keybinds clear-defaults=true {
 
     // 标签页管理模式 (Tab Mode) - 专注于标签页操作  // 进入方式: Ctrl+t，退出方式: Esc
     tab {
-        bind "h" { GoToPreviousTab; }              // 切换到上一个标签页
-        bind "l" { GoToNextTab; }                  // 切换到下一个标签页
-        bind "n" { NewTab; }                       // 创建新标签页
-        bind "q" { CloseTab; }                     // 关闭当前标签页
-        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; } // 重命名标签页
+        bind "h" { GoToPreviousTab; }
+        bind "l" { GoToNextTab; }
+        bind "n" { NewTab; }
+        bind "q" { CloseTab; }
+        bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "s" { ToggleActiveSyncTab; }          // 切换同步输入到所有窗格
-        bind "," { PreviousSwapLayout; }           // 上一个布局
-        bind "." { NextSwapLayout; }               // 下一个布局
-        bind "1" { GoToTab 1; SwitchToMode "Normal"; }  // 跳转到标签页 1 并返回普通模式
-        bind "2" { GoToTab 2; SwitchToMode "Normal"; }  // 跳转到标签页 2 并返回普通模式
-        bind "3" { GoToTab 3; SwitchToMode "Normal"; }  // 跳转到标签页 3 并返回普通模式
-        bind "4" { GoToTab 4; SwitchToMode "Normal"; }  // 跳转到标签页 4 并返回普通模式
-        bind "5" { GoToTab 5; SwitchToMode "Normal"; }  // 跳转到标签页 5 并返回普通模式
-        bind "6" { GoToTab 6; SwitchToMode "Normal"; }  // 跳转到标签页 6 并返回普通模式
-        bind "7" { GoToTab 7; SwitchToMode "Normal"; }  // 跳转到标签页 7 并返回普通模式
-        bind "8" { GoToTab 8; SwitchToMode "Normal"; }  // 跳转到标签页 8 并返回普通模式
-        bind "9" { GoToTab 9; SwitchToMode "Normal"; }  // 跳转到标签页 9 并返回普通模式
+        bind "," { PreviousSwapLayout; }
+        bind "." { NextSwapLayout; }
+        bind "1" { GoToTab 1; SwitchToMode "Normal"; }
+        bind "2" { GoToTab 2; SwitchToMode "Normal"; }
+        bind "3" { GoToTab 3; SwitchToMode "Normal"; }
+        bind "4" { GoToTab 4; SwitchToMode "Normal"; }
+        bind "5" { GoToTab 5; SwitchToMode "Normal"; }
+        bind "6" { GoToTab 6; SwitchToMode "Normal"; }
+        bind "7" { GoToTab 7; SwitchToMode "Normal"; }
+        bind "8" { GoToTab 8; SwitchToMode "Normal"; }
+        bind "9" { GoToTab 9; SwitchToMode "Normal"; }
         bind "Tab" { ToggleTab; }                  // 切换到最近使用的标签页
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
 
-    // 窗格大小调整模式 (Resize Mode) - 精确调整窗格尺寸 // 进入方式: Ctrl+r，退出方式: Esc
+    // 窗格大小调整模式 (Resize Mode) 进入方式: Ctrl+r，退出方式: Esc
     resize {
         bind "h" { Resize "Left"; }
         bind "j" { Resize "Down"; }
@@ -170,14 +168,14 @@ keybinds clear-defaults=true {
 
     // 滚动浏览模式 (Scroll Mode) - 浏览历史输出 // 进入方式: Ctrl+s，退出方式: Esc
     scroll {
-        bind "j" { ScrollDown; }                   // 向下滚动一行
-        bind "k" { ScrollUp; }                     // 向上滚动一行
-        bind "d" { HalfPageScrollDown; }           // 向下滚动半页（类似 vim）
-        bind "u" { HalfPageScrollUp; }             // 向上滚动半页（类似 vim）
-        bind "PageDown" { PageScrollDown; }        // 向下翻页
-        bind "PageUp" { PageScrollUp; }            // 向上翻页
-        bind "Down" { ScrollDown; }                // 箭头键向下
-        bind "Up" { ScrollUp; }                    // 箭头键向上
+        bind "j" { ScrollDown; }
+        bind "k" { ScrollUp; }
+        bind "d" { HalfPageScrollDown; }
+        bind "u" { HalfPageScrollUp; }
+        bind "PageDown" { PageScrollDown; }
+        bind "PageUp" { PageScrollUp; }
+        bind "Down" { ScrollDown; }
+        bind "Up" { ScrollUp; }
         bind "Ctrl d" { HalfPageScrollDown; }      // Ctrl+d 向下滚动半页
         bind "Ctrl u" { HalfPageScrollUp; }        // Ctrl+u 向上滚动半页
         bind "Ctrl f" { PageScrollDown; }          // Ctrl+f 向下翻页
@@ -190,13 +188,13 @@ keybinds clear-defaults=true {
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
 
-    // 会话管理模式 (Session Mode) - 管理 Zellij 会话 // 进入方式: Ctrl+o，退出方式: Esc
+    // 会话管理模式 (Session Mode) 进入方式: Ctrl+o，退出方式: Esc
     session {
         bind "d" { Detach; }                       // 分离当前会话（会话继续在后台运行）
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
 
-    // 移动模式 (Move Mode) - 移动窗格位置 // 进入方式: Ctrl+m，退出方式: Esc
+    // 移动模式 (Move Mode) 进入方式: Ctrl+m，退出方式: Esc
     move {
         bind "h" { MovePane "Left"; }
         bind "j" { MovePane "Down"; }
@@ -209,18 +207,18 @@ keybinds clear-defaults=true {
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
 
-    // 锁定模式 (Locked Mode) - 防止意外按键 // 在此模式下，所有快捷键都被禁用，防止误操作
+    // 锁定模式 (Locked Mode) 在此模式下，所有快捷键都被禁用，防止误操作
     locked {
         bind "Ctrl l" { SwitchToMode "Normal"; }   // 解锁并返回普通模式
     }
 
-    // 重命名标签页模式 (Rename Tab Mode) - 输入新的标签页名称 // 从标签页模式按 'r' 进入此模式
+    // 重命名标签页模式 (Rename Tab Mode)  从标签页模式按 'r' 进入此模式
     renametab {
         bind "Enter" { SwitchToMode "Normal"; }    // 确认重命名并返回普通模式
         bind "Esc" { UndoRenameTab; SwitchToMode "Normal"; } // 取消重命名并返回普通模式
     }
 
-    // 重命名窗格模式 (Rename Pane Mode) - 输入新的窗格名称 // 从窗格模式按 'c' 进入此模式
+    // 重命名窗格模式 (Rename Pane Mode) - 输入新的窗格名称  从窗格模式按 'r' 进入此模式
     renamepane {
         bind "Enter" { SwitchToMode "Normal"; }    // 确认重命名并返回普通模式
         bind "Esc" { UndoRenamePane; SwitchToMode "Normal"; } // 取消重命名并返回普通模式
