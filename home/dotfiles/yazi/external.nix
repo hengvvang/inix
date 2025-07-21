@@ -27,10 +27,10 @@
     
     # Rose Pine 系列主题
     home.file.".config/yazi/flavors/rose-pine.yazi/flavor.toml".source = ./configs/flavors/rose-pine.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/rose-pine.yazi/tmtheme.xml".source = ./flavors/rose-pine.yazi/tmtheme.xml;
+    home.file.".config/yazi/flavors/rose-pine.yazi/tmtheme.xml".source = ./configs/flavors/rose-pine.yazi/tmtheme.xml;
     
     home.file.".config/yazi/flavors/rose-pine-dawn.yazi/flavor.toml".source = ./configs/flavors/rose-pine-dawn.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/rose-pine-dawn.yazi/tmtheme.xml".source = ./flavors/rose-pine-dawn.yazi/tmtheme.xml;
+    home.file.".config/yazi/flavors/rose-pine-dawn.yazi/tmtheme.xml".source = ./configs/flavors/rose-pine-dawn.yazi/tmtheme.xml;
     
     # Rose Pine Moon 完整主题文件
     home.file.".config/yazi/flavors/rose-pine-moon.yazi/flavor.toml".source = ./configs/flavors/rose-pine-moon.yazi/flavor.toml;
@@ -41,18 +41,18 @@
     
     # Catppuccin 系列主题
     home.file.".config/yazi/flavors/catppuccin-mocha.yazi/flavor.toml".source = ./configs/flavors/catppuccin-mocha.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/catppuccin-mocha.yazi/tmtheme.xml".source = ./flavors/catppuccin-mocha.yazi/tmtheme.xml;
+    home.file.".config/yazi/flavors/catppuccin-mocha.yazi/tmtheme.xml".source = ./configs/flavors/catppuccin-mocha.yazi/tmtheme.xml;
     
     home.file.".config/yazi/flavors/catppuccin-latte.yazi/flavor.toml".source = ./configs/flavors/catppuccin-latte.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/catppuccin-latte.yazi/tmtheme.xml".source = ./flavors/catppuccin-latte.yazi/tmtheme.xml;
+    home.file.".config/yazi/flavors/catppuccin-latte.yazi/tmtheme.xml".source = ./configs/flavors/catppuccin-latte.yazi/tmtheme.xml;
     
     # Darcula 系列主题
     home.file.".config/yazi/flavors/darcula.yazi/flavor.toml".source = ./configs/flavors/darcula.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/darcula.yazi/tmtheme.xml".source = ./flavors/darcula.yazi/tmtheme.xml;
+    home.file.".config/yazi/flavors/darcula.yazi/tmtheme.xml".source = ./configs/flavors/darcula.yazi/tmtheme.xml;
     
     # One Dark 系列主题
     home.file.".config/yazi/flavors/one-dark.yazi/flavor.toml".source = ./configs/flavors/one-dark.yazi/flavor.toml;
-    home.file.".config/yazi/flavors/one-dark.yazi/tmtheme.xml".source = ./flavors/one-dark.yazi/tmtheme.xml;
+    home.file.".config/yazi/flavors/one-dark.yazi/tmtheme.xml".source = ./configs/flavors/one-dark.yazi/tmtheme.xml;
 
 
     # ===== 包依赖确保 =====
