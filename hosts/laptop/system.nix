@@ -266,22 +266,13 @@
           download = true;             # yt-dlp 下载工具
         };
         
-        # MPD 音乐播放器守护进程配置
-        # 注释掉系统级 MPD，改为用户级配置
-        # mpd = {
-        #   enable = true;               # 🟢 启用 MPD 服务
-        #   musicDirectory = "/home/hengvvang/Music";  # 用户音乐目录，更合理的位置
+        mpd = {
+          enable = false;              # � 禁用系统级 MPD - 使用用户级配置
+        #   musicDirectory = "/srv/Music";  # 用户音乐目录，更合理的位置
         #   port = 6600;                 # MPD 服务端口
         #   httpPort = 8000;             # HTTP 音频流端口
         #   enableFileOutput = false;    # 暂时禁用 FIFO 输出避免崩溃
-        # };
-        # 
-        # 💡 MPD 现在配置为用户级服务，每个用户在 home-manager 中单独配置
-        # 优势：
-        # - 每个用户独立的音乐库 (~$USER/Music)
-        # - 独立的配置和播放列表
-        # - 更好的权限管理
-        # - 避免多用户冲突
+        };
       };
       
       # 硬件驱动配置
