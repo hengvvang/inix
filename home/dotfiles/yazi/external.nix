@@ -8,7 +8,6 @@
     home.file.".config/yazi/yazi.toml".source = ./configs/yazi.toml;
     home.file.".config/yazi/keymap.toml".source = ./configs/keymap.toml;
     home.file.".config/yazi/theme.toml".source = ./configs/theme.toml;
-    home.file.".config/yazi/theme-rose-pine.toml".source = ./configs/theme-rose-pine.toml;
 
     # ===== 初始化脚本配置 =====
     # init.lua - Yazi 启动时执行的 Lua 脚本，提供高级功能
@@ -16,10 +15,7 @@
 
     # ===== 配置文档 =====
     # 配置说明和使用指南
-    home.file.".config/yazi/README.md".source = ./configs/README.md;
-    home.file.".config/yazi/ROSE-PINE-THEME.md".source = ./configs/ROSE-PINE-THEME.md;
-    home.file.".config/yazi/QUICK-START.md".source = ./configs/QUICK-START.md;
-    home.file.".config/yazi/THEME-GALLERY.md".source = ./configs/THEME-GALLERY.md;
+    # home.file.".config/yazi/README.md".source = ./configs/README.md;
 
 
     # ===== 插件和扩展目录设置 =====
