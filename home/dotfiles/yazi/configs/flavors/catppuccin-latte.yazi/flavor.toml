@@ -62,7 +62,7 @@ count_selected = { fg = "#4c4f69", bg = "#df8e1d" } # text on yellow
 
 # Border
 border_symbol = "│"
-border_style = { fg = "#9ca0b0" } # overlay0
+border_style = { fg = "#8c8fa1" } # overlay1 for better visibility
 
 # Syntax highlighting
 syntect_theme = "tmtheme.xml"
@@ -72,8 +72,8 @@ syntect_theme = "tmtheme.xml"
 # : Tabs {{{
 
 [tabs]
-active = { fg = "#4c4f69", bg = "#1e66f5", bold = true } # text on blue
-inactive = { fg = "#5c5f77", bg = "#ccd0da" }            # subtext1 on surface0
+active = { fg = "#4c4f69", bg = "#1e66f5", bold = true } # text on blue - active tab
+inactive = { fg = "#5c5f77", bg = "#e6e9ef" }            # subtext1 on mantle - inactive tabs
 
 # Tab separators
 sep_inner = { open = "", close = "" }
@@ -85,13 +85,13 @@ sep_outer = { open = "", close = "" }
 
 [mode]
 normal_main = { fg = "#4c4f69", bg = "#1e66f5", bold = true } # text on blue
-normal_alt = { fg = "#1e66f5", bg = "#ccd0da" }               # blue on surface0
+normal_alt = { fg = "#1e66f5", bg = "#e6e9ef" }               # blue on mantle
 
 select_main = { fg = "#4c4f69", bg = "#d20f39", bold = true } # text on red  
-select_alt = { fg = "#d20f39", bg = "#ccd0da" }               # red on surface0
+select_alt = { fg = "#d20f39", bg = "#e6e9ef" }               # red on mantle
 
 unset_main = { fg = "#4c4f69", bg = "#df8e1d", bold = true } # text on yellow
-unset_alt = { fg = "#df8e1d", bg = "#ccd0da" }               # yellow on surface0
+unset_alt = { fg = "#df8e1d", bg = "#e6e9ef" }               # yellow on mantle
 
 # : }}}
 
@@ -110,9 +110,9 @@ perm_write = { fg = "#d20f39" } # red - write permission
 perm_exec = { fg = "#40a02b" }  # green - execute permission
 
 # Progress indicators
-progress_label = { fg = "#4c4f69", bold = true }     # text
-progress_normal = { fg = "#1e66f5", bg = "#ccd0da" } # blue on surface0
-progress_error = { fg = "#d20f39", bg = "#ccd0da" }  # red on surface0
+progress_label = { fg = "#4c4f69", bold = true }     # text - progress label
+progress_normal = { fg = "#1e66f5", bg = "#e6e9ef" } # blue on mantle
+progress_error = { fg = "#d20f39", bg = "#e6e9ef" }  # red on mantle
 
 # : }}}
 
@@ -121,19 +121,24 @@ progress_error = { fg = "#d20f39", bg = "#ccd0da" }  # red on surface0
 [which]
 cols = 3
 mask = { bg = "#eff1f5" }              # base background
-cand = { fg = "#04a5e5", bold = true } # sky - candidates
+cand = { fg = "#04a5e5", bold = true } # sky - command candidates
 rest = { fg = "#9ca0b0" }              # overlay0 - rest of command
 desc = { fg = "#8839ef" }              # mauve - descriptions
 separator = "  "
-separator_style = { fg = "#9ca0b0" }   # overlay0
+separator_style = { fg = "#8c8fa1" }   # overlay1
 
 # : }}}
 
 # : Confirmation dialog {{{
 
 [confirm]
-border = { fg = "#1e66f5" }             # blue
-title = { fg = "#1e66f5", bold = true } # blue
+border = { fg = "#1e66f5" }                  # blue border
+title = { fg = "#1e66f5", bold = true }      # blue title
+content = { fg = "#4c4f69" }                 # text - dialog content
+list = { fg = "#5c5f77" }                    # subtext1 - item list
+btn_yes = { fg = "#eff1f5", bg = "#40a02b" } # base on green - yes button
+btn_no = { fg = "#eff1f5", bg = "#d20f39" }  # base on red - no button
+btn_labels = ["Yes", "No"]                   # button labels
 
 # : }}}
 
@@ -143,23 +148,18 @@ title = { fg = "#1e66f5", bold = true } # blue
 border = { fg = "#1e66f5" }             # blue
 title = { fg = "#1e66f5", bold = true } # blue
 
-# Table view
+# Table view - file search results
 tbl_col = { fg = "#04a5e5", bold = true }     # sky - column headers
-tbl_cell = { fg = "#df8e1d", bg = "#ccd0da" } # yellow on surface0
+tbl_cell = { fg = "#df8e1d", bg = "#e6e9ef" } # yellow on mantle
 
 # : }}}
 
 # : Notifications {{{
 
 [notify]
-title_info = { fg = "#1e66f5", bold = true }  # blue
-title_warn = { fg = "#df8e1d", bold = true }  # yellow  
-title_error = { fg = "#d20f39", bold = true } # red
-
-# Notification icons
-icon_info = ""  # info icon
-icon_warn = ""  # warning icon
-icon_error = "" # error icon
+title_info = { fg = "#1e66f5", bold = true }  # blue - info notifications
+title_warn = { fg = "#df8e1d", bold = true }  # yellow - warning notifications
+title_error = { fg = "#d20f39", bold = true } # red - error notifications
 
 # : }}}
 
