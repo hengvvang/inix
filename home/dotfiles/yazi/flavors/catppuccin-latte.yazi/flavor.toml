@@ -1,9 +1,0 @@
-# vim:fileencoding=utf-8:foldmethod=marker
-
-# : User interface {{{
-
-[flavor]
-dark = false
-syntect_theme = "tmtheme.xml"
-
-# }}}
