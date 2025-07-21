@@ -1,0 +1,340 @@
+# IntelliJ Darcula Theme for Yazi
+# A professional dark theme inspired by JetBrains IDEs
+# Based on IntelliJ IDEA Darcula color scheme
+
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
+# IntelliJ Darcula Color Palette
+# Background colors:
+# - bg_primary: #2b2b2b (main background)
+# - bg_secondary: #3c3f41 (secondary background)
+# - bg_tertiary: #4c5052 (tertiary background)
+# - border: #323232 (border color)
+# - selection: #214283 (selection background)
+# - text_primary: #a9b7c6 (primary text)
+# - text_secondary: #808080 (secondary text)
+# - text_disabled: #606366 (disabled text)
+# - red: #ff6b68 (error/red)
+# - orange: #cc7832 (orange/keywords)
+# - yellow: #ffc66d (yellow/strings)
+# - green: #6a8759 (green/comments)
+# - cyan: #287bde (cyan/links)
+# - blue: #6897bb (blue/numbers)
+# - purple: #9876aa (purple/constants)
+# - pink: #ff6b9d (pink/attributes)
+
+# : Manager {{{
+
+[mgr]
+cwd = { fg = "#287bde", bold = true } # cyan - current directory
+
+# Hovered states
+hovered = { bg = "#4c5052", bold = true }              # bg_tertiary
+preview_hovered = { underline = true, fg = "#a9b7c6" } # text_primary
+
+# Find/search
+find_keyword = { fg = "#ffc66d", bold = true, italic = true, underline = true } # yellow
+find_position = { fg = "#9876aa", bg = "#2b2b2b", bold = true, italic = true }  # purple on bg_primary
+
+# Symlink
+symlink_target = { fg = "#287bde", italic = true } # cyan
+
+# Markers
+marker_copied = { fg = "#2b2b2b", bg = "#6a8759" }   # bg_primary on green
+marker_cut = { fg = "#2b2b2b", bg = "#ff6b68" }      # bg_primary on red
+marker_marked = { fg = "#2b2b2b", bg = "#9876aa" }   # bg_primary on purple
+marker_selected = { fg = "#2b2b2b", bg = "#ffc66d" } # bg_primary on yellow
+
+# Counts
+count_copied = { fg = "#a9b7c6", bg = "#6a8759" }   # text_primary on green
+count_cut = { fg = "#a9b7c6", bg = "#ff6b68" }      # text_primary on red
+count_selected = { fg = "#a9b7c6", bg = "#ffc66d" } # text_primary on yellow
+
+# Border
+border_symbol = "│"
+border_style = { fg = "#323232" } # border
+
+# Syntax highlighting
+syntect_theme = ""
+
+# : }}}
+
+# : Tabs {{{
+
+[tabs]
+active = { fg = "#a9b7c6", bg = "#214283", bold = true } # text_primary on selection
+inactive = { fg = "#808080", bg = "#3c3f41" }            # text_secondary on bg_secondary
+
+# Tab separators
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+# : }}}
+
+# : Mode indicator {{{
+
+[mode]
+normal_main = { fg = "#a9b7c6", bg = "#287bde", bold = true } # text_primary on cyan
+normal_alt = { fg = "#287bde", bg = "#3c3f41" }               # cyan on bg_secondary
+
+select_main = { fg = "#a9b7c6", bg = "#ff6b68", bold = true } # text_primary on red  
+select_alt = { fg = "#ff6b68", bg = "#3c3f41" }               # red on bg_secondary
+
+unset_main = { fg = "#a9b7c6", bg = "#ffc66d", bold = true } # text_primary on yellow
+unset_alt = { fg = "#ffc66d", bg = "#3c3f41" }               # yellow on bg_secondary
+
+# : }}}
+
+# : Status bar {{{
+
+[status]
+overall = { fg = "#a9b7c6", bg = "#2b2b2b" } # text_primary on bg_primary
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# File permissions
+perm_sep = { fg = "#323232" }   # border
+perm_type = { fg = "#287bde" }  # cyan - file type
+perm_read = { fg = "#ffc66d" }  # yellow - read permission
+perm_write = { fg = "#ff6b68" } # red - write permission  
+perm_exec = { fg = "#6a8759" }  # green - execute permission
+
+# Progress indicators
+progress_label = { fg = "#a9b7c6", bold = true }     # text_primary
+progress_normal = { fg = "#287bde", bg = "#3c3f41" } # cyan on bg_secondary
+progress_error = { fg = "#ff6b68", bg = "#3c3f41" }  # red on bg_secondary
+
+# : }}}
+
+# : Which-key menu {{{
+
+[which]
+cols = 3
+mask = { bg = "#2b2b2b" }              # bg_primary background
+cand = { fg = "#287bde", bold = true } # cyan - candidates
+rest = { fg = "#808080" }              # text_secondary - rest of command
+desc = { fg = "#9876aa" }              # purple - descriptions
+separator = "  "
+separator_style = { fg = "#323232" }   # border
+
+# : }}}
+
+# : Confirmation dialog {{{
+
+[confirm]
+border = { fg = "#287bde" }             # cyan
+title = { fg = "#287bde", bold = true } # cyan
+
+# : }}}
+
+# : File search/spotter {{{
+
+[spot]
+border = { fg = "#287bde" }             # cyan
+title = { fg = "#287bde", bold = true } # cyan
+
+# Table view
+tbl_col = { fg = "#287bde", bold = true }     # cyan - column headers
+tbl_cell = { fg = "#ffc66d", bg = "#3c3f41" } # yellow on bg_secondary
+
+# : }}}
+
+# : Notifications {{{
+
+[notify]
+title_info = { fg = "#287bde", bold = true }  # cyan
+title_warn = { fg = "#ffc66d", bold = true }  # yellow  
+title_error = { fg = "#ff6b68", bold = true } # red
+
+# Notification icons
+icon_info = ""  # info icon
+icon_warn = ""  # warning icon
+icon_error = "" # error icon
+
+# : }}}
+
+# : File picker {{{
+
+[pick]
+border = { fg = "#287bde" }              # cyan
+active = { fg = "#9876aa", bold = true } # purple - active item
+inactive = { fg = "#808080" }            # text_secondary - inactive items
+
+# : }}}
+
+# : Input field {{{
+
+[input]
+border = { fg = "#287bde" }                   # cyan
+title = { fg = "#287bde", bold = true }       # cyan
+value = { fg = "#a9b7c6" }                    # text_primary
+selected = { fg = "#2b2b2b", bg = "#214283" } # bg_primary on selection
+
+# : }}}
+
+# : Command completion {{{
+
+[cmp]
+border = { fg = "#287bde" }                 # cyan
+active = { fg = "#2b2b2b", bg = "#287bde" } # bg_primary on cyan
+inactive = { fg = "#808080" }               # text_secondary
+
+# Completion icons
+icon_file = ""    # file icon
+icon_folder = ""  # folder icon  
+icon_command = "" # command icon
+
+# : }}}
+
+# : Task manager {{{
+
+[tasks]
+border = { fg = "#287bde" }                    # cyan
+title = { fg = "#287bde", bold = true }        # cyan
+hovered = { fg = "#9876aa", underline = true } # purple
+
+# : }}}
+
+# : Help menu {{{
+
+[help]
+on = { fg = "#287bde", bold = true }                      # cyan - enabled features
+run = { fg = "#9876aa", bold = true }                     # purple - runnable commands
+desc = { fg = "#808080" }                                 # text_secondary - descriptions
+hovered = { fg = "#2b2b2b", bg = "#ff6b9d", bold = true } # bg_primary on pink
+footer = { fg = "#2b2b2b", bg = "#a9b7c6" }               # bg_primary on text_primary
+
+# : }}}
+
+# : File type colors {{{
+
+[filetype]
+rules = [
+    # Images - pink color for visual files
+    { mime = "image/*", fg = "#ff6b9d" },
+
+    # Audio/Video - red color for media
+    { mime = "audio/*", fg = "#ff6b68" },
+    { mime = "video/*", fg = "#ff6b68" },
+
+    # Archives - orange color for compressed files
+    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#cc7832" },
+
+    # Documents - cyan color for text documents
+    { mime = "application/{pdf,doc,rtf,odt,ods,odp}", fg = "#287bde" },
+    { mime = "text/*", fg = "#287bde" },
+
+    # Code files - blue color for source code
+    { mime = "application/{javascript,typescript,json,xml}", fg = "#6897bb" },
+
+    # Special file states
+    { name = "*", is = "orphan", bg = "#ff6b68", fg = "#a9b7c6" }, # red background
+    { name = "*", is = "exec", fg = "#ffc66d", bold = true },      # yellow for executables
+
+    # Dummy/placeholder files
+    { name = "*", is = "dummy", bg = "#606366", fg = "#a9b7c6" },
+
+    # Directories - purple color
+    { name = "*/", fg = "#9876aa", bold = true },
+
+    # Default fallback
+    { name = "*", fg = "#a9b7c6" }, # text_primary color
+]
+
+# : }}}
+
+# : Icons {{{
+
+[icon]
+globs = []
+
+# Directory icons
+dirs = [
+    { name = ".git", text = "", fg = "#ff6b68" },         # red
+    { name = ".github", text = "", fg = "#ff6b68" },      # red
+    { name = ".config", text = "", fg = "#287bde" },      # cyan
+    { name = ".npm", text = "", fg = "#ff6b68" },         # red
+    { name = ".vscode", text = "", fg = "#287bde" },      # cyan
+    { name = "node_modules", text = "", fg = "#cc7832" }, # orange
+    { name = "Desktop", text = "", fg = "#287bde" },      # cyan
+    { name = "Documents", text = "", fg = "#287bde" },    # cyan
+    { name = "Downloads", text = "", fg = "#cc7832" },    # orange
+    { name = "Pictures", text = "", fg = "#ff6b9d" },     # pink
+    { name = "Music", text = "", fg = "#ff6b68" },        # red
+    { name = "Videos", text = "", fg = "#ff6b68" },       # red
+    { name = "Development", text = "", fg = "#6897bb" },  # blue
+    { name = "Projects", text = "", fg = "#6897bb" },     # blue
+]
+
+# File icons
+files = [
+    # Git files
+    { name = ".gitignore", text = "", fg = "#ff6b68" },
+    { name = ".gitconfig", text = "", fg = "#ff6b68" },
+
+    # Config files
+    { name = ".bashrc", text = "", fg = "#287bde" },
+    { name = ".zshrc", text = "", fg = "#287bde" },
+    { name = ".vimrc", text = "", fg = "#287bde" },
+
+    # Web development
+    { name = "*.html", text = "", fg = "#ff6b68" }, # red
+    { name = "*.css", text = "", fg = "#287bde" },  # cyan
+    { name = "*.scss", text = "", fg = "#ff6b9d" }, # pink
+    { name = "*.js", text = "", fg = "#ffc66d" },   # yellow
+    { name = "*.ts", text = "", fg = "#287bde" },   # cyan
+    { name = "*.jsx", text = "", fg = "#6897bb" },  # blue
+    { name = "*.tsx", text = "", fg = "#6897bb" },  # blue
+
+    # Programming languages
+    { name = "*.py", text = "", fg = "#ffc66d" },   # yellow
+    { name = "*.rs", text = "", fg = "#ff6b68" },   # red
+    { name = "*.go", text = "", fg = "#6897bb" },   # blue
+    { name = "*.cpp", text = "", fg = "#287bde" },  # cyan
+    { name = "*.c", text = "", fg = "#287bde" },    # cyan
+    { name = "*.java", text = "", fg = "#cc7832" }, # orange
+
+    # Data files
+    { name = "*.json", text = "", fg = "#ffc66d" }, # yellow
+    { name = "*.yaml", text = "", fg = "#9876aa" }, # purple
+    { name = "*.yml", text = "", fg = "#9876aa" },  # purple
+    { name = "*.toml", text = "", fg = "#9876aa" }, # purple
+
+    # Documents
+    { name = "*.pdf", text = "", fg = "#ff6b68" }, # red
+    { name = "*.md", text = "", fg = "#287bde" },  # cyan
+    { name = "*.txt", text = "", fg = "#a9b7c6" }, # text_primary
+
+    # Images
+    { name = "*.png", text = "", fg = "#ff6b9d" }, # pink
+    { name = "*.jpg", text = "", fg = "#ff6b9d" }, # pink
+    { name = "*.svg", text = "", fg = "#ffc66d" }, # yellow
+
+    # Media files
+    { name = "*.mp3", text = "", fg = "#ff6b68" }, # red
+    { name = "*.mp4", text = "", fg = "#ff6b68" }, # red
+
+    # Archives
+    { name = "*.zip", text = "", fg = "#cc7832" }, # orange
+    { name = "*.tar", text = "", fg = "#cc7832" }, # orange
+
+    # Special files
+    { name = "Dockerfile", text = "", fg = "#287bde" }, # cyan
+    { name = "Makefile", text = "", fg = "#6897bb" },   # blue
+    { name = "README.md", text = "", fg = "#ffc66d" },  # yellow
+]
+
+# Extensions fallback
+exts = [
+    { name = "py", text = "", fg = "#ffc66d" },   # yellow
+    { name = "js", text = "", fg = "#ffc66d" },   # yellow
+    { name = "ts", text = "", fg = "#287bde" },   # cyan
+    { name = "rs", text = "", fg = "#ff6b68" },   # red
+    { name = "html", text = "", fg = "#ff6b68" }, # red
+    { name = "css", text = "", fg = "#287bde" },  # cyan
+    { name = "png", text = "", fg = "#ff6b9d" },  # pink
+    { name = "jpg", text = "", fg = "#ff6b9d" },  # pink
+    { name = "*", text = "", fg = "#a9b7c6" },    # text_primary
+]
+
+# : }}}

@@ -1,0 +1,339 @@
+# Rose Pine Dawn Theme for Yazi
+# A warm, elegant light theme inspired by the Rose Pine Dawn color palette
+# https://rosepinetheme.com/
+
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
+# Rose Pine Dawn Color Palette
+# Background colors:
+# - base: #faf4ed (main background)
+# - surface: #fffaf3 (surface background)
+# - overlay: #f2e9e1 (overlay background)
+# - muted: #9893a5 (muted text)
+# - subtle: #797593 (subtle text)
+# - text: #575279 (main text)
+# - love: #b4637a (red/pink)
+# - gold: #ea9d34 (yellow/orange)
+# - rose: #d7827e (light pink)
+# - pine: #286983 (blue/teal)
+# - foam: #56949f (light blue/cyan)
+# - iris: #907aa9 (purple)
+# - highlight_low: #f4ede8 (light highlight)
+# - highlight_med: #dfdad9 (medium highlight)
+# - highlight_high: #cecacd (dark highlight)
+
+# : Manager {{{
+
+[mgr]
+cwd = { fg = "#56949f", bold = true } # foam - current directory
+
+# Hovered states
+hovered = { bg = "#dfdad9", bold = true }              # highlight_med
+preview_hovered = { underline = true, fg = "#575279" } # text
+
+# Find/search
+find_keyword = { fg = "#ea9d34", bold = true, italic = true, underline = true } # gold
+find_position = { fg = "#907aa9", bg = "#faf4ed", bold = true, italic = true }  # iris on base
+
+# Symlink
+symlink_target = { fg = "#56949f", italic = true } # foam
+
+# Markers
+marker_copied = { fg = "#faf4ed", bg = "#286983" }   # base on pine
+marker_cut = { fg = "#faf4ed", bg = "#b4637a" }      # base on love
+marker_marked = { fg = "#faf4ed", bg = "#907aa9" }   # base on iris
+marker_selected = { fg = "#faf4ed", bg = "#ea9d34" } # base on gold
+
+# Counts
+count_copied = { fg = "#575279", bg = "#286983" }   # text on pine
+count_cut = { fg = "#575279", bg = "#b4637a" }      # text on love
+count_selected = { fg = "#575279", bg = "#ea9d34" } # text on gold
+
+# Border
+border_symbol = "│"
+border_style = { fg = "#9893a5" } # muted
+
+# Syntax highlighting
+syntect_theme = ""
+
+# : }}}
+
+# : Tabs {{{
+
+[tabs]
+active = { fg = "#575279", bg = "#286983", bold = true } # text on pine
+inactive = { fg = "#797593", bg = "#f2e9e1" }            # subtle on overlay
+
+# Tab separators
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+# : }}}
+
+# : Mode indicator {{{
+
+[mode]
+normal_main = { fg = "#575279", bg = "#286983", bold = true } # text on pine
+normal_alt = { fg = "#286983", bg = "#f2e9e1" }               # pine on overlay
+
+select_main = { fg = "#575279", bg = "#b4637a", bold = true } # text on love  
+select_alt = { fg = "#b4637a", bg = "#f2e9e1" }               # love on overlay
+
+unset_main = { fg = "#575279", bg = "#ea9d34", bold = true } # text on gold
+unset_alt = { fg = "#ea9d34", bg = "#f2e9e1" }               # gold on overlay
+
+# : }}}
+
+# : Status bar {{{
+
+[status]
+overall = { fg = "#575279", bg = "#faf4ed" } # text on base
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }
+
+# File permissions
+perm_sep = { fg = "#9893a5" }   # muted
+perm_type = { fg = "#286983" }  # pine - file type
+perm_read = { fg = "#ea9d34" }  # gold - read permission
+perm_write = { fg = "#b4637a" } # love - write permission  
+perm_exec = { fg = "#56949f" }  # foam - execute permission
+
+# Progress indicators
+progress_label = { fg = "#575279", bold = true }     # text
+progress_normal = { fg = "#286983", bg = "#f2e9e1" } # pine on overlay
+progress_error = { fg = "#b4637a", bg = "#f2e9e1" }  # love on overlay
+
+# : }}}
+
+# : Which-key menu {{{
+
+[which]
+cols = 3
+mask = { bg = "#faf4ed" }              # base background
+cand = { fg = "#56949f", bold = true } # foam - candidates
+rest = { fg = "#9893a5" }              # muted - rest of command
+desc = { fg = "#907aa9" }              # iris - descriptions
+separator = "  "
+separator_style = { fg = "#9893a5" }   # muted
+
+# : }}}
+
+# : Confirmation dialog {{{
+
+[confirm]
+border = { fg = "#286983" }             # pine
+title = { fg = "#286983", bold = true } # pine
+
+# : }}}
+
+# : File search/spotter {{{
+
+[spot]
+border = { fg = "#286983" }             # pine
+title = { fg = "#286983", bold = true } # pine
+
+# Table view
+tbl_col = { fg = "#56949f", bold = true }     # foam - column headers
+tbl_cell = { fg = "#ea9d34", bg = "#f2e9e1" } # gold on overlay
+
+# : }}}
+
+# : Notifications {{{
+
+[notify]
+title_info = { fg = "#286983", bold = true }  # pine
+title_warn = { fg = "#ea9d34", bold = true }  # gold  
+title_error = { fg = "#b4637a", bold = true } # love
+
+# Notification icons
+icon_info = ""  # info icon
+icon_warn = ""  # warning icon
+icon_error = "" # error icon
+
+# : }}}
+
+# : File picker {{{
+
+[pick]
+border = { fg = "#286983" }              # pine
+active = { fg = "#907aa9", bold = true } # iris - active item
+inactive = { fg = "#797593" }            # subtle - inactive items
+
+# : }}}
+
+# : Input field {{{
+
+[input]
+border = { fg = "#286983" }                   # pine
+title = { fg = "#56949f", bold = true }       # foam
+value = { fg = "#575279" }                    # text
+selected = { fg = "#faf4ed", bg = "#907aa9" } # base on iris
+
+# : }}}
+
+# : Command completion {{{
+
+[cmp]
+border = { fg = "#286983" }                 # pine
+active = { fg = "#faf4ed", bg = "#56949f" } # base on foam
+inactive = { fg = "#797593" }               # subtle
+
+# Completion icons
+icon_file = ""    # file icon
+icon_folder = ""  # folder icon  
+icon_command = "" # command icon
+
+# : }}}
+
+# : Task manager {{{
+
+[tasks]
+border = { fg = "#286983" }                    # pine
+title = { fg = "#56949f", bold = true }        # foam
+hovered = { fg = "#907aa9", underline = true } # iris
+
+# : }}}
+
+# : Help menu {{{
+
+[help]
+on = { fg = "#56949f", bold = true }                      # foam - enabled features
+run = { fg = "#907aa9", bold = true }                     # iris - runnable commands
+desc = { fg = "#797593" }                                 # subtle - descriptions
+hovered = { fg = "#faf4ed", bg = "#d7827e", bold = true } # base on rose
+footer = { fg = "#faf4ed", bg = "#575279" }               # base on text
+
+# : }}}
+
+# : File type colors {{{
+
+[filetype]
+rules = [
+    # Images - rose color for visual files
+    { mime = "image/*", fg = "#d7827e" },
+
+    # Audio/Video - love color for media
+    { mime = "audio/*", fg = "#b4637a" },
+    { mime = "video/*", fg = "#b4637a" },
+
+    # Archives - gold color for compressed files
+    { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#ea9d34" },
+
+    # Documents - pine color for text documents
+    { mime = "application/{pdf,doc,rtf,odt,ods,odp}", fg = "#286983" },
+    { mime = "text/*", fg = "#286983" },
+
+    # Code files - foam color for source code
+    { mime = "application/{javascript,typescript,json,xml}", fg = "#56949f" },
+
+    # Special file states
+    { name = "*", is = "orphan", bg = "#b4637a", fg = "#575279" }, # love background
+    { name = "*", is = "exec", fg = "#ea9d34", bold = true },      # gold for executables
+
+    # Dummy/placeholder files
+    { name = "*", is = "dummy", bg = "#9893a5", fg = "#575279" },
+
+    # Directories - iris color
+    { name = "*/", fg = "#907aa9", bold = true },
+
+    # Default fallback
+    { name = "*", fg = "#575279" }, # text color
+]
+
+# : }}}
+
+# : Icons {{{
+
+[icon]
+globs = []
+
+# Directory icons
+dirs = [
+    { name = ".git", text = "", fg = "#b4637a" },         # love
+    { name = ".github", text = "", fg = "#b4637a" },      # love
+    { name = ".config", text = "", fg = "#286983" },      # pine
+    { name = ".npm", text = "", fg = "#b4637a" },         # love
+    { name = ".vscode", text = "", fg = "#286983" },      # pine
+    { name = "node_modules", text = "", fg = "#ea9d34" }, # gold
+    { name = "Desktop", text = "", fg = "#56949f" },      # foam
+    { name = "Documents", text = "", fg = "#286983" },    # pine
+    { name = "Downloads", text = "", fg = "#ea9d34" },    # gold
+    { name = "Pictures", text = "", fg = "#d7827e" },     # rose
+    { name = "Music", text = "", fg = "#b4637a" },        # love
+    { name = "Videos", text = "", fg = "#b4637a" },       # love
+    { name = "Development", text = "", fg = "#56949f" },  # foam
+    { name = "Projects", text = "", fg = "#56949f" },     # foam
+]
+
+# File icons
+files = [
+    # Git files
+    { name = ".gitignore", text = "", fg = "#b4637a" },
+    { name = ".gitconfig", text = "", fg = "#b4637a" },
+
+    # Config files
+    { name = ".bashrc", text = "", fg = "#286983" },
+    { name = ".zshrc", text = "", fg = "#286983" },
+    { name = ".vimrc", text = "", fg = "#286983" },
+
+    # Web development
+    { name = "*.html", text = "", fg = "#b4637a" }, # love
+    { name = "*.css", text = "", fg = "#286983" },  # pine
+    { name = "*.scss", text = "", fg = "#d7827e" }, # rose
+    { name = "*.js", text = "", fg = "#ea9d34" },   # gold
+    { name = "*.ts", text = "", fg = "#286983" },   # pine
+    { name = "*.jsx", text = "", fg = "#56949f" },  # foam
+    { name = "*.tsx", text = "", fg = "#56949f" },  # foam
+
+    # Programming languages
+    { name = "*.py", text = "", fg = "#ea9d34" },   # gold
+    { name = "*.rs", text = "", fg = "#b4637a" },   # love
+    { name = "*.go", text = "", fg = "#56949f" },   # foam
+    { name = "*.cpp", text = "", fg = "#286983" },  # pine
+    { name = "*.c", text = "", fg = "#286983" },    # pine
+    { name = "*.java", text = "", fg = "#b4637a" }, # love
+
+    # Data files
+    { name = "*.json", text = "", fg = "#ea9d34" }, # gold
+    { name = "*.yaml", text = "", fg = "#907aa9" }, # iris
+    { name = "*.yml", text = "", fg = "#907aa9" },  # iris
+    { name = "*.toml", text = "", fg = "#907aa9" }, # iris
+
+    # Documents
+    { name = "*.pdf", text = "", fg = "#b4637a" }, # love
+    { name = "*.md", text = "", fg = "#56949f" },  # foam
+    { name = "*.txt", text = "", fg = "#575279" }, # text
+
+    # Images
+    { name = "*.png", text = "", fg = "#d7827e" }, # rose
+    { name = "*.jpg", text = "", fg = "#d7827e" }, # rose
+    { name = "*.svg", text = "", fg = "#ea9d34" }, # gold
+
+    # Media files
+    { name = "*.mp3", text = "", fg = "#b4637a" }, # love
+    { name = "*.mp4", text = "", fg = "#b4637a" }, # love
+
+    # Archives
+    { name = "*.zip", text = "", fg = "#ea9d34" }, # gold
+    { name = "*.tar", text = "", fg = "#ea9d34" }, # gold
+
+    # Special files
+    { name = "Dockerfile", text = "", fg = "#286983" }, # pine
+    { name = "Makefile", text = "", fg = "#56949f" },   # foam
+    { name = "README.md", text = "", fg = "#ea9d34" },  # gold
+]
+
+# Extensions fallback
+exts = [
+    { name = "py", text = "", fg = "#ea9d34" },   # gold
+    { name = "js", text = "", fg = "#ea9d34" },   # gold
+    { name = "ts", text = "", fg = "#286983" },   # pine
+    { name = "rs", text = "", fg = "#b4637a" },   # love
+    { name = "html", text = "", fg = "#b4637a" }, # love
+    { name = "css", text = "", fg = "#286983" },  # pine
+    { name = "png", text = "", fg = "#d7827e" },  # rose
+    { name = "jpg", text = "", fg = "#d7827e" },  # rose
+    { name = "*", text = "", fg = "#575279" },    # text
+]
+
+# : }}}

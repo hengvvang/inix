@@ -7,9 +7,8 @@
     # 主要配置文件 - 核心功能和行为设置
     home.file.".config/yazi/yazi.toml".source = ./configs/yazi.toml;
     home.file.".config/yazi/keymap.toml".source = ./configs/keymap.toml;
-    # home.file.".config/yazi/theme.toml".source = ./configs/theme.toml;
-    home.file.".config/yazi/theme-light.toml".source = ./configs/theme-light.toml;
-    home.file.".config/yazi/theme-dark.toml".source = ./configs/theme-dark.toml;
+    home.file.".config/yazi/theme.toml".source = ./configs/theme.toml;
+    home.file.".config/yazi/theme-rose-pine.toml".source = ./configs/theme-rose-pine.toml;
 
     # ===== 初始化脚本配置 =====
     # init.lua - Yazi 启动时执行的 Lua 脚本，提供高级功能
@@ -18,6 +17,9 @@
     # ===== 配置文档 =====
     # 配置说明和使用指南
     home.file.".config/yazi/README.md".source = ./configs/README.md;
+    home.file.".config/yazi/ROSE-PINE-THEME.md".source = ./configs/ROSE-PINE-THEME.md;
+    home.file.".config/yazi/QUICK-START.md".source = ./configs/QUICK-START.md;
+    home.file.".config/yazi/THEME-GALLERY.md".source = ./configs/THEME-GALLERY.md;
 
 
     # ===== 插件和扩展目录设置 =====
@@ -26,6 +28,19 @@
 
     # 主题风格目录 - 用于存放额外的主题风格
     home.file.".config/yazi/flavors/.keep".text = "";
+    
+    # Rose Pine 系列主题
+    home.file.".config/yazi/flavors/rose-pine.toml".source = ./configs/flavors/rose-pine.toml;
+    home.file.".config/yazi/flavors/rose-pine-dawn.toml".source = ./configs/flavors/rose-pine-dawn.toml;
+    home.file.".config/yazi/flavors/rose-pine-moon.toml".source = ./configs/flavors/rose-pine-moon.toml;
+    
+    # Catppuccin 系列主题
+    home.file.".config/yazi/flavors/catppuccin-mocha.toml".source = ./configs/flavors/catppuccin-mocha.toml;
+    home.file.".config/yazi/flavors/catppuccin-latte.toml".source = ./configs/flavors/catppuccin-latte.toml;
+    
+    # Darcula 系列主题
+    home.file.".config/yazi/flavors/darcula.toml".source = ./configs/flavors/darcula.toml;
+    home.file.".config/yazi/flavors/one-dark.toml".source = ./configs/flavors/one-dark.toml;
 
 
     # ===== 包依赖确保 =====
