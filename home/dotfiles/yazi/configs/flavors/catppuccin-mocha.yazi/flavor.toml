@@ -65,7 +65,7 @@ border_symbol = "│"
 border_style = { fg = "#6c7086" } # overlay0
 
 # Syntax highlighting
-syntect_theme = ""
+syntect_theme = "tmtheme.xml"
 
 # : }}}
 
