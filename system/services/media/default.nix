@@ -35,45 +35,65 @@
     # MPD 音乐播放器守护进程
     mpd = {
       enable = lib.mkEnableOption "MPD 音乐播放器守护进程";
+      
       musicDirectory = lib.mkOption {
         type = lib.types.str;
-        default = "/home/music";
+        default = "/srv/music";
         description = "音乐文件目录路径";
       };
+      
       dataDir = lib.mkOption {
         type = lib.types.str;
         default = "/var/lib/mpd";
         description = "MPD 数据目录";
       };
-      port = lib.mkOption {
-        type = lib.types.int;
-        default = 6600;
-        description = "MPD 服务端口";
-      };
-      httpPort = lib.mkOption {
-        type = lib.types.nullOr lib.types.int;
-        default = 8000;
-        description = "HTTP 音频流端口，设为 null 禁用";
-      };
+      
       user = lib.mkOption {
         type = lib.types.str;
         default = "mpd";
-        description = "MPD 运行用户";
+        description = "运行 MPD 的用户";
       };
+      
       group = lib.mkOption {
         type = lib.types.str;
         default = "mpd";
-        description = "MPD 运行用户组";
+        description = "运行 MPD 的用户组";
       };
+      
+      port = lib.mkOption {
+        type = lib.types.port;
+        default = 6600;
+        description = "MPD 服务端口";
+      };
+      
+      httpPort = lib.mkOption {
+        type = lib.types.nullOr lib.types.port;
+        default = 8000;
+        description = "HTTP 音频流端口，设为 null 禁用";
+      };
+      
       enablePulseaudio = lib.mkOption {
         type = lib.types.bool;
         default = true;
         description = "启用 PulseAudio/PipeWire 音频输出";
       };
+      
       enableAlsa = lib.mkOption {
         type = lib.types.bool;
         default = false;
         description = "启用 ALSA 音频输出";
+      };
+      
+      enableFileOutput = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "启用文件输出 (FIFO) 用于可视化";
+      };
+      
+      fifoPath = lib.mkOption {
+        type = lib.types.str;
+        default = "/tmp/mpd.fifo";
+        description = "FIFO 输出文件路径";
       };
     };
   };

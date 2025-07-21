@@ -1,0 +1,105 @@
+# rmpc 基础配置示例
+# 此配置适用于初次使用 rmpc 的用户
+
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    // MPD 连接设置
+    address: "127.0.0.1:6600",
+    password: None,
+    
+    // 目录配置
+    cache_dir: Some("~/.cache/rmpc"),
+    lyrics_dir: Some("~/.local/share/rmpc/lyrics"),
+    
+    // 界面设置
+    theme: None,
+    max_fps: 30,
+    scrolloff: 2,
+    wrap_navigation: false,
+    enable_mouse: true,
+    enable_config_hot_reload: true,
+    
+    // 播放控制
+    volume_step: 5,
+    rewind_to_start_sec: Some(3),
+    status_update_interval_ms: Some(1000),
+    select_current_song_on_change: false,
+    center_current_song_on_change: false,
+    
+    // 连接超时
+    mpd_read_timeout_ms: 10000,
+    mpd_write_timeout_ms: 5000,
+    mpd_idle_read_timeout_ms: None,
+    
+    // 播放列表同步
+    reflect_changes_to_playlist: false,
+    
+    // 专辑封面
+    album_art: (
+        method: Auto,
+        max_size_px: (width: 600, height: 600),
+        disabled_protocols: [],
+        vertical_align: Center,
+        horizontal_align: Center,
+    ),
+    
+    // 通知设置
+    on_song_change: None,
+    on_resize: None,
+    
+    // 搜索配置
+    search: (
+        case_sensitive: false,
+        mode: Contains,
+        tags: [
+            (value: "any", label: "Any Tag"),
+            (value: "artist", label: "Artist"),
+            (value: "album", label: "Album"),
+            (value: "title", label: "Title"),
+        ],
+    ),
+    
+    // 艺术家视图
+    artists: (
+        album_display_mode: NameOnly,
+        album_sort_by: Name,
+    ),
+    
+    // 排序设置
+    browser_song_sort: [Track, Artist, Title],
+    directories_sort: SortFormat(group_by_type: true, reverse: false),
+    show_playlists_in_browser: NonRoot,
+    
+    // 默认键位绑定
+    keybinds: (
+        global: {
+            "q": Quit,
+            "p": TogglePause,
+            ">": NextTrack,
+            "<": PreviousTrack,
+            "~": ShowHelp,
+        },
+        navigation: {
+            "k": Up,
+            "j": Down,
+            "h": Left,
+            "l": Right,
+            "<CR>": Confirm,
+        },
+        queue: {
+            "<CR>": Play,
+            "d": Delete,
+        },
+    ),
+    
+    // 简化标签页布局
+    tabs: [
+        (name: "Queue", pane: Pane(Queue)),
+        (name: "Directories", pane: Pane(Directories)),
+        (name: "Artists", pane: Pane(Artists)),
+        (name: "Albums", pane: Pane(Albums)),
+        (name: "Search", pane: Pane(Search)),
+    ],
+)

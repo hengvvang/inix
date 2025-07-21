@@ -1,4 +1,5 @@
-# 用户级 MPD 配置 (Home Manager)
+# MPD 客户端工具配置 (Home Manager)
+# 注意: MPD 系统服务在 system/services/media/mpd.nix 中配置
 { config, lib, pkgs, ... }:
 
 let
@@ -6,208 +7,330 @@ let
 in
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && cfg.enable && cfg.method == "homemanager") {
-    services.mpd = {
-      enable = true;
-      musicDirectory = config.home.homeDirectory + "/Music";
-      
-      extraConfig = ''
-        # 音频输出配置
-        audio_output {
-          type        "pipewire"
-          name        "PipeWire Output"
-        }
-        
-        audio_output {
-          type        "pulse"
-          name        "PulseAudio Output"
-        }
-        
-        # HTTP 音频流 (可选)
-        audio_output {
-          type        "httpd"
-          name        "HTTP Audio Stream"
-          encoder     "lame"
-          port        "8000"
-          bitrate     "192"
-          format      "44100:16:2"
-          always_on   "yes"
-          tags        "yes"
-        }
-        
-        # 文件输出 (用于录音等)
-        audio_output {
-          type        "fifo"
-          name        "FIFO Output"
-          path        "/tmp/mpd.fifo"
-          format      "44100:16:2"
-        }
-        
-        # 解码器配置
-        decoder {
-          plugin      "mad"
-          enabled     "yes"
-        }
-        
-        decoder {
-          plugin      "vorbis" 
-          enabled     "yes"
-        }
-        
-        decoder {
-          plugin      "flac"
-          enabled     "yes"
-        }
-        
-        decoder {
-          plugin      "ffmpeg"
-          enabled     "yes"
-        }
-        
-        # 输入配置
-        input {
-          plugin      "curl"
-        }
-        
-        # 其他设置
-        filesystem_charset      "UTF-8"
-        metadata_to_use         "artist,album,title,track,name,genre,date,composer,performer,disc,albumartist"
-        auto_update             "yes"
-        auto_update_depth       "4"
-        follow_outside_symlinks "yes"
-        follow_inside_symlinks  "yes"
-        
-        # 混音器配置
-        mixer_type              "software"
-        
-        # 重播增益
-        replaygain              "auto"
-        replaygain_preamp       "0"
-        replaygain_missing_preamp "0"
-        replaygain_limit        "yes"
-        
-        # 网络配置
-        bind_to_address         "localhost"
-        port                    "6600"
-        
-        # 日志级别
-        log_level               "notice"
-      '';
-    };
-
-    # 安装相关的音乐客户端工具
+    # 安装 MPD 客户端工具（不包含 MPD 服务本身）
     home.packages = with pkgs; [
-      # MPD 客户端
       mpc-cli       # 命令行客户端
-      ncmpcpp       # NCurses 客户端
+      ncmpcpp       # NCurses 图形客户端
       cantata       # Qt 图形客户端 (可选)
       
-      # 音频工具
-      playerctl     # 媒体播放器控制
+      # 音频控制工具
+      playerctl     # 媒体播放器通用控制
       pavucontrol   # 音频控制面板
     ];
 
-    # 创建音乐目录 (暂时注释掉以避免权限问题)
-    # home.file."Music/.keep".text = "";
-    
-    # 创建桌面启动器
-    home.file.".local/share/applications/rmpc.desktop".text = ''
-      [Desktop Entry]
-      Type=Application
-      Name=rmpc
-      Comment=MPD 音乐播放器客户端
-      Exec=${config.home.homeDirectory}/.local/bin/rmpc-wrapper
-      Icon=multimedia-audio-player
-      Categories=AudioVideo;Audio;Player;
-      Terminal=true
-      StartupNotify=false
-    '';
-    
-    # 创建便捷脚本
-    home.file.".local/bin/rmpc-wrapper" = {
+    # MPD 客户端管理脚本
+    home.file.".local/bin/mpd-client" = {
       executable = true;
       text = ''
         #!/usr/bin/env bash
-        # rmpc 包装脚本，确保 MPD 服务运行
+        # MPD 客户端管理脚本
         
-        # 检查 MPD 是否运行
-        if ! systemctl --user is-active --quiet mpd; then
-          echo "启动 MPD 服务..."
-          systemctl --user start mpd
-          sleep 2
-        fi
+        MPD_HOST="''${MPD_HOST:-localhost}"
+        MPD_PORT="''${MPD_PORT:-6600}"
         
-        # 检查音乐目录是否存在
-        if [ ! -d "${config.home.homeDirectory}/Music" ]; then
-          mkdir -p "${config.home.homeDirectory}/Music"
-          echo "已创建音乐目录: ${config.home.homeDirectory}/Music"
-        fi
-        
-        # 启动 rmpc
-        exec ${pkgs.rmpc}/bin/rmpc "$@"
-      '';
-    };
-    
-    # 创建音乐管理脚本
-    home.file.".local/bin/music-manager" = {
-      executable = true;
-      text = ''
-        #!/usr/bin/env bash
-        # 音乐管理脚本
-        
-        MUSIC_DIR="${config.home.homeDirectory}/Music"
+        # 检查 MPD 连接
+        check_mpd() {
+            if ! nc -z "$MPD_HOST" "$MPD_PORT" 2>/dev/null; then
+                echo "错误: 无法连接到 MPD ($MPD_HOST:$MPD_PORT)"
+                echo "请检查 MPD 系统服务是否运行："
+                echo "  sudo systemctl status mpd"
+                echo "  sudo systemctl start mpd"
+                return 1
+            fi
+            return 0
+        }
         
         case "$1" in
-          scan)
-            echo "扫描音乐库..."
-            ${pkgs.mpc-cli}/bin/mpc update
-            echo "扫描完成"
-            ;;
-          stats)
-            echo "音乐库统计:"
-            ${pkgs.mpc-cli}/bin/mpc stats
-            ;;
-          add)
-            if [ -z "$2" ]; then
-              echo "用法: $0 add <文件或目录>"
-              exit 1
-            fi
-            
-            if [ -f "$2" ] || [ -d "$2" ]; then
-              echo "复制 $2 到音乐库..."
-              cp -r "$2" "$MUSIC_DIR/"
-              echo "更新数据库..."
-              ${pkgs.mpc-cli}/bin/mpc update
-              echo "完成"
+          connect-test)
+            echo "测试 MPD 连接..."
+            if check_mpd; then
+              echo "✓ MPD 连接正常"
+              echo "服务器信息:"
+              mpc version
             else
-              echo "错误: $2 不存在"
               exit 1
             fi
             ;;
-          list)
-            echo "音乐库内容:"
-            ${pkgs.mpc-cli}/bin/mpc listall
+            
+          status)
+            if check_mpd; then
+              mpc status
+            else
+              exit 1
+            fi
             ;;
+            
+          info)
+            if check_mpd; then
+              echo "MPD 服务器信息:"
+              mpc version
+              echo ""
+              echo "当前状态:"
+              mpc status
+              echo ""
+              echo "音乐库统计:"
+              mpc stats
+            else
+              exit 1
+            fi
+            ;;
+            
+          playlist)
+            if check_mpd; then
+              echo "当前播放队列:"
+              mpc playlist
+            else
+              exit 1
+            fi
+            ;;
+            
           search)
             if [ -z "$2" ]; then
               echo "用法: $0 search <关键词>"
               exit 1
             fi
-            echo "搜索结果:"
-            ${pkgs.mpc-cli}/bin/mpc search any "$2"
+            if check_mpd; then
+              echo "搜索结果:"
+              mpc search any "$2"
+            else
+              exit 1
+            fi
             ;;
+            
+          add-search)
+            if [ -z "$2" ]; then
+              echo "用法: $0 add-search <关键词>"
+              exit 1
+            fi
+            if check_mpd; then
+              echo "搜索并添加到队列:"
+              mpc findadd any "$2"
+              echo "已添加搜索结果到播放队列"
+            else
+              exit 1
+            fi
+            ;;
+            
+          clear-queue)
+            if check_mpd; then
+              mpc clear
+              echo "播放队列已清空"
+            else
+              exit 1
+            fi
+            ;;
+            
+          save-playlist)
+            if [ -z "$2" ]; then
+              echo "用法: $0 save-playlist <播放列表名>"
+              exit 1
+            fi
+            if check_mpd; then
+              mpc save "$2"
+              echo "当前队列已保存为播放列表: $2"
+            else
+              exit 1
+            fi
+            ;;
+            
+          load-playlist)
+            if [ -z "$2" ]; then
+              echo "用法: $0 load-playlist <播放列表名>"
+              exit 1
+            fi
+            if check_mpd; then
+              mpc load "$2"
+              echo "播放列表 $2 已加载到队列"
+            else
+              exit 1
+            fi
+            ;;
+            
+          list-playlists)
+            if check_mpd; then
+              echo "可用播放列表:"
+              mpc lsplaylists
+            else
+              exit 1
+            fi
+            ;;
+            
+          ncmpcpp)
+            if check_mpd; then
+              exec ${pkgs.ncmpcpp}/bin/ncmpcpp
+            else
+              exit 1
+            fi
+            ;;
+            
+          cantata)
+            if check_mpd; then
+              exec ${pkgs.cantata}/bin/cantata &
+            else
+              exit 1
+            fi
+            ;;
+            
           *)
-            echo "音乐管理脚本"
-            echo "用法: $0 {scan|stats|add|list|search}"
+            echo "MPD 客户端管理工具"
+            echo "用法: $0 {connect-test|status|info|playlist|search|add-search|clear-queue|save-playlist|load-playlist|list-playlists|ncmpcpp|cantata}"
             echo ""
-            echo "命令说明:"
-            echo "  scan           - 扫描音乐库"
-            echo "  stats          - 显示统计信息"
-            echo "  add <path>     - 添加音乐文件/目录"
-            echo "  list           - 列出所有音乐"
-            echo "  search <term>  - 搜索音乐"
+            echo "连接测试:"
+            echo "  connect-test        - 测试 MPD 服务器连接"
+            echo "  info               - 显示服务器信息和状态"
+            echo ""
+            echo "播放控制:"
+            echo "  status             - 显示播放状态"
+            echo "  playlist           - 显示当前播放队列"
+            echo ""
+            echo "音乐库操作:"
+            echo "  search <term>      - 搜索音乐"
+            echo "  add-search <term>  - 搜索并添加到队列"
+            echo "  clear-queue        - 清空播放队列"
+            echo ""
+            echo "播放列表管理:"
+            echo "  save-playlist <name>   - 保存当前队列为播放列表"
+            echo "  load-playlist <name>   - 加载播放列表到队列"
+            echo "  list-playlists         - 列出所有播放列表"
+            echo ""
+            echo "图形客户端:"
+            echo "  ncmpcpp           - 启动 ncmpcpp 终端客户端"
+            echo "  cantata           - 启动 Cantata 图形客户端"
+            echo ""
+            echo "环境变量:"
+            echo "  MPD_HOST          - MPD 服务器地址 (默认: localhost)"
+            echo "  MPD_PORT          - MPD 服务器端口 (默认: 6600)"
             ;;
         esac
       '';
+    };
+
+    # 创建用户音乐目录的软链接脚本
+    home.file.".local/bin/music-link" = {
+      executable = true;
+      text = ''
+        #!/usr/bin/env bash
+        # 创建用户音乐目录到系统音乐目录的软链接
+        
+        USER_MUSIC="$HOME/Music"
+        SYSTEM_MUSIC="/srv/music/$USER"
+        
+        case "$1" in
+          setup)
+            echo "设置用户音乐目录链接..."
+            
+            # 检查系统音乐目录是否存在
+            if [ ! -d "/srv/music" ]; then
+              echo "错误: 系统音乐目录 /srv/music 不存在"
+              echo "请联系系统管理员或检查 MPD 系统服务配置"
+              exit 1
+            fi
+            
+            # 创建用户目录
+            sudo mkdir -p "$SYSTEM_MUSIC"
+            sudo chown "$USER:users" "$SYSTEM_MUSIC"
+            
+            # 创建软链接
+            if [ -L "$USER_MUSIC" ]; then
+              echo "软链接已存在"
+            elif [ -d "$USER_MUSIC" ]; then
+              echo "本地 Music 目录已存在，请手动处理："
+              echo "  mv '$USER_MUSIC' '$USER_MUSIC.backup'"
+              echo "  $0 setup"
+              exit 1
+            else
+              ln -s "$SYSTEM_MUSIC" "$USER_MUSIC"
+              echo "✓ 用户音乐目录已链接到系统目录"
+            fi
+            ;;
+            
+          remove)
+            if [ -L "$USER_MUSIC" ]; then
+              rm "$USER_MUSIC"
+              echo "✓ 软链接已移除"
+            else
+              echo "软链接不存在"
+            fi
+            ;;
+            
+          status)
+            echo "音乐目录状态:"
+            echo "用户目录: $USER_MUSIC"
+            if [ -L "$USER_MUSIC" ]; then
+              echo "  -> 链接到: $(readlink '$USER_MUSIC')"
+            elif [ -d "$USER_MUSIC" ]; then
+              echo "  -> 本地目录 ($(du -sh '$USER_MUSIC' | cut -f1))"
+            else
+              echo "  -> 不存在"
+            fi
+            
+            echo "系统目录: $SYSTEM_MUSIC"
+            if [ -d "$SYSTEM_MUSIC" ]; then
+              echo "  -> 存在 ($(du -sh '$SYSTEM_MUSIC' 2>/dev/null | cut -f1 || echo '无法访问'))"
+            else
+              echo "  -> 不存在"
+            fi
+            ;;
+            
+          *)
+            echo "音乐目录链接管理工具"
+            echo "用法: $0 {setup|remove|status}"
+            echo ""
+            echo "  setup   - 设置用户音乐目录链接"
+            echo "  remove  - 移除软链接"
+            echo "  status  - 显示目录状态"
+            ;;
+        esac
+      '';
+    };
+
+    # 创建桌面启动器
+    home.file.".local/share/applications/ncmpcpp.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=ncmpcpp
+      Comment=NCurses MPD 客户端
+      Exec=${pkgs.ncmpcpp}/bin/ncmpcpp
+      Icon=multimedia-audio-player
+      Categories=AudioVideo;Audio;Player;
+      Terminal=true
+      StartupNotify=false
+      Keywords=music;audio;player;mpd;ncurses;
+    '';
+
+    home.file.".local/share/applications/cantata.desktop".text = ''
+      [Desktop Entry]
+      Type=Application
+      Name=Cantata
+      Comment=Qt MPD 图形客户端
+      Exec=${pkgs.cantata}/bin/cantata
+      Icon=cantata
+      Categories=AudioVideo;Audio;Player;
+      Terminal=false
+      StartupNotify=true
+      Keywords=music;audio;player;mpd;qt;
+    '';
+
+    # Shell 别名
+    programs.bash.shellAliases = lib.mkIf config.programs.bash.enable {
+      mpc = "${pkgs.mpc-cli}/bin/mpc";
+      mpd-test = "mpd-client connect-test";
+      mpd-info = "mpd-client info";
+      mpd-ncmpcpp = "mpd-client ncmpcpp";
+    };
+
+    programs.fish.shellAliases = lib.mkIf config.programs.fish.enable {
+      mpc = "${pkgs.mpc-cli}/bin/mpc";
+      mpd-test = "mpd-client connect-test";
+      mpd-info = "mpd-client info";
+      mpd-ncmpcpp = "mpd-client ncmpcpp";
+    };
+
+    programs.zsh.shellAliases = lib.mkIf config.programs.zsh.enable {
+      mpc = "${pkgs.mpc-cli}/bin/mpc";
+      mpd-test = "mpd-client connect-test";
+      mpd-info = "mpd-client info";
+      mpd-ncmpcpp = "mpd-client ncmpcpp";
     };
   };
 }
