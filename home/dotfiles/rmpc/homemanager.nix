@@ -9,11 +9,7 @@ in
     # 安装 rmpc 和相关工具
     home.packages = with pkgs; [
       rmpc          # 终端音乐播放器客户端
-      
-      # 音频可视化工具（可选）
-      cava          # 终端音频可视化器
-      
-      # 通知工具
+      cava          # 终端音频可视化器（可选）
       libnotify     # 桌面通知支持
     ];
 
@@ -65,9 +61,6 @@ in
           
           // 歌曲变更通知
           on_song_change: ["notify-send", "--expire-time=3000", "--icon=audio-x-generic", "♪ 正在播放", "{artist} - {title}"],
-          
-          // 窗口大小变更处理
-          on_resize: None,
           
           // 搜索配置
           search: (
@@ -239,172 +232,20 @@ in
       Keywords=music;audio;player;mpd;terminal;
     '';
 
-    # 创建便捷脚本
+    # 创建简单的 rmpc 启动包装脚本
     home.file.".local/bin/rmpc-wrapper" = {
       executable = true;
       text = ''
         #!/usr/bin/env bash
-        # rmpc 启动包装脚本
-        
-        # 检查 MPD 服务状态
-        check_mpd() {
-            if ! nc -z localhost 6600 2>/dev/null; then
-                echo "警告: 无法连接到 MPD (localhost:6600)"
-                echo "请确保 MPD 服务正在运行:"
-                echo "  系统服务: sudo systemctl start mpd"
-                echo "  用户服务: systemctl --user start mpd"
-                return 1
-            fi
-            return 0
-        }
+        # rmpc 简单启动包装脚本
         
         # 创建必要目录
         mkdir -p "$HOME/.cache/rmpc"
         mkdir -p "$HOME/.local/share/rmpc/lyrics"
         
-        # 检查配置文件
-        if [ ! -f "$HOME/.config/rmpc/config.ron" ]; then
-            echo "配置文件不存在，正在创建默认配置..."
-            mkdir -p "$HOME/.config/rmpc"
-            ${pkgs.rmpc}/bin/rmpc config > "$HOME/.config/rmpc/config.ron"
-        fi
-        
-        # 检查 MPD 连接
-        if ! check_mpd; then
-            read -p "是否继续启动 rmpc? [y/N] " -n 1 -r
-            echo
-            if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-                exit 1
-            fi
-        fi
-        
         # 启动 rmpc
         exec ${pkgs.rmpc}/bin/rmpc "$@"
       '';
-    };
-
-    # 创建音乐管理快捷脚本
-    home.file.".local/bin/music-ctl" = {
-      executable = true;
-      text = ''
-        #!/usr/bin/env bash
-        # 音乐播放控制脚本
-        
-        case "$1" in
-          play)
-            mpc play
-            ;;
-          pause)
-            mpc pause  
-            ;;
-          toggle)
-            mpc toggle
-            ;;
-          stop)
-            mpc stop
-            ;;
-          next)
-            mpc next
-            ;;
-          prev|previous)
-            mpc prev
-            ;;
-          vol|volume)
-            if [ -n "$2" ]; then
-              mpc volume "$2"
-            else
-              mpc volume
-            fi
-            ;;
-          status)
-            mpc status
-            ;;
-          current)
-            mpc current
-            ;;
-          playlist)
-            mpc playlist
-            ;;
-          search)
-            if [ -n "$2" ]; then
-              mpc search any "$2"
-            else
-              echo "用法: music-ctl search <关键词>"
-            fi
-            ;;
-          add)
-            if [ -n "$2" ]; then
-              mpc add "$2"
-            else
-              echo "用法: music-ctl add <文件/目录>"
-            fi
-            ;;
-          clear)
-            mpc clear
-            ;;
-          update)
-            mpc update
-            ;;
-          rmpc)
-            exec rmpc-wrapper
-            ;;
-          *)
-            echo "音乐播放控制工具"
-            echo "用法: music-ctl {play|pause|toggle|stop|next|prev|vol [level]|status|current|playlist|search <term>|add <path>|clear|update|rmpc}"
-            echo ""
-            echo "播放控制:"
-            echo "  play      - 开始播放"
-            echo "  pause     - 暂停播放"
-            echo "  toggle    - 切换播放/暂停"
-            echo "  stop      - 停止播放"
-            echo "  next      - 下一曲"
-            echo "  prev      - 上一曲"
-            echo "  vol [n]   - 设置/显示音量"
-            echo ""
-            echo "信息查询:"
-            echo "  status    - 显示播放状态"
-            echo "  current   - 显示当前歌曲"
-            echo "  playlist  - 显示播放列表"
-            echo ""
-            echo "音乐库管理:"
-            echo "  search <term> - 搜索音乐"
-            echo "  add <path>    - 添加到播放列表"
-            echo "  clear         - 清空播放列表"
-            echo "  update        - 更新音乐库"
-            echo ""
-            echo "客户端:"
-            echo "  rmpc      - 启动 rmpc 终端客户端"
-            ;;
-        esac
-      '';
-    };
-
-    # Shell 别名
-    programs.bash.shellAliases = lib.mkIf config.programs.bash.enable {
-      mp = "music-ctl";
-      mpc-play = "music-ctl play";
-      mpc-pause = "music-ctl pause";
-      mpc-next = "music-ctl next";
-      mpc-prev = "music-ctl prev";
-      mpc-status = "music-ctl status";
-    };
-
-    programs.fish.shellAliases = lib.mkIf config.programs.fish.enable {
-      mp = "music-ctl";
-      mpc-play = "music-ctl play";
-      mpc-pause = "music-ctl pause";
-      mpc-next = "music-ctl next";
-      mpc-prev = "music-ctl prev";
-      mpc-status = "music-ctl status";
-    };
-
-    programs.zsh.shellAliases = lib.mkIf config.programs.zsh.enable {
-      mp = "music-ctl";
-      mpc-play = "music-ctl play";
-      mpc-pause = "music-ctl pause";
-      mpc-next = "music-ctl next";
-      mpc-prev = "music-ctl prev";
-      mpc-status = "music-ctl status";
     };
   };
 }
