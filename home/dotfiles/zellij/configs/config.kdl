@@ -44,60 +44,53 @@ auto_layout true
 
 keybinds clear-defaults=true {
     normal {
-        // === 基础控制 ===
         bind "Ctrl q" { Quit; }                    // 退出 Zellij
         bind "Ctrl d" { Detach; }                  // 分离会话（后台运行）
 
-        bind "Alt h" { MoveFocus "Left"; }         // 移动到左侧窗格
-        bind "Alt j" { MoveFocus "Down"; }         // 移动到下方窗格
-        bind "Alt k" { MoveFocus "Up"; }           // 移动到上方窗格
-        bind "Alt l" { MoveFocus "Right"; }        // 移动到右侧窗格
+        bind "Alt h" { MoveFocus "Left"; }
+        bind "Alt j" { MoveFocus "Down"; }
+        bind "Alt k" { MoveFocus "Up"; }
+        bind "Alt l" { MoveFocus "Right"; }
 
         // === 窗格分割 ===
         bind "Alt v" { NewPane "Right"; }          // 垂直分割（在右侧创建新窗格）
         bind "Alt s" { NewPane "Down"; }           // 水平分割（在下方创建新窗格）
 
         // === 标签页管理 ===
-        bind "Alt c" { NewTab; }                 // 关闭当前标签页
-        bind "Alt w" { CloseTab; }                 // 关闭当前标签页
+        bind "Alt t" { NewTab; }
+        bind "Alt q" { CloseTab; }
 
         bind "Alt 1" { GoToTab 1; }                // 跳转到标签页 1
-        bind "Alt 2" { GoToTab 2; }                // 跳转到标签页 2
-        bind "Alt 3" { GoToTab 3; }                // 跳转到标签页 3
-        bind "Alt 4" { GoToTab 4; }                // 跳转到标签页 4
-        bind "Alt 5" { GoToTab 5; }                // 跳转到标签页 5
-        bind "Alt 6" { GoToTab 6; }                // 跳转到标签页 6
-        bind "Alt 7" { GoToTab 7; }                // 跳转到标签页 7
-        bind "Alt 8" { GoToTab 8; }                // 跳转到标签页 8
-        bind "Alt 9" { GoToTab 9; }                // 跳转到标签页 9
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
+        bind "Alt 9" { GoToTab 9; }
 
-        // === 模式切换 ===
-        // 使用 Ctrl + 字母键切换到特定模式
-        bind "Ctrl l" { SwitchToMode "Locked"; }   // 切换到锁定模式
-        bind "Ctrl p" { SwitchToMode "Pane"; }     // 切换到窗格管理模式
-        bind "Ctrl t" { SwitchToMode "Tab"; }      // 切换到标签页管理模式
-        bind "Ctrl r" { SwitchToMode "Resize"; }   // 切换到调整大小模式
-        bind "Ctrl m" { SwitchToMode "Move"; }     // 切换到移动模式
-
-        bind "Ctrl s" { SwitchToMode "Scroll"; }   // 切换到滚动浏览模式
-
-        bind "Ctrl o" { SwitchToMode "Session"; }  // 切换到会话管理模式
+        bind "Ctrl l" { SwitchToMode "Locked"; }
+        bind "Ctrl p" { SwitchToMode "Pane"; }
+        bind "Ctrl t" { SwitchToMode "Tab"; }
+        bind "Ctrl r" { SwitchToMode "Resize"; }
+        bind "Ctrl m" { SwitchToMode "Move"; }
+        bind "Ctrl s" { SwitchToMode "Scroll"; }
+        bind "Ctrl o" { SwitchToMode "Session"; }
 
         bind "Ctrl f" { ToggleFocusFullscreen; }   // 切换当前窗格全屏显示
-
         bind "Ctrl z" { TogglePaneFrames; }        // 切换窗格边框显示
-
         bind "Ctrl c" { Copy; }                    // 复制模式（如果有选择的文本）
+
 
         bind "Alt n" { NewPane; }                  // 创建新窗格（自动方向）
         bind "Alt x" { CloseFocus; }               // 关闭当前焦点窗格
 
+        bind "Alt ," { PreviousSwapLayout; }       // 上一个布局
+        bind "Alt ." { NextSwapLayout; }           // 下一个布局
 
-        bind "Alt [" { PreviousSwapLayout; }       // 上一个布局
-        bind "Alt ]" { NextSwapLayout; }           // 下一个布局
-
-        bind "Alt ," { GoToPreviousTab; }          // 上一个标签页
-        bind "Alt ." { GoToNextTab; }              // 下一个标签页
+        bind "Alt [" { GoToPreviousTab; }          // 上一个标签页
+        bind "Alt ]" { GoToNextTab; }              // 下一个标签页
 
 
         // === 会话和窗口操作 ===
@@ -112,41 +105,39 @@ keybinds clear-defaults=true {
         bind "Alt Tab" { SwitchFocus; }            // 在窗格间循环切换
     }
 
-    // 窗格管理模式 (Pane Mode) - 专注于窗格操作
-    // 进入方式: Ctrl+p，退出方式: Esc
+    // 窗格管理模式 (Pane Mode) - 专注于窗格操作; 进入方式: Ctrl+p，退出方式: Esc
     pane {
-        bind "h" { MoveFocus "Left"; }             // 移动到左侧窗格
-        bind "j" { MoveFocus "Down"; }             // 移动到下方窗格
-        bind "k" { MoveFocus "Up"; }               // 移动到上方窗格
-        bind "l" { MoveFocus "Right"; }            // 移动到右侧窗格
-        bind "n" { NewPane; }                      // 创建新窗格（自动选择方向）
-        bind "d" { NewPane "Down"; }               // 创建下方窗格
-        bind "c" { NewPane "Right"; }              // 创建右侧窗格
-        bind "x" { CloseFocus; }                   // 关闭当前窗格
-        bind "m" { ToggleFocusFullscreen; }        // 切换全屏显示
+        bind "h" { MoveFocus "Left"; }
+        bind "j" { MoveFocus "Down"; }
+        bind "k" { MoveFocus "Up"; }
+        bind "l" { MoveFocus "Right"; }
+        bind "n" { NewPane; }
+        bind "s" { NewPane "Down"; }
+        bind "v" { NewPane "Right"; }
+        bind "x" { CloseFocus; }
+        bind "m" { ToggleFocusFullscreen; }
         bind "z" { TogglePaneFrames; }             // 切换边框显示
         bind "f" { ToggleFloatingPanes; }          // 切换浮动窗格
         bind "e" { TogglePaneEmbedOrFloating; }    // 切换窗格嵌入或浮动
         bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0; } // 重命名窗格
-        bind "Left" { MoveFocus "Left"; }          // 箭头键 - 向左移动焦点
-        bind "Right" { MoveFocus "Right"; }        // 箭头键 - 向右移动焦点
-        bind "Up" { MoveFocus "Up"; }              // 箭头键 - 向上移动焦点
-        bind "Down" { MoveFocus "Down"; }          // 箭头键 - 向下移动焦点
+        bind "Left" { MoveFocus "Left"; }
+        bind "Right" { MoveFocus "Right"; }
+        bind "Up" { MoveFocus "Up"; }
+        bind "Down" { MoveFocus "Down"; }
         bind "p" { SwitchFocus; }                  // 在窗格间循环切换焦点
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
 
-    // 标签页管理模式 (Tab Mode) - 专注于标签页操作
-    // 进入方式: Ctrl+t，退出方式: Esc
+    // 标签页管理模式 (Tab Mode) - 专注于标签页操作  // 进入方式: Ctrl+t，退出方式: Esc
     tab {
         bind "h" { GoToPreviousTab; }              // 切换到上一个标签页
         bind "l" { GoToNextTab; }                  // 切换到下一个标签页
         bind "n" { NewTab; }                       // 创建新标签页
-        bind "x" { CloseTab; }                     // 关闭当前标签页
+        bind "q" { CloseTab; }                     // 关闭当前标签页
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; } // 重命名标签页
         bind "s" { ToggleActiveSyncTab; }          // 切换同步输入到所有窗格
-        bind "[" { PreviousSwapLayout; }           // 上一个布局
-        bind "]" { NextSwapLayout; }               // 下一个布局
+        bind "," { PreviousSwapLayout; }           // 上一个布局
+        bind "." { NextSwapLayout; }               // 下一个布局
         bind "1" { GoToTab 1; SwitchToMode "Normal"; }  // 跳转到标签页 1 并返回普通模式
         bind "2" { GoToTab 2; SwitchToMode "Normal"; }  // 跳转到标签页 2 并返回普通模式
         bind "3" { GoToTab 3; SwitchToMode "Normal"; }  // 跳转到标签页 3 并返回普通模式
@@ -160,17 +151,16 @@ keybinds clear-defaults=true {
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
 
-    // 窗格大小调整模式 (Resize Mode) - 精确调整窗格尺寸
-    // 进入方式: Ctrl+r，退出方式: Esc
+    // 窗格大小调整模式 (Resize Mode) - 精确调整窗格尺寸 // 进入方式: Ctrl+r，退出方式: Esc
     resize {
-        bind "h" { Resize "Left"; }                // 向左调整边界
-        bind "j" { Resize "Down"; }                // 向下调整边界
-        bind "k" { Resize "Up"; }                  // 向上调整边界
-        bind "l" { Resize "Right"; }               // 向右调整边界
-        bind "Left" { Resize "Left"; }             // 箭头键向左调整
-        bind "Down" { Resize "Down"; }             // 箭头键向下调整
-        bind "Up" { Resize "Up"; }                 // 箭头键向上调整
-        bind "Right" { Resize "Right"; }           // 箭头键向右调整
+        bind "h" { Resize "Left"; }
+        bind "j" { Resize "Down"; }
+        bind "k" { Resize "Up"; }
+        bind "l" { Resize "Right"; }
+        bind "Left" { Resize "Left"; }
+        bind "Down" { Resize "Down"; }
+        bind "Up" { Resize "Up"; }
+        bind "Right" { Resize "Right"; }
         bind "=" { Resize "Increase"; }            // 增加当前窗格大小
         bind "+" { Resize "Increase"; }            // 增加当前窗格大小
         bind "-" { Resize "Decrease"; }            // 减少当前窗格大小
@@ -178,8 +168,7 @@ keybinds clear-defaults=true {
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
 
-    // 滚动浏览模式 (Scroll Mode) - 浏览历史输出
-    // 进入方式: Ctrl+s，退出方式: Esc
+    // 滚动浏览模式 (Scroll Mode) - 浏览历史输出 // 进入方式: Ctrl+s，退出方式: Esc
     scroll {
         bind "j" { ScrollDown; }                   // 向下滚动一行
         bind "k" { ScrollUp; }                     // 向上滚动一行
@@ -201,50 +190,43 @@ keybinds clear-defaults=true {
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
 
-    // 会话管理模式 (Session Mode) - 管理 Zellij 会话
-    // 进入方式: Ctrl+o，退出方式: Esc
+    // 会话管理模式 (Session Mode) - 管理 Zellij 会话 // 进入方式: Ctrl+o，退出方式: Esc
     session {
         bind "d" { Detach; }                       // 分离当前会话（会话继续在后台运行）
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
 
-    // 移动模式 (Move Mode) - 移动窗格位置
-    // 进入方式: Ctrl+m，退出方式: Esc
-    // 用于在窗格间移动当前窗格的位置
+    // 移动模式 (Move Mode) - 移动窗格位置 // 进入方式: Ctrl+m，退出方式: Esc
     move {
-        bind "h" { MovePane "Left"; }              // 向左移动当前窗格
-        bind "j" { MovePane "Down"; }              // 向下移动当前窗格
-        bind "k" { MovePane "Up"; }                // 向上移动当前窗格
-        bind "l" { MovePane "Right"; }             // 向右移动当前窗格
-        bind "Left" { MovePane "Left"; }           // 箭头键向左移动窗格
-        bind "Down" { MovePane "Down"; }           // 箭头键向下移动窗格
-        bind "Up" { MovePane "Up"; }               // 箭头键向上移动窗格
-        bind "Right" { MovePane "Right"; }         // 箭头键向右移动窗格
+        bind "h" { MovePane "Left"; }
+        bind "j" { MovePane "Down"; }
+        bind "k" { MovePane "Up"; }
+        bind "l" { MovePane "Right"; }
+        bind "Left" { MovePane "Left"; }
+        bind "Down" { MovePane "Down"; }
+        bind "Up" { MovePane "Up"; }
+        bind "Right" { MovePane "Right"; }
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
 
-    // 锁定模式 (Locked Mode) - 防止意外按键
-    // 在此模式下，所有快捷键都被禁用，防止误操作
+    // 锁定模式 (Locked Mode) - 防止意外按键 // 在此模式下，所有快捷键都被禁用，防止误操作
     locked {
         bind "Ctrl l" { SwitchToMode "Normal"; }   // 解锁并返回普通模式
     }
 
-    // 重命名标签页模式 (Rename Tab Mode) - 输入新的标签页名称
-    // 从标签页模式按 'r' 进入此模式
+    // 重命名标签页模式 (Rename Tab Mode) - 输入新的标签页名称 // 从标签页模式按 'r' 进入此模式
     renametab {
         bind "Enter" { SwitchToMode "Normal"; }    // 确认重命名并返回普通模式
         bind "Esc" { UndoRenameTab; SwitchToMode "Normal"; } // 取消重命名并返回普通模式
     }
 
-    // 重命名窗格模式 (Rename Pane Mode) - 输入新的窗格名称
-    // 从窗格模式按 'c' 进入此模式
+    // 重命名窗格模式 (Rename Pane Mode) - 输入新的窗格名称 // 从窗格模式按 'c' 进入此模式
     renamepane {
         bind "Enter" { SwitchToMode "Normal"; }    // 确认重命名并返回普通模式
         bind "Esc" { UndoRenamePane; SwitchToMode "Normal"; } // 取消重命名并返回普通模式
     }
 
-    // 搜索模式 (Search Mode) - 在滚动缓冲区中搜索
-    // 从滚动模式按 '/' 进入此模式
+    // 搜索模式 (Search Mode) - 在滚动缓冲区中搜索 // 从滚动模式按 '/' 进入此模式
     search {
         bind "n" { Search "down"; }                // 查找下一个匹配项
         bind "p" { Search "up"; }                  // 查找上一个匹配项
@@ -269,8 +251,6 @@ plugins {
     compact-bar { path "compact-bar"; }
 }
 
-// 配置文件结尾
-//
 // 完整快捷键总结:
 // ==================
 // Ctrl+q     - 退出 Zellij
@@ -280,10 +260,10 @@ plugins {
 // Alt+n      - 创建新窗格（自动方向）
 // Alt+c      - 新建标签页
 // Alt+1-9    - 切换标签页
-// Alt+,/.    - 上一个/下一个标签页
-// Alt+w      - 关闭当前标签页
-// Alt+x      - 关闭窗格
-// Alt+[/]    - 上一个/下一个布局
+// Alt+ [|]    - 上一个/下一个标签页
+// Alt+x      - 关闭当前标签页
+// Alt+q      - 关闭窗格
+// Alt+ ,|.    - 上一个/下一个布局
 // Alt+Tab    - 在窗格间循环切换
 // Ctrl+f     - 切换全屏
 // Ctrl+z     - 切换窗格边框
