@@ -18,6 +18,9 @@
       mouse_mode true
       copy_command "wl-copy"
       
+      // 关闭启动提示
+      show_startup_tips false
+      
       // 键绑定简化版本
       keybinds {
           normal {

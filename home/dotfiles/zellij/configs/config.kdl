@@ -25,6 +25,9 @@ session_serialization true
 // 自动布局 - 根据终端大小自动调整布局
 auto_layout true
 
+// 关闭启动提示 - 禁用启动时的欢迎界面和使用技巧提示
+show_startup_tips false
+
 
 // 模式说明:
 //   - normal: 默认模式，用于基本操作

@@ -28,6 +28,9 @@
         session_serialization = true;  # 会话序列化保存
         auto_layout = true;            # 自动布局
         
+        # 关闭启动提示
+        show_startup_tips = false;     # 禁用启动时的欢迎界面和使用技巧提示
+        
         # 键绑定设置
         keybinds = {
           # 正常模式键绑定
