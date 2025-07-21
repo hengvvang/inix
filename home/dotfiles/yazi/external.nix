@@ -13,7 +13,7 @@
 
     # ===== 初始化脚本配置 =====
     # init.lua - Yazi 启动时执行的 Lua 脚本，提供高级功能
-    home.file.".config/yazi/init.lua".source = ./configs/init.lua;
+    # home.file.".config/yazi/init.lua".source = ./configs/init.lua;
 
     # ===== 配置文档 =====
     # 配置说明和使用指南
@@ -80,26 +80,26 @@
     programs.bash.initExtra = lib.mkIf config.programs.bash.enable ''
       # Yazi Shell 集成函数 - 支持目录跳转
       function y() {
-          local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-          yazi "$@" --cwd-file="$tmp"
-          IFS= read -r -d '' cwd < "$tmp"
-          [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-          rm -f -- "$tmp"
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+        yazi "$@" --cwd-file="$tmp"
+        IFS= read -r -d ''' cwd < "$tmp"
+        [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+        rm -f -- "$tmp"
       }
     '';
 
-    programs.zsh.initExtra = lib.mkIf config.programs.zsh.enable ''
+    programs.zsh.initContent = lib.mkIf config.programs.zsh.enable ''
       # Yazi Shell 集成函数 - 支持目录跳转
       function y() {
-          local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-          yazi "$@" --cwd-file="$tmp"
-          IFS= read -r -d '' cwd < "$tmp"
-          [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
-          rm -f -- "$tmp"
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+        yazi "$@" --cwd-file="$tmp"
+        IFS= read -r -d ''' cwd < "$tmp"
+        [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
+        rm -f -- "$tmp"
       }
-      '';
+    '';
 
-    programs.fish.shellInit = lib.mkIf config.programs.fish.enable ''
+    programs.fish.interactiveShellInit = lib.mkIf config.programs.fish.enable ''
       # Yazi Shell 集成函数 - 支持目录跳转
       function y
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
@@ -111,7 +111,8 @@
       end
     '';
 
-    programs.nushell.shellInit = lib.mkIf config.programs.nushell.enable ''
+    programs.nushell.extraConfig = lib.mkIf config.programs.nushell.enable ''
+      # Yazi Shell 集成函数 - 支持目录跳转
       def --env y [...args] {
         let tmp = (mktemp -t "yazi-cwd.XXXXXX")
         yazi ...$args --cwd-file $tmp
