@@ -42,6 +42,17 @@
         starship.enable = true;
         qutebrowser.enable = false;
         obs-studio.enable = false;
+        # MPD 用户级音乐服务配置
+        mpd = {
+          enable = true;                        # 启用用户级 MPD 服务
+          musicDirectory = "${config.home.homeDirectory}/Music";  # 音乐目录
+          port = 6600;                          # MPD 端口
+          autoStart = true;                     # 开机自动启动
+          clients = {
+            mpc = true;                         # 安装 mpc 命令行客户端
+            ncmpcpp = true;                     # 安装 ncmpcpp 终端客户端
+          };
+        };
         rmpc = {
           enable = true;
           method = "external";     # 切换到外部配置方式

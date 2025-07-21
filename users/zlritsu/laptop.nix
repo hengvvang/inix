@@ -35,6 +35,17 @@
         lazygit.enable = false; # 不使用图形化 git
         starship.enable = true; # 保留美观的提示符
         qutebrowser.enable = true;  # 启用 Qutebrowser 配置
+        # MPD 用户级音乐服务配置 - zlritsu 用户
+        mpd = {
+          enable = true;                        # 启用用户级 MPD 服务
+          musicDirectory = "${config.home.homeDirectory}/Music";  # 音乐目录
+          port = 6601;                          # 使用不同端口避免冲突
+          autoStart = true;                     # 开机自动启动
+          clients = {
+            mpc = true;                         # 安装 mpc 命令行客户端
+            ncmpcpp = false;                    # zlritsu 轻量级配置，不安装终端客户端
+          };
+        };
         proxy.enable = false;
       };
       

@@ -1,0 +1,91 @@
+# MPD (Music Player Daemon) 用户级配置模块
+# 简化配置，仅保留核心功能
+
+{ config, lib, pkgs, ... }:
+
+with lib;
+
+let
+  cfg = config.myHome.dotfiles.mpd;
+in {
+  options.myHome.dotfiles.mpd = {
+    enable = mkEnableOption "启用 MPD 用户级音乐播放服务";
+    
+    musicDirectory = mkOption {
+      type = types.str;
+      default = "${config.home.homeDirectory}/Music";
+      description = "音乐文件目录路径";
+    };
+    
+    port = mkOption {
+      type = types.port;
+      default = 6600;
+      description = "MPD 服务监听端口";
+    };
+    
+    autoStart = mkOption {
+      type = types.bool;
+      default = true;
+      description = "是否开机自动启动 MPD 服务";
+    };
+    
+    clients = {
+      mpc = mkOption {
+        type = types.bool;
+        default = true;
+        description = "是否安装 mpc 命令行客户端";
+      };
+      
+      ncmpcpp = mkOption {
+        type = types.bool;
+        default = true;
+        description = "是否安装 ncmpcpp 终端客户端";
+      };
+    };
+  };
+
+  config = mkIf cfg.enable {
+    # 安装 MPD 及可选客户端
+    home.packages = with pkgs; [
+      mpd           # Music Player Daemon - 核心服务
+    ] ++ optionals cfg.clients.mpc [ mpc-cli ]      # MPD 命令行客户端
+      ++ optionals cfg.clients.ncmpcpp [ ncmpcpp ]; # 终端 MPD 客户端
+
+    # MPD 用户级服务配置
+    services.mpd = {
+      enable = true;
+      
+      # 音乐目录 - 用户可配置
+      musicDirectory = cfg.musicDirectory;
+      
+      # 网络配置 - 用户可配置端口
+      network = {
+        listenAddress = "127.0.0.1";
+        port = cfg.port;
+      };
+      
+      # 基础音频输出配置
+      extraConfig = ''
+        # PipeWire 音频输出
+        audio_output {
+            type        "pipewire"
+            name        "PipeWire Output"
+        }
+        
+        # 基础配置
+        auto_update             "yes"
+        mixer_type              "software"
+      '';
+    };
+
+    # 创建音乐目录
+    home.activation.createMusicDirectory = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      $DRY_RUN_CMD mkdir -p "${cfg.musicDirectory}"
+    '';
+    
+    # 根据用户配置设置自动启动
+    systemd.user.services.mpd = mkIf cfg.autoStart {
+      Install.WantedBy = [ "default.target" ];
+    };
+  };
+}

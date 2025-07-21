@@ -7,9 +7,9 @@
     password: None,                              // 本地连接无需密码
     
     // ==================== 存储目录配置 ====================
-    cache_dir: None,                             // 使用默认缓存目录
-    lyrics_dir: None,                            // 使用默认歌词目录
-    
+    cache_dir: "${config.home.homeDirectory}/.cache/rmpc",               // 缓存目录 - 存储临时数据和封面缓存
+    lyrics_dir: "${config.home.homeDirectory}/.local/share/rmpc/lyrics",    // 歌词目录 - 存储下载的歌词文件
+
     // ==================== 外观主题配置 ====================
     theme: None,                                 // 使用默认主题（跟随终端配色）
     
