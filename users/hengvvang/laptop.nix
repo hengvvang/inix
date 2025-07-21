@@ -26,7 +26,7 @@
           embedded.enable = true;   # 启用 C/C++ 嵌入式开发
         };
       };
-      
+
       dotfiles = {
         enable = true;  # 启用 dotfiles 模块
         vim.enable = true;
@@ -46,7 +46,7 @@
         proxy.enable = false;
         yazi = {
           enable = true;
-          method = "homemanager";
+          method = "external";
         };
         zellij = {
           enable = true;
@@ -57,7 +57,7 @@
           method = "homemanager";
         };
       };
-      
+
       pkgs = {
         enable = true;
         toolkits = {
@@ -65,16 +65,16 @@
           waxingCrescent.enable = true;  # 🌒 峨眉月
           firstQuarter.enable = true;    # 🌓 上弦月
           waxingGibbous.enable = true;   # 🌔 盈凸月
-          fullMoon.enable = false;       # 🌕 满月 
+          fullMoon.enable = false;       # 🌕 满月
         };
         apps = {
           waningCrescent.enable = true;  # 🌘 残月
           lastQuarter.enable = true;     # 🌗 下弦月
           waningGibbous.enable = false;  # 🌖 亏凸月
-          newMoon.enable = false;        # 🌑 新月 
+          newMoon.enable = false;        # 🌑 新月
         };
       };
-      
+
       profiles = {
         enable = true;
         fonts = {
@@ -84,13 +84,13 @@
         stylix = {
           enable = true;                      # ✅ 启用 Stylix 主题系统
           polarity = "dark";
-          
+
           # 🎨 启用自定义颜色配置
           colors = {
             enable = true;                    # ✅ 启用自定义颜色
             scheme = "dark-elegant";
           };
-          
+
           wallpapers = {
             enable = false;                    # ✅ 启用壁纸
             # preset = "tokyo";
@@ -99,7 +99,7 @@
             #   position = "center";  # ✅ 壁纸位置（center, fill, stretch 等）
             # };
           };
-          
+
           fonts = {
             enable = false;
             names = {
@@ -118,31 +118,31 @@
 
           targets = {
             enable = true;
-            
+
             terminals = {
               alacritty.enable = false;
               kitty.enable = false;
             };
-            
+
             editors = {
               vim.enable = true;
               neovim.enable = false;
             };
-            
+
             tools = {
               tmux.enable = true;
               bat.enable = true;
               fzf.enable = true;
             };
-            
+
             desktop = {
               gtk.enable = true;              # ✅ 启用 GTK 主题（应用一致性）
             };
-            
+
             browsers = {
               firefox.enable = false;
             };
-            
+
             inputMethods = {
               fcitx5.enable = true;
             };
