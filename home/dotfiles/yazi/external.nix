@@ -33,7 +33,9 @@
     # Catppuccin 系列主题
     home.file.".config/yazi/flavors/catppuccin-mocha.yazi".source = ./configs/flavors/catppuccin-mocha.yazi;
     home.file.".config/yazi/flavors/catppuccin-latte.yazi".source = ./configs/flavors/catppuccin-latte.yazi;
-    
+    home.file.".config/yazi/flavors/catppuccin-frappe.yazi".source = ./configs/flavors/catppuccin-frappe.yazi;
+    home.file.".config/yazi/flavors/catppuccin-macchiato.yazi".source = ./configs/flavors/catppuccin-macchiato.yazi;
+
     home.file.".config/yazi/flavors/darcula.yazi".source = ./configs/flavors/darcula.yazi;
 
     home.file.".config/yazi/flavors/tokyo-night.yazi".source = ./configs/flavors/tokyo-night.yazi;
