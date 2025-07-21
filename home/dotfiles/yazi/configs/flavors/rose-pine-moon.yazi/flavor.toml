@@ -51,7 +51,7 @@ count_selected = { fg = "#e0def4", bg = "#f6c177" } # text on gold
 
 # Border
 border_symbol = "│"
-border_style = { fg = "#6e6a86" } # muted
+border_style = { fg = "#56526e" } # highlight_high for better visibility
 
 # Syntax highlighting
 syntect_theme = "tmtheme.xml"
@@ -61,8 +61,8 @@ syntect_theme = "tmtheme.xml"
 # : Tabs {{{
 
 [tabs]
-active = { fg = "#e0def4", bg = "#3e8fb0", bold = true } # text on pine
-inactive = { fg = "#908caa", bg = "#393552" }            # subtle on overlay
+active = { fg = "#e0def4", bg = "#3e8fb0", bold = true } # text on pine - active tab
+inactive = { fg = "#908caa", bg = "#2a273f" }            # subtle on surface - inactive tabs
 
 # Tab separators
 sep_inner = { open = "", close = "" }
@@ -74,13 +74,13 @@ sep_outer = { open = "", close = "" }
 
 [mode]
 normal_main = { fg = "#e0def4", bg = "#3e8fb0", bold = true } # text on pine
-normal_alt = { fg = "#3e8fb0", bg = "#393552" }               # pine on overlay
+normal_alt = { fg = "#3e8fb0", bg = "#2a273f" }               # pine on surface
 
 select_main = { fg = "#e0def4", bg = "#eb6f92", bold = true } # text on love  
-select_alt = { fg = "#eb6f92", bg = "#393552" }               # love on overlay
+select_alt = { fg = "#eb6f92", bg = "#2a273f" }               # love on surface
 
 unset_main = { fg = "#e0def4", bg = "#f6c177", bold = true } # text on gold
-unset_alt = { fg = "#f6c177", bg = "#393552" }               # gold on overlay
+unset_alt = { fg = "#f6c177", bg = "#2a273f" }               # gold on surface
 
 # : }}}
 
@@ -99,9 +99,9 @@ perm_write = { fg = "#eb6f92" } # love - write permission
 perm_exec = { fg = "#9ccfd8" }  # foam - execute permission
 
 # Progress indicators
-progress_label = { fg = "#e0def4", bold = true }     # text
-progress_normal = { fg = "#3e8fb0", bg = "#393552" } # pine on overlay
-progress_error = { fg = "#eb6f92", bg = "#393552" }  # love on overlay
+progress_label = { fg = "#e0def4", bold = true }     # text - progress label
+progress_normal = { fg = "#3e8fb0", bg = "#2a273f" } # pine on surface
+progress_error = { fg = "#eb6f92", bg = "#2a273f" }  # love on surface
 
 # : }}}
 
@@ -110,19 +110,24 @@ progress_error = { fg = "#eb6f92", bg = "#393552" }  # love on overlay
 [which]
 cols = 3
 mask = { bg = "#232136" }              # base background
-cand = { fg = "#9ccfd8", bold = true } # foam - candidates
-rest = { fg = "#6e6a86" }              # muted - rest of command
+cand = { fg = "#9ccfd8", bold = true } # foam - command candidates
+rest = { fg = "#6e6a86" }              # muted - rest of command  
 desc = { fg = "#c4a7e7" }              # iris - descriptions
 separator = "  "
-separator_style = { fg = "#6e6a86" }   # muted
+separator_style = { fg = "#56526e" }   # highlight_high
 
 # : }}}
 
 # : Confirmation dialog {{{
 
 [confirm]
-border = { fg = "#3e8fb0" }             # pine
-title = { fg = "#3e8fb0", bold = true } # pine
+border = { fg = "#3e8fb0" }                  # pine border
+title = { fg = "#3e8fb0", bold = true }      # pine title
+content = { fg = "#e0def4" }                 # text - dialog content
+list = { fg = "#908caa" }                    # subtle - item list
+btn_yes = { fg = "#232136", bg = "#9ccfd8" } # base on foam - yes button
+btn_no = { fg = "#232136", bg = "#eb6f92" }  # base on love - no button  
+btn_labels = ["Yes", "No"]                   # button labels
 
 # : }}}
 
@@ -132,23 +137,18 @@ title = { fg = "#3e8fb0", bold = true } # pine
 border = { fg = "#3e8fb0" }             # pine
 title = { fg = "#3e8fb0", bold = true } # pine
 
-# Table view
+# Table view - file search results
 tbl_col = { fg = "#9ccfd8", bold = true }     # foam - column headers
-tbl_cell = { fg = "#f6c177", bg = "#393552" } # gold on overlay
+tbl_cell = { fg = "#f6c177", bg = "#2a273f" } # gold on surface
 
 # : }}}
 
 # : Notifications {{{
 
 [notify]
-title_info = { fg = "#3e8fb0", bold = true }  # pine
-title_warn = { fg = "#f6c177", bold = true }  # gold  
-title_error = { fg = "#eb6f92", bold = true } # love
-
-# Notification icons
-icon_info = ""  # info icon
-icon_warn = ""  # warning icon
-icon_error = "" # error icon
+title_info = { fg = "#3e8fb0", bold = true }  # pine - info notifications
+title_warn = { fg = "#f6c177", bold = true }  # gold - warning notifications  
+title_error = { fg = "#eb6f92", bold = true } # love - error notifications
 
 # : }}}
 

@@ -5,7 +5,7 @@
 
     home.packages = with pkgs; [ 
       zellij
-      # wl-clipboard
+      wl-clipboard
     ];
     
     # 配置文件 - 主配置

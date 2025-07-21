@@ -9,8 +9,8 @@
 # You can change this or comment out to use the system default theme
 
 [flavor]
-dark = "rose-pine-dawn"
-light = "rose-pine-dawn"
+dark = "rose-pine"
+light = "rose-pine"
 
 # : }}}
 
