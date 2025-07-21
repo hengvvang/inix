@@ -52,7 +52,7 @@ count_selected = { fg = "#abb2bf", bg = "#e5c07b" } # text on yellow
 
 # Border
 border_symbol = "│"
-border_style = { fg = "#181a1f" } # border
+border_style = { fg = "#3e4452" } # bg_popup for better visibility
 
 # Syntax highlighting
 syntect_theme = "tmtheme.xml"
@@ -62,8 +62,8 @@ syntect_theme = "tmtheme.xml"
 # : Tabs {{{
 
 [tabs]
-active = { fg = "#abb2bf", bg = "#61afef", bold = true } # text on blue
-inactive = { fg = "#5c6370", bg = "#21252b" }            # text_alt on bg_alt
+active = { fg = "#abb2bf", bg = "#61afef", bold = true } # text on blue - active tab
+inactive = { fg = "#5c6370", bg = "#21252b" }            # text_alt on bg_alt - inactive tabs
 
 # Tab separators
 sep_inner = { open = "", close = "" }
@@ -93,7 +93,7 @@ sep_left = { open = "", close = "" }
 sep_right = { open = "", close = "" }
 
 # File permissions
-perm_sep = { fg = "#181a1f" }   # border
+perm_sep = { fg = "#3e4452" }   # bg_popup
 perm_type = { fg = "#61afef" }  # blue - file type
 perm_read = { fg = "#e5c07b" }  # yellow - read permission
 perm_write = { fg = "#e06c75" } # red - write permission  
@@ -111,19 +111,24 @@ progress_error = { fg = "#e06c75", bg = "#21252b" }  # red on bg_alt
 [which]
 cols = 3
 mask = { bg = "#282c34" }              # bg background
-cand = { fg = "#56b6c2", bold = true } # cyan - candidates
+cand = { fg = "#56b6c2", bold = true } # cyan - command candidates
 rest = { fg = "#5c6370" }              # text_alt - rest of command
 desc = { fg = "#c678dd" }              # purple - descriptions
 separator = "  "
-separator_style = { fg = "#181a1f" }   # border
+separator_style = { fg = "#3e4452" }   # bg_popup
 
 # : }}}
 
 # : Confirmation dialog {{{
 
 [confirm]
-border = { fg = "#61afef" }             # blue
-title = { fg = "#61afef", bold = true } # blue
+border = { fg = "#61afef" }                  # blue border
+title = { fg = "#61afef", bold = true }      # blue title
+content = { fg = "#abb2bf" }                 # text - dialog content
+list = { fg = "#5c6370" }                    # text_alt - item list
+btn_yes = { fg = "#282c34", bg = "#98c379" } # bg on green - yes button
+btn_no = { fg = "#282c34", bg = "#e06c75" }  # bg on red - no button
+btn_labels = ["Yes", "No"]                   # button labels
 
 # : }}}
 
@@ -133,7 +138,7 @@ title = { fg = "#61afef", bold = true } # blue
 border = { fg = "#61afef" }             # blue
 title = { fg = "#61afef", bold = true } # blue
 
-# Table view
+# Table view - file search results
 tbl_col = { fg = "#56b6c2", bold = true }     # cyan - column headers
 tbl_cell = { fg = "#e5c07b", bg = "#21252b" } # yellow on bg_alt
 
@@ -142,14 +147,9 @@ tbl_cell = { fg = "#e5c07b", bg = "#21252b" } # yellow on bg_alt
 # : Notifications {{{
 
 [notify]
-title_info = { fg = "#61afef", bold = true }  # blue
-title_warn = { fg = "#e5c07b", bold = true }  # yellow  
-title_error = { fg = "#e06c75", bold = true } # red
-
-# Notification icons
-icon_info = ""  # info icon
-icon_warn = ""  # warning icon
-icon_error = "" # error icon
+title_info = { fg = "#61afef", bold = true }  # blue - info notifications
+title_warn = { fg = "#e5c07b", bold = true }  # yellow - warning notifications  
+title_error = { fg = "#e06c75", bold = true } # red - error notifications
 
 # : }}}
 
@@ -168,7 +168,7 @@ inactive = { fg = "#5c6370" }            # text_alt - inactive items
 border = { fg = "#61afef" }                   # blue
 title = { fg = "#56b6c2", bold = true }       # cyan
 value = { fg = "#abb2bf" }                    # text
-selected = { fg = "#282c34", bg = "#c678dd" } # bg on purple
+selected = { fg = "#abb2bf", bg = "#c678dd" } # text on purple
 
 # : }}}
 
