@@ -79,49 +79,77 @@
     # 为不同 Shell 提供 yazi 集成函数
     programs.bash.initExtra = lib.mkIf config.programs.bash.enable ''
       # Yazi Shell 集成函数 - 支持目录跳转
-      function y() {
+      function yazi() {
         local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-        yazi "$@" --cwd-file="$tmp"
+        command yazi "$@" --cwd-file="$tmp"
         IFS= read -r -d ''' cwd < "$tmp"
         [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
         rm -f -- "$tmp"
       }
+      
+      # 添加 Yazi 别名命令
+      function y() { yazi "$@"; }
+      function ya() { yazi "$@"; }
+      function yz() { yazi "$@"; }
     '';
 
     programs.zsh.initContent = lib.mkIf config.programs.zsh.enable ''
       # Yazi Shell 集成函数 - 支持目录跳转
-      function y() {
+      function yazi() {
         local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
-        yazi "$@" --cwd-file="$tmp"
+        command yazi "$@" --cwd-file="$tmp"
         IFS= read -r -d ''' cwd < "$tmp"
         [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
         rm -f -- "$tmp"
       }
+      
+      # 添加 Yazi 别名命令
+      function y() { yazi "$@"; }
+      function ya() { yazi "$@"; }
+      function yz() { yazi "$@"; }
     '';
 
     programs.fish.interactiveShellInit = lib.mkIf config.programs.fish.enable ''
       # Yazi Shell 集成函数 - 支持目录跳转
-      function y
+      function yazi
         set tmp (mktemp -t "yazi-cwd.XXXXXX")
-        yazi $argv --cwd-file="$tmp"
+        command yazi $argv --cwd-file="$tmp"
         if read -z cwd < "$tmp"; and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
           builtin cd -- "$cwd"
         end
         rm -f -- "$tmp"
       end
+      
+      # 添加 Yazi 别名命令
+      function y
+        yazi $argv
+      end
+      
+      function ya
+        yazi $argv
+      end
+      
+      function yz
+        yazi $argv
+      end
     '';
 
     programs.nushell.extraConfig = lib.mkIf config.programs.nushell.enable ''
       # Yazi Shell 集成函数 - 支持目录跳转
-      def --env y [...args] {
+      def --env yazi [...args] {
         let tmp = (mktemp -t "yazi-cwd.XXXXXX")
-        yazi ...$args --cwd-file $tmp
+        ^yazi ...$args --cwd-file $tmp
         let cwd = (open $tmp)
         if $cwd != "" and $cwd != $env.PWD {
           cd $cwd
         }
         rm -fp $tmp
       }
+      
+      # 添加 Yazi 别名命令
+      def --env y [...args] { yazi ...$args }
+      def --env ya [...args] { yazi ...$args }
+      def --env yz [...args] { yazi ...$args }
     '';
   };
 }
