@@ -31,7 +31,7 @@ auto_layout true
 // 模式说明:
 //   - normal: 默认模式，用于基本操作
 //   - pane: 窗格管理模式
-//   - tab: 标签页管理模式  
+//   - tab: 标签页管理模式
 //   - resize: 调整窗格大小模式
 //   - scroll: 滚动浏览模式（支持搜索）
 //   - search: 搜索模式（在滚动缓冲区中搜索）
@@ -47,16 +47,16 @@ keybinds clear-defaults=true {
         // === 基础控制 ===
         bind "Ctrl q" { Quit; }                    // 退出 Zellij
         bind "Ctrl d" { Detach; }                  // 分离会话（后台运行）
-        
+
         bind "Alt h" { MoveFocus "Left"; }         // 移动到左侧窗格
-        bind "Alt j" { MoveFocus "Down"; }         // 移动到下方窗格  
+        bind "Alt j" { MoveFocus "Down"; }         // 移动到下方窗格
         bind "Alt k" { MoveFocus "Up"; }           // 移动到上方窗格
         bind "Alt l" { MoveFocus "Right"; }        // 移动到右侧窗格
-        
+
         // === 窗格分割 ===
         bind "Alt v" { NewPane "Right"; }          // 垂直分割（在右侧创建新窗格）
         bind "Alt s" { NewPane "Down"; }           // 水平分割（在下方创建新窗格）
-        
+
         // === 标签页管理 ===
         bind "Alt c" { NewTab; }                 // 关闭当前标签页
         bind "Alt w" { CloseTab; }                 // 关闭当前标签页
@@ -70,7 +70,7 @@ keybinds clear-defaults=true {
         bind "Alt 7" { GoToTab 7; }                // 跳转到标签页 7
         bind "Alt 8" { GoToTab 8; }                // 跳转到标签页 8
         bind "Alt 9" { GoToTab 9; }                // 跳转到标签页 9
-        
+
         // === 模式切换 ===
         // 使用 Ctrl + 字母键切换到特定模式
         bind "Ctrl l" { SwitchToMode "Locked"; }   // 切换到锁定模式
@@ -99,19 +99,19 @@ keybinds clear-defaults=true {
         bind "Alt ," { GoToPreviousTab; }          // 上一个标签页
         bind "Alt ." { GoToNextTab; }              // 下一个标签页
 
-        
+
         // === 会话和窗口操作 ===
         bind "Ctrl w" { SwitchToMode "Session"; }  // 快速进入会话管理模式
         bind "Ctrl e" { EditScrollback; }          // 用编辑器打开当前窗格历史
         bind "Ctrl y" { ToggleActiveSyncTab; }     // 切换同步输入到所有窗格
-        
+
         // === 剪贴板和复制 ===
         bind "Ctrl Shift c" { Copy; }              // 强制复制（如果选择了文本）
-        
-        // === 高级功能 ===  
+
+        // === 高级功能 ===
         bind "Alt Tab" { SwitchFocus; }            // 在窗格间循环切换
     }
-    
+
     // 窗格管理模式 (Pane Mode) - 专注于窗格操作
     // 进入方式: Ctrl+p，退出方式: Esc
     pane {
@@ -135,7 +135,7 @@ keybinds clear-defaults=true {
         bind "p" { SwitchFocus; }                  // 在窗格间循环切换焦点
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
-    
+
     // 标签页管理模式 (Tab Mode) - 专注于标签页操作
     // 进入方式: Ctrl+t，退出方式: Esc
     tab {
@@ -159,7 +159,7 @@ keybinds clear-defaults=true {
         bind "Tab" { ToggleTab; }                  // 切换到最近使用的标签页
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
-    
+
     // 窗格大小调整模式 (Resize Mode) - 精确调整窗格尺寸
     // 进入方式: Ctrl+r，退出方式: Esc
     resize {
@@ -177,7 +177,7 @@ keybinds clear-defaults=true {
         bind "_" { Resize "Decrease"; }            // 减少当前窗格大小
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
-    
+
     // 滚动浏览模式 (Scroll Mode) - 浏览历史输出
     // 进入方式: Ctrl+s，退出方式: Esc
     scroll {
@@ -200,14 +200,14 @@ keybinds clear-defaults=true {
         bind "e" { EditScrollback; SwitchToMode "Normal"; } // 用编辑器打开滚动缓冲区
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
-    
+
     // 会话管理模式 (Session Mode) - 管理 Zellij 会话
     // 进入方式: Ctrl+o，退出方式: Esc
     session {
         bind "d" { Detach; }                       // 分离当前会话（会话继续在后台运行）
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
-    
+
     // 移动模式 (Move Mode) - 移动窗格位置
     // 进入方式: Ctrl+m，退出方式: Esc
     // 用于在窗格间移动当前窗格的位置
@@ -217,32 +217,32 @@ keybinds clear-defaults=true {
         bind "k" { MovePane "Up"; }                // 向上移动当前窗格
         bind "l" { MovePane "Right"; }             // 向右移动当前窗格
         bind "Left" { MovePane "Left"; }           // 箭头键向左移动窗格
-        bind "Down" { MovePane "Down"; }           // 箭头键向下移动窗格  
+        bind "Down" { MovePane "Down"; }           // 箭头键向下移动窗格
         bind "Up" { MovePane "Up"; }               // 箭头键向上移动窗格
         bind "Right" { MovePane "Right"; }         // 箭头键向右移动窗格
         bind "Esc" { SwitchToMode "Normal"; }      // 返回普通模式
     }
-    
+
     // 锁定模式 (Locked Mode) - 防止意外按键
     // 在此模式下，所有快捷键都被禁用，防止误操作
     locked {
         bind "Ctrl l" { SwitchToMode "Normal"; }   // 解锁并返回普通模式
     }
-    
+
     // 重命名标签页模式 (Rename Tab Mode) - 输入新的标签页名称
     // 从标签页模式按 'r' 进入此模式
     renametab {
         bind "Enter" { SwitchToMode "Normal"; }    // 确认重命名并返回普通模式
         bind "Esc" { UndoRenameTab; SwitchToMode "Normal"; } // 取消重命名并返回普通模式
     }
-    
+
     // 重命名窗格模式 (Rename Pane Mode) - 输入新的窗格名称
     // 从窗格模式按 'c' 进入此模式
     renamepane {
         bind "Enter" { SwitchToMode "Normal"; }    // 确认重命名并返回普通模式
         bind "Esc" { UndoRenamePane; SwitchToMode "Normal"; } // 取消重命名并返回普通模式
     }
-    
+
     // 搜索模式 (Search Mode) - 在滚动缓冲区中搜索
     // 从滚动模式按 '/' 进入此模式
     search {
@@ -251,15 +251,15 @@ keybinds clear-defaults=true {
         bind "N" { Search "up"; }                  // 查找上一个匹配项（大写 N）
         bind "Esc" { SwitchToMode "Scroll"; }      // 返回滚动模式
     }
-    
+
     // 进入搜索输入模式 (Enter Search Mode)
     entersearch {
         bind "Enter" { SwitchToMode "Search"; }    // 开始搜索并进入搜索模式
         bind "Esc" { SwitchToMode "Scroll"; }      // 取消搜索并返回滚动模式
     }
-    
+
 }
-    
+
 
 // 插件配置
 plugins {
@@ -270,15 +270,15 @@ plugins {
 }
 
 // 配置文件结尾
-// 
+//
 // 完整快捷键总结:
 // ==================
 // Ctrl+q     - 退出 Zellij
 // Ctrl+d     - 分离会话
 // Alt+hjkl   - 窗格导航
-// Alt+v/s    - 垂直/水平分割  
-// Alt+c      - 创建新窗格（自动方向）
-// Alt+n      - 新建标签页
+// Alt+v/s    - 垂直/水平分割
+// Alt+n      - 创建新窗格（自动方向）
+// Alt+c      - 新建标签页
 // Alt+1-9    - 切换标签页
 // Alt+,/.    - 上一个/下一个标签页
 // Alt+w      - 关闭当前标签页
@@ -382,6 +382,6 @@ plugins {
 // 插件说明:
 // =========
 // tab-bar    - 标签页栏插件
-// status-bar - 状态栏插件  
+// status-bar - 状态栏插件
 // strider    - 文件浏览器插件
 // compact-bar- 紧凑状态栏插件
