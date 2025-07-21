@@ -35,7 +35,9 @@
     home.file.".config/yazi/flavors/catppuccin-latte.yazi".source = ./configs/flavors/catppuccin-latte.yazi;
     
     home.file.".config/yazi/flavors/darcula.yazi".source = ./configs/flavors/darcula.yazi;
-    
+
+    home.file.".config/yazi/flavors/tokyo-night.yazi".source = ./configs/flavors/tokyo-night.yazi;
+
     home.file.".config/yazi/flavors/one-dark.yazi".source = ./configs/flavors/one-dark.yazi;
 
 

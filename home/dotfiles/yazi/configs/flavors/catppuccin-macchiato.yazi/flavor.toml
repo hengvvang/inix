@@ -1,0 +1,201 @@
+"$schema" = "https://yazi-rs.github.io/schemas/flavor.json"
+
+# Catppuccin Macchiato Theme - Pastel brown sugar
+# Official colors from: https://github.com/catppuccin/palette
+# Based on warm medium-contrast dark theme with brown tones
+
+[manager]
+cwd = { fg = "#b7bdf8" }                                # lavender - current directory name
+hovered = { bg = "#494d64", fg = "#cad3f5" }            # surface1 bg, text fg - hovered file
+preview_hovered = { bg = "#363a4f", fg = "#cad3f5" }    # surface0 bg, text fg - preview area hovered
+find = { bg = "#f5a97f", fg = "#24273a", bold = true }  # peach bg, base fg - search highlight
+found = { bg = "#a6da95", fg = "#24273a", bold = true } # green bg, base fg - search results
+
+[status]
+separator_open = ""
+separator_close = ""
+separator_style = { fg = "#5b6078", bg = "#5b6078" } # surface2 border
+
+[tabs]
+inactive = { fg = "#a5adcb", bg = "#24273a" }            # subtext0 fg, base bg - inactive tabs
+active = { fg = "#b7bdf8", bg = "#363a4f", bold = true } # lavender fg, surface0 bg - active tab
+
+[border]
+symbol = "│"
+style = { fg = "#5b6078" } # surface2 - subtle borders
+
+[completion]
+border = { fg = "#5b6078" }                              # surface2
+active = { bg = "#363a4f", fg = "#cad3f5", bold = true } # surface0 bg, text fg
+inactive = { bg = "#24273a", fg = "#a5adcb" }            # base bg, subtext0 fg
+
+[mode]
+normal = { bg = "#8aadf4", fg = "#24273a", bold = true } # blue bg, base fg
+select = { bg = "#a6da95", fg = "#24273a", bold = true } # green bg, base fg
+unset = { bg = "#f5a97f", fg = "#24273a", bold = true }  # peach bg, base fg
+
+[which]
+cols = 3
+mask = { bg = "#1e2030" }            # mantle - overlay background
+cand = { fg = "#8aadf4" }            # blue - command candidates
+rest = { fg = "#6e738d" }            # overlay0 - remaining text
+desc = { fg = "#f5a97f" }            # peach - descriptions
+separator = "  "
+separator_style = { fg = "#5b6078" } # surface2
+
+[confirm]
+border = { fg = "#ed8796" }             # red border for attention
+title = { fg = "#ed8796", bold = true } # red title
+content = { fg = "#cad3f5" }            # text content
+
+[spot]
+title = { fg = "#b7bdf8", bold = true }                  # lavender title
+origin = { fg = "#f4dbd6" }                              # rosewater - file origin
+line = { fg = "#eed49f" }                                # yellow - line numbers
+keyword = { fg = "#c6a0f6", bold = true, italic = true } # mauve keywords
+
+[input]
+border = { fg = "#8aadf4" }                                # blue
+title = { fg = "#8aadf4", bold = true }                    # blue
+value = { fg = "#cad3f5" }                                 # text
+selected = { bg = "#6e738d", fg = "#cad3f5", bold = true } # overlay0 bg, text fg
+
+[pick]
+border = { fg = "#a6da95" }              # green
+active = { fg = "#f5a97f", bold = true } # peach
+inactive = { fg = "#6e738d" }            # overlay0
+
+[notify]
+title = { fg = "#b7bdf8", bold = true } # lavender
+content = { fg = "#cad3f5" }            # text
+error = { fg = "#ed8796", bold = true } # red
+warn = { fg = "#eed49f", bold = true }  # yellow
+info = { fg = "#8aadf4" }               # blue
+
+[help]
+on = { fg = "#f5a97f", bold = true }                      # peach
+run = { fg = "#c6a0f6", italic = true }                   # mauve
+desc = { fg = "#cad3f5" }                                 # text
+hovered = { bg = "#363a4f", fg = "#f5a97f", bold = true } # surface0 bg, peach fg
+footer = { fg = "#a5adcb", bg = "#24273a" }               # subtext0 fg, base bg
+
+[filetype]
+rules = [
+    # Images
+    { mime = "image/*", fg = "#c6a0f6" }, # mauve
+
+    # Videos
+    { mime = "video/*", fg = "#eed49f" }, # yellow
+
+    # Audio
+    { mime = "audio/*", fg = "#a6da95" }, # green
+
+    # Archives
+    { mime = "application/zip", fg = "#ed8796" },             # red
+    { mime = "application/gzip", fg = "#ed8796" },            # red
+    { mime = "application/x-tar", fg = "#ed8796" },           # red
+    { mime = "application/x-bzip2", fg = "#ed8796" },         # red
+    { mime = "application/x-7z-compressed", fg = "#ed8796" }, # red
+
+    # Documents
+    { mime = "application/pdf", fg = "#ed8796" }, # red
+    { mime = "text/plain", fg = "#cad3f5" },      # text
+    { name = "*.md", fg = "#8aadf4" },            # blue - markdown
+    { name = "*.rst", fg = "#8aadf4" },           # blue - reStructuredText
+
+    # Configuration files
+    { name = "*.toml", fg = "#f5a97f" }, # peach
+    { name = "*.yaml", fg = "#f5a97f" }, # peach  
+    { name = "*.yml", fg = "#f5a97f" },  # peach
+    { name = "*.json", fg = "#f5a97f" }, # peach
+    { name = "*.xml", fg = "#f5a97f" },  # peach
+
+    # Code files
+    { name = "*.js", fg = "#eed49f" },  # yellow
+    { name = "*.ts", fg = "#8aadf4" },  # blue
+    { name = "*.jsx", fg = "#91d7e3" }, # sky
+    { name = "*.tsx", fg = "#91d7e3" }, # sky
+    { name = "*.py", fg = "#eed49f" },  # yellow
+    { name = "*.rs", fg = "#f5a97f" },  # peach
+    { name = "*.go", fg = "#91d7e3" },  # sky
+    { name = "*.c", fg = "#8aadf4" },   # blue
+    { name = "*.cpp", fg = "#8aadf4" }, # blue
+    { name = "*.h", fg = "#c6a0f6" },   # mauve
+
+    # Shell scripts
+    { name = "*.sh", fg = "#a6da95" },   # green
+    { name = "*.bash", fg = "#a6da95" }, # green
+    { name = "*.zsh", fg = "#a6da95" },  # green
+    { name = "*.fish", fg = "#a6da95" }, # green
+
+    # Special files
+    { name = "README*", fg = "#8aadf4", bold = true }, # blue
+    { name = "LICENSE*", fg = "#eed49f" },             # yellow
+    { name = "Makefile", fg = "#a6da95" },             # green
+    { name = "Dockerfile", fg = "#8aadf4" },           # blue
+    { name = ".gitignore", fg = "#6e738d" },           # overlay0
+    { name = ".env*", fg = "#eed49f" },                # yellow
+]
+
+[icon]
+prepend_rules = [
+    # Directories
+    { name = "*/", text = "", fg = "#8aadf4" },         # blue
+    { name = ".config/", text = "", fg = "#f5a97f" },   # peach
+    { name = ".git/", text = "", fg = "#ed8796" },      # red
+    { name = "Desktop/", text = "", fg = "#b7bdf8" },   # lavender
+    { name = "Documents/", text = "", fg = "#8aadf4" }, # blue
+    { name = "Downloads/", text = "", fg = "#a6da95" }, # green
+    { name = "Pictures/", text = "", fg = "#c6a0f6" },  # mauve
+    { name = "Music/", text = "", fg = "#a6da95" },     # green
+    { name = "Videos/", text = "", fg = "#eed49f" },    # yellow
+
+    # Files
+    { name = "*.rs", text = "", fg = "#f5a97f" },   # peach
+    { name = "*.js", text = "", fg = "#eed49f" },   # yellow
+    { name = "*.ts", text = "", fg = "#8aadf4" },   # blue
+    { name = "*.py", text = "", fg = "#eed49f" },   # yellow
+    { name = "*.json", text = "", fg = "#f5a97f" }, # peach
+    { name = "*.toml", text = "", fg = "#f5a97f" }, # peach
+    { name = "*.md", text = "", fg = "#8aadf4" },   # blue
+    { name = "*.txt", text = "", fg = "#cad3f5" },  # text
+    { name = "*.pdf", text = "", fg = "#ed8796" },  # red
+    { name = "*.zip", text = "", fg = "#ed8796" },  # red
+    { name = "*.png", text = "", fg = "#c6a0f6" },  # mauve
+    { name = "*.jpg", text = "", fg = "#c6a0f6" },  # mauve
+    { name = "*.gif", text = "", fg = "#c6a0f6" },  # mauve
+    { name = "*.mp4", text = "", fg = "#eed49f" },  # yellow
+    { name = "*.mp3", text = "", fg = "#a6da95" },  # green
+    { name = "*.wav", text = "", fg = "#a6da95" },  # green
+]
+
+rules = [
+    # Default fallbacks
+    { mime = "inode/directory", text = "", fg = "#8aadf4" },  # blue
+    { mime = "text/*", text = "", fg = "#cad3f5" },           # text
+    { mime = "application/json", text = "", fg = "#f5a97f" }, # peach
+    { mime = "*/javascript", text = "", fg = "#eed49f" },     # yellow
+    { is = "link", text = "", fg = "#91d7e3" },               # sky
+    { is = "orphan", text = "", fg = "#ed8796" },             # red
+    { name = "*", text = "", fg = "#cad3f5" },                # text - default
+]
+
+[tasks]
+border = { fg = "#8aadf4" }                               # blue
+title = { fg = "#8aadf4", bold = true }                   # blue
+hovered = { bg = "#363a4f", fg = "#cad3f5", bold = true } # surface0 bg, text fg
+
+[cmp]
+border = { fg = "#8aadf4" }                 # blue
+active = { bg = "#363a4f", fg = "#cad3f5" } # surface0 bg, text fg  
+inactive = { fg = "#a5adcb" }               # subtext0
+
+# Progress bars and loading states use peach accent
+[progress]
+label = { fg = "#cad3f5", bold = true }   # text
+percent = { fg = "#f5a97f", bold = true } # peach
+border = { fg = "#5b6078" }               # surface2
+
+# Loading animation accent
+[loading]
+indicator = { fg = "#f5a97f", bold = true } # peach
