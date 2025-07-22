@@ -178,76 +178,13 @@
           enable = true;               # 启用代理服务模块
           
           mihomo = {
-            enable = true;  # 暂时禁用以解决构建问题
+            enable = false;  # 暂时禁用以解决构建问题
             webui = "metacubexd";  # 使用 metacubexd Web UI
             tunMode = true;  # 启用 TUN 模式，提供透明代理
             configFile = ../../system/services/network/proxy/mihomo/config.yaml;
             extraOpts = null;
           };
 
-          # Clash 图形界面客户端
-          clash-gui = {
-            enable = false;             # 🟢 启用 Clash GUI 客户端
-            tunMode = true;            # 🟢 启用 TUN 模式（虚拟网卡）
-            capabilities = true;       # 🟢 启用网络管理权限
-            client = "clash-verge-rev";
-          };
-          
-          # Clash 代理服务
-          clash = {
-            enable = true;
-            tunMode = true;            # 🟢 启用 TUN 模式（虚拟网卡）
-            webPort = 9090;           # Web UI 端口
-            mixedPort = 7890;         # HTTP/SOCKS5 混合端口
-            subscriptionUrl = "https://fba01.fbsubcn01.cc:2096/flydsubal/cymeoq8salu87n34?sub=2&extend=1";  # 🔴 替换为你的订阅链接
-            autoStart = false;        # 手动启动（避免与 clash-gui 冲突）
-            updateInterval = "daily"; # 订阅更新间隔
-          };
-          
-          # V2Ray 代理服务
-          v2ray = {
-            enable = false;           # 🔴 禁用 - 需要时设为 true
-            tunMode = true;          # TUN 模式透明代理
-            httpPort = 8080;          # HTTP 代理端口
-            socksPort = 1080;         # SOCKS5 代理端口
-            tunPort = 10808;          # TUN 模式端口
-            subscriptionUrl = "https://fba01.fbsubcn01.cc:2096/flydsubal/cymeoq8salu87n34?sub=2&extend=1";  # 🔴 替换为你的订阅链接
-            autoStart = false;        # 手动启动（避免与其他代理冲突）
-            updateInterval = "daily"; # 订阅更新间隔
-          };
-          
-          # Xray 代理服务
-          xray = {
-            enable = false;           # 🔴 禁用 - 需要时设为 true
-            tunMode = true;          # TUN 模式透明代理
-            httpPort = 8081;          # HTTP 代理端口（避免冲突）
-            socksPort = 1081;         # SOCKS5 代理端口（避免冲突）
-            tunPort = 10809;          # TUN 模式端口（避免冲突）
-            subscriptionUrl = "https://fba01.fbsubcn01.cc:2096/flydsubal/cymeoq8salu87n34?sub=2&extend=1";   # 🔴 替换为你的订阅链接
-            autoStart = false;        # 手动启动（避免与其他代理冲突）
-            updateInterval = "daily"; # 订阅更新间隔
-          };
-          
-          # Shadowsocks 代理服务
-          shadowsocks = {
-            enable = false;           # 🔴 禁用 - 需要时设为 true
-            localPort = 1082;         # 本地代理端口（避免冲突）
-            subscriptionUrl = "https://your-shadowsocks-subscription-url";  # 🔴 替换为你的订阅链接
-            autoStart = false;        # 手动启动（避免与其他代理冲突）
-            updateInterval = "daily"; # 订阅更新间隔
-          };
-          
-          # sing-box 代理服务 
-          sing-box = {
-            enable = false;           # 🔴 禁用 - 需要时设为 true
-            tunMode = true;           # TUN 模式透明代理
-            webPort = 9091;           # Web UI 端口（避免与 Clash 冲突）
-            mixedPort = 7891;         # HTTP/SOCKS5 混合端口（避免与 Clash 冲突）
-            subscriptionUrl = "https://fba01.fbsubcn01.cc:2096/flydsubal/cymeoq8salu87n34?sub=2&extend=1";  # 🔴 替换为你的订阅链接
-            autoStart = false;        # 手动启动（避免与其他代理冲突）
-            updateInterval = "daily"; # 订阅更新间隔
-            logLevel = "info";        # 日志级别
-          };
         };
       };
       

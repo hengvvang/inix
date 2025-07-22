@@ -6,12 +6,6 @@
   };
 
   imports = [
-    ./clash
-    ./clash-gui
-    ./v2ray
-    ./xray
-    ./shadowsocks
-    ./sing-box
     ./mihomo
   ];
 
