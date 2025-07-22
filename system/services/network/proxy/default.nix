@@ -12,6 +12,7 @@
     ./xray
     ./shadowsocks
     ./sing-box
+    ./mihomo
   ];
 
 }

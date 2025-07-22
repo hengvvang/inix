@@ -177,6 +177,14 @@
         proxy = {
           enable = true;               # 启用代理服务模块
           
+          mihomo = {
+            enable = true;
+            webui = "metacubexd";  # 使用 metacubexd Web UI
+            tunMode = true;  # 启用 TUN 模式，提供透明代理
+            configFile = /etc/mihomo/config.yaml;
+            extraOpts = null;
+          };
+
           # Clash 图形界面客户端
           clash-gui = {
             enable = false;             # 🟢 启用 Clash GUI 客户端
