@@ -23,7 +23,7 @@
   // 专辑封面显示配置
   album_art: (
     method: Auto,                          // 自动检测显示方法
-    max_size_px: (width: 250, height: 250), // 最大显示尺寸
+    max_size_px: (width: 900, height: 900), // 最大显示尺寸
     disabled_protocols: ["http://", "https://"],
     vertical_align: Center,
     horizontal_align: Center,
