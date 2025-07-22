@@ -27,7 +27,7 @@ in
         password: None,
         
         // 主题配置
-        theme: ${if themeConfig != null then ''"${themeConfig}"'' else "None"},
+        theme: "rose-pine",
         
         // 缓存和歌词目录
         cache_dir: None,
@@ -225,18 +225,20 @@ in
         ],
       )
     '';
-    
-    # 主题文件 - 根据选择复制对应主题
-    home.file.".config/rmpc/themes/rose-pine.ron" = lib.mkIf (cfg.theme == "rose-pine") {
-      source = rosePineTheme;
+
+    home.file.".config/rmpc/themes/rose-pine.ron" =  {
+        source = ./configs/themes/rose-pine.ron;
+        executable = false;
     };
     
-    home.file.".config/rmpc/themes/rose-pine-dawn.ron" = lib.mkIf (cfg.theme == "rose-pine-dawn") {
-      source = rosePineDawnTheme;
+    home.file.".config/rmpc/themes/rose-pine-dawn.ron" =  {
+        source = ./configs/themes/rose-pine-dawn.ron;
+        executable = false;
     };
     
-    home.file.".config/rmpc/themes/rose-pine-moon.ron" = lib.mkIf (cfg.theme == "rose-pine-moon") {
-      source = rosePineMoonTheme;
+    home.file.".config/rmpc/themes/rose-pine-moon.ron" =  {
+        source = ./configs/themes/rose-pine-moon.ron;
+        executable = false;
     };
   };
 }
