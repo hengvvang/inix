@@ -7,32 +7,44 @@
     
     # 直接写入简化配置 - 仅作为演示配置方式
     home.file.".config/rmpc/config.ron".text = ''
-      Config(
-        // MPD 连接
+      #![enable(implicit_some)]
+      #![enable(unwrap_newtypes)]
+      #![enable(unwrap_variant_newtypes)]
+      (
+        // 基础 MPD 连接
         address: "127.0.0.1:6600",
+        password: None,
         
-        // 简化主题配置
-        theme: Some(Theme(
-          primary_color: Some("#7aa2f7"),
-          background_color: Some("#1a1b26"),
-          text_color: Some("#c0caf5"),
-        )),
-        
-        // 基础键绑定
-        keybinds: Some(KeyBinds(
-          global: {
-            "space": "TogglePause",
-            "n": "NextSong", 
-            "p": "PreviousSong",
-            "+": "VolumeUp",
-            "-": "VolumeDown",
-            "q": "Quit",
-          },
-        )),
-        
-        // 基础配置
+        // 简化配置
+        theme: None,
         volume_step: 5,
         scrolloff: 3,
+        wrap_navigation: true,
+        enable_mouse: true,
+        
+        // 基础键绑定
+        keybinds: (
+          global: {
+            "p":       TogglePause,
+            "q":       Quit,
+            ">":       NextTrack,
+            "<":       PreviousTrack,
+            "+":       VolumeUp,
+            "-":       VolumeDown,
+            "1":       SwitchToTab("Queue"),
+            "2":       SwitchToTab("Search"),
+          },
+          navigation: {
+            "j":       Down,
+            "k":       Up,
+            "<CR>":    Confirm,
+            "<Esc>":   Close,
+          },
+          queue: {
+            "<CR>":    Play,
+            "d":       Delete,
+          },
+        ),
       )
     '';
   };

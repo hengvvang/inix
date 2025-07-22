@@ -42,7 +42,6 @@
         starship.enable = true;
         qutebrowser.enable = false;
         obs-studio.enable = false;
-        rmpc.enable = true;               # 启用 RMPC 音乐播放器客户端
         proxy.enable = false;
         yazi = {
           enable = true;
@@ -55,6 +54,10 @@
         rio = {
           enable = true;
           method = "homemanager";
+        };
+        rmpc = {
+          enable = true;
+          method = "external";
         };
       };
 

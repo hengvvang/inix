@@ -1,46 +1,59 @@
-Config(
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
   // RMPC 外部配置文件示例
   // 此文件用于 external 配置方式演示
   
   // MPD 服务器连接配置
   address: "127.0.0.1:6600",
+  password: None,
   
-  // 主题配置 - 基于 TokyoNight 配色方案
-  theme: Some(Theme(
-    // 主色调 - 蓝色系
-    primary_color: Some("#7aa2f7"),        // 蓝色主题
-    secondary_color: Some("#bb9af7"),      // 紫色辅助
-    tertiary_color: Some("#7dcfff"),       // 青色点缀
-    
-    // 文本颜色
-    text_color: Some("#c0caf5"),           // 主文本颜色
-    text_color_dim: Some("#565f89"),       // 次要文本颜色
-    text_color_bright: Some("#ffffff"),     // 高亮文本颜色
-    
-    // 背景颜色
-    background_color: Some("#1a1b26"),     // 主背景色
-    background_color_alt: Some("#24283b"),  // 次背景色
-    
-    // 状态指示颜色
-    success_color: Some("#9ece6a"),        // 成功状态
-    warning_color: Some("#e0af68"),        // 警告状态
-    error_color: Some("#f7768e"),          // 错误状态
-    
-    // 选择和高亮
-    highlight_color: Some("#364a82"),      // 选中高亮
-    highlight_color_alt: Some("#414868"),   // 次高亮色
-  )),
+  // 主题配置 - 使用默认主题
+  theme: None,
   
   // 基础配置参数
   volume_step: 5,                          // 音量调节步长
-  seek_step: 10,                          // 进度跳转步长  
+  max_fps: 60,                            // 最大帧率
   scrolloff: 3,                           // 滚动边距
   wrap_navigation: true,                   // 列表边界换行
+  enable_mouse: true,                      // 启用鼠标支持
   select_current_song_on_change: true,     // 自动选中当前歌曲
   
   // 专辑封面显示配置
-  album_art: Some(AlbumArtConfig(
-    max_size_px: Some((250, 250)),         // 最大显示尺寸
-    method: Kitty,                         // 显示方法
-  )),
+  album_art: (
+    method: Auto,                          // 自动检测显示方法
+    max_size_px: (width: 250, height: 250), // 最大显示尺寸
+    disabled_protocols: ["http://", "https://"],
+    vertical_align: Center,
+    horizontal_align: Center,
+  ),
+  
+  // Vim 风格键绑定
+  keybinds: (
+    global: {
+      "p":       TogglePause,
+      "q":       Quit,
+      ">":       NextTrack,
+      "<":       PreviousTrack,
+      "+":       VolumeUp,
+      "-":       VolumeDown,
+      "1":       SwitchToTab("Queue"),
+      "2":       SwitchToTab("Search"),
+    },
+    navigation: {
+      "j":       Down,
+      "k":       Up,
+      "h":       Left,
+      "l":       Right,
+      "g":       Top,
+      "G":       Bottom,
+      "<CR>":    Confirm,
+      "<Esc>":   Close,
+    },
+    queue: {
+      "<CR>":    Play,
+      "d":       Delete,
+    },
+  ),
 )
