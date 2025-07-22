@@ -8,9 +8,9 @@
     options.mySystem.services.network.proxy.mihomo = {
         enable = lib.mkEnableOption "Mihomo 代理支持";
         webui = lib.mkOption {
-            type = lib.types.nullOr (lib.types.enum ["metacubexd" "yacd" "clash-dashboard"]);
+            type = lib.types.nullOr (lib.types.enum ["metacubexd"]);
             default = null;
-            description = "选择 Mihomo Web UI (metacubexd, yacd, clash-dashboard)";
+            description = "选择 Mihomo Web UI (仅支持 metacubexd 本地包，其他可使用在线版本)";
         };
         tunMode = lib.mkOption {
             type = lib.types.bool;
@@ -23,8 +23,8 @@
             description = "Mihomo 额外配置选项";
         };
         configFile = lib.mkOption {
-            type = lib.types.path;
-            default = "/etc/mihomo/config.yaml";
+            type = lib.types.nullOr lib.types.path;
+            default = null;
             description = "Mihomo 配置文件路径";
         };
     };
