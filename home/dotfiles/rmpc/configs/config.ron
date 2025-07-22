@@ -9,8 +9,8 @@
   address: "127.0.0.1:6600",
   password: None,
   
-  // 主题配置 - 使用默认主题
-  theme: None,
+  // 主题配置
+      theme: "rose-pine",  // 使用 Rose Pine 主题
   
   // 基础配置参数
   volume_step: 5,                          // 音量调节步长

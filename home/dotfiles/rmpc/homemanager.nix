@@ -1,5 +1,16 @@
 { config, lib, pkgs, ... }:
 
+let
+  cfg = config.myHome.dotfiles.rmpc;
+  
+  # 根据主题选择确定主题配置
+  themeConfig = if cfg.theme == "default" then null else cfg.theme;
+  
+  # 主题文件映射
+  rosePineTheme = ./configs/themes/rose-pine.ron;
+  rosePineDawnTheme = ./configs/themes/rose-pine-dawn.ron;
+  rosePineMoonTheme = ./configs/themes/rose-pine-moon.ron;
+in
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rmpc.enable && 
                     config.myHome.dotfiles.rmpc.method == "homemanager") {
@@ -16,7 +27,7 @@
         password: None,
         
         // 主题配置
-        theme: None,  // 使用默认内置主题，配合 TokyoNight 风格
+        theme: ${if themeConfig != null then ''"${themeConfig}"'' else "None"},
         
         // 缓存和歌词目录
         cache_dir: None,
@@ -214,5 +225,18 @@
         ],
       )
     '';
+    
+    # 主题文件 - 根据选择复制对应主题
+    home.file.".config/rmpc/themes/rose-pine.ron" = lib.mkIf (cfg.theme == "rose-pine") {
+      source = rosePineTheme;
+    };
+    
+    home.file.".config/rmpc/themes/rose-pine-dawn.ron" = lib.mkIf (cfg.theme == "rose-pine-dawn") {
+      source = rosePineDawnTheme;
+    };
+    
+    home.file.".config/rmpc/themes/rose-pine-moon.ron" = lib.mkIf (cfg.theme == "rose-pine-moon") {
+      source = rosePineMoonTheme;
+    };
   };
 }

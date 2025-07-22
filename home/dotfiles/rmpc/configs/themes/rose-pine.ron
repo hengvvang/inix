@@ -1,0 +1,196 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    // Rose Pine 主题配置
+    // 基于 Rose Pine 配色方案 - https://rosepinetheme.com/
+    
+    default_album_art_path: None,
+    show_song_table_header: true,
+    draw_borders: true,
+    modal_backdrop: true,  // 启用模态框背景
+    format_tag_separator: " • ",  // 使用更优雅的分隔符
+    browser_column_widths: [20, 38, 42],
+    
+    // Rose Pine 核心颜色配置
+    background_color: "#191724",        // Base - 深紫色背景
+    text_color: "#e0def4",             // Text - 主文本颜色
+    header_background_color: "#1f1d2e", // Surface - 头部背景
+    modal_background_color: "#26233a",   // Overlay - 模态框背景
+    
+    // 预览和标签样式
+    preview_label_style: (fg: "#f6c177", modifiers: "Bold"),           // Gold - 预览标签
+    preview_metadata_group_style: (fg: "#c4a7e7", modifiers: "Bold"), // Iris - 元数据组
+    
+    // 标签栏配置 - Rose Pine 风格
+    tab_bar: (
+        enabled: true,
+        active_style: (fg: "#191724", bg: "#c4a7e7", modifiers: "Bold"),    // 活动标签：黑底紫字
+        inactive_style: (fg: "#908caa"),                                     // 非活动标签：次要文本色
+    ),
+    
+    // 进度条样式 - 渐变粉色系
+    progress_bar: (
+        symbols: ProgressBarSymbols(
+            left_end: "▐",      // 左端点
+            right_end: "▌",     // 右端点
+            filled: "█",        // 已播放部分
+            empty: "─",         // 未播放部分
+        ),
+        style: (fg: "#ebbcba"),              // Rose - 粉色进度条
+        buffered_style: (fg: "#f6c177"),     // Gold - 缓冲区颜色
+    ),
+    
+    // 音量控制样式
+    volume_bar: (
+        symbols: VolumeBarSymbols(
+            left_end: "▐",      // 左端点
+            right_end: "▌",     // 右端点
+            filled: "█",        // 音量部分
+            empty: "─",         // 空白部分
+        ),
+        style: (fg: "#c4a7e7"),              // Iris - 紫色音量条
+    ),
+    
+    // 播放状态指示器
+    playback_symbols: PlaybackSymbols(
+        playing: "▶",                        // 播放符号
+        paused: "⏸",                         // 暂停符号
+        stopped: "⏹",                        // 停止符号
+    ),
+    
+    // 播放状态样式
+    playing_style: (fg: "#eb6f92", modifiers: "Bold"),     // Love - 红色播放状态
+    paused_style: (fg: "#908caa"),                         // Subtle - 灰色暂停状态
+    stopped_style: (fg: "#6e6a86"),                        // Muted - 深灰停止状态
+    
+    // 边框样式 - Rose Pine 优雅边框
+    borders: Borders(
+        top_left: "╭",
+        top_right: "╮", 
+        bottom_left: "╰",
+        bottom_right: "╯",
+        horizontal: "─",
+        vertical: "│",
+        cross: "┼",
+        vertical_left: "┤",
+        vertical_right: "├",
+        horizontal_top: "┬",
+        horizontal_bottom: "┴",
+    ),
+    
+    // 边框样式配置
+    border_style: (fg: "#26233a"),                         // Overlay - 边框颜色
+    selected_border_style: (fg: "#c4a7e7", modifiers: "Bold"), // Iris - 选中边框
+    
+    // 搜索高亮样式
+    search_match_style: (bg: "#f6c177", fg: "#191724", modifiers: "Bold"), // Gold 高亮
+    
+    // 表格样式
+    table_header_style: (fg: "#c4a7e7", modifiers: "Bold"), // Iris - 表头
+    table_row_style: (fg: "#e0def4"),                       // Text - 表格行
+    table_selected_style: (bg: "#26233a", fg: "#c4a7e7"),   // 选中行样式
+    
+    // 快捷键提示样式  
+    shortcut_style: (fg: "#f6c177", modifiers: "Bold"),     // Gold - 快捷键
+    shortcut_description_style: (fg: "#908caa"),            // Subtle - 描述文字
+    
+    // 队列相关样式
+    queue_title_style: (fg: "#c4a7e7", modifiers: "Bold"), // Iris - 队列标题
+    queue_current_song_style: (bg: "#1f1d2e", fg: "#ebbcba", modifiers: "Bold"), // 当前歌曲
+    
+    // 专辑封面占位符样式
+    album_art_placeholder_style: (fg: "#6e6a86"),          // Muted - 封面占位符
+    
+    // 滚动条样式
+    scrollbar_track_style: (fg: "#26233a"),                // Overlay - 滚动条轨道
+    scrollbar_thumb_style: (fg: "#c4a7e7"),                // Iris - 滚动条拖拽块
+    
+    // 错误和警告样式
+    error_style: (fg: "#eb6f92", modifiers: "Bold"),       // Love - 错误信息
+    warning_style: (fg: "#f6c177", modifiers: "Bold"),     // Gold - 警告信息
+    info_style: (fg: "#9ccfd8", modifiers: "Bold"),        // Foam - 信息提示
+    success_style: (fg: "#31748f", modifiers: "Bold"),     // Pine - 成功信息
+    
+    // 次要文本样式
+    secondary_text_style: (fg: "#908caa"),                 // Subtle - 次要文本
+    disabled_text_style: (fg: "#6e6a86"),                  // Muted - 禁用文本
+    
+    // 列表项样式
+    list_item_style: (fg: "#e0def4"),                      // Text - 普通列表项
+    list_item_selected_style: (bg: "#26233a", fg: "#c4a7e7"), // 选中列表项
+    list_item_focused_style: (bg: "#1f1d2e", fg: "#ebbcba"), // 聚焦列表项
+    
+    // 输入框样式
+    input_style: (fg: "#e0def4", bg: "#1f1d2e"),          // 输入框
+    input_focused_style: (fg: "#e0def4", bg: "#26233a"),   // 聚焦输入框
+    input_cursor_style: (fg: "#c4a7e7", modifiers: "Bold"), // 输入光标
+    
+    // 对话框样式
+    dialog_border_style: (fg: "#c4a7e7"),                  // Iris - 对话框边框
+    dialog_title_style: (fg: "#f6c177", modifiers: "Bold"), // Gold - 对话框标题
+    
+    // 状态栏样式
+    status_bar_background_style: (bg: "#1f1d2e"),          // Surface - 状态栏背景
+    status_bar_text_style: (fg: "#e0def4"),                // Text - 状态栏文本
+    
+    // 帮助文本样式
+    help_key_style: (fg: "#c4a7e7", modifiers: "Bold"),    // Iris - 帮助按键
+    help_description_style: (fg: "#908caa"),               // Subtle - 帮助描述
+    
+    // 时间显示样式
+    time_style: (fg: "#f6c177"),                           // Gold - 时间显示
+    time_remaining_style: (fg: "#908caa"),                 // Subtle - 剩余时间
+    
+    // 标签样式 (音乐标签)
+    tag_style: (fg: "#9ccfd8"),                            // Foam - 标签颜色
+    tag_value_style: (fg: "#e0def4"),                      // Text - 标签值
+    
+    // 文件浏览器样式
+    directory_style: (fg: "#c4a7e7", modifiers: "Bold"),   // Iris - 目录
+    file_style: (fg: "#e0def4"),                           // Text - 文件
+    audio_file_style: (fg: "#ebbcba", modifiers: "Bold"),  // Rose - 音频文件
+    
+    // 播放列表样式
+    playlist_style: (fg: "#9ccfd8", modifiers: "Bold"),    // Foam - 播放列表
+    playlist_current_style: (fg: "#f6c177", modifiers: "Bold"), // Gold - 当前播放列表
+    
+    // 艺术家和专辑样式
+    artist_style: (fg: "#c4a7e7", modifiers: "Bold"),      // Iris - 艺术家
+    album_style: (fg: "#ebbcba"),                          // Rose - 专辑
+    song_title_style: (fg: "#e0def4", modifiers: "Bold"),  // Text - 歌曲标题
+    
+    // 统计信息样式
+    stats_label_style: (fg: "#908caa"),                    // Subtle - 统计标签
+    stats_value_style: (fg: "#f6c177", modifiers: "Bold"), // Gold - 统计值
+    
+    // Logo 和标题样式
+    logo_style: (fg: "#ebbcba", modifiers: "Bold"),        // Rose - Logo
+    app_title_style: (fg: "#c4a7e7", modifiers: "Bold"),   // Iris - 应用标题
+    
+    // 分隔符样式
+    separator_style: (fg: "#26233a"),                      // Overlay - 分隔符
+    
+    // 加载指示器样式
+    loading_style: (fg: "#c4a7e7", modifiers: "Bold"),     // Iris - 加载指示器
+    
+    // 空状态样式
+    empty_state_style: (fg: "#6e6a86"),                    // Muted - 空状态文本
+    
+    // 配色总结注释
+    // Base Colors:
+    // #191724 - base (主背景)
+    // #1f1d2e - surface (次要背景)  
+    // #26233a - overlay (浮层背景)
+    // #e0def4 - text (主文本)
+    // #908caa - subtle (次要文本)
+    // #6e6a86 - muted (禁用文本)
+    //
+    // Accent Colors:
+    // #c4a7e7 - iris (紫色强调)
+    // #ebbcba - rose (粉色强调)
+    // #f6c177 - gold (金色强调)
+    // #eb6f92 - love (红色强调)
+    // #9ccfd8 - foam (青色强调)
+    // #31748f - pine (绿色强调)
+)

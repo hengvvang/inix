@@ -1,0 +1,143 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    // Rose Pine Dawn 主题配置 - 浅色变体
+    // 基于 Rose Pine Dawn 配色方案 - https://rosepinetheme.com/
+    
+    default_album_art_path: None,
+    show_song_table_header: true,
+    draw_borders: true,
+    modal_backdrop: true,
+    format_tag_separator: " • ",
+    browser_column_widths: [20, 38, 42],
+    
+    // Rose Pine Dawn 核心颜色配置 (浅色主题)
+    background_color: "#faf4ed",        // Base - 米白色背景
+    text_color: "#575279",             // Text - 深紫色文本
+    header_background_color: "#fffaf3", // Surface - 头部背景
+    modal_background_color: "#f2e9e1",   // Overlay - 模态框背景
+    
+    // 预览和标签样式
+    preview_label_style: (fg: "#ea9d34", modifiers: "Bold"),           // Gold - 预览标签
+    preview_metadata_group_style: (fg: "#907aa9", modifiers: "Bold"), // Iris - 元数据组
+    
+    // 标签栏配置 - Dawn 风格
+    tab_bar: (
+        enabled: true,
+        active_style: (fg: "#faf4ed", bg: "#907aa9", modifiers: "Bold"),    // 活动标签
+        inactive_style: (fg: "#9893a5"),                                     // 非活动标签
+    ),
+    
+    // 进度条样式 - Dawn 粉色系
+    progress_bar: (
+        symbols: ProgressBarSymbols(
+            left_end: "▐",
+            right_end: "▌",
+            filled: "█",
+            empty: "─",
+        ),
+        style: (fg: "#d7827e"),              // Rose - Dawn 粉色
+        buffered_style: (fg: "#ea9d34"),     // Gold - 缓冲区
+    ),
+    
+    // 音量控制样式
+    volume_bar: (
+        symbols: VolumeBarSymbols(
+            left_end: "▐",
+            right_end: "▌",
+            filled: "█",
+            empty: "─",
+        ),
+        style: (fg: "#907aa9"),              // Iris - Dawn 紫色
+    ),
+    
+    // 播放状态指示器
+    playback_symbols: PlaybackSymbols(
+        playing: "▶",
+        paused: "⏸",
+        stopped: "⏹",
+    ),
+    
+    // 播放状态样式
+    playing_style: (fg: "#b4637a", modifiers: "Bold"),     // Love - Dawn 红色
+    paused_style: (fg: "#9893a5"),                         // Subtle - 灰色
+    stopped_style: (fg: "#797593"),                        // Muted - 深灰
+    
+    // 边框和界面样式
+    borders: Borders(
+        top_left: "╭", top_right: "╮", 
+        bottom_left: "╰", bottom_right: "╯",
+        horizontal: "─", vertical: "│", cross: "┼",
+        vertical_left: "┤", vertical_right: "├",
+        horizontal_top: "┬", horizontal_bottom: "┴",
+    ),
+    
+    border_style: (fg: "#f2e9e1"),
+    selected_border_style: (fg: "#907aa9", modifiers: "Bold"),
+    
+    // 搜索和表格样式
+    search_match_style: (bg: "#ea9d34", fg: "#faf4ed", modifiers: "Bold"),
+    table_header_style: (fg: "#907aa9", modifiers: "Bold"),
+    table_row_style: (fg: "#575279"),
+    table_selected_style: (bg: "#f2e9e1", fg: "#907aa9"),
+    
+    // 其他界面元素样式
+    shortcut_style: (fg: "#ea9d34", modifiers: "Bold"),
+    shortcut_description_style: (fg: "#9893a5"),
+    queue_title_style: (fg: "#907aa9", modifiers: "Bold"),
+    queue_current_song_style: (bg: "#fffaf3", fg: "#d7827e", modifiers: "Bold"),
+    
+    // 状态样式
+    error_style: (fg: "#b4637a", modifiers: "Bold"),
+    warning_style: (fg: "#ea9d34", modifiers: "Bold"),
+    info_style: (fg: "#56949f", modifiers: "Bold"),
+    success_style: (fg: "#286983", modifiers: "Bold"),
+    
+    // 文本样式
+    secondary_text_style: (fg: "#9893a5"),
+    disabled_text_style: (fg: "#797593"),
+    list_item_style: (fg: "#575279"),
+    list_item_selected_style: (bg: "#f2e9e1", fg: "#907aa9"),
+    list_item_focused_style: (bg: "#fffaf3", fg: "#d7827e"),
+    
+    // 输入和对话框
+    input_style: (fg: "#575279", bg: "#fffaf3"),
+    input_focused_style: (fg: "#575279", bg: "#f2e9e1"),
+    input_cursor_style: (fg: "#907aa9", modifiers: "Bold"),
+    dialog_border_style: (fg: "#907aa9"),
+    dialog_title_style: (fg: "#ea9d34", modifiers: "Bold"),
+    
+    // 状态栏
+    status_bar_background_style: (bg: "#fffaf3"),
+    status_bar_text_style: (fg: "#575279"),
+    
+    // 帮助和时间
+    help_key_style: (fg: "#907aa9", modifiers: "Bold"),
+    help_description_style: (fg: "#9893a5"),
+    time_style: (fg: "#ea9d34"),
+    time_remaining_style: (fg: "#9893a5"),
+    
+    // 文件和标签
+    tag_style: (fg: "#56949f"),
+    tag_value_style: (fg: "#575279"),
+    directory_style: (fg: "#907aa9", modifiers: "Bold"),
+    file_style: (fg: "#575279"),
+    audio_file_style: (fg: "#d7827e", modifiers: "Bold"),
+    
+    // 音乐库
+    playlist_style: (fg: "#56949f", modifiers: "Bold"),
+    playlist_current_style: (fg: "#ea9d34", modifiers: "Bold"),
+    artist_style: (fg: "#907aa9", modifiers: "Bold"),
+    album_style: (fg: "#d7827e"),
+    song_title_style: (fg: "#575279", modifiers: "Bold"),
+    
+    // 统计和其他
+    stats_label_style: (fg: "#9893a5"),
+    stats_value_style: (fg: "#ea9d34", modifiers: "Bold"),
+    logo_style: (fg: "#d7827e", modifiers: "Bold"),
+    app_title_style: (fg: "#907aa9", modifiers: "Bold"),
+    separator_style: (fg: "#f2e9e1"),
+    loading_style: (fg: "#907aa9", modifiers: "Bold"),
+    empty_state_style: (fg: "#797593"),
+)

@@ -57,7 +57,8 @@
         };
         rmpc = {
           enable = true;
-          method = "external";
+          method = "homemanager";  # 改为使用 homemanager 方式
+          theme = "rose-pine";     # 启用 Rose Pine 主题
         };
       };
 
