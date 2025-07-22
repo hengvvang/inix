@@ -22,7 +22,6 @@
     ./starship
     ./qutebrowser   # 新增 Qutebrowser 浏览器配置
     ./obs-studio    # 新增 OBS Studio 配置
-    ./rmpc          # rmpc 终端音乐播放器配置
     ./proxy       # 代理配置模块
   ];
 }

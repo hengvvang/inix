@@ -42,10 +42,6 @@
         starship.enable = true;
         qutebrowser.enable = false;
         obs-studio.enable = false;
-        rmpc = {
-          enable = true;
-          method = "external";     # 切换到外部配置方式
-        };
         proxy.enable = false;
         yazi = {
           enable = true;

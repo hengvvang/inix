@@ -8,41 +8,6 @@ with lib;
 let
   cfg = config.myHome.services.media.mpd;
 in {
-  options.myHome.services.media.mpd = {
-    
-    musicDirectory = mkOption {
-      type = types.str;
-      default = "${config.home.homeDirectory}/Music";
-      description = "音乐文件目录路径";
-    };
-    
-    port = mkOption {
-      type = types.port;
-      default = 6600;
-      description = "MPD 服务监听端口";
-    };
-    
-    autoStart = mkOption {
-      type = types.bool;
-      default = true;
-      description = "是否开机自动启动 MPD 服务";
-    };
-    
-    clients = {
-      mpc = mkOption {
-        type = types.bool;
-        default = true;
-        description = "是否安装 mpc 命令行客户端";
-      };
-      
-      ncmpcpp = mkOption {
-        type = types.bool;
-        default = true;
-        description = "是否安装 ncmpcpp 终端客户端";
-      };
-    };
-  };
-
   config = mkIf cfg.enable {
     # 安装 MPD 及可选客户端
     home.packages = with pkgs; [
