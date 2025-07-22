@@ -15,10 +15,10 @@
     browser_column_widths: [20, 38, 42],
     
     // Tokyo Night 核心颜色配置
-    background_color: "#1a1b26",         // 深蓝色背景
-    text_color: "#c0caf5",              // 浅蓝色文本
-    header_background_color: "#24283b", // 头部背景
-    modal_background_color: "#414868",  // 模态框背景
+    background_color: "#1a1b26",         // 深蓝色背景 (官方)
+    text_color: "#c0caf5",              // 浅蓝色文本 (官方)
+    header_background_color: "#24283b", // 头部背景 (官方 Storm)
+    modal_background_color: "#414868",  // 模态框背景 (官方)
     
     // 预览和标签样式
     preview_label_style: (fg: "#e0af68", modifiers: "Bold"),           // 金黄色预览标签
@@ -32,12 +32,12 @@
     ),
     
     // 高亮和选择样式
-    highlighted_item_style: (fg: "#7aa2f7", modifiers: "Bold"),                      // 高亮项 - 蓝色
+    highlighted_item_style: (fg: "#7aa2f7", modifiers: "Bold"),                      // 高亮项 - 蓝色 (官方)
     current_item_style: (fg: "#1a1b26", bg: "#7aa2f7", modifiers: "Bold"),          // 当前项 - 反色显示
     
     // 边框样式
-    borders_style: (fg: "#414868"),                                    // 边框颜色
-    highlight_border_style: (fg: "#7aa2f7", modifiers: "Bold"),       // 高亮边框 - 蓝色
+    borders_style: (fg: "#565f89"),                                    // 边框颜色 (官方 comments)
+    highlight_border_style: (fg: "#7aa2f7", modifiers: "Bold"),       // 高亮边框 - 蓝色 (官方)
     
     // 符号配置
     symbols: (
@@ -46,34 +46,34 @@
         playlist: "📋",                        // 播放列表符号  
         marker: "▶",                           // 标记符号
         ellipsis: "…",                         // 省略号
-        song_style: (fg: "#f7768e"),          // 歌曲符号样式 - 红色
-        dir_style: (fg: "#7aa2f7", modifiers: "Bold"),         // 目录符号样式 - 蓝色
-        playlist_style: (fg: "#e0af68", modifiers: "Bold"),    // 播放列表符号样式 - 金色
+        song_style: (fg: "#f7768e"),          // 歌曲符号样式 - 红色 (官方 This keyword)
+        dir_style: (fg: "#7aa2f7", modifiers: "Bold"),         // 目录符号样式 - 蓝色 (官方)
+        playlist_style: (fg: "#e0af68", modifiers: "Bold"),    // 播放列表符号样式 - 金色 (官方)
     ),
     
     // 消息级别样式
     level_styles: (
-        info: (fg: "#7aa2f7", bg: "#1a1b26"),    // 蓝色
-        warn: (fg: "#e0af68", bg: "#1a1b26"),    // 金色
-        error: (fg: "#f7768e", bg: "#1a1b26"),   // 红色
-        debug: (fg: "#9eca84", bg: "#1a1b26"),   // 绿色
-        trace: (fg: "#bb9af7", bg: "#1a1b26"),   // 紫色
+        info: (fg: "#7aa2f7", bg: "#1a1b26"),    // 蓝色 (官方)
+        warn: (fg: "#e0af68", bg: "#1a1b26"),    // 金色 (官方)
+        error: (fg: "#f7768e", bg: "#1a1b26"),   // 红色 (官方 This keyword)
+        debug: (fg: "#9eca6a", bg: "#1a1b26"),   // 绿色 (官方 Strings)
+        trace: (fg: "#bb9af7", bg: "#1a1b26"),   // 紫色 (官方 Control Keywords)
     ),
     
     // 进度条样式
     progress_bar: (
         symbols: ["▐", "█", "▌", "─", "▌"],        // [start, elapsed, thumb, track, end]
-        track_style: (fg: "#414868"),              // 空白轨道
-        elapsed_style: (fg: "#9eca84"),            // 已播放部分 - 绿色
-        thumb_style: (fg: "#7aa2f7", bg: "#414868"), // 拖拽按钮 - 蓝色
+        track_style: (fg: "#414868"),              // 空白轨道 (官方 Terminal Black)
+        elapsed_style: (fg: "#9eca6a"),            // 已播放部分 - 绿色 (官方 Strings)
+        thumb_style: (fg: "#7aa2f7", bg: "#414868"), // 拖拽按钮 - 蓝色 (官方)
     ),
     
     // 滚动条样式
     scrollbar: (
         symbols: ["│", "█", "▲", "▼"],           // [track, thumb, end_top, end_bot]
-        track_style: (fg: "#414868"),            // 轨道颜色
-        ends_style: (fg: "#565f89"),             // 端点颜色
-        thumb_style: (fg: "#7aa2f7"),            // 滑块颜色 - 蓝色
+        track_style: (fg: "#414868"),            // 轨道颜色 (官方 Terminal Black)
+        ends_style: (fg: "#565f89"),             // 端点颜色 (官方 Comments)
+        thumb_style: (fg: "#7aa2f7"),            // 滑块颜色 - 蓝色 (官方)
     ),
     
     // 歌曲表格格式配置
@@ -87,7 +87,7 @@
             width: "40%",
         ),
         (
-            prop: (kind: Property(Album), style: (fg: "#f7768e")),  // 红色专辑
+            prop: (kind: Property(Album), style: (fg: "#f7768e")),  // 红色专辑 (官方 This keyword)
             width: "25%",
         ),
         (
@@ -153,7 +153,7 @@
                     (kind: Property(Song(Title)), style: (modifiers: "Bold"))
                 ],
                 right: [
-                    (kind: Property(Widget(Volume)), style: (fg: "#9eca84"))
+                    (kind: Property(Widget(Volume)), style: (fg: "#9eca6a"))
                 ]
             ),
             (

@@ -10,7 +10,7 @@
   password: None,
   
   // 主题配置
-      theme: "rose-pine-dawn",  // 使用 Rose Pine 主题
+      theme: "rose-pine",  // 使用 Rose Pine 主题
   
   // 基础配置参数
   volume_step: 5,                          // 音量调节步长
