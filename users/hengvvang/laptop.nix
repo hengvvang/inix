@@ -42,7 +42,6 @@
         starship.enable = true;
         qutebrowser.enable = false;
         obs-studio.enable = false;
-        proxy.enable = false;
         zed.enable = false;
         vscode.enable = false;
         yazi = {

@@ -35,7 +35,6 @@
         lazygit.enable = false; # 不使用图形化 git
         starship.enable = true; # 保留美观的提示符
         qutebrowser.enable = true;  # 启用 Qutebrowser 配置
-        proxy.enable = false;
       };
       
       # 包管理配置

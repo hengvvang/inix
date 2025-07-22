@@ -33,7 +33,6 @@
         git.enable = true;
         lazygit.enable = true;
         starship.enable = true;
-        proxy.enable = true;
       };
 
 

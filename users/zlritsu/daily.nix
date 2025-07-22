@@ -34,7 +34,6 @@
         git.enable = true;
         lazygit.enable = false;
         starship.enable = true;
-        proxy.enable = true;    # 日常使用可能需要代理
       };
       
 

@@ -34,7 +34,6 @@
         git.enable = true;
         lazygit.enable = true;
         starship.enable = true;
-        proxy.enable = true;        # 工作环境可能需要代理
       };
       
       # 包管理配置
