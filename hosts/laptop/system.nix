@@ -178,10 +178,10 @@
           enable = true;               # 启用代理服务模块
           
           mihomo = {
-            enable = true;
+            enable = true;  # 暂时禁用以解决构建问题
             webui = "metacubexd";  # 使用 metacubexd Web UI
             tunMode = true;  # 启用 TUN 模式，提供透明代理
-            configFile = /etc/mihomo/config.yaml;
+            configFile = ../../system/services/network/proxy/mihomo/config.yaml;
             extraOpts = null;
           };
 
