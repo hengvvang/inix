@@ -3,8 +3,11 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zellij.enable && config.myHome.dotfiles.zellij.method == "direct") {
     # 直接安装zellij包
-    home.packages = with pkgs; [ zellij ];
-    
+    home.packages = with pkgs; [ 
+        zellij
+        wl-clipboard
+    ];
+
     # 直接文件写入 - 演示用简化配置
     home.file.".config/zellij/config.kdl".text = ''
       // Zellij 简化配置文件

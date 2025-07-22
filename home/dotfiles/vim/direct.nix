@@ -2,8 +2,8 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.method == "direct") {
-    # 方式2: 直接文件写入（演示用）
-    # 特点：直接写入配置文件，灵活但需要手动维护
+    
+    home.packages = with pkgs; [ vim ];
     
     home.file.".vimrc".text = ''
       " Vim 基础配置

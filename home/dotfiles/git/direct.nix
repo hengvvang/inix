@@ -2,6 +2,9 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.git.enable && config.myHome.dotfiles.git.method == "direct") {
+
+    home.packages = with pkgs; [ git ];
+
     # 直接文件写入 - 演示用简化配置
     home.file.".gitconfig".text = ''
       [user]

@@ -3,7 +3,9 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.method == "external") {
     # 外部文件引用方式配置 Bash
-    
+
+    home.packages = with pkgs; [ bash ];    
+
     home.file.".bashrc".source = ./configs/bashrc;
     home.file.".bash_profile".source = ./configs/bash_profile;
     

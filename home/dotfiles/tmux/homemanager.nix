@@ -3,7 +3,7 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && config.myHome.dotfiles.tmux.method == "homemanager") {
     programs.tmux = {
-      # 基本启用设置
+      
       enable = true;
       
       package = pkgs.tmux;  # 使用默认的 tmux 包

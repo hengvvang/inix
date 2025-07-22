@@ -9,6 +9,8 @@
       enableZshIntegration = true;
       enableNushellIntegration = true;
       
+      package = pkgs.starship;
+
       settings = {
 
         format = ''

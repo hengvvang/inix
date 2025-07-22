@@ -6,8 +6,8 @@
     programs.zsh = {
       enable = true;
       
-      package = pkgs.zsh;  # 使用默认的 Zsh 包
-      
+      package = pkgs.zsh;
+
       # 自动补全配置
       enableCompletion = true;           # 启用命令补全 (推荐)
       autosuggestion.enable = true;      # 启用自动建议 (基于历史记录)

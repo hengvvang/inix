@@ -3,9 +3,9 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && 
                     config.myHome.dotfiles.tmux.method == "direct") {
+
     home.packages = with pkgs; [ tmux ];
     
-    # 直接文件写入 - 演示用简化配置
     home.file.".config/tmux/tmux.conf".text = ''
       # Tmux 简化配置
       

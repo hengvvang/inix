@@ -2,7 +2,9 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.enable && config.myHome.dotfiles.starship.method == "direct") {
-    # 方式2: 直接文件写入
+    
+    home.packages = with pkgs; [ starship ];
+
     home.file.".config/starship.toml".text = ''
       # Starship 配置 - 直接文件写入方式
       
@@ -360,8 +362,5 @@
       style = "red bold dimmed"
       disabled = false
     '';
-    
-    # 确保 starship 包已安装
-    home.packages = with pkgs; [ starship ];
   };
 }

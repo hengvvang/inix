@@ -4,6 +4,9 @@
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.enable && config.myHome.dotfiles.lazygit.method == "homemanager") {
     programs.lazygit = {
       enable = true;
+
+      package = pkgs.lazygit;
+
       settings = {
         gui = {
           showIcons = true;

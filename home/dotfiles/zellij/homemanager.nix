@@ -7,8 +7,11 @@
       enable = true;
       
       # 包配置 - 使用默认zellij包
-      package = pkgs.zellij;
-      
+      package = with pkgs; [
+        zellij
+        wl-clipboard
+      ];
+
       # 主配置 - 现代化多路复用器设置
       settings = {
         # 界面设置

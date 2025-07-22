@@ -2,8 +2,9 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.method == "direct") {
-    # 直接文件写入方式配置 Bash
     
+    home.packages = with pkgs; [ bash ];
+
     home.file.".bashrc".text = ''
       # === Bash 配置文件 ===
       # 由 Nix Home Manager 生成

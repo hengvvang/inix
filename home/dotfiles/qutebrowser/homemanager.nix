@@ -2,11 +2,16 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.qutebrowser.enable && config.myHome.dotfiles.qutebrowser.method == "homemanager") {
-    # 方式1: Home Manager 程序模块
+    
     programs.qutebrowser = {
       enable = true;
       
-      # 基础搜索引擎配置 - 优化常用引擎
+      # === 没有 packages 配置项 === 
+      package = with pkgs; [
+        qutebrowser
+        mpv  # 视频播放器
+      ];
+      
       searchEngines = {
         DEFAULT = "https://www.google.com/search?q={}";
         # g = "https://www.google.com/search?q={}";
@@ -260,10 +265,5 @@
         config.bind("'", 'set-cmd-text -s :history ')       # 历史记录
       '';
     };
-    
-    # 安装核心工具包
-    home.packages = with pkgs; [
-      mpv        # 视频播放器
-    ];
   };
 }

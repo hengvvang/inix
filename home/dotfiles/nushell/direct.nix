@@ -2,8 +2,8 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.nushell.enable && config.myHome.dotfiles.nushell.method == "direct") {
-    # 方式2: 直接文件写入（演示用）
-    # 特点：直接写入配置文件，灵活但需要手动维护
+    
+    home.packages = with pkgs; [ nushell ];
     
     home.file.".config/nushell/config.nu".text = ''
       # Nushell 基础配置

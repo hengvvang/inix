@@ -2,6 +2,9 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "homemanager") {
+
+    home.packages = with pkgs; [ yazi ];
+
     programs.yazi = {
       enable = true;
       
@@ -11,6 +14,8 @@
       enableZshIntegration = true;   # 根据需要启用zsh集成
       enableNushellIntegration = true;  # 根据需要启用nushell集成
       
+      # program = pkgs.yazi;
+
       # Shell wrapper name - shell包装器名称，默认为"ya"
       shellWrapperName = "ya";
 

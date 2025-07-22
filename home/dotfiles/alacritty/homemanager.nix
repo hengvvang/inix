@@ -6,8 +6,7 @@
     programs.alacritty = {
       enable = true;
       
-      # Alacritty 包选择 - 可指定特定版本
-      # package = pkgs.alacritty;
+      package = pkgs.alacritty;
       
       settings = {
         # === 窗口配置 ===

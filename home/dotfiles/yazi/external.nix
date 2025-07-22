@@ -2,9 +2,43 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "external") {
-    # ===== Yazi 外部文件配置 - 现代化文件管理器设置 =====
 
-    # 主要配置文件 - 核心功能和行为设置
+
+    # ===== 包依赖确保 =====
+    # 确保必要的系统工具可用
+    home.packages = with pkgs; [
+      # 核心文件管理器
+      yazi
+
+      # 预览增强工具
+      file                    # 文件类型检测
+      tree                    # 目录树显示
+
+      # 图像预览支持
+      imagemagick             # 图像处理和预览
+      ffmpegthumbnailer       # 视频缩略图
+
+      # 文档预览支持
+      poppler_utils           # PDF 预览 (pdftoppm)
+      unrar                   # RAR 文件预览
+      unar                    # 通用解压工具
+
+      # 代码语法高亮
+      bat                     # 代码预览和语法高亮
+
+      # 音视频预览
+      mediainfo               # 媒体文件信息
+      exiftool                # 图片元数据
+
+      # 字体和图标支持
+      nerd-fonts.fira-code    # Nerd Font 图标支持
+
+      # 集成工具
+      ripgrep                 # 快速搜索
+      fd                      # 快速文件查找
+      fzf                     # 模糊搜索
+    ];
+
     home.file.".config/yazi/yazi.toml".source = ./configs/yazi.toml;
     home.file.".config/yazi/keymap.toml".source = ./configs/keymap.toml;
     home.file.".config/yazi/theme.toml".source = ./configs/theme.toml;
@@ -43,40 +77,6 @@
     home.file.".config/yazi/flavors/one-dark.yazi".source = ./configs/flavors/one-dark.yazi;
 
 
-    # ===== 包依赖确保 =====
-    # 确保必要的系统工具可用
-    home.packages = with pkgs; [
-      # 核心文件管理器
-      yazi
-
-      # 预览增强工具
-      file                    # 文件类型检测
-      tree                    # 目录树显示
-
-      # 图像预览支持
-      imagemagick             # 图像处理和预览
-      ffmpegthumbnailer       # 视频缩略图
-
-      # 文档预览支持
-      poppler_utils           # PDF 预览 (pdftoppm)
-      unrar                   # RAR 文件预览
-      unar                    # 通用解压工具
-
-      # 代码语法高亮
-      bat                     # 代码预览和语法高亮
-
-      # 音视频预览
-      mediainfo               # 媒体文件信息
-      exiftool                # 图片元数据
-
-      # 字体和图标支持
-      nerd-fonts.fira-code    # Nerd Font 图标支持
-
-      # 集成工具
-      ripgrep                 # 快速搜索
-      fd                      # 快速文件查找
-      fzf                     # 模糊搜索
-    ];
 
     # ===== 环境变量设置 =====
     home.sessionVariables = {

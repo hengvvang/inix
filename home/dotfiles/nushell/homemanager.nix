@@ -2,13 +2,9 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.nushell.enable && config.myHome.dotfiles.nushell.method == "homemanager") {
-    # 方式1: Home Manager 程序模块（推荐）
-    # 特点：声明式配置，与 Home Manager 深度集成，易于管理
     programs.nushell = {
       enable = true;
       
-      # Nushell 包版本配置
-      # 使用默认包，如需特定版本可指定: pkgs.nushell
       package = pkgs.nushell;
       
       # 核心配置设置 - 影响 Nushell 的行为和外观

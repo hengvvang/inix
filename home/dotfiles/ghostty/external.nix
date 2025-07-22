@@ -2,6 +2,9 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.method == "external") {
+
+    home.packages = with pkgs; [ ghostty ];
+
     # 方式3: 外部文件引用
     home.file.".config/ghostty/config".source = ./configs/config;
     

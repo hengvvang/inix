@@ -2,6 +2,9 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.method == "direct") {
+
+    home.packages = with pkgs; [ zsh ];
+
     home.file.".zshrc".text = ''
       # Zsh 基础配置
       export HISTFILE=~/.zsh_history

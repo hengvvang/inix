@@ -3,7 +3,7 @@
 {
   options.myHome.pkgs.apps = {
     enable = lib.mkEnableOption "家庭应用程序模块";
-    
+
     # 🌘 残月
     waningCrescent = {
       enable = lib.mkEnableOption "残月 - 基础应用核心" // { default = false; };

@@ -2,7 +2,12 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.qutebrowser.enable && config.myHome.dotfiles.qutebrowser.method == "direct") {
-    # 直接文件写入 - 人体工程学优化配置
+    
+    home.packages = with pkgs; [
+      qutebrowser
+      mpv
+    ];
+
     home.file.".config/qutebrowser/config.py".text = ''
       # Qutebrowser 配置文件 - 核心体验优化
       
@@ -171,10 +176,5 @@
       wikipedia https://zh.wikipedia.org
     '';
     
-    # 安装核心工具包
-    home.packages = with pkgs; [
-      qutebrowser
-      mpv
-    ];
   };
 }
