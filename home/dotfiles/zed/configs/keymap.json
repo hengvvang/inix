@@ -1,0 +1,27 @@
+[
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-h": "pane::ActivateNextItem",
+      "ctrl-l": "pane::ActivatePrevItem",
+      "ctrl-j": "editor::MoveDown",
+      "ctrl-k": "editor::MoveUp"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "ctrl-shift-e": "workspace::ToggleLeftDock",
+      "ctrl-shift-f": "project_search::ToggleFocus",
+      "ctrl-shift-g": "editor::ToggleGitBlame"
+    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-/": "editor::ToggleComments",
+      "ctrl-shift-p": "command_palette::Toggle",
+      "ctrl-p": "file_finder::Toggle"
+    }
+  }
+]
