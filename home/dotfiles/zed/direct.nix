@@ -5,19 +5,6 @@
     # Zed Editor 配置 - 直接安装包方式
     home.packages = with pkgs; [
       zed-editor                  # 官方 Zed Editor
-      
-      # 相关开发工具包 (可选)
-      nil                         # Nix 语言服务器
-      rust-analyzer               # Rust 语言服务器
-      nodejs                      # Node.js 运行时
-      python3                     # Python 解释器
-      git                         # Git 版本控制
-      
-      # 格式化工具
-      nixpkgs-fmt                 # Nix 格式化
-      rustfmt                     # Rust 格式化
-      black                       # Python 格式化
-      nodePackages.prettier       # 前端格式化
     ];
     
     # 提示用户手动配置

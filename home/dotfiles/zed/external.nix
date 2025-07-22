@@ -2,24 +2,9 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.enable && config.myHome.dotfiles.zed.method == "external") {
-    # Zed Editor 配置 - 外部配置文件方式
     
-    # 安装 Zed 包和必要工具
     home.packages = with pkgs; [
       zed-editor
-      
-      # 语言服务器和工具
-      nil                         # Nix 语言服务器
-      rust-analyzer               # Rust 语言服务器
-      python3Packages.python-lsp-server  # Python 语言服务器
-      nodePackages.typescript-language-server  # TypeScript 语言服务器
-      nodePackages.vscode-langservers-extracted  # HTML/CSS/JSON 语言服务器
-      
-      # 格式化工具
-      nixpkgs-fmt                 # Nix 格式化
-      rustfmt                     # Rust 格式化
-      black                       # Python 格式化
-      nodePackages.prettier       # 前端格式化
     ];
     
     # 链接外部配置文件到 Zed 配置目录

@@ -23,6 +23,8 @@
     ./qutebrowser   # 新增 Qutebrowser 浏览器配置
     ./obs-studio    # 新增 OBS Studio 配置
     ./rmpc          # 新增 RMPC 音乐播放器客户端
+    ./vscode
+    ./zed
     ./proxy       # 代理配置模块
   ];
 }

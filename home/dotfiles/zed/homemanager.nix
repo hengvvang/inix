@@ -2,33 +2,14 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.enable && config.myHome.dotfiles.zed.method == "homemanager") {
-    # Zed Editor 配置 - 使用 Home Manager
     programs.zed-editor = {
+
       enable = true;
       
-      # 包选择 - Zed 编辑器包
-      package = pkgs.zed-editor;              # 官方 Zed Editor
+      package = pkgs.zed-editor;
       
       # 扩展包环境 - 为 Zed 提供额外工具
       extraPackages = with pkgs; [
-        # === 语言服务器 (LSP) ===
-        nil                       # Nix 语言服务器
-        rust-analyzer             # Rust 语言服务器
-        python3Packages.python-lsp-server  # Python 语言服务器
-        nodePackages.typescript-language-server  # TypeScript 语言服务器
-        nodePackages.vscode-langservers-extracted  # HTML/CSS/JSON 语言服务器
-        
-        # === 代码格式化工具 ===
-        nixpkgs-fmt              # Nix 格式化工具
-        rustfmt                  # Rust 格式化工具
-        black                    # Python 格式化工具
-        nodePackages.prettier   # 前端格式化工具
-        
-        # === 调试和构建工具 ===
-        gdb                      # 调试器
-        nodejs                   # Node.js 运行时
-        python3                  # Python 解释器
-        cargo                    # Rust 包管理器
       ];
       
       # 扩展列表 - Zed 插件

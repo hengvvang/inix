@@ -43,6 +43,8 @@
         qutebrowser.enable = false;
         obs-studio.enable = false;
         proxy.enable = false;
+        zed.enable = false;
+        vscode.enable = false;
         yazi = {
           enable = true;
           method = "external";
