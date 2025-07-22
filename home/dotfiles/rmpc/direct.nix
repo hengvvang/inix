@@ -64,5 +64,14 @@ in
             source = ./configs/themes/rose-pine-moon.ron;
             executable = false;
         };
+        home.file.".config/rmpc/themes/darcula.ron" =  {
+            source = ./configs/themes/darcula.ron;
+            executable = false;
+        };
+        
+        home.file.".config/rmpc/themes/tokyo-night.ron" =  {
+            source = ./configs/themes/tokyo-night.ron;
+            executable = false;
+        };
     };
 }
