@@ -1,0 +1,179 @@
+#![enable(implicit_some)]
+#![enable(unwrap_newtypes)]
+#![enable(unwrap_variant_newtypes)]
+(
+    // Darcula 主题配置
+    // 基于 JetBrains IntelliJ IDEA 的经典 Darcula 主题
+    // 提供专业的深灰色调和精准的色彩层次
+    
+    // 基本配置
+    default_album_art_path: None,
+    show_song_table_header: true,
+    draw_borders: true,
+    modal_backdrop: true,
+    format_tag_separator: " • ",
+    browser_column_widths: [20, 38, 42],
+    
+    // Darcula 核心颜色配置
+    background_color: "#2b2b2b",         // 深灰色背景
+    text_color: "#a9b7c6",              // 淡蓝灰色文本
+    header_background_color: "#3c3f41", // 头部背景
+    modal_background_color: "#4c5052",  // 模态框背景
+    
+    // 预览和标签样式
+    preview_label_style: (fg: "#ffc66d", modifiers: "Bold"),           // 橙黄色预览标签
+    preview_metadata_group_style: (fg: "#6897bb", modifiers: "Bold"), // 蓝色元数据组
+    
+    // 标签栏配置 - Darcula 风格
+    tab_bar: (
+        enabled: true,
+        active_style: (fg: "#2b2b2b", bg: "#6897bb", modifiers: "Bold"),    // 活动标签
+        inactive_style: (fg: "#808080"),                                     // 非活动标签
+    ),
+    
+    // 高亮和选择样式
+    highlighted_item_style: (fg: "#6897bb", modifiers: "Bold"),                      // 高亮项 - 蓝色
+    current_item_style: (fg: "#2b2b2b", bg: "#6897bb", modifiers: "Bold"),          // 当前项 - 反色显示
+    
+    // 边框样式
+    borders_style: (fg: "#4c5052"),                                    // 边框颜色
+    highlight_border_style: (fg: "#6897bb", modifiers: "Bold"),       // 高亮边框 - 蓝色
+    
+    // 符号配置
+    symbols: (
+        song: "♫",                             // 音符符号
+        dir: "📂",                             // 目录符号
+        playlist: "📜",                        // 播放列表符号  
+        marker: "▶",                           // 标记符号
+        ellipsis: "…",                         // 省略号
+        song_style: (fg: "#cc7832"),          // 歌曲符号样式 - 橙色
+        dir_style: (fg: "#6897bb", modifiers: "Bold"),         // 目录符号样式 - 蓝色
+        playlist_style: (fg: "#ffc66d", modifiers: "Bold"),    // 播放列表符号样式 - 黄色
+    ),
+    
+    // 消息级别样式
+    level_styles: (
+        info: (fg: "#6897bb", bg: "#2b2b2b"),    // 蓝色
+        warn: (fg: "#ffc66d", bg: "#2b2b2b"),    // 黄色
+        error: (fg: "#ff6b68", bg: "#2b2b2b"),   // 红色
+        debug: (fg: "#a5c261", bg: "#2b2b2b"),   // 绿色
+        trace: (fg: "#9876aa", bg: "#2b2b2b"),   // 紫色
+    ),
+    
+    // 进度条样式
+    progress_bar: (
+        symbols: ["▐", "█", "▌", "─", "▌"],        // [start, elapsed, thumb, track, end]
+        track_style: (fg: "#4c5052"),              // 空白轨道
+        elapsed_style: (fg: "#a5c261"),            // 已播放部分 - 绿色
+        thumb_style: (fg: "#6897bb", bg: "#4c5052"), // 拖拽按钮 - 蓝色
+    ),
+    
+    // 滚动条样式
+    scrollbar: (
+        symbols: ["│", "█", "▲", "▼"],           // [track, thumb, end_top, end_bot]
+        track_style: (fg: "#4c5052"),            // 轨道颜色
+        ends_style: (fg: "#808080"),             // 端点颜色
+        thumb_style: (fg: "#6897bb"),            // 滑块颜色 - 蓝色
+    ),
+    
+    // 歌曲表格格式配置
+    song_table_format: [
+        (
+            prop: (kind: Property(Artist)),
+            width: "25%",
+        ),
+        (
+            prop: (kind: Property(Title)),
+            width: "40%",
+        ),
+        (
+            prop: (kind: Property(Album), style: (fg: "#cc7832")),  // 橙色专辑
+            width: "25%",
+        ),
+        (
+            prop: (kind: Property(Duration)),
+            width: "10%",
+            alignment: Right,
+        ),
+    ],
+    
+    // 浏览器歌曲格式
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track)),
+                (kind: Text(". ")),
+            ])
+        ),
+        (
+            kind: Group([
+                (kind: Property(Artist)),
+                (kind: Text(" - ")),
+                (kind: Property(Title)),
+            ])
+        ),
+    ],
+    
+    // 布局配置 - 基本垂直布局
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                pane: Pane(Header),
+                size: "2",
+            ),
+            (
+                pane: Pane(Tabs),
+                size: "3",
+            ),
+            (
+                pane: Pane(TabContent),
+                size: "100%",
+            ),
+            (
+                pane: Pane(ProgressBar),
+                size: "1",
+            ),
+        ],
+    ),
+    
+    // 组件配置
+    components: {},
+    
+    // 头部配置
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "#ffc66d", modifiers: "Bold")),
+                    (kind: Property(Status(State)), style: (fg: "#ffc66d", modifiers: "Bold")),
+                    (kind: Text("]"), style: (fg: "#ffc66d", modifiers: "Bold"))
+                ],
+                center: [
+                    (kind: Property(Song(Title)), style: (modifiers: "Bold"))
+                ],
+                right: [
+                    (kind: Property(Widget(Volume)), style: (fg: "#a5c261"))
+                ]
+            ),
+            (
+                left: [
+                    (kind: Property(Status(Elapsed))),
+                    (kind: Text(" / ")),
+                    (kind: Property(Status(Duration)))
+                ],
+                center: [
+                    (kind: Property(Song(Artist)), style: (fg: "#ffc66d", modifiers: "Bold")),
+                    (kind: Text(" - ")),
+                    (kind: Property(Song(Album)))
+                ],
+                right: []
+            ),
+        ],
+    ),
+    
+    // 歌词配置
+    lyrics: (
+        timestamp: false
+    )
+)

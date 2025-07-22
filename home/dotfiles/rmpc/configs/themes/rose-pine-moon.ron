@@ -29,136 +29,149 @@
         inactive_style: (fg: "#908caa"),                                     // 非活动标签
     ),
     
-    // 进度条样式 - Moon 粉色系
+    // 进度条样式 - Moon 粉色系 (修复格式)
     progress_bar: (
-        symbols: ProgressBarSymbols(
-            left_end: "▐",
-            right_end: "▌",
-            filled: "█",
-            empty: "─",
+        symbols: ["▐", "█", "▌", "─", "▌"],        // [start, elapsed, thumb, track, end]
+        track_style: (fg: "#393552"),              // 空白轨道 - Overlay
+        elapsed_style: (fg: "#ea9a97"),            // 已播放部分 - Rose
+        thumb_style: (fg: "#c4a7e7", bg: "#393552"), // 拖拽按钮 - Iris
+    ),
+    
+    // 滚动条样式
+    scrollbar: (
+        symbols: ["│", "█", "▲", "▼"],           // [track, thumb, end_top, end_bot]
+        track_style: (fg: "#393552"),            // 轨道颜色 - Overlay
+        ends_style: (fg: "#908caa"),             // 端点颜色 - Subtle
+        thumb_style: (fg: "#c4a7e7"),            // 滑块颜色 - Iris
+    ),
+    
+    // 界面边框样式 (修复属性名)
+    borders_style: (fg: "#393552"),                                    // 边框颜色 - Overlay
+    highlight_border_style: (fg: "#c4a7e7", modifiers: "Bold"),       // 高亮边框 - Iris
+    
+    // 符号配置
+    symbols: (
+        song: "♪",                             // 歌曲符号
+        dir: "📁",                             // 目录符号
+        playlist: "🎵",                        // 播放列表符号  
+        marker: "▶",                           // 标记符号
+        ellipsis: "…",                         // 省略号
+        song_style: (fg: "#ea9a97"),          // 歌曲符号样式 - Rose
+        dir_style: (fg: "#c4a7e7", modifiers: "Bold"),         // 目录符号样式 - Iris
+        playlist_style: (fg: "#f6c177", modifiers: "Bold"),    // 播放列表符号样式 - Gold
+    ),
+    
+    // 消息级别样式
+    level_styles: (
+        info: (fg: "#9ccfd8", bg: "#232136"),    // Pine
+        warn: (fg: "#f6c177", bg: "#232136"),    // Gold
+        error: (fg: "#eb6f92", bg: "#232136"),   // Love
+        debug: (fg: "#3e8fb0", bg: "#232136"),   // Foam
+        trace: (fg: "#c4a7e7", bg: "#232136"),   // Iris
+    ),
+    
+    // 高亮和选择样式
+    highlighted_item_style: (fg: "#c4a7e7", modifiers: "Bold"),                      // 高亮项 - Iris
+    current_item_style: (fg: "#232136", bg: "#c4a7e7", modifiers: "Bold"),          // 当前项 - 反色显示
+    
+    // 歌曲表格格式配置
+    song_table_format: [
+        (
+            prop: (kind: Property(Artist)),
+            width: "25%",
         ),
-        style: (fg: "#ea9a97"),              // Rose - Moon 粉色
-        buffered_style: (fg: "#f6c177"),     // Gold - 缓冲区
-    ),
-    
-    // 音量控制样式
-    volume_bar: (
-        symbols: VolumeBarSymbols(
-            left_end: "▐",
-            right_end: "▌", 
-            filled: "█",
-            empty: "─",
+        (
+            prop: (kind: Property(Title)),
+            width: "40%",
         ),
-        style: (fg: "#c4a7e7"),              // Iris - Moon 紫色
+        (
+            prop: (kind: Property(Album), style: (fg: "#ea9a97")),
+            width: "25%",
+        ),
+        (
+            prop: (kind: Property(Duration)),
+            width: "10%",
+            alignment: Right,
+        ),
+    ],
+    
+    // 浏览器歌曲格式
+    browser_song_format: [
+        (
+            kind: Group([
+                (kind: Property(Track)),
+                (kind: Text(". ")),
+            ])
+        ),
+        (
+            kind: Group([
+                (kind: Property(Artist)),
+                (kind: Text(" - ")),
+                (kind: Property(Title)),
+            ])
+        ),
+    ],
+    
+    // 布局配置 - 基本垂直布局
+    layout: Split(
+        direction: Vertical,
+        panes: [
+            (
+                pane: Pane(Header),
+                size: "2",
+            ),
+            (
+                pane: Pane(Tabs),
+                size: "3",
+            ),
+            (
+                pane: Pane(TabContent),
+                size: "100%",
+            ),
+            (
+                pane: Pane(ProgressBar),
+                size: "1",
+            ),
+        ],
     ),
     
-    // 播放状态指示器
-    playback_symbols: PlaybackSymbols(
-        playing: "▶",
-        paused: "⏸", 
-        stopped: "⏹",
+    // 组件配置
+    components: {},
+    
+    // 头部配置
+    header: (
+        rows: [
+            (
+                left: [
+                    (kind: Text("["), style: (fg: "#f6c177", modifiers: "Bold")),
+                    (kind: Property(Status(State)), style: (fg: "#f6c177", modifiers: "Bold")),
+                    (kind: Text("]"), style: (fg: "#f6c177", modifiers: "Bold"))
+                ],
+                center: [
+                    (kind: Property(Song(Title)), style: (modifiers: "Bold"))
+                ],
+                right: [
+                    (kind: Property(Widget(Volume)), style: (fg: "#9ccfd8"))
+                ]
+            ),
+            (
+                left: [
+                    (kind: Property(Status(Elapsed))),
+                    (kind: Text(" / ")),
+                    (kind: Property(Status(Duration)))
+                ],
+                center: [
+                    (kind: Property(Song(Artist)), style: (fg: "#f6c177", modifiers: "Bold")),
+                    (kind: Text(" - ")),
+                    (kind: Property(Song(Album)))
+                ],
+                right: []
+            ),
+        ],
     ),
     
-    // 播放状态样式
-    playing_style: (fg: "#eb6f92", modifiers: "Bold"),     // Love - 播放状态
-    paused_style: (fg: "#908caa"),                         // Subtle - 暂停状态
-    stopped_style: (fg: "#6e6a86"),                        // Muted - 停止状态
-    
-    // 边框样式
-    borders: Borders(
-        top_left: "╭", top_right: "╮",
-        bottom_left: "╰", bottom_right: "╯", 
-        horizontal: "─", vertical: "│", cross: "┼",
-        vertical_left: "┤", vertical_right: "├",
-        horizontal_top: "┬", horizontal_bottom: "┴",
-    ),
-    
-    border_style: (fg: "#393552"),
-    selected_border_style: (fg: "#c4a7e7", modifiers: "Bold"),
-    
-    // 搜索和表格样式
-    search_match_style: (bg: "#f6c177", fg: "#232136", modifiers: "Bold"),
-    table_header_style: (fg: "#c4a7e7", modifiers: "Bold"),
-    table_row_style: (fg: "#e0def4"),
-    table_selected_style: (bg: "#393552", fg: "#c4a7e7"),
-    
-    // 快捷键和队列样式
-    shortcut_style: (fg: "#f6c177", modifiers: "Bold"),
-    shortcut_description_style: (fg: "#908caa"),
-    queue_title_style: (fg: "#c4a7e7", modifiers: "Bold"),
-    queue_current_song_style: (bg: "#2a273f", fg: "#ea9a97", modifiers: "Bold"),
-    
-    // 占位符和滚动条
-    album_art_placeholder_style: (fg: "#6e6a86"),
-    scrollbar_track_style: (fg: "#393552"),
-    scrollbar_thumb_style: (fg: "#c4a7e7"),
-    
-    // 状态样式
-    error_style: (fg: "#eb6f92", modifiers: "Bold"),
-    warning_style: (fg: "#f6c177", modifiers: "Bold"),
-    info_style: (fg: "#9ccfd8", modifiers: "Bold"),
-    success_style: (fg: "#3e8fb0", modifiers: "Bold"),
-    
-    // 文本样式
-    secondary_text_style: (fg: "#908caa"),
-    disabled_text_style: (fg: "#6e6a86"),
-    list_item_style: (fg: "#e0def4"),
-    list_item_selected_style: (bg: "#393552", fg: "#c4a7e7"),
-    list_item_focused_style: (bg: "#2a273f", fg: "#ea9a97"),
-    
-    // 输入框样式
-    input_style: (fg: "#e0def4", bg: "#2a273f"),
-    input_focused_style: (fg: "#e0def4", bg: "#393552"),
-    input_cursor_style: (fg: "#c4a7e7", modifiers: "Bold"),
-    
-    // 对话框样式
-    dialog_border_style: (fg: "#c4a7e7"),
-    dialog_title_style: (fg: "#f6c177", modifiers: "Bold"),
-    
-    // 状态栏样式
-    status_bar_background_style: (bg: "#2a273f"),
-    status_bar_text_style: (fg: "#e0def4"),
-    
-    // 帮助文本样式
-    help_key_style: (fg: "#c4a7e7", modifiers: "Bold"),
-    help_description_style: (fg: "#908caa"),
-    
-    // 时间显示样式
-    time_style: (fg: "#f6c177"),
-    time_remaining_style: (fg: "#908caa"),
-    
-    // 标签样式
-    tag_style: (fg: "#9ccfd8"),
-    tag_value_style: (fg: "#e0def4"),
-    
-    // 文件浏览器样式
-    directory_style: (fg: "#c4a7e7", modifiers: "Bold"),
-    file_style: (fg: "#e0def4"),
-    audio_file_style: (fg: "#ea9a97", modifiers: "Bold"),
-    
-    // 播放列表样式
-    playlist_style: (fg: "#9ccfd8", modifiers: "Bold"),
-    playlist_current_style: (fg: "#f6c177", modifiers: "Bold"),
-    
-    // 艺术家和专辑样式
-    artist_style: (fg: "#c4a7e7", modifiers: "Bold"),
-    album_style: (fg: "#ea9a97"),
-    song_title_style: (fg: "#e0def4", modifiers: "Bold"),
-    
-    // 统计信息样式
-    stats_label_style: (fg: "#908caa"),
-    stats_value_style: (fg: "#f6c177", modifiers: "Bold"),
-    
-    // Logo 和标题样式
-    logo_style: (fg: "#ea9a97", modifiers: "Bold"),
-    app_title_style: (fg: "#c4a7e7", modifiers: "Bold"),
-    
-    // 分隔符样式
-    separator_style: (fg: "#393552"),
-    
-    // 加载指示器样式
-    loading_style: (fg: "#c4a7e7", modifiers: "Bold"),
-    
-    // 空状态样式
-    empty_state_style: (fg: "#6e6a86"),
+    // 歌词配置
+    lyrics: (
+        timestamp: false
+    )
 )
