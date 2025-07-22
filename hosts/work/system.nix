@@ -5,40 +5,9 @@
   mySystem = {
     # 系统级应用配置
     pkgs = {
-      enable = true;                   # 启用系统包管理模块
-
-      apps = {
-        enable = true;
-        
-        # 🌖 亏凸月
-        waningGibbous.enable = true;
-        
-        # 🌗 下弦月
-        lastQuarter.enable = false;
-        
-        # 🌒 残月
-        waningCrescent.enable = false;
-        
-        # 🌑 新月
-        newMoon.enable = false;
-      };
-      
-      # 工具包配置
-      toolkits = {
-        enable = true;
-        
-        # 🌒 峨眉月
-        waxingCrescent.enable = false;
-        
-        # 🌓 上弦月
-        firstQuarter.enable = false;
-        
-        # 🌔 盈凸月
-        waxingGibbous.enable = false;
-        
-        # 🌕 满月
-        fullMoon.enable = false;
-      };
+      enable = true;
+      apps.enable = true;
+      toolkits.enable = true;
     };
     
     # 桌面环境配置

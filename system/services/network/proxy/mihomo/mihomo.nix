@@ -19,5 +19,18 @@ in
             tunMode = cfg.tunMode;
             configFile = cfg.configFile;
         };
+
+        # 开启必要的防火墙端口
+        networking.firewall = {
+            allowedTCPPorts = [ 
+                7897  # 混合代理端口 (HTTP + SOCKS5)
+                7891  # HTTP 代理端口
+                7892  # SOCKS5 代理端口
+                9097  # Web 控制面板端口
+            ];
+        };
+
+        # 添加用户到 mihomo 组
+        users.groups.mihomo = {};
     };
 }

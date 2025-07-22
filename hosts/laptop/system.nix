@@ -51,38 +51,8 @@
     
     pkgs = {
       enable = true;     
-      
-      apps = {
-        enable = true;
-        
-        # 🌖 亏凸月
-        waningGibbous.enable = true;
-        
-        # 🌗 下弦月
-        lastQuarter.enable = true;
-        
-        # 🌒 残月
-        waningCrescent.enable = true;
-        
-        # 🌑 新月
-        newMoon.enable = true;
-      };
-      
-      toolkits = {
-        enable = true;
-        
-        # 🌒 峨眉月
-        waxingCrescent.enable = false;
-        
-        # 🌓 上弦月
-        firstQuarter.enable = false;
-        
-        # 🌔 盈凸月
-        waxingGibbous.enable = false;
-        
-        # 🌕 满月
-        fullMoon.enable = false;
-      };
+      apps.enable = true;
+      toolkits.enable = true;
     };
     
     desktop = {

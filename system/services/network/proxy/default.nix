@@ -7,6 +7,7 @@
 
   imports = [
     ./mihomo
+    ./v2raya
     ./v2ray
     ./xray
     ./shadowsocks
