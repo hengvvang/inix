@@ -2,14 +2,14 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.fish.enable && config.myHome.dotfiles.fish.method == "homemanager") {
-    # Fish Shell - 现代化Shell配置
+
     programs.fish = {
       enable = true;
       
       package = pkgs.fish;
       
       # 自动生成补全 - 基于已安装的man页面自动生成命令补全
-      generateCompletions = true;  # 默认值：true，建议保持开启
+      generateCompletions = true;
       
       # 偏好缩写而非别名 - 当其他模块定义别名时优先使用缩写
       preferAbbrs = true;  # 默认值：false，设为true以优先使用缩写
@@ -18,7 +18,9 @@
       shellAliases = {
 
         zj = "zellij";
-        ".." = "cd ..";
+        zd = "zeditor";
+        ya = "yazi";
+        yz = "yazi";
       };
       
       # 缩写配置 - Fish特有功能，输入后自动扩展为完整命令
@@ -26,6 +28,7 @@
         # 终端工具缩写
         zj = "zellij";
         zed = "zeditor";
+        ya = "yazi";
         
         # 导航缩写
         ".." = "cd ..";
@@ -65,7 +68,7 @@
         set -g fish_greeting ""
         
         # 核心环境变量
-        set -gx EDITOR nvim
+        set -gx EDITOR vim
         set -gx TERM xterm-256color
         
         # 路径配置

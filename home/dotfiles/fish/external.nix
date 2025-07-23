@@ -5,8 +5,17 @@
     
     home.packages = with pkgs; [ fish ];
     
-    # 外部文件引用 - 演示用简化配置
+    # Fish Shell 配置文件结构
+    # 主配置文件
     home.file.".config/fish/config.fish".source = ./configs/config.fish;
-    # 注意：此方式需要手动维护 configs/ 目录下的配置文件
+    
+    # 自定义函数目录
+    home.file.".config/fish/functions".source = ./configs/functions;
+    
+    # 自动加载的配置片段目录
+    home.file.".config/fish/conf.d".source = ./configs/conf.d;
+    
+    # 自定义补全目录
+    home.file.".config/fish/completions".source = ./configs/completions;
   };
 }
