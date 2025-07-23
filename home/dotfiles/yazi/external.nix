@@ -45,16 +45,34 @@
 
     # ===== 初始化脚本配置 =====
     # init.lua - Yazi 启动时执行的 Lua 脚本，提供高级功能
-    # home.file.".config/yazi/init.lua".source = ./configs/init.lua;
+    home.file.".config/yazi/init.lua".source = ./configs/init.lua;
 
     # ===== 配置文档 =====
     # 配置说明和使用指南
-    # home.file.".config/yazi/README.md".source = ./configs/README.md;
+    home.file.".config/yazi/README.md".source = ./configs/README.md;
 
 
     # ===== 插件和扩展目录设置 =====
     # 插件目录 - 用于存放自定义插件
     home.file.".config/yazi/plugins/.keep".text = "";
+    
+    # 插件配置
+    home.file.".config/yazi/plugins/README.md".source = ./configs/plugins/README.md;
+    
+    # Smart Enter 插件
+    home.file.".config/yazi/plugins/smart-enter.yazi/main.lua".source = ./configs/plugins/smart-enter.yazi/main.lua;
+    home.file.".config/yazi/plugins/smart-enter.yazi/README.md".source = ./configs/plugins/smart-enter.yazi/README.md;
+    home.file.".config/yazi/plugins/smart-enter.yazi/LICENSE".source = ./configs/plugins/smart-enter.yazi/LICENSE;
+    
+    # Mkdir 插件
+    home.file.".config/yazi/plugins/mkdir.yazi/main.lua".source = ./configs/plugins/mkdir.yazi/main.lua;
+    home.file.".config/yazi/plugins/mkdir.yazi/README.md".source = ./configs/plugins/mkdir.yazi/README.md;
+    home.file.".config/yazi/plugins/mkdir.yazi/LICENSE".source = ./configs/plugins/mkdir.yazi/LICENSE;
+    
+    # Show Size 插件
+    home.file.".config/yazi/plugins/show-size.yazi/main.lua".source = ./configs/plugins/show-size.yazi/main.lua;
+    home.file.".config/yazi/plugins/show-size.yazi/README.md".source = ./configs/plugins/show-size.yazi/README.md;
+    home.file.".config/yazi/plugins/show-size.yazi/LICENSE".source = ./configs/plugins/show-size.yazi/LICENSE;
 
     # 主题风格目录 - 用于存放额外的主题风格
     home.file.".config/yazi/flavors/.keep".text = "";
