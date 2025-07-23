@@ -42,58 +42,9 @@
     home.file.".config/yazi/yazi.toml".source = ./configs/yazi.toml;
     home.file.".config/yazi/keymap.toml".source = ./configs/keymap.toml;
     home.file.".config/yazi/theme.toml".source = ./configs/theme.toml;
-
-    # ===== 初始化脚本配置 =====
-    # init.lua - Yazi 启动时执行的 Lua 脚本，提供高级功能
+    home.file.".config/yazi/flavors".source = ./configs/flavors;
+    home.file.".config/yazi/plugins".source = ./configs/plugins;
     home.file.".config/yazi/init.lua".source = ./configs/init.lua;
-
-    # ===== 配置文档 =====
-    # 配置说明和使用指南
-    home.file.".config/yazi/README.md".source = ./configs/README.md;
-
-
-    # ===== 插件和扩展目录设置 =====
-    # 插件目录 - 用于存放自定义插件
-    home.file.".config/yazi/plugins/.keep".text = "";
-    
-    # 插件配置
-    home.file.".config/yazi/plugins/README.md".source = ./configs/plugins/README.md;
-    
-    # Smart Enter 插件
-    home.file.".config/yazi/plugins/smart-enter.yazi/main.lua".source = ./configs/plugins/smart-enter.yazi/main.lua;
-    home.file.".config/yazi/plugins/smart-enter.yazi/README.md".source = ./configs/plugins/smart-enter.yazi/README.md;
-    home.file.".config/yazi/plugins/smart-enter.yazi/LICENSE".source = ./configs/plugins/smart-enter.yazi/LICENSE;
-    
-    # Mkdir 插件
-    home.file.".config/yazi/plugins/mkdir.yazi/main.lua".source = ./configs/plugins/mkdir.yazi/main.lua;
-    home.file.".config/yazi/plugins/mkdir.yazi/README.md".source = ./configs/plugins/mkdir.yazi/README.md;
-    home.file.".config/yazi/plugins/mkdir.yazi/LICENSE".source = ./configs/plugins/mkdir.yazi/LICENSE;
-    
-    # Show Size 插件
-    home.file.".config/yazi/plugins/show-size.yazi/main.lua".source = ./configs/plugins/show-size.yazi/main.lua;
-    home.file.".config/yazi/plugins/show-size.yazi/README.md".source = ./configs/plugins/show-size.yazi/README.md;
-    home.file.".config/yazi/plugins/show-size.yazi/LICENSE".source = ./configs/plugins/show-size.yazi/LICENSE;
-
-    # 主题风格目录 - 用于存放额外的主题风格
-    home.file.".config/yazi/flavors/.keep".text = "";
-    
-    # Rose Pine 系列主题
-    home.file.".config/yazi/flavors/rose-pine.yazi".source = ./configs/flavors/rose-pine.yazi;
-    home.file.".config/yazi/flavors/rose-pine-moon.yazi".source = ./configs/flavors/rose-pine-moon.yazi;
-    home.file.".config/yazi/flavors/rose-pine-dawn.yazi".source = ./configs/flavors/rose-pine-dawn.yazi;
-    
-    # Catppuccin 系列主题
-    home.file.".config/yazi/flavors/catppuccin-mocha.yazi".source = ./configs/flavors/catppuccin-mocha.yazi;
-    home.file.".config/yazi/flavors/catppuccin-latte.yazi".source = ./configs/flavors/catppuccin-latte.yazi;
-    home.file.".config/yazi/flavors/catppuccin-frappe.yazi".source = ./configs/flavors/catppuccin-frappe.yazi;
-    home.file.".config/yazi/flavors/catppuccin-macchiato.yazi".source = ./configs/flavors/catppuccin-macchiato.yazi;
-
-    home.file.".config/yazi/flavors/darcula.yazi".source = ./configs/flavors/darcula.yazi;
-
-    home.file.".config/yazi/flavors/tokyo-night.yazi".source = ./configs/flavors/tokyo-night.yazi;
-
-    home.file.".config/yazi/flavors/one-dark.yazi".source = ./configs/flavors/one-dark.yazi;
-
 
 
     # ===== 环境变量设置 =====
