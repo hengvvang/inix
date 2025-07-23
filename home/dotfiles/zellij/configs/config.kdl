@@ -1,4 +1,4 @@
-theme "nord"
+theme "catppuccin-mocha"
 
 default_shell "fish"
 
@@ -33,68 +33,10 @@ keybinds clear-defaults=true {
         // uncomment this and adjust key if using copy_on_select=false
         bind "Alt c" { Copy; }
 
-        bind "Ctrl q" { Quit; }                    // 退出 Zellij
-        bind "Ctrl d" { Detach; }                  // 分离会话（后台运行）
+        bind "Ctrl d" { Detach; }
 
-        // === 切换模式 ===
-        bind "Ctrl l" { SwitchToMode "Locked"; }
-        bind "Ctrl p" { SwitchToMode "Pane"; }
-        bind "Ctrl t" { SwitchToMode "Tab"; }
-        bind "Ctrl r" { SwitchToMode "Resize"; }
-        bind "Ctrl m" { SwitchToMode "Move"; }
-        bind "Ctrl s" { SwitchToMode "Scroll"; }
-        bind "Ctrl o" { SwitchToMode "Session"; }
-
-        // === 会话和窗口操作 ===
         bind "Ctrl e" { EditScrollback; }          // 用编辑器打开当前窗格历史
         bind "Ctrl y" { ToggleActiveSyncTab; }     // 切换同步输入到所有窗格
-
-        bind "Ctrl c" { Copy; }                    // 复制模式（如果有选择的文本）
-        bind "Ctrl Shift c" { Copy; }              // 强制复制（如果选择了文本）
-    
-        bind "Alt n" { NewPane; }                  // 创建新窗格（自动方向）
-        bind "Alt x" { CloseFocus; }               // 关闭当前焦点窗格
-
-        // 垂直分割（在右侧创建新窗格）
-        bind "Alt v" { NewPane "Right"; }
-        bind "Alt r" { NewPane "Right"; }
-        
-        // 水平分割（在下方创建新窗格）
-        bind "Alt s" { NewPane "Down"; }
-        bind "Alt d" { NewPane "Down"; }
-
-       // 导航
-        bind "Alt h" { MoveFocus "Left"; }
-        bind "Alt j" { MoveFocus "Down"; }
-        bind "Alt k" { MoveFocus "Up"; }
-        bind "Alt l" { MoveFocus "Right"; }
-
-        bind "Alt f" { ToggleFocusFullscreen; }   // 切换当前窗格全屏显示
-        bind "Alt z" { TogglePaneFrames; }        // 切换窗格边框显示
-
-        // --- 标签页管理 ---
-        bind "Alt t" { NewTab; }
-        bind "Alt q" { CloseTab; }
-        bind "Alt w" { CloseTab; }
-
-        bind "Alt 1" { GoToTab 1; }
-        bind "Alt 2" { GoToTab 2; }
-        bind "Alt 3" { GoToTab 3; }
-        bind "Alt 4" { GoToTab 4; }
-        bind "Alt 5" { GoToTab 5; }
-        bind "Alt 6" { GoToTab 6; }
-        bind "Alt 7" { GoToTab 7; }
-        bind "Alt 8" { GoToTab 8; }
-        bind "Alt 9" { GoToTab 9; }
-
-        bind "Alt [" { GoToPreviousTab; }          // 上一个标签页
-        bind "Alt ]" { GoToNextTab; }              // 下一个标签页
-
-        bind "Alt ," { PreviousSwapLayout; }       // 上一个布局
-        bind "Alt ." { NextSwapLayout; }           // 下一个布局
-
-        bind "Alt Tab" { SwitchFocus; }            // 在窗格间循环切换
-
     }
 
     locked {
@@ -103,7 +45,6 @@ keybinds clear-defaults=true {
 
     resize {
         bind "Ctrl r" { SwitchToMode "Normal"; }
-        bind "Esc" { SwitchToMode "Normal"; }
         bind "h" "Left" { Resize "Increase Left"; }
         bind "j" "Down" { Resize "Increase Down"; }
         bind "k" "Up" { Resize "Increase Up"; }
@@ -117,7 +58,6 @@ keybinds clear-defaults=true {
     }
     pane {
         bind "Ctrl p" { SwitchToMode "Normal"; }
-        bind "Esc" { SwitchToMode "Normal"; }
         bind "h" "Left" { MoveFocus "Left"; }
         bind "l" "Right" { MoveFocus "Right"; }
         bind "j" "Down" { MoveFocus "Down"; }
@@ -139,7 +79,7 @@ keybinds clear-defaults=true {
     }
     move {
         bind "Ctrl m" { SwitchToMode "Normal"; }
-        bind "Esc" { SwitchToMode "Normal"; }
+        bind "Enter" { SwitchToMode "Normal"; }
         bind "n" "Tab" { MovePane; }
         bind "p" { MovePaneBackwards; }
         bind "h" "Left" { MovePane "Left"; }
@@ -149,7 +89,6 @@ keybinds clear-defaults=true {
     }
     tab {
         bind "Ctrl t" { SwitchToMode "Normal"; }
-        bind "Esc" { SwitchToMode "Normal"; }
         bind "r" { SwitchToMode "RenameTab"; TabNameInput 0; }
         bind "h" "Left" "Up" "k" { GoToPreviousTab; }
         bind "l" "Right" "Down" "j" { GoToNextTab; }
@@ -172,7 +111,6 @@ keybinds clear-defaults=true {
     }
     scroll {
         bind "Ctrl s" { SwitchToMode "Normal"; }
-        bind "Esc" { SwitchToMode "Normal"; }
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
         bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
@@ -186,16 +124,15 @@ keybinds clear-defaults=true {
         // bind "Alt c" { Copy; }
     }
     search {
-        bind "Ctrl s" { SwitchToMode "Normal"; }
-        bind "Esc" { SwitchToMode "Normal"; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
-        bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
-        bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
-        bind "d" { HalfPageScrollDown; }
-        bind "u" { HalfPageScrollUp; }
+        bind "Ctrl f" "f" "PageDown" "Right" "l" { PageScrollDown; }
+        bind "Ctrl b" "b" "PageUp" "Left" "h" { PageScrollUp; }
+        bind "Ctrl d" "d" { HalfPageScrollDown; }
+        bind "Ctrl u" "u" { HalfPageScrollUp; }
         bind "n" { Search "down"; }
+        bind "N" { Search "up"; }
         bind "p" { Search "up"; }
         bind "c" { SearchToggleOption "CaseSensitivity"; }
         bind "w" { SearchToggleOption "Wrap"; }
@@ -281,6 +218,15 @@ keybinds clear-defaults=true {
         bind "Ctrl q" { Quit; }
         bind "Alt f" { ToggleFloatingPanes; }
         bind "Alt n" { NewPane; }
+        bind "Alt x" { CloseFocus; }
+        bind "Alt v" { NewPane "Right"; }
+        bind "Alt r" { NewPane "Right"; }
+        bind "Alt s" { NewPane "Down"; }
+        bind "Alt d" { NewPane "Down"; }
+        bind "Alt t" { NewTab; }
+        bind "Alt w" { CloseTab; }
+        bind "Alt [" { GoToPreviousTab; }
+        bind "Alt ]" { GoToNextTab; }
         bind "Alt i" { MoveTab "Left"; }
         bind "Alt o" { MoveTab "Right"; }
         bind "Alt h" "Alt Left" { MoveFocusOrTab "Left"; }
@@ -288,11 +234,23 @@ keybinds clear-defaults=true {
         bind "Alt j" "Alt Down" { MoveFocus "Down"; }
         bind "Alt k" "Alt Up" { MoveFocus "Up"; }
         bind "Alt =" "Alt +" { Resize "Increase"; }
-        bind "Alt -" { Resize "Decrease"; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
+        bind "Alt -" "Alt _" { Resize "Decrease"; }
+        bind "Alt ," { PreviousSwapLayout; }
+        bind "Alt ." { NextSwapLayout; }
         // bind "Alt p" { TogglePaneInGroup; }
         // bind "Alt Shift p" { ToggleGroupMarking; }
+
+        bind "Alt z" { TogglePaneFrames; }
+        
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
+        bind "Alt 9" { GoToTab 9; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
@@ -301,7 +259,7 @@ keybinds clear-defaults=true {
         bind "Ctrl p" { SwitchToMode "Pane"; }
     }
     shared_except "resize" "locked" {
-        bind "Ctrl n" { SwitchToMode "Resize"; }
+        bind "Ctrl r" { SwitchToMode "Resize"; }
     }
     shared_except "scroll" "locked" {
         bind "Ctrl s" { SwitchToMode "Scroll"; }
@@ -313,7 +271,7 @@ keybinds clear-defaults=true {
         bind "Ctrl t" { SwitchToMode "Tab"; }
     }
     shared_except "move" "locked" {
-        bind "Ctrl h" { SwitchToMode "Move"; }
+        bind "Ctrl m" { SwitchToMode "Move"; }
     }
     shared_except "tmux" "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
