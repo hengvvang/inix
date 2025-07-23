@@ -33,10 +33,6 @@ keybinds clear-defaults=true {
         // uncomment this and adjust key if using copy_on_select=false
         bind "Alt c" { Copy; }
 
-        bind "Ctrl d" { Detach; }
-
-        bind "Ctrl e" { EditScrollback; }          // 用编辑器打开当前窗格历史
-        bind "Ctrl y" { ToggleActiveSyncTab; }     // 切换同步输入到所有窗格
     }
 
     locked {
@@ -251,6 +247,10 @@ keybinds clear-defaults=true {
         bind "Alt 7" { GoToTab 7; }
         bind "Alt 8" { GoToTab 8; }
         bind "Alt 9" { GoToTab 9; }
+
+        bind "Ctrl d" { Detach; }
+        bind "Ctrl e" { EditScrollback; }
+        bind "Ctrl y" { ToggleActiveSyncTab; }
     }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
