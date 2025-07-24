@@ -5,23 +5,24 @@
   config = lib.mkIf (config.host == "daily") {
     myHome = {
       develop = {
-        # 日常使用，基础开发配置
+        enable = true;
         devenv = {
-          enable = false;       # zlritsu 不使用 devenv
+          enable = false;
           autoSwitch = false;
           shell = "fish";
           templates = false;
           cache = false;
         };
-        # 基础语言支持
         rust.enable = false;
-        python.enable = true;   # 日常可能需要 Python 脚本
+        python.enable = true;
         javascript.enable = false;
         typescript.enable = false;
         cpp.enable = false;
       };
       
       dotfiles = {
+        enable = true;
+
         vim.enable = true;
         zsh.enable = false;
         bash.enable = true;
@@ -38,8 +39,8 @@
       
 
       pkgs = {
-        enable = true;                # 启用用户包管理
-        # 工具包配置 - 月相主题设计，zlritsu 使用轻量级配置
+        enable = true;
+
         toolkits = {
           enable = true;              # 启用工具包模块
           waxingCrescent.enable = true;  # 🌒 峨眉月 - 基础家庭工具
@@ -58,6 +59,8 @@
       };
 
       profiles = {
+        enable = true;
+
         fonts = {
           preset = "ocean";   # 日常使用舒适字体
         };

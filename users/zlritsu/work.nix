@@ -5,23 +5,25 @@
   config = lib.mkIf (config.host == "work") {
     myHome = {
       develop = {
-        # 工作环境，可能需要更多开发工具
+        enable = true;
+
         devenv = {
-          enable = false;       # zlritsu 不使用 devenv
+          enable = false;
           autoSwitch = false;
           shell = "fish";
           templates = false;
           cache = false;
         };
-        # 工作可能需要的语言支持
         rust.enable = false;
-        python.enable = true;   # 工作可能需要 Python
-        javascript.enable = true; # 工作可能需要前端工具
+        python.enable = true;
+        javascript.enable = true;
         typescript.enable = false;
         cpp.enable = false;
       };
       
       dotfiles = {
+        enable = true;
+
         vim.enable = true;
         zsh.enable = false;
         bash.enable = true;
@@ -37,8 +39,8 @@
       };
       
       pkgs = {
-        enable = true;                # 启用用户包管理
-        # 工具包配置 - 月相主题设计，zlritsu 使用轻量级配置
+        enable = true;
+
         toolkits = {
           enable = true;              # 启用工具包模块
           waxingCrescent.enable = true;  # 🌒 峨眉月 - 基础家庭工具
@@ -57,21 +59,22 @@
       };
 
       profiles = {
+        enable = true;
+
         fonts = {
-          preset = "nordic";  # 专业工作字体
+          preset = "nordic";
         };
         stylix = {
           enable = true;
           polarity = "dark";
           wallpapers = {
             enable = true;
-            preset = "sea";  # zlritsu 使用不同的预设壁纸
+            preset = "sea";
           };
           fonts = {
             enable = true;
-            # 轻量级字体配置
             sizes = {
-              applications = 10;  # 更小的字体
+              applications = 10;
               terminal = 11;
             };
           };
@@ -79,19 +82,19 @@
             enable = true;
             terminals = {
               alacritty.enable = false;
-              kitty.enable = false;  # zlritsu 不使用高级终端
+              kitty.enable = false;
             };
             editors = {
               vim.enable = true;
-              neovim.enable = false;  # zlritsu 只用基础 vim
+              neovim.enable = false;
             };
             tools = {
-              tmux.enable = false;  # zlritsu 不使用 tmux
-              bat.enable = false;   # 轻量级配置
-              fzf.enable = false;   # 轻量级配置
+              tmux.enable = false;
+              bat.enable = false;
+              fzf.enable = false;
             };
             desktop = {
-              gtk.enable = true;    # 基础 GTK 主题
+              gtk.enable = true;
             };
             browsers = {
               firefox.enable = true;

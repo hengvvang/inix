@@ -5,42 +5,43 @@
   config = lib.mkIf (config.host == "laptop") {
     myHome = {
       develop = {
-        # 基础开发配置，不启用重型工具
+        enable = true;
+
         devenv = {
-          enable = false;       # zlritsu 不使用 devenv
+          enable = false;
           autoSwitch = false;
           shell = "fish";
           templates = false;
           cache = false;
         };
-        # 基础语言支持
-        rust.enable = false;    # zlritsu 不开发 Rust
-        python.enable = true;   # 基础 Python 支持
+        rust.enable = false;
+        python.enable = true;
         javascript.enable = false;
         typescript.enable = false;
         cpp.enable = false;
       };
       
       dotfiles = {
+        enable = true;
+
         vim.enable = true;
-        zsh.enable = false;     # zlritsu 只用 fish
-        bash.enable = true;     # 保留基础 bash
+        zsh.enable = false;
+        bash.enable = true;
         fish.enable = true;
-        nushell.enable = false; # 轻量级配置
-        yazi.enable = true;     # 文件管理器
-        ghostty.enable = false; # 使用系统默认终端
+        nushell.enable = false;
+        yazi.enable = true;
+        ghostty.enable = false;
         alacritty.enable = false;
-        tmux.enable = false;    # 不使用 tmux
-        git.enable = true;      # 基础 git
-        lazygit.enable = false; # 不使用图形化 git
-        starship.enable = true; # 保留美观的提示符
-        qutebrowser.enable = true;  # 启用 Qutebrowser 配置
+        tmux.enable = false;
+        git.enable = true;
+        lazygit.enable = false;
+        starship.enable = true;
+        qutebrowser.enable = true;
       };
       
-      # 包管理配置
       pkgs = {
-        enable = true;                # 启用用户包管理
-        # 工具包配置 - 月相主题设计，zlritsu 使用轻量级配置
+        enable = true;
+
         toolkits = {
           enable = true;              # 启用工具包模块
           waxingCrescent.enable = true;  # 🌒 峨眉月 - 基础家庭工具
@@ -59,6 +60,8 @@
       };
       
       profiles = {
+        enable = true;
+        
         fonts = {
           preset = "zen";   # 简洁专注的字体配置
         };
