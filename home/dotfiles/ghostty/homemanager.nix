@@ -10,7 +10,7 @@
       settings = {
         # ==================== 字体配置 ====================
         font-family = "LXGW WenKai Mono";  # 主字体，注释掉使用系统默认
-        font-size = 10;                        # 字体大小（磅）
+        font-size = 11;                        # 字体大小（磅）
         # font-thicken = false;                 # 字体加粗（仅 macOS）
         font-synthetic-style = true;          # 启用字体合成样式
 
@@ -38,11 +38,11 @@
         ];
 
         # ==================== 窗口配置 ====================
-        window-padding-x = 2;                  # 窗口水平内边距
-        window-padding-y = 2;                  # 窗口垂直内边距
+        window-padding-x = 1;                  # 窗口水平内边距
+        window-padding-y = 1;                  # 窗口垂直内边距
         window-padding-balance = true;         # 自动平衡内边距
         window-padding-color = "background";   # 内边距颜色
-        window-decoration = true;              # 窗口装饰（标题栏等）
+        window-decoration = false;              # 窗口装饰（标题栏等）
         window-title-font-family = "LXGW WenKai Mono";  # 标题栏字体
         # window-theme = "auto";                # 窗口主题：auto/system/light/dark
         # window-inherit-working-directory = true;  # 新窗口继承工作目录
@@ -62,9 +62,9 @@
 
         # ==================== 显示和主题配置 ====================
         theme = "rose-pine";        # 使用自定义主题
-        # background-opacity = 1.0;            # 背景透明度
-        # background-blur = false;              # 背景模糊
-        unfocused-split-opacity = 0.7;        # 未聚焦分割窗口透明度
+        background-opacity = 0.7;            # 背景透明度
+        background-blur = true;              # 背景模糊
+        unfocused-split-opacity = 0.5;        # 未聚焦分割窗口透明度
         # minimum-contrast = 1.0;              # 最小对比度
         # bold-is-bright = false;               # 粗体使用亮色
 
@@ -86,9 +86,9 @@
         # focus-follows-mouse = false;          # 鼠标焦点跟随
 
         # ==================== 调整大小和布局 ====================
-        resize-overlay = true;                 # 调整大小时显示叠加层
+        resize-overlay = "always";             # 调整大小时显示叠加层：always/never/after-first
         resize-overlay-position = "center";    # 叠加层位置
-        resize-overlay-duration = 500;         # 叠加层显示时长（毫秒）
+        resize-overlay-duration = "500ms";     # 叠加层显示时长（需要单位）
 
         # ==================== 剪贴板配置 ====================
         # clipboard-read = "ask";               # 读取剪贴板权限：ask/allow/deny
@@ -122,6 +122,35 @@
 
       # ==================== 自定义主题定义 ====================
       themes = {
+        rose-pine = {
+          # Rose Pine 主题 - 优雅的暗色主题
+          background = "191724";              # 背景色 - 深紫色
+          foreground = "e0def4";              # 前景色（文本颜色）- 淡紫色
+          cursor-color = "524f67";            # 光标颜色 - 中等紫色
+          selection-background = "403d52";    # 选择背景色 - 暗紫色
+          selection-foreground = "e0def4";    # 选择前景色 - 淡紫色
+
+          # 16 色调色板（Rose Pine 标准颜色）
+          palette = [
+            "0=#26233a"   # 黑色 - 深紫黑
+            "8=#6e6a86"   # 亮黑色（灰色）- 中灰紫
+            "1=#eb6f92"   # 红色 - 玫瑰红
+            "9=#eb6f92"   # 亮红色 - 玫瑰红
+            "2=#31748f"   # 绿色 - 松石绿
+            "10=#31748f"  # 亮绿色 - 松石绿
+            "3=#f6c177"   # 黄色 - 暖黄
+            "11=#f6c177"  # 亮黄色 - 暖黄
+            "4=#9ccfd8"   # 蓝色 - 淡蓝
+            "12=#9ccfd8"  # 亮蓝色 - 淡蓝
+            "5=#c4a7e7"   # 品红色 - 紫罗兰
+            "13=#c4a7e7"  # 亮品红色 - 紫罗兰
+            "6=#ebbcba"   # 青色 - 浅玫瑰
+            "14=#ebbcba"  # 亮青色 - 浅玫瑰
+            "7=#e0def4"   # 白色 - 淡紫白
+            "15=#908caa"  # 亮白色 - 中灰紫
+          ];
+        };
+
         catppuccin-macchiato = {
           # 基本颜色
           background = "24273a";              # 背景色

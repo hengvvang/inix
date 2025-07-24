@@ -34,7 +34,6 @@
         bash.enable = true;
         fish.enable = true;
         nushell.enable = true;
-        ghostty.enable = true;
         alacritty.enable = false;
         tmux.enable = true;
         git.enable = true;
@@ -44,6 +43,10 @@
         obs-studio.enable = false;
         zed.enable = false;
         vscode.enable = false;
+        ghostty = {
+          enable = true;
+          method = "homemanager";
+        };
         yazi = {
           enable = true;
           method = "external";
