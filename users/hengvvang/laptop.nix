@@ -5,7 +5,7 @@
   config = lib.mkIf (config.host == "laptop") {
     myHome = {
       develop = {
-        # devenv 项目环境管理配置
+        enable = true;
         devenv = {
           enable = true;        # 启用 devenv
           autoSwitch = true;    # 启用自动环境切换（direnv）
@@ -29,6 +29,7 @@
 
       dotfiles = {
         enable = true;  # 启用 dotfiles 模块
+
         vim.enable = true;
         zsh.enable = true;
         bash.enable = true;
@@ -126,16 +127,16 @@
           fonts = {
             enable = false;
             names = {
-              monospace = "JetBrainsMono Nerd Font Mono";  # ✅ 优质等宽字体
-              sansSerif = "Noto Sans";                     # ✅ 现代无衬线字体
-              serif = "Noto Serif";                        # ✅ 经典衬线字体
-              emoji = "Noto Color Emoji";                  # ✅ 彩色表情字体
+              monospace = "JetBrainsMono Nerd Font Mono";
+              sansSerif = "Noto Sans";
+              serif = "Noto Serif";
+              emoji = "Noto Color Emoji";
             };
             sizes = {
-              terminal = 16;      # ✅ 终端字体大小（适合开发）
-              applications = 12;  # ✅ 应用字体大小（舒适阅读）
-              desktop = 12;       # ✅ 桌面字体大小（界面元素）
-              popups = 12;        # ✅ 弹窗字体大小（提示信息）
+              terminal = 16;
+              applications = 12;
+              desktop = 12;
+              popups = 12;
             };
           };
 

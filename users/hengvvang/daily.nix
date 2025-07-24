@@ -5,7 +5,8 @@
   config = lib.mkIf (config.host == "daily") {
     myHome = {
       develop = {
-        # devenv 项目环境管理配置 - daily 主机
+        enable = true;
+
         devenv = {
           enable = true;        # 启用 devenv
           autoSwitch = true;    # 启用自动环境切换（direnv）
@@ -21,6 +22,8 @@
       };
       
       dotfiles = {
+        enable = true;
+
         vim.enable = true;
         zsh.enable = true;
         bash.enable = true;
@@ -37,7 +40,8 @@
 
 
       pkgs = {
-        enable = true;                # 启用用户包管理
+        enable = true;
+
         toolkits = {
           enable = true;              # 启用工具包模块
           waxingCrescent.enable = true;  # 🌒 峨眉月
@@ -56,6 +60,8 @@
 
       
       profiles = {
+        enable = true;
+        
         fonts = {
           preset = "bauhaus";
         };

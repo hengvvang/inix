@@ -5,7 +5,7 @@
   config = lib.mkIf (config.host == "work") {
     myHome = {
       develop = {
-        # devenv 项目环境管理配置 - work 主机
+        enable = true;
         devenv = {
           enable = true;        # 启用 devenv
           autoSwitch = true;    # 启用自动环境切换（direnv）
@@ -22,6 +22,8 @@
       };
       
       dotfiles = {
+        enable = true;
+
         vim.enable = true;
         zsh.enable = true;
         bash.enable = true;
@@ -38,8 +40,8 @@
       
       # 包管理配置
       pkgs = {
-        enable = true;                # 启用用户包管理
-        # 工具包配置 - 月相主题设计
+        enable = true;
+
         toolkits = {
           enable = true;              # 启用工具包模块
           waxingCrescent.enable = true;  # 🌒 峨眉月 - 基础家庭工具
@@ -47,7 +49,7 @@
           waxingGibbous.enable = true;   # 🌔 盈凸月 - 高级工具套件
           fullMoon.enable = true;        # 🌕 满月 - 完整工具生态 (工作需要)
         };
-        # 应用程序配置 - 月相主题设计
+
         apps = {
           enable = true;              # 启用应用程序模块
           waningCrescent.enable = true;  # 🌘 残月 - 基础应用核心
@@ -58,7 +60,7 @@
       };
 
       profiles = {
-
+        enable = true;
         fonts = {
           preset = "tokyo";  # 专业字体配置
         };
