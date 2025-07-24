@@ -9,7 +9,7 @@
 # You can change this or comment out to use the system default theme
 
 [flavor]
-dark = "catppuccin-latte"
+dark = "catppuccin-macchiato"
 light = "rose-pine"
 
 # : }}}
