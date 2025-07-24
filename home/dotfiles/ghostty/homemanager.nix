@@ -10,7 +10,7 @@
       settings = {
         # ==================== 字体配置 ====================
         font-family = "LXGW WenKai Mono";  # 主字体，注释掉使用系统默认
-        font-size = 11;                        # 字体大小（磅）
+        font-size = 12;                        # 字体大小（磅）
         # font-thicken = false;                 # 字体加粗（仅 macOS）
         font-synthetic-style = true;          # 启用字体合成样式
 

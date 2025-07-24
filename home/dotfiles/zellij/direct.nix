@@ -9,6 +9,9 @@
     ];
 
     # 直接文件写入 - 演示用简化配置
+
+    #  home.file  ==>  /home/userName/    就是你当前用户的家目录  |  也就是 cd ~ 命令进入的用户目录
+    #  home.file.".config/zellij/config.kdl" ==> /home/userName/.config/zellij/config.kdl
     home.file.".config/zellij/config.kdl".text = ''
       // Zellij 简化配置文件
       

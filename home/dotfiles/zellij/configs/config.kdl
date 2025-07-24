@@ -1,8 +1,10 @@
+// themes/*
 theme "catppuccin-mocha"
 
-default_shell "fish"
-
+// layouts/*
 default_layout "default"
+
+default_shell "fish"
 
 // 显示窗格边框
 pane_frames false
