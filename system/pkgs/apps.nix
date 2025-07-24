@@ -4,16 +4,7 @@
     config = lib.mkIf config.mySystem.pkgs.apps.enable {
         environment.systemPackages = with pkgs; [
 
-        vim
-        git
-        nano
-        rio
-        yazi
-        zellij
-        vscode
-        zed-editor
         google-chrome
-
 
         clash-verge-rev    # 代理工具（主要）
         mihomo             # Clash 内核

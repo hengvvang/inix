@@ -4,52 +4,79 @@
     config = lib.mkIf config.mySystem.pkgs.toolkits.enable {
         environment.systemPackages = with pkgs; [
         
-        bat               # 更好的 cat (语法高亮)
-        eza               # 更好的 ls (彩色、图标)
-        fd                # 现代 find (快速文件查找)
-        ripgrep           # 现代 grep (rg - 更快搜索)
+        bat  # cat
+
+        # ls
+        eza
+        lsd
+
+        zoxide  # cd
+
+        fd  # find
+
+        ripgrep  # grep
+
+        # diff
+        difftastic
+        delta
+
+        # man
+        tealdeer
+        tldr
+
+        tree
+        broot
+        navi
+
+        dust  # du
+
+        gping # ping
+
+        wget
+        curl
+        httpie
+        xh 
+
+
+        fzf
+        skim
         
-        # 基础文件工具
-        tree              # 目录树显示
-        fzf               # 模糊查找
-        zoxide            # 智能 cd (z - 记录常用目录)
+        # top
+        htop
+        btop
+        bottom
+
+        unzip
+        zip
+        p7zip
         
-        # 基础压缩工具
-        unzip             # 解压缩
-        zip               # 压缩
-        p7zip             # 7zip 支持
-        
-        # 系统信息
-        # neofetch          # 项目停止维护，使用 fastfetch 替代
+        # neofetch
         fastfetch
+        onefetch
 
         hyperfine         # 基准测试工具
         
         
-        # 系统监控
-        htop              # 进程监控
-        btop              # 现代系统监控
-        bottom            # 系统资源监控
-        procs             # 现代 ps (进程信息)
+        procs   # ps
+
         pstree            # 进程树
         iotop             # IO 监控
         nethogs           # 网络监控
         
-        dust              # 现代 du (磁盘使用)
-        duf               # 现代 df (磁盘信息)
-        ncdu              # 磁盘使用分析
+        duf
+        ncdu
         
         # 开发辅助
         watchexec         # 文件监控执行
         tokei             # 代码统计
         
-        # 高级网络工具
         dog               # 现代 dig (DNS 查询)
         nmap              # 网络扫描
         tcpdump           # 网络包分析
         iperf3            # 网络性能测试
         bandwhich         # 网络带宽监控
-        
+        sniffnet          # 网络流量监控
+
         # 数据处理
         visidata          # 表格数据查看器
         
@@ -62,21 +89,13 @@
         # 系统工具
         killall           # 批量结束进程
 
-        delta             # 更好的 git diff
         
         choose            # 更好的 cut
         sd                # 现代 sed
         jq                # JSON 处理
         yq                # YAML 处理
-        tealdeer          # 快速 man 页面 (tldr)
+
         
-        # 网络工具
-        wget              # 文件下载
-        curl              # HTTP 客户端
-        httpie            # 现代 curl
-        gping             # 现代 ping
-        
-        # 文件操作
         rsync             # 文件同步
         hexyl             # 十六进制查看器
         

@@ -53,6 +53,7 @@
       enable = true;     
       apps.enable = true;
       toolkits.enable = true;
+      workflows.enable = true;
     };
     
     desktop = {
