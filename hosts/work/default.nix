@@ -11,8 +11,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Nix配置
   nixpkgs.config.allowUnfree = true;
+  system.stateVersion = "25.05";
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
@@ -32,7 +32,7 @@
     ];
     shell = pkgs.fish;
   };
-  
+
   users.users.zlritsu = {
     isNormalUser = true;
     description = "zlritsu";
@@ -42,7 +42,4 @@
     ];
     shell = pkgs.fish;
   };
-
-  # 系统版本
-  system.stateVersion = "25.05";
 }

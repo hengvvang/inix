@@ -11,8 +11,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Nix配置
   nixpkgs.config.allowUnfree = true;
+  system.stateVersion = "25.05";
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
@@ -21,7 +21,6 @@
 
   # 启用 fish shell 程序
   programs.fish.enable = true;
-
   # 用户配置
   users.users.hengvvang = {
     isNormalUser = true;
@@ -32,7 +31,7 @@
     ];
     shell = pkgs.fish;
   };
-  
+
   users.users.zlritsu = {
     isNormalUser = true;
     description = "zlritsu";
@@ -42,7 +41,4 @@
     ];
     shell = pkgs.fish;
   };
-
-  # 系统版本
-  system.stateVersion = "25.05";
 }
