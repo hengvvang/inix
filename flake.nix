@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,29 +25,26 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = {self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, ... } @ inputs:
+  outputs = {self, nixpkgs, home-manager, systems, zen-browser, stylix, nix-darwin, rust-overlay, ... } @ inputs:
     let
       inherit (self) outputs;
+      lib = nixpkgs.lib // home-manager.lib;
       
-      # 为每个系统创建 pkgs，集成 rust-overlay
-      pkgsFor = arch: import nixpkgs {
-        system = arch;
-        overlays = [ rust-overlay.overlays.default ];
-      };
+      # 使用 systems 像 examples 一样
+      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs (import systems) (
+        system:
+          import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
+            overlays = [ rust-overlay.overlays.default ];
+          }
+      );
       
-      # 生成通用系统模块的函数（针对 NixOS 系统）
-      makeCommonSystemModules = arch: [
-        stylix.nixosModules.stylix
-        {
-          environment.systemPackages = [ 
-            zen-browser.packages.${arch}.twilight
-          ];
-        }
-      ];
-      
-      # 生成通用的 Home Manager 模块列表
+      # 保留 makeCommonHomeModules - 为 Home Manager 提供通用模块
       makeCommonHomeModules = arch: [
         stylix.homeModules.stylix
+        outputs.home
         {
           home.packages = [ 
             zen-browser.packages.${arch}.twilight
@@ -54,41 +52,9 @@
         }
       ];
       
-      # 生成通用 Darwin 模块的函数（针对 macOS 系统）
-      makeCommonDarwinModules = arch: [
-        stylix.darwinModules.stylix
-        {
-          environment.systemPackages = [ 
-            zen-browser.packages.${arch}.twilight
-          ];
-        }
-      ];
-      
-      # 为特定架构生成 NixOS 配置的函数
-      makeNixosConfig = arch: hostPath: nixpkgs.lib.nixosSystem {
-        system = arch;
-        modules = [
-          hostPath
-        ] ++ (makeCommonSystemModules arch);
-        specialArgs = {
-          inherit inputs outputs;
-        };
-      };
-      
-      # 为特定架构生成 Darwin 配置的函数
-      makeDarwinConfig = arch: hostPath: nix-darwin.lib.darwinSystem {
-        system = arch;
-        modules = [
-          hostPath
-        ] ++ (makeCommonDarwinModules arch);
-        specialArgs = {
-          inherit inputs outputs;
-        };
-      };
-      
-      # 为特定架构生成 Home Manager 配置的函数
+      # 保留 makeHomeConfig - 因为用户配置确实都一样
       makeHomeConfig = arch: userPath: host: home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsFor arch;
+        pkgs = pkgsFor.${arch};
         modules = [
           userPath
           {
@@ -99,25 +65,81 @@
           inherit inputs outputs;
         };
       };
+      
     in {
-      # 导出模块供其他 flake 使用
+      # 导出模块和工具
+      inherit lib;
       system = import ./system;
       home = import ./home;
       
+      # 使用 forEachSystem 生成多架构输出
+      packages = forEachSystem (pkgs: {
+        # 你的自定义包
+      });
+      
+      devShells = forEachSystem (pkgs: {
+        default = pkgs.mkShell {
+          buildInputs = with pkgs; [ nixfmt alejandra ];
+        };
+      });
+      
+      formatter = forEachSystem (pkgs: pkgs.alejandra);
+      
+      # 直接定义系统配置，减少复杂度
       nixosConfigurations = {
-        # laptop - x86_64-linux
-        laptop = makeNixosConfig "x86_64-linux" ./hosts/laptop;
+        laptop = lib.nixosSystem {
+          modules = [
+            ./hosts/laptop
+            stylix.nixosModules.stylix
+            outputs.system
+            {
+              environment.systemPackages = [ 
+                zen-browser.packages.x86_64-linux.twilight
+              ];
+            }
+          ];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
         
-        # work - aarch64-linux  
-        work = makeNixosConfig "aarch64-linux" ./hosts/work;
+        work = lib.nixosSystem {
+          modules = [
+            ./hosts/work
+            stylix.nixosModules.stylix
+            outputs.system
+            {
+              environment.systemPackages = [ 
+                zen-browser.packages.aarch64-linux.twilight
+              ];
+            }
+          ];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
       };
       
       # macOS 使用 nix-darwin，不是 nixosConfigurations
       darwinConfigurations = {
-        # daily - aarch64-darwin (需要 nix-darwin)
-        daily = makeDarwinConfig "aarch64-darwin" ./hosts/daily;
+        daily = nix-darwin.lib.darwinSystem {
+          modules = [
+            ./hosts/daily
+            stylix.darwinModules.stylix
+            outputs.system
+            {
+              environment.systemPackages = [ 
+                zen-browser.packages.aarch64-darwin.twilight
+              ];
+            }
+          ];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
       };
       
+      # 使用 makeHomeConfig 和 makeCommonHomeModules
       homeConfigurations = {
         # laptop主机上的用户配置 (x86_64-linux)
         "hengvvang@laptop" = makeHomeConfig "x86_64-linux" ./users/hengvvang "laptop";
