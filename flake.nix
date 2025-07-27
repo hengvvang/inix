@@ -24,8 +24,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = {self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, ... }:
+  outputs = {self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, ... } @ inputs:
     let
+      inherit (self) outputs;
+      
       # 为每个系统创建 pkgs，集成 rust-overlay
       pkgsFor = arch: import nixpkgs {
         system = arch;
@@ -68,6 +70,9 @@
         modules = [
           hostPath
         ] ++ (makeCommonSystemModules arch);
+        specialArgs = {
+          inherit inputs outputs;
+        };
       };
       
       # 为特定架构生成 Darwin 配置的函数
@@ -76,6 +81,9 @@
         modules = [
           hostPath
         ] ++ (makeCommonDarwinModules arch);
+        specialArgs = {
+          inherit inputs outputs;
+        };
       };
       
       # 为特定架构生成 Home Manager 配置的函数
@@ -87,8 +95,15 @@
             inherit host;
           }
         ] ++ (makeCommonHomeModules arch);
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
       };
     in {
+      # 导出模块供其他 flake 使用
+      system = import ./system;
+      home = import ./home;
+      
       nixosConfigurations = {
         # laptop - x86_64-linux
         laptop = makeNixosConfig "x86_64-linux" ./hosts/laptop;

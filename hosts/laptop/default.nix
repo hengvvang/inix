@@ -1,10 +1,10 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, outputs, ... }:
 
 {
   imports = [
     ./hardware.nix
     ./system.nix
-    ../../system
+    outputs.system  # 通过 outputs 导入系统模块
   ];
 
   # Bootloader配置
