@@ -43,8 +43,6 @@
       
       # 保留 makeCommonHomeModules - 为 Home Manager 提供通用模块
       makeCommonHomeModules = arch: [
-        stylix.homeModules.stylix
-        outputs.home
         {
           home.packages = [ 
             zen-browser.packages.${arch}.twilight
@@ -90,8 +88,6 @@
         laptop = lib.nixosSystem {
           modules = [
             ./hosts/laptop
-            stylix.nixosModules.stylix
-            outputs.system
             {
               environment.systemPackages = [ 
                 zen-browser.packages.x86_64-linux.twilight
@@ -106,8 +102,6 @@
         work = lib.nixosSystem {
           modules = [
             ./hosts/work
-            stylix.nixosModules.stylix
-            outputs.system
             {
               environment.systemPackages = [ 
                 zen-browser.packages.aarch64-linux.twilight
@@ -125,8 +119,6 @@
         daily = nix-darwin.lib.darwinSystem {
           modules = [
             ./hosts/daily
-            stylix.darwinModules.stylix
-            outputs.system
             {
               environment.systemPackages = [ 
                 zen-browser.packages.aarch64-darwin.twilight

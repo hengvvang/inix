@@ -1,6 +1,14 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
+  imports = [
+    inputs.stylix.homeModules.stylix
+    ./wallpapers.nix
+    ./fonts.nix
+    ./targets.nix
+    ./colors.nix
+  ];
+  
   options.myHome.profiles.stylix = {
     enable = lib.mkEnableOption "Stylix 主题系统";
     
@@ -229,12 +237,6 @@
   };
   };
 
-  imports = [
-    ./wallpapers.nix
-    ./fonts.nix
-    ./targets.nix
-    ./colors.nix
-  ];
 
   # 核心 Stylix 配置直接在 default.nix 中处理
   config = lib.mkIf config.myHome.profiles.stylix.enable {

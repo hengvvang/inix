@@ -1,6 +1,14 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
+  imports = [
+    inputs.stylix.nixosModules.stylix
+    ./wallpapers.nix
+    ./fonts.nix
+    ./targets.nix
+    ./colors.nix
+  ];
+
   options.mySystem.profiles.stylix = {
     enable = lib.mkEnableOption "系统级 Stylix 主题配置";
     
@@ -181,12 +189,6 @@
     };
   };
 
-  imports = [
-    ./wallpapers.nix
-    ./fonts.nix
-    ./targets.nix
-    ./colors.nix
-  ];
 
   # 系统级 Stylix 配置 - 为所有用户提供基础
   config = lib.mkIf config.mySystem.profiles.stylix.enable {
