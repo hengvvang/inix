@@ -1,0 +1,134 @@
+/*
+ * Rofi 主配置文件 - External 方式
+ * 完整的 Rofi 配置，支持多种模式和自定义
+ */
+
+configuration {
+    /**** 基础设置 ****/
+    // 可用模式定义
+    modi: "drun,run,window,ssh,filebrowser,calc,emoji";
+    
+    // 字体配置
+    font: "FiraCode Nerd Font 12";
+    
+    // 显示设置
+    show-icons: true;
+    icon-theme: "Papirus";
+    drun-display-format: "{icon} {name}";
+    window-format: "{w} {c} {t}";
+    
+    /**** 模式显示名称 ****/
+    display-drun: " 应用";
+    display-run: " 运行";
+    display-window: " 窗口";
+    display-ssh: " SSH";
+    display-filebrowser: " 文件";
+    display-calc: " 计算";
+    display-emoji: " 表情";
+    display-combi: " 组合";
+    
+    /**** 行为配置 ****/
+    case-sensitive: false;
+    cycle: true;
+    sort: true;
+    sorting-method: "fzf";
+    matching: "fuzzy";
+    normalize-match: true;
+    
+    /**** 窗口配置 ****/
+    location: 0;                    // 居中显示
+    width: 600;
+    lines: 10;
+    columns: 1;
+    fixed-num-lines: false;
+    
+    /**** 滚动和显示 ****/
+    scroll-method: 0;
+    hide-scrollbar: false;
+    sidebar-mode: false;
+    auto-select: false;
+    parse-hosts: true;
+    parse-known-hosts: true;
+    
+    /**** 组合模式配置 ****/
+    combi-modi: "drun,run,window";
+    
+    /**** 文件浏览器配置 ****/
+    filebrowser-show-hidden: false;
+    filebrowser-command: "xdg-open";
+    filebrowser-directories-first: true;
+    
+    /**** 运行配置 ****/
+    run-command: "{cmd}";
+    run-shell-command: "{terminal} -e {cmd}";
+    
+    /**** SSH配置 ****/
+    ssh-client: "ssh";
+    ssh-command: "{terminal} -e {ssh-client} {host}";
+    
+    /**** 终端配置 ****/
+    terminal: "alacritty";
+    
+    /**** 性能配置 ****/
+    lazy-grab: true;
+    
+    /**** 键盘绑定 ****/
+    kb-row-up: "Up,Control+k,Control+p";
+    kb-row-down: "Down,Control+j,Control+n";
+    kb-row-left: "Left,Control+h";
+    kb-row-right: "Right,Control+l";
+    kb-accept-entry: "Return,KP_Enter";
+    kb-remove-to-eol: "Control+k";
+    kb-remove-to-sol: "Control+u";
+    kb-remove-word-back: "Control+w,Control+BackSpace";
+    kb-remove-word-forward: "Control+Alt+d";
+    kb-mode-next: "Control+Tab";
+    kb-mode-previous: "Control+ISO_Left_Tab";
+    kb-toggle-case-sensitivity: "grave,dead_grave";
+    kb-delete-entry: "Delete";
+    kb-move-front: "Control+a";
+    kb-move-end: "Control+e";
+    kb-move-word-back: "Alt+b";
+    kb-move-word-forward: "Alt+f";
+    kb-move-char-back: "Left,Control+b";
+    kb-move-char-forward: "Right,Control+f";
+    kb-remove-char-forward: "Delete,Control+d";
+    kb-remove-char-back: "BackSpace,Control+h";
+    kb-primary-paste: "Control+V,Shift+Insert";
+    kb-secondary-paste: "Control+v,Insert";
+    kb-clear-line: "Control+w";
+    kb-cancel: "Escape,Control+g,Control+bracketleft";
+    
+    /**** 自定义快捷键 ****/
+    kb-custom-1: "Alt+1";
+    kb-custom-2: "Alt+2";
+    kb-custom-3: "Alt+3";
+    kb-custom-4: "Alt+4";
+    kb-custom-5: "Alt+5";
+    kb-custom-6: "Alt+6";
+    kb-custom-7: "Alt+7";
+    kb-custom-8: "Alt+8";
+    kb-custom-9: "Alt+9";
+    kb-custom-10: "Alt+0";
+    
+    /**** 选择快捷键 ****/
+    kb-select-1: "Super+1";
+    kb-select-2: "Super+2";
+    kb-select-3: "Super+3";
+    kb-select-4: "Super+4";
+    kb-select-5: "Super+5";
+    kb-select-6: "Super+6";
+    kb-select-7: "Super+7";
+    kb-select-8: "Super+8";
+    kb-select-9: "Super+9";
+    kb-select-10: "Super+0";
+    
+    /**** 超时配置 ****/
+    timeout {
+        action: "kb-cancel";
+        delay:  0;
+    }
+    
+    /**** 主题配置 ****/
+    theme: "~/.config/rofi/themes/theme.rasi";
+}

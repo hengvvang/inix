@@ -44,6 +44,10 @@
         obs-studio.enable = false;
         zed.enable = false;
         vscode.enable = false;
+        rofi = {
+          enable = true;
+          method = "homemanager";
+        };
         ghostty = {
           enable = true;
           method = "homemanager";
