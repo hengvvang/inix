@@ -15,116 +15,106 @@
       url = "github:hengvvang/zen-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = {self, nixpkgs, home-manager, zen-browser, stylix, ... }:
+  outputs = {self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, ... }:
     let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
+      # 为每个系统创建 pkgs，集成 rust-overlay
+      pkgsFor = arch: import nixpkgs {
+        system = arch;
+        overlays = [ rust-overlay.overlays.default ];
+      };
       
-      # 定义通用系统模块列表，可被多个主机配置共享
-      commonSystemModules = [
-        stylix.nixosModules.stylix  # 添加系统级 Stylix 模块
+      # 生成通用系统模块的函数（针对 NixOS 系统）
+      makeCommonSystemModules = arch: [
+        stylix.nixosModules.stylix
         {
           environment.systemPackages = [ 
-            zen-browser.packages.${system}.twilight
+            zen-browser.packages.${arch}.twilight
           ];
         }
       ];
       
-      # 定义通用的 Home Manager 模块列表
-      commonHomeModules = [
+      # 生成通用的 Home Manager 模块列表
+      makeCommonHomeModules = arch: [
         stylix.homeModules.stylix
+        {
+          home.packages = [ 
+            zen-browser.packages.${arch}.twilight
+          ];
+        }
       ];
+      
+      # 生成通用 Darwin 模块的函数（针对 macOS 系统）
+      makeCommonDarwinModules = arch: [
+        stylix.darwinModules.stylix
+        {
+          environment.systemPackages = [ 
+            zen-browser.packages.${arch}.twilight
+          ];
+        }
+      ];
+      
+      # 为特定架构生成 NixOS 配置的函数
+      makeNixosConfig = arch: hostPath: nixpkgs.lib.nixosSystem {
+        system = arch;
+        modules = [
+          hostPath
+        ] ++ (makeCommonSystemModules arch);
+      };
+      
+      # 为特定架构生成 Darwin 配置的函数
+      makeDarwinConfig = arch: hostPath: nix-darwin.lib.darwinSystem {
+        system = arch;
+        modules = [
+          hostPath
+        ] ++ (makeCommonDarwinModules arch);
+      };
+      
+      # 为特定架构生成 Home Manager 配置的函数
+      makeHomeConfig = arch: userPath: host: home-manager.lib.homeManagerConfiguration {
+        pkgs = pkgsFor arch;
+        modules = [
+          userPath
+          {
+            inherit host;
+          }
+        ] ++ (makeCommonHomeModules arch);
+      };
     in {
       nixosConfigurations = {
-        # 现有的笔记本配置
-        laptop = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./hosts/laptop
-          ] ++ commonSystemModules;
-        };
+        # laptop - x86_64-linux
+        laptop = makeNixosConfig "x86_64-linux" ./hosts/laptop;
         
-        # 新增日常使用主机配置
-        daily = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./hosts/daily
-          ] ++ commonSystemModules;
-        };
-        
-        # 新增工作主机配置
-        work = nixpkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            ./hosts/work
-          ] ++ commonSystemModules;
-        };
+        # work - aarch64-linux  
+        work = makeNixosConfig "aarch64-linux" ./hosts/work;
+      };
+      
+      # macOS 使用 nix-darwin，不是 nixosConfigurations
+      darwinConfigurations = {
+        # daily - aarch64-darwin (需要 nix-darwin)
+        daily = makeDarwinConfig "aarch64-darwin" ./hosts/daily;
       };
       
       homeConfigurations = {
-        # laptop主机上的用户配置
-        "hengvvang@laptop" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./users/hengvvang
-            {
-              host = "laptop";
-            }
-          ] ++ commonHomeModules;
-        };
+        # laptop主机上的用户配置 (x86_64-linux)
+        "hengvvang@laptop" = makeHomeConfig "x86_64-linux" ./users/hengvvang "laptop";
+        "zlritsu@laptop" = makeHomeConfig "x86_64-linux" ./users/zlritsu "laptop";
         
-        "zlritsu@laptop" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./users/zlritsu
-            {
-              host = "laptop";
-            }
-          ] ++ commonHomeModules;
-        };
+        # daily主机上的用户配置 (aarch64-darwin)
+        "hengvvang@daily" = makeHomeConfig "aarch64-darwin" ./users/hengvvang "daily";
+        "zlritsu@daily" = makeHomeConfig "aarch64-darwin" ./users/zlritsu "daily";
         
-        # daily主机上的用户配置
-        "hengvvang@daily" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./users/hengvvang
-            {
-              host = "daily";
-            }
-          ] ++ commonHomeModules;
-        };
-        
-        "zlritsu@daily" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./users/zlritsu
-            {
-              host = "daily";
-            }
-          ] ++ commonHomeModules;
-        };
-        
-        # work主机上的用户配置
-        "hengvvang@work" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./users/hengvvang
-            {
-              host = "work";
-            }
-          ] ++ commonHomeModules;
-        };
-        
-        "zlritsu@work" = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          modules = [
-            ./users/zlritsu
-            {
-              host = "work";
-            }
-          ] ++ commonHomeModules;
-        };
+        # work主机上的用户配置 (aarch64-linux)
+        "hengvvang@work" = makeHomeConfig "aarch64-linux" ./users/hengvvang "work";
+        "zlritsu@work" = makeHomeConfig "aarch64-linux" ./users/zlritsu "work";
       };
     };
 }
