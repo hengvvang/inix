@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
 
-let
-  cfg = config.mySystem.services.containers.docker;
-in
 {
   # Docker 配置选项
   options.mySystem.services.containers.docker = {

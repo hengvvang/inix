@@ -79,6 +79,10 @@
       # 容器服务配置
       containers = {
         enable = true;                 # 启用容器服务模块
+
+        appimage = {
+          enable = true;               # 启用 AppImage 服务
+        };
         
         # Docker 容器服务配置
         docker = {

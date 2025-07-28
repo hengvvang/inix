@@ -9,6 +9,7 @@
   imports = [
     ./docker
     ./flatpak
+    ./appimage
   ];
 }
 

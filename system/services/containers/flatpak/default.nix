@@ -1,8 +1,5 @@
 { config, lib, pkgs, ... }:
 
-let
-  cfg = config.mySystem.services.containers.flatpak;
-in
 {
   # Flatpak 配置选项
   options.mySystem.services.containers.flatpak = {
