@@ -38,27 +38,6 @@
         starship.enable = true;
       };
       
-      # 包管理配置
-      pkgs = {
-        enable = true;
-
-        toolkits = {
-          enable = true;              # 启用工具包模块
-          waxingCrescent.enable = true;  # 🌒 峨眉月 - 基础家庭工具
-          firstQuarter.enable = true;    # 🌓 上弦月 - 开发和终端工具
-          waxingGibbous.enable = true;   # 🌔 盈凸月 - 高级工具套件
-          fullMoon.enable = true;        # 🌕 满月 - 完整工具生态 (工作需要)
-        };
-
-        apps = {
-          enable = true;              # 启用应用程序模块
-          waningCrescent.enable = true;  # 🌘 残月 - 基础应用核心
-          lastQuarter.enable = true;     # 🌗 下弦月 - 开发和终端应用
-          waningGibbous.enable = true;   # 🌖 亏凸月 - 桌面生产力套件 (工作需要)
-          newMoon.enable = true;         # 🌑 新月 - 完整应用生态 (工作需要)
-        };
-      };
-
       profiles = {
         enable = true;
         fonts = {

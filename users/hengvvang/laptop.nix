@@ -4,27 +4,12 @@
   # laptop 主机特定配置
   config = lib.mkIf (config.host == "laptop") {
     myHome = {
-      develop = {
+
+      pkgs = {
         enable = true;
-        devenv = {
-          enable = true;        # 启用 devenv
-          autoSwitch = true;    # 启用自动环境切换（direnv）
-          shell = "fish";       # 使用 fish shell
-          templates = true;     # 安装项目模板工具（完整功能）
-          cache = true;         # 启用构建缓存优化
-        };
-        # 按语言直接配置
-        rust = {
-          enable = true;
-          embedded.enable = true;   # 启用 Rust 嵌入式开发
-        };
-        python.enable = true;
-        javascript.enable = true;
-        typescript.enable = true;
-        cpp = {
-          enable = true;
-          embedded.enable = true;   # 启用 C/C++ 嵌入式开发
-        };
+        apps.enable = true;
+        toolkits.enable = true;
+        workflows.enable = true;
       };
 
       dotfiles = {
@@ -70,6 +55,29 @@
         };
       };
 
+      develop = {
+        enable = true;
+        devenv = {
+          enable = true;        # 启用 devenv
+          autoSwitch = true;    # 启用自动环境切换（direnv）
+          shell = "fish";       # 使用 fish shell
+          templates = true;     # 安装项目模板工具（完整功能）
+          cache = true;         # 启用构建缓存优化
+        };
+        # 按语言直接配置
+        rust = {
+          enable = true;
+          embedded.enable = true;   # 启用 Rust 嵌入式开发
+        };
+        python.enable = true;
+        javascript.enable = true;
+        typescript.enable = true;
+        cpp = {
+          enable = true;
+          embedded.enable = true;   # 启用 C/C++ 嵌入式开发
+        };
+      };
+
       services = {
         media = {
           # MPD 用户级音乐服务配置
@@ -83,23 +91,6 @@
               ncmpcpp = true;                     # 安装 ncmpcpp 终端客户端
             };
           };
-        };
-      };
-
-      pkgs = {
-        enable = true;
-        toolkits = {
-          enable = true;              # 启用工具包模块
-          waxingCrescent.enable = true;  # 🌒 峨眉月
-          firstQuarter.enable = true;    # 🌓 上弦月
-          waxingGibbous.enable = true;   # 🌔 盈凸月
-          fullMoon.enable = false;       # 🌕 满月
-        };
-        apps = {
-          waningCrescent.enable = true;  # 🌘 残月
-          lastQuarter.enable = true;     # 🌗 下弦月
-          waningGibbous.enable = true;   # 🌖 亏凸月
-          newMoon.enable = false;        # 🌑 新月
         };
       };
 

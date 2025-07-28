@@ -38,26 +38,6 @@
         starship.enable = true;
       };
       
-      pkgs = {
-        enable = true;
-
-        toolkits = {
-          enable = true;              # 启用工具包模块
-          waxingCrescent.enable = true;  # 🌒 峨眉月 - 基础家庭工具
-          firstQuarter.enable = false;   # 🌓 上弦月 - 开发和终端工具 (轻量级禁用)
-          waxingGibbous.enable = false;  # 🌔 盈凸月 - 高级工具套件 (轻量级禁用)
-          fullMoon.enable = false;       # 🌕 满月 - 完整工具生态 (轻量级禁用)
-        };
-        # 应用程序配置 - 月相主题设计，zlritsu 使用轻量级配置
-        apps = {
-          enable = true;              # 启用应用程序模块
-          waningCrescent.enable = true;  # 🌘 残月 - 基础应用核心
-          lastQuarter.enable = false;    # 🌗 下弦月 - 开发和终端应用 (轻量级禁用)
-          waningGibbous.enable = false;  # 🌖 亏凸月 - 桌面生产力套件 (轻量级禁用)
-          newMoon.enable = false;        # 🌑 新月 - 完整应用生态 (轻量级禁用)
-        };
-      };
-
       profiles = {
         enable = true;
 
