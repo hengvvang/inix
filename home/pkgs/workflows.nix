@@ -13,6 +13,9 @@
             pkgs.zellij
             pkgs.rmpc
             pkgs.yazi
+            pkgs.calcure
+            pkgs.flameshot
+            pkgs.satty
 
             pkgs.mise
             pkgs.just

@@ -4,7 +4,7 @@
   imports = [
     ./hardware.nix
     ./system.nix
-    outputs.system  # 通过 outputs 导入系统模块
+    outputs.system  # 通过 outputs 导入系统模块     ../../system
   ];
 
   # Bootloader配置
