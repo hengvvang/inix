@@ -21,7 +21,7 @@
 
       rmpc
 
-      raycast-linux
+      # raycast-linux
       # tmux
       
     ];
