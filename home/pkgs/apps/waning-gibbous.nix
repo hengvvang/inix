@@ -8,7 +8,7 @@
 
       git
 
-      vim  
+      # vim 已通过 programs.vim 配置，避免重复
       vscode
       zed-editor
 
@@ -21,6 +21,7 @@
 
       rmpc
 
+      raycast-linux
       # tmux
       
     ];

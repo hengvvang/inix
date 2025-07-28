@@ -98,7 +98,7 @@
         apps = {
           waningCrescent.enable = true;  # 🌘 残月
           lastQuarter.enable = true;     # 🌗 下弦月
-          waningGibbous.enable = false;  # 🌖 亏凸月
+          waningGibbous.enable = true;   # 🌖 亏凸月
           newMoon.enable = false;        # 🌑 新月
         };
       };

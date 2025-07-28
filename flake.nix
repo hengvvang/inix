@@ -37,7 +37,14 @@
           import nixpkgs {
             inherit system;
             config.allowUnfree = true;
-            overlays = [ rust-overlay.overlays.default ];
+            overlays = [ 
+              rust-overlay.overlays.default
+              # 添加我们的自定义包覆盖
+              (final: prev: 
+                let customPkgs = import ./pkgs { pkgs = final; };
+                in customPkgs
+              )
+            ];
           }
       );
       
@@ -72,7 +79,10 @@
       
       # 使用 forEachSystem 生成多架构输出
       packages = forEachSystem (pkgs: {
-        # 你的自定义包
+        # 导出我们的自定义包
+        raycast-linux = pkgs.raycast-linux;
+        
+        # 其他自定义包可以在这里添加
       });
       
       devShells = forEachSystem (pkgs: {
