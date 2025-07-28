@@ -26,6 +26,5 @@
     ./vscode        # 新增 Visual Studio Code 代码编辑器
     ./zed           # 新增 Zed Editor 高性能代码编辑器
     ./rofi          # 新增 Rofi 应用启动器配置
-    ./rofi          # 新增 Rofi 应用启动器配置
   ];
 }

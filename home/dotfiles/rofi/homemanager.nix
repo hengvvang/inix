@@ -10,7 +10,7 @@
       package = pkgs.rofi;
       
       # 字体配置 - 使用 Nerd Font 获得图标支持
-      font = "FiraCode Nerd Font 12";
+      font = "LXGW WenKai";
       
       # 窗口定位配置
       location = "center";           # 显示位置: "center", "north", "south", "east", "west", "northeast", "northwest", "southeast", "southwest"
@@ -21,7 +21,7 @@
       cycle = true;                  # 是否循环浏览结果列表
       
       # 终端程序配置 - 用于运行控制台应用程序
-      terminal = "${pkgs.alacritty}/bin/alacritty";
+      terminal = "${pkgs.rio}/bin/rio";
       
       # 启用的模式 - 定义可用的Rofi模式
       modes = [
@@ -60,7 +60,7 @@
           border-radius = mkLiteral "8px";
           
           # 字体和间距
-          font = "FiraCode Nerd Font 12";
+          font = "LXGW WenKai";
           padding = mkLiteral "0px";
           margin = mkLiteral "0px";
         };
@@ -97,7 +97,7 @@
         "prompt" = {
           background-color = mkLiteral "transparent";
           text-color = mkLiteral "#83a598";
-          font = "FiraCode Nerd Font Bold 12";
+          font = "LXGW WenKai";
         };
         
         # 输入框
@@ -205,31 +205,31 @@
       # 额外配置 - 键盘绑定和行为设置
       extraConfig = {
         # 键盘绑定配置
-        kb-row-up = "Up,Control+k,Control+p";
-        kb-row-down = "Down,Control+j,Control+n";
-        kb-row-left = "Left,Control+h";
-        kb-row-right = "Right,Control+l";
-        kb-accept-entry = "Return,KP_Enter";
-        kb-remove-to-eol = "Control+k";
-        kb-remove-to-sol = "Control+u";
-        kb-remove-word-back = "Control+w";
-        kb-remove-word-forward = "Control+Alt+d";
-        kb-mode-next = "Control+Tab";
-        kb-mode-previous = "Control+ISO_Left_Tab";
-        kb-toggle-case-sensitivity = "grave,dead_grave";
-        kb-delete-entry = "Delete";
-        kb-custom-1 = "Alt+1";
-        kb-custom-2 = "Alt+2";
-        kb-custom-3 = "Alt+3";
-        kb-custom-4 = "Alt+4";
-        kb-custom-5 = "Alt+5";
-        kb-select-1 = "Super+1";
-        kb-select-2 = "Super+2";
-        kb-select-3 = "Super+3";
-        kb-select-4 = "Super+4";
-        kb-select-5 = "Super+5";
-        kb-primary-paste = "Control+V,Shift+Insert";
-        kb-secondary-paste = "Control+v,Insert";
+        # kb-row-up = "Up,Control+k,Control+p";
+        # kb-row-down = "Down,Control+j,Control+n";
+        # kb-row-left = "Left,Control+h";
+        # kb-row-right = "Right,Control+l";
+        # kb-accept-entry = "Return,KP_Enter";
+        # kb-remove-to-eol = "Control+k";
+        # kb-remove-to-sol = "Control+u";
+        # kb-remove-word-back = "Control+w";
+        # kb-remove-word-forward = "Control+Alt+d";
+        # kb-mode-next = "Control+Tab";
+        # kb-mode-previous = "Control+ISO_Left_Tab";
+        # kb-toggle-case-sensitivity = "grave,dead_grave";
+        # kb-delete-entry = "Delete";
+        # kb-custom-1 = "Alt+1";
+        # kb-custom-2 = "Alt+2";
+        # kb-custom-3 = "Alt+3";
+        # kb-custom-4 = "Alt+4";
+        # kb-custom-5 = "Alt+5";
+        # kb-select-1 = "Super+1";
+        # kb-select-2 = "Super+2";
+        # kb-select-3 = "Super+3";
+        # kb-select-4 = "Super+4";
+        # kb-select-5 = "Super+5";
+        # kb-primary-paste = "Control+V,Shift+Insert";
+        # kb-secondary-paste = "Control+v,Insert";
         
         # 显示配置
         show-icons = true;              # 显示图标
