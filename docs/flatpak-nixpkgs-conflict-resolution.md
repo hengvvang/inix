@@ -5,6 +5,7 @@
 在 NixOS 系统中，当同时使用过 Flatpak 和 nixpkgs 安装相同应用时，可能会出现以下问题：
 
 ### 症状
+- 同时下载 Google Chrome 和 Zed 的 Flatpak 和 nixpkgs 版本，或者先后下载
 - Google Chrome 和 Zed 编辑器无法正常启动或运行异常
 - 应用启动后行为不符合预期
 - 配置文件冲突导致功能异常
