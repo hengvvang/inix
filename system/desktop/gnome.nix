@@ -20,6 +20,9 @@
   environment.systemPackages = [
   # ---- gnome extentsion ----
   pkgs.gnome-tweaks # required
+  pkgs.gnomeExtensions.forge
+  pkgs.gnomeExtensions.fuzzy-app-search
+  pkgs.gnomeExtensions.applications-menu
   pkgs.gnomeExtensions.user-themes
   pkgs.gnomeExtensions.blur-my-shell
   pkgs.gnomeExtensions.extension-list
