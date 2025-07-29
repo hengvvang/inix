@@ -30,14 +30,14 @@
       clients = {
         mpc = lib.mkOption {
           type = lib.types.bool;
-          default = true;
+          default = false;
           description = "是否安装 mpc 命令行客户端";
         };
         
-        ncmpcpp = lib.mkOption {
+        rmpc = lib.mkOption {
           type = lib.types.bool;
-          default = true;
-          description = "是否安装 ncmpcpp 终端客户端";
+          default = false;
+          description = "是否安装 rmpc 终端客户端";
         };
       };
     };

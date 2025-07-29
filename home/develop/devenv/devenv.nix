@@ -95,17 +95,23 @@
 
     # 在激活时显示配置信息（通过 activation script）
     home.activation.devenvInfo = lib.hm.dag.entryAfter ["writeBoundary"] (
-      let
-        autoSwitchStatus = if config.myHome.develop.devenv.autoSwitch then "✅ 启用" else "❌ 禁用";
-        templatesStatus = if config.myHome.develop.devenv.templates then "✅ 启用" else "❌ 禁用";
-        cacheStatus = if config.myHome.develop.devenv.cache then "✅ 启用" else "❌ 禁用";
-      in ''
-        echo "🚀 devenv 开发环境配置已激活"
-        echo "  自动环境切换: ${autoSwitchStatus}"
-        echo "  项目模板工具: ${templatesStatus}"
-        echo "  构建缓存优化: ${cacheStatus}"
-        echo "  Shell 集成: ${config.myHome.develop.devenv.shell}"
+      let 
+
+      in '' 
+
       ''
+      # Examples: 
+      # let
+      #   autoSwitchStatus = if config.myHome.develop.devenv.autoSwitch then "✅ 启用" else "❌ 禁用";
+      #   templatesStatus = if config.myHome.develop.devenv.templates then "✅ 启用" else "❌ 禁用";
+      #   cacheStatus = if config.myHome.develop.devenv.cache then "✅ 启用" else "❌ 禁用";
+      # in ''
+      #   echo "🚀 devenv 开发环境配置已激活"
+      #   echo "  自动环境切换: ${autoSwitchStatus}"
+      #   echo "  项目模板工具: ${templatesStatus}"
+      #   echo "  构建缓存优化: ${cacheStatus}"
+      #   echo "  Shell 集成: ${config.myHome.develop.devenv.shell}"
+      # ''
     );
   };
 }

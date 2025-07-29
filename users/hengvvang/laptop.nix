@@ -88,7 +88,7 @@
             autoStart = true;                     # 开机自动启动
             clients = {
               mpc = true;                         # 安装 mpc 命令行客户端
-              ncmpcpp = true;                     # 安装 ncmpcpp 终端客户端
+              rmpc = true;
             };
           };
         };

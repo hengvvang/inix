@@ -23,7 +23,7 @@
 
             pkgs.fish   
             pkgs.nushell
-
+            # pkgs.super-productivity
             # raycast-linux
 
         ];

@@ -5,7 +5,8 @@
         environment.systemPackages = with pkgs; [
         
         bat  # cat
-
+        
+        dysk # df
         # ls
         eza
         lsd

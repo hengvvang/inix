@@ -84,7 +84,7 @@
       '';
       
       # 配置目录
-      dotDir = ".config/zsh";             # zsh配置目录 (相对于HOME)
+      dotDir = "${config.xdg.configHome}/zsh";
       
       # Oh My Zsh 配置（可选，默认关闭）
       oh-my-zsh = {
