@@ -20,6 +20,7 @@
   environment.systemPackages = [
   # ---- gnome extentsion ----
   pkgs.gnome-tweaks # required
+  pkgs.refine
   pkgs.gnomeExtensions.forge
   pkgs.gnomeExtensions.fuzzy-app-search
   pkgs.gnomeExtensions.applications-menu
