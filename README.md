@@ -67,10 +67,13 @@
                    |    I use home-manager standalone            |
                    |_____________________________________________|
 ```
-
+---
 `/etc/nixos/configuration.nix`   ==>  `host/<hostName>/defaul.nix`  +  `host/<hostName>/ system.nix`
+
+---
 `/etc/nixos/hardware-configuration.nix`  ==>  `host/<hostName>/hardware.nix`  +  `(if you use disko, you will have disk.nix)  -->  host<hostName>/disk.nix`
 
+---
 ```
 - system
   - system configurations
