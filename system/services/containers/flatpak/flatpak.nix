@@ -4,9 +4,8 @@ let
   cfg = config.mySystem.services.containers.flatpak;
 in
 {
-  # Flatpak 服务实现
   config = lib.mkIf cfg.enable {
-    # 核心 Flatpak 服务
+    
     services.flatpak.enable = true;
 
     # XDG 门户支持
@@ -16,8 +15,7 @@ in
         xdg-desktop-portal-gtk
       ];
     };
-
-    # 系统工具包
+    
     environment.systemPackages = with pkgs; [
       flatpak
     ];
