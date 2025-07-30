@@ -41,7 +41,7 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      mylib = import ./lib/default.nix {
+      mylib = import ./lib {
         inherit inputs;
       };
       inherit (mylib) architectures pkgsFor forEachSystem;
