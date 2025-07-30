@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    systems.url = "github:nix-systems/default";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,13 +37,13 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, systems, zen-browser, stylix, nix-darwin, rust-overlay, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, ... } @ inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      
-      forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs (import systems) (
+      architectures = import ./lib/architectures.nix;
+      forEachSystem = f: lib.genAttrs architectures (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs architectures (
         system:
           import nixpkgs {
             inherit system;
