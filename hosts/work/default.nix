@@ -4,6 +4,7 @@
   imports = [
     ./hardware.nix
     ./system.nix
+    ./disk.nix
     outputs.system  # 通过 outputs 导入系统模块
   ];
 
