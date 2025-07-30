@@ -5,28 +5,7 @@
 
     home.packages = with pkgs; [ git ];
 
-    # 直接文件写入 - 演示用简化配置
     home.file.".gitconfig".text = ''
-      [user]
-          name = hengvvang
-          email = hengvvang@example.com
-
-      [init]
-          defaultBranch = main
-
-      [core]
-          editor = nvim
-          autocrlf = input
-
-      [color]
-          ui = true
-
-      [alias]
-          st = status
-          co = checkout
-          br = branch
-          cm = commit
-          lg = log --oneline --graph --decorate
     '';
   };
 }

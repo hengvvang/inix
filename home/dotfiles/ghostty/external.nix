@@ -5,7 +5,6 @@
 
     home.packages = with pkgs; [ ghostty ];
 
-    # 方式3: 外部文件引用
     home.file.".config/ghostty/config".source = ./configs/config;
     
     # 额外的主题和配置文件

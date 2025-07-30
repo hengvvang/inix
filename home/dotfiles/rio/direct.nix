@@ -9,11 +9,6 @@
     '';
     
     programs.fish.shellInit = lib.mkIf config.programs.fish.enable ''
-      # 简单的 Rio 检测
-      if test "$TERM_PROGRAM" = "rio"
-        set -gx COLORTERM truecolor
-        alias rio-config="$EDITOR ~/.config/rio/config.toml"
-      end
     '';
   };
 }
