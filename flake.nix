@@ -41,23 +41,10 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
-      architectures = import ./lib/architectures.nix;
-      forEachSystem = f: lib.genAttrs architectures (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs architectures (
-        system:
-          import nixpkgs {
-            inherit system;
-            config.allowUnfree = true;
-            overlays = [ 
-              rust-overlay.overlays.default
-              # 添加我们的自定义包覆盖
-              (final: prev: 
-                let customPkgs = import ./pkgs { pkgs = final; };
-                in customPkgs
-              )
-            ];
-          }
-      );
+      mylib = import ./lib/default.nix {
+        inherit inputs;
+      };
+      inherit (mylib) architectures pkgsFor forEachSystem;
       
       makeCommonHomeModules = arch: [
         {
