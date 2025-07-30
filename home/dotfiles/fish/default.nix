@@ -4,7 +4,6 @@
   options.myHome.dotfiles.fish = {
     enable = lib.mkEnableOption "Fish Shell 配置";
     
-    # 配置方式选择
     method = lib.mkOption {
       type = lib.types.enum [ "homemanager" "direct" "external" ];
       default = "homemanager";

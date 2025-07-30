@@ -67,14 +67,14 @@
         # 按语言直接配置
         rust = {
           enable = true;
-          embedded.enable = true;   # 启用 Rust 嵌入式开发
+          embedded.enable = true;
         };
         python.enable = true;
         javascript.enable = true;
         typescript.enable = true;
         cpp = {
           enable = true;
-          embedded.enable = true;   # 启用 C/C++ 嵌入式开发
+          embedded.enable = true;
         };
       };
 
@@ -101,17 +101,17 @@
           preset = "tokyo";
         };
         stylix = {
-          enable = true;                      # ✅ 启用 Stylix 主题系统
+          enable = true;
           polarity = "dark";
 
           # 🎨 启用自定义颜色配置
           colors = {
-            enable = true;                    # ✅ 启用自定义颜色
+            enable = true;
             scheme = "dark-elegant";
           };
 
           wallpapers = {
-            enable = false;                    # ✅ 启用壁纸
+            enable = false;
             # preset = "tokyo";
             # custom = {
             #   url = "https://example.com/path/to/your/wallpaper.jpg";  # ✅ 自定义壁纸 URL

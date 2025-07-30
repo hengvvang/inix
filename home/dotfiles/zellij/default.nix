@@ -19,8 +19,8 @@
   };
 
   imports = [
-    ./homemanager.nix  # Home Manager 原生配置
-    ./direct.nix       # 直接配置文件管理
-    ./external.nix     # 外部配置文件方式
+    ./homemanager.nix
+    ./direct.nix
+    ./external.nix
   ];
 }

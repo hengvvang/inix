@@ -5,7 +5,6 @@
     
     home.packages = with pkgs; [ rofi ];
 
-    # 直接配置文件写入方式 - 简单象征性配置
     home.file.".config/rofi/config.rasi".text = ''
     '';
 

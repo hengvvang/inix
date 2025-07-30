@@ -2,7 +2,7 @@
 
 {
   imports = [
-    outputs.home  # 通过 outputs 导入 home 模块
+    outputs.home  # ../../home
     # 导入不同主机配置
     ./laptop.nix
     ./daily.nix

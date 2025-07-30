@@ -8,23 +8,23 @@
   imports = [
     ./vim
     ./zsh
-    ./bash          # 新增 Bash Shell 配置
+    ./bash
     ./fish
     ./nushell
     ./yazi
     ./ghostty
-    ./alacritty     # 新增 Alacritty 终端
-    ./rio           # 新增 Rio GPU 加速终端
-    ./tmux          # 新增 Tmux 会话管理
-    ./zellij        # 新增 Zellij 终端多路复用器
+    ./alacritty
+    ./rio
+    ./tmux
+    ./zellij
     ./git
     ./lazygit
     ./starship
-    ./qutebrowser   # 新增 Qutebrowser 浏览器配置
-    ./obs-studio    # 新增 OBS Studio 配置
-    ./rmpc          # 新增 RMPC 音乐播放器客户端
-    ./vscode        # 新增 Visual Studio Code 代码编辑器
-    ./zed           # 新增 Zed Editor 高性能代码编辑器
-    ./rofi          # 新增 Rofi 应用启动器配置
+    ./qutebrowser
+    ./obs-studio
+    ./rmpc
+    ./vscode
+    ./zed
+    ./rofi
   ];
 }
