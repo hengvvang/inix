@@ -75,19 +75,34 @@
 
 ---
 ```
+
 - system
-  - system configurations
+  - desktop
+  - locale
+  - pkgs
+  - profiles
+  - services
 - home
-  - home configurations
+  - desktop
+  - develop
+  - dotfiles
+  - pkgs
+  - profiles
+  - services
+
 ```
 ---
 ```
+
 - host
   - desktop
   - laptop
   - vps
   - macos
 - users
+  - user1
+  - user2
+
 ```
 ---
 ```
