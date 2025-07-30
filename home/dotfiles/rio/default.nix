@@ -2,10 +2,9 @@
 
 {
   options.myHome.dotfiles.rio = {
-    # 基本启用选项
+
     enable = lib.mkEnableOption "Rio 现代化终端配置";
     
-    # 配置方式选择
     method = lib.mkOption {
       type = lib.types.enum [ "homemanager" "direct" "external" ];
       default = "homemanager";
@@ -19,8 +18,8 @@
   };
 
   imports = [
-    ./homemanager.nix  # Home Manager 原生配置
-    ./direct.nix       # 直接配置文件管理
-    ./external.nix     # 外部配置文件方式
+    ./homemanager.nix
+    ./direct.nix
+    ./external.nix
   ];
 }

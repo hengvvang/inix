@@ -2,16 +2,13 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rio.enable && config.myHome.dotfiles.rio.method == "external") {
-    # 安装 Rio 包
+
     home.packages = with pkgs; [ rio ];
     
-    # 使用外部配置文件
     home.file.".config/rio/config.toml".source = ./configs/config.toml;
     
-    # 可选：主题文件目录
     home.file.".config/rio/themes".source = ./configs/themes;
     
-    # Shell 集成
     programs.fish.shellInit = lib.mkIf config.programs.fish.enable ''
       # Rio Terminal 高级集成
       if test "$TERM_PROGRAM" = "rio"
@@ -78,7 +75,6 @@
       fi
     '';
     
-    # 桌面集成
     xdg.desktopEntries.rio-custom = lib.mkIf pkgs.stdenv.isLinux {
       name = "Rio Terminal (Custom)";
       comment = "Rio with custom configuration";

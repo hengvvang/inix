@@ -4,7 +4,6 @@
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.enable && config.myHome.dotfiles.vscode.method == "external") {
     # Visual Studio Code 配置 - 外部配置文件方式
     
-    # 安装 VSCode 包
     home.packages = with pkgs; [
       vscode
     ];
