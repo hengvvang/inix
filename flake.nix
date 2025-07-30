@@ -8,29 +8,29 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    zen-browser = {
-      url = "github:hengvvang/zen-browser";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    stylix = {
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    zen-browser = {
+      url = "github:hengvvang/zen-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
-  outputs = {self, nixpkgs, home-manager, systems, zen-browser, stylix, nix-darwin, rust-overlay, ... } @ inputs:
+
+  outputs = { self, nixpkgs, home-manager, systems, zen-browser, stylix, nix-darwin, rust-overlay, ... } @ inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib;
       
-      # 使用 systems 像 examples 一样
       forEachSystem = f: lib.genAttrs (import systems) (system: f pkgsFor.${system});
       pkgsFor = lib.genAttrs (import systems) (
         system:
@@ -48,7 +48,6 @@
           }
       );
       
-      # 保留 makeCommonHomeModules - 为 Home Manager 提供通用模块
       makeCommonHomeModules = arch: [
         {
           home.packages = [ 
@@ -57,7 +56,6 @@
         }
       ];
       
-      # 保留 makeHomeConfig - 因为用户配置确实都一样
       makeHomeConfig = arch: userPath: host: home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.${arch};
         modules = [
@@ -93,7 +91,6 @@
       
       formatter = forEachSystem (pkgs: pkgs.alejandra);
       
-      # 直接定义系统配置，减少复杂度
       nixosConfigurations = {
         laptop = lib.nixosSystem {
           modules = [
@@ -124,7 +121,6 @@
         };
       };
       
-      # macOS 使用 nix-darwin，不是 nixosConfigurations
       darwinConfigurations = {
         daily = nix-darwin.lib.darwinSystem {
           modules = [
@@ -141,7 +137,6 @@
         };
       };
       
-      # 使用 makeHomeConfig 和 makeCommonHomeModules
       homeConfigurations = {
         # laptop主机上的用户配置 (x86_64-linux)
         "hengvvang@laptop" = makeHomeConfig "x86_64-linux" ./users/hengvvang "laptop";
