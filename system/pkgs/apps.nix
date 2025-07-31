@@ -14,6 +14,7 @@
         # gtk3
         # glib
 
+        #wechat
 
         pkgs.spotify
         #pkgs.cider-2
