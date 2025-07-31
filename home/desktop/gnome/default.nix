@@ -12,5 +12,9 @@
         source = ./assets/themes;
         executable = false;
         };
+        home.file.".icons" = {
+        source = ./assets/icons;
+        executable = false;
+        };
     };
 }
