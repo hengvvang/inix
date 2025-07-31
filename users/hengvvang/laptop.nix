@@ -7,7 +7,9 @@
 
       desktop = {
         enable = true;
-        gnome.enable = true;  # 启用 Gnome 桌面环境
+        gnome.enable = true;
+        gnome.themes.enable = true;
+        gnome.icons.enable = true;
       };
 
       pkgs = {
