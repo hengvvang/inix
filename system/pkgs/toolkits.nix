@@ -46,6 +46,7 @@
         htop
         btop
         bottom
+        trippy
 
         unzip
         zip
@@ -100,6 +101,8 @@
         rsync             # 文件同步
         hexyl             # 十六进制查看器
         
+        viu
+
         ];
     };
 }
