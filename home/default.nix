@@ -3,6 +3,7 @@
 {
   imports = [
     ./develop
+    ./desktop
     ./profiles
     ./dotfiles
     ./pkgs

@@ -14,7 +14,7 @@
     
     desktop = {
       enable = true;
-      preset = "cosmic";
+      preset = "gnome";
     };
     profiles = {
       enable = true;

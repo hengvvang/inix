@@ -5,6 +5,11 @@
   config = lib.mkIf (config.host == "laptop") {
     myHome = {
 
+      desktop = {
+        enable = true;
+        gnome.enable = true;  # 启用 Gnome 桌面环境
+      };
+
       pkgs = {
         enable = true;
         apps.enable = true;
