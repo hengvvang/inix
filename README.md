@@ -75,38 +75,95 @@
 
 ---
 ```
+------
+system/*   --> system configuration options
+home/*     --> user configuration options
+------
+user/*     --> user configurations, each host uses its corresponding configuration file , enable features defined under the home/* directory.
+host/*     --> host configurations, hardware information and enable features defined under the system/* directory.
+------
+pkgs/*            --> custom packages
+overlays/*        -->
+------
+lib               --> my lib
+------
+```
+## How it works ?
+```
+---
+|-------------|      <----      | host/*  `enable features` |    <---       | system/*  `define features`|
+|  flake.nix  |      <----      | user/*  `enable features` |    <---       | home/*    `define features`|
+|-------------|
+---
+```
 
 - system
   - desktop
+    - cosmic
+    - gnome
+    - kde
+    - hyprland
+    - niri
   - locale
+    - inputMethod
+    - timeZone
   - pkgs
+    - apps
+    - toolkits
+    - workflows
   - profiles
+    - fonts
+    - stylix
   - services
+    - containers
+    - drivers
+    - media
+    - network
 - home
   - desktop
+    - cosmic
+    - gnome
+    - kde
+    - hyprland
+    - niri
   - develop
-  - dotfiles
-  - pkgs
+    - devenv
+    - cpp
+    - python
+    - rust
+    - javascript
+    - typescript
+  dotfiles
+    - alacritty
+    - bash
+    - fish
+    - ghostty
+    - git
+    - lazygit
+    - nushell
+    - obs-studio
+    - qutebrowser
+    - rio
+    - rmpc
+    - rofi
+    - starship
+    - tmux
+    - vim
+    - vscode
+    - yazi
+    - zed
+    - zellij
+    - zsh
+  pkgs
+    - apps
+    - toolkits
+    - workflows
   - profiles
+    - fonts
+    - stylix
   - services
-
-```
----
-```
-
-- host
-  - desktop
-  - laptop
-  - vps
-  - macos
-- users
-  - user1
-  - user2
-
-```
----
-```
-- lib
+    - media
 - overlays
+
 - pkgs
 ```
