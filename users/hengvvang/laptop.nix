@@ -6,10 +6,10 @@
     myHome = {
 
       desktop = {
-        enable = true;
-        gnome.enable = true;
-        gnome.themes.enable = true;
-        gnome.icons.enable = true;
+        enable = false;
+        gnome.enable = false;
+        gnome.themes.enable = false;
+        gnome.icons.enable = false;
       };
 
       pkgs = {
