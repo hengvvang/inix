@@ -13,8 +13,8 @@
     };
     
     desktop = {
-      enable = true;                   # 启用桌面环境模块
-      preset = "cosmic";               # 使用 cosmic 桌面环境
+      enable = true;
+      preset = "cosmic";
     };
     profiles = {
       enable = true;
@@ -23,7 +23,6 @@
         preset = "zen";
       };
       
-      # 系统级 Stylix 主题配置
       stylix = {
         enable = true;
         polarity = "dark";
@@ -76,7 +75,6 @@
     services = {
       enable = true;
       
-      # 容器服务配置
       containers = {
         enable = true;                 # 启用容器服务模块
 
