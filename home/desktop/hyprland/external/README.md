@@ -1,10 +1,34 @@
-# Hyprland External 配置
+# Hypr#### 🆕 禁用的快捷键 (完全匹配您的 Cosmic 配置)
+以下快捷键在您的 Cosmic 配置中被禁用，在 Hyprland 中也相应禁用：
+- `Super + 1-9` (直接数字键工作区切换)
+- `Super + Shift + 1-9` (直接数字键移动窗口到工作区)
+- `Super + G, Y, U` (其他被禁用的字母键)
+- `Super + H, J, K, L` (Vim 风格导航，您的 Cosmic 中未设置)
+- `Super + Space` (启动器，与输入法切换冲突)
+
+**实际使用的工作区快捷键**：
+- 工作区切换：`Super + Ctrl + 1-9`
+- 移动窗口：`Super + Ctrl + Shift + 1-8`
+- 移动到上一个工作区：`Super + Ctrl + Shift + 9`
+
+**修正的快捷键**：
+- 锁屏：`Ctrl + Alt + L` (避免与焦点移动冲突)
+- 输入法切换：`Super + Space`nal 配置
 
 这是一个完全重新配置的 Hyprland external 配置，基于您的 Cosmic 桌面快捷键映射，遵循 Hyprland 最佳实践。
 
 ## ✨ 主要特性
 
-### 🎨 主题
+#### � 禁用的快捷键 (完全匹配您的 Cosmic 配置)
+以下快捷键在您的 Cosmic 配置中被禁用，在 Hyprland 中也相应禁用：
+- `Super + 1-9` (直接数字键工作区切换)
+- `Super + Shift + 1-9` (直接数字键移动窗口到工作区)
+- `Super + G, Y, U` (其他被禁用的字母键)
+
+**实际使用的工作区快捷键**：
+- 工作区切换：`Super + Ctrl + 1-9`
+- 移动窗口：`Super + Ctrl + Shift + 1-8`
+- 移动到上一个工作区：`Super + Ctrl + Shift + 9`🎨 主题
 - 使用 **Catppuccin Mocha** 主题
 - 统一的深色主题配色
 - 圆角设计和现代视觉效果
@@ -21,7 +45,7 @@
 | `SystemAction::Terminal` | `Super + Return` | `rio` | 终端 |
 | `SystemAction::HomeFolder` | `Super + E` | `nautilus` | 主文件夹 |
 | `SystemAction::WebBrowser` | `Super + B` | `firefox` | 网页浏览器 |
-| `SystemAction::LockScreen` | `Super + L` | `hyprlock` | 锁定屏幕 |
+| `SystemAction::LockScreen` | `Ctrl + Alt + L` | `hyprlock` | 锁定屏幕 |
 | `SystemAction::LogOut` | `Super + Shift + E` | `wlogout` | 注销/电源菜单 |
 | `SystemAction::Screenshot` | `Print` | `grimblast copy area` | 截图 |
 | `SystemAction::WindowSwitcher` | `Alt + Tab` | `rofi -show window` | 窗口切换器 |
@@ -37,31 +61,38 @@
 | ToggleStacking | `Super + Ctrl + S` | 切换堆叠模式 |
 | Fullscreen | `Super + F` | 全屏切换 |
 
-#### 📱 工作区操作 (基于 Cosmic Workspace)
+#### 📱 工作区操作 (基于您的实际 Cosmic 配置)
 | 功能 | 快捷键 | 说明 |
 |------|--------|------|
-| **切换工作区** | `Super + 1-9` | 切换到工作区 1-9 |
-| **发送窗口到工作区** | `Super + Shift + 1-9` | 移动窗口到工作区 |
+| **切换工作区** | `Super + Ctrl + 1-9` | 切换到工作区 1-9 |
+| **发送窗口到工作区** | `Super + Ctrl + Shift + 1-8` | 移动窗口到工作区 1-8 |
+| **移动到上一个工作区** | `Super + Ctrl + Shift + 9` | 移动窗口到上一个工作区 |
 | 上一个工作区 | `Super + Tab` | 工作区向前切换 |
 | 下一个工作区 | `Super + Shift + Tab` | 工作区向后切换 |
 | 最后工作区 | `Super + ~` | 切换到上一个工作区 |
 
+> **注意**: 您在 Cosmic 中禁用了直接的 `Super + 数字` 快捷键，因此在 Hyprland 中也相应禁用。工作区操作使用 `Super + Ctrl + 数字` 和 `Super + Ctrl + Shift + 数字` 的组合键。
+
 #### 🎯 窗口焦点 (FocusDirection)
-| 方向 | 快捷键 | Vim 风格 | 说明 |
-|------|--------|----------|------|
-| 左 | `Super + ←` | `Super + H` | 焦点向左移动 |
-| 右 | `Super + →` | `Super + L` | 焦点向右移动 |
-| 上 | `Super + ↑` | `Super + K` | 焦点向上移动 |
-| 下 | `Super + ↓` | `Super + J` | 焦点向下移动 |
-| 输出切换 | `Super + O` | - | 多显示器焦点切换 |
+| 方向 | 快捷键 | 说明 |
+|------|--------|------|
+| 左 | `Super + ←` | 焦点向左移动 |
+| 右 | `Super + →` | 焦点向右移动 |
+| 上 | `Super + ↑` | 焦点向上移动 |
+| 下 | `Super + ↓` | 焦点向下移动 |
+| 输出切换 | `Super + O` | 多显示器焦点切换 |
+
+> **注意**: Vim 风格导航 (`Super + H/J/K/L`) 在您的 Cosmic 配置中未设置，因此在 Hyprland 中也已禁用以保持一致性。
 
 #### 🔄 窗口移动
-| 方向 | 快捷键 | Vim 风格 | 说明 |
-|------|--------|----------|------|
-| 左 | `Super + Shift + ←` | `Super + Shift + H` | 窗口向左移动 |
-| 右 | `Super + Shift + →` | `Super + Shift + L` | 窗口向右移动 |
-| 上 | `Super + Shift + ↑` | `Super + Shift + K` | 窗口向上移动 |
-| 下 | `Super + Shift + ↓` | `Super + Shift + J` | 窗口向下移动 |
+| 方向 | 快捷键 | 说明 |
+|------|--------|------|
+| 左 | `Super + Shift + ←` | 窗口向左移动 |
+| 右 | `Super + Shift + →` | 窗口向右移动 |
+| 上 | `Super + Shift + ↑` | 窗口向上移动 |
+| 下 | `Super + Shift + ↓` | 窗口向下移动 |
+
+> **注意**: Vim 风格窗口移动 (`Super + Shift + H/J/K/L`) 在您的 Cosmic 配置中未设置，因此在 Hyprland 中也已禁用。
 
 #### 📸 截图功能 (SystemAction::Screenshot)
 | 功能 | 快捷键 | 说明 |
@@ -130,10 +161,10 @@
 - `Super + H/J/K/L` - Vim 风格焦点移动
 - `Super + O` - 切换显示器焦点
 
-#### 📱 工作区切换 (基于 Cosmic)
+#### 📱 工作区切换 (基于您的实际 Cosmic 配置)
 - `Super + Ctrl + 1-9` - 切换到工作区 1-9
 - `Super + Ctrl + Shift + 1-8` - 移动窗口到工作区 1-8
-- `Super + Ctrl + Shift + 9` - 移动到上一个工作区
+- `Super + Ctrl + Shift + 9` - 移动窗口到上一个工作区
 
 #### 📸 截图
 - `Print` - 区域截图并复制
