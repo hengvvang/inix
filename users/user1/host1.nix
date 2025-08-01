@@ -16,6 +16,10 @@
           enable = false;
           method = "external";
         };
+        niri = {
+          enable = false;
+          method = "external";
+        };
       };
 
       pkgs = {
