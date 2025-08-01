@@ -62,9 +62,6 @@
       # Dunst 配置
       "dunst/dunstrc".source = ./dunst/dunstrc;
       
-      # Rofi 配置
-      "rofi/config.rasi".source = ./rofi/config.rasi;
-      
       # 其他工具配置
       "swappy/config".source = ./swappy/config;
       "wlogout/layout".source = ./wlogout/layout;
@@ -86,6 +83,7 @@
       rofi = {
         enable = true;
         package = pkgs.rofi-wayland;
+        theme = ./rofi/config.rasi;
       };
     };
 
