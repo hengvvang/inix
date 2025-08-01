@@ -2,49 +2,21 @@
    Waybar 样式配置 - Catppuccin Mocha 主题
    ======================================== */
 
-/* 颜色定义 */
-@define-color rosewater #f5e0dc;
-@define-color flamingo #f2cdcd;
-@define-color pink #f5c2e7;
-@define-color mauve #cba6f7;
-@define-color red #f38ba8;
-@define-color maroon #eba0ac;
-@define-color peach #fab387;
-@define-color yellow #f9e2af;
-@define-color green #a6e3a1;
-@define-color teal #94e2d5;
-@define-color sky #89dceb;
-@define-color sapphire #74c7ec;
-@define-color blue #89b4fa;
-@define-color lavender #b4befe;
-@define-color text #cdd6f4;
-@define-color subtext1 #bac2de;
-@define-color subtext0 #a6adc8;
-@define-color overlay2 #9399b2;
-@define-color overlay1 #7f849c;
-@define-color overlay0 #6c7086;
-@define-color surface2 #585b70;
-@define-color surface1 #45475a;
-@define-color surface0 #313244;
-@define-color base #1e1e2e;
-@define-color mantle #181825;
-@define-color crust #11111b;
-
 /* 全局样式 */
 * {
     font-family: "JetBrains Mono Nerd Font", sans-serif;
     font-size: 14px;
     font-weight: 500;
-    color: @text;
+    color: #cdd6f4;
     min-height: 0;
 }
 
 /* 主容器 */
 window#waybar {
-    background-color: alpha(@base, 0.95);
-    border: 2px solid @mauve;
+    background-color: rgba(30, 30, 46, 0.95);
+    border: 2px solid #cba6f7;
     border-radius: 12px;
-    color: @text;
+    color: #cdd6f4;
     transition-property: background-color;
     transition-duration: 0.3s;
 }
@@ -55,7 +27,7 @@ window#waybar.hidden {
 
 /* 工作区 */
 #workspaces {
-    background-color: @surface0;
+    background-color: #313244;
     border-radius: 8px;
     margin: 4px 8px;
     padding: 2px;
@@ -65,7 +37,7 @@ window#waybar.hidden {
     padding: 4px 8px;
     margin: 2px;
     background-color: transparent;
-    color: @overlay2;
+    color: #9399b2;
     border: none;
     border-radius: 6px;
     min-width: 30px;
@@ -73,51 +45,51 @@ window#waybar.hidden {
 }
 
 #workspaces button:hover {
-    background-color: @surface1;
-    color: @text;
+    background-color: #45475a;
+    color: #cdd6f4;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #workspaces button.active {
-    background-color: @blue;
-    color: @base;
+    background-color: #89b4fa;
+    color: #1e1e2e;
     font-weight: bold;
 }
 
 #workspaces button.urgent {
-    background-color: @red;
-    color: @base;
+    background-color: #f38ba8;
+    color: #1e1e2e;
     animation: blink 0.5s linear infinite alternate;
 }
 
 /* 窗口标题 */
 #window {
-    background-color: @surface0;
+    background-color: #313244;
     border-radius: 8px;
     margin: 4px 8px;
     padding: 6px 12px;
-    color: @text;
+    color: #cdd6f4;
     font-weight: 600;
 }
 
 /* 时钟 */
 #clock {
-    background-color: @surface0;
+    background-color: #313244;
     border-radius: 8px;
     margin: 4px 8px;
     padding: 6px 12px;
-    color: @yellow;
+    color: #f9e2af;
     font-weight: 600;
 }
 
 #clock:hover {
-    background-color: @surface1;
-    color: @peach;
+    background-color: #45475a;
+    color: #fab387;
 }
 
 /* 托盘 */
 #tray {
-    background-color: @surface0;
+    background-color: #313244;
     border-radius: 8px;
     margin: 4px 8px;
     padding: 4px 8px;
@@ -129,117 +101,116 @@ window#waybar.hidden {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: @red;
+    background-color: #f38ba8;
 }
 
 /* 空闲抑制器 */
 #idle_inhibitor {
-    background-color: @surface0;
+    background-color: #313244;
     border-radius: 8px;
     margin: 4px 2px;
     padding: 6px 10px;
-    color: @lavender;
+    color: #b4befe;
     transition: all 0.3s;
 }
 
 #idle_inhibitor.activated {
-    background-color: @yellow;
-    color: @base;
+    background-color: #f9e2af;
+    color: #1e1e2e;
 }
 
 /* 网络 */
 #network {
-    background-color: @surface0;
+    background-color: #313244;
     border-radius: 8px;
     margin: 4px 2px;
     padding: 6px 10px;
-    color: @green;
+    color: #a6e3a1;
 }
 
 #network.disconnected {
-    color: @red;
+    color: #f38ba8;
 }
 
 #network.wifi {
-    color: @sky;
+    color: #89dceb;
 }
 
 #network.ethernet {
-    color: @green;
+    color: #a6e3a1;
 }
 
 /* 蓝牙 */
 #bluetooth {
-    background-color: @surface0;
+    background-color: #313244;
     border-radius: 8px;
     margin: 4px 2px;
     padding: 6px 10px;
-    color: @blue;
+    color: #89b4fa;
 }
 
 #bluetooth.disabled {
-    color: @overlay0;
+    color: #6c7086;
 }
 
 #bluetooth.off {
-    color: @red;
+    color: #f38ba8;
 }
 
 /* 音频 */
 #pulseaudio {
-    background-color: @surface0;
+    background-color: #313244;
     border-radius: 8px;
     margin: 4px 2px;
     padding: 6px 10px;
-    color: @mauve;
+    color: #cba6f7;
 }
 
 #pulseaudio.muted {
-    color: @red;
+    color: #f38ba8;
 }
 
 #pulseaudio.bluetooth {
-    color: @blue;
+    color: #89b4fa;
 }
 
 /* 电池 */
 #battery {
-    background-color: @surface0;
+    background-color: #313244;
     border-radius: 8px;
     margin: 4px 2px;
     padding: 6px 10px;
-    color: @green;
+    color: #a6e3a1;
 }
 
 #battery.charging {
-    color: @yellow;
+    color: #f9e2af;
     animation: charging 1s linear infinite alternate;
 }
 
 #battery.warning:not(.charging) {
-    color: @peach;
+    color: #fab387;
 }
 
 #battery.critical:not(.charging) {
-    color: @red;
+    color: #f38ba8;
     animation: blink 0.5s linear infinite alternate;
 }
 
 /* 电源菜单 */
 #custom-power {
-    background-color: @surface0;
+    background-color: #313244;
     border-radius: 8px;
     margin: 4px 8px;
     padding: 6px 10px;
-    color: @red;
+    color: #f38ba8;
     font-size: 16px;
     transition: all 0.3s;
 }
 
 #custom-power:hover {
-    background-color: @red;
-    color: @base;
-    transform: scale(1.05);
+    background-color: #f38ba8;
+    color: #1e1e2e;
 }
 
 /* 动画 */
@@ -257,13 +228,13 @@ window#waybar.hidden {
 
 /* 工具提示 */
 tooltip {
-    background-color: @surface0;
-    border: 1px solid @surface2;
+    background-color: #313244;
+    border: 1px solid #585b70;
     border-radius: 8px;
-    color: @text;
+    color: #cdd6f4;
     font-size: 12px;
 }
 
 tooltip label {
-    color: @text;
+    color: #cdd6f4;
 }
