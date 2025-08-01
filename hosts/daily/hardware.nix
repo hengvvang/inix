@@ -1,19 +1,15 @@
-# your hardware-configuration.nix
-# if you use disko : please configure the corresponding configuration in disko :
-# ```
-# fileSystems."/" =
-#   { device = "/dev/disk/by-uuid/7b48b3c8-91aa-49ed-9f93-9619d77948fa";
-#     fsType = "btrfs";
-#     options = [ "subvol=@" ];
-#   };
+# Hardware configuration for daily host (macOS)
+{ config, lib, pkgs, ... }:
 
-# fileSystems."/boot" =
-#   { device = "/dev/disk/by-uuid/38ED-9FE2";
-#     fsType = "vfat";
-#     options = [ "fmask=0077" "dmask=0077" ];
-#   };
+{
+  # macOS系统配置
+  # 注意：macOS下不需要文件系统配置
 
-# swapDevices =
-#   [ { device = "/dev/disk/by-uuid/4038dac9-ff87-432c-9589-0baf46d575e5"; }
-#   ];
-# ```
+  # 网络配置
+  networking.computerName = "daily";
+  networking.hostName = "daily";
+  networking.localHostName = "daily";
+
+  # CPU 架构
+  nixpkgs.hostPlatform = lib.mkDefault "aarch64-darwin";
+}

@@ -4,42 +4,31 @@
   imports = [
     ./hardware.nix
     ./system.nix
-    ./disk.nix  # if you use disko
-    outputs.system  # 通过 outputs 导入系统模块  即 ../../system
+    # outputs.system  # macOS 不需要 NixOS 系统模块
   ];
 
-  # Bootloader配置
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
+  # macOS 系统配置
   nixpkgs.config.allowUnfree = true;
-  system.stateVersion = "25.05";
+  system.stateVersion = 4;  # macOS 使用数字版本
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     trusted-users = [ "hengvvang" "zlritsu" ];
   };
 
-  # 启用 fish shell 程序
+  # 启用 fish shell 程序 (macOS 方式)
   programs.fish.enable = true;
-  # 用户配置
+  
+  # macOS 用户配置
   users.users.hengvvang = {
-    isNormalUser = true;
-    description = "hengvvang";
-    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" ];
-    packages = with pkgs; [
-      # 用户特定的包可以在这里定义
-    ];
+    name = "hengvvang";
+    home = "/Users/hengvvang";
     shell = pkgs.fish;
   };
 
   users.users.zlritsu = {
-    isNormalUser = true;
-    description = "zlritsu";
-    extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" ];
-    packages = with pkgs; [
-      # 用户特定的包可以在这里定义
-    ];
+    name = "zlritsu";
+    home = "/Users/zlritsu";
     shell = pkgs.fish;
   };
 }

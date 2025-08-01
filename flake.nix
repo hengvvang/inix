@@ -52,7 +52,7 @@
   outputs = { self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, ... } @ inputs:
     let
       inherit (self) outputs;
-      lib = nixpkgs.lib // home-manager.lib;
+      lib = nixpkgs.lib // home-manager.lib // nix-darwin.lib;
       mylib = import ./lib {
         inherit inputs;
       };
@@ -132,7 +132,7 @@
       };
       
       darwinConfigurations = {
-        daily = nix-darwin.lib.darwinSystem {
+        daily = lib.darwinSystem {
           modules = [
             ./hosts/daily
             {
