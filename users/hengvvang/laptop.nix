@@ -6,10 +6,16 @@
     myHome = {
 
       desktop = {
-        enable = false;
-        gnome.enable = false;
-        gnome.themes.enable = false;
-        gnome.icons.enable = false;
+        enable = true;
+        gnome = {
+          enable = false;
+          themes.enable = false;
+          icons.enable = false;
+        };
+        hyprland = {
+          enable = true;
+          method = "external";
+        };
       };
 
       pkgs = {

@@ -18,7 +18,7 @@
 
   imports = [
     # ./homemanager
-    ./direct
-    # ./external
+    # ./direct
+    ./external
   ];
 }

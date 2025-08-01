@@ -9,7 +9,7 @@
         # ./cosmic
         ./gnome
         # ./kde
-        # ./hyprland
+        ./hyprland
         # ./niri
     ];
 }
