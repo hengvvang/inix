@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, ... }:
+{ config, pkgs, lib, inputs, outputs, userVars, ... }:
 
 {
   imports = [
@@ -23,9 +23,16 @@
         "libsoup-2.74.3"
       ];
     };
-    home.username = "hengvvang";
-    home.homeDirectory = "/home/hengvvang";
+    home.username = userVars.userName.hengvvang;
+    home.homeDirectory = "/home/${userVars.userName.hengvvang}";
     home.stateVersion = "25.05";
     programs.home-manager.enable = true;
+    
+    # Git 配置
+    programs.git = {
+      enable = true;
+      userName = userVars.userName.hengvvang;
+      userEmail = "${userVars.userName.hengvvang}@example.com";
+    };
   };
 }

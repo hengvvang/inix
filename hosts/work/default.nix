@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
+{ config, lib, pkgs, inputs, outputs, userVars, systemVars, ... }:
 
 {
   imports = [
@@ -17,16 +17,16 @@
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "hengvvang" "zlritsu" ];
+    trusted-users = [ userVars.userName.hengvvang userVars.userName.zlritsu ];
   };
 
   # 启用 fish shell 程序
   programs.fish.enable = true;
 
   # 用户配置 - 工作环境限制权限
-  users.users.hengvvang = {
+  users.users.${userVars.userName.hengvvang} = {
     isNormalUser = true;
-    description = "hengvvang";
+    description = userVars.userName.hengvvang;
     extraGroups = [ "networkmanager" "wheel" ];  # 工作环境移除 docker 组
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
@@ -34,9 +34,9 @@
     shell = pkgs.fish;
   };
 
-  users.users.zlritsu = {
+  users.users.${userVars.userName.zlritsu} = {
     isNormalUser = true;
-    description = "zlritsu";
+    description = userVars.userName.zlritsu;
     extraGroups = [ "networkmanager" "wheel" ];  # 工作环境移除 docker 组
     packages = with pkgs; [
       # 用户特定的包可以在这里定义

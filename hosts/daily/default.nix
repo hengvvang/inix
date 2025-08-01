@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
+{ config, lib, pkgs, inputs, outputs, userVars, systemVars, ... }:
 
 {
   imports = [
@@ -13,22 +13,22 @@
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "hengvvang" "zlritsu" ];
+    trusted-users = [ userVars.userName.hengvvang userVars.userName.zlritsu ];
   };
 
   # 启用 fish shell 程序 (macOS 方式)
   programs.fish.enable = true;
   
   # macOS 用户配置
-  users.users.hengvvang = {
-    name = "hengvvang";
-    home = "/Users/hengvvang";
+  users.users.${userVars.userName.hengvvang} = {
+    name = userVars.userName.hengvvang;
+    home = "/Users/${userVars.userName.hengvvang}";
     shell = pkgs.fish;
   };
 
-  users.users.zlritsu = {
-    name = "zlritsu";
-    home = "/Users/zlritsu";
+  users.users.${userVars.userName.zlritsu} = {
+    name = userVars.userName.zlritsu;
+    home = "/Users/${userVars.userName.zlritsu}";
     shell = pkgs.fish;
   };
 }

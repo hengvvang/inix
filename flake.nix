@@ -58,6 +58,25 @@
       };
       inherit (mylib) supportedSystems pkgsForSystem forEachSystem;
       
+      # 简化的用户变量配置
+      userVars = {
+        # 只定义用户名映射
+        userName = {
+          hengvvang = "hengvvang";
+          zlritsu = "zlritsu";
+        };
+      };
+      
+      # 系统变量配置
+      systemVars = {
+        # 主机名映射
+        hostName = {
+          laptop = "laptop";
+          work = "work";
+          daily = "daily";
+        };
+      };
+      
       makeCommonHomeModules = arch: [
         {
           home.packages = [ 
@@ -75,7 +94,7 @@
           }
         ] ++ (makeCommonHomeModules arch);
         extraSpecialArgs = {
-          inherit inputs outputs;
+          inherit inputs outputs userVars;
         };
       };
       
@@ -83,6 +102,7 @@
       # 导出模块和工具
       inherit lib;
       mylib = mylib;
+      inherit userVars systemVars;
       system = import ./system;
       home = import ./home;
       
@@ -103,7 +123,7 @@
       formatter = forEachSystem (pkgs: pkgs.alejandra);
       
       nixosConfigurations = {
-        laptop = lib.nixosSystem {
+        ${systemVars.hostName.laptop} = lib.nixosSystem {
           modules = [
             ./hosts/laptop
             {
@@ -113,11 +133,11 @@
             }
           ];
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs outputs userVars systemVars;
           };
         };
         
-        work = lib.nixosSystem {
+        ${systemVars.hostName.work} = lib.nixosSystem {
           modules = [
             ./hosts/work
             {
@@ -127,13 +147,13 @@
             }
           ];
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs outputs userVars systemVars;
           };
         };
       };
       
       darwinConfigurations = {
-        daily = lib.darwinSystem {
+        ${systemVars.hostName.daily} = lib.darwinSystem {
           modules = [
             ./hosts/daily
             {
@@ -143,23 +163,23 @@
             }
           ];
           specialArgs = {
-            inherit inputs outputs;
+            inherit inputs outputs userVars systemVars;
           };
         };
       };
       
       homeConfigurations = {
         # laptop主机上的用户配置 (x86_64-linux)
-        "hengvvang@laptop" = makeHomeConfig "x86_64-linux" ./users/hengvvang "laptop";
-        "zlritsu@laptop" = makeHomeConfig "x86_64-linux" ./users/zlritsu "laptop";
+        "${userVars.userName.hengvvang}@${systemVars.hostName.laptop}" = makeHomeConfig "x86_64-linux" (./users + "/${userVars.userName.hengvvang}") systemVars.hostName.laptop;
+        "${userVars.userName.zlritsu}@${systemVars.hostName.laptop}" = makeHomeConfig "x86_64-linux" (./users + "/${userVars.userName.zlritsu}") systemVars.hostName.laptop;
         
         # daily主机上的用户配置 (aarch64-darwin)
-        "hengvvang@daily" = makeHomeConfig "aarch64-darwin" ./users/hengvvang "daily";
-        "zlritsu@daily" = makeHomeConfig "aarch64-darwin" ./users/zlritsu "daily";
+        "${userVars.userName.hengvvang}@${systemVars.hostName.daily}" = makeHomeConfig "aarch64-darwin" (./users + "/${userVars.userName.hengvvang}") systemVars.hostName.daily;
+        "${userVars.userName.zlritsu}@${systemVars.hostName.daily}" = makeHomeConfig "aarch64-darwin" (./users + "/${userVars.userName.zlritsu}") systemVars.hostName.daily;
         
         # work主机上的用户配置 (aarch64-linux)
-        "hengvvang@work" = makeHomeConfig "aarch64-linux" ./users/hengvvang "work";
-        "zlritsu@work" = makeHomeConfig "aarch64-linux" ./users/zlritsu "work";
+        "${userVars.userName.hengvvang}@${systemVars.hostName.work}" = makeHomeConfig "aarch64-linux" (./users + "/${userVars.userName.hengvvang}") systemVars.hostName.work;
+        "${userVars.userName.zlritsu}@${systemVars.hostName.work}" = makeHomeConfig "aarch64-linux" (./users + "/${userVars.userName.zlritsu}") systemVars.hostName.work;
       };
     };
 }
