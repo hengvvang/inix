@@ -1,4 +1,4 @@
-m{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.niri.enable && config.myHome.desktop.niri.method == "external") {
@@ -83,6 +83,10 @@ m{ config, lib, pkgs, ... }:
       };
       "niri/scripts/check-components.sh" = {
         source = ./scripts/check-components.sh;
+        executable = true;
+      };
+      "niri/scripts/media.sh" = {
+        source = ./scripts/media.sh;
         executable = true;
       };
     };

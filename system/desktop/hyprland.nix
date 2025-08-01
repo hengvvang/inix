@@ -68,46 +68,13 @@
         };
 
         # ========== 系统级软件包 ==========
-        # Hyprland 生态系统核心工具和必需软件
+        # 仅包含 Hyprland 桌面环境运行所需的最基本包
         environment.systemPackages = with pkgs; [
-            # ===== Hyprland 核心工具 =====
-            pyprland          # Python 插件系统，扩展 Hyprland 功能
-            hyprpicker        # 颜色选择器工具
-            hyprcursor        # 光标主题管理器
-            hyprlock          # 屏幕锁定程序
-            hypridle          # 空闲管理守护进程
-            hyprpaper         # 壁纸管理器
-
-            # ===== 终端模拟器 =====
-            kitty             # 现代 GPU 加速终端，支持图像和 Unicode
-
-            # ===== 应用启动器和菜单 =====
-            wofi              # Wayland 兼容的应用启动器和菜单
-            rofi-wayland      # Rofi 的 Wayland 移植版
-
-            # ===== 状态栏和面板 =====
-            waybar            # 高度可定制的 Wayland 状态栏
-
-            # ===== 系统设置和主题 =====
-            nwg-look          # GTK 主题设置工具，用于 Wayland
-            adwaita-icon-theme # GNOME 图标主题
+            # ===== Hyprland 核心 =====
+            hyprland          # Hyprland 窗口管理器（必需）
             
-            
-            # ===== 多媒体工具 =====
-            grim              # Wayland 截图工具
-            slurp             # 区域选择工具，配合 grim 使用
-            wl-clipboard      # Wayland 剪贴板工具
-
-            # ===== 文件管理器 =====
-            nautilus          # GNOME 文件管理器，Wayland 原生支持
-
-            # ===== 通知系统 =====
-            mako              # 轻量级 Wayland 通知守护进程
-            libnotify         # 发送桌面通知的库
-
-            # ===== 电源管理 =====
-            brightnessctl     # 屏幕亮度控制工具
-            
+            # ===== 基础 Wayland 工具 =====
+            xdg-utils         # XDG 规范工具（必需）
         ];
 
         # ========== 显示管理器配置 ==========

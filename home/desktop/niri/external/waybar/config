@@ -1,14 +1,18 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 36,
-    "spacing": 4,
+    "height": 42,
+    "spacing": 8,
     "exclusive": true,
     "passthrough": false,
     "gtk-layer-shell": true,
+    "margin-top": 8,
+    "margin-left": 12,
+    "margin-right": 12,
     
     "modules-left": [
-        "niri/workspaces",
+        "custom/launcher",
+        "niri/workspaces", 
         "niri/window"
     ],
     
@@ -17,29 +21,38 @@
     ],
     
     "modules-right": [
+        "custom/media",
         "pulseaudio",
-        "network",
+        "network", 
         "bluetooth",
         "battery",
         "backlight",
         "tray",
+        "custom/notification",
         "custom/power"
     ],
+
+    "custom/launcher": {
+        "format": "",
+        "tooltip": "应用启动器",
+        "on-click": "fuzzel",
+        "on-click-right": "niri msg action do-screen-transition"
+    },
     
     "niri/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "1": "一",
-            "2": "二", 
-            "3": "三",
-            "4": "四",
-            "5": "五",
-            "6": "六",
-            "7": "七",
-            "8": "八",
-            "9": "九",
-            "10": "十",
-            "default": "●"
+            "1": "",
+            "2": "",
+            "3": "", 
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "",
+            "9": "",
+            "10": "",
+            "default": ""
         },
         "on-click": "activate",
         "sort-by-number": true,
@@ -49,33 +62,70 @@
             "3": [],
             "4": [],
             "5": []
-        }
+        },
+        "disable-scroll": false,
+        "smooth-scrolling-threshold": 1
     },
     
     "niri/window": {
         "format": "{}",
-        "max-length": 50,
+        "max-length": 45,
+        "separate-outputs": true,
         "rewrite": {
-            "(.*) — Mozilla Firefox": "🌐 $1",
-            "(.*) - Visual Studio Code": "💻 $1",
-            "(.*) - vim": "📝 $1",
-            "Alacritty": "🖥️ 终端"
+            "(.*) — Mozilla Firefox": " $1",
+            "(.*) - Visual Studio Code": " $1", 
+            "(.*) - NVIM": " $1",
+            "(.*) - nvim": " $1",
+            "Spotify": " Spotify",
+            "Alacritty": " 终端",
+            "kitty": " 终端",
+            "Discord": " Discord",
+            "Telegram": " Telegram"
         }
     },
     
     "clock": {
         "timezone": "Asia/Shanghai",
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "format-alt": "{:%Y-%m-%d %A}",
         "tooltip-format": "<big>{:%Y年 %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%Y-%m-%d %H:%M}",
-        "format-alt": "{:%A, %B %d, %Y (%R)}"
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos": "right",
+            "on-scroll": 1,
+            "format": {
+                "months": "<span color='#ffead3'><b>{}</b></span>",
+                "days": "<span color='#ecc94b'><b>{}</b></span>",
+                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎵"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/niri/scripts/media.sh 2> /dev/null",
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "interval": 2
     },
     
     "pulseaudio": {
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{icon} {volume}%",
+        "format-bluetooth-muted": " 静音",
+        "format-muted": " 静音",
+        "format-source": " {volume}%",
         "format-source-muted": "",
         "format-icons": {
             "headphone": "",
@@ -86,65 +136,93 @@
             "car": "",
             "default": ["", "", ""]
         },
+        "tooltip-format": "音量: {volume}%\n{desc}",
         "on-click": "pavucontrol",
         "on-click-right": "pamixer --toggle-mute",
-        "on-scroll-up": "pamixer -i 5",
-        "on-scroll-down": "pamixer -d 5"
+        "on-scroll-up": "pamixer -i 2",
+        "on-scroll-down": "pamixer -d 2"
     },
     
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "已连接 ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (无 IP) ",
-        "format-disconnected": "断开连接 ⚠",
+        "format-wifi": " {signalStrength}%",
+        "format-ethernet": " 已连接",
+        "tooltip-format": "网络: {ifname}\nIP: {ipaddr}\n网关: {gwaddr}\nSSID: {essid}",
+        "format-linked": " 未配置",
+        "format-disconnected": " 断开",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click-right": "nm-connection-editor"
+        "on-click": "nm-connection-editor",
+        "on-click-right": "nmtui"
     },
     
     "bluetooth": {
-        "format": " {status}",
-        "format-disabled": "",
-        "format-off": "",
+        "format": "",
+        "format-disabled": " 禁用",
+        "format-off": " 关闭",
         "format-on": "",
-        "format-connected": " {device_alias}",
-        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} 已连接",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} 已连接\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-        "on-click": "blueman-manager"
+        "format-connected": " {num_connections}",
+        "format-connected-battery": " {device_battery_percentage}%",
+        "tooltip-format": "蓝牙: {controller_alias}\n地址: {controller_address}\n已连接: {num_connections}",
+        "tooltip-format-connected": "{controller_alias}\n{controller_address}\n\n已连接设备 ({num_connections}):\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "• {device_alias} ({device_address})",
+        "tooltip-format-enumerate-connected-battery": "• {device_alias} ({device_address}) - {device_battery_percentage}%",
+        "on-click": "blueman-manager",
+        "on-click-right": "bluetoothctl power toggle"
     },
     
     "battery": {
         "states": {
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
+        "format": "{icon} {capacity}%",
+        "format-charging": " {capacity}%",
+        "format-plugged": " {capacity}%",
         "format-alt": "{time} {icon}",
         "format-icons": ["", "", "", "", ""],
+        "tooltip-format": "电量: {capacity}%\n{timeTo}\n功率: {power}W",
         "on-click": "gnome-power-statistics"
     },
     
     "backlight": {
         "device": "intel_backlight",
-        "format": "{percent}% {icon}",
+        "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-scroll-up": "brightnessctl set +5%",
-        "on-scroll-down": "brightnessctl set 5%-"
+        "tooltip-format": "亮度: {percent}%",
+        "on-scroll-up": "brightnessctl set +2%",
+        "on-scroll-down": "brightnessctl set 2%-"
     },
     
     "tray": {
-        "icon-size": 21,
-        "spacing": 10
+        "icon-size": 18,
+        "spacing": 8,
+        "reverse-direction": true
+    },
+
+    "custom/notification": {
+        "tooltip": false,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "<span foreground='red'><sup></sup></span>",
+            "none": "",
+            "dnd-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-none": "",
+            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "inhibited-none": "",
+            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
+            "dnd-inhibited-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
     },
     
     "custom/power": {
-        "format": "⏻",
-        "tooltip": "电源选项",
+        "format": "",
+        "tooltip": "电源菜单",
         "on-click": "wlogout",
         "on-click-right": "systemctl poweroff"
     }

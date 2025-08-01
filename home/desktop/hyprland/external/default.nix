@@ -4,44 +4,58 @@
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.hyprland.enable && config.myHome.desktop.hyprland.method == "external") {
 
     # ========== Hyprland 生态系统软件包 ==========
+    # Home Manager 中配置完整的 Hyprland 桌面环境包
     home.packages = with pkgs; [
-      # 核心 Wayland 工具
-      hyprpicker          # 颜色选择器
-      hyprpaper           # 壁纸管理
-      hypridle            # 空闲管理
-      hyprlock            # 屏幕锁定
+      # ===== Hyprland 扩展工具 =====
+      pyprland            # Python 插件系统，扩展 Hyprland 功能
+      hyprpicker          # 颜色选择器工具
+      hyprcursor          # 光标主题管理器
+      hyprlock            # 屏幕锁定程序
+      hypridle            # 空闲管理守护进程
+      hyprpaper           # 壁纸管理器
       
-      # 截图工具
+      # ===== 截图和录屏工具 =====
       grimblast           # 截图工具 (Hyprland 优化版)
       grim                # Wayland 截图工具
       slurp               # 区域选择工具
       swappy              # 截图编辑器
+      wf-recorder          # 录屏工具
       
-      # 剪贴板和工具
+      # ===== 剪贴板和工具 =====
       wl-clipboard        # Wayland 剪贴板
       cliphist            # 剪贴板历史
       
-      # 应用启动器和菜单
+      # ===== 应用启动器和菜单 =====
       rofi-wayland        # 应用启动器
       wofi                # 备用启动器
       wlogout             # 退出菜单
       
-      # 系统控制工具
+      # ===== 系统控制工具 =====
       brightnessctl       # 亮度控制
       pamixer             # 音量控制
       playerctl           # 媒体播放控制
       
-      # 状态栏和通知
+      # ===== 状态栏和通知 =====
       waybar              # 状态栏
       dunst               # 通知守护进程
+      mako                # 备用通知守护进程
+      libnotify           # 发送桌面通知的库
       
-      # 文件管理和桌面
+      # ===== 终端模拟器 =====
+      kitty               # 现代 GPU 加速终端
+      
+      # ===== 文件管理和桌面 =====
       xdg-desktop-portal-hyprland  # Hyprland 桌面门户
-      kdePackages.polkit-kde-agent-1  # 权限认证代理
+      nautilus            # GNOME 文件管理器
       
-      # 网络和蓝牙
-      networkmanagerapplet # 网络管理器托盘
-      blueman             # 蓝牙管理器
+      # ===== 系统设置和主题 =====
+      nwg-look            # GTK 主题设置工具
+      adwaita-icon-theme  # GNOME 图标主题
+      
+      # 注意：以下包由系统级配置提供，避免重复安装：
+      # - networkmanagerapplet (已在 system/services/network/manager/networkmanager.nix 中配置)
+      # - blueman (已在 system/services/drivers/bluetooth/bluetooth.nix 中配置)
+      # - polkit-kde-agent-1 (系统级 polkit 已启用，权限认证由系统处理)
     ];
 
     # ========== XDG 配置目录文件 ==========
