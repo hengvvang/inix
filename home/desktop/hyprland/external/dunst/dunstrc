@@ -9,9 +9,9 @@
     
     # 通知几何
     width = (200, 400)
-    height = 300
+    height = (0, 300)
     origin = top-right
-    offset = 10x10
+    offset = (10, 10)
     scale = 0
     notification_limit = 3
     
