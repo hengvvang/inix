@@ -1,6 +1,14 @@
 // Niri 配置文件
 // 基于 KDL 格式，实时重载
 
+// ========== 启动时自动运行的程序 ==========
+spawn-at-startup "waybar"                                    // 状态栏
+spawn-at-startup "dunst"                                     // 通知守护进程
+spawn-at-startup "nm-applet"                                 // 网络管理器托盘
+spawn-at-startup "blueman-applet"                            // 蓝牙管理器托盘
+spawn-at-startup "/run/current-system/sw/bin/polkit-kde-authentication-agent-1"  // 权限认证代理
+spawn-at-startup "xwayland-satellite"                        // X11 应用支持
+
 // ========== 输入设备配置 ==========
 input {
     // 键盘配置
@@ -165,7 +173,7 @@ binds {
     // Mod (Super/Windows 键)
     
     // ===== 应用程序启动 =====
-    "Mod+T" { spawn "alacritty"; }
+    "Mod+T" { spawn "ghostty"; }
     "Mod+D" { spawn "fuzzel"; }
     "Mod+E" { spawn "nautilus"; }
     "Mod+B" { spawn "firefox"; }

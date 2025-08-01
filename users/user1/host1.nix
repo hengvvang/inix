@@ -6,7 +6,7 @@
     myHome = {
 
       desktop = {
-        enable = false;
+        enable = true;
         gnome = {
           enable = false;
           themes.enable = false;
@@ -17,7 +17,7 @@
           method = "external";
         };
         niri = {
-          enable = false;
+          enable = true;
           method = "external";
         };
       };
