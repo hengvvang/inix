@@ -89,5 +89,6 @@
         source = ./scripts/check-components.sh;
         executable = true;
       };
+    };
   };
 }
