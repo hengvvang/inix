@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.hyprland.enable && config.myHome.desktop.hyprland.method == "external") {
+  config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.method == "external") {
 
     # ========== Hyprland 生态系统软件包 ==========
     # Home Manager 中配置完整的 Hyprland 桌面环境包

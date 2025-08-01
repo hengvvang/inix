@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.niri.enable && config.myHome.desktop.niri.method == "external") {
+  config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.method == "external") {
 
     # ========== Niri 生态系统软件包 ==========
     # Home Manager 中配置完整的 Niri 桌面环境包

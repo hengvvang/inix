@@ -2,8 +2,6 @@
 
 {
   options.myHome.desktop.hyprland = {
-    enable = lib.mkEnableOption "Hyprland 配置";
-
     method = lib.mkOption {
       type = lib.types.enum [ "homemanager" "direct" "external" ];
       default = "homemanager";

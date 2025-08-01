@@ -2,8 +2,6 @@
 
 {
   options.myHome.desktop.niri = {
-    enable = lib.mkEnableOption "Niri 配置";
-
     method = lib.mkOption {
       type = lib.types.enum [ "homemanager" "direct" "external" ];
       default = "external";

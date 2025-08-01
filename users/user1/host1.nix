@@ -6,20 +6,8 @@
     myHome = {
 
       desktop = {
-        enable = true;
-        gnome = {
-          enable = false;
-          themes.enable = false;
-          icons.enable = false;
-        };
-        hyprland = {
-          enable = false;
-          method = "external";
-        };
-        niri = {
-          enable = true;
-          method = "external";
-        };
+        enable = false;
+        # preset = "gnome";  # 可选值: "gnome", "kde", "cosmic", "hyprland", "niri"
       };
 
       pkgs = {
