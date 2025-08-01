@@ -13,7 +13,7 @@
     # 桌面环境配置
     desktop = {
       enable = true;                   # 启用桌面环境模块
-      preset = "plasma";               # 使用 KDE Plasma 桌面环境
+      preset = "kde";                  # 使用 KDE 桌面环境
     };
     
     # 本地化配置
