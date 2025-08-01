@@ -6,14 +6,14 @@
     myHome = {
 
       desktop = {
-        enable = true;
+        enable = false;
         gnome = {
           enable = false;
           themes.enable = false;
           icons.enable = false;
         };
         hyprland = {
-          enable = true;
+          enable = false;
           method = "external";
         };
       };
