@@ -110,6 +110,14 @@
             
         ];
 
+        # ========== 显示管理器配置 ==========
+        # 使用 GDM 作为显示管理器启动 Hyprland 会话
+        services.xserver.enable = true;
+        services.displayManager.gdm = {
+            enable = true;
+            wayland = true;           # 启用 Wayland 支持
+        };
+
         # ========== 系统服务配置 ==========
         # 启用必要的系统服务支持 Hyprland 桌面环境
 
