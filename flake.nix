@@ -163,16 +163,16 @@
       
       homeConfigurations = {
         # laptop主机上的用户配置 (x86_64-linux)
-        "${users.user1}@${hosts.host1}" = makeHomeConfig "x86_64-linux" (./users + "/${users.user1}") hosts.host1;
-        "${users.user2}@${hosts.host1}" = makeHomeConfig "x86_64-linux" (./users + "/${users.user2}") hosts.host1;
+        "${users.user1}@${hosts.host1}" = makeHomeConfig "x86_64-linux" ./users/user1 hosts.host1;
+        "${users.user2}@${hosts.host1}" = makeHomeConfig "x86_64-linux" ./users/user2 hosts.host1;
         
         # daily主机上的用户配置 (aarch64-darwin)
-        "${users.user1}@${hosts.host3}" = makeHomeConfig "aarch64-darwin" (./users + "/${users.user1}") hosts.host3;
-        "${users.user2}@${hosts.host3}" = makeHomeConfig "aarch64-darwin" (./users + "/${users.user2}") hosts.host3;
+        "${users.user1}@${hosts.host3}" = makeHomeConfig "aarch64-darwin" ./users/user1 hosts.host3;
+        "${users.user2}@${hosts.host3}" = makeHomeConfig "aarch64-darwin" ./users/user2 hosts.host3;
         
         # work主机上的用户配置 (aarch64-linux)
-        "${users.user1}@${hosts.host2}" = makeHomeConfig "aarch64-linux" (./users + "/${users.user1}") hosts.host2;
-        "${users.user2}@${hosts.host2}" = makeHomeConfig "aarch64-linux" (./users + "/${users.user2}") hosts.host2;
+        "${users.user1}@${hosts.host2}" = makeHomeConfig "aarch64-linux" ./users/user1 hosts.host2;
+        "${users.user2}@${hosts.host2}" = makeHomeConfig "aarch64-linux" ./users/user2 hosts.host2;
       };
     };
 }
