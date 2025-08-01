@@ -1,0 +1,195 @@
+/* Waybar 样式表 - Niri 桌面环境 */
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Source Code Pro", "JetBrains Mono", monospace;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(43, 48, 59, 0.9);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* 左侧模块 */
+#custom-logo {
+    background-color: #7c3aed;
+    color: #ffffff;
+    padding: 0 15px;
+    margin: 0 5px 0 0;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+#workspaces {
+    margin: 0 5px;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    background-color: transparent;
+    color: #ffffff;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 -3px #ffffff;
+}
+
+#workspaces button.active {
+    background-color: #7c3aed;
+    color: #ffffff;
+    border-bottom: 3px solid #06b6d4;
+}
+
+#workspaces button.focused {
+    background-color: #64748b;
+    border-bottom: 3px solid #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: #eb5a46;
+    border-bottom: 3px solid #ff0000;
+}
+
+/* 中央模块 */
+#window {
+    margin: 0 10px;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+#window.empty {
+    opacity: 0.6;
+}
+
+/* 右侧模块 */
+#mpris,
+#tray,
+#pulseaudio,
+#network,
+#battery,
+#clock {
+    padding: 0 10px;
+    margin: 0 2px;
+    background-color: rgba(68, 77, 94, 0.8);
+    border-radius: 6px;
+}
+
+#clock {
+    background-color: #7c3aed;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+#battery {
+    background-color: #10b981;
+    color: #ffffff;
+}
+
+#battery.charging, #battery.plugged {
+    background-color: #06b6d4;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #ef4444;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#network {
+    background-color: #8b5cf6;
+    color: #ffffff;
+}
+
+#network.disconnected {
+    background-color: #ef4444;
+}
+
+#pulseaudio {
+    background-color: #f59e0b;
+    color: #ffffff;
+}
+
+#pulseaudio.muted {
+    background-color: #6b7280;
+    color: #ffffff;
+}
+
+#mpris {
+    background-color: #06b6d4;
+    color: #ffffff;
+}
+
+#mpris.paused {
+    background-color: #6b7280;
+    opacity: 0.7;
+}
+
+#tray {
+    background-color: rgba(68, 77, 94, 0.8);
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: #eb5a46;
+    border-radius: 6px;
+}
+
+/* 自定义工作区 */
+#custom-workspaces {
+    padding: 0 10px;
+    background-color: #374151;
+    color: #ffffff;
+    border-radius: 6px;
+    margin: 0 5px;
+}
+
+/* 动画效果 */
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* 工具提示 */
+tooltip {
+    border-radius: 6px;
+    background-color: rgba(43, 48, 59, 0.95);
+    color: #ffffff;
+    border: 1px solid rgba(100, 114, 125, 0.5);
+}
+
+tooltip label {
+    color: #ffffff;
+    padding: 5px;
+}
+
+/* 特殊状态样式 */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #clock {
+    margin-right: 0;
+}
