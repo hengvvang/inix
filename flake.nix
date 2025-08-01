@@ -58,23 +58,16 @@
       };
       inherit (mylib) supportedSystems pkgsForSystem forEachSystem;
       
-      # 简化的用户变量配置
-      userVars = {
-        # 只定义用户名映射
-        userName = {
-          hengvvang = "hengvvang";
-          zlritsu = "zlritsu";
-        };
+      # 简化的变量配置 - 去除嵌套命名空间
+      users = {
+        user1 = "hengvvang";
+        user2 = "zlritsu";
       };
       
-      # 系统变量配置
-      systemVars = {
-        # 主机名映射
-        hostName = {
-          laptop = "laptop";
-          work = "work";
-          daily = "daily";
-        };
+      hosts = {
+        host1 = "laptop";
+        host2 = "work";
+        host3 = "daily";
       };
       
       makeCommonHomeModules = arch: [
@@ -94,7 +87,7 @@
           }
         ] ++ (makeCommonHomeModules arch);
         extraSpecialArgs = {
-          inherit inputs outputs userVars;
+          inherit inputs outputs users hosts;
         };
       };
       
@@ -102,7 +95,7 @@
       # 导出模块和工具
       inherit lib;
       mylib = mylib;
-      inherit userVars systemVars;
+      inherit users hosts;
       system = import ./system;
       home = import ./home;
       
@@ -123,7 +116,7 @@
       formatter = forEachSystem (pkgs: pkgs.alejandra);
       
       nixosConfigurations = {
-        ${systemVars.hostName.laptop} = lib.nixosSystem {
+        ${hosts.host1} = lib.nixosSystem {
           modules = [
             ./hosts/laptop
             {
@@ -133,11 +126,11 @@
             }
           ];
           specialArgs = {
-            inherit inputs outputs userVars systemVars;
+            inherit inputs outputs users hosts;
           };
         };
         
-        ${systemVars.hostName.work} = lib.nixosSystem {
+        ${hosts.host2} = lib.nixosSystem {
           modules = [
             ./hosts/work
             {
@@ -147,13 +140,13 @@
             }
           ];
           specialArgs = {
-            inherit inputs outputs userVars systemVars;
+            inherit inputs outputs users hosts;
           };
         };
       };
       
       darwinConfigurations = {
-        ${systemVars.hostName.daily} = lib.darwinSystem {
+        ${hosts.host3} = lib.darwinSystem {
           modules = [
             ./hosts/daily
             {
@@ -163,23 +156,23 @@
             }
           ];
           specialArgs = {
-            inherit inputs outputs userVars systemVars;
+            inherit inputs outputs users hosts;
           };
         };
       };
       
       homeConfigurations = {
         # laptop主机上的用户配置 (x86_64-linux)
-        "${userVars.userName.hengvvang}@${systemVars.hostName.laptop}" = makeHomeConfig "x86_64-linux" (./users + "/${userVars.userName.hengvvang}") systemVars.hostName.laptop;
-        "${userVars.userName.zlritsu}@${systemVars.hostName.laptop}" = makeHomeConfig "x86_64-linux" (./users + "/${userVars.userName.zlritsu}") systemVars.hostName.laptop;
+        "${users.user1}@${hosts.host1}" = makeHomeConfig "x86_64-linux" (./users + "/${users.user1}") hosts.host1;
+        "${users.user2}@${hosts.host1}" = makeHomeConfig "x86_64-linux" (./users + "/${users.user2}") hosts.host1;
         
         # daily主机上的用户配置 (aarch64-darwin)
-        "${userVars.userName.hengvvang}@${systemVars.hostName.daily}" = makeHomeConfig "aarch64-darwin" (./users + "/${userVars.userName.hengvvang}") systemVars.hostName.daily;
-        "${userVars.userName.zlritsu}@${systemVars.hostName.daily}" = makeHomeConfig "aarch64-darwin" (./users + "/${userVars.userName.zlritsu}") systemVars.hostName.daily;
+        "${users.user1}@${hosts.host3}" = makeHomeConfig "aarch64-darwin" (./users + "/${users.user1}") hosts.host3;
+        "${users.user2}@${hosts.host3}" = makeHomeConfig "aarch64-darwin" (./users + "/${users.user2}") hosts.host3;
         
         # work主机上的用户配置 (aarch64-linux)
-        "${userVars.userName.hengvvang}@${systemVars.hostName.work}" = makeHomeConfig "aarch64-linux" (./users + "/${userVars.userName.hengvvang}") systemVars.hostName.work;
-        "${userVars.userName.zlritsu}@${systemVars.hostName.work}" = makeHomeConfig "aarch64-linux" (./users + "/${userVars.userName.zlritsu}") systemVars.hostName.work;
+        "${users.user1}@${hosts.host2}" = makeHomeConfig "aarch64-linux" (./users + "/${users.user1}") hosts.host2;
+        "${users.user2}@${hosts.host2}" = makeHomeConfig "aarch64-linux" (./users + "/${users.user2}") hosts.host2;
       };
     };
 }
