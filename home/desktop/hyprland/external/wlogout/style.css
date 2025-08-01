@@ -1,51 +1,59 @@
-* {
-  background-image: none;
-}
+/* ========================================
+   WLogout 样式配置 - Catppuccin Mocha 主题
+   ======================================== */
 
 window {
-  background-color: rgba(36, 39, 58, 0.7);
+    font-family: "JetBrains Mono Nerd Font";
+    font-size: 14px;
+    color: #cdd6f4; /* text */
+    background-color: rgba(30, 30, 46, 0.95); /* base */
 }
 
 button {
-  margin: 8px;
-  color: #cad3f5;
-  background-color: #363a4f;
-  border-radius: 20px;
-  border-style: solid;
-  border-width: 2px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 25%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    border-style: solid;
+    border-width: 3px;
+    background-color: rgba(49, 50, 68, 0.8); /* surface0 */
+    border-color: rgba(137, 180, 250, 0.8); /* blue */
+    border-radius: 12px;
+    color: #cdd6f4; /* text */
+    margin: 10px;
+    transition: all 0.3s ease-in-out;
 }
 
-button:active,
-button:focus,
 button:hover {
-  color: #8bd5ca;
-  background-color: #24273a;
-  outline-style: none;
+    background-color: rgba(69, 71, 90, 0.9); /* surface1 */
+    border-color: rgba(203, 166, 247, 0.9); /* mauve */
+    transform: scale(1.05);
+}
+
+button:focus {
+    background-color: rgba(88, 91, 112, 0.9); /* surface2 */
+    border-color: rgba(250, 179, 135, 0.9); /* peach */
 }
 
 #lock {
-  background-image: image(url("icons/lock.png"));
+    background-image: url("icons/lock.png");
 }
 
 #logout {
-  background-image: image(url("icons/logout.png"));
+    background-image: url("icons/logout.png");
 }
 
 #suspend {
-  background-image: image(url("icons/suspend.png"));
+    background-image: url("icons/suspend.png");
 }
 
 #hibernate {
-  background-image: image(url("icons/hibernate.png"));
+    background-image: url("icons/hibernate.png");
 }
 
 #shutdown {
-  background-image: image(url("icons/shutdown.png"));
+    background-image: url("icons/shutdown.png");
 }
 
 #reboot {
-  background-image: image(url("icons/reboot.png"));
+    background-image: url("icons/reboot.png");
 }

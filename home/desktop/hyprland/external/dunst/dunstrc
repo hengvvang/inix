@@ -1,26 +1,113 @@
+# ========================================
+# Dunst 通知守护进程配置
+# ========================================
+
 [global]
-frame_color = "#cad3f5"
-separator_color= frame
-font = "JetBrains Mono Regular 11"
-corner_radius = 10
-offset = 5x5
-origin = top-right
-notification_limit = 8
-gap_size = 7
-frame_width = 2
-width = 300
-height = 100
-follow = keyboard
+    # 显示设置
+    monitor = 0
+    follow = mouse
+    
+    # 通知几何
+    width = (200, 400)
+    height = 300
+    origin = top-right
+    offset = 10x10
+    scale = 0
+    notification_limit = 3
+    
+    # 进度条
+    progress_bar = true
+    progress_bar_height = 10
+    progress_bar_frame_width = 1
+    progress_bar_min_width = 150
+    progress_bar_max_width = 300
+    
+    # 分隔符
+    separator_height = 2
+    padding = 8
+    horizontal_padding = 8
+    text_icon_padding = 0
+    frame_width = 2
+    gap_size = 4
+    separator_color = frame
+    sort = yes
+    
+    # 字体设置
+    font = JetBrains Mono Nerd Font 11
+    line_height = 0
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+    
+    # 图标设置
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 48
+    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/
+    
+    # 历史
+    sticky_history = yes
+    history_length = 20
+    
+    # 鼠标操作
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+    
+    # 其他设置
+    title = Dunst
+    class = Dunst
+    corner_radius = 8
+    ignore_dbusclose = false
+    force_xwayland = false
+    force_xinerama = false
+    
+    # Wayland 设置
+    layer = overlay
+    
+    # 实验性功能
+    per_monitor_dpi = false
 
+# 低优先级通知样式
 [urgency_low]
-background = "#24273A"
-foreground = "#CAD3F5"
-
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#313244"
+    timeout = 5
+    
+# 普通通知样式  
 [urgency_normal]
-background = "#24273A"
-foreground = "#CAD3F5"
-
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#89b4fa"
+    timeout = 10
+    
+# 高优先级通知样式
 [urgency_critical]
-background = "#24273A"
-foreground = "#CAD3F5"
-frame_color = "#F5A97F"
+    background = "#1e1e2e"
+    foreground = "#cdd6f4"
+    frame_color = "#f38ba8"
+    timeout = 0
+
+# 自定义通知规则
+[screenshot]
+    appname = "grimblast"
+    urgency = low
+    timeout = 2
+
+[volume]
+    appname = "pamixer"
+    urgency = low
+    timeout = 1
+
+[brightness]
+    appname = "brightnessctl"
+    urgency = low
+    timeout = 1
