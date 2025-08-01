@@ -56,7 +56,7 @@
       mylib = import ./lib {
         inherit inputs;
       };
-      inherit (mylib) architectures pkgsFor forEachSystem;
+      inherit (mylib) supportedSystems pkgsForSystem forEachSystem;
       
       makeCommonHomeModules = arch: [
         {
@@ -67,7 +67,7 @@
       ];
       
       makeHomeConfig = arch: userPath: host: home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsFor.${arch};
+        pkgs = pkgsForSystem.${arch};
         modules = [
           userPath
           {
@@ -82,6 +82,7 @@
     in {
       # 导出模块和工具
       inherit lib;
+      mylib = mylib;
       system = import ./system;
       home = import ./home;
       

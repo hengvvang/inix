@@ -1,9 +1,17 @@
-{ inputs, architectures ? import ./architectures.nix }:
+# Lib 模块入口 - 统一导入和导出所有工具函数
+{ inputs }:
+
 let
-  inherit (inputs) nixpkgs rust-overlay;
-  pkgsFor = import ./pkgsFor.nix { inherit inputs architectures; };
+  utils = import ./utils.nix { inherit inputs; };
 in
 {
-  inherit architectures pkgsFor;
-  forEachSystem = f: nixpkgs.lib.genAttrs architectures (arch: f pkgsFor.${arch});
+  # 重新导出所有工具函数
+  inherit (utils)
+    supportedSystems
+    pkgsForSystem
+    forEachSystem
+    pkgsFor;
+
+  # 向后兼容（可选，如果需要保持旧的名称）
+  architectures = utils.supportedSystems;
 }
