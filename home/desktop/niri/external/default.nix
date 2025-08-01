@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+m{ config, lib, pkgs, ... }:
 
 {
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.niri.enable && config.myHome.desktop.niri.method == "external") {
@@ -88,6 +88,125 @@
       "niri/scripts/check-components.sh" = {
         source = ./scripts/check-components.sh;
         executable = true;
+      };
+    };
+
+    # ========== 系统服务配置 ==========
+    # 根据 Niri 官方文档，使用 systemd 服务管理桌面组件
+    systemd.user.services = {
+      # Waybar 状态栏
+      waybar = {
+        Unit = {
+          Description = "Waybar status bar";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session-pre.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.waybar}/bin/waybar";
+          Restart = "on-failure";
+          RestartSec = "3";
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
+      # Dunst 通知守护进程
+      dunst = {
+        Unit = {
+          Description = "Dunst notification daemon";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session-pre.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.dunst}/bin/dunst";
+          Restart = "on-failure";
+          RestartSec = "3";
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
+      # 网络管理器托盘图标
+      nm-applet = {
+        Unit = {
+          Description = "Network Manager Applet";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session-pre.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
+          Restart = "on-failure";
+          RestartSec = "3";
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
+      # 蓝牙管理器托盘
+      blueman-applet = {
+        Unit = {
+          Description = "Blueman Applet";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session-pre.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.blueman}/bin/blueman-applet";
+          Restart = "on-failure";
+          RestartSec = "3";
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
+      # 权限认证代理
+      polkit-kde-agent = {
+        Unit = {
+          Description = "KDE Polkit Agent";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session-pre.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.kdePackages.polkit-kde-agent-1}/libexec/polkit-kde-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = "3";
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
+      # XWayland-satellite (用于运行 X11 应用)
+      xwayland-satellite = {
+        Unit = {
+          Description = "Xwayland Satellite";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session-pre.target" ];
+          Wants = [ "graphical-session-pre.target" ];
+        };
+        Service = {
+          Type = "notify";
+          NotifyAccess = "all";
+          ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
+          StandardOutput = "journal";
+          Restart = "on-failure";
+          RestartSec = "3";
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
+      # 壁纸服务
+      swaybg = {
+        Unit = {
+          Description = "Sway background";
+          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session-pre.target" ];
+        };
+        Service = {
+          Type = "simple";
+          ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -c '#1e1e2e'";
+          Restart = "on-failure";
+          RestartSec = "3";
+        };
+        Install.WantedBy = [ "graphical-session.target" ];
       };
     };
   };

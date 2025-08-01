@@ -11,6 +11,19 @@
             package = pkgs.niri;              # 使用稳定版本的 Niri
         };
 
+        # ========== 显示管理器配置 ==========
+        # 使用 GDM 作为显示管理器来启动 Niri 会话
+        services.xserver.enable = true;
+        services.displayManager.gdm = {
+            enable = true;
+            wayland = true;                   # 启用 Wayland 支持
+        };
+
+        # ========== 系统服务配置 ==========
+        # 启用必要的系统服务支持 Niri 桌面环境
+        services.dbus.enable = true;         # D-Bus 系统消息总线
+        security.polkit.enable = true;       # PolicyKit 权限管理
+
         # ========== 环境变量配置 ==========
         # 针对 Wayland 环境优化应用程序兼容性
         environment.sessionVariables = {
