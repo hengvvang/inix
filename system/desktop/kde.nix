@@ -1,8 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.mySystem.desktop.enable && config.mySystem.desktop.preset == "plasma") {
-    # ------ Plasma ------
+  config = lib.mkIf (config.mySystem.desktop.enable && config.mySystem.desktop.preset == "kde") {
+    # ------ KDE ------
     services = {
       desktopManager.plasma6.enable = true;
       displayManager.sddm.enable = true;
@@ -17,7 +17,7 @@
     ];
 
     environment.systemPackages = with pkgs; [
-      # ---- kde plasma packages ----
+      # ---- kde packages ----
       kdePackages.discover
       kdePackages.kcalc
       kdePackages.kcharselect
