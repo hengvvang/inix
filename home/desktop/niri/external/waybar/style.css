@@ -1,367 +1,131 @@
-/* ====================================
-   现代化 Waybar 样式 - Niri 桌面环境
-   ================================== */
-
 * {
-    border: none;
-    border-radius: 0;
-    font-family: "JetBrains Mono Nerd Font", "Fira Code Nerd Font", "Source Code Pro", monospace;
-    font-size: 14px;
-    font-weight: 500;
-    min-height: 0;
+  font-family: "CaskaydiaCove Nerd Font", "Font Awesome 6 Free", "Font Awesome 6 Free Solid";
+  font-size: 16px;
+  border-radius: 0;
+  min-height: 0;
+  border: none;
+  font-weight: bold;
 }
 
-/* ================== 主窗口样式 ================== */
-window#waybar {
-    background: linear-gradient(135deg, 
-                rgba(26, 27, 38, 0.95),
-                rgba(30, 32, 45, 0.95));
-    color: #cdd6f4;
-    border-radius: 16px;
-    border: 2px solid rgba(116, 199, 236, 0.3);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+#workspaces{
+  background-color: rgba(24,24,37,1.0);
+  border: none;
+  box-shadow: none;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+#tray{
+  margin: 6px 3px;
+  background-color: rgba(36, 36, 52, 1.0);
+  padding: 6px 12px; /* \u4fdd\u6301\u5185\u90e8\u95f4\u8ddd */
+  border-radius: 6px;
+  border-width: 0px;
 }
 
-/* ================== 模块通用样式 ================== */
-.modules-left,
-.modules-center, 
-.modules-right {
-    background: transparent;
-    margin: 4px 8px;
+#waybar {
+  background-color: #181825;
+  transition-property: background-color;
+  transition-duration: 0.5s;
 }
 
-.modules-left > widget:first-child > #workspaces {
-    margin-left: 0;
+#window,
+#clock,
+#custom-power,
+#custom-reboot,
+#bluetooth,
+#battery,
+#pulseaudio,
+#backlight,
+#custom-temperature,
+#memory,
+#cpu,
+#network,
+#custom-lock{
+  border-radius: 4px;
+  margin: 6px 3px;
+  padding: 6px 12px;
+  background-color: #1e1e2e;
+  color: #181825;
 }
 
-.modules-right > widget:last-child > #custom-power {
-    margin-right: 0;
+#clock {
+  background-color: #89b4fa;
+}
+#custom-power{
+  background-color: #f38ba8;
+}
+#custom-reboot{
+  background-color: #a6e3a1;
+}
+#bluetooth{
+  background-color: #f9e2af;
+}
+#battery{
+  background-color: #cba6f7;
+}
+#pulseaudio{
+  background-color: #89dceb;
+}
+#backlight{
+  background-color: #a6a3a1;
+}
+#custom-temperature{
+  background-color: #74c7ec;
+}
+#memory{
+  background-color: #f7768e;
+}
+#cpu{
+  background-color: #f38ba8;
+}
+#network{
+  background-color: #fab387;
+}
+#custom-lock{
+  background-color: #94e2d5;
+}
+#window{
+  background-color: #74c7ec;
 }
 
-/* ================== 启动器按钮 ================== */
-#custom-launcher {
-    background: linear-gradient(135deg, #f38ba8, #eba0ac);
-    color: #1e1e2e;
-    padding: 0 16px;
-    margin-right: 8px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 4px 12px rgba(243, 139, 168, 0.3);
-    transition: all 0.3s ease;
-}
-
-#custom-launcher:hover {
-    background: linear-gradient(135deg, #eba0ac, #f38ba8);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(243, 139, 168, 0.4);
-}
-
-/* ================== 工作区样式 ================== */
-#workspaces {
-    background: rgba(49, 50, 68, 0.6);
-    border-radius: 12px;
-    margin: 0 8px;
-    padding: 4px;
-    border: 1px solid rgba(116, 199, 236, 0.2);
+#waybar.hidden {
+  opacity: 0.5;
 }
 
 #workspaces button {
-    padding: 6px 12px;
-    margin: 2px;
-    background: transparent;
-    color: #bac2de;
-    border-radius: 8px;
-    border: none;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 14px;
-}
-
-#workspaces button:hover {
-    background: rgba(116, 199, 236, 0.2);
-    color: #74c7ec;
-    transform: scale(1.05);
+  all: initial;
+  /* Remove GTK theme values (waybar #1351) */
+  min-width: 0;
+  /* Fix weird spacing in materia (waybar #450) */
+  box-shadow: inset 0 -3px transparent;
+  /* Use box-shadow instead of border so the text isn't offset */
+  padding: 6px 18px;
+  margin: 6px 3px;
+  border-radius: 4px;
+  background-color: rgba(36, 36, 52, 1.0);
+  color: #cdd6f4;
 }
 
 #workspaces button.active {
-    background: linear-gradient(135deg, #74c7ec, #89b4fa);
-    color: #1e1e2e;
-    font-weight: bold;
-    box-shadow: 0 2px 8px rgba(116, 199, 236, 0.4);
+  color: #1e1e2e;
+  background-color: #cdd6f4;
 }
 
-#workspaces button.urgent {
-    background: linear-gradient(135deg, #f38ba8, #eba0ac);
-    color: #1e1e2e;
-    animation: urgent 1s ease-in-out infinite alternate;
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+  color: #1e1e2e;
+  background-color: #cdd6f4;
 }
 
-@keyframes urgent {
-    from { box-shadow: 0 0 8px rgba(243, 139, 168, 0.5); }
-    to { box-shadow: 0 0 16px rgba(243, 139, 168, 0.8); }
-}
-
-/* ================== 窗口标题 ================== */
-#window {
-    background: rgba(49, 50, 68, 0.6);
-    color: #cdd6f4;
-    padding: 6px 16px;
-    margin: 0 8px;
-    border-radius: 12px;
-    border: 1px solid rgba(166, 227, 161, 0.2);
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-#window.empty {
-    background: transparent;
-    border: none;
-    padding: 0;
-    margin: 0;
-}
-
-/* ================== 时钟样式 ================== */
-#clock {
-    background: linear-gradient(135deg, #a6e3a1, #94e2d5);
-    color: #1e1e2e;
-    padding: 6px 16px;
-    border-radius: 12px;
-    font-weight: bold;
-    font-size: 15px;
-    box-shadow: 0 4px 12px rgba(166, 227, 161, 0.3);
-    transition: all 0.3s ease;
-}
-
-#clock:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(166, 227, 161, 0.4);
-}
-
-/* ================== 右侧模块样式 ================== */
-.modules-right > widget > * {
-    background: rgba(49, 50, 68, 0.6);
-    color: #cdd6f4;
-    padding: 6px 12px;
-    margin: 0 2px;
-    border-radius: 10px;
-    border: 1px solid rgba(49, 50, 68, 0.3);
-    transition: all 0.3s ease;
-}
-
-.modules-right > widget > *:hover {
-    background: rgba(69, 71, 90, 0.8);
-    border-color: rgba(116, 199, 236, 0.4);
-    transform: translateY(-1px);
-}
-
-/* ================== 媒体播放器 ================== */
-#custom-media {
-    background: linear-gradient(135deg, #cba6f7, #b4befe);
-    color: #1e1e2e;
-    font-weight: 600;
-}
-
-#custom-media:hover {
-    background: linear-gradient(135deg, #b4befe, #cba6f7);
-}
-
-#custom-media.spotify {
-    background: linear-gradient(135deg, #1db954, #1ed760);
-}
-
-/* ================== 音频控制 ================== */
-#pulseaudio {
-    background: rgba(116, 199, 236, 0.15);
-    border: 1px solid rgba(116, 199, 236, 0.3);
-}
-
-#pulseaudio:hover {
-    background: rgba(116, 199, 236, 0.25);
-}
-
-#pulseaudio.muted {
-    background: rgba(243, 139, 168, 0.15);
-    border: 1px solid rgba(243, 139, 168, 0.3);
-    color: #f38ba8;
-}
-
-/* ================== 网络状态 ================== */
-#network {
-    background: rgba(166, 227, 161, 0.15);
-    border: 1px solid rgba(166, 227, 161, 0.3);
-}
-
-#network:hover {
-    background: rgba(166, 227, 161, 0.25);
-}
-
-#network.disconnected {
-    background: rgba(243, 139, 168, 0.15);
-    border: 1px solid rgba(243, 139, 168, 0.3);
-    color: #f38ba8;
-}
-
-/* ================== 蓝牙状态 ================== */
-#bluetooth {
-    background: rgba(137, 180, 250, 0.15);
-    border: 1px solid rgba(137, 180, 250, 0.3);
-}
-
-#bluetooth:hover {
-    background: rgba(137, 180, 250, 0.25);
-}
-
-#bluetooth.disabled,
-#bluetooth.off {
-    background: rgba(88, 91, 112, 0.15);
-    border: 1px solid rgba(88, 91, 112, 0.3);
-    color: #585b70;
-}
-
-/* ================== 电池状态 ================== */
-#battery {
-    background: rgba(249, 226, 175, 0.15);
-    border: 1px solid rgba(249, 226, 175, 0.3);
-}
-
-#battery:hover {
-    background: rgba(249, 226, 175, 0.25);
-}
-
-#battery.charging {
-    background: rgba(166, 227, 161, 0.15);
-    border: 1px solid rgba(166, 227, 161, 0.3);
-    color: #a6e3a1;
-}
-
-#battery.warning:not(.charging) {
-    background: rgba(250, 179, 135, 0.15);
-    border: 1px solid rgba(250, 179, 135, 0.3);
-    color: #fab387;
-}
-
-#battery.critical:not(.charging) {
-    background: rgba(243, 139, 168, 0.15);
-    border: 1px solid rgba(243, 139, 168, 0.3);
-    color: #f38ba8;
-    animation: critical 1s ease-in-out infinite alternate;
-}
-
-@keyframes critical {
-    from { background: rgba(243, 139, 168, 0.15); }
-    to { background: rgba(243, 139, 168, 0.3); }
-}
-
-/* ================== 亮度控制 ================== */
-#backlight {
-    background: rgba(249, 226, 175, 0.15);
-    border: 1px solid rgba(249, 226, 175, 0.3);
-}
-
-#backlight:hover {
-    background: rgba(249, 226, 175, 0.25);
-}
-
-/* ================== 系统托盘 ================== */
-#tray {
-    background: rgba(49, 50, 68, 0.6);
-    border: 1px solid rgba(49, 50, 68, 0.3);
-    padding: 4px 8px;
-}
-
-#tray:hover {
-    background: rgba(69, 71, 90, 0.8);
-}
-
-#tray > .passive {
-    -gtk-icon-effect: dim;
-}
-
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: rgba(243, 139, 168, 0.2);
-}
-
-/* ================== 通知控制 ================== */
-#custom-notification {
-    background: rgba(203, 166, 247, 0.15);
-    border: 1px solid rgba(203, 166, 247, 0.3);
-}
-
-#custom-notification:hover {
-    background: rgba(203, 166, 247, 0.25);
-}
-
-/* ================== 电源按钮 ================== */
-#custom-power {
-    background: linear-gradient(135deg, #f38ba8, #eba0ac);
-    color: #1e1e2e;
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 8px;
-    border-radius: 12px;
-    padding: 6px 14px;
-    box-shadow: 0 4px 12px rgba(243, 139, 168, 0.3);
-    transition: all 0.3s ease;
-}
-
-#custom-power:hover {
-    background: linear-gradient(135deg, #eba0ac, #f2cdcd);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(243, 139, 168, 0.4);
-}
-
-/* ================== 响应式设计 ================== */
-@media (max-width: 1600px) {
-    * {
-        font-size: 13px;
-    }
-    
-    window#waybar {
-        margin-left: 8px;
-        margin-right: 8px;
-    }
-    
-    .modules-left,
-    .modules-center,
-    .modules-right {
-        margin: 2px 4px;
-    }
-}
-
-@media (max-width: 1200px) {
-    * {
-        font-size: 12px;
-    }
-    
-    #workspaces button {
-        padding: 4px 8px;
-    }
-    
-    .modules-right > widget > * {
-        padding: 4px 8px;
-        margin: 0 1px;
-    }
-}
-
-/* ================== 工具提示样式 ================== */
 tooltip {
-    background: rgba(30, 30, 46, 0.95);
-    border: 2px solid rgba(116, 199, 236, 0.3);
-    border-radius: 12px;
-    color: #cdd6f4;
-    font-family: "JetBrains Mono Nerd Font", monospace;
-    padding: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  padding: 16px;
+  background-color: #131822;
+  color: #C0C0C0;
 }
 
 tooltip label {
-    color: #cdd6f4;
+  padding: 5px;
+  background-color: #131822;
+  color: #C0C0C0;
 }

@@ -6,8 +6,8 @@
     myHome = {
 
       desktop = {
-        enable = false;
-        # preset = "gnome";  # 可选值: "gnome", "kde", "cosmic", "hyprland", "niri"
+        enable = true;
+        preset = "niri";
       };
 
       pkgs = {

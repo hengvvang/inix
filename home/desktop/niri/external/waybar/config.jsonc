@@ -1,0 +1,151 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 45,
+  "spacing": 0,
+  "modules-left": [
+    "niri/workspaces",
+    "tray",
+    "custom/lock",
+    "custom/reboot",
+    "custom/power",
+    "clock"
+  ],
+  "modules-center": ["niri/window"],
+  "modules-right": [
+    "network",
+    "battery",
+    "bluetooth",
+    "pulseaudio",
+    "backlight",
+    "custom/temperature",
+    "memory",
+    "cpu"
+  ],
+  "niri/workspaces": {
+    "disable-scroll": false,
+    "all-outputs": true,
+    "format": "{icon}",
+    "on-click": "activate",
+    "persistent-workspaces": {
+    "*":[1,2,3,4,5,6,7]
+    },
+    "format-icons":{
+    "1": "\U000f08c7",
+    "2": "\ue745",
+    "3": "\uebc9",
+    "4": "\U000f01ee",
+    "5": "\uf268",
+    "6": "\ue795",
+    "7": "\uf36f",
+    "active": "\U000f14fb"
+    }
+  },
+  "custom/lock": {
+  "format": " \uf023 ",
+  "on-click": "swaylock",
+  "tooltip": true,
+  "tooltip-format": "\u9501\u5c4f"
+  },
+  "custom/reboot": {
+    "format": " \uf021 ",
+    "on-click": "systemctl reboot",
+    "tooltip": true,
+    "tooltip-format": "\u91cd\u542f"
+  },
+  "custom/power": {
+    "format": " \uf011 ",
+    "on-click": "systemctl poweroff",
+    "tooltip": true,
+    "tooltip-format": "\u5173\u673a"
+  },
+  "network": {
+    "format-wifi": " \U000f0928 {essid} ",
+    "format-ethernet": "\uf012 Wired ",
+    "tooltip-format": "<span color='#FF1493'> \U000f0167 </span>{bandwidthUpBytes}  <span color='#00BFFF'> \U000f0162 </span>{bandwidthDownBytes}",
+    "format-linked": " \U000f1616 {ifname} (No IP) ",
+    "format-disconnected": " \uf071 Disconnected ",
+    "format-alt": " \U000f0928 {signalStrength}% ",
+    "interval": 1
+  },
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": " {icon} {capacity}% ",
+    "format-charging": " \U000f140b{capacity}%",
+	  "interval": 1,
+    "format-icons": ["\U000f008e", "\U000f007c", "\U000f007f", "\U000f0081", "\U000f0079"],
+    "tooltip": true
+  },
+  "pulseaudio": {
+    "format": "{icon}{volume}% ",
+    "format-muted": " \U000f0581 0% ",
+    "format-icons": {
+      "headphone": " \uf025 ",
+      "hands-free": " \uf025 ",
+      "headset": " \uf025 ",
+      "phone": " \uf095 ",
+      "portable": " \uf095 ",
+      "car": " \uf1b9 ",
+      "default": [
+        " \uf026 ",
+        " \uf027 ",
+        " \uf028 "
+      ]
+    },
+    "on-click-right": "pavucontrol -t 3",
+    "on-click": "pactl -- set-sink-mute 0 toggle",
+    "tooltip": true,
+    "tooltip-format": "\u5f53\u524d\u7cfb\u7edf\u58f0\u97f3: {volume}%"
+  },
+  "custom/temperature": {
+    "exec": "sensors | awk '/^Package id 0:/ {print int($4)}'",
+    "format": " \uf2c8{}�C ",
+    "interval": 5,
+    "tooltip": true,
+    "tooltip-format": "\u5f53\u524d CPU \u6e29\u5ea6: {}�C"
+  },
+  "memory": {
+    "format": " \uefc5 {used:0.1f}G/{total:0.1f}G ",
+    "tooltip": true,
+    "tooltip-format": "\u5f53\u524d\u5185\u5b58\u5360\u6bd4: {used:0.2f}G/{total:0.2f}G"
+  },
+  "cpu": {
+    "format": " \ue266 {usage}% ",
+    "tooltip": true
+  },
+  "clock": {
+    "interval": 1,
+    "timezone": "Asia/Chengdu",
+    "format": " \uf017 {:%H:%M} ",
+    "tooltip": true,
+    "tooltip-format": "{:L%Y \u5e74 %m \u6708 %d \u65e5, %A}"
+  },
+  "tray": {
+    "icon-size": 17,
+    "spacing": 6
+  },
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon}{percent}% ",
+    "tooltip": true,
+    "tooltip-format": "\u5f53\u524d\u5c4f\u5e55\u4eae\u5ea6: {percent}%",
+    "format-icons": [
+      " \U000f00de ",  // \u6697 - \u6df1\u7070
+      " \U000f00dd ",  // \u4e2d - \u7070
+      " \U000f00df ",  // \u4eae - \u67e0\u6aac\u9ec4
+      " \U000f00e0 "   // \u6700\u4eae - \u91d1\u8272
+    ]
+  },
+  "bluetooth": {
+    "format": " \uf293 {status} ",
+    "format-connected": " \uf293 {device_alias} ",
+    "format-connected-battery": " \uf293 {device_alias}{device_battery_percentage}% ",
+    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+  }
+}
