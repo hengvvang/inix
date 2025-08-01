@@ -1,8 +1,8 @@
-{ config, lib, ... }:
+{ config, lib, hosts, ... }:
 
 {
-  # laptop 主机特定配置
-  config = lib.mkIf (config.host == "laptop") {
+  # host1 主机特定配置
+  config = lib.mkIf (config.host == hosts.host1) {
     myHome = {
 
       desktop = {

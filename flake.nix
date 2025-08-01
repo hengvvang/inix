@@ -118,7 +118,7 @@
       nixosConfigurations = {
         ${hosts.host1} = lib.nixosSystem {
           modules = [
-            ./hosts/laptop
+            ./hosts/host1
             {
               environment.systemPackages = [ 
                 zen-browser.packages.x86_64-linux.twilight
@@ -132,7 +132,7 @@
         
         ${hosts.host2} = lib.nixosSystem {
           modules = [
-            ./hosts/work
+            ./hosts/host2
             {
               environment.systemPackages = [ 
                 zen-browser.packages.aarch64-linux.twilight
@@ -148,7 +148,7 @@
       darwinConfigurations = {
         ${hosts.host3} = lib.darwinSystem {
           modules = [
-            ./hosts/daily
+            ./hosts/host3
             {
               environment.systemPackages = [ 
                 zen-browser.packages.aarch64-darwin.twilight

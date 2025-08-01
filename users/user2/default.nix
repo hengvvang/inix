@@ -4,15 +4,15 @@
   imports = [
     outputs.home  # 通过 outputs 导入 home 模块
     # 导入不同主机配置
-    ./laptop.nix
-    ./daily.nix
-    ./work.nix
+    ./host1.nix
+    ./host2.nix
+    ./host3.nix
   ];
   
   # 主机选项
   options.host = lib.mkOption {
-    type = lib.types.enum [ "laptop" "daily" "work" ];
-    default = "laptop";
+    type = lib.types.enum [ hosts.host1 hosts.host2 hosts.host3 ];
+    default = hosts.host1;
     description = "Host type";
   };
   

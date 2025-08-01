@@ -1,62 +1,60 @@
-{ config, lib, ... }:
+{ config, lib, hosts, ... }:
 
 {
-  # work 主机特定配置 - zlritsu 工作环境配置
-  config = lib.mkIf (config.host == "work") {
+  # host3 主机特定配置
+  config = lib.mkIf (config.host == hosts.host3) {
     myHome = {
       develop = {
         enable = true;
 
         devenv = {
-          enable = false;
-          autoSwitch = false;
-          shell = "fish";
-          templates = false;
-          cache = false;
+          enable = true;        # 启用 devenv
+          autoSwitch = true;    # 启用自动环境切换（direnv）
+          shell = "fish";       # 使用 fish shell
+          templates = false;    # 轻量级配置，不安装额外模板工具
+          cache = true;         # 启用构建缓存优化
         };
-        rust.enable = false;
+        rust.enable = true;
         python.enable = true;
         javascript.enable = true;
-        typescript.enable = false;
-        cpp.enable = false;
+        typescript.enable = true;
+        cpp.enable = true;
       };
       
       dotfiles = {
         enable = true;
 
         vim.enable = true;
-        zsh.enable = false;
+        zsh.enable = true;
         bash.enable = true;
         fish.enable = true;
-        nushell.enable = false;
+        nushell.enable = true;
         yazi.enable = true;
-        ghostty.enable = false;
-        alacritty.enable = false;
-        tmux.enable = false;
+        ghostty.enable = true;
+        alacritty.enable = true;
+        tmux.enable = true;
         git.enable = true;
-        lazygit.enable = false;
+        lazygit.enable = true;
         starship.enable = true;
       };
       
       profiles = {
         enable = true;
-
+        
         fonts = {
-          preset = "nordic";
+          preset = "bauhaus";
         };
         stylix = {
           enable = true;
           polarity = "dark";
           wallpapers = {
             enable = true;
-            preset = "sea";
+            #preset = "maori";
+            custom = ./../../home/profiles/stylix/wallpapers/swirl-loop.jpeg;
           };
           fonts = {
             enable = true;
-            sizes = {
-              applications = 10;
-              terminal = 11;
-            };
+            # 使用默认字体配置，也可以自定义
           };
           targets = {
             enable = true;
@@ -65,7 +63,7 @@
               kitty.enable = false;
             };
             editors = {
-              vim.enable = true;
+              vim.enable = false;
               neovim.enable = false;
             };
             tools = {
@@ -74,10 +72,13 @@
               fzf.enable = false;
             };
             desktop = {
-              gtk.enable = true;
+              gtk.enable = false;
             };
             browsers = {
-              firefox.enable = true;
+              firefox.enable = false;
+            };
+            inputMethods = {
+              fcitx5.enable = true;
             };
           };
         };

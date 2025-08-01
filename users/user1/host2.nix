@@ -1,50 +1,49 @@
-{ config, lib, ... }:
+{ config, lib, hosts, ... }:
 
 {
-  # daily 主机特定配置 - zlritsu 日常使用配置
-  config = lib.mkIf (config.host == "daily") {
+  # host2 主机特定配置
+  config = lib.mkIf (config.host == hosts.host2) {
     myHome = {
       develop = {
         enable = true;
         devenv = {
-          enable = false;
-          autoSwitch = false;
-          shell = "fish";
-          templates = false;
-          cache = false;
+          enable = true;        # 启用 devenv
+          autoSwitch = true;    # 启用自动环境切换（direnv）
+          shell = "fish";       # 使用 fish shell
+          templates = false;    # 工作环境轻量级配置
+          cache = true;         # 启用构建缓存优化
         };
-        rust.enable = false;
+        # 工作环境的开发配置
+        rust.enable = true;
         python.enable = true;
-        javascript.enable = false;
-        typescript.enable = false;
-        cpp.enable = false;
+        javascript.enable = true;
+        typescript.enable = true;
+        cpp.enable = true;
       };
       
       dotfiles = {
         enable = true;
 
         vim.enable = true;
-        zsh.enable = false;
+        zsh.enable = true;
         bash.enable = true;
         fish.enable = true;
-        nushell.enable = false;
+        nushell.enable = true;
         yazi.enable = true;
-        ghostty.enable = false;
-        alacritty.enable = false;
-        tmux.enable = false;
+        ghostty.enable = true;
+        alacritty.enable = true;
+        tmux.enable = true;
         git.enable = true;
-        lazygit.enable = false;
+        lazygit.enable = true;
         starship.enable = true;
       };
       
-
-
       profiles = {
         enable = true;
-
         fonts = {
-          preset = "ocean";   # 日常使用舒适字体
+          preset = "tokyo";  # 专业字体配置
         };
+
         stylix = {
           enable = false;
           polarity = "dark";
