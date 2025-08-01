@@ -14,7 +14,7 @@
     
     desktop = {
       enable = true;
-      preset = "hyprland";
+      preset = "cosmic";
     };
     profiles = {
       enable = true;
