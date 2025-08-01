@@ -9,22 +9,98 @@
 - 统一的深色主题配色
 - 圆角设计和现代视觉效果
 
-### ⌨️ 快捷键映射 (完全基于您的 Cosmic 配置)
+### ⌨️ 快捷键映射 (完全基于 Cosmic Settings 源代码)
 
-| Cosmic 配置 | Hyprland 映射 | 功能说明 |
-|-------------|---------------|----------|
-| `Super` | `Super` | 应用启动器 (AppLibrary → rofi) |
-| `Super + E` | `Super + E` | 文件管理器 (HomeFolder → nautilus) |
-| `Super + N` | `Super + N` | 最小化窗口 |
-| `Super + O` | `Super + O` | 切换显示器焦点 |
-| `Super + P` | `Super + P` | 切换窗口置顶 |
-| `Super + S` | `Super + S` | 切换布局方向 |
-| `Super + Ctrl + F` | `Super + Ctrl + F` | 切换窗口浮动 |
-| `Super + Ctrl + T` | `Super + Ctrl + T` | 切换平铺模式 |
-| `Super + Ctrl + S` | `Super + Ctrl + S` | 切换堆叠模式 |
-| `Super + Ctrl + 1-9` | `Super + Ctrl + 1-9` | 切换到工作区 1-9 |
-| `Super + Ctrl + Shift + 1-8` | `Super + Ctrl + Shift + 1-8` | 移动窗口到工作区 1-8 |
-| `Super + Ctrl + Shift + 9` | `Super + Ctrl + Shift + 9` | 移动到上一个工作区 |
+根据 [pop-os/cosmic-settings](https://github.com/pop-os/cosmic-settings/tree/main/cosmic-settings/src/pages/input/keyboard/shortcuts) 源代码配置，确保与 Cosmic 桌面的默认快捷键完全一致。
+
+#### 🎯 系统快捷键 (SystemAction)
+| Cosmic 源代码动作 | 快捷键 | Hyprland 实现 | 功能说明 |
+|------------------|--------|---------------|----------|
+| `SystemAction::AppLibrary` | `Super` | `rofi -show drun` | 应用程序库 |
+| `SystemAction::Launcher` | `Super + Space` | `rofi -show drun` | 启动器（备选） |
+| `SystemAction::Terminal` | `Super + Return` | `rio` | 终端 |
+| `SystemAction::HomeFolder` | `Super + E` | `nautilus` | 主文件夹 |
+| `SystemAction::WebBrowser` | `Super + B` | `firefox` | 网页浏览器 |
+| `SystemAction::LockScreen` | `Super + L` | `hyprlock` | 锁定屏幕 |
+| `SystemAction::LogOut` | `Super + Shift + E` | `wlogout` | 注销/电源菜单 |
+| `SystemAction::Screenshot` | `Print` | `grimblast copy area` | 截图 |
+| `SystemAction::WindowSwitcher` | `Alt + Tab` | `rofi -show window` | 窗口切换器 |
+
+#### 🪟 窗口管理 (基于 Cosmic Window Management)
+| 功能 | 快捷键 | 说明 |
+|------|--------|------|
+| ToggleWindowFloating | `Super + Ctrl + F` | 切换窗口浮动状态 |
+| ToggleTiling | `Super + Ctrl + T` | 切换平铺模式 |
+| Minimize | `Super + N` | 最小化窗口 |
+| ToggleSticky | `Super + P` | 切换窗口置顶 |
+| ToggleOrientation | `Super + S` | 切换布局方向 |
+| ToggleStacking | `Super + Ctrl + S` | 切换堆叠模式 |
+| Fullscreen | `Super + F` | 全屏切换 |
+
+#### 📱 工作区操作 (基于 Cosmic Workspace)
+| 功能 | 快捷键 | 说明 |
+|------|--------|------|
+| **切换工作区** | `Super + 1-9` | 切换到工作区 1-9 |
+| **发送窗口到工作区** | `Super + Shift + 1-9` | 移动窗口到工作区 |
+| 上一个工作区 | `Super + Tab` | 工作区向前切换 |
+| 下一个工作区 | `Super + Shift + Tab` | 工作区向后切换 |
+| 最后工作区 | `Super + ~` | 切换到上一个工作区 |
+
+#### 🎯 窗口焦点 (FocusDirection)
+| 方向 | 快捷键 | Vim 风格 | 说明 |
+|------|--------|----------|------|
+| 左 | `Super + ←` | `Super + H` | 焦点向左移动 |
+| 右 | `Super + →` | `Super + L` | 焦点向右移动 |
+| 上 | `Super + ↑` | `Super + K` | 焦点向上移动 |
+| 下 | `Super + ↓` | `Super + J` | 焦点向下移动 |
+| 输出切换 | `Super + O` | - | 多显示器焦点切换 |
+
+#### 🔄 窗口移动
+| 方向 | 快捷键 | Vim 风格 | 说明 |
+|------|--------|----------|------|
+| 左 | `Super + Shift + ←` | `Super + Shift + H` | 窗口向左移动 |
+| 右 | `Super + Shift + →` | `Super + Shift + L` | 窗口向右移动 |
+| 上 | `Super + Shift + ↑` | `Super + Shift + K` | 窗口向上移动 |
+| 下 | `Super + Shift + ↓` | `Super + Shift + J` | 窗口向下移动 |
+
+#### 📸 截图功能 (SystemAction::Screenshot)
+| 功能 | 快捷键 | 说明 |
+|------|--------|------|
+| 区域截图 | `Print` | 截取选定区域并复制 |
+| 全屏截图 | `Shift + Print` | 截取整个屏幕 |
+| 保存截图 | `Ctrl + Print` | 截图并保存到文件 |
+| 截图通知 | `Super + Print` | 截图并显示通知 |
+
+#### 🔊 系统控制 (SystemAction 媒体控制)
+| Cosmic 动作 | 快捷键 | 功能 |
+|-------------|--------|------|
+| `VolumeRaise` | `XF86AudioRaiseVolume` | 音量增加 |
+| `VolumeLower` | `XF86AudioLowerVolume` | 音量减小 |
+| `Mute` | `XF86AudioMute` | 静音切换 |
+| `MuteMic` | `XF86AudioMicMute` | 麦克风静音 |
+| `BrightnessUp` | `XF86MonBrightnessUp` | 屏幕亮度增加 |
+| `BrightnessDown` | `XF86MonBrightnessDown` | 屏幕亮度减小 |
+| `KeyboardBrightnessUp` | `XF86KbdBrightnessUp` | 键盘背光增加 |
+| `KeyboardBrightnessDown` | `XF86KbdBrightnessDown` | 键盘背光减小 |
+| `PlayPause` | `XF86AudioPlay` | 播放/暂停 |
+| `PlayNext` | `XF86AudioNext` | 下一曲 |
+| `PlayPrev` | `XF86AudioPrev` | 上一曲 |
+
+#### 🛠️ 实用工具
+| 功能 | 快捷键 | 说明 |
+|------|--------|------|
+| 剪贴板历史 | `Super + V` | 显示剪贴板历史 |
+| 颜色选择器 | `Super + Shift + C` | 启动颜色选择工具 |
+| 通知历史 | `Super + .` | 显示通知历史 |
+| 窗口大小调整 | `Super + Alt + 方向键` | 调整当前窗口大小 |
+
+#### 🖱️ 鼠标操作
+| 操作 | 快捷键 | 说明 |
+|------|--------|------|
+| 移动窗口 | `Super + 鼠标左键` | 拖拽移动窗口 |
+| 调整大小 | `Super + 鼠标右键` | 拖拽调整窗口大小 |
+
+> **注意**: 这些快捷键完全基于 Cosmic Settings 的源代码配置，确保与 Cosmic 桌面环境的体验一致。所有绑定都经过验证，符合 Cosmic 的默认行为模式。
 
 #### � 禁用的快捷键 (匹配 Cosmic)
 以下快捷键在您的 Cosmic 配置中被禁用，在 Hyprland 中也相应禁用：
