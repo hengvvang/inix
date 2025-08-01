@@ -4,30 +4,135 @@
 {
     config = lib.mkIf (config.mySystem.desktop.enable && config.mySystem.desktop.preset == "hyprland") {
 
+        # ========== Hyprland 核心配置 ==========
+        # Hyprland 是一个基于 wlroots 的动态平铺 Wayland 合成器
+        # 提供现代化的窗口管理和动画效果
         programs.hyprland = {
-            enable = true;
-            xwayland.enable = true;
-            withUWSM = true;
-            package = pkgs.hyprland;
+            enable = true;                    # 启用 Hyprland 窗口管理器
+            xwayland.enable = true;           # 启用 XWayland 支持 (运行 X11 应用)
+            withUWSM = true;                  # 启用通用 Wayland 会话管理器
+            package = pkgs.hyprland;          # 使用稳定版本的 Hyprland
         };
-        environment.sessionVariables.NIXOS_OZONE_WL = "1";
-        environment.sessionVariables.WLR_NO_HARDWARE_CURSORS = "1";
 
-        programs.hyprlock.enable = true;
-        services.hypridle.enable = true;
+        # ========== 环境变量配置 ==========
+        # 针对 Wayland 环境优化应用程序兼容性
+        environment.sessionVariables = {
+            # 启用 Chromium/Electron 应用的原生 Wayland 支持
+            NIXOS_OZONE_WL = "1";
+            
+            # 禁用硬件光标，解决某些显卡的光标问题
+            WLR_NO_HARDWARE_CURSORS = "1";
+            
+            # Qt 应用程序使用 Wayland 后端
+            QT_QPA_PLATFORM = "wayland";
+            
+            # Mozilla 应用程序启用 Wayland 支持
+            MOZ_ENABLE_WAYLAND = "1";
+            
+            # 设置默认会话类型为 Wayland
+            XDG_SESSION_TYPE = "wayland";
+            
+            # 设置当前桌面环境
+            XDG_CURRENT_DESKTOP = "Hyprland";
+        };
 
+        # ========== 安全和会话管理服务 ==========
+        # Hyprlock - Hyprland 专用的屏幕锁定程序
+        programs.hyprlock = {
+            enable = true;                    # 启用屏幕锁定功能
+        };
+
+        # Hypridle - Hyprland 的空闲管理守护进程
+        # 自动管理屏幕亮度、锁屏、待机等功能
+        services.hypridle = {
+            enable = true;                    # 启用空闲管理
+        };
+
+        # ========== 桌面门户服务 ==========
+        # 为 Flatpak 应用和其他沙盒应用提供桌面集成
+        xdg.portal = {
+            enable = true;
+            extraPortals = with pkgs; [
+                # Hyprland 专用门户，处理截图、屏幕共享等功能
+                xdg-desktop-portal-hyprland
+                # GTK 门户，提供文件选择器等 GTK 集成
+                xdg-desktop-portal-gtk
+            ];
+            config = {
+                common.default = "*";
+                hyprland.default = [
+                    "hyprland"                # 优先使用 Hyprland 门户
+                    "gtk"                     # 备用 GTK 门户
+                ];
+            };
+        };
+
+        # ========== 系统级软件包 ==========
+        # Hyprland 生态系统核心工具和必需软件
         environment.systemPackages = with pkgs; [
-            pyprland
-            hyprpicker
-            hyprcursor
-            hyprlock
-            hypridle
-            hyprpaper
+            # ===== Hyprland 核心工具 =====
+            pyprland          # Python 插件系统，扩展 Hyprland 功能
+            hyprpicker        # 颜色选择器工具
+            hyprcursor        # 光标主题管理器
+            hyprlock          # 屏幕锁定程序
+            hypridle          # 空闲管理守护进程
+            hyprpaper         # 壁纸管理器
 
-            kitty
-            wofi
-            waybar
-            nwg-look
+            # ===== 终端模拟器 =====
+            kitty             # 现代 GPU 加速终端，支持图像和 Unicode
+
+            # ===== 应用启动器和菜单 =====
+            wofi              # Wayland 兼容的应用启动器和菜单
+            rofi-wayland      # Rofi 的 Wayland 移植版
+
+            # ===== 状态栏和面板 =====
+            waybar            # 高度可定制的 Wayland 状态栏
+
+            # ===== 系统设置和主题 =====
+            nwg-look          # GTK 主题设置工具，用于 Wayland
+            adwaita-icon-theme # GNOME 图标主题
+            
+            
+            # ===== 多媒体工具 =====
+            grim              # Wayland 截图工具
+            slurp             # 区域选择工具，配合 grim 使用
+            wl-clipboard      # Wayland 剪贴板工具
+
+            # ===== 文件管理器 =====
+            nautilus          # GNOME 文件管理器，Wayland 原生支持
+
+            # ===== 通知系统 =====
+            mako              # 轻量级 Wayland 通知守护进程
+            libnotify         # 发送桌面通知的库
+
+            # ===== 电源管理 =====
+            brightnessctl     # 屏幕亮度控制工具
+            
         ];
+
+        # ========== 系统服务配置 ==========
+        # 启用必要的系统服务支持 Hyprland 桌面环境
+
+        # GNOME Keyring - 密码和密钥管理
+        services.gnome.gnome-keyring.enable = true;
+
+        # PolicyKit - 权限管理服务 (Wayland 窗口管理器必需)
+        security.polkit.enable = true;
+
+        # D-Bus - 系统消息总线 (桌面应用通信必需)
+        services.dbus.enable = true;
+
+        # GVfs - 虚拟文件系统，支持网络位置和外部设备
+        services.gvfs.enable = true;
+
+        # UDISKS2 - 磁盘管理服务，支持自动挂载
+        services.udisks2.enable = true;
+
+        # ========== 硬件支持 ==========
+        # 启用 Wayland 相关的硬件加速
+        hardware.graphics = {
+            enable = true;
+            enable32Bit = true;           # 32位应用支持
+        };
     };
 }
