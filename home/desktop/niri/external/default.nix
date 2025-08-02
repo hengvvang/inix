@@ -1,6 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./niri
+    ./waybar
+    ./fuzzel
+    ./swaylock
+    ./scripts
+  ];
+
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.method == "external") {
 
     home.packages = with pkgs; [
@@ -36,47 +44,5 @@
       nautilus               # GNOME 文件管理器
     ];
 
-    # ========== XDG 配置目录文件 ==========
-    xdg.configFile = {
-      # Niri 核心配置
-      "niri/config.kdl".source = ./niri/config.kdl;
-      
-      # Waybar 配置
-      "waybar/config.jsonc".source = ./waybar/config.jsonc;
-      "waybar/style.css".source = ./waybar/style.css;
-      
-      
-      # Fuzzel 启动器配置
-      "fuzzel/fuzzel.ini".source = ./fuzzel/fuzzel.ini;
-      
-      # Swaylock 配置
-      "swaylock/config".source = ./swaylock/config;
-      
-      # 脚本文件
-      "niri/scripts/screenshot.sh" = {
-        source = ./scripts/screenshot.sh;
-        executable = true;
-      };
-      "niri/scripts/toggle-display.sh" = {
-        source = ./scripts/toggle-display.sh;
-        executable = true;
-      };
-      "niri/scripts/brightness.sh" = {
-        source = ./scripts/brightness.sh;
-        executable = true;
-      };
-      "niri/scripts/volume.sh" = {
-        source = ./scripts/volume.sh;
-        executable = true;
-      };
-      "niri/scripts/check-components.sh" = {
-        source = ./scripts/check-components.sh;
-        executable = true;
-      };
-      "niri/scripts/media.sh" = {
-        source = ./scripts/media.sh;
-        executable = true;
-      };
-    };
   };
 }
