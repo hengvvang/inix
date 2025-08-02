@@ -5,7 +5,7 @@
     
     # Waybar 配置
     xdg.configFile = {
-      "waybar/config.jsonc".source = ./config.jsonc;
+      "waybar/config".source = ./config;
       "waybar/style.css".source = ./style.css;
     };
     
