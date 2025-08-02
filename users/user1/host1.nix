@@ -6,7 +6,7 @@
     myHome = {
 
       desktop = {
-        enable = true;
+        enable = false;
         preset = "niri";
       };
 

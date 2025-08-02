@@ -30,7 +30,7 @@
   environment.systemPackages = [
 
     pkgs.gnome-tweaks
-    dconf-editor
+    pkgs.dconf-editor
     pkgs.refine
   ];
  };
