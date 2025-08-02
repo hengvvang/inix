@@ -17,18 +17,7 @@
     ];
 
     environment.systemPackages = with pkgs; [
-      # ---- kde packages ----
-      kdePackages.discover
-      kdePackages.kcalc
-      kdePackages.kcharselect
-      kdePackages.kcolorchooser
-      kdePackages.kolourpaint
-      kdePackages.ksystemlog
-      kdePackages.sddm-kcm
-      kdiff3
-      hardinfo2
-      haruna
-      xclip
+
     ];
   };
 }
