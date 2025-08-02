@@ -17,25 +17,6 @@
     xserver.enable = true;
   };
 
-  environment.systemPackages = [
-  # ---- gnome extentsion ----
-    pkgs.gnome-tweaks # required
-    pkgs.refine
-    pkgs.gnomeExtensions.fuzzy-app-search
-    pkgs.gnomeExtensions.applications-menu
-    pkgs.gnomeExtensions.user-themes
-    pkgs.gnomeExtensions.blur-my-shell
-    pkgs.gnomeExtensions.extension-list
-    pkgs.gnomeExtensions.dash-to-dock
-    pkgs.gnomeExtensions.logo-menu
-    pkgs.gnomeExtensions.clipboard-indicator
-    pkgs.gnomeExtensions.caffeine
-    pkgs.gnomeExtensions.kimpanel # fcitx need; recommand extension: Fcitx HUD
-    # tiling window manager
-    pkgs.gnomeExtensions.tiling-shell
-    pkgs.gnomeExtensions.forge     # tiling-shell 的替代品
-    pkgs.gnomeExtensions.tiling-assistant
-  ];
   environment.gnome.excludePackages = [
     #pkgs.gnome-backgrounds
     #pkgs.gnome-video-effects
@@ -44,6 +25,13 @@
     # pkgs.gnome-tour
     # pkgs.gnome-text-editor
     # pkgs.gnome-user-docs
+  ];
+
+  environment.systemPackages = [
+
+    pkgs.gnome-tweaks
+    dconf-editor
+    pkgs.refine
   ];
  };
 }

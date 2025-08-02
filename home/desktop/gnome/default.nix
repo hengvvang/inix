@@ -22,27 +22,21 @@
 
         # GNOME 桌面环境包
         home.packages = with pkgs; [
-            # GNOME 核心应用
-            gnome.gnome-tweaks
-            gnome.dconf-editor
-            
-            # GNOME 扩展
-            gnomeExtensions.user-themes
-            gnomeExtensions.dash-to-dock
-            gnomeExtensions.appindicator
-            gnomeExtensions.blur-my-shell
-            gnomeExtensions.hide-activities-button
-            gnomeExtensions.just-perfection
-            gnomeExtensions.tray-icons-reloaded
-            gnomeExtensions.quick-settings-tweaker
-            gnomeExtensions.removable-drive-menu
-            gnomeExtensions.vitals
-            gnomeExtensions.gtile
-            gnomeExtensions.space-bar
-            
-            # 主题相关
-            adwaita-icon-theme
-            orchis-theme
+
+            pkgs.gnomeExtensions.fuzzy-app-search
+            pkgs.gnomeExtensions.applications-menu
+            pkgs.gnomeExtensions.user-themes
+            pkgs.gnomeExtensions.blur-my-shell
+            pkgs.gnomeExtensions.extension-list
+            pkgs.gnomeExtensions.dash-to-dock
+            pkgs.gnomeExtensions.logo-menu
+            pkgs.gnomeExtensions.clipboard-indicator
+            pkgs.gnomeExtensions.caffeine
+            pkgs.gnomeExtensions.kimpanel # fcitx need; recommand extension: Fcitx HUD
+            # tiling window manager
+            pkgs.gnomeExtensions.tiling-shell
+            pkgs.gnomeExtensions.forge     # tiling-shell 的替代品
+            pkgs.gnomeExtensions.tiling-assistant
         ];
 
         # GNOME 设置
