@@ -40,9 +40,10 @@
           fcitx5-chinese-addons    # 中文拼音、五笔等
           fcitx5-rime             # Rime 输入法引擎
           
-          # 界面支持
-          fcitx5-gtk              # GTK 应用支持
+          # 界面支持 (Wayland 优化)
+          fcitx5-gtk              # GTK 应用支持 (包含 Wayland 支持)
           libsForQt5.fcitx5-qt    # Qt5 应用支持
+          fcitx5-qt6              # Qt6 应用支持 (现代 Wayland 应用)
           
           # 主题和外观
           fcitx5-nord             # Nord 主题
@@ -57,12 +58,17 @@
       };
 
       # Fcitx5 环境变量配置
+      # 针对 Wayland 桌面环境优化：
+      # - GTK_IM_MODULE: 在 Wayland 中使用原生输入法协议，注释掉避免冲突
+      # - QT_IM_MODULE: Qt 应用仍需要此设置
+      # - XMODIFIERS: X11 应用兼容性
+      # - SDL_IM_MODULE: SDL 应用支持
       environment.variables = {
-        GTK_IM_MODULE = "fcitx";
+        # GTK_IM_MODULE = "fcitx";  # Wayland 原生支持，不需要此设置
         QT_IM_MODULE = "fcitx";
         XMODIFIERS = "@im=fcitx";
         SDL_IM_MODULE = "fcitx";
-        GLFW_IM_MODULE = "ibus";
+        GLFW_IM_MODULE = "fcitx";
       };
     })
 
@@ -113,8 +119,11 @@
       };
 
       # IBus 环境变量配置
+      # 针对 Wayland 桌面环境优化：
+      # - GTK_IM_MODULE: 在 Wayland 中使用原生输入法协议，注释掉避免冲突
+      # - 其他环境变量保持 ibus 设置以确保兼容性
       environment.variables = {
-        GTK_IM_MODULE = "ibus";
+        # GTK_IM_MODULE = "ibus";  # Wayland 原生支持，不需要此设置
         QT_IM_MODULE = "ibus";
         XMODIFIERS = "@im=ibus";
         SDL_IM_MODULE = "ibus";
