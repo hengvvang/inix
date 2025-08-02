@@ -6,13 +6,6 @@
     # ========== Hyprland 生态系统软件包 ==========
     # Home Manager 中配置完整的 Hyprland 桌面环境包
     home.packages = with pkgs; [
-      # ===== Hyprland 扩展工具 =====
-      pyprland            # Python 插件系统，扩展 Hyprland 功能
-      hyprpicker          # 颜色选择器工具
-      hyprcursor          # 光标主题管理器
-      hyprlock            # 屏幕锁定程序
-      hypridle            # 空闲管理守护进程
-      hyprpaper           # 壁纸管理器
       
       # ===== 截图和录屏工具 =====
       grimblast           # 截图工具 (Hyprland 优化版)
@@ -52,10 +45,6 @@
       nwg-look            # GTK 主题设置工具
       adwaita-icon-theme  # GNOME 图标主题
       
-      # 注意：以下包由系统级配置提供，避免重复安装：
-      # - networkmanagerapplet (已在 system/services/network/manager/networkmanager.nix 中配置)
-      # - blueman (已在 system/services/drivers/bluetooth/bluetooth.nix 中配置)
-      # - polkit-kde-agent-1 (系统级 polkit 已启用，权限认证由系统处理)
     ];
 
     # ========== XDG 配置目录文件 ==========

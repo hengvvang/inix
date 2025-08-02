@@ -67,12 +67,15 @@
             };
         };
 
-        # ========== 系统级软件包 ==========
-        # 仅包含 Hyprland 桌面环境运行所需的最基本包
         environment.systemPackages = with pkgs; [
 
-            # ===== 基础 Wayland 工具 =====
-            xdg-utils         # XDG 规范工具（必需）
+            xdg-ut      
+            pyprland            # extension system for Hyprland
+            hyprpicker          # color picker tool
+            hyprcursor          # cursor theme manager
+            hyprlock            # screen locker
+            hypridle            # idle management daemon
+            hyprpaper           # wallpaper manager
         ];
 
         # ========== 显示管理器配置 ==========
