@@ -6,7 +6,7 @@
 /* Global styles */
 * {
     border: none;
-    border-radius: 0;  /* 全局直角设置 */
+    border-radius: 0;
     font-family: "LXGW WenKai Mono", "JetBrainsMono Nerd Font",  monospace;
     font-weight: 500;
     font-size: 14px;
@@ -40,13 +40,13 @@ window#waybar.solo {
     margin: 0 8px;
     padding: 0 8px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 0;  /* 工作区容器直角 */
+    border-radius: 0;
 }
 
 #workspaces button {
     padding: 0 8px;
     margin: 2px;
-    border-radius: 0;  /* 按钮直角 */
+    border-radius: 0;
     color: #908caa;  /* subtle */
     background-color: transparent;
     transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.68);
@@ -84,7 +84,7 @@ window#waybar.solo {
     margin: 0 8px;
     padding: 0 16px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 0;  /* 窗口标题直角 */
+    border-radius: 6;
     color: #e0def4;  /* text */
     font-weight: 500;
 }
@@ -99,7 +99,7 @@ window#waybar.solo {
     margin: 0 8px;
     padding: 0 16px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 0;  /* 时钟直角 */
+    border-radius: 6;
     color: #f6c177;  /* gold */
     font-weight: 600;
 }
@@ -114,7 +114,7 @@ window#waybar.solo {
     margin: 0 8px;
     padding: 0 8px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 0;  /* 系统托盘直角 */
+    border-radius: 6;
 }
 
 #tray > .passive {
@@ -138,7 +138,7 @@ window#waybar.solo {
     margin: 0 4px;
     padding: 0 12px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 0;  /* 所有模块直角 */
+    border-radius: 6;
     color: #e0def4;  /* text */
     font-weight: 500;
 }
@@ -283,7 +283,7 @@ window#waybar.solo {
 tooltip {
     background-color: #26233a;  /* overlay */
     border: 1px solid #524f67;  /* highlight high */
-    border-radius: 0;  /* 工具提示直角 */
+    border-radius: 6;
     color: #e0def4;  /* text */
 }
 
