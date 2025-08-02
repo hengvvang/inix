@@ -43,7 +43,7 @@
           # 界面支持 (Wayland 优化)
           fcitx5-gtk              # GTK 应用支持 (包含 Wayland 支持)
           libsForQt5.fcitx5-qt    # Qt5 应用支持
-          fcitx5-qt6              # Qt6 应用支持 (现代 Wayland 应用)
+          qt6Packages.fcitx5-qt   # Qt6 应用支持 (现代 Wayland 应用)
           
           # 主题和外观
           fcitx5-nord             # Nord 主题
