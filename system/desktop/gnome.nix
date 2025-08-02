@@ -3,18 +3,11 @@
 
 {
   config = lib.mkIf (config.mySystem.desktop.enable && config.mySystem.desktop.preset == "gnome") {
-  #  --- before---
-  # services.xserver = {
-  #     enable = true;
-  #     displayManager.gdm.enable = true;
-  #     desktopManager.gnome.enable = true;
-  # }
 
-  #  --- now ---
   services = {
+    xserver.enable = true;
     desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
-    xserver.enable = true;
   };
 
   environment.gnome.excludePackages = [
