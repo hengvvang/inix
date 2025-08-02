@@ -57,10 +57,7 @@
         # ========== 系统级软件包 ==========
         # 仅包含 Niri 桌面环境运行所需的最基本包
         environment.systemPackages = with pkgs; [
-            # ===== Niri 核心 =====
-            niri                     # Niri 窗口管理器（必需）
             
-            # ===== 基础 Wayland 工具 =====
             xdg-utils               # XDG 规范工具（必需）
         ];
     };

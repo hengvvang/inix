@@ -70,9 +70,7 @@
         # ========== 系统级软件包 ==========
         # 仅包含 Hyprland 桌面环境运行所需的最基本包
         environment.systemPackages = with pkgs; [
-            # ===== Hyprland 核心 =====
-            hyprland          # Hyprland 窗口管理器（必需）
-            
+
             # ===== 基础 Wayland 工具 =====
             xdg-utils         # XDG 规范工具（必需）
         ];
