@@ -1,0 +1,95 @@
+/* ========================================
+   Rofi 配置文件 - Catppuccin Mocha 主题
+   ======================================== */
+
+configuration {
+    modi: "drun,run,window,ssh,combi";
+    font: "JetBrains Mono Nerd Font 12";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    display-drun: "󰀻 应用";
+    display-run: " 运行";
+    display-window: "󰖯 窗口";
+    display-Network: "󰤨 网络";
+    sidebar-mode: true;
+    kb-cancel: "Escape,Control+g,Control+bracketleft";
+    kb-accept-entry: "Control+j,Control+m,Return,KP_Enter";
+    kb-row-down: "Down,Control+n";
+    kb-row-up: "Up,Control+p";
+    terminal: "rio";
+}
+
+@theme "/dev/null"
+
+* {
+    bg: #1e1e2e;
+    bg-alt: #313244;
+    fg: #cdd6f4;
+    fg-alt: #7f849c;
+    
+    background-color: @bg;
+    
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    width: 30%;
+    location: center;
+    anchor: center;
+    transparency: "screenshot";
+    border-color: #89b4fa;
+    border: 2px;
+    border-radius: 8px;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+}
+
+inputbar {
+    background-color: @bg-alt;
+    children: [ prompt, entry ];
+}
+
+entry {
+    background-color: inherit;
+    color: @fg;
+    padding: 12px 3px;
+}
+
+prompt {
+    background-color: inherit;
+    color: @fg;
+    padding: 12px;
+}
+
+listview {
+    background-color: @bg;
+    columns: 1;
+    lines: 8;
+}
+
+element {
+    children: [ element-icon, element-text ];
+}
+
+element-icon {
+    size: 1em;
+    padding: 0 10px 0 10px;
+}
+
+element-text {
+    color: @fg-alt;
+    padding: 8px 0 8px 0;
+}
+
+element-text selected {
+    color: @fg;
+}
+
+element selected {
+    background-color: @bg-alt;
+}
