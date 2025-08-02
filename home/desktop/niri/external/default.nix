@@ -54,7 +54,6 @@
       # Waybar 配置
       "waybar/config.jsonc".source = ./waybar/config.jsonc;
       "waybar/style.css".source = ./waybar/style.css;
-      "waybar/.catppuccin.yaml".source = ./waybar/.catppuccin.yaml;
       
       # Dunst 通知配置
       "dunst/dunstrc".source = ./dunst/dunstrc;

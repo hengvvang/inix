@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  # 系统模块配置 - 完全由主机决定启用哪些模块
-  # 适合 laptop 主机：启用完整的桌面环境和所有功能
   mySystem = {
 
     pkgs = {
@@ -13,8 +11,8 @@
     };
     
     desktop = {
-      enable = true;
-      preset = "cosmic";
+      enable = false;
+      preset = "niri";
     };
     profiles = {
       enable = true;
