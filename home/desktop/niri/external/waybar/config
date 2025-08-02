@@ -166,8 +166,8 @@
 
     "niri/language": {
         "format": " {}",
-        "format-en": "EN",
-        "format-zh": "中",
+        "format-en": "English",
+        "format-zh": "Chinese",
         "tooltip": true
     },
 
@@ -198,15 +198,15 @@
 
     "tray": {
         "icon-size": 18,
-        "spacing": 8,
+        "spacing": 9,
         "show-passive-items": true
     },
 
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "󰒳",
-            "deactivated": "󰒲"
+            "activated": "󰮯",
+            "deactivated": "󰢱"
         },
         "tooltip": true,
         "tooltip-format-activated": "Idle inhibitor: {status}",
