@@ -3,12 +3,17 @@
 {
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.method == "external") {
 
-    # ========== Niri 生态系统软件包 ==========
-    # Home Manager 中配置完整的 Niri 桌面环境包
     home.packages = with pkgs; [
-      # ===== Niri 扩展工具 =====
+
+      mako       # recommended notification daemon
+      waybar     # status bar
+      swaybg     # wallpaper manager
+      swayidle   # idle management
+      swaylock   # screen locker
+
       niriswitcher           # Niri 应用切换器
-      
+      xwayland-satellite     # X11 应用支持 (推荐用于 niri)
+
       # ===== 截图和录屏工具 =====  
       grim                   # Wayland 截图工具
       slurp                  # 区域选择工具
@@ -20,27 +25,12 @@
       cliphist               # 剪贴板历史
       
       # ===== 应用启动器和菜单 =====
-      fuzzel                 # 应用启动器 (niri 推荐)
       wlogout                # 退出菜单
       
       # ===== 系统控制工具 =====
       brightnessctl          # 亮度控制
       pamixer                # 音量控制
       playerctl              # 媒体播放控制
-      
-      # ===== 状态栏和通知 =====
-      waybar                 # 状态栏
-      dunst                  # 通知守护进程
-      
-      # ===== 屏幕锁定和会话管理 =====
-      swaylock               # 屏幕锁定
-      swayidle               # 空闲管理
-      
-      # ===== 壁纸和主题 =====
-      swaybg                 # 壁纸设置
-      
-      # ===== X11 兼容层 =====
-      xwayland-satellite     # X11 应用支持 (推荐用于 niri)
       
       # ===== 文件管理器 =====
       nautilus               # GNOME 文件管理器
@@ -55,8 +45,6 @@
       "waybar/config.jsonc".source = ./waybar/config.jsonc;
       "waybar/style.css".source = ./waybar/style.css;
       
-      # Dunst 通知配置
-      "dunst/dunstrc".source = ./dunst/dunstrc;
       
       # Fuzzel 启动器配置
       "fuzzel/fuzzel.ini".source = ./fuzzel/fuzzel.ini;
@@ -88,77 +76,6 @@
       "niri/scripts/media.sh" = {
         source = ./scripts/media.sh;
         executable = true;
-      };
-    };
-
-    # ========== 系统服务配置 ==========
-    # 仅配置 Niri 特定的用户级服务，避免与系统级服务重复
-    systemd.user.services = {
-      # Waybar 状态栏 - Niri 特定组件
-      waybar = {
-        Unit = {
-          Description = "Waybar status bar";
-          PartOf = [ "graphical-session.target" ];
-          After = [ "graphical-session-pre.target" ];
-        };
-        Service = {
-          Type = "simple";
-          ExecStart = "${pkgs.waybar}/bin/waybar";
-          Restart = "on-failure";
-          RestartSec = "3";
-        };
-        Install.WantedBy = [ "graphical-session.target" ];
-      };
-
-      # Dunst 通知守护进程 - Niri 特定组件
-      dunst = {
-        Unit = {
-          Description = "Dunst notification daemon";
-          PartOf = [ "graphical-session.target" ];
-          After = [ "graphical-session-pre.target" ];
-        };
-        Service = {
-          Type = "simple";
-          ExecStart = "${pkgs.dunst}/bin/dunst";
-          Restart = "on-failure";
-          RestartSec = "3";
-        };
-        Install.WantedBy = [ "graphical-session.target" ];
-      };
-
-      # XWayland-satellite - Niri 特定的 X11 支持
-      xwayland-satellite = {
-        Unit = {
-          Description = "Xwayland Satellite";
-          PartOf = [ "graphical-session.target" ];
-          After = [ "graphical-session-pre.target" ];
-          Wants = [ "graphical-session-pre.target" ];
-        };
-        Service = {
-          Type = "notify";
-          NotifyAccess = "all";
-          ExecStart = "${pkgs.xwayland-satellite}/bin/xwayland-satellite";
-          StandardOutput = "journal";
-          Restart = "on-failure";
-          RestartSec = "3";
-        };
-        Install.WantedBy = [ "graphical-session.target" ];
-      };
-
-      # 壁纸服务 - Niri 特定组件
-      swaybg = {
-        Unit = {
-          Description = "Sway background";
-          PartOf = [ "graphical-session.target" ];
-          After = [ "graphical-session-pre.target" ];
-        };
-        Service = {
-          Type = "simple";
-          ExecStart = "${pkgs.swaybg}/bin/swaybg -m fill -c '#1e1e2e'";
-          Restart = "on-failure";
-          RestartSec = "3";
-        };
-        Install.WantedBy = [ "graphical-session.target" ];
       };
     };
   };

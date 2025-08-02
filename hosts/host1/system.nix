@@ -12,7 +12,7 @@
     
     desktop = {
       enable = true;
-      preset = "cosmic";
+      preset = "niri";
     };
     profiles = {
       enable = true;

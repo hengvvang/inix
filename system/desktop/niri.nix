@@ -54,11 +54,12 @@
             };
         };
 
-        # ========== 系统级软件包 ==========
         # 仅包含 Niri 桌面环境运行所需的最基本包
         environment.systemPackages = with pkgs; [
             
-            xdg-utils               # XDG 规范工具（必需）
+            xdg-utils
+            fuzzel     # default application launcher
+            alacritty  # default terminal emulator
         ];
     };
 }

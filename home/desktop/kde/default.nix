@@ -20,19 +20,23 @@
         #     executable = false;
         # };
 
-        home.packages = with pkgs; [
-        # ---- kde packages ----
-            kdePackages.discover
-            kdePackages.kcalc
-            kdePackages.kcharselect
-            kdePackages.kcolorchooser
-            kdePackages.kolourpaint
-            kdePackages.ksystemlog
-            kdePackages.sddm-kcm
-            kdiff3
-            hardinfo2
-            haruna
-            xclip
+        home.packages = [
+            
+            # scrollable-tiling window manager
+            pkgs.kdePackages.karousel
+
+            pkgs.kdePackages.discover
+            pkgs.kdePackages.kcalc
+            pkgs.kdePackages.kcharselect
+            pkgs.kdePackages.kcolorchooser
+            pkgs.kdePackages.kolourpaint
+            pkgs.kdePackages.ksystemlog
+            pkgs.kdePackages.sddm-kcm
+
+            pkgs.kdiff3
+            pkgs.hardinfo2
+            pkgs.haruna
+            pkgs.xclip
         ];
     };
 }
