@@ -343,8 +343,8 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // 运行程序的建议绑定：终端、应用启动器、屏幕锁定器。
-    Mod+T hotkey-overlay-title="打开终端：alacritty" { spawn "alacritty"; }
-    Mod+D hotkey-overlay-title="运行应用程序：fuzzel" { spawn "fuzzel"; }
+    Mod+Return hotkey-overlay-title="打开终端：rio" { spawn "rio"; }
+    Mod+Slash hotkey-overlay-title="运行应用程序：fuzzel" { spawn "fuzzel"; }
     Super+Alt+L hotkey-overlay-title="锁定屏幕：swaylock" { spawn "swaylock"; }
 
     // 您也可以使用 shell。如果您需要管道、多个命令等，请执行此操作。
@@ -370,6 +370,8 @@ binds {
 
     Mod+Q repeat=false { close-window; }
 
+    // ---------------------同一工作区//不同工作区-----------------
+    // 移动焦点
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
@@ -378,61 +380,75 @@ binds {
     Mod+J     { focus-window-down; }
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
-
-    Mod+Ctrl+Left  { move-column-left; }
-    Mod+Ctrl+Down  { move-window-down; }
-    Mod+Ctrl+Up    { move-window-up; }
-    Mod+Ctrl+Right { move-column-right; }
-    Mod+Ctrl+H     { move-column-left; }
-    Mod+Ctrl+J     { move-window-down; }
-    Mod+Ctrl+K     { move-window-up; }
-    Mod+Ctrl+L     { move-column-right; }
-
-    // 在到达列中第一个或最后一个窗口时跨工作区移动的替代命令。
+    // 移动窗口
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Down  { move-window-down; }
+    Mod+Shift+Up    { move-window-up; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+Shift+H     { move-column-left; }
+    Mod+Shift+J     { move-window-down; }
+    Mod+Shift+K     { move-window-up; }
+    Mod+Shift+L     { move-column-right; }
+    //
+    // 在到达列中第一个或最后一个窗口时跨工作区移动的替代命令。 
+    // 我不太喜欢这么用，下面的用法破坏了工作区的隔离性
     // Mod+J     { focus-window-or-workspace-down; }
     // Mod+K     { focus-window-or-workspace-up; }
-    // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-    // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
+    // Mod+Shift+J     { move-window-down-or-to-workspace-down; }
+    // Mod+Shift+K     { move-window-up-or-to-workspace-up; }
 
-    Mod+Home { focus-column-first; }
-    Mod+End  { focus-column-last; }
-    Mod+Ctrl+Home { move-column-to-first; }
-    Mod+Ctrl+End  { move-column-to-last; }
+    //  ----------显示器设置----------------
+    // 焦点在显示器间转移
+    Mod+Alt+Left  { focus-monitor-left; }
+    Mod+Alt+Down  { focus-monitor-down; }
+    Mod+Alt+Up    { focus-monitor-up; }
+    Mod+Alt+Right { focus-monitor-right; }
+    Mod+Alt+H     { focus-monitor-left; }
+    Mod+Alt+J     { focus-monitor-down; }
+    Mod+Alt+K     { focus-monitor-up; }
+    Mod+Alt+L     { focus-monitor-right; }
+    // 窗口在显示器间转移
+    Mod+Alt+Shift+Left  { move-column-to-monitor-left; }
+    Mod+Alt+Shift+Down  { move-column-to-monitor-down; }
+    Mod+Alt+Shift+Up    { move-column-to-monitor-up; }
+    Mod+Alt+Shift+Right { move-column-to-monitor-right; }
+    Mod+Alt+Shift+H     { move-column-to-monitor-left; }
+    Mod+Alt+Shift+J     { move-column-to-monitor-down; }
+    Mod+Alt+Shift+K     { move-column-to-monitor-up; }
+    Mod+Alt+Shift+L     { move-column-to-monitor-right; }
 
-    Mod+Shift+Left  { focus-monitor-left; }
-    Mod+Shift+Down  { focus-monitor-down; }
-    Mod+Shift+Up    { focus-monitor-up; }
-    Mod+Shift+Right { focus-monitor-right; }
-    Mod+Shift+H     { focus-monitor-left; }
-    Mod+Shift+J     { focus-monitor-down; }
-    Mod+Shift+K     { focus-monitor-up; }
-    Mod+Shift+L     { focus-monitor-right; }
-
-    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-    Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
-
-    // 或者，有命令只移动单个窗口：
+    // 有命令只移动单个窗口：
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
-    // ...
-
+    
     // 您还可以将整个工作区移动到另一个监视器：
     // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
-    // ...
+    // ...   
 
-    Mod+Page_Down      { focus-workspace-down; }
-    Mod+Page_Up        { focus-workspace-up; }
-    Mod+U              { focus-workspace-down; }
-    Mod+I              { focus-workspace-up; }
-    Mod+Ctrl+Page_Down { move-column-to-workspace-down; }
-    Mod+Ctrl+Page_Up   { move-column-to-workspace-up; }
-    Mod+Ctrl+U         { move-column-to-workspace-down; }
-    Mod+Ctrl+I         { move-column-to-workspace-up; }
+    
+    // 最后一个
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Shift+End  { move-column-to-last; }
+    Mod+Ctrl+Left  { focus-column-first; }
+    Mod+Ctrl+Right { focus-column-last; }
+    Mod+Ctrl+H     { focus-column-first; }
+    Mod+Ctrl+L     { focus-column-last; }
+    Mod+Ctrl+Shift+Left  { move-column-to-first; }
+    Mod+Ctrl+Shift+Right { move-column-to-last; }
+    Mod+Ctrl+Shift+H     { move-column-to-first; }
+    Mod+Ctrl+Shift+L     { move-column-to-last; }
+
+
+
+    Mod+Ctrl+J            { focus-workspace-down; }
+    Mod+Ctrl+K            { focus-workspace-up; }
+    Mod+Ctrl+Down         { focus-workspace-down; }
+    Mod+Ctrl+Up           { focus-workspace-up; }
+    Mod+Ctrl+Shift+Down   { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+Up     { move-column-to-workspace-up; }
+    Mod+Ctrl+Shift+J      { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+K      { move-column-to-workspace-up; }
 
     // 或者，有命令只移动单个窗口：
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
@@ -456,8 +472,8 @@ binds {
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
-    Mod+Ctrl+WheelScrollRight { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
+    Mod+Shift+WheelScrollRight { move-column-right; }
+    Mod+Shift+WheelScrollLeft  { move-column-left; }
 
     // 通常在应用程序中使用 Shift 上下滚动会导致水平滚动；这些绑定复制了这种行为。
     Mod+Shift+WheelScrollDown      { focus-column-right; }
@@ -487,15 +503,15 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-    Mod+Ctrl+1 { move-column-to-workspace 1; }
-    Mod+Ctrl+2 { move-column-to-workspace 2; }
-    Mod+Ctrl+3 { move-column-to-workspace 3; }
-    Mod+Ctrl+4 { move-column-to-workspace 4; }
-    Mod+Ctrl+5 { move-column-to-workspace 5; }
-    Mod+Ctrl+6 { move-column-to-workspace 6; }
-    Mod+Ctrl+7 { move-column-to-workspace 7; }
-    Mod+Ctrl+8 { move-column-to-workspace 8; }
-    Mod+Ctrl+9 { move-column-to-workspace 9; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
 
     // 或者，有命令只移动单个窗口：
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -517,12 +533,12 @@ binds {
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
-    Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
+    Mod+M { maximize-column; }
+    Mod+Shift+M { fullscreen-window; }
 
     // 将聚焦的列扩展到其他完全可见列未占用的空间。
     // 使列"填充剩余空间"。
-    Mod+Ctrl+F { expand-column-to-available-width; }
+    Mod+F { expand-column-to-available-width; }
 
     Mod+C { center-column; }
 
@@ -545,13 +561,14 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // 在浮动和平铺布局之间移动聚焦的窗口。
-    Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    Mod+Ctrl+F       { toggle-window-floating; }
+    Mod+Shift+F { switch-focus-between-floating-and-tiling; }
+    Mod+Shift+T { switch-focus-between-floating-and-tiling; }
 
     // 切换选项卡式列显示模式。
     // 此列中的窗口将显示为垂直选项卡，
     // 而不是堆叠在彼此之上。
-    Mod+W { toggle-column-tabbed-display; }
+    Mod+T { toggle-column-tabbed-display; }
 
     // 切换布局的操作。
     // 注意：如果您取消注释这些，请确保您在上面的 xkb 选项中没有
