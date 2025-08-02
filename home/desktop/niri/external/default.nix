@@ -14,8 +14,9 @@
     home.packages = with pkgs; [
 
       mako       # recommended notification daemon
+      swww       # wallpaper manager
       waybar     # status bar
-      swaybg     # wallpaper manager
+      # swaybg   # wallpaper manager    
       swayidle   # idle management
       swaylock   # screen locker
 
