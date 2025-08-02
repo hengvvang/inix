@@ -13,8 +13,8 @@ input {
             // 更多信息请参阅 xkeyboard-config(7)。
 
             // 例如：
-            // layout "us,ru"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+            layout "us,cn"
+            options "grp:win_space_toggle,compose:ralt"
 
             // 如果此部分为空，niri 将从 org.freedesktop.locale1 获取 xkb 设置。
             // 您可以使用 localectl set-x11-keymap 来控制这些设置。
@@ -73,7 +73,7 @@ input {
 // 在 wiki 上查找更多信息：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
 // 记住通过删除 "/-" 来取消注释节点！
-/-output "eDP-1" {
+output "eDP-1" {
     // 取消注释此行以禁用此输出。
     // off
 
@@ -82,10 +82,10 @@ input {
     // 如果省略刷新率，niri 将选择该分辨率的最高刷新率。
     // 如果完全省略模式或无效，niri 将自动选择一个。
     // 在 niri 实例内运行 `niri msg outputs` 列出所有输出及其模式。
-    mode "1920x1080@120.030"
+    mode "2560x1600@240"
 
     // 您可以使用整数或小数缩放，例如使用 1.5 表示 150% 缩放。
-    scale 2
+    scale 1.5
 
     // Transform 允许逆时针旋转输出，有效值为：
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 和 flipped-270。
@@ -107,7 +107,7 @@ input {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 layout {
     // 设置窗口周围的间隙，以逻辑像素为单位。
-    gaps 16
+    gaps 11
 
     // 改变焦点时何时将列居中，选项有：
     // - "never"，默认行为，聚焦屏幕外的列将保持在屏幕的左侧或右侧边缘。
