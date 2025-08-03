@@ -35,7 +35,7 @@
         zed.enable = false;
         vscode.enable = false;
         rofi = {
-          enable = false;
+          enable = true;
           method = "homemanager";
         };
         ghostty = {

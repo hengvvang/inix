@@ -23,8 +23,6 @@
       swayidle   # idle management
       swaylock   # screen locker
 
-      rofi
-
       niriswitcher           # Niri 应用切换器
       xwayland-satellite     # X11 应用支持 (推荐用于 niri)
 
