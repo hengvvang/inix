@@ -5,7 +5,13 @@
 
     # Mako 通知守护进程配置
     # macOS Tahoe 风格的通知系统
-    # 可选主题：
+    services.mako = {
+      enable = true;
+      package = pkgs.mako;
+    };
+
+    # 使用外部配置文件
+    # 主题选择（可选配置）：
     # - ./config (macOS Tahoe 深色主题，默认)
     # - ./config-light (macOS Tahoe 浅色主题)
 
@@ -34,7 +40,7 @@
 
         case "$1" in
           "show")
-            makoctl list | jq -r '.[] | "[\(.urgency)] \(.appName): \(.summary)"'
+            makoctl list | ${pkgs.jq}/bin/jq -r '.[] | "[\(.urgency)] \(.appName): \(.summary)"' 2>/dev/null || makoctl list
             ;;
           "clear")
             makoctl dismiss -a
@@ -45,12 +51,16 @@
               pkill mako
               echo "Mako 已停止"
             else
-              mako &
+              ${pkgs.mako}/bin/mako &
               echo "Mako 已启动"
             fi
             ;;
           "test")
-            notify-send "测试通知" "这是一个 macOS Tahoe 风格的测试通知"
+            ${pkgs.libnotify}/bin/notify-send "测试通知" "这是一个 macOS Tahoe 风格的测试通知" || \
+            dbus-send --session --dest=org.freedesktop.Notifications --type=method_call \
+              /org/freedesktop/Notifications org.freedesktop.Notifications.Notify \
+              string:"Test" uint32:0 string:"" string:"测试通知" \
+              string:"这是一个 macOS Tahoe 风格的测试通知" array:string:"" dict:string:string:"" int32:5000
             ;;
           *)
             echo "用法: $0 {show|clear|toggle|test}"
@@ -83,9 +93,41 @@
         fi
 
         # 发送通知
-        notify-send -u "$urgency" -a "$app_name" "$summary" "$body"
+        if command -v notify-send >/dev/null 2>&1; then
+          ${pkgs.libnotify}/bin/notify-send -u "$urgency" -a "$app_name" "$summary" "$body"
+        else
+          # 使用 dbus-send 作为后备
+          dbus-send --session --dest=org.freedesktop.Notifications --type=method_call \
+            /org/freedesktop/Notifications org.freedesktop.Notifications.Notify \
+            string:"$app_name" uint32:0 string:"" string:"$summary" string:"$body" \
+            array:string:"" dict:string:string:"urgency,string:$urgency" int32:5000
+        fi
       '';
       executable = true;
     };
+
+    # 简单的 notify-send 替代脚本
+    home.file.".local/bin/notify-test" = {
+      text = ''
+        #!/bin/bash
+        # 简单的通知测试脚本
+
+        summary="''${1:-测试通知}"
+        body="''${2:-这是一个测试通知}"
+        urgency="''${3:-normal}"
+        app_name="''${4:-Test}"
+
+        if command -v notify-send >/dev/null 2>&1; then
+          ${pkgs.libnotify}/bin/notify-send -u "$urgency" -a "$app_name" "$summary" "$body"
+        else
+          dbus-send --session --dest=org.freedesktop.Notifications --type=method_call \
+            /org/freedesktop/Notifications org.freedesktop.Notifications.Notify \
+            string:"$app_name" uint32:0 string:"" string:"$summary" string:"$body" \
+            array:string:"" dict:string:string:"urgency,string:$urgency" int32:5000
+        fi
+      '';
+      executable = true;
+    };
+
   };
 }
