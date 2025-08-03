@@ -256,6 +256,7 @@ layout {
 
 // 此行启动 waybar，Wayland 合成器的常用栏。
 spawn-at-startup "waybar"
+spawn-at-startup "swww-daemon"
 
 hotkey-overlay {
     // 取消注释此行以在启动时禁用"重要热键"弹出窗口。
@@ -440,7 +441,6 @@ binds {
     Mod+Ctrl+Shift+L     { move-column-to-last; }
 
 
-
     Mod+Ctrl+J            { focus-workspace-down; }
     Mod+Ctrl+K            { focus-workspace-up; }
     Mod+Ctrl+Down         { focus-workspace-down; }
@@ -456,8 +456,8 @@ binds {
 
     Mod+Shift+Page_Down { move-workspace-down; }
     Mod+Shift+Page_Up   { move-workspace-up; }
-    Mod+Shift+U         { move-workspace-down; }
-    Mod+Shift+I         { move-workspace-up; }
+    Mod+Shift+D         { move-workspace-down; }
+    Mod+Shift+U         { move-workspace-up; }
 
     // 您可以使用以下语法绑定鼠标滚轮滚动刻度。
     // 这些绑定将根据 natural-scroll 设置改变方向。
@@ -465,10 +465,10 @@ binds {
     // 为了避免快速滚动工作区，您可以使用 cooldown-ms 属性。
     // 绑定将被限制为此值。
     // 您可以在任何绑定上设置冷却时间，但对滚轮最有用。
-    Mod+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
-    Mod+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
-    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Ctrl+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
+    Mod+Ctrl+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
@@ -476,10 +476,10 @@ binds {
     Mod+Shift+WheelScrollLeft  { move-column-left; }
 
     // 通常在应用程序中使用 Shift 上下滚动会导致水平滚动；这些绑定复制了这种行为。
-    Mod+Shift+WheelScrollDown      { focus-column-right; }
-    Mod+Shift+WheelScrollUp        { focus-column-left; }
-    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+    Mod+WheelScrollDown      { focus-column-right; }
+    Mod+WheelScrollUp        { focus-column-left; }
+    Mod+Shift+WheelScrollDown { move-column-right; }
+    Mod+Shift+WheelScrollUp   { move-column-left; }
 
     // 同样，您可以绑定触摸板滚动"刻度"。
     // 触摸板滚动是连续的，所以对于这些绑定，它被分割成离散间隔。
@@ -575,8 +575,8 @@ binds {
     // 配置匹配的布局切换热键。
     // 在同一个热键上同时有两者会破坏切换，
     // 因为它会在按下热键时切换两次（一次由 xkb，一次由 niri）。
-    // Mod+Space       { switch-layout "next"; }
-    // Mod+Shift+Space { switch-layout "prev"; }
+    Mod+Shift+period { switch-layout "next"; }
+    Mod+Shift+comma  { switch-layout "prev"; }
 
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
