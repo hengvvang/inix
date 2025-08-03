@@ -36,7 +36,7 @@
         vscode.enable = false;
         rofi = {
           enable = true;
-          method = "homemanager";
+          method = "external";
         };
         ghostty = {
           enable = true;

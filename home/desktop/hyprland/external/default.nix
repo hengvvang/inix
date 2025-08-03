@@ -31,7 +31,6 @@
       cliphist            # 剪贴板历史
       
       # ===== 应用启动器和菜单 =====
-      rofi-wayland        # 应用启动器
       wofi                # 备用启动器
       wlogout             # 退出菜单
       

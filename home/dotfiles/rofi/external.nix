@@ -6,12 +6,9 @@
 
     home.packages = with pkgs; [
       papirus-icon-theme
+      rofi-wayland
     ];
 
-    programs.rofi = {
-      enable = true;
-      package = pkgs.rofi-wayland;
-    };
 
     # rofi 配置文件
     home.file.".config/rofi/config.rasi".source = ./configs/config.rasi;
@@ -26,25 +23,6 @@
       
       # 图标主题
       ROFI_ICON_THEME = "Papirus";
-    };
-
-    # ===== Shell 集成 =====
-    # Bash 集成
-    programs.bash.shellAliases = lib.mkIf config.programs.bash.enable {
-      rofi = "rofi-launcher";
-      rofi-power = "rofi-power";
-    };
-
-    # Fish 集成
-    programs.fish.shellAliases = lib.mkIf config.programs.fish.enable {
-      rofi = "rofi-launcher";
-      rofi-power = "rofi-power";
-    };
-
-    # Zsh 集成
-    programs.zsh.shellAliases = lib.mkIf config.programs.zsh.enable {
-      rofi = "rofi-launcher";
-      rofi-power = "rofi-power";
     };
   };
 }
