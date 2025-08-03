@@ -1,0 +1,205 @@
+/**
+ * macOS Tathoe 毛玻璃风格主题
+ * 使用半透明背景和模糊效果模拟毛玻璃外观
+ */
+
+* {
+    /* 主色调 - 基于 macOS Tathoe 配色 */
+    bg0: rgba(40, 44, 52, 0.85);          /* 主背景 - 半透明深色 */
+    bg1: rgba(50, 56, 66, 0.9);           /* 选中项背景 */
+    bg2: rgba(60, 68, 82, 0.8);           /* 次要背景 */
+    bg3: rgba(70, 78, 94, 0.7);           /* 边框颜色 */
+    
+    fg0: rgba(248, 248, 242, 1.0);        /* 主文字颜色 */
+    fg1: rgba(248, 248, 242, 0.8);        /* 次要文字颜色 */
+    fg2: rgba(248, 248, 242, 0.6);        /* 占位符文字颜色 */
+    
+    accent: rgba(0, 122, 255, 0.9);       /* macOS 蓝色强调色 */
+    urgent: rgba(255, 69, 58, 0.9);       /* macOS 红色 */
+    
+    background-color: transparent;
+    text-color: @fg0;
+    font: "LXGW WenKai Mono 12";
+}
+
+window {
+    background-color: @bg0;
+    border: 1px solid @bg3;
+    border-radius: 12px;
+    padding: 20px;
+    
+    /* 毛玻璃效果的关键 - 使用半透明背景 */
+    transparency: "real";
+}
+
+mainbox {
+    background-color: transparent;
+    children: [ inputbar, message, listview, mode-switcher ];
+    spacing: 15px;
+}
+
+inputbar {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    children: [ prompt, textbox-prompt-colon, entry, case-indicator ];
+}
+
+prompt {
+    background-color: transparent;
+    text-color: @accent;
+    font: "LXGW WenKai Mono Bold 12";
+}
+
+textbox-prompt-colon {
+    background-color: transparent;
+    text-color: @fg1;
+    expand: false;
+    str: ":";
+    margin: 0px 0.3em 0em 0em;
+}
+
+entry {
+    background-color: transparent;
+    text-color: @fg0;
+    cursor-color: @accent;
+    placeholder-color: @fg2;
+    placeholder: "搜索应用...";
+}
+
+case-indicator {
+    background-color: transparent;
+    text-color: @fg2;
+}
+
+listview {
+    background-color: transparent;
+    columns: 1;
+    lines: 8;
+    cycle: true;
+    dynamic: true;
+    layout: vertical;
+    spacing: 2px;
+    scrollbar: false;
+}
+
+element {
+    background-color: transparent;
+    text-color: @fg0;
+    orientation: horizontal;
+    border-radius: 6px;
+    padding: 10px 12px;
+}
+
+element-icon {
+    background-color: transparent;
+    size: 24px;
+    margin: 0px 12px 0px 0px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    expand: true;
+    horizontal-align: 0;
+    vertical-align: 0.5;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg0;
+}
+
+element normal.urgent {
+    background-color: @urgent;
+    text-color: @fg0;
+}
+
+element normal.active {
+    background-color: @accent;
+    text-color: @fg0;
+}
+
+element selected.normal {
+    background-color: rgba(0, 122, 255, 0.3);
+    text-color: @fg0;
+    border: 1px solid @accent;
+}
+
+element selected.urgent {
+    background-color: @urgent;
+    text-color: @fg0;
+}
+
+element selected.active {
+    background-color: @accent;
+    text-color: @fg0;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg0;
+}
+
+element alternate.urgent {
+    background-color: @urgent;
+    text-color: @fg0;
+}
+
+element alternate.active {
+    background-color: @accent;
+    text-color: @fg0;
+}
+
+mode-switcher {
+    background-color: transparent;
+    spacing: 0px;
+}
+
+button {
+    background-color: rgba(255, 255, 255, 0.1);
+    text-color: @fg1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 8px 16px;
+    margin: 0px 2px;
+}
+
+button selected {
+    background-color: @accent;
+    text-color: @fg0;
+    border: 1px solid @accent;
+}
+
+scrollbar {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 0px;
+    border-radius: 3px;
+    margin: 0px 0px 0px 5px;
+    width: 6px;
+}
+
+scrollbar handle {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+}
+
+message {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px;
+}
+
+textbox {
+    background-color: transparent;
+    text-color: @fg0;
+}
+
+error-message {
+    background-color: @urgent;
+    text-color: @fg0;
+    border-radius: 8px;
+    padding: 12px;
+}
