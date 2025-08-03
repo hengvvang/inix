@@ -5,19 +5,15 @@
 
     # Mako 通知守护进程配置
     # macOS Tahoe 风格的通知系统
-    services.mako = {
-      enable = true;
+    # 可选主题：
+    # - ./config (macOS Tahoe 深色主题，默认)
+    # - ./config-light (macOS Tahoe 浅色主题)
 
-      # 主题选择（可选配置）：
-      # - ./config (macOS Tahoe 深色主题，默认)
-      # - ./config-light (macOS Tahoe 浅色主题)
+    # 当前使用：深色主题
+    xdg.configFile."mako/config".source = ./config;
 
-      # 当前使用：深色主题
-      configFile = ./config;
-
-      # 可选：直接使用浅色主题
-      # configFile = ./config-light;
-    };
+    # 可选：直接使用浅色主题
+    # xdg.configFile."mako/config".source = ./config-light;
 
     # 确保安装必需的字体和图标
     # 注意：这些通常在系统级别配置，这里添加注释提醒
@@ -91,6 +87,5 @@
       '';
       executable = true;
     };
-
   };
 }
