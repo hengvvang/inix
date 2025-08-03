@@ -12,6 +12,12 @@
       
       # 主题配置
       "hypr/themes/catppuccin.conf".source = ./themes/catppuccin.conf;
+      
+      # 脚本配置
+      "hypr/scripts/wallpaper.sh" = {
+        source = ./scripts/wallpaper.sh;
+        executable = true;
+      };
     };
     
   };
