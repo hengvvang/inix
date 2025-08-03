@@ -1,28 +1,20 @@
 /*
- * Rofi 现代化配置文件 - macOS 毛玻璃主题
- * 类似最新 macOS 毛玻璃效果的 rofi 配置
- * 使用 LXGW WenKai Mono 字体，支持深色和浅色主题切换
+ * Rofi macOS Glass Effect Theme - Light
+ * 类似最新 macOS 毛玻璃效果的 rofi 主题 - 浅色版本
+ * 使用 LXGW WenKai Mono 字体，模仿 macOS Sonoma/Ventura 的浅色视觉效果
  */
 
 configuration {
-    /* 启用的模式 */
     modi: "drun,run,window,ssh,combi";
-
-    /* 字体设置 - LXGW WenKai Mono 13pt */
     font: "LXGW WenKai Mono 13";
-
-    /* 图标设置 */
     show-icons: true;
-    icon-theme: "Papirus-Dark";
-
-    /* 显示标签 - 中文界面 */
+    icon-theme: "Papirus-Light";
     display-drun: "󰀻 应用程序";
     display-run: " 运行命令";
     display-window: "󰖯 窗口";
     display-ssh: "󰢹 SSH";
     display-combi: "󰕘 组合";
 
-    /* 界面设置 */
     sidebar-mode: false;
     hover-select: true;
     me-select-entry: "";
@@ -42,7 +34,6 @@ configuration {
     kb-toggle-sort: "Alt+grave";
     kb-delete-entry: "Shift+Delete";
 
-    /* 默认终端 */
     terminal: "alacritty";
 
     /* 性能优化 */
@@ -62,7 +53,7 @@ configuration {
     columns: 1;
     fixed-num-lines: true;
 
-    /* 位置设置 - 居中显示，类似 macOS Spotlight */
+    /* 位置设置 */
     location: 0;
     anchor: 0;
     x-offset: 0;
@@ -84,32 +75,33 @@ configuration {
 @theme "/dev/null"
 
 * {
-    /* macOS 毛玻璃深色配色方案 */
+    /* macOS 毛玻璃浅色配色方案 */
 
-    /* 主要颜色 - 模仿 macOS 系统颜色 */
-    macos-bg:           rgba(29, 29, 31, 0.06);    /* 极低透明度背景，营造毛玻璃效果 */
-    macos-bg-solid:     rgba(29, 29, 31, 0.95);   /* 半透明背景用于输入框等 */
-    macos-bg-alt:       rgba(255, 255, 255, 0.05); /* 极淡的选中背景 */
-    macos-bg-hover:     rgba(255, 255, 255, 0.08); /* 悬停效果 */
+    /* 主要颜色 - 模仿 macOS 浅色系统颜色 */
+    macos-bg:           rgba(245, 245, 247, 0.08);  /* 极低透明度浅色背景，营造毛玻璃效果 */
+    macos-bg-solid:     rgba(245, 245, 247, 0.92);  /* 半透明背景用于输入框等 */
+    macos-bg-alt:       rgba(0, 122, 255, 0.08);    /* 极淡的蓝色选中背景 */
+    macos-bg-hover:     rgba(0, 122, 255, 0.12);    /* 悬停效果 */
 
-    /* macOS 标准文本颜色 */
-    macos-fg:           rgba(242, 242, 247, 1.0);  /* 主文本 - macOS 标准浅色 */
-    macos-fg-dim:       rgba(142, 142, 147, 1.0);  /* 次要文本 */
-    macos-fg-placeholder: rgba(142, 142, 147, 0.8); /* 占位符文本 */
+    /* macOS 浅色模式标准文本颜色 */
+    macos-fg:           rgba(29, 29, 31, 1.0);       /* 主文本 - macOS 标准深色 */
+    macos-fg-dim:       rgba(109, 109, 112, 1.0);   /* 次要文本 */
+    macos-fg-placeholder: rgba(109, 109, 112, 0.8); /* 占位符文本 */
 
     /* macOS 蓝色强调色 */
-    macos-accent:       rgba(0, 122, 255, 1.0);    /* macOS 标准蓝色 #007AFF */
-    macos-accent-light: rgba(64, 166, 255, 1.0);   /* 较亮的蓝色用于选中 */
-    macos-accent-dim:   rgba(0, 122, 255, 0.3);    /* 淡蓝色用于边框 */
+    macos-accent:       rgba(0, 122, 255, 1.0);      /* macOS 标准蓝色 #007AFF */
+    macos-accent-light: rgba(64, 166, 255, 1.0);     /* 较亮的蓝色用于选中 */
+    macos-accent-dark:  rgba(0, 81, 213, 1.0);       /* 较深的蓝色用于选中文本 */
+    macos-accent-dim:   rgba(0, 122, 255, 0.25);     /* 淡蓝色用于边框 */
 
     /* 边框和分隔线 */
-    macos-border:       rgba(255, 255, 255, 0.06); /* 极淡的白色边框 */
-    macos-separator:    rgba(255, 255, 255, 0.1);  /* 分隔线 */
+    macos-border:       rgba(0, 0, 0, 0.08);         /* 极淡的黑色边框 */
+    macos-separator:    rgba(0, 0, 0, 0.12);         /* 分隔线 */
 
     /* 状态颜色 */
-    macos-urgent:       rgba(255, 69, 58, 1.0);    /* 紧急/错误 - macOS 红色 */
-    macos-success:      rgba(52, 199, 89, 1.0);    /* 成功 - macOS 绿色 */
-    macos-warning:      rgba(255, 214, 10, 1.0);   /* 警告 - macOS 黄色 */
+    macos-urgent:       rgba(255, 59, 48, 1.0);      /* 紧急/错误 - macOS 红色 */
+    macos-success:      rgba(52, 199, 89, 1.0);      /* 成功 - macOS 绿色 */
+    macos-warning:      rgba(255, 149, 0, 1.0);      /* 警告 - macOS 橙色 */
 
     /* 全局重置 */
     background-color:   transparent;
@@ -234,7 +226,7 @@ element normal.normal {
 
 element selected.normal {
     background-color:   @macos-bg-alt;
-    text-color:        @macos-fg;
+    text-color:        @macos-accent-dark;
     border:            0.5px solid;
     border-color:      @macos-accent-dim;
 }
@@ -246,22 +238,22 @@ element alternate.normal {
 
 element normal.urgent {
     background-color:   @macos-urgent;
-    text-color:        @macos-fg;
+    text-color:        white;
 }
 
 element selected.urgent {
     background-color:   @macos-urgent;
-    text-color:        @macos-fg;
+    text-color:        white;
 }
 
 element normal.active {
     background-color:   @macos-success;
-    text-color:        @macos-fg;
+    text-color:        white;
 }
 
 element selected.active {
     background-color:   @macos-success;
-    text-color:        @macos-fg;
+    text-color:        white;
 }
 
 /* 元素图标 */
@@ -289,7 +281,7 @@ element-text {
 
 /* 高亮匹配的字符 */
 element-text highlight {
-    text-color:        @macos-accent-light;
+    text-color:        @macos-accent;
     font:              "LXGW WenKai Mono Bold 13";
 }
 
@@ -321,7 +313,7 @@ button {
 
 button selected {
     background-color:   @macos-accent;
-    text-color:        @macos-fg;
+    text-color:        white;
     border-color:      @macos-accent;
     font:              "LXGW WenKai Mono Bold 11";
 }
@@ -347,7 +339,7 @@ textbox {
 /* 错误消息 */
 error-message {
     background-color:   @macos-urgent;
-    text-color:        @macos-fg;
+    text-color:        white;
     border-radius:     12px;
     padding:           16px 20px;
     margin:            8px 0px;
@@ -362,6 +354,67 @@ scrollbar {
     handle-width:      4px;
     handle-color:      @macos-fg-dim;
     border:            0px;
+}
+
+/* 特殊元素样式 */
+
+/* 应用程序启动器专用样式 */
+element.application {
+    padding:           14px 16px;
+}
+
+element.application element-icon {
+    size:              32px;
+}
+
+element.application element-text {
+    font:              "LXGW WenKai Mono 13";
+}
+
+/* 窗口切换器专用样式 */
+element.window {
+    padding:           10px 16px;
+}
+
+element.window element-icon {
+    size:              24px;
+}
+
+element.window element-text {
+    font:              "LXGW WenKai Mono 12";
+}
+
+/* 运行命令专用样式 */
+element.run {
+    padding:           12px 16px;
+}
+
+element.run element-icon {
+    size:              20px;
+    text-color:        @macos-accent;
+}
+
+/* SSH 连接专用样式 */
+element.ssh {
+    padding:           12px 16px;
+}
+
+element.ssh element-icon {
+    size:              24px;
+    text-color:        @macos-success;
+}
+
+/* 文件浏览器样式（如果使用） */
+element.filebrowser {
+    padding:           10px 16px;
+}
+
+element.filebrowser.directory element-icon {
+    text-color:        @macos-accent;
+}
+
+element.filebrowser.file element-icon {
+    text-color:        @macos-fg-dim;
 }
 
 /* 悬停效果 */
@@ -386,19 +439,17 @@ element:active {
 }
 
 /*
- * macOS 毛玻璃效果配置说明：
+ * macOS 浅色毛玻璃效果使用说明：
  *
- * 这个配置文件提供了类似 macOS Spotlight 的视觉效果：
+ * 1. 背景透明度设置为极低值（8%）以营造真实的浅色毛玻璃效果
+ * 2. 使用 macOS 浅色模式的标准颜色值和设计规范
+ * 3. LXGW WenKai Mono 字体确保中文显示效果
+ * 4. 深色文本确保在浅色背景上的可读性
+ * 5. 蓝色选中效果模仿 macOS 浅色模式的交互反馈
  *
- * 1. 毛玻璃背景：使用极低透明度（6%）营造真实的毛玻璃效果
- * 2. macOS 设计语言：18px 圆角、0.5px 细边框、标准颜色
- * 3. LXGW WenKai Mono 字体：完美的中文支持和等宽设计
- * 4. 智能交互：悬停效果、焦点状态、平滑过渡
- * 5. 模块化设计：支持多种模式（应用、窗口、命令等）
- *
- * 使用建议：
- * - 确保安装 LXGW WenKai Mono 字体
- * - 确保安装 Papirus-Dark 图标主题
- * - 在有对比度的壁纸上效果最佳
- * - 可以通过修改 @import 切换到浅色主题
+ * 最佳效果建议：
+ * - 适合浅色或高亮度壁纸
+ * - 在明亮环境下使用体验更佳
+ * - 确保合成器支持真透明度
+ * - 可与深色主题配合使用，根据时间或偏好切换
  */

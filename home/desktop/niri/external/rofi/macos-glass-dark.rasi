@@ -1,28 +1,20 @@
 /*
- * Rofi 现代化配置文件 - macOS 毛玻璃主题
- * 类似最新 macOS 毛玻璃效果的 rofi 配置
- * 使用 LXGW WenKai Mono 字体，支持深色和浅色主题切换
+ * Rofi macOS Glass Effect Theme - Dark
+ * 类似最新 macOS 毛玻璃效果的 rofi 主题 - 深色版本
+ * 使用 LXGW WenKai Mono 字体，模仿 macOS Sonoma/Ventura 的视觉效果
  */
 
 configuration {
-    /* 启用的模式 */
     modi: "drun,run,window,ssh,combi";
-
-    /* 字体设置 - LXGW WenKai Mono 13pt */
     font: "LXGW WenKai Mono 13";
-
-    /* 图标设置 */
     show-icons: true;
     icon-theme: "Papirus-Dark";
-
-    /* 显示标签 - 中文界面 */
     display-drun: "󰀻 应用程序";
     display-run: " 运行命令";
     display-window: "󰖯 窗口";
     display-ssh: "󰢹 SSH";
     display-combi: "󰕘 组合";
 
-    /* 界面设置 */
     sidebar-mode: false;
     hover-select: true;
     me-select-entry: "";
@@ -42,7 +34,6 @@ configuration {
     kb-toggle-sort: "Alt+grave";
     kb-delete-entry: "Shift+Delete";
 
-    /* 默认终端 */
     terminal: "alacritty";
 
     /* 性能优化 */
@@ -62,7 +53,7 @@ configuration {
     columns: 1;
     fixed-num-lines: true;
 
-    /* 位置设置 - 居中显示，类似 macOS Spotlight */
+    /* 位置设置 */
     location: 0;
     anchor: 0;
     x-offset: 0;
@@ -364,6 +355,74 @@ scrollbar {
     border:            0px;
 }
 
+/* 特殊元素样式 */
+
+/* 应用程序启动器专用样式 */
+element.application {
+    padding:           14px 16px;
+}
+
+element.application element-icon {
+    size:              32px;
+}
+
+element.application element-text {
+    font:              "LXGW WenKai Mono 13";
+}
+
+/* 窗口切换器专用样式 */
+element.window {
+    padding:           10px 16px;
+}
+
+element.window element-icon {
+    size:              24px;
+}
+
+element.window element-text {
+    font:              "LXGW WenKai Mono 12";
+}
+
+/* 运行命令专用样式 */
+element.run {
+    padding:           12px 16px;
+}
+
+element.run element-icon {
+    size:              20px;
+    text-color:        @macos-accent;
+}
+
+/* SSH 连接专用样式 */
+element.ssh {
+    padding:           12px 16px;
+}
+
+element.ssh element-icon {
+    size:              24px;
+    text-color:        @macos-success;
+}
+
+/* 文件浏览器样式（如果使用） */
+element.filebrowser {
+    padding:           10px 16px;
+}
+
+element.filebrowser.directory element-icon {
+    text-color:        @macos-accent;
+}
+
+element.filebrowser.file element-icon {
+    text-color:        @macos-fg-dim;
+}
+
+/* 自定义动画效果提示 */
+/*
+ * 注意：Rofi 的动画支持有限
+ * 这些样式主要用于颜色过渡和状态变化
+ * 真正的毛玻璃效果主要通过极低透明度和适当的背景色实现
+ */
+
 /* 悬停效果 */
 element:hover {
     background-color:   @macos-bg-hover;
@@ -386,19 +445,16 @@ element:active {
 }
 
 /*
- * macOS 毛玻璃效果配置说明：
+ * macOS 毛玻璃效果使用说明：
  *
- * 这个配置文件提供了类似 macOS Spotlight 的视觉效果：
+ * 1. 背景透明度设置为极低值（6%）以营造真实的毛玻璃效果
+ * 2. 使用 macOS 标准的颜色值和圆角半径
+ * 3. LXGW WenKai Mono 字体确保中文显示效果
+ * 4. 边框使用极细线条（0.5px）模仿 macOS 精致感
+ * 5. 间距和内边距参考 macOS 的设计规范
  *
- * 1. 毛玻璃背景：使用极低透明度（6%）营造真实的毛玻璃效果
- * 2. macOS 设计语言：18px 圆角、0.5px 细边框、标准颜色
- * 3. LXGW WenKai Mono 字体：完美的中文支持和等宽设计
- * 4. 智能交互：悬停效果、焦点状态、平滑过渡
- * 5. 模块化设计：支持多种模式（应用、窗口、命令等）
- *
- * 使用建议：
- * - 确保安装 LXGW WenKai Mono 字体
- * - 确保安装 Papirus-Dark 图标主题
- * - 在有对比度的壁纸上效果最佳
- * - 可以通过修改 @import 切换到浅色主题
+ * 最佳效果建议：
+ * - 使用有一定对比度的壁纸
+ * - 确保合成器支持真透明度
+ * - 适当调整显示器亮度以获得最佳视觉效果
  */
