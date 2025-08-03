@@ -272,3 +272,27 @@ label.module:hover {
 .modules-right > widget > label {
     margin: 0 1px;
 }
+
+/* 壁纸切换按钮 */
+#custom-wallpaper {
+    background: linear-gradient(135deg, rgba(88, 86, 214, 0.15), rgba(255, 45, 85, 0.15));
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0 10px;
+    margin: 0 2px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+}
+
+#custom-wallpaper:hover {
+    background: linear-gradient(135deg, rgba(88, 86, 214, 0.25), rgba(255, 45, 85, 0.25));
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(88, 86, 214, 0.2);
+}
+
+#custom-wallpaper:active {
+    transform: translateY(0);
+    background: linear-gradient(135deg, rgba(88, 86, 214, 0.35), rgba(255, 45, 85, 0.35));
+}

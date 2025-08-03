@@ -17,6 +17,7 @@
         "clock"
     ],
     "modules-right": [
+        "custom/wallpaper",
         "tray",
         "idle_inhibitor", 
         "wireplumber",
@@ -169,5 +170,16 @@
         "scroll-step": 5,
         "on-scroll-up": "brightnessctl set 5%+",
         "on-scroll-down": "brightnessctl set 5%-"
+    },
+    
+    "custom/wallpaper": {
+        "exec": "~/config.d/home/desktop/hyprland/external/scripts/wallpaper-status.sh",
+        "return-type": "json",
+        "tooltip": true,
+        "on-click": "~/config.d/home/desktop/hyprland/external/scripts/wallpaper.sh next && pkill -SIGRTMIN+8 waybar",
+        "on-click-right": "~/config.d/home/desktop/hyprland/external/scripts/wallpaper.sh prev && pkill -SIGRTMIN+8 waybar",
+        "on-click-middle": "~/config.d/home/desktop/hyprland/external/scripts/wallpaper.sh random && pkill -SIGRTMIN+8 waybar",
+        "interval": 300,
+        "signal": 8
     }
 }
