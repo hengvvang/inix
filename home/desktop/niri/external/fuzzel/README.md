@@ -1,6 +1,6 @@
 # Fuzzel 启动器配置
 
-这里包含了两套精美的 fuzzel 启动器配置，具有透明背景和现代化设计。
+这里包含了多套精美的 fuzzel 启动器配置，具有透明背景和现代化设计，特别是类似 macOS 的毛玻璃效果。
 
 ## 配置文件说明
 
@@ -21,6 +21,22 @@
 - **毛玻璃效果**: 模拟现代操作系统的毛玻璃界面
 - **更大圆角**: 16px 圆角半径，更加现代
 - **搜索图标**: 使用 🔍 emoji 作为提示符
+
+### `fuzzel-macos-glass.ini` (macOS 毛玻璃效果 - 深色) ⭐
+- **LXGW WenKai Mono 字体**: 使用优雅的中文等宽字体
+- **真实毛玻璃效果**: 模仿 macOS Sonoma/Ventura 的实际视觉效果
+- **极致透明度**: 背景透明度仅为 18 (`1d1d1f18`)，营造真实的毛玻璃质感
+- **macOS 配色**: 使用 macOS 标准的蓝色强调色 (`#007AFF`)
+- **精致圆角**: 18px 圆角半径，完全模仿 macOS 设计语言
+- **优化间距**: 36px 水平内边距，24px 垂直内边距，营造宽松舒适的视觉体验
+- **智能边框**: 0.5px 极细边框，极淡白色 (`ffffff10`)
+
+### `fuzzel-macos-glass-light.ini` (macOS 毛玻璃效果 - 浅色)
+- **浅色毛玻璃**: 白色极低透明度背景 (`f5f5f720`)，适合明亮环境
+- **深色文本**: 深色文本确保在浅色背景上的可读性
+- **浅色图标主题**: 使用 Papirus-Light 图标主题
+- **蓝色选中效果**: 淡蓝色选中背景 (`007aff15`)
+- **其他特性**: 与深色版本相同的字体、间距和圆角设计
 
 ## 功能特性
 
@@ -78,10 +94,33 @@ anchor = center          # 居中显示
 xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel-light.ini;
 ```
 
-**毛玻璃效果**:
+**普通毛玻璃效果**:
 ```nix
 xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel-glass.ini;
 ```
+
+**macOS 毛玻璃效果 (深色)** ⭐ 推荐:
+```nix
+xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel-macos-glass.ini;
+```
+
+**macOS 毛玻璃效果 (浅色)**:
+```nix
+xdg.configFile."fuzzel/fuzzel.ini".source = ./fuzzel-macos-glass-light.ini;
+```
+
+### 字体要求
+macOS 毛玻璃主题使用 **LXGW WenKai Mono** 字体，请确保系统已安装：
+
+**在 NixOS 中安装**:
+```nix
+fonts.packages = with pkgs; [
+  lxgw-wenkai
+];
+```
+
+**手动安装**:
+从 [LXGW WenKai 官方仓库](https://github.com/lxgw/LxgwWenKai) 下载并安装字体。
 
 ### 自定义颜色
 你可以根据自己的喜好修改颜色：
@@ -108,7 +147,19 @@ ls /usr/share/icons/ | grep -i papirus
 确保你的合成器支持透明度，对于 Niri 这通常不是问题。
 
 ### 字体显示问题
-确保系统安装了中文字体支持。
+1. **LXGW WenKai Mono 字体未安装**: macOS 主题需要此字体
+2. **字体回退**: 如果指定字体不可用，系统会自动回退到默认字体
+3. **中文字体支持**: 确保系统安装了中文字体支持
+
+检查字体是否安装：
+```bash
+fc-list | grep -i "LXGW\|wenkai"
+```
+
+### macOS 毛玻璃效果优化建议
+1. **壁纸选择**: 使用有一定对比度的壁纸以获得最佳毛玻璃效果
+2. **显示器亮度**: 适当调整显示器亮度以获得最佳视觉体验
+3. **主题切换**: 根据环境光线在深色和浅色主题间切换
 
 ## 贡献
 
