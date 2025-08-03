@@ -23,6 +23,8 @@
       swappy              # 截图编辑器
       wf-recorder          # 录屏工具
       
+      fuzzel
+      
       # ===== 剪贴板和工具 =====
       wl-clipboard        # Wayland 剪贴板
       cliphist            # 剪贴板历史

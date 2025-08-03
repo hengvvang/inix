@@ -69,7 +69,6 @@
 
         environment.systemPackages = with pkgs; [
 
-            xdg-ut      
             pyprland            # extension system for Hyprland
             hyprpicker          # color picker tool
             hyprcursor          # cursor theme manager
