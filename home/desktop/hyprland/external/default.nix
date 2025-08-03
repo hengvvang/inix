@@ -5,7 +5,7 @@
     ./hypr
     ./waybar
     ./dunst
-    ./rofi
+    # ./rofi
     ./swappy
     ./wlogout
     ./fuzzel

@@ -3,37 +3,22 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rofi.enable && config.myHome.dotfiles.rofi.method == "external") {
 
-    # ===== 包依赖确保 =====
-    # 确保必要的系统工具可用
+
     home.packages = with pkgs; [
-      # 核心应用启动器
-      rofi
-      
-      # 图标和字体支持
-      papirus-icon-theme      # Papirus 图标主题
-      nerd-fonts.fira-code    # Nerd Font 图标支持
+      papirus-icon-theme
     ];
 
-    # ===== 配置文件链接 =====
-    # 主配置文件
+    programs.rofi = {
+      enable = true;
+      package = pkgs.rofi-wayland;
+    };
+
+    # rofi 配置文件
     home.file.".config/rofi/config.rasi".source = ./configs/config.rasi;
-    
-    # 主题配置
     home.file.".config/rofi/themes".source = ./configs/themes;
-
-    # ===== 可执行脚本 =====
-    # 主启动脚本
-    home.file.".local/bin/rofi-launcher" = {
-      source = ./configs/scripts/rofi-launcher.sh;
-      executable = true;
-    };
     
-    # 电源菜单
-    home.file.".local/bin/rofi-power" = {
-      source = ./configs/scripts/rofi-power.sh;
-      executable = true;
-    };
-
+    fonts.fontconfig.enable = true;
+    
     # ===== 环境变量设置 =====
     home.sessionVariables = {
       # Rofi 配置路径

@@ -1,0 +1,242 @@
+/**
+ * macOS Tathoe 毛玻璃风格主题 - 增强版
+ * 针对不同合成器优化的毛玻璃效果
+ */
+
+* {
+    /* macOS Tathoe 配色方案 */
+    bg0: rgba(22, 22, 22, 0.85);          /* 深色毛玻璃背景 */
+    bg1: rgba(44, 44, 46, 0.9);           /* 选中项背景 */
+    bg2: rgba(58, 58, 60, 0.8);           /* 次要背景 */
+    bg3: rgba(72, 72, 74, 0.7);           /* 边框 */
+    
+    fg0: rgba(255, 255, 255, 0.95);       /* 主文字 */
+    fg1: rgba(255, 255, 255, 0.8);        /* 次要文字 */
+    fg2: rgba(255, 255, 255, 0.6);        /* 占位符 */
+    
+    accent: rgba(10, 132, 255, 0.95);     /* macOS 系统蓝 */
+    accent-hover: rgba(10, 132, 255, 0.3); /* 悬停状态 */
+    urgent: rgba(255, 59, 48, 0.9);       /* macOS 系统红 */
+    
+    background-color: transparent;
+    text-color: @fg0;
+    font: "LXGW WenKai Mono 12";
+}
+
+window {
+    background-color: @bg0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 24px;
+    
+    /* 毛玻璃效果 */
+    transparency: "real";
+    
+    /* 阴影效果 */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+mainbox {
+    background-color: transparent;
+    children: [ inputbar, message, listview, mode-switcher ];
+    spacing: 20px;
+}
+
+inputbar {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 14px 18px;
+    children: [ prompt, textbox-prompt-colon, entry, case-indicator ];
+    
+    /* 内阴影效果 */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+prompt {
+    background-color: transparent;
+    text-color: @accent;
+    font: "LXGW WenKai Mono Bold 13";
+}
+
+textbox-prompt-colon {
+    background-color: transparent;
+    text-color: @fg1;
+    expand: false;
+    str: " ";
+    margin: 0px 0.5em 0em 0em;
+}
+
+entry {
+    background-color: transparent;
+    text-color: @fg0;
+    cursor-color: @accent;
+    placeholder-color: @fg2;
+    placeholder: "开始输入以搜索应用...";
+    font: "LXGW WenKai Mono 12";
+}
+
+case-indicator {
+    background-color: transparent;
+    text-color: @fg2;
+}
+
+listview {
+    background-color: transparent;
+    columns: 1;
+    lines: 7;
+    cycle: true;
+    dynamic: true;
+    layout: vertical;
+    spacing: 3px;
+    scrollbar: false;
+    margin: 8px 0px 0px 0px;
+}
+
+element {
+    background-color: transparent;
+    text-color: @fg0;
+    orientation: horizontal;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 0px 0px 2px 0px;
+    
+    /* 过渡动画 */
+    transition: all 0.2s ease;
+}
+
+element-icon {
+    background-color: transparent;
+    size: 28px;
+    margin: 0px 16px 0px 0px;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    expand: true;
+    horizontal-align: 0;
+    vertical-align: 0.5;
+    font: "LXGW WenKai Mono 12";
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg0;
+}
+
+element normal.urgent {
+    background-color: @urgent;
+    text-color: @fg0;
+    border-radius: 8px;
+}
+
+element normal.active {
+    background-color: @accent-hover;
+    text-color: @accent;
+    border: 1px solid @accent;
+}
+
+element selected.normal {
+    background-color: @accent-hover;
+    text-color: @fg0;
+    border: 1px solid @accent;
+    
+    /* 毛玻璃选中效果 */
+    box-shadow: 0 2px 8px rgba(10, 132, 255, 0.3);
+}
+
+element selected.urgent {
+    background-color: @urgent;
+    text-color: @fg0;
+}
+
+element selected.active {
+    background-color: @accent;
+    text-color: @fg0;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg0;
+}
+
+element alternate.urgent {
+    background-color: @urgent;
+    text-color: @fg0;
+}
+
+element alternate.active {
+    background-color: @accent-hover;
+    text-color: @accent;
+}
+
+mode-switcher {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 8px;
+    spacing: 4px;
+}
+
+button {
+    background-color: transparent;
+    text-color: @fg1;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 10px 18px;
+    margin: 0px 2px;
+    font: "LXGW WenKai Mono 11";
+    
+    transition: all 0.2s ease;
+}
+
+button selected {
+    background-color: @accent;
+    text-color: @fg0;
+    border: 1px solid @accent;
+    
+    /* 选中按钮的毛玻璃效果 */
+    box-shadow: 0 2px 8px rgba(10, 132, 255, 0.4);
+}
+
+button:hover {
+    background-color: @accent-hover;
+    text-color: @fg0;
+}
+
+scrollbar {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 0px;
+    border-radius: 4px;
+    margin: 0px 0px 0px 8px;
+    width: 8px;
+}
+
+scrollbar handle {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    min-height: 20px;
+}
+
+message {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 16px;
+    margin: 0px 0px 10px 0px;
+}
+
+textbox {
+    background-color: transparent;
+    text-color: @fg0;
+    font: "LXGW WenKai Mono 12";
+}
+
+error-message {
+    background-color: @urgent;
+    text-color: @fg0;
+    border-radius: 10px;
+    padding: 16px;
+    border: 1px solid rgba(255, 59, 48, 0.5);
+}

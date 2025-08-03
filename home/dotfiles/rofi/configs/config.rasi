@@ -1,0 +1,25 @@
+configuration {
+    modi: "drun,run,window";
+    font: "LXGW WenKai Mono 12";
+    show-icons: true;
+    icon-theme: "Papirus";
+    display-drun: "应用";
+    display-run: "运行";
+    display-window: "窗口";
+    drun-display-format: "{name}";
+    disable-history: false;
+    fullscreen: false;
+    hide-scrollbar: true;
+    sidebar-mode: false;
+    
+    /* 窗口位置和大小 */
+    location: 0;
+    width: 35%;
+    height: 50%;
+    
+    /* 毛玻璃效果需要透明背景 */
+    window-background: rgba(255, 255, 255, 0.1);
+    
+    /* 导入主题 */
+    @theme "macos-tathoe";
+}
