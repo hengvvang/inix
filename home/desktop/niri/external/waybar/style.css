@@ -28,7 +28,8 @@ window#waybar.hidden {
 }
 
 window#waybar.empty {
-    background-color: transparent;
+    background-color: rgba(25, 23, 36, 0.95);
+    /* background-color: transparent; */
 }
 
 window#waybar.solo {
@@ -84,7 +85,7 @@ window#waybar.solo {
     margin: 0 8px;
     padding: 0 16px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 6;
+    border-radius: 18;
     color: #e0def4;  /* text */
     font-weight: 500;
 }
@@ -99,7 +100,7 @@ window#waybar.solo {
     margin: 0 8px;
     padding: 0 16px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 6;
+    border-radius: 16;
     color: #f6c177;  /* gold */
     font-weight: 600;
 }
@@ -114,7 +115,7 @@ window#waybar.solo {
     margin: 0 8px;
     padding: 0 8px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 6;
+    border-radius: 16;
 }
 
 #tray > .passive {
@@ -138,7 +139,7 @@ window#waybar.solo {
     margin: 0 4px;
     padding: 0 12px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 6;
+    border-radius: 16;
     color: #e0def4;  /* text */
     font-weight: 500;
 }
@@ -283,7 +284,7 @@ window#waybar.solo {
 tooltip {
     background-color: #26233a;  /* overlay */
     border: 1px solid #524f67;  /* highlight high */
-    border-radius: 6;
+    border-radius: 16;
     color: #e0def4;  /* text */
 }
 
