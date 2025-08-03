@@ -5,18 +5,18 @@
 
 /* ===== 全局属性 ===== */
 * {
-    /* 颜色定义 - macOS 风格，更高透明度 */
-    background:     rgba ( 20, 20, 25, 0.75 );     /* 更透明的深色背景 */
-    background-alt: rgba ( 35, 35, 40, 0.7 );      /* 更透明的替代背景色 */
-    foreground:     rgba ( 255, 255, 255, 0.9 );   /* 主文字颜色 */
-    selected:       rgba ( 0, 122, 255, 0.85 );    /* macOS 蓝色选中 */
-    active:         rgba ( 52, 199, 89, 0.8 );     /* macOS 绿色激活 */
-    urgent:         rgba ( 255, 59, 48, 0.8 );     /* macOS 红色紧急 */
+    /* 颜色定义 - 极高透明度的 macOS 风格 */
+    background:     rgba ( 15, 15, 20, 0.5 );      /* 极透明的深色背景 */
+    background-alt: rgba ( 25, 25, 30, 0.4 );      /* 极透明的替代背景色 */
+    foreground:     rgba ( 255, 255, 255, 0.95 );  /* 主文字颜色 */
+    selected:       rgba ( 0, 122, 255, 0.7 );     /* macOS 蓝色选中 */
+    active:         rgba ( 52, 199, 89, 0.7 );     /* macOS 绿色激活 */
+    urgent:         rgba ( 255, 59, 48, 0.7 );     /* macOS 红色紧急 */
     
     /* 透明度和边框 */
     transparent:    rgba ( 0, 0, 0, 0 );
-    border-colour:  rgba ( 255, 255, 255, 0.2 );
-    separatorcolor: rgba ( 255, 255, 255, 0.15 );
+    border-colour:  rgba ( 255, 255, 255, 0.25 );
+    separatorcolor: rgba ( 255, 255, 255, 0.2 );
     
     /* 字体 */
     font: "LXGW WenKai 12";
@@ -61,7 +61,7 @@ mainbox {
 
 /* ===== 输入栏 ===== */
 inputbar {
-    background-color: rgba ( 35, 35, 40, 0.6 );  /* 更透明的输入栏 */
+    background-color: rgba ( 20, 20, 25, 0.3 );  /* 极透明的输入栏 */
     border: 1px solid;
     border-color: @border-colour;
     border-radius: 12px;
@@ -106,7 +106,7 @@ message {
 }
 
 textbox {
-    background-color: @background-alt;
+    background-color: rgba ( 25, 25, 30, 0.3 );  /* 极透明的文本框 */
     border: 1px solid;
     border-color: @border-colour;
     border-radius: 8px;
@@ -221,8 +221,8 @@ mode-switcher {
 }
 
 button {
-    background-color: @background-alt;
-    text-color: rgba ( 255, 255, 255, 0.7 );
+    background-color: rgba ( 25, 25, 30, 0.4 );  /* 极透明的按钮 */
+    text-color: rgba ( 255, 255, 255, 0.8 );
     border: 1px solid;
     border-color: @border-colour;
     border-radius: 8px;
