@@ -15,7 +15,6 @@
     ],
     "modules-right": [
         "custom/wallpaper",
-        "tray",
         "idle_inhibitor",
         "pulseaudio",
         "network",
@@ -23,7 +22,8 @@
         "memory",
         "temperature",
         "battery",
-        "niri/language"
+        "niri/language",
+        "tray"
     ],
 
     "niri/workspaces": {
@@ -167,8 +167,8 @@
 
     "niri/language": {
         "format": " {}",
-        "format-en": "English",
-        "format-zh": "Chinese",
+        "format-en": "en",
+        "format-zh": "cn",
         "tooltip": true
     },
 
