@@ -1,0 +1,244 @@
+# Mako macOS Tahoe Style Configuration - Dark Theme
+# macOS Tahoe 风格的 mako 通知配置 - 深色主题
+# 模仿 macOS 通知中心的视觉效果和交互体验
+
+# ===============================================
+# 基础外观设置
+# ===============================================
+
+# 字体配置 - LXGW WenKai Mono 13pt
+font=LXGW WenKai Mono 13
+
+# 通知尺寸
+width=380
+height=120
+margin=16
+padding=20,24
+
+# ===============================================
+# macOS 毛玻璃效果配色
+# ===============================================
+
+# 背景 - 深色毛玻璃效果（极低透明度）
+background-color=#1d1d1f18
+
+# 文本颜色 - macOS 标准浅色文本
+text-color=#f2f2f7ff
+
+# 边框配置
+border-size=0.5
+border-color=#ffffff10
+border-radius=18
+
+# ===============================================
+# 布局和位置
+# ===============================================
+
+# 锚点位置 - 右上角（macOS 风格）
+anchor=top-right
+
+# 层级 - 置于最上层
+layer=overlay
+
+# 最大可见通知数量
+max-visible=5
+
+# 排序方式 - 时间倒序（最新在上）
+sort=-time
+
+# ===============================================
+# 行为设置
+# ===============================================
+
+# 默认超时时间（毫秒）- 5秒
+default-timeout=5000
+
+# 忽略超时（需要手动关闭的通知）
+ignore-timeout=0
+
+# 最大历史记录
+max-history=100
+
+# ===============================================
+# 图标设置
+# ===============================================
+
+# 图标路径 - Papirus Dark 主题
+icon-path=/run/current-system/sw/share/icons/Papirus-Dark
+
+# 图标大小
+icon-size=32
+
+# 最大图标大小
+max-icon-size=48
+
+# ===============================================
+# 交互设置
+# ===============================================
+
+# 点击行为 - 关闭通知
+on-button-left=dismiss
+on-button-middle=dismiss
+on-button-right=dismiss-all
+
+# 触摸行为
+on-touch=dismiss
+
+# ===============================================
+# 高级设置
+# ===============================================
+
+# 格式化字符串
+format=<b>%s</b>\n%b
+
+# 分组相同应用的通知
+group-by=app-name
+
+# 标记模式
+markup=1
+
+# 操作按钮
+actions=1
+
+# ===============================================
+# 不同优先级的样式
+# ===============================================
+
+# 低优先级通知
+[urgency=low]
+background-color=#1d1d1f12
+text-color=#8e8e93ff
+border-color=#ffffff08
+default-timeout=3000
+font=LXGW WenKai Mono 12
+
+# 普通优先级通知（使用默认设置）
+[urgency=normal]
+# 使用上面定义的默认样式
+
+# 高优先级/紧急通知
+[urgency=critical]
+background-color=#ff453a25
+text-color=#ffffffff
+border-color=#ff453a80
+border-size=1.5
+default-timeout=0
+font=LXGW WenKai Mono Bold 13
+
+# ===============================================
+# 特定应用的自定义样式
+# ===============================================
+
+# 系统通知
+[app-name="System"]
+background-color=#007aff20
+text-color=#ffffffff
+border-color=#007aff60
+
+# 音乐播放器通知
+[app-name="Music"]
+[app-name="Spotify"]
+[app-name="mpv"]
+background-color=#32d74b20
+text-color=#ffffffff
+border-color=#32d74b60
+icon-size=40
+
+# 聊天应用通知
+[app-name="Discord"]
+[app-name="Telegram"]
+[app-name="Signal"]
+background-color=#5856d620
+text-color=#ffffffff
+border-color=#5856d660
+
+# 邮件通知
+[app-name="Mail"]
+[app-name="Thunderbird"]
+background-color=#ff950020
+text-color=#ffffffff
+border-color=#ff950060
+
+# 错误/警告通知
+[app-name="Error"]
+[summary~="[Ee]rror"]
+[summary~="[Ff]ailed"]
+background-color=#ff453a30
+text-color=#ffffffff
+border-color=#ff453aaa
+border-size=2
+
+# 成功通知
+[summary~="[Ss]uccess"]
+[summary~="[Cc]omplete"]
+[summary~="[Dd]one"]
+background-color=#32d74b25
+text-color=#ffffffff
+border-color=#32d74b80
+
+# ===============================================
+# 过滤规则
+# ===============================================
+
+# 隐藏某些不重要的通知
+[app-name="Notification"]
+[summary=""]
+invisible=1
+
+# 降低某些应用的优先级
+[app-name="Background App"]
+urgency=low
+
+# ===============================================
+# macOS 风格增强
+# ===============================================
+
+# 进度条样式（如果支持）
+progress-color=#007affff
+
+# 动画效果（mako 支持有限，主要通过合成器实现）
+# 淡入淡出效果由 Wayland 合成器处理
+
+# ===============================================
+# 键盘快捷键支持
+# ===============================================
+
+# 这些快捷键需要在窗口管理器中配置
+# 建议的 niri 快捷键：
+# Mod+N: 显示通知历史
+# Mod+Shift+N: 清除所有通知
+# Escape: 关闭当前通知
+
+# ===============================================
+# 调试和诊断
+# ===============================================
+
+# 调试模式（开发时启用）
+# output=DP-1
+# Default output for notifications
+
+# ===============================================
+# 使用说明
+# ===============================================
+
+# 1. 确保安装了 LXGW WenKai Mono 字体
+# 2. 确保安装了 Papirus-Dark 图标主题
+# 3. 在 niri 配置中启动 mako：spawn-at-startup "mako"
+# 4. 使用 makoctl 命令控制通知：
+#    - makoctl list: 列出通知
+#    - makoctl dismiss: 关闭通知
+#    - makoctl dismiss -a: 关闭所有通知
+#    - makoctl reload: 重新加载配置
+#    - makoctl history: 显示历史
+#
+# 5. 测试通知：
+#    notify-send "Test" "这是一个测试通知"
+#    notify-send -u critical "重要" "这是紧急通知"
+#
+# 6. 主题切换：
+#    复制对应的配置文件到 ~/.config/mako/config
+#
+# 最佳效果建议：
+# - 使用有对比度的壁纸以突出毛玻璃效果
+# - 确保合成器支持真透明度
+# - 调整显示器亮度以获得最佳视觉体验
