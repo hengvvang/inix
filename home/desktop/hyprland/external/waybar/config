@@ -1,161 +1,174 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 36,
+    "height": 32,
+    "width": 1200,
     "spacing": 8,
     "margin-top": 8,
     "margin-left": 16,
     "margin-right": 16,
-    "margin-bottom": 0,
+    "exclusive": true,
+    "reload_style_on_change": true,
     
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/window"
     ],
-    
     "modules-center": [
         "clock"
     ],
-    
     "modules-right": [
         "tray",
-        "idle_inhibitor",
+        "idle_inhibitor", 
+        "wireplumber",
         "network",
-        "bluetooth",
-        "pulseaudio",
+        "cpu",
+        "memory",
+        "temperature",
         "battery",
-        "custom/power"
+        "backlight"
     ],
-
+    
     "hyprland/workspaces": {
         "format": "{icon}",
         "format-icons": {
-            "1": "󰈹",
-            "2": "",
-            "3": "",
-            "4": "󰈙",
-            "5": "󰝚",
-            "6": "",
-            "7": "󰊴",
-            "8": "󰒱",
-            "9": "",
-            "active": "󰮯",
-            "default": "󰊠"
+            "1": "󰲠",
+            "2": "󰲢",
+            "3": "󰲤",
+            "4": "󰲦",
+            "5": "󰲨",
+            "6": "󰲪",
+            "7": "󰲬",
+            "8": "󰲮",
+            "9": "󰲰",
+            "default": "󰏃"
+        },
+        "persistent-workspaces": {
+            "*": 5
         },
         "on-click": "activate",
         "on-scroll-up": "hyprctl dispatch workspace e+1",
-        "on-scroll-down": "hyprctl dispatch workspace e-1",
-        "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": []
-        }
+        "on-scroll-down": "hyprctl dispatch workspace e-1"
     },
-
+    
     "hyprland/window": {
         "format": "{}",
         "max-length": 50,
-        "separate-outputs": true
-    },
-
-    "clock": {
-        "format": "󰥔 {:%H:%M}",
-        "format-alt": "󰨳 {:%Y年%m月%d日 %A}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "calendar": {
-            "mode": "year",
-            "mode-mon-col": 3,
-            "weeks-pos": "right",
-            "on-scroll": 1,
-            "on-click-right": "mode",
-            "format": {
-                "months": "<span color='#ffead3'><b>{}</b></span>",
-                "days": "<span color='#ecc6d9'><b>{}</b></span>",
-                "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-                "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-                "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-            }
-        },
-        "actions": {
-            "on-click-right": "mode",
-            "on-click-forward": "tz_up",
-            "on-click-backward": "tz_down",
-            "on-scroll-up": "shift_up",
-            "on-scroll-down": "shift_down"
+        "separate-outputs": true,
+        "rewrite": {
+            "(.*) — Mozilla Firefox": "󰈹 $1",
+            "(.*) - Visual Studio Code": "󰨞 $1",
+            "(.*) — Thunar": "󰉋 $1",
+            "(.*)": "$1"
         }
     },
-
-    "tray": {
-        "icon-size": 18,
-        "spacing": 10
+    
+    "clock": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%Y-%m-%d %H:%M:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "interval": 1,
+        "on-click": "gnome-calendar"
     },
-
+    
+    "tray": {
+        "spacing": 8,
+        "icon-size": 16,
+        "show-passive-items": true
+    },
+    
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": "󰛊",
-            "deactivated": "󰾫"
+            "activated": "󰛐",
+            "deactivated": "󰛑"
         },
         "tooltip-format-activated": "空闲抑制：开启",
         "tooltip-format-deactivated": "空闲抑制：关闭"
     },
-
-    "network": {
-        "format-wifi": "󰤨 {signalStrength}%",
-        "format-ethernet": "󰈀 连接",
-        "format-disconnected": "󰤭 断开",
-        "tooltip-format": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%): {ipaddr}",
-        "on-click": "nm-connection-editor"
-    },
-
-    "bluetooth": {
-        "format": "󰂯",
-        "format-disabled": "󰂲",
-        "format-off": "󰂲",
-        "format-on": "󰂯",
-        "format-connected": "󰂱 {num_connections}",
-        "tooltip-format": "{controller_alias}\t{controller_address}",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "blueman-manager"
-    },
-
-    "pulseaudio": {
+    
+    "wireplumber": {
         "format": "{icon} {volume}%",
-        "format-bluetooth": "{icon}󰂰 {volume}%",
-        "format-muted": "󰸈",
+        "format-muted": "󰖁",
         "format-icons": {
             "headphone": "󰋋",
-            "hands-free": "󰋎",
-            "headset": "󰋎",
+            "hands-free": "󰋋",
+            "headset": "󰋋",
             "phone": "󰄜",
             "portable": "󰄜",
-            "car": "󰄋",
+            "car": "󰄜",
             "default": ["󰕿", "󰖀", "󰕾"]
         },
         "scroll-step": 5,
         "on-click": "pavucontrol",
-        "on-click-right": "pamixer -t"
+        "on-click-right": "helvum"
     },
-
-    "battery": {
+    
+    "network": {
+        "format": "{ifname}",
+        "format-wifi": "󰤨 {signalStrength}%",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "󰤨 {essid} ({signalStrength}%)\n{ipaddr}/{cidr}",
+        "tooltip-format-ethernet": "󰈀 {ifname}\n{ipaddr}/{cidr}",
+        "tooltip-format-disconnected": "网络已断开",
+        "max-length": 50,
+        "on-click": "nm-connection-editor"
+    },
+    
+    "cpu": {
+        "format": "󰻠 {usage}%",
+        "interval": 3,
         "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "gnome-system-monitor"
+    },
+    
+    "memory": {
+        "format": "󰍛 {percentage}%",
+        "tooltip-format": "内存使用: {used:0.1f}G / {total:0.1f}G\n可用内存: {avail:0.1f}G",
+        "interval": 3,
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "gnome-system-monitor"
+    },
+    
+    "temperature": {
+        "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format": "󰔏 {temperatureC}°C",
+        "format-critical": "󰸁 {temperatureC}°C",
+        "interval": 3
+    },
+    
+    "battery": {
+        "bat": "BAT0",
+        "states": {
+            "good": 95,
             "warning": 30,
             "critical": 15
         },
         "format": "{icon} {capacity}%",
         "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
         "format-alt": "{icon} {time}",
-        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "interval": 30,
+        "tooltip-format": "电池状态: {status}\n剩余时间: {time}\n功率: {power}W"
     },
-
-    "custom/power": {
-        "format": "󰐥",
-        "tooltip": "电源菜单",
-        "on-click": "wlogout"
+    
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "scroll-step": 5,
+        "on-scroll-up": "brightnessctl set 5%+",
+        "on-scroll-down": "brightnessctl set 5%-"
     }
 }

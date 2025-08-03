@@ -1,98 +1,137 @@
-/* ========================================
-   Waybar 样式配置 - Catppuccin Mocha 主题
-   ======================================== */
+/* =============================================================================
+ * Waybar CSS - macOS Tahoe 透明风格
+ * 基于 Waybar 官方文档创建，类似 macOS Big Sur/Monterey 的透明效果
+ * ============================================================================= */
 
-/* 全局样式 */
+/* 全局设置 */
 * {
-    font-family: "JetBrains Mono Nerd Font", sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    color: #cdd6f4;
+    border: none;
+    border-radius: 0;
+    font-family: "LXGW WenKai", "SF Pro Display", "Helvetica Neue", sans-serif;
+    font-size: 13px;
     min-height: 0;
+    font-weight: 500;
 }
 
-/* 主容器 */
+/* 主窗口 - macOS 风格透明效果 */
 window#waybar {
-    background-color: rgba(30, 30, 46, 0.95);
-    border: 2px solid #cba6f7;
+    background: rgba(20, 25, 30, 0.4);  /* 极透明的深色背景 */
+    border-radius: 16px;                /* macOS 风格圆角 */
+    border: 1px solid rgba(255, 255, 255, 0.1);  /* 微妙边框 */
+    color: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 工具提示 */
+tooltip {
+    background: rgba(30, 35, 40, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 12px;
-    color: #cdd6f4;
-    transition-property: background-color;
-    transition-duration: 0.3s;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 8px 12px;
 }
 
-window#waybar.hidden {
-    opacity: 0.2;
+tooltip label {
+    color: rgba(255, 255, 255, 0.9);
 }
 
-/* 工作区 */
-#workspaces {
-    background-color: #313244;
-    border-radius: 8px;
+/* 模块组样式 */
+.modules-left,
+.modules-center, 
+.modules-right {
+    background: transparent;
     margin: 4px 8px;
-    padding: 2px;
+    border-radius: 12px;
+}
+
+.modules-left {
+    margin-left: 12px;
+}
+
+.modules-right {
+    margin-right: 12px;
+}
+
+/* 通用模块样式 */
+label.module {
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.05);  /* 极透明的模块背景 */
+    border-radius: 8px;
+    margin: 0 2px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+label.module:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 工作区样式 */
+#workspaces {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 2px 4px;
+    margin: 0 4px;
 }
 
 #workspaces button {
     padding: 4px 8px;
-    margin: 2px;
-    background-color: transparent;
-    color: #9399b2;
-    border: none;
-    border-radius: 6px;
-    min-width: 30px;
-    transition: all 0.3s;
+    color: rgba(255, 255, 255, 0.7);
+    background: transparent;
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    margin: 0 1px;
+    font-size: 14px;
 }
 
 #workspaces button:hover {
-    background-color: #45475a;
-    color: #cdd6f4;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
 }
 
 #workspaces button.active {
-    background-color: #89b4fa;
-    color: #1e1e2e;
-    font-weight: bold;
+    background: rgba(0, 122, 255, 0.7);  /* macOS 蓝色 */
+    color: white;
+    font-weight: 600;
 }
 
 #workspaces button.urgent {
-    background-color: #f38ba8;
-    color: #1e1e2e;
-    animation: blink 0.5s linear infinite alternate;
+    background: rgba(255, 69, 58, 0.8);  /* macOS 红色 */
+    color: white;
+    animation: urgent-blink 1s ease-in-out infinite alternate;
+}
+
+@keyframes urgent-blink {
+    to {
+        background: rgba(255, 69, 58, 0.5);
+    }
 }
 
 /* 窗口标题 */
 #window {
-    background-color: #313244;
-    border-radius: 8px;
-    margin: 4px 8px;
-    padding: 6px 12px;
-    color: #cdd6f4;
-    font-weight: 600;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 4px 12px;
+    margin: 0 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 500;
 }
 
 /* 时钟 */
 #clock {
-    background-color: #313244;
-    border-radius: 8px;
-    margin: 4px 8px;
-    padding: 6px 12px;
-    color: #f9e2af;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 4px 16px;
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
 }
 
-#clock:hover {
-    background-color: #45475a;
-    color: #fab387;
-}
-
-/* 托盘 */
+/* 系统托盘 */
 #tray {
-    background-color: #313244;
-    border-radius: 8px;
-    margin: 4px 8px;
-    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    padding: 2px 8px;
 }
 
 #tray > .passive {
@@ -101,140 +140,135 @@ window#waybar.hidden {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #f38ba8;
+    background-color: rgba(255, 214, 10, 0.8);
 }
 
 /* 空闲抑制器 */
 #idle_inhibitor {
-    background-color: #313244;
-    border-radius: 8px;
-    margin: 4px 2px;
-    padding: 6px 10px;
-    color: #b4befe;
-    transition: all 0.3s;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.7);
 }
 
 #idle_inhibitor.activated {
-    background-color: #f9e2af;
-    color: #1e1e2e;
+    background: rgba(52, 199, 89, 0.7);  /* macOS 绿色 */
+    color: white;
 }
 
-/* 网络 */
+/* 音频模块 */
+#wireplumber {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#wireplumber.muted {
+    color: rgba(255, 69, 58, 0.8);
+}
+
+/* 网络模块 */
 #network {
-    background-color: #313244;
-    border-radius: 8px;
-    margin: 4px 2px;
-    padding: 6px 10px;
-    color: #a6e3a1;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 #network.disconnected {
-    color: #f38ba8;
+    color: rgba(255, 69, 58, 0.8);
 }
 
 #network.wifi {
-    color: #89dceb;
+    color: rgba(52, 199, 89, 0.8);
 }
 
 #network.ethernet {
-    color: #a6e3a1;
+    color: rgba(0, 122, 255, 0.8);
 }
 
-/* 蓝牙 */
-#bluetooth {
-    background-color: #313244;
-    border-radius: 8px;
-    margin: 4px 2px;
-    padding: 6px 10px;
-    color: #89b4fa;
+/* CPU 模块 */
+#cpu {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
 }
 
-#bluetooth.disabled {
-    color: #6c7086;
+#cpu.warning {
+    color: rgba(255, 214, 10, 0.9);
 }
 
-#bluetooth.off {
-    color: #f38ba8;
+#cpu.critical {
+    color: rgba(255, 69, 58, 0.9);
+    animation: critical-blink 0.5s ease-in-out infinite alternate;
 }
 
-/* 音频 */
-#pulseaudio {
-    background-color: #313244;
-    border-radius: 8px;
-    margin: 4px 2px;
-    padding: 6px 10px;
-    color: #cba6f7;
+/* 内存模块 */
+#memory {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
 }
 
-#pulseaudio.muted {
-    color: #f38ba8;
+#memory.warning {
+    color: rgba(255, 214, 10, 0.9);
 }
 
-#pulseaudio.bluetooth {
-    color: #89b4fa;
+#memory.critical {
+    color: rgba(255, 69, 58, 0.9);
+    animation: critical-blink 0.5s ease-in-out infinite alternate;
 }
 
-/* 电池 */
+/* 温度模块 */
+#temperature {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#temperature.critical {
+    color: rgba(255, 69, 58, 0.9);
+    animation: critical-blink 0.5s ease-in-out infinite alternate;
+}
+
+/* 电池模块 */
 #battery {
-    background-color: #313244;
-    border-radius: 8px;
-    margin: 4px 2px;
-    padding: 6px 10px;
-    color: #a6e3a1;
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
 }
 
-#battery.charging {
-    color: #f9e2af;
-    animation: charging 1s linear infinite alternate;
+#battery.charging,
+#battery.plugged {
+    color: rgba(52, 199, 89, 0.8);
 }
 
 #battery.warning:not(.charging) {
-    color: #fab387;
+    color: rgba(255, 214, 10, 0.9);
 }
 
 #battery.critical:not(.charging) {
-    color: #f38ba8;
-    animation: blink 0.5s linear infinite alternate;
+    color: rgba(255, 69, 58, 0.9);
+    animation: critical-blink 0.5s ease-in-out infinite alternate;
 }
 
-/* 电源菜单 */
-#custom-power {
-    background-color: #313244;
-    border-radius: 8px;
-    margin: 4px 8px;
-    padding: 6px 10px;
-    color: #f38ba8;
-    font-size: 16px;
-    transition: all 0.3s;
+/* 背光模块 */
+#backlight {
+    background: rgba(255, 255, 255, 0.06);
+    color: rgba(255, 255, 255, 0.8);
 }
 
-#custom-power:hover {
-    background-color: #f38ba8;
-    color: #1e1e2e;
-}
-
-/* 动画 */
-@keyframes blink {
+/* 关键状态动画 */
+@keyframes critical-blink {
     to {
-        opacity: 0.5;
+        background: rgba(255, 69, 58, 0.3);
     }
 }
 
-@keyframes charging {
-    to {
-        opacity: 0.7;
-    }
+/* 模块间距调整 */
+#workspaces {
+    margin-right: 8px;
 }
 
-/* 工具提示 */
-tooltip {
-    background-color: #313244;
-    border: 1px solid #585b70;
-    border-radius: 8px;
-    color: #cdd6f4;
-    font-size: 12px;
+#window {
+    margin-left: 8px;
 }
 
-tooltip label {
-    color: #cdd6f4;
+#clock {
+    margin: 0 4px;
+}
+
+.modules-right > widget > label {
+    margin: 0 1px;
 }
