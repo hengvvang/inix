@@ -173,13 +173,13 @@
     },
     
     "custom/wallpaper": {
-        "exec": "~/config.d/home/desktop/hyprland/external/scripts/wallpaper-status.sh",
-        "return-type": "json",
+        "format": "{}",
+        "exec": "echo '󰸉'",
+        "interval": "once",
         "tooltip": true,
-        "on-click": "~/config.d/home/desktop/hyprland/external/scripts/wallpaper.sh next && pkill -SIGRTMIN+8 waybar",
-        "on-click-right": "~/config.d/home/desktop/hyprland/external/scripts/wallpaper.sh prev && pkill -SIGRTMIN+8 waybar",
-        "on-click-middle": "~/config.d/home/desktop/hyprland/external/scripts/wallpaper.sh random && pkill -SIGRTMIN+8 waybar",
-        "interval": 300,
-        "signal": 8
+        "tooltip-format": "切换壁纸\\n左键: 下一张\\n右键: 上一张\\n中键: 随机",
+        "on-click": "~/.config/hypr/scripts/wallpaper.sh next",
+        "on-click-right": "~/.config/hypr/scripts/wallpaper.sh prev",
+        "on-click-middle": "~/.config/hypr/scripts/wallpaper.sh random"
     }
 }

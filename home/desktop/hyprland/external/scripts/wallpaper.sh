@@ -1,43 +1,54 @@
 #!/usr/bin/env bash
+# Hyprland 壁纸切换脚本
+# 使用 hyprpaper 管理壁纸
 
-# ========================================
-# Hyprpaper 壁纸切换脚本
-# 用法: ./wallpaper.sh [next|prev|random]
-# ========================================
-
+# 壁纸目录
 WALLPAPER_DIR="$HOME/Pictures/Wallpapers"
-STATE_FILE="$HOME/.cache/hyprpaper_current"
-ACTION="${1:-next}"
+# 状态文件，记录当前壁纸索引
+STATE_FILE="$HOME/.config/hypr/current_wallpaper_index"
 
-# 检查壁纸目录
-[ ! -d "$WALLPAPER_DIR" ] && { echo "错误: 壁纸目录不存在"; exit 1; }
+# 确保壁纸目录存在
+if [ ! -d "$WALLPAPER_DIR" ]; then
+    echo "错误: 壁纸目录 $WALLPAPER_DIR 不存在"
+    notify-send "壁纸切换" "壁纸目录不存在: $WALLPAPER_DIR" -i dialog-error
+    exit 1
+fi
 
-# 创建缓存目录
-mkdir -p "$(dirname "$STATE_FILE")"
+# 获取所有支持的图片文件
+mapfile -t WALLPAPERS < <(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.webp" \) | sort)
 
-# 查找壁纸文件
-WALLPAPERS=($(find "$WALLPAPER_DIR" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.webp" \) | sort))
-[ ${#WALLPAPERS[@]} -eq 0 ] && { echo "错误: 没有找到壁纸文件"; exit 1; }
+# 检查是否有壁纸文件
+if [ ${#WALLPAPERS[@]} -eq 0 ]; then
+    echo "错误: 在 $WALLPAPER_DIR 中未找到任何图片文件"
+    notify-send "壁纸切换" "未找到任何壁纸文件" -i dialog-error
+    exit 1
+fi
 
-# 读取当前索引
-CURRENT_INDEX=0
-[ -f "$STATE_FILE" ] && CURRENT_INDEX=$(cat "$STATE_FILE" 2>/dev/null || echo 0)
+# 读取当前壁纸索引
+if [ -f "$STATE_FILE" ]; then
+    CURRENT_INDEX=$(cat "$STATE_FILE" 2>/dev/null || echo 0)
+else
+    CURRENT_INDEX=0
+fi
 
-# 验证索引
-[ "$CURRENT_INDEX" -ge "${#WALLPAPERS[@]}" ] || [ "$CURRENT_INDEX" -lt 0 ] && CURRENT_INDEX=0
+# 验证索引有效性
+if ! [[ "$CURRENT_INDEX" =~ ^[0-9]+$ ]] || [ "$CURRENT_INDEX" -ge ${#WALLPAPERS[@]} ]; then
+    CURRENT_INDEX=0
+fi
 
-# 根据操作选择壁纸
-case "$ACTION" in
+# 根据参数决定操作
+case "${1:-next}" in
     "next")
-        NEW_INDEX=$(( (CURRENT_INDEX + 1) % ${#WALLPAPERS[@]} ))
+        # 切换到下一张壁纸
+        CURRENT_INDEX=$(( (CURRENT_INDEX + 1) % ${#WALLPAPERS[@]} ))
         ;;
     "prev")
-        NEW_INDEX=$(( (CURRENT_INDEX - 1 + ${#WALLPAPERS[@]}) % ${#WALLPAPERS[@]} ))
+        # 切换到上一张壁纸
+        CURRENT_INDEX=$(( (CURRENT_INDEX - 1 + ${#WALLPAPERS[@]}) % ${#WALLPAPERS[@]} ))
         ;;
     "random")
-        NEW_INDEX=$((RANDOM % ${#WALLPAPERS[@]}))
-        # 确保不选择当前壁纸
-        [ ${#WALLPAPERS[@]} -gt 1 ] && [ $NEW_INDEX -eq $CURRENT_INDEX ] && NEW_INDEX=$(( (NEW_INDEX + 1) % ${#WALLPAPERS[@]} ))
+        # 随机选择壁纸
+        CURRENT_INDEX=$((RANDOM % ${#WALLPAPERS[@]}))
         ;;
     *)
         echo "用法: $0 [next|prev|random]"
@@ -45,19 +56,23 @@ case "$ACTION" in
         ;;
 esac
 
-SELECTED_WALLPAPER="${WALLPAPERS[$NEW_INDEX]}"
+# 获取选择的壁纸
+SELECTED_WALLPAPER="${WALLPAPERS[$CURRENT_INDEX]}"
 WALLPAPER_NAME=$(basename "$SELECTED_WALLPAPER")
 
-echo "切换到第 $((NEW_INDEX + 1))/${#WALLPAPERS[@]} 张壁纸: $WALLPAPER_NAME"
-
-# 保存新索引
-echo "$NEW_INDEX" > "$STATE_FILE"
-
-# 应用壁纸
-hyprctl hyprpaper reload ",$SELECTED_WALLPAPER"
-
-# 发送通知
-command -v notify-send &> /dev/null && notify-send "壁纸已切换" "第 $((NEW_INDEX + 1))/${#WALLPAPERS[@]} 张: $WALLPAPER_NAME" -t 2000
-
-# 更新waybar显示
-pkill -SIGRTMIN+8 waybar 2>/dev/null || true
+# 应用壁纸使用 hyprpaper
+echo "正在应用壁纸: $WALLPAPER_NAME"
+if hyprctl hyprpaper reload ",$SELECTED_WALLPAPER"; then
+    # 保存当前索引
+    mkdir -p "$(dirname "$STATE_FILE")"
+    echo "$CURRENT_INDEX" > "$STATE_FILE"
+    
+    # 发送通知
+    notify-send "壁纸已更换" "$WALLPAPER_NAME (${CURRENT_INDEX}/${#WALLPAPERS[@]})" -i image-x-generic -t 2000
+    
+    echo "壁纸切换成功: $WALLPAPER_NAME (${CURRENT_INDEX}/${#WALLPAPERS[@]})"
+else
+    echo "错误: 壁纸切换失败"
+    notify-send "壁纸切换失败" "无法应用壁纸: $WALLPAPER_NAME" -i dialog-error
+    exit 1
+fi
