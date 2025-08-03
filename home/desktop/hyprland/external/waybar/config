@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 32,
+    "height": 17,
     "spacing": 8,
     "margin-top": 8,
     "margin-left": 0,
@@ -18,7 +18,6 @@
     ],
     "modules-right": [
         "custom/wallpaper",
-        "tray",
         "idle_inhibitor", 
         "wireplumber",
         "network",
@@ -26,7 +25,8 @@
         "memory",
         "temperature",
         "battery",
-        "backlight"
+        "backlight",
+        "tray"
     ],
     
     "hyprland/workspaces": {
@@ -177,7 +177,7 @@
         "exec": "echo '󰸉'",
         "interval": "once",
         "tooltip": true,
-        "tooltip-format": "切换壁纸\\n左键: 下一张\\n右键: 上一张\\n中键: 随机",
+        "tooltip-format": "切换壁纸\n左键: 下一张\n右键: 上一张\n中键: 随机",
         "on-click": "~/.config/hypr/scripts/wallpaper.sh next",
         "on-click-right": "~/.config/hypr/scripts/wallpaper.sh prev",
         "on-click-middle": "~/.config/hypr/scripts/wallpaper.sh random"
