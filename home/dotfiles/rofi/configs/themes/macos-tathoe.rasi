@@ -5,18 +5,18 @@
 
 /* ===== 全局属性 ===== */
 * {
-    /* 颜色定义 - macOS 风格 */
-    background:     rgba ( 28, 28, 30, 0.85 );     /* 深色半透明背景 */
-    background-alt: rgba ( 44, 44, 46, 0.8 );      /* 替代背景色 */
-    foreground:     rgba ( 255, 255, 255, 0.87 );  /* 主文字颜色 */
-    selected:       rgba ( 0, 122, 255, 0.8 );     /* macOS 蓝色选中 */
+    /* 颜色定义 - macOS 风格，更高透明度 */
+    background:     rgba ( 20, 20, 25, 0.75 );     /* 更透明的深色背景 */
+    background-alt: rgba ( 35, 35, 40, 0.7 );      /* 更透明的替代背景色 */
+    foreground:     rgba ( 255, 255, 255, 0.9 );   /* 主文字颜色 */
+    selected:       rgba ( 0, 122, 255, 0.85 );    /* macOS 蓝色选中 */
     active:         rgba ( 52, 199, 89, 0.8 );     /* macOS 绿色激活 */
     urgent:         rgba ( 255, 59, 48, 0.8 );     /* macOS 红色紧急 */
     
     /* 透明度和边框 */
     transparent:    rgba ( 0, 0, 0, 0 );
-    border-colour:  rgba ( 255, 255, 255, 0.15 );
-    separatorcolor: rgba ( 255, 255, 255, 0.1 );
+    border-colour:  rgba ( 255, 255, 255, 0.2 );
+    separatorcolor: rgba ( 255, 255, 255, 0.15 );
     
     /* 字体 */
     font: "LXGW WenKai 12";
@@ -28,7 +28,7 @@
 
 /* ===== 主窗口 ===== */
 window {
-    /* 透明效果 - 这是关键 */
+    /* 透明效果 - 针对 Wayland/Hyprland 优化 */
     transparency: "real";
     
     /* 窗口样式 */
@@ -47,6 +47,9 @@ window {
     
     /* 启用模糊效果 */
     fullscreen: false;
+    
+    /* Wayland 特定设置 */
+    children: [ mainbox ];
 }
 
 /* ===== 主容器 ===== */
@@ -58,7 +61,7 @@ mainbox {
 
 /* ===== 输入栏 ===== */
 inputbar {
-    background-color: @background-alt;
+    background-color: rgba ( 35, 35, 40, 0.6 );  /* 更透明的输入栏 */
     border: 1px solid;
     border-color: @border-colour;
     border-radius: 12px;
