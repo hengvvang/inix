@@ -12,7 +12,8 @@
       
       # 主题配置
       "hypr/themes/catppuccin.conf".source = ./themes/catppuccin.conf;
-      
+      "hypr/themes/macos-tahoe-glass.conf".source = ./themes/macos-tahoe-glass.conf;
+
       # 脚本配置
       "hypr/scripts/wallpaper.sh" = {
         source = ./scripts/wallpaper.sh;
