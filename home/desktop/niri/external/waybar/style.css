@@ -85,7 +85,7 @@ window#waybar.solo {
     margin: 0 8px;
     padding: 0 16px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 18;
+    border-radius: 18px;
     color: #e0def4;  /* text */
     font-weight: 500;
 }
@@ -100,7 +100,7 @@ window#waybar.solo {
     margin: 0 8px;
     padding: 0 16px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 16;
+    border-radius: 16px;
     color: #f6c177;  /* gold */
     font-weight: 600;
 }
@@ -115,7 +115,7 @@ window#waybar.solo {
     margin: 0 8px;
     padding: 0 8px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 16;
+    border-radius: 16px;
 }
 
 #tray > .passive {
@@ -135,11 +135,12 @@ window#waybar.solo {
 #memory,
 #temperature,
 #battery,
-#language {
+#language,
+#custom-wallpaper {
     margin: 0 4px;
     padding: 0 12px;
     background-color: #1f1d2e;  /* surface */
-    border-radius: 16;
+    border-radius: 16px;
     color: #e0def4;  /* text */
     font-weight: 500;
 }
@@ -272,6 +273,24 @@ window#waybar.solo {
     color: #c4a7e7;  /* iris */
 }
 
+/* Custom wallpaper module */
+#custom-wallpaper {
+    color: #ebbcba;  /* rose */
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#custom-wallpaper:hover {
+    background-color: #26233a;  /* overlay */
+    color: #eb6f92;  /* love */
+    transition: all 0.3s ease;
+}
+
+#custom-wallpaper:active {
+    background-color: #eb6f92;  /* love */
+    color: #191724;  /* base */
+}
+
 /* Animations */
 @keyframes blink {
     to {
@@ -284,7 +303,7 @@ window#waybar.solo {
 tooltip {
     background-color: #26233a;  /* overlay */
     border: 1px solid #524f67;  /* highlight high */
-    border-radius: 16;
+    border-radius: 16px;
     color: #e0def4;  /* text */
 }
 
@@ -303,7 +322,8 @@ tooltip label {
 #memory:hover,
 #temperature:hover,
 #battery:hover,
-#language:hover {
+#language:hover,
+#custom-wallpaper:hover {
     transition: all 0.3s ease;
 }
 
