@@ -7,8 +7,9 @@
     programs.rofi = {
       enable = true;
       package = pkgs.rofi-wayland;
-      theme = ./config.rasi;
     };
-    
+
+    home.file.".config/rofi/config.rasi".source = ./configs/config.rasi;
+    home.file.".config/rofi/themes".source = ./configs/themes;
   };
 }

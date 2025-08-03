@@ -8,6 +8,7 @@
     ./rofi
     ./swappy
     ./wlogout
+    ./fuzzel
   ];
 
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.method == "external") {

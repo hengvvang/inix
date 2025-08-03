@@ -1,0 +1,139 @@
+/*
+ * Rofi Glass Theme - macOS Monterey/Big Sur style
+ * Inspired by Fuzzel and macOS's frosted glass aesthetic
+ */
+
+* {
+    /* 主要颜色定义 - 深色主题 */
+    bg-color: rgba(25, 25, 28, 0.88);
+    bg-selected: rgba(255, 255, 255, 0.12);
+    fg-color: rgba(255, 255, 255, 0.87);
+    fg-selected: rgba(255, 255, 255, 1.0);
+    border-color: rgba(255, 255, 255, 0.18);
+    accent-color: rgba(10, 132, 255, 0.9);
+    
+    /* 字体设置 - 使用系统可用字体 */
+    font: "Sans 12";
+    
+    /* 基础样式重置 */
+    background-color: transparent;
+    text-color: @fg-color;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+window {
+    background-color: @bg-color;
+    border: 1px solid @border-color;
+    border-radius: 20px;
+    width: 560px;
+    padding: 20px;
+    
+    /* 位置设置 - 居中显示 */
+    location: center;
+    anchor: center;
+    
+    /* 阴影效果 */
+    box-shadow: 0 16px 64px rgba(0, 0, 0, 0.24);
+}
+
+mainbox {
+    background-color: transparent;
+    children: [inputbar, listview];
+    spacing: 20px;
+}
+
+inputbar {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 14px 18px;
+    children: [prompt, entry];
+    spacing: 10px;
+}
+
+prompt {
+    background-color: transparent;
+    text-color: rgba(255, 255, 255, 0.6);
+    font: "Sans Medium 12";
+}
+
+entry {
+    background-color: transparent;
+    text-color: @fg-color;
+    placeholder: "Search applications...";
+    placeholder-color: rgba(255, 255, 255, 0.4);
+    cursor: text;
+}
+
+listview {
+    background-color: transparent;
+    scrollbar: false;
+    lines: 8;
+    cycle: true;
+    dynamic: true;
+    layout: vertical;
+    spacing: 2px;
+}
+
+element {
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 10px 14px;
+    text-color: @fg-color;
+    orientation: horizontal;
+    children: [element-icon, element-text];
+    spacing: 14px;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg-color;
+}
+
+element normal.urgent {
+    background-color: rgba(255, 69, 58, 0.15);
+    text-color: rgba(255, 105, 97, 1.0);
+}
+
+element normal.active {
+    background-color: rgba(10, 132, 255, 0.15);
+    text-color: rgba(64, 156, 255, 1.0);
+}
+
+element selected.normal {
+    background-color: @accent-color;
+    text-color: rgba(255, 255, 255, 1.0);
+    border: none;
+}
+
+element selected.urgent {
+    background-color: rgba(255, 69, 58, 0.9);
+    text-color: rgba(255, 255, 255, 1.0);
+}
+
+element selected.active {
+    background-color: rgba(10, 132, 255, 0.9);
+    text-color: rgba(255, 255, 255, 1.0);
+}
+
+element-icon {
+    background-color: transparent;
+    size: 28px;
+}
+
+element-text {
+    background-color: transparent;
+    vertical-align: 0.5;
+    highlight: bold rgba(255, 255, 255, 0.15);
+}
+
+scrollbar {
+    width: 6px;
+    border: 0;
+    handle-color: rgba(255, 255, 255, 0.25);
+    handle-width: 6px;
+    padding: 0;
+    border-radius: 3px;
+}
