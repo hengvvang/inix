@@ -2,11 +2,10 @@
     "layer": "top",
     "position": "top",
     "height": 32,
-    "width": 1200,
     "spacing": 8,
     "margin-top": 8,
-    "margin-left": 16,
-    "margin-right": 16,
+    "margin-left": 0,
+    "margin-right": 0,
     "exclusive": true,
     "reload_style_on_change": true,
     
