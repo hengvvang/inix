@@ -1,45 +1,42 @@
-# ========================================
-# Dunst 通知守护进程配置
-# ========================================
-
+# Dunst configuration for macOS-like glass theme
 [global]
     # 显示设置
     monitor = 0
     follow = mouse
     
-    # 通知几何
-    width = (200, 400)
-    height = (0, 300)
+    # 几何设置 - 类似 macOS 通知的大小和位置
+    width = (300, 400)
+    height = 300
     origin = top-right
-    offset = (10, 10)
-    scale = 0
-    notification_limit = 3
+    offset = 15x40
     
-    # 进度条
-    progress_bar = true
-    progress_bar_height = 10
-    progress_bar_frame_width = 1
-    progress_bar_min_width = 150
-    progress_bar_max_width = 300
+    # 透明度和视觉效果
+    transparency = 20
+    corner_radius = 12
+    
+    # 边框设置
+    frame_width = 1
+    frame_color = "#ffffff40"
     
     # 分隔符
-    separator_height = 2
-    padding = 8
-    horizontal_padding = 8
-    text_icon_padding = 0
-    frame_width = 2
-    gap_size = 4
-    separator_color = frame
-    sort = yes
+    separator_height = 1
+    separator_color = "#ffffff30"
     
-    # 字体设置
-    font = JetBrains Mono Nerd Font 11
+    # 排序和堆叠
+    sort = yes
+    idle_threshold = 120
+    
+    # 字体设置 - 使用系统字体
+    font = "SF Pro Display 11"
     line_height = 0
+    
+    # 文本格式
     markup = full
     format = "<b>%s</b>\n%b"
     alignment = left
     vertical_alignment = center
     show_age_threshold = 60
+    word_wrap = yes
     ellipsize = middle
     ignore_newline = no
     stack_duplicates = true
@@ -50,64 +47,85 @@
     icon_position = left
     min_icon_size = 32
     max_icon_size = 48
-    icon_path = /usr/share/icons/Papirus-Dark/16x16/status/:/usr/share/icons/Papirus-Dark/16x16/devices/
+    icon_path = /usr/share/icons/Papirus/16x16/status/:/usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/apps/
     
     # 历史
     sticky_history = yes
     history_length = 20
     
-    # 鼠标操作
+    # 浏览器设置
+    browser = /usr/bin/firefox -new-tab
+    
+    # 鼠标交互
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
-    
-    # 其他设置
-    title = Dunst
-    class = Dunst
-    corner_radius = 8
-    ignore_dbusclose = false
-    force_xwayland = false
-    force_xinerama = false
-    
-    # Wayland 设置
-    layer = overlay
-    
-    # 实验性功能
-    per_monitor_dpi = false
 
-# 低优先级通知样式
-[urgency_low]
-    background = "#1e1e2e"
-    foreground = "#cdd6f4"
-    frame_color = "#313244"
-    timeout = 5
-    
-# 普通通知样式  
+# 普通优先级通知 - 透明玻璃效果
 [urgency_normal]
-    background = "#1e1e2e"
+    background = "#1e1e2e80"
     foreground = "#cdd6f4"
-    frame_color = "#89b4fa"
-    timeout = 10
-    
-# 高优先级通知样式
-[urgency_critical]
-    background = "#1e1e2e"
-    foreground = "#cdd6f4"
-    frame_color = "#f38ba8"
-    timeout = 0
+    highlight = "#89b4fa"
+    timeout = 5
+    default_icon = "dialog-information"
 
-# 自定义通知规则
-[screenshot]
-    appname = "grimblast"
-    urgency = low
+# 低优先级通知
+[urgency_low]
+    background = "#1e1e2e60"
+    foreground = "#bac2de"
+    highlight = "#a6e3a1"
+    timeout = 3
+    default_icon = "dialog-information"
+
+# 高优先级/紧急通知
+[urgency_critical]
+    background = "#1e1e2e90"
+    foreground = "#f38ba8"
+    highlight = "#fab387"
+    timeout = 0
+    default_icon = "dialog-warning"
+
+# 特定应用程序自定义
+[spotify]
+    appname = "Spotify"
+    background = "#1db95490"
+    foreground = "#ffffff"
+    highlight = "#1ed760"
+    timeout = 10
+
+[discord]
+    appname = "Discord"
+    background = "#5865f280"
+    foreground = "#ffffff"
+    highlight = "#5865f2"
+    timeout = 8
+
+[telegram]
+    appname = "Telegram"
+    background = "#0088cc80"
+    foreground = "#ffffff"
+    highlight = "#0088cc"
+    timeout = 8
+
+# 系统通知
+[volume]
+    summary = "*Volume*"
+    background = "#1e1e2e70"
+    foreground = "#f9e2af"
+    highlight = "#f9e2af"
+    timeout = 2
+    
+[brightness]
+    summary = "*Brightness*"
+    background = "#1e1e2e70"
+    foreground = "#f9e2af"
+    highlight = "#f9e2af"
     timeout = 2
 
-[volume]
-    appname = "pamixer"
-    urgency = low
-    timeout = 1
-
-[brightness]
-    appname = "brightnessctl"
-    urgency = low
-    timeout = 1
+# 邮件通知
+[thunderbird]
+    appname = "Thunderbird"
+    background = "#ff660080"
+    foreground = "#ffffff"
+    highlight = "#ff6600"
+    timeout = 15
