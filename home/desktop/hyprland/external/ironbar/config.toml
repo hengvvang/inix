@@ -87,18 +87,18 @@ on_click = "hyprctl dispatch exec hypridle"
 
 # ===== 音量模块 =====
 [module.volume]
-icons = {
-    volume_high = "󰕾",
-volume_medium = "󰖀", volume_low = "󰕿",
-
-}
 type = "volume"
 format = "{icon} {percentage}%"
 format_muted = "󰖁"
 max_volume = 100
-muted = "󰖁"
 on_click = "pavucontrol"
 on_click_right = "helvum"
+
+[module.volume.icons]
+volume_high = "󰕾"
+volume_medium = "󰖀"
+volume_low = "󰕿"
+muted = "󰖁"
 
 # ===== 网络模块 =====
 [module.network]
