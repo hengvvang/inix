@@ -112,11 +112,11 @@ output "eDP-1" {
 
 layout {
     // 设置窗口周围的间隙，以逻辑像素为单位
-    // Tahoe 风格：适中的间隙创造呼吸感
-    gaps 12
+    gaps 5
 
     // 改变焦点时何时将列居中 - Tahoe 风格的平滑聚焦
-    center-focused-column "on-overflow"
+    // center-focused-column "on-overflow"
+    center-focused-column "never"
 
     // 单个列总是居中，模拟 macOS 的窗口居中行为
     always-center-single-column
@@ -149,8 +149,8 @@ layout {
 
     // === macOS Tahoe 流体玻璃焦点环 ===
     focus-ring {
-        // 环宽度：细腻的边框，不喧宾夺主
-        width 1.5
+        // 环宽度
+        width 2
 
         // 活跃窗口：蓝色系流体渐变，类似 macOS Accent Color
         active-gradient from="#007AFF" to="#5AC8FA" angle=135 relative-to="workspace-view" in="oklch longer hue"
@@ -424,7 +424,7 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 animations {
     // 整体动画速度调节 - 稍微放慢以获得更优雅的效果
-    slowdown 0.85
+    slowdown 1.25
 
     // === 工作区切换动画 ===
     // 使用弹簧动画，模拟 macOS 的自然滑动效果
