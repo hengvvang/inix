@@ -623,13 +623,13 @@ window-rule {
 // === 层次化透明度规则：聚焦状态 ===
 // ================================================================
 
-// === 聚焦窗口：低透明度（0.95） ===
+// === 聚焦窗口：低透明度（0.97） ===
 // 活跃窗口获得更低的透明度，确保内容清晰可见
 window-rule {
     match is-active=true
 
     // 聚焦时的低透明度 - macOS Tahoe 风格
-    opacity 0.95
+    opacity 0.97
 
     // 聚焦窗口的增强阴影
     shadow {
@@ -664,7 +664,7 @@ window-rule {
 // === 应用程序特定透明度规则 ===
 // ================================================================
 
-// === 终端应用：聚焦0.95，非聚焦0.78 ===
+// === 终端应用：聚焦0.97，非聚焦0.78 ===
 // 终端需要稍高的不透明度确保文字清晰度
 window-rule {
     match app-id="alacritty"
@@ -676,7 +676,7 @@ window-rule {
     match is-active=true
 
     // 聚焦时的终端透明度
-    opacity 0.95
+    opacity 0.97
     
     // 终端的专业圆角
     geometry-corner-radius 10
@@ -710,7 +710,7 @@ window-rule {
     match is-active=true
 
     // 聚焦时的编辑器透明度
-    opacity 0.95
+    opacity 0.97
     
     geometry-corner-radius 12
     clip-to-geometry true
@@ -739,7 +739,7 @@ window-rule {
     match app-id="brave"
     match is-active=true
 
-    opacity 0.95
+    opacity 0.97
     geometry-corner-radius 12
     clip-to-geometry true
 }
