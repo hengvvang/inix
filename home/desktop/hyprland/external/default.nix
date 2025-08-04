@@ -14,8 +14,6 @@
 
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.method == "external") {
 
-    # ========== Hyprland 生态系统软件包 ==========
-    # Home Manager 中配置完整的 Hyprland 桌面环境包
     home.packages = with pkgs; [
       
       # ===== 截图和录屏工具 =====
@@ -28,9 +26,6 @@
       wl-clipboard        # Wayland 剪贴板
       cliphist            # 剪贴板历史
       
-      # ===== 应用启动器和菜单 =====
-      wlogout             # 退出菜单
-      
       # ===== 系统控制工具 =====
       brightnessctl       # 亮度控制
       pamixer             # 音量控制
@@ -40,11 +35,7 @@
       mako                # 备用通知守护进程
       libnotify           # 发送桌面通知的库
       
-      # ===== 终端模拟器 =====
-      kitty               # 现代 GPU 加速终端
-      
       # ===== 文件管理和桌面 =====
-      xdg-desktop-portal-hyprland  # Hyprland 桌面门户
       nautilus            # GNOME 文件管理器
       
       # ===== 系统设置和主题 =====

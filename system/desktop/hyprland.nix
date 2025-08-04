@@ -68,13 +68,7 @@
         };
 
         environment.systemPackages = with pkgs; [
-
-            pyprland            # extension system for Hyprland
-            hyprpicker          # color picker tool
-            hyprcursor          # cursor theme manager
-            hyprlock            # screen locker
-            hypridle            # idle management daemon
-            hyprpaper           # wallpaper manager
+            kitty
         ];
 
         # ========== 显示管理器配置 ==========
