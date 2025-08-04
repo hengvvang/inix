@@ -105,7 +105,143 @@ output "eDP-1" {
 // 影响窗口定位和大小的设置。
 // 在 wiki 上查找更多信息：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
+
+// ===== macOS Tahoe 流体玻璃胶囊主题配置 =====
+// 灵感来源于 macOS Tahoe 的流体设计和半透明效果
+// 特点：圆角胶囊、柔和阴影、现代渐变、流体动画
+
 layout {
+    // 设置窗口周围的间隙，以逻辑像素为单位
+    // Tahoe 风格：适中的间隙创造呼吸感
+    gaps 12
+
+    // 改变焦点时何时将列居中 - Tahoe 风格的平滑聚焦
+    center-focused-column "on-overflow"
+
+    // 单个列总是居中，模拟 macOS 的窗口居中行为
+    always-center-single-column
+
+    // 设置工作区背景色为深色调，增强玻璃效果
+    background-color "#1c1c1e"
+
+    // 默认列显示模式设为标签页，类似 macOS 的窗口管理
+    default-column-display "normal"
+
+    // 您可以自定义 "switch-preset-column-width" (Mod+R) 切换的宽度
+    preset-column-widths {
+        // Tahoe 风格：黄金比例和舒适的比例
+        proportion 0.382  // 黄金比例小
+        proportion 0.5    // 二分之一
+        proportion 0.618  // 黄金比例大
+        proportion 0.75   // 四分之三
+    }
+
+    // Tahoe 风格的窗口高度预设
+    preset-window-heights {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 0.85
+    }
+
+    // 新窗口的默认宽度 - 黄金比例
+    default-column-width { proportion 0.618; }
+
+    // === macOS Tahoe 流体玻璃焦点环 ===
+    focus-ring {
+        // 环宽度：细腻的边框，不喧宾夺主
+        width 1.5
+
+        // 活跃窗口：蓝色系流体渐变，类似 macOS Accent Color
+        active-gradient from="#007AFF" to="#5AC8FA" angle=135 relative-to="workspace-view" in="oklch longer hue"
+
+        // 非活跃窗口：柔和的灰色渐变
+        inactive-gradient from="#48484a" to="#636366" angle=135 relative-to="workspace-view"
+    }
+
+    // === 禁用边框，使用焦点环 ===
+    border {
+        off
+        // === 原有边框配置（已注释） ===
+        // width 2
+        // active-color "#ffc87f"
+        // inactive-color "#505050"
+        // urgent-color "#9b0000"
+    }
+
+    // === macOS Tahoe 流体阴影效果 ===
+    shadow {
+        // 启用阴影
+        on
+
+        // 在窗口后面绘制阴影，创造浮动效果
+        draw-behind-window true
+
+        // 柔和度：大幅度模糊，创造玻璃浮动效果
+        softness 25
+
+        // 扩散：轻微扩散
+        spread 2
+
+        // 偏移：向下和向右轻微偏移
+        offset x=0 y=8
+
+        // 阴影颜色：深色半透明，模拟真实阴影
+        color "#00000040"
+
+        // 非活跃窗口的阴影稍微淡一些
+        inactive-color "#00000020"
+    }
+
+    // === 标签指示器 - macOS 风格 ===
+    tab-indicator {
+        // 隐藏单个标签时的指示器
+        hide-when-single-tab
+
+        // 放置在列内
+        place-within-column
+
+        // 间隙和尺寸
+        gap 8
+        width 3
+        length total-proportion=1.0
+
+        // 位置：顶部，类似 macOS 标签
+        position "top"
+
+        // 标签之间的间隙
+        gaps-between-tabs 4
+
+        // 圆角半径
+        corner-radius 6
+
+        // 活跃标签：蓝色渐变
+        active-gradient from="#007AFF" to="#5AC8FA" angle=90
+
+        // 非活跃标签：灰色渐变
+        inactive-gradient from="#48484a" to="#636366" angle=90
+
+        // 紧急标签：红色
+        urgent-color "#FF3B30"
+    }
+
+    // === 插入提示 ===
+    insert-hint {
+        // 蓝色半透明，与主题一致
+        gradient from="#007AFF80" to="#5AC8FA80" angle=45 relative-to="workspace-view"
+    }
+
+    // Struts 配置保持不变
+    struts {
+        // left 64
+        // right 64
+        // top 64
+        // bottom 64
+    }
+}
+
+// ===== 原有布局配置（已注释保留） =====
+/-layout-original {
     // 设置窗口周围的间隙，以逻辑像素为单位。
     gaps 6
 
@@ -281,7 +417,142 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // 动画设置。
 // wiki 解释了如何配置单个动画：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
+
+// ===== macOS Tahoe 流体动画配置 =====
+// 灵感来源于 macOS 的流体动画和自然过渡效果
+// 特点：平滑过渡、弹性反馈、自然物理感
+
 animations {
+    // 整体动画速度调节 - 稍微放慢以获得更优雅的效果
+    slowdown 0.85
+
+    // === 工作区切换动画 ===
+    // 使用弹簧动画，模拟 macOS 的自然滑动效果
+    workspace-switch {
+        spring damping-ratio=0.8 stiffness=900 epsilon=0.0001
+    }
+
+    // === 窗口打开动画 ===
+    // 流体缓动，类似 macOS 窗口的优雅出现
+    window-open {
+        duration-ms 350
+        curve "ease-out-expo"
+
+        // macOS Tahoe 风格的自定义着色器：从中心向外扩展的光晕效果
+        custom-shader r"
+            vec4 open_color(vec3 coords_geo, vec3 size_geo) {
+                vec4 color = vec4(0.0);
+                
+                // 获取距离中心的距离
+                vec2 center = vec2(0.5, 0.5);
+                float dist = distance(coords_geo.xy, center);
+                
+                if (0.0 <= coords_geo.x && coords_geo.x <= 1.0
+                        && 0.0 <= coords_geo.y && coords_geo.y <= 1.0)
+                {
+                    // 创建从中心向外扩散的蓝色光晕
+                    float glow = exp(-dist * 2.0) * 0.3;
+                    vec4 accent = vec4(0.0, 0.48, 1.0, 1.0); // macOS 蓝色
+                    color = mix(vec4(0.0), accent, glow);
+                }
+                
+                return color * niri_clamped_progress;
+            }
+        "
+    }
+
+    // === 窗口关闭动画 ===
+    // 快速而优雅的消失效果
+    window-close {
+        duration-ms 300
+        curve "ease-out-quad"
+
+        // macOS 风格的消失效果：向中心收缩并淡出
+        custom-shader r"
+            vec4 close_color(vec3 coords_geo, vec3 size_geo) {
+                vec4 color = vec4(0.0);
+                
+                // 计算从中心的距离
+                vec2 center = vec2(0.5, 0.5);
+                float dist = distance(coords_geo.xy, center);
+                
+                if (0.0 <= coords_geo.x && coords_geo.x <= 1.0
+                        && 0.0 <= coords_geo.y && coords_geo.y <= 1.0)
+                {
+                    // 创建收缩效果
+                    float scale = 1.0 - niri_clamped_progress * 0.8;
+                    if (dist < scale) {
+                        color = vec4(0.1, 0.1, 0.15, 0.5); // 半透明深色
+                    }
+                }
+                
+                return color * (1.0 - niri_clamped_progress);
+            }
+        "
+    }
+
+    // === 水平视图移动动画 ===
+    // 平滑的相机移动，类似 macOS 的 Mission Control
+    horizontal-view-movement {
+        spring damping-ratio=0.85 stiffness=850 epsilon=0.0001
+    }
+
+    // === 窗口移动动画 ===
+    // 窗口在工作区内的流体移动
+    window-movement {
+        spring damping-ratio=0.9 stiffness=800 epsilon=0.0001
+    }
+
+    // === 窗口调整大小动画 ===
+    // 平滑的尺寸变化，带有轻微的弹性
+    window-resize {
+        spring damping-ratio=0.9 stiffness=750 epsilon=0.0001
+
+        // macOS 风格的调整大小效果
+        custom-shader r"
+            vec4 resize_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
+                // 获取下一帧的纹理坐标
+                vec3 coords_tex_next = niri_geo_to_tex_next * coords_curr_geo;
+                vec4 color = texture2D(niri_tex_next, coords_tex_next.st);
+                
+                // 添加轻微的蓝色光晕边缘效果
+                float edge_dist = min(
+                    min(coords_curr_geo.x, 1.0 - coords_curr_geo.x),
+                    min(coords_curr_geo.y, 1.0 - coords_curr_geo.y)
+                );
+                
+                if (edge_dist < 0.02) {
+                    vec4 accent = vec4(0.0, 0.48, 1.0, 0.3);
+                    color = mix(color, accent, 0.3);
+                }
+                
+                return color;
+            }
+        "
+    }
+
+    // === 配置通知动画 ===
+    // 轻微弹跳效果，类似 macOS 通知
+    config-notification-open-close {
+        spring damping-ratio=0.7 stiffness=1200 epsilon=0.001
+    }
+
+    // === 截图界面动画 ===
+    // 快速淡入效果
+    screenshot-ui-open {
+        duration-ms 250
+        curve "ease-out-quad"
+    }
+
+    // === 概览模式动画 ===
+    // 平滑的缩放效果，类似 macOS Mission Control
+    overview-open-close {
+        spring damping-ratio=0.85 stiffness=850 epsilon=0.0001
+    }
+}
+
+// ===== 原有动画配置（已注释保留） =====
+/-animations-original {
     // 取消注释以关闭所有动画。
     // off
 
@@ -326,9 +597,199 @@ window-rule {
 // 示例：为所有窗口启用圆角。
 // （此示例规则在前面用 "/-" 注释掉了。）
 window-rule {
-    geometry-corner-radius 6
+    geometry-corner-radius 8 8 0 0
     clip-to-geometry true
 }
+
+// ===== macOS Tahoe 流体玻璃胶囊窗口规则 =====
+
+// === 全局胶囊样式 ===
+// 为所有窗口启用 macOS Tahoe 风格的圆角胶囊效果
+window-rule {
+    // 圆角半径：12px，创造胶囊形状
+    geometry-corner-radius 12
+    
+    // 裁剪到几何体，确保内容不会溢出圆角
+    clip-to-geometry true
+    
+    // 设置窗口为平铺状态，获得更好的边框绘制
+    tiled-state true
+
+    // 为所有窗口启用阴影（布局中已全局启用）
+    shadow {
+        on
+        softness 25
+        spread 2
+        offset x=0 y=8
+        color "#00000040"
+        draw-behind-window true
+    }
+}
+
+// === 浮动窗口的特殊胶囊效果 ===
+// 浮动窗口获得更强的玻璃效果和阴影
+window-rule {
+    match is-floating=true
+
+    // 更大的圆角，更像胶囊
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    // 轻微的透明度，创造玻璃效果
+    opacity 0.95
+
+    // 增强的阴影效果
+    shadow {
+        on
+        softness 35
+        spread 4
+        offset x=0 y=12
+        color "#00000060"
+        draw-behind-window true
+    }
+
+    // 自定义焦点环，更加突出
+    focus-ring {
+        width 2
+        active-gradient from="#007AFF" to="#5AC8FA" angle=135 relative-to="workspace-view" in="oklch longer hue"
+        inactive-gradient from="#48484a" to="#636366" angle=135
+    }
+}
+
+// === 非活跃窗口的玻璃效果 ===
+// 非活跃窗口获得更高的透明度，模拟玻璃层次
+window-rule {
+    match is-active=false
+
+    // 更高的透明度
+    opacity 0.88
+
+    // 更柔和的阴影
+    shadow {
+        softness 20
+        spread 1
+        offset x=0 y=6
+        color "#00000025"
+    }
+}
+
+// === 终端应用的特殊处理 ===
+// 终端应用保持更高的不透明度以确保可读性
+window-rule {
+    match app-id="alacritty"
+    match app-id="rio"
+    match app-id="kitty"
+    match app-id="wezterm"
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+
+    // 稍微降低透明度，确保文字清晰
+    opacity 0.92
+
+    // 圆角稍小，保持终端的专业外观
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+// === 浏览器的优化 ===
+// 浏览器窗口获得特殊的边框效果
+window-rule {
+    match app-id="firefox"
+    match app-id="chromium"
+    match app-id="google-chrome"
+
+    // 适中的圆角
+    geometry-corner-radius 12
+    clip-to-geometry true
+
+    // 保持清晰度
+    opacity 0.95
+
+    // 特殊的焦点环颜色，与浏览器主题协调
+    focus-ring {
+        width 1.5
+        active-gradient from="#FF6B35" to="#F7931E" angle=135 relative-to="workspace-view"
+    }
+}
+
+// === 媒体播放器的特殊效果 ===
+// 视频播放器获得更强的视觉效果
+window-rule {
+    match app-id="mpv"
+    match app-id="vlc"
+    match title="Picture-in-Picture"
+
+    // 完全圆角，更像胶囊
+    geometry-corner-radius 20
+    clip-to-geometry true
+
+    // 增强的阴影
+    shadow {
+        on
+        softness 40
+        spread 6
+        offset x=0 y=15
+        color "#00000070"
+        draw-behind-window true
+    }
+
+    // 媒体播放器的特殊焦点环
+    focus-ring {
+        width 2.5
+        active-gradient from="#FF2D92" to="#FF6B35" angle=135 in="oklch longer hue"
+    }
+}
+
+// === 系统对话框和弹窗 ===
+// 系统级的对话框获得最强的玻璃效果
+window-rule {
+    match title="^Open File$"
+    match title="^Save As$"
+    match title="^Choose"
+    match app-id="zenity"
+
+    // 高透明度
+    opacity 0.85
+
+    // 大圆角
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    // 强烈的阴影，模拟悬浮效果
+    shadow {
+        on
+        softness 30
+        spread 8
+        offset x=0 y=20
+        color "#00000080"
+        draw-behind-window true
+    }
+}
+
+// === 通知和临时窗口 ===
+// 通知类窗口获得最胶囊化的外观
+window-rule {
+    match app-id="mako"
+    match app-id="dunst"
+    match title="^notification"
+
+    // 完全胶囊形状
+    geometry-corner-radius 25
+    clip-to-geometry true
+
+    // 高透明度
+    opacity 0.8
+
+    // 柔和的阴影
+    shadow {
+        softness 20
+        spread 2
+        offset x=0 y=8
+        color "#00000040"
+        draw-behind-window true
+    }
+}
+
+// ===== 原有窗口规则（已注释保留） =====
 
 binds {
     // 键由用 + 号分隔的修饰符组成，最后跟一个 XKB 键名。
@@ -345,7 +806,7 @@ binds {
 
     // 运行程序的建议绑定：终端、应用启动器、屏幕锁定器。
     Mod+Return hotkey-overlay-title="打开终端：rio" { spawn "rio"; }
-    Mod+Slash hotkey-overlay-title="运行应用程序：fuzzel" { spawn "fuzzel"; }
+    Mod+Slash hotkey-overlay-title="运行应用程序：rofi" { spawn "rofi" "-show" "drun"; }
     Super+Alt+L hotkey-overlay-title="锁定屏幕：swaylock" { spawn "swaylock"; }
 
     // 您也可以使用 shell。如果您需要管道、多个命令等，请执行此操作。
