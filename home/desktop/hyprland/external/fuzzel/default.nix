@@ -3,6 +3,10 @@
 {
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.niri.method == "external") {
 
+    home.packages = with pkgs; [
+      fuzzel
+    ];
+    
     # Fuzzel 启动器配置
     # 可选主题：
     # - ./fuzzel.ini (默认深色主题)

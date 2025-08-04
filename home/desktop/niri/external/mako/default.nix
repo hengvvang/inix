@@ -3,8 +3,11 @@
 {
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.method == "external") {
 
+    home.packages = with pkgs; [
+      mako
+    ];
+
     # Mako 通知守护进程配置
-    # macOS Tahoe 风格的通知系统
     services.mako = {
       enable = true;
       package = pkgs.mako;

@@ -3,6 +3,13 @@
 {
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.method == "external") {
     
+    home.packages = with pkgs; [
+      hyprland
+      hyprpaper
+      hypridle
+      hyprlock
+      hyprcursor
+    ];
     # Hyprland 核心配置
     xdg.configFile = {
       "hypr/hyprland.conf".source = ./hyprland.conf;

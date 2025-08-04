@@ -22,17 +22,13 @@
       grimblast           # 截图工具 (Hyprland 优化版)
       grim                # Wayland 截图工具
       slurp               # 区域选择工具
-      swappy              # 截图编辑器
       wf-recorder          # 录屏工具
-      
-      fuzzel
       
       # ===== 剪贴板和工具 =====
       wl-clipboard        # Wayland 剪贴板
       cliphist            # 剪贴板历史
       
       # ===== 应用启动器和菜单 =====
-      wofi                # 备用启动器
       wlogout             # 退出菜单
       
       # ===== 系统控制工具 =====
@@ -41,9 +37,6 @@
       playerctl           # 媒体播放控制
       
       # ===== 状态栏和通知 =====
-      ironbar             # 状态栏
-      # waybar             # 状态栏
-      dunst               # 通知守护进程
       mako                # 备用通知守护进程
       libnotify           # 发送桌面通知的库
       

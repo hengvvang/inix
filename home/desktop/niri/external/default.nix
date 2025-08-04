@@ -16,14 +16,9 @@
 
     home.packages = with pkgs; [
 
-      dunst      # alternative notification daemon with macOS Tahoe style
-      mako       # recommended notification daemon
       swww       # wallpaper manager
-      ironbar    # status bar with macOS Tahoe theme
-      # waybar    # status bar with macOS Tahoe theme
       # swaybg   # wallpaper manager
       swayidle   # idle management
-      swaylock   # screen locker
 
       niriswitcher           # Niri 应用切换器
       xwayland-satellite     # X11 应用支持 (推荐用于 niri)
@@ -49,6 +44,5 @@
       # ===== 文件管理器 =====
       nautilus               # GNOME 文件管理器
     ];
-
   };
 }

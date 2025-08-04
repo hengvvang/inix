@@ -3,6 +3,10 @@
 {
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.method == "external") {
 
+    home.packages = with pkgs; [
+      dunst
+    ];
+
     # Dunst 通知守护进程配置
     # macOS Tahoe 风格的通知系统
     services.dunst = {
