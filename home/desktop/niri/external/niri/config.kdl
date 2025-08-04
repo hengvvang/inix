@@ -809,6 +809,7 @@ binds {
     Mod+Return hotkey-overlay-title="打开终端：rio" { spawn "rio"; }
     Mod+Slash hotkey-overlay-title="运行应用程序：rofi" { spawn "rofi" "-show" "drun"; }
     Super+Alt+L hotkey-overlay-title="锁定屏幕：swaylock" { spawn "swaylock"; }
+    Super+Alt+Escape hotkey-overlay-title="电源菜单：wlogout" { spawn "wlogout"; }
 
     // 您也可以使用 shell。如果您需要管道、多个命令等，请执行此操作。
     // 注意：整个命令最后作为单个参数。

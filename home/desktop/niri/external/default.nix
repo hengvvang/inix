@@ -7,6 +7,7 @@
     ./waybar
     ./fuzzel
     ./swaylock
+    ./wlogout
     ./scripts
     ./dunst
     ./mako
@@ -32,9 +33,6 @@
       # ===== 剪贴板和工具 =====
       wl-clipboard           # Wayland 剪贴板
       cliphist               # 剪贴板历史
-
-      # ===== 应用启动器和菜单 =====
-      wlogout                # 退出菜单
 
       # ===== 系统控制工具 =====
       brightnessctl          # 亮度控制
