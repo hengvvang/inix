@@ -1,0 +1,164 @@
+# Ironbar Configuration for Hyprland
+# 基于原 Waybar 配置转换的 Ironbar 配置
+
+[bar.main]
+position = "top"
+height = 17
+margin.top = 8
+margin.left = 0
+margin.right = 0
+
+# 左侧模块
+start = [
+    "workspaces",
+    "focused"
+]
+
+# 中间模块
+center = [
+    "clock"
+]
+
+# 右侧模块
+end = [
+    "custom.wallpaper",
+    "idle_inhibitor",
+    "volume",
+    "network",
+    "cpu",
+    "memory",
+    "temperature",
+    "battery",
+    "backlight",
+    "system_tray"
+]
+
+# ===== 工作区模块 =====
+[module.workspaces]
+type = "workspaces"
+all_monitors = false
+name_map = {
+    "1" = "󰲠",
+    "2" = "󰲢", 
+    "3" = "󰲤",
+    "4" = "󰲦",
+    "5" = "󰲨",
+    "6" = "󰲪",
+    "7" = "󰲬",
+    "8" = "󰲮",
+    "9" = "󰲰"
+}
+
+# ===== 聚焦窗口模块 =====
+[module.focused]
+type = "focused"
+max_length = 50
+show_icon = true
+icon_theme = "Adwaita"
+
+# 应用程序重写规则
+[[module.focused.rewrite]]
+on = "class"
+pattern = "firefox"
+replacement = "󰈹 Firefox"
+
+[[module.focused.rewrite]]
+on = "class"
+pattern = "code-oss"
+replacement = "󰨞 VS Code"
+
+[[module.focused.rewrite]]
+on = "class"
+pattern = "thunar"
+replacement = "󰉋 Thunar"
+
+# ===== 时钟模块 =====
+[module.clock]
+type = "clock"
+format = "%H:%M"
+format_popup = "%Y-%m-%d %H:%M:%S"
+
+# ===== 系统托盘模块 =====
+[module.system_tray]
+type = "tray"
+
+# ===== 空闲抑制模块 =====
+[module.idle_inhibitor]
+type = "custom"
+class = "idle-inhibitor"
+exec = "hyprctl -j activewindow | jq -r 'if .fullscreen == 1 then \"󰛐\" else \"󰛑\" end'"
+interval = 5
+tooltip = "空闲抑制状态"
+on_click = "hyprctl dispatch exec hypridle"
+
+# ===== 音量模块 =====
+[module.volume]
+type = "volume"
+format = "{icon} {percentage}%"
+format_muted = "󰖁"
+max_volume = 100
+icons = {
+    volume_high = "󰕾",
+    volume_medium = "󰖀", 
+    volume_low = "󰕿",
+    muted = "󰖁"
+}
+on_click = "pavucontrol"
+on_click_right = "helvum"
+
+# ===== 网络模块 =====
+[module.network]
+type = "network"
+format_ethernet = "󰈀"
+format_wifi = "󰤨 {signal_strength}%"
+format_disconnected = "󰤭"
+on_click = "nm-connection-editor"
+
+# ===== CPU 模块 =====
+[module.cpu]
+type = "cpu"
+format = "󰻠 {percent}%"
+interval = 3
+on_click = "gnome-system-monitor"
+
+# ===== 内存模块 =====
+[module.memory]
+type = "memory"
+format = "󰍛 {percent}%"
+interval = 3
+on_click = "gnome-system-monitor"
+
+# ===== 温度模块 =====
+[module.temperature]
+type = "temperature"
+format = "󰔏 {temp}°C"
+interval = 3
+
+# ===== 电池模块 =====
+[module.battery]
+type = "battery"
+format = "{icon} {percent}%"
+format_charging = "󰂄 {percent}%"
+format_plugged = "󰚥 {percent}%"
+icons = ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+
+# ===== 背光模块 =====
+[module.backlight]
+type = "backlight"
+format = "{icon} {percent}%"
+icons = ["󰃞", "󰃟", "󰃠"]
+scroll_step = 5
+
+# ===== 自定义壁纸模块 =====
+[module.custom.wallpaper]
+type = "custom"
+exec = "echo '󰸉'"
+interval = "once"
+tooltip = "切换壁纸\n左键: 下一张\n右键: 上一张\n中键: 随机"
+on_click = "~/.config/hypr/scripts/wallpaper.sh next"
+on_click_right = "~/.config/hypr/scripts/wallpaper.sh prev"
+on_click_middle = "~/.config/hypr/scripts/wallpaper.sh random"
+
+# ===== 全局样式配置 =====
+[style]
+name = "style.css"
