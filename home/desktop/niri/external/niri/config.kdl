@@ -106,9 +106,6 @@ output "eDP-1" {
 // 在 wiki 上查找更多信息：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 
-// ===== macOS Tahoe 流体玻璃胶囊主题配置 =====
-// 灵感来源于 macOS Tahoe 的流体设计和半透明效果
-// 特点：圆角胶囊、柔和阴影、现代渐变、流体动画
 
 layout {
     // 设置窗口周围的间隙，以逻辑像素为单位
@@ -419,10 +416,6 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 // wiki 解释了如何配置单个动画：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
 
-// ===== macOS Tahoe 流体动画配置 =====
-// 灵感来源于 macOS 的流体动画和自然过渡效果
-// 特点：平滑过渡、弹性反馈、自然物理感
-
 animations {
     // 整体动画速度调节 - 稍微放慢以获得更优雅的效果
     slowdown 1.25
@@ -434,60 +427,71 @@ animations {
     }
 
     // === 窗口打开动画 ===
-    // 流体缓动，类似 macOS 窗口的优雅出现
+    // 从左向右滑入出现效果
     window-open {
         duration-ms 350
         curve "ease-out-expo"
 
-        // macOS Tahoe 风格的自定义着色器：从中心向外扩展的光晕效果
+        // 从左向右滑入的自定义着色器
         custom-shader r"
             vec4 open_color(vec3 coords_geo, vec3 size_geo) {
-                vec4 color = vec4(0.0);
+                // 计算从左向右滑入的偏移量
+                // niri_clamped_progress 从 0 到 1，我们让窗口从左侧滑入
+                float slide_offset = (1.0 - niri_clamped_progress) * 1.2; // 1.2 确保完全从左侧开始
                 
-                // 获取距离中心的距离
-                vec2 center = vec2(0.5, 0.5);
-                float dist = distance(coords_geo.xy, center);
+                // 调整坐标：从左侧滑入意味着加上偏移量
+                vec3 adjusted_coords = vec3(coords_geo.x + slide_offset, coords_geo.y, coords_geo.z);
                 
-                if (0.0 <= coords_geo.x && coords_geo.x <= 1.0
-                        && 0.0 <= coords_geo.y && coords_geo.y <= 1.0)
-                {
-                    // 创建从中心向外扩散的蓝色光晕
-                    float glow = exp(-dist * 2.0) * 0.3;
-                    vec4 accent = vec4(0.0, 0.48, 1.0, 1.0); // macOS 蓝色
-                    color = mix(vec4(0.0), accent, glow);
+                // 获取窗口纹理颜色
+                vec3 coords_tex = niri_geo_to_tex * adjusted_coords;
+                vec4 color = texture2D(niri_tex, coords_tex.st);
+                
+                // 只在原始窗口几何体范围内显示
+                if (adjusted_coords.x < 0.0 || adjusted_coords.x > 1.0 ||
+                    adjusted_coords.y < 0.0 || adjusted_coords.y > 1.0) {
+                    color = vec4(0.0);
                 }
                 
-                return color * niri_clamped_progress;
+                // 可选：添加轻微的淡入效果，让出现更加平滑
+                float fade_in = 0.7 + niri_clamped_progress * 0.3;
+                color *= fade_in;
+                
+                return color;
             }
         "
     }
 
     // === 窗口关闭动画 ===
-    // 快速而优雅的消失效果
+    // 从右向左滑动消失效果
     window-close {
-        duration-ms 300
-        curve "ease-out-quad"
+        duration-ms 350
+        curve "ease-out-expo"
 
-        // macOS 风格的消失效果：向中心收缩并淡出
+        // 从右向左滑动消失的自定义着色器
         custom-shader r"
             vec4 close_color(vec3 coords_geo, vec3 size_geo) {
-                vec4 color = vec4(0.0);
+                // 计算从右向左滑动的偏移量
+                // niri_clamped_progress 从 0 到 1，我们让窗口向右滑出屏幕
+                float slide_offset = niri_clamped_progress * 1.2; // 1.2 确保完全滑出
                 
-                // 计算从中心的距离
-                vec2 center = vec2(0.5, 0.5);
-                float dist = distance(coords_geo.xy, center);
+                // 调整坐标：向右滑动意味着减去偏移量
+                vec3 adjusted_coords = vec3(coords_geo.x - slide_offset, coords_geo.y, coords_geo.z);
                 
-                if (0.0 <= coords_geo.x && coords_geo.x <= 1.0
-                        && 0.0 <= coords_geo.y && coords_geo.y <= 1.0)
-                {
-                    // 创建收缩效果
-                    float scale = 1.0 - niri_clamped_progress * 0.8;
-                    if (dist < scale) {
-                        color = vec4(0.1, 0.1, 0.15, 0.5); // 半透明深色
-                    }
+                // 获取窗口纹理颜色
+                vec3 coords_tex = niri_geo_to_tex * adjusted_coords;
+                vec4 color = texture2D(niri_tex, coords_tex.st);
+                
+                // 只在原始窗口几何体范围内显示
+                if (adjusted_coords.x < 0.0 || adjusted_coords.x > 1.0 ||
+                    adjusted_coords.y < 0.0 || adjusted_coords.y > 1.0) {
+                    color = vec4(0.0);
                 }
                 
-                return color * (1.0 - niri_clamped_progress);
+                // 可选：添加轻微的淡出效果，让消失更加平滑
+                float fade = 1.0 - niri_clamped_progress * 0.3;
+                color *= fade;
+                
+                return color;
             }
         "
     }
@@ -558,7 +562,7 @@ animations {
     // off
 
     // 将所有动画减慢此倍数。低于 1 的值会加速它们。
-    slowdown 1.75
+    slowdown 1.25
 }
 
 // 窗口规则让您调整单个窗口的行为。
@@ -678,13 +682,14 @@ window-rule {
 // 终端应用保持更高的不透明度以确保可读性
 window-rule {
     match app-id="alacritty"
+    match app-id="ghostty"
     match app-id="rio"
     match app-id="kitty"
     match app-id="wezterm"
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
 
     // 稍微降低透明度，确保文字清晰
-    opacity 0.92
+    opacity 1.00
 
     // 圆角稍小，保持终端的专业外观
     geometry-corner-radius 10

@@ -1,0 +1,59 @@
+/* 简约 wlogout 样式配置 */
+
+* {
+    background-image: none;
+    box-shadow: none;
+}
+
+window {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+button {
+    color: #ffffff;
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 25%;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 10px;
+    min-width: 120px;
+    min-height: 120px;
+    transition: all 0.3s ease;
+}
+
+button:focus, button:active, button:hover {
+    background-color: rgba(60, 60, 60, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    outline-style: none;
+    transform: scale(1.05);
+}
+
+#lock {
+    background-image: image(url("icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("icons/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("icons/suspend.png"));
+}
+
+#shutdown {
+    background-image: image(url("icons/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("icons/reboot.png"));
+}
+
+/* 如果没有图标，使用文字样式 */
+button label {
+    font-size: 14px;
+    margin-top: 10px;
+}

@@ -7,7 +7,7 @@
       wlogout
     ];
     
-    # Wlogout 退出菜单配置 - macOS Tahoe 流体玻璃风格
+    # Wlogout 退出菜单配置 - 简约风格
     xdg.configFile = {
       "wlogout/layout".source = ./layout;
       "wlogout/style.css".source = ./style.css;
