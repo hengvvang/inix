@@ -52,7 +52,6 @@
     border-radius: 8px;
     background: rgba(255, 255, 255, 0.05);
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
 }
 
 .module:hover {
@@ -234,11 +233,7 @@
     animation: pulse 2s infinite;
 }
 
-/* 玻璃效果增强 */
-.module {
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-}
+/* 玻璃效果增强 - 由 Hyprland 层规则提供模糊效果 */
 
 /* 响应式调整 */
 @media (max-width: 1200px) {

@@ -43,6 +43,7 @@ all_monitors = false
 "7" = "󰲬"
 "8" = "󰲮"
 "9" = "󰲰"
+
 # ===== 聚焦窗口模块 =====
 [module.focused]
 type = "focused"
