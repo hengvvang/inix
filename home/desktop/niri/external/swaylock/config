@@ -1,32 +1,32 @@
 # Swaylock 屏幕锁定配置 - Niri 桌面环境
 
 # 图像设置
-image=$HOME/.config/wallpapers/lock.jpg
+image=$HOME/Pictures/Wallpapers/sea.jpg
 scaling=fill
 
 # 颜色配置
 color=1e1e2e
 
-# 内部圆环 (输入指示器)
-inside-color=1e1e2e
-inside-clear-color=f9e2af
-inside-caps-lock-color=fab387
-inside-ver-color=7c3aed
-inside-wrong-color=f38ba8
+# 内部圆环 (输入指示器) - 完全透明
+inside-color=00000000
+inside-clear-color=00000000
+inside-caps-lock-color=00000000
+inside-ver-color=00000000
+inside-wrong-color=00000000
 
-# 外部圆环
-ring-color=313244
-ring-clear-color=f9e2af
-ring-caps-lock-color=fab387
-ring-ver-color=7c3aed
-ring-wrong-color=f38ba8
+# 外部圆环 (透明)
+ring-color=00000000
+ring-clear-color=00000000
+ring-caps-lock-color=00000000
+ring-ver-color=00000000
+ring-wrong-color=00000000
 
-# 分隔线
+# 分隔线 (边框透明)
 line-color=00000000
-line-clear-color=f9e2af
-line-caps-lock-color=fab387
-line-ver-color=7c3aed
-line-wrong-color=f38ba8
+line-clear-color=00000000
+line-caps-lock-color=00000000
+line-ver-color=00000000
+line-wrong-color=00000000
 
 # 文本颜色
 text-color=cdd6f4
@@ -42,22 +42,22 @@ bs-hl-color=f38ba8
 # 分隔符
 separator-color=00000000
 
-# 布局
+# 布局 (边框透明)
 layout-bg-color=1e1e2e
-layout-border-color=313244
+layout-border-color=00000000
 layout-text-color=cdd6f4
 
-# 圆环外观
-ring-thickness=8
-inside-ring-thickness=4
+# 圆环外观 (大幅增大圆环厚度)
+ring-thickness=25
+inside-ring-thickness=15
 
-# 位置
-indicator-radius=120
-indicator-thickness=8
+# 位置 (大幅增大圆环尺寸)
+indicator-radius=350
+indicator-thickness=25
 
 # 字体
-font=JetBrainsMono Nerd Font
-font-size=24
+font=LXGW WenKai Mono
+font-size=38
 
 # 效果
 effect-blur=7x5
