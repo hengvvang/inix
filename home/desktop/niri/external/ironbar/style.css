@@ -1,0 +1,314 @@
+/* Ironbar 极简透明主题 */
+/* 适用于 niri 窗口管理器 */
+
+/* 颜色定义 */
+@define-color bg_transparent rgba(0, 0, 0, 0.3);          /* 半透明黑色背景 */
+@define-color bg_hover rgba(255, 255, 255, 0.1);          /* 悬停效果 */
+@define-color bg_active rgba(255, 255, 255, 0.15);        /* 激活状态 */
+@define-color text_primary rgba(255, 255, 255, 0.9);      /* 主要文字颜色 */
+@define-color text_secondary rgba(255, 255, 255, 0.7);    /* 次要文字颜色 */
+@define-color accent rgba(138, 173, 244, 0.8);            /* 强调色 */
+@define-color border rgba(255, 255, 255, 0.1);            /* 边框颜色 */
+
+/* 全局样式 */
+* {
+    font-family: "JetBrains Mono Nerd Font", "Noto Sans CJK SC", monospace;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+/* 主容器 */
+#bar {
+    background-color: @bg_transparent;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid @border;
+    border-radius: 10px;
+    margin: 0;
+    padding: 4px 12px;
+}
+
+/* 基础组件样式 */
+box, menubar, button {
+    background-color: transparent;
+    background-image: none;
+    color: @text_primary;
+}
+
+button {
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin: 0 2px;
+    transition: all 0.2s ease;
+    min-height: 20px;
+}
+
+button:hover {
+    background-color: @bg_hover;
+}
+
+button:active {
+    background-color: @bg_active;
+}
+
+label {
+    color: @text_primary;
+}
+
+/* 窗口管理器标签 */
+.wm-label {
+    color: @accent;
+    font-weight: 700;
+    font-size: 16px;
+    margin-right: 16px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background-color: rgba(138, 173, 244, 0.1);
+}
+
+/* 工作区样式 */
+.workspaces {
+    margin-right: 8px;
+}
+
+.workspaces .item {
+    background-color: transparent;
+    color: @text_secondary;
+    padding: 2px 8px;
+    margin: 0 2px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.workspaces .item:hover {
+    background-color: @bg_hover;
+    color: @text_primary;
+}
+
+.workspaces .item.focused {
+    background-color: @accent;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.workspaces .item.urgent {
+    background-color: rgba(244, 67, 54, 0.8);
+    color: white;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* 聚焦窗口标题 */
+.focused {
+    color: @text_primary;
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0 16px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 400px;
+    padding: 2px 0;
+}
+
+/* 系统信息 */
+.sysinfo {
+    margin-left: 12px;
+}
+
+.sysinfo .item {
+    color: @text_secondary;
+    font-size: 13px;
+    margin: 0 6px;
+    padding: 2px 4px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.sysinfo .item:hover {
+    color: @text_primary;
+    background-color: @bg_hover;
+}
+
+/* 音量控制 */
+.volume {
+    color: @text_secondary;
+    font-size: 14px;
+    margin: 0 6px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.volume:hover {
+    color: @text_primary;
+    background-color: @bg_hover;
+}
+
+/* 时钟 */
+.clock {
+    color: @text_primary;
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0 12px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: all 0.2s ease;
+}
+
+.clock:hover {
+    background-color: @bg_hover;
+}
+
+/* 通知 */
+.notifications {
+    color: @text_secondary;
+    margin-left: 4px;
+}
+
+.notifications .count {
+    background-color: @accent;
+    color: white;
+    border-radius: 50%;
+    font-size: 10px;
+    min-width: 16px;
+    min-height: 16px;
+    margin-left: 4px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 弹出窗口 */
+.popup {
+    background-color: @bg_transparent;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid @border;
+    border-radius: 8px;
+    padding: 12px;
+    margin-top: 5px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.popup * {
+    color: @text_primary;
+}
+
+/* 弹出窗口中的按钮 */
+.popup button {
+    background-color: @bg_hover;
+    border: 1px solid @border;
+    border-radius: 4px;
+    padding: 6px 12px;
+    margin: 2px;
+}
+
+.popup button:hover {
+    background-color: @bg_active;
+}
+
+/* 时钟弹出窗口 */
+.popup-clock .calendar-clock {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.popup-clock .calendar {
+    background-color: transparent;
+}
+
+.popup-clock .calendar:selected {
+    background-color: @accent;
+    border-radius: 4px;
+}
+
+/* 音量弹出窗口 */
+.popup-volume scale {
+    margin: 8px 0;
+}
+
+.popup-volume scale trough {
+    background-color: @bg_hover;
+    border-radius: 4px;
+    min-height: 6px;
+}
+
+.popup-volume scale highlight {
+    background-color: @accent;
+    border-radius: 4px;
+}
+
+.popup-volume scale slider {
+    background-color: white;
+    border-radius: 50%;
+    min-width: 14px;
+    min-height: 14px;
+    margin: -4px;
+}
+
+/* 通知弹出窗口 */
+.popup-notifications .notification {
+    background-color: @bg_hover;
+    border: 1px solid @border;
+    border-radius: 6px;
+    padding: 8px;
+    margin: 4px 0;
+}
+
+.popup-notifications .notification .title {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.popup-notifications .notification .body {
+    color: @text_secondary;
+    font-size: 12px;
+}
+
+/* 响应式调整 */
+@media (max-width: 1200px) {
+    .focused {
+        max-width: 250px;
+        font-size: 14px;
+    }
+    
+    .wm-label {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 800px) {
+    .focused {
+        display: none;
+    }
+    
+    .sysinfo .item:not(:first-child) {
+        display: none;
+    }
+    
+    .wm-label {
+        font-size: 14px;
+        margin-right: 8px;
+    }
+    
+    .clock {
+        font-size: 14px;
+    }
+}

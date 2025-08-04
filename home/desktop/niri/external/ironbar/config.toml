@@ -1,0 +1,49 @@
+# Ironbar 配置文件 - 极简透明主题
+# 适用于 niri 窗口管理器
+
+# 全局设置
+position = "top"       # 位置在顶部
+anchor_to_edges = true # 锚定到屏幕边缘
+height = 32            # 高度32像素，更加极简
+layer = "top"          # 置于顶层
+exclusive_zone = true  # 保留独占区域
+
+# 边距设置，让bar看起来更加floating
+[margin]
+top = 5
+bottom = 0
+left = 10
+right = 10
+
+# 左侧模块
+[[start]]
+type = "label"
+label = " niri"    # 更加简洁的标识
+class = "wm-label"
+
+[[start]]
+type = "focused" # 显示当前聚焦的窗口
+
+# 右侧模块
+[[end]]
+type = "sys_info"
+format = [" {memory_percent}%", " {cpu_percent}%"]
+
+[end.interval]
+memory = 5
+cpu = 2
+
+[[end]]
+type = "volume"
+format = "{icon} {percentage}%"
+max_volume = 100
+
+[end.icons]
+volume_high = ""
+volume_medium = ""
+volume_low = ""
+muted = ""
+
+[[end]]
+type = "clock"
+format = " %H:%M" # 添加时钟图标
