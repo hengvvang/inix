@@ -8,8 +8,8 @@
     border: none;
     border-radius: 0;
     font-family: "LXGW WenKai Mono", "JetBrainsMono Nerd Font", monospace;
-    font-weight: 400;
-    font-size: 14px;
+    font-weight: 200;
+    font-size: 16px;
     min-height: 0;
 }
 
@@ -35,16 +35,16 @@ window#waybar.empty {
 
 /* Niri workspaces */
 #workspaces {
-    margin: 0 8px;
-    padding: 4px 8px;
+    margin: 0 4px;
+    padding: 2px 6px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #workspaces button {
-    padding: 6px 12px;
-    margin: 2px;
+    padding: 4px 8px;
+    margin: 1px;
     border-radius: 8px;
     color: rgba(255, 255, 255, 0.7);
     background: transparent;
@@ -77,8 +77,8 @@ window#waybar.empty {
 
 /* Window title */
 #window {
-    margin: 0 8px;
-    padding: 6px 16px;
+    margin: 0 4px;
+    padding: 4px 12px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     color: rgba(255, 255, 255, 0.9);
@@ -94,8 +94,8 @@ window#waybar.empty {
 
 /* Clock */
 #clock {
-    margin: 0 8px;
-    padding: 6px 16px;
+    margin: 0 4px;
+    padding: 4px 12px;
     background: rgba(255, 200, 100, 0.15);
     border-radius: 12px;
     color: rgba(255, 220, 150, 1.0);
@@ -110,8 +110,8 @@ window#waybar.empty {
 
 /* System tray */
 #tray {
-    margin: 0 8px;
-    padding: 4px 8px;
+    margin: 0 4px;
+    padding: 2px 6px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -136,8 +136,8 @@ window#waybar.empty {
 #battery,
 #language,
 #custom-wallpaper {
-    margin: 0 4px;
-    padding: 6px 12px;
+    margin: 0 2px;
+    padding: 4px 8px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     color: rgba(255, 255, 255, 0.9);
