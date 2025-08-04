@@ -391,7 +391,8 @@ layout {
 // 有关更多生成示例，请参阅下面的绑定部分。
 
 // 此行启动 waybar，Wayland 合成器的常用栏。
-spawn-at-startup "waybar"
+// spawn-at-startup "waybar"
+spawn-at-startup "ironbar"
 spawn-at-startup "swww-daemon"
 
 hotkey-overlay {

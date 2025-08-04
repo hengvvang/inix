@@ -1,0 +1,269 @@
+/* macOS Tahoe 液态玻璃胶囊风格 Ironbar 主题 */
+
+@define-color tahoe_bg_primary rgba(28, 28, 30, 0.85);
+@define-color tahoe_bg_secondary rgba(44, 44, 46, 0.9);
+@define-color tahoe_accent_blue #007AFF;
+@define-color tahoe_accent_light #5AC8FA;
+@define-color tahoe_text_primary rgba(255, 255, 255, 0.95);
+@define-color tahoe_text_secondary rgba(255, 255, 255, 0.7);
+@define-color tahoe_border rgba(255, 255, 255, 0.1);
+@define-color tahoe_shadow rgba(0, 0, 0, 0.3);
+@define-color tahoe_urgent #FF3B30;
+@define-color tahoe_warning #FF9500;
+
+* {
+    font-family: 'SF Pro Display', 'Inter', 'Noto Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    border: none;
+    border-radius: 0;
+    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.background {
+    background: transparent;
+}
+
+#bar {
+    background: linear-gradient(135deg, @tahoe_bg_primary 0%, @tahoe_bg_secondary 100%);
+    border-radius: 24px;
+    border: 1px solid @tahoe_border;
+    box-shadow: 
+        0 8px 32px @tahoe_shadow,
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    margin: 0 8px;
+    padding: 4px 12px;
+}
+
+#start, #center, #end {
+    background: transparent;
+    padding: 0 4px;
+}
+
+#start {
+    margin-right: 8px;
+}
+
+#end {
+    margin-left: 8px;
+}
+
+.widget {
+    color: @tahoe_text_primary;
+    background: transparent;
+    border-radius: 12px;
+    margin: 0 2px;
+    padding: 6px 10px;
+    transition: all 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.widget:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+button {
+    background: transparent;
+    color: @tahoe_text_primary;
+    border-radius: 10px;
+    padding: 6px 12px;
+    font-weight: 500;
+    transition: all 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+    transform: translateY(0px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+label {
+    color: @tahoe_text_primary;
+    font-weight: 500;
+}
+
+.popup {
+    background: linear-gradient(135deg, @tahoe_bg_primary 0%, rgba(32, 32, 34, 0.9) 100%);
+    border-radius: 20px;
+    border: 1px solid @tahoe_border;
+    padding: 16px;
+    box-shadow: 
+        0 16px 48px rgba(0, 0, 0, 0.4),
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(40px);
+    margin: 8px;
+}
+
+/* 启动器样式 */
+.launcher {
+    margin-right: 12px;
+}
+
+.launcher .widget {
+    background: rgba(0, 122, 255, 0.1);
+    border: 1px solid rgba(0, 122, 255, 0.2);
+}
+
+.launcher .widget:hover {
+    background: rgba(0, 122, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 122, 255, 0.3);
+}
+
+/* 工作区样式 */
+.workspaces {
+    margin: 0 8px;
+}
+
+.workspaces .item {
+    background: transparent;
+    border-radius: 12px;
+    margin: 0 3px;
+    padding: 6px 12px;
+    color: @tahoe_text_secondary;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 200ms cubic-bezier(0.23, 1, 0.32, 1);
+    min-width: 32px;
+    text-align: center;
+}
+
+.workspaces .item.focused {
+    background: linear-gradient(135deg, @tahoe_accent_blue, @tahoe_accent_light);
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 
+        0 4px 16px rgba(0, 122, 255, 0.3),
+        0 2px 8px rgba(0, 122, 255, 0.2);
+}
+
+.workspaces .item:hover:not(.focused) {
+    background: rgba(255, 255, 255, 0.1);
+    color: @tahoe_text_primary;
+    transform: scale(1.02);
+}
+
+.workspaces .item.urgent {
+    background: @tahoe_urgent;
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* 时钟样式 */
+.clock {
+    margin-right: 12px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.clock .widget:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* 系统托盘样式 */
+.tray {
+    margin-right: 8px;
+}
+
+.tray .item {
+    padding: 4px;
+    border-radius: 10px;
+    margin: 0 2px;
+    transition: all 150ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.tray .item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+/* 音量控制样式 */
+.volume {
+    margin-right: 6px;
+}
+
+.volume .widget:hover {
+    background: rgba(255, 149, 0, 0.15);
+}
+
+/* 电池样式 */
+.battery {
+    margin-right: 6px;
+}
+
+.battery .widget:hover {
+    background: rgba(48, 209, 88, 0.15);
+}
+
+/* 网络样式 */
+.network {
+    margin-right: 6px;
+}
+
+.network .widget:hover {
+    background: rgba(0, 122, 255, 0.15);
+}
+
+/* 通知样式 */
+.notifications {
+    margin-right: 8px;
+}
+
+.notifications .count {
+    background: @tahoe_urgent;
+    color: white;
+    border-radius: 10px;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    margin-left: 4px;
+    min-width: 16px;
+    text-align: center;
+}
+
+/* 电源菜单样式 */
+.power-menu .power-button {
+    background: rgba(255, 59, 48, 0.1);
+    border: 1px solid rgba(255, 59, 48, 0.2);
+    color: @tahoe_urgent;
+    font-size: 16px;
+    border-radius: 12px;
+    padding: 8px 12px;
+}
+
+.power-menu .power-button:hover {
+    background: rgba(255, 59, 48, 0.2);
+    box-shadow: 0 0 20px rgba(255, 59, 48, 0.3);
+}
+
+/* 滚动条样式 */
+scrollbar {
+    background: transparent;
+}
+
+scrollbar slider {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    min-width: 6px;
+}
+
+scrollbar slider:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* 特殊效果 */
+.widget.active {
+    background: rgba(0, 122, 255, 0.15);
+    border: 1px solid rgba(0, 122, 255, 0.3);
+}

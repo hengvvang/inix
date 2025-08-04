@@ -3,7 +3,7 @@
 {
   imports = [
     ./niri
-    ./waybar
+    ./ironbar
     ./fuzzel
     ./swaylock
     ./scripts
@@ -18,7 +18,7 @@
       dunst      # alternative notification daemon with macOS Tahoe style
       mako       # recommended notification daemon
       swww       # wallpaper manager
-      waybar     # status bar
+      ironbar    # status bar with macOS Tahoe theme
       # swaybg   # wallpaper manager
       swayidle   # idle management
       swaylock   # screen locker
