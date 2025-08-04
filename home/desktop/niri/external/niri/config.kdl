@@ -955,13 +955,13 @@ binds {
     // 运行程序的建议绑定：终端、应用启动器、屏幕锁定器。
     Mod+Return hotkey-overlay-title="打开终端：rio" { spawn "rio"; }
     Mod+Slash hotkey-overlay-title="运行应用程序：rofi" { spawn "rofi" "-show" "drun"; }
-    Super+Alt+L hotkey-overlay-title="锁定屏幕：swaylock" { spawn "swaylock"; }
-    Super+Alt+Escape hotkey-overlay-title="电源菜单：wlogout" { spawn "wlogout"; }
+    Mod+Alt+Escape hotkey-overlay-title="锁定屏幕：swaylock" { spawn "swaylock"; }
+    Mod+Ctrl+Escape hotkey-overlay-title="电源菜单：wlogout" { spawn "wlogout"; }
 
     // 您也可以使用 shell。如果您需要管道、多个命令等，请执行此操作。
     // 注意：整个命令最后作为单个参数。
     // 例如，这是切换屏幕阅读器 (orca) 的标准绑定。
-    Super+Alt+S hotkey-overlay-title=null { spawn "sh" "-c" "pkill orca || exec orca"; }
+    Mod+Alt+S hotkey-overlay-title=null { spawn "sh" "-c" "pkill orca || exec orca"; }
 
     // PipeWire 和 WirePlumber 的示例音量键映射。
     // allow-when-locked=true 属性使它们即使在会话锁定时也能工作。
@@ -977,7 +977,7 @@ binds {
     // 打开/关闭概览：工作区和窗口的缩小视图。
     // 您也可以将鼠标移到左上角热角，
     // 或在触摸板上执行四指向上滑动。
-    Mod+O repeat=false { toggle-overview; }
+    Mod+Ctrl+O repeat=false { toggle-overview; }
 
     Mod+Q repeat=false { close-window; }
 
@@ -1086,10 +1086,10 @@ binds {
     Mod+Shift+WheelScrollLeft  { move-column-left; }
 
     // 通常在应用程序中使用 Shift 上下滚动会导致水平滚动；这些绑定复制了这种行为。
-    Mod+WheelScrollDown      { focus-column-right; }
-    Mod+WheelScrollUp        { focus-column-left; }
-    Mod+Shift+WheelScrollDown { move-column-right; }
-    Mod+Shift+WheelScrollUp   { move-column-left; }
+    Mod+WheelScrollDown      { focus-window-down; }
+    Mod+WheelScrollUp        { focus-window-up; }
+    Mod+Shift+WheelScrollDown { move-window-down; }
+    Mod+Shift+WheelScrollUp   { move-window-up; }
 
     // 同样，您可以绑定触摸板滚动"刻度"。
     // 触摸板滚动是连续的，所以对于这些绑定，它被分割成离散间隔。
