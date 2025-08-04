@@ -32,7 +32,6 @@
         0 8px 32px @tahoe_shadow,
         0 2px 8px rgba(0, 0, 0, 0.1),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
     margin: 0 8px;
     padding: 4px 12px;
 }
@@ -97,7 +96,6 @@ label {
         0 16px 48px rgba(0, 0, 0, 0.4),
         0 4px 16px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(40px);
     margin: 8px;
 }
 

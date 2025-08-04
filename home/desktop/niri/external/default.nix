@@ -4,6 +4,7 @@
   imports = [
     ./niri
     ./ironbar
+    # ./waybar
     ./fuzzel
     ./swaylock
     ./scripts
@@ -19,6 +20,7 @@
       mako       # recommended notification daemon
       swww       # wallpaper manager
       ironbar    # status bar with macOS Tahoe theme
+      # waybar    # status bar with macOS Tahoe theme
       # swaybg   # wallpaper manager
       swayidle   # idle management
       swaylock   # screen locker

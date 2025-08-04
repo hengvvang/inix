@@ -31,27 +31,6 @@
       "on_click_left": "popup:toggle"
     },
     {
-      "type": "workspaces",
-      "name": "workspaces",
-      "class": "tahoe-workspaces",
-      "all_monitors": false,
-      "name_map": {
-        "1": "󰪟",
-        "2": "󰅫",
-        "3": "󰪠",
-        "4": "󰪡",
-        "5": "󰪢",
-        "6": "󰪣",
-        "7": "󰪤",
-        "8": "󰪥",
-        "9": "󰪦"
-      },
-      "truncate": {
-        "mode": "middle",
-        "length": 30
-      }
-    },
-    {
       "type": "focused",
       "name": "focused-window",
       "class": "tahoe-focused",
@@ -70,8 +49,7 @@
       "type": "tray",
       "name": "system-tray",
       "class": "tahoe-tray",
-      "icon_size": 20,
-      "direction": "left_to_right"
+      "icon_size": 20
     },
     {
       "type": "volume",

@@ -7,12 +7,12 @@
     home.file = {
       # ironbar 主配置文件 - macOS Tahoe 风格
       ".config/ironbar/config.json" = {
-        source = ./ironbar/config.json;
+        source = ./config.json;
       };
 
       # ironbar CSS 样式文件 - macOS Tahoe 液态玻璃主题
       ".config/ironbar/style.css" = {
-        source = ./ironbar/style.css;
+        source = ./style.css;
       };
     };
 
