@@ -1,10 +1,8 @@
 // 此配置使用 KDL 格式：https://kdl.dev
 // "/-" 用于注释掉下面的节点。
-// 查看 wiki 获取配置的完整说明：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
 // 输入设备配置。
-// 在 wiki 上查找选项的完整列表：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
     keyboard {
@@ -26,7 +24,6 @@ input {
 
     // 下面的部分包含 libinput 设置。
     // 省略设置会禁用它们，或保持默认值。
-    // 这里所有注释掉的设置都是示例，不是默认值。
     touchpad {
         // off
         tap
@@ -61,7 +58,7 @@ input {
     }
 
     // 取消注释此项可使鼠标移动到新聚焦的窗口中心。
-    // warp-mouse-to-focus
+    warp-mouse-to-focus
 
     // 当鼠标移入窗口和输出时自动聚焦它们。
     // 设置 max-scroll-amount="0%" 使其仅在已完全显示在屏幕上的窗口上工作。
@@ -70,9 +67,7 @@ input {
 
 // 您可以通过名称配置输出，您可以通过在 niri 实例内运行 `niri msg outputs` 来找到名称。
 // 内置笔记本显示器通常称为 "eDP-1"。
-// 在 wiki 上查找更多信息：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
-// 记住通过删除 "/-" 来取消注释节点！
 output "eDP-1" {
     // 取消注释此行以禁用此输出。
     // off
@@ -103,7 +98,6 @@ output "eDP-1" {
 }
 
 // 影响窗口定位和大小的设置。
-// 在 wiki 上查找更多信息：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
 
 
@@ -166,7 +160,6 @@ layout {
         // urgent-color "#9b0000"
     }
 
-    // === macOS Tahoe 流体阴影效果 ===
     shadow {
         // 启用阴影
         on
@@ -385,7 +378,6 @@ layout {
 // 添加这样的行在启动时生成进程。
 // 注意将 niri 作为会话运行支持 xdg-desktop-autostart，
 // 这可能更方便使用。
-// 有关更多生成示例，请参阅下面的绑定部分。
 
 // 此行启动 waybar，Wayland 合成器的常用栏。
 spawn-at-startup "waybar"
@@ -566,7 +558,6 @@ animations {
 }
 
 // 窗口规则让您调整单个窗口的行为。
-// 在 wiki 上查找更多信息：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 
 // 通过设置空的 default-column-width 来解决 WezTerm 的初始配置错误。
@@ -601,17 +592,14 @@ window-rule {
 
 // 示例：为所有窗口启用圆角。
 // （此示例规则在前面用 "/-" 注释掉了。）
-window-rule {
-    geometry-corner-radius 8 8 0 0
-    clip-to-geometry true
-}
+// ================================================================
+// === macOS Tahoe 流体玻璃风格透明度系统 ===
+// ================================================================
 
-// ===== macOS Tahoe 流体玻璃胶囊窗口规则 =====
-
-// === 全局胶囊样式 ===
-// 为所有窗口启用 macOS Tahoe 风格的圆角胶囊效果
+// === 全局基础样式 ===
+// 为所有窗口设置基础的胶囊形状和圆角
 window-rule {
-    // 圆角半径：12px，创造胶囊形状
+    // 基础圆角半径：12px，创造胶囊形状
     geometry-corner-radius 12
     
     // 裁剪到几何体，确保内容不会溢出圆角
@@ -620,7 +608,7 @@ window-rule {
     // 设置窗口为平铺状态，获得更好的边框绘制
     tiled-state true
 
-    // 为所有窗口启用阴影（布局中已全局启用）
+    // 基础阴影效果
     shadow {
         on
         softness 25
@@ -631,29 +619,286 @@ window-rule {
     }
 }
 
-// === 浮动窗口的特殊胶囊效果 ===
-// 浮动窗口获得更强的玻璃效果和阴影
-window-rule {
-    match is-floating=true
+// ================================================================
+// === 层次化透明度规则：聚焦状态 ===
+// ================================================================
 
-    // 更大的圆角，更像胶囊
+// === 聚焦窗口：低透明度（0.95） ===
+// 活跃窗口获得更低的透明度，确保内容清晰可见
+window-rule {
+    match is-active=true
+
+    // 聚焦时的低透明度 - macOS Tahoe 风格
+    opacity 0.95
+
+    // 聚焦窗口的增强阴影
+    shadow {
+        on
+        softness 30
+        spread 3
+        offset x=0 y=10
+        color "#00000050"
+        draw-behind-window true
+    }
+}
+
+// === 非聚焦窗口：高透明度（0.75） ===
+// 非活跃窗口获得更高的透明度，创造层次感
+window-rule {
+    match is-active=false
+
+    // 非聚焦时的高透明度 - 创造玻璃层次效果
+    opacity 0.75
+
+    // 非聚焦窗口的柔和阴影
+    shadow {
+        softness 20
+        spread 1
+        offset x=0 y=6
+        color "#00000030"
+        draw-behind-window true
+    }
+}
+
+// ================================================================
+// === 应用程序特定透明度规则 ===
+// ================================================================
+
+// === 终端应用：聚焦0.95，非聚焦0.78 ===
+// 终端需要稍高的不透明度确保文字清晰度
+window-rule {
+    match app-id="alacritty"
+    match app-id="ghostty" 
+    match app-id="rio"
+    match app-id="kitty"
+    match app-id="wezterm"
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match is-active=true
+
+    // 聚焦时的终端透明度
+    opacity 0.95
+    
+    // 终端的专业圆角
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="alacritty"
+    match app-id="ghostty"
+    match app-id="rio" 
+    match app-id="kitty"
+    match app-id="wezterm"
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match is-active=false
+
+    // 非聚焦时的终端透明度（稍高一些确保可读性）
+    opacity 0.78
+    
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+// === 代码编辑器：VSCode & Zed ===
+// 代码编辑器需要清晰的文字显示
+window-rule {
+    match app-id="code"
+    match app-id="code-oss"
+    match app-id="vscodium"
+    match app-id="zed"
+    match title="Visual Studio Code"
+    match is-active=true
+
+    // 聚焦时的编辑器透明度
+    opacity 0.95
+    
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="code"
+    match app-id="code-oss" 
+    match app-id="vscodium"
+    match app-id="zed"
+    match title="Visual Studio Code"
+    match is-active=false
+
+    // 非聚焦时的编辑器透明度
+    opacity 0.75
+    
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+// === 浏览器应用透明度 ===
+window-rule {
+    match app-id="firefox"
+    match app-id="chromium"
+    match app-id="google-chrome"
+    match app-id="brave"
+    match is-active=true
+
+    opacity 0.95
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="firefox"
+    match app-id="chromium"
+    match app-id="google-chrome"
+    match app-id="brave"
+    match is-active=false
+
+    opacity 0.75
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+// ================================================================
+// === 系统弹窗和对话框：固定透明度 ===
+// ================================================================
+
+// === 文件选择器对话框：0.82透明度 ===
+// 系统文件对话框需要适中的透明度，无论聚焦状态
+window-rule {
+    match title="^Open File$"
+    match title="^Save As$"
+    match title="^Choose"
+    match title="^Select"
+    match title="^Browse"
+
+    // 固定透明度，不受聚焦状态影响
+    opacity 0.82
+
+    // 系统对话框的圆角
     geometry-corner-radius 16
     clip-to-geometry true
 
-    // 轻微的透明度，创造玻璃效果
-    opacity 0.95
-
-    // 增强的阴影效果
+    // 悬浮效果阴影
     shadow {
         on
         softness 35
-        spread 4
+        spread 6
+        offset x=0 y=18
+        color "#00000070"
+        draw-behind-window true
+    }
+}
+
+// === 确认对话框和警告弹窗：0.85透明度 ===
+window-rule {
+    match app-id="zenity"
+    match title="^Confirm"
+    match title="^Warning"
+    match title="^Error"
+    match title="^Alert"
+    match title="^Question"
+
+    // 固定透明度，确保重要信息可见
+    opacity 0.85
+
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    // 警告弹窗的强烈阴影
+    shadow {
+        on
+        softness 40
+        spread 8
+        offset x=0 y=22
+        color "#00000080"
+        draw-behind-window true
+    }
+}
+
+// === 系统设置和偏好设置：0.88透明度 ===
+window-rule {
+    match app-id="gnome-control-center"
+    match app-id="org.gnome.Settings"
+    match app-id="systemsettings"
+    match title="Preferences"
+    match title="Settings"
+
+    // 设置窗口的固定透明度
+    opacity 0.88
+
+    geometry-corner-radius 14
+    clip-to-geometry true
+}
+
+// === 通知系统：0.78透明度 ===
+window-rule {
+    match app-id="mako"
+    match app-id="dunst"
+    match app-id="org.freedesktop.Notifications"
+    match title="^notification"
+
+    // 通知的高透明度
+    opacity 0.78
+
+    // 完全胶囊形状
+    geometry-corner-radius 25
+    clip-to-geometry true
+
+    // 柔和的通知阴影
+    shadow {
+        softness 25
+        spread 3
         offset x=0 y=12
-        color "#00000060"
+        color "#00000045"
+        draw-behind-window true
+    }
+}
+
+// === 右键菜单和下拉菜单：0.80透明度 ===
+window-rule {
+    match title="^Context Menu$"
+    match title="^Menu$"
+    match app-id="rofi"
+    match app-id="dmenu"
+    match app-id="wofi"
+
+    // 菜单的透明度
+    opacity 0.80
+
+    geometry-corner-radius 12
+    clip-to-geometry true
+
+    // 菜单的轻微阴影
+    shadow {
+        softness 20
+        spread 2
+        offset x=0 y=8
+        color "#00000040"
+        draw-behind-window true
+    }
+}
+
+// ================================================================
+// === 浮动窗口特殊处理 ===
+// ================================================================
+
+// === 浮动窗口增强效果 ===
+window-rule {
+    match is-floating=true
+
+    // 浮动窗口的更大圆角
+    geometry-corner-radius 16
+    clip-to-geometry true
+
+    // 浮动窗口的增强阴影
+    shadow {
+        on
+        softness 40
+        spread 5
+        offset x=0 y=15
+        color "#00000065"
         draw-behind-window true
     }
 
-    // 自定义焦点环，更加突出
+    // 浮动窗口的特殊焦点环
     focus-ring {
         width 2
         active-gradient from="#007AFF" to="#5AC8FA" angle=135 relative-to="workspace-view" in="oklch longer hue"
@@ -661,137 +906,34 @@ window-rule {
     }
 }
 
-// === 非活跃窗口的玻璃效果 ===
-// 非活跃窗口获得更高的透明度，模拟玻璃层次
-window-rule {
-    match is-active=false
-
-    // 更高的透明度
-    opacity 0.88
-
-    // 更柔和的阴影
-    shadow {
-        softness 20
-        spread 1
-        offset x=0 y=6
-        color "#00000025"
-    }
-}
-
-// === 终端应用的特殊处理 ===
-// 终端应用保持更高的不透明度以确保可读性
-window-rule {
-    match app-id="alacritty"
-    match app-id="ghostty"
-    match app-id="rio"
-    match app-id="kitty"
-    match app-id="wezterm"
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-
-    // 稍微降低透明度，确保文字清晰
-    opacity 1.00
-
-    // 圆角稍小，保持终端的专业外观
-    geometry-corner-radius 10
-    clip-to-geometry true
-}
-
-// === 浏览器的优化 ===
-// 浏览器窗口获得特殊的边框效果
-window-rule {
-    match app-id="firefox"
-    match app-id="chromium"
-    match app-id="google-chrome"
-
-    // 适中的圆角
-    geometry-corner-radius 12
-    clip-to-geometry true
-
-    // 保持清晰度
-    opacity 0.95
-
-    // 特殊的焦点环颜色，与浏览器主题协调
-    focus-ring {
-        width 1.5
-        active-gradient from="#FF6B35" to="#F7931E" angle=135 relative-to="workspace-view"
-    }
-}
-
-// === 媒体播放器的特殊效果 ===
-// 视频播放器获得更强的视觉效果
+// === 媒体播放器：固定0.92透明度 ===
 window-rule {
     match app-id="mpv"
     match app-id="vlc"
+    match app-id="celluloid"
     match title="Picture-in-Picture"
 
-    // 完全圆角，更像胶囊
+    // 媒体播放器固定透明度
+    opacity 0.92
+
+    // 完全圆角，胶囊效果
     geometry-corner-radius 20
     clip-to-geometry true
 
-    // 增强的阴影
+    // 媒体播放器的戏剧化阴影
     shadow {
         on
-        softness 40
-        spread 6
-        offset x=0 y=15
-        color "#00000070"
+        softness 45
+        spread 8
+        offset x=0 y=20
+        color "#00000075"
         draw-behind-window true
     }
 
-    // 媒体播放器的特殊焦点环
+    // 媒体播放器的彩色焦点环
     focus-ring {
         width 2.5
         active-gradient from="#FF2D92" to="#FF6B35" angle=135 in="oklch longer hue"
-    }
-}
-
-// === 系统对话框和弹窗 ===
-// 系统级的对话框获得最强的玻璃效果
-window-rule {
-    match title="^Open File$"
-    match title="^Save As$"
-    match title="^Choose"
-    match app-id="zenity"
-
-    // 高透明度
-    opacity 0.85
-
-    // 大圆角
-    geometry-corner-radius 16
-    clip-to-geometry true
-
-    // 强烈的阴影，模拟悬浮效果
-    shadow {
-        on
-        softness 30
-        spread 8
-        offset x=0 y=20
-        color "#00000080"
-        draw-behind-window true
-    }
-}
-
-// === 通知和临时窗口 ===
-// 通知类窗口获得最胶囊化的外观
-window-rule {
-    match app-id="mako"
-    match app-id="dunst"
-    match title="^notification"
-
-    // 完全胶囊形状
-    geometry-corner-radius 25
-    clip-to-geometry true
-
-    // 高透明度
-    opacity 0.8
-
-    // 柔和的阴影
-    shadow {
-        softness 20
-        spread 2
-        offset x=0 y=8
-        color "#00000040"
-        draw-behind-window true
     }
 }
 
