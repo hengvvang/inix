@@ -3,8 +3,8 @@
 {
   imports = [
     ./niri
-    ./ironbar
-    # ./waybar
+    # ./ironbar
+    ./waybar
     ./fuzzel
     ./swaylock
     ./scripts
