@@ -164,7 +164,7 @@
     },
     
     "backlight": {
-        "device": "intel_backlight",
+        "device": "nvidia_0",
         "format": "{icon} {percent}%",
         "format-icons": ["󰃞", "󰃟", "󰃠"],
         "scroll-step": 5,
@@ -177,7 +177,7 @@
         "exec": "echo '󰸉'",
         "interval": "once",
         "tooltip": true,
-        "tooltip-format": "切换壁纸\n左键: 下一张\n右键: 上一张\n中键: 随机",
+        "tooltip-format": "切换壁纸\\n左键: 下一张\\n右键: 上一张\\n中键: 随机",
         "on-click": "~/.config/hypr/scripts/wallpaper.sh next",
         "on-click-right": "~/.config/hypr/scripts/wallpaper.sh prev",
         "on-click-middle": "~/.config/hypr/scripts/wallpaper.sh random"
