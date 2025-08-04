@@ -1,38 +1,41 @@
-[
-    {
-        "label": "lock",
-        "action": "swaylock",
-        "text": "锁定",
-        "keybind": "l"
-    },
-    {
-        "label": "logout",
-        "action": "niri msg action quit",
-        "text": "注销",
-        "keybind": "e"
-    },
-    {
-        "label": "suspend",
-        "action": "systemctl suspend",
-        "text": "挂起",
-        "keybind": "u"
-    },
-    {
-        "label": "hibernate",
-        "action": "systemctl hibernate",
-        "text": "休眠",
-        "keybind": "h"
-    },
-    {
-        "label": "shutdown",
-        "action": "systemctl poweroff",
-        "text": "关机",
-        "keybind": "s"
-    },
-    {
-        "label": "reboot",
-        "action": "systemctl reboot",
-        "text": "重启",
-        "keybind": "r"
-    }
-]
+{
+    "label" : "lock",
+    "action" : "loginctl lock-session",
+    "text" : "锁定",
+    "keybind" : "l"
+}
+
+{
+    "label" : "logout",
+    "action" : "loginctl terminate-user $USER",
+    "text" : "注销", 
+    "keybind" : "e"
+}
+
+{
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "睡眠",
+    "keybind" : "u"
+}
+
+{
+    "label" : "hibernate", 
+    "action" : "systemctl hibernate",
+    "text" : "休眠",
+    "keybind" : "h"
+}
+
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot", 
+    "text" : "重启",
+    "keybind" : "r"
+}
+
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "关机",
+    "keybind" : "s"
+}
