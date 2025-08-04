@@ -4,35 +4,30 @@
     "text" : "锁定",
     "keybind" : "l"
 }
-
 {
     "label" : "logout",
     "action" : "loginctl terminate-user $USER",
-    "text" : "注销", 
+    "text" : "登出",
     "keybind" : "e"
 }
-
 {
     "label" : "suspend",
     "action" : "systemctl suspend",
-    "text" : "睡眠",
+    "text" : "挂起",
     "keybind" : "u"
 }
-
 {
-    "label" : "hibernate", 
+    "label" : "hibernate",
     "action" : "systemctl hibernate",
     "text" : "休眠",
     "keybind" : "h"
 }
-
 {
     "label" : "reboot",
-    "action" : "systemctl reboot", 
+    "action" : "systemctl reboot",
     "text" : "重启",
     "keybind" : "r"
 }
-
 {
     "label" : "shutdown",
     "action" : "systemctl poweroff",
