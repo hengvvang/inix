@@ -4,6 +4,7 @@
   imports = [
     ./hypr
     ./ironbar
+    # ./waybar
     ./dunst
     # ./rofi
     ./swappy
@@ -41,6 +42,7 @@
       
       # ===== 状态栏和通知 =====
       ironbar             # 状态栏
+      # waybar             # 状态栏
       dunst               # 通知守护进程
       mako                # 备用通知守护进程
       libnotify           # 发送桌面通知的库

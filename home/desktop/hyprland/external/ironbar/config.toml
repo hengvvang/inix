@@ -9,15 +9,10 @@ margin.left = 0
 margin.right = 0
 
 # 左侧模块
-start = [
-    "workspaces",
-    "focused"
-]
+start = ["workspaces", "focused"]
 
 # 中间模块
-center = [
-    "clock"
-]
+center = ["clock"]
 
 # 右侧模块
 end = [
@@ -30,25 +25,25 @@ end = [
     "temperature",
     "battery",
     "backlight",
-    "system_tray"
+    "system_tray",
 ]
 
 # ===== 工作区模块 =====
 [module.workspaces]
-type = "workspaces"
-all_monitors = false
 name_map = {
     "1" = "󰲠",
-    "2" = "󰲢", 
-    "3" = "󰲤",
-    "4" = "󰲦",
-    "5" = "󰲨",
-    "6" = "󰲪",
-    "7" = "󰲬",
-    "8" = "󰲮",
-    "9" = "󰲰"
+"2" = "󰲢", "3" = "󰲤",
+"4" = "󰲦",
+"5" = "󰲨",
+"6" = "󰲪",
+"7" = "󰲬",
+"8" = "󰲮",
+
 }
 
+type = "workspaces"
+all_monitors = false
+"9" = "󰲰"
 # ===== 聚焦窗口模块 =====
 [module.focused]
 type = "focused"
@@ -93,16 +88,16 @@ on_click = "hyprctl dispatch exec hypridle"
 
 # ===== 音量模块 =====
 [module.volume]
+icons = {
+    volume_high = "󰕾",
+volume_medium = "󰖀", volume_low = "󰕿",
+
+}
 type = "volume"
 format = "{icon} {percentage}%"
 format_muted = "󰖁"
 max_volume = 100
-icons = {
-    volume_high = "󰕾",
-    volume_medium = "󰖀", 
-    volume_low = "󰕿",
-    muted = "󰖁"
-}
+muted = "󰖁"
 on_click = "pavucontrol"
 on_click_right = "helvum"
 
