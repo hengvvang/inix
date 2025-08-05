@@ -14,12 +14,11 @@
         # gtk3
         # glib
 
-        #wechat
+        # wechat
 
         pkgs.spotify
         #pkgs.cider-2
         pkgs.kdePackages.kdenlive
-
 
         (wrapOBS {
             plugins = with pkgs.obs-studio-plugins; [

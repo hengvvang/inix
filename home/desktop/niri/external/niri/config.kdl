@@ -241,6 +241,7 @@ layout {
 spawn-at-startup "waybar"
 // spawn-at-startup "ironbar"
 spawn-at-startup "swww-daemon"
+spawn-at-startup "xwayland-satellite"
 
 hotkey-overlay {
     // 取消注释此行以在启动时禁用"重要热键"弹出窗口。

@@ -15,8 +15,8 @@
             
             telegram-desktop
             discord
-            #qq
-            #wechat
+            qq
+            # wechat
             
             wpsoffice-cn
             pot
