@@ -5,14 +5,14 @@
         home.packages = [
 
             # pkgs.vim
-            pkgs.zed-editor
+            # pkgs.zed-editor
             # pkgs.vscode
 
             pkgs.git
-            pkgs.rio
-            pkgs.zellij
-            pkgs.rmpc
-            pkgs.yazi
+            # pkgs.rio
+            # pkgs.zellij
+            # pkgs.rmpc
+            # pkgs.yazi
             pkgs.calcure
             pkgs.flameshot
             pkgs.satty
@@ -21,8 +21,8 @@
             pkgs.just
             pkgs.devenv
 
-            pkgs.fish
-            pkgs.nushell
+            # pkgs.fish
+            # pkgs.nushell
             # pkgs.super-productivity
             # raycast-linux
 

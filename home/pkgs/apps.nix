@@ -4,11 +4,11 @@
     config = lib.mkIf config.myHome.pkgs.apps.enable {
         home.packages = with pkgs; [
 
-            ghostty
+            # ghostty
 
             lazygit
 
-            qutebrowser
+            # qutebrowser
 
             #google-chrome
             #firefox
@@ -23,7 +23,6 @@
 
             spotify
             vlc
-            rmpc
             # clash-verge-rev   # 代理工具（主要）
             # clash-nyanpasu    # 代理工具（备用）
             # clash-meta        # Clash 内核

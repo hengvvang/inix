@@ -32,8 +32,14 @@
         starship.enable = true;
         qutebrowser.enable = false;
         obs-studio.enable = false;
-        zed.enable = false;
-        vscode.enable = false;
+        zed = {
+          enable = true;
+          method = "external";
+        };
+        vscode = {
+          enable = true;
+          method = "external";
+        };
         rofi = {
           enable = false;
           method = "external";
