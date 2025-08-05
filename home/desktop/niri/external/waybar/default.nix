@@ -7,6 +7,7 @@
     xdg.configFile = {
       "waybar/config".source = ./glass-theme/config;
       "waybar/style.css".source = ./glass-theme/style.css;
+      "waybar/scripts/wallpaper.sh".source = ./glass-theme/scripts/wallpaper.sh;
     };
     
     home.packages = with pkgs; [

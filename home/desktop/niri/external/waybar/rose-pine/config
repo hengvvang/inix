@@ -304,8 +304,8 @@
         "interval": "once",
         "tooltip": true,
         "tooltip-format": "切换壁纸\n左键: 下一张\n右键: 上一张\n中键: 随机",
-        "on-click": "~/.config/niri/scripts/wallpaper.sh next",
-        "on-click-right": "~/.config/niri/scripts/wallpaper.sh prev",
-        "on-click-middle": "~/.config/niri/scripts/wallpaper.sh random"
+        "on-click": "~/.config/waybar/scripts/wallpaper.sh next",
+        "on-click-right": "~/.config/waybar/scripts/wallpaper.sh prev",
+        "on-click-middle": "~/.config/waybar/scripts/wallpaper.sh random"
     }
 }
