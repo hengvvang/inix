@@ -62,7 +62,7 @@ input {
 
     // 当鼠标移入窗口和输出时自动聚焦它们。
     // 设置 max-scroll-amount="0%" 使其仅在已完全显示在屏幕上的窗口上工作。
-    // focus-follows-mouse max-scroll-amount="0%"
+    //focus-follows-mouse max-scroll-amount="0%"
 }
 
 // 您可以通过名称配置输出，您可以通过在 niri 实例内运行 `niri msg outputs` 来找到名称。
@@ -77,7 +77,7 @@ output "eDP-1" {
     // 如果省略刷新率，niri 将选择该分辨率的最高刷新率。
     // 如果完全省略模式或无效，niri 将自动选择一个。
     // 在 niri 实例内运行 `niri msg outputs` 列出所有输出及其模式。
-    mode "2560x1600@240"
+    mode "2560x1600@240.003"
 
     // 您可以使用整数或小数缩放，例如使用 1.5 表示 150% 缩放。
     scale 1.5
@@ -103,47 +103,43 @@ output "eDP-1" {
 
 layout {
     // 设置窗口周围的间隙，以逻辑像素为单位
-    gaps 5
+    gaps 6
 
     // 改变焦点时何时将列居中 - Tahoe 风格的平滑聚焦
     // center-focused-column "on-overflow"
     center-focused-column "never"
 
-    // 单个列总是居中，模拟 macOS 的窗口居中行为
+    // 单个列总是居中
     always-center-single-column
 
     // 设置工作区背景色为深色调，增强玻璃效果
     background-color "#1c1c1e"
 
-    // 默认列显示模式设为标签页，类似 macOS 的窗口管理
     default-column-display "normal"
 
     // 您可以自定义 "switch-preset-column-width" (Mod+R) 切换的宽度
     preset-column-widths {
-        // Tahoe 风格：黄金比例和舒适的比例
         proportion 0.382  // 黄金比例小
         proportion 0.5    // 二分之一
         proportion 0.618  // 黄金比例大
         proportion 0.75   // 四分之三
     }
 
-    // Tahoe 风格的窗口高度预设
     preset-window-heights {
-        proportion 0.33333
+        proportion 0.382
         proportion 0.5
-        proportion 0.66667
-        proportion 0.85
+        proportion 0.618
+        proportion 0.75
     }
 
-    // 新窗口的默认宽度 - 黄金比例
+    // 新窗口的默认宽度
     default-column-width { proportion 0.618; }
 
-    // === macOS Tahoe 流体玻璃焦点环 ===
     focus-ring {
         // 环宽度
         width 2
 
-        // 活跃窗口：蓝色系流体渐变，类似 macOS Accent Color
+        // 活跃窗口：蓝色系流体渐变
         active-gradient from="#007AFF" to="#5AC8FA" angle=135 relative-to="workspace-view" in="oklch longer hue"
 
         // 非活跃窗口：柔和的灰色渐变
@@ -183,7 +179,7 @@ layout {
         inactive-color "#00000020"
     }
 
-    // === 标签指示器 - macOS 风格 ===
+    // === 标签指示器
     tab-indicator {
         // 隐藏单个标签时的指示器
         hide-when-single-tab
@@ -196,7 +192,7 @@ layout {
         width 3
         length total-proportion=1.0
 
-        // 位置：顶部，类似 macOS 标签
+        // 位置：顶部
         position "top"
 
         // 标签之间的间隙
@@ -421,7 +417,7 @@ animations {
     // === 窗口打开动画 ===
     // 从左向右滑入出现效果
     window-open {
-        duration-ms 350
+        duration-ms 250
         curve "ease-out-expo"
 
         // 从左向右滑入的自定义着色器
@@ -456,7 +452,7 @@ animations {
     // === 窗口关闭动画 ===
     // 从右向左滑动消失效果
     window-close {
-        duration-ms 350
+        duration-ms 250
         curve "ease-out-expo"
 
         // 从右向左滑动消失的自定义着色器
@@ -502,10 +498,9 @@ animations {
 
     // === 窗口调整大小动画 ===
     // 平滑的尺寸变化，带有轻微的弹性
-    window-resize {
+    /-window-resize {
         spring damping-ratio=0.9 stiffness=750 epsilon=0.0001
 
-        // macOS 风格的调整大小效果
         custom-shader r"
             vec4 resize_color(vec3 coords_curr_geo, vec3 size_curr_geo) {
                 // 获取下一帧的纹理坐标
@@ -529,7 +524,7 @@ animations {
     }
 
     // === 配置通知动画 ===
-    // 轻微弹跳效果，类似 macOS 通知
+    // 轻微弹跳效果
     config-notification-open-close {
         spring damping-ratio=0.7 stiffness=1200 epsilon=0.001
     }
@@ -542,7 +537,7 @@ animations {
     }
 
     // === 概览模式动画 ===
-    // 平滑的缩放效果，类似 macOS Mission Control
+    // 平滑的缩放效果
     overview-open-close {
         spring damping-ratio=0.85 stiffness=850 epsilon=0.0001
     }
@@ -590,10 +585,8 @@ window-rule {
     // block-out-from "screencast"
 }
 
-// 示例：为所有窗口启用圆角。
-// （此示例规则在前面用 "/-" 注释掉了。）
 // ================================================================
-// === macOS Tahoe 流体玻璃风格透明度系统 ===
+// ===                     窗口样式                             ===
 // ================================================================
 
 // === 全局基础样式 ===
@@ -620,9 +613,6 @@ window-rule {
 }
 
 // ================================================================
-// === 层次化透明度规则：聚焦状态 ===
-// ================================================================
-
 // === 聚焦窗口：低透明度（0.97） ===
 // 活跃窗口获得更低的透明度，确保内容清晰可见
 window-rule {
@@ -659,10 +649,11 @@ window-rule {
         draw-behind-window true
     }
 }
+// ================================================================
+
 
 // ================================================================
 // === 应用程序特定透明度规则 ===
-// ================================================================
 
 // === 终端应用：聚焦0.97，非聚焦0.78 ===
 // 终端需要稍高的不透明度确保文字清晰度
@@ -736,6 +727,7 @@ window-rule {
     match app-id="firefox"
     match app-id="chromium"
     match app-id="google-chrome"
+    match app-id="zen"
     match app-id="brave"
     match is-active=true
 
@@ -755,11 +747,11 @@ window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
+// ================================================================
+
 
 // ================================================================
 // === 系统弹窗和对话框：固定透明度 ===
-// ================================================================
-
 // === 文件选择器对话框：0.82透明度 ===
 // 系统文件对话框需要适中的透明度，无论聚焦状态
 window-rule {
@@ -875,11 +867,10 @@ window-rule {
         draw-behind-window true
     }
 }
-
-// ================================================================
-// === 浮动窗口特殊处理 ===
 // ================================================================
 
+// ================================================================
+// === 浮动窗口 ===
 // === 浮动窗口增强效果 ===
 window-rule {
     match is-floating=true
@@ -936,8 +927,7 @@ window-rule {
         active-gradient from="#FF2D92" to="#FF6B35" angle=135 in="oklch longer hue"
     }
 }
-
-// ===== 原有窗口规则（已注释保留） =====
+// ================================================================
 
 binds {
     // 键由用 + 号分隔的修饰符组成，最后跟一个 XKB 键名。
@@ -1095,11 +1085,11 @@ binds {
     // 触摸板滚动是连续的，所以对于这些绑定，它被分割成离散间隔。
     // 这些绑定也受触摸板的 natural-scroll 影响，所以这些示例绑定是"反向的"，
     // 因为我们默认为触摸板启用了 natural-scroll。
-    // Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
-    // Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
+    Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
+    Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
 
     // 您可以通过索引引用工作区。但是，请记住 niri 是一个动态工作区系统，
-    // 所以这些命令有点"尽力而为"。尝试引用比当前工作区数量更大的工作区索引
+    // 尝试引用比当前工作区数量更大的工作区索引
     // 将引用最底部的（空）工作区。
     //
     // 例如，有 2 个工作区 + 1 个空的，索引 3、4、5 等
@@ -1112,7 +1102,9 @@ binds {
     Mod+6 { focus-workspace 6; }
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 9; }
+    Mod+9 { focus-workspace 255; }
+    Mod+0 { focus-workspace 1; }
+
     Mod+Shift+1 { move-column-to-workspace 1; }
     Mod+Shift+2 { move-column-to-workspace 2; }
     Mod+Shift+3 { move-column-to-workspace 3; }
@@ -1121,7 +1113,8 @@ binds {
     Mod+Shift+6 { move-column-to-workspace 6; }
     Mod+Shift+7 { move-column-to-workspace 7; }
     Mod+Shift+8 { move-column-to-workspace 8; }
-    Mod+Shift+9 { move-column-to-workspace 9; }
+    Mod+Shift+9 { move-column-to-workspace 255; }
+    Mod+Shift+0 { move-column-to-workspace 0; }
 
     // 或者，有命令只移动单个窗口：
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
@@ -1132,12 +1125,12 @@ binds {
     // 以下绑定将聚焦的窗口移入和移出列。
     // 如果窗口单独存在，它们将其消费到侧边的附近列中。
     // 如果窗口已经在列中，它们将其排出。
-    Mod+BracketLeft  { consume-or-expel-window-left; }
-    Mod+BracketRight { consume-or-expel-window-right; }
+    Mod+BracketRight  { consume-or-expel-window-left; }
+    Mod+BracketLeft { consume-or-expel-window-right; }
 
-    // 从右侧消费一个窗口到聚焦列的底部。
+    // 移动右侧一个窗口到聚焦列的底部。
     Mod+Comma  { consume-window-into-column; }
-    // 将聚焦列底部的窗口排出到右侧。
+    // 将聚焦列底部的窗口到移动右侧。
     Mod+Period { expel-window-from-column; }
 
     Mod+R { switch-preset-column-width; }
@@ -1151,29 +1144,25 @@ binds {
     Mod+F { expand-column-to-available-width; }
 
     Mod+C { center-column; }
-
     // 将屏幕上所有完全可见的列居中。
     Mod+Ctrl+C { center-visible-columns; }
 
-    // 更精细的宽度调整。
-    // 此命令还可以：
-    // * 以像素设置宽度："1000"
-    // * 以像素调整宽度："-5" 或 "+5"
-    // * 将宽度设置为屏幕宽度的百分比："25%"
-    // * 将宽度调整为屏幕宽度的百分比："-10%" 或 "+10%"
+    // 宽高度调整:
+    // * 以像素设置宽高度："1000"
+    // * 以像素调整宽高度："-5" 或 "+5"
+    // * 将宽高度设置为屏幕宽高度的百分比："25%"
+    // * 将宽高度调整为屏幕宽高度的百分比："-10%" 或 "+10%"
     // 像素大小使用逻辑像素或缩放像素。即在缩放为 2.0 的输出上，
     // set-column-width "100" 将使列占用 200 个物理屏幕像素。
+    
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
-
-    // 在与其他窗口的列中时更精细的高度调整。
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // 在浮动和平铺布局之间移动聚焦的窗口。
     Mod+Ctrl+F       { toggle-window-floating; }
-    Mod+Shift+F { switch-focus-between-floating-and-tiling; }
-    Mod+Shift+T { switch-focus-between-floating-and-tiling; }
+    Mod+Shift+S { switch-focus-between-floating-and-tiling; }
 
     // 切换选项卡式列显示模式。
     // 此列中的窗口将显示为垂直选项卡，
