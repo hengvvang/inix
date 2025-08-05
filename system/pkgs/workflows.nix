@@ -5,7 +5,7 @@
         environment.systemPackages = [
           pkgs.vim
           pkgs.zed-editor
-          pkgs.vscode
+          # pkgs.vscode
 
           pkgs.git
           pkgs.rio

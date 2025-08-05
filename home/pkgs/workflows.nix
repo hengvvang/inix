@@ -6,7 +6,7 @@
 
             # pkgs.vim
             pkgs.zed-editor
-            pkgs.vscode
+            # pkgs.vscode
 
             pkgs.git
             pkgs.rio
@@ -21,7 +21,7 @@
             pkgs.just
             pkgs.devenv
 
-            pkgs.fish   
+            pkgs.fish
             pkgs.nushell
             # pkgs.super-productivity
             # raycast-linux
