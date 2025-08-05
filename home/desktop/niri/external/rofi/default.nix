@@ -4,26 +4,24 @@
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.method == "external") {
 
     home.packages = with pkgs; [
-      rofi
+      papirus-icon-theme
+      rofi-wayland
     ];
 
-    home.file = {
 
-      # Rofi 配置文件
-      ".config/rofi/config.rasi" = {
-        source = ./config.rasi;
-      };
-
-      # Rofi 主题文件
-      ".config/rofi/themes/default.rasi" = {
-        source = ./themes/default.rasi;
-      };
-
-      # 可选：Rofi 主题切换脚本
-      ".local/bin/rofi-theme-switcher" = {
-        source = ./theme-switcher.sh;
-        executable = true;  # 确保脚本可执行
-      };
+    # rofi 配置文件
+    home.file.".config/rofi/config.rasi".source = ./configs/config.rasi;
+    home.file.".config/rofi/themes".source = ./configs/themes;
+    
+    fonts.fontconfig.enable = true;
+    
+    # ===== 环境变量设置 =====
+    home.sessionVariables = {
+      # Rofi 配置路径
+      ROFI_CONFIG_DIR = "${config.home.homeDirectory}/.config/rofi";
+      
+      # 图标主题
+      ROFI_ICON_THEME = "Papirus";
     };
   };
 }
