@@ -4,6 +4,7 @@
   imports = [
     ./niri
     # ./ironbar
+    ./rofi
     ./waybar
     ./fuzzel
     ./swaylock
