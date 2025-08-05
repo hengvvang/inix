@@ -1,5 +1,4 @@
 // 此配置使用 KDL 格式：https://kdl.dev
-// "/-" 用于注释掉下面的节点。
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
 // 输入设备配置。
@@ -7,17 +6,9 @@
 input {
     keyboard {
         xkb {
-            // 您可以设置规则、型号、布局、变体和选项。
-            // 更多信息请参阅 xkeyboard-config(7)。
-
-            // 例如：
             layout "us,cn"
             options "grp:win_space_toggle,compose:ralt"
-
-            // 如果此部分为空，niri 将从 org.freedesktop.locale1 获取 xkb 设置。
-            // 您可以使用 localectl set-x11-keymap 来控制这些设置。
         }
-
         // 启动时启用数字锁，省略此设置将禁用它。
         numlock
     }
@@ -99,8 +90,6 @@ output "eDP-1" {
 
 // 影响窗口定位和大小的设置。
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Layout
-
-
 layout {
 
     // 设置窗口周围的间隙，以逻辑像素为单位
@@ -142,6 +131,7 @@ layout {
     default-column-width { proportion 0.618; }
 
     focus-ring {
+        off
         // 环宽度
         width 2
 
@@ -232,12 +222,6 @@ layout {
     }
 }
 
-
-// 添加这样的行在启动时生成进程。
-// 注意将 niri 作为会话运行支持 xdg-desktop-autostart，
-// 这可能更方便使用。
-
-// 此行启动 waybar，Wayland 合成器的常用栏。
 spawn-at-startup "waybar"
 // spawn-at-startup "ironbar"
 spawn-at-startup "swww-daemon"
@@ -253,72 +237,45 @@ hotkey-overlay {
 // 此外，客户端将被告知它们是平铺的，删除一些客户端圆角。
 // 此选项还将修复在一些半透明窗口后面绘制的边框/焦点环。
 // 启用或禁用此选项后，您需要重启应用程序才能生效。
-prefer-no-csd
+// prefer-no-csd
 
-// 您可以更改保存截图的路径。
-// 前面的 ~ 将扩展为主目录。
 // 路径使用 strftime(3) 格式化，为您提供截图日期和时间。
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // 您还可以将此设置为 null 以禁用将截图保存到磁盘。
 // screenshot-path null
 
-// 动画设置。
-// wiki 解释了如何配置单个动画：
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
-
 animations {
-    // 基于官方最佳实践，追求极致丝滑体验
+    
     slowdown 0.85
-
-    // === 工作区切换：丝滑的滑动体验 ===
-    // 临界阻尼 + 较高刚度 = 快速无震荡
     workspace-switch {
         spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
     }
-
-    // === 窗口打开：轻快的出现 ===
-    // 专注速度和流畅度，移除复杂效果
     window-open {
         duration-ms 180
         curve "ease-out-expo"
     }
-
-    // === 窗口关闭：瞬间响应 ===
-    // 最快的关闭反馈，提高操作效率
     window-close {
         duration-ms 120
         curve "ease-out-quad"
     }
-
-    // === 相机移动：统一的视觉语言 ===
-    // 与工作区切换完全同步的参数
     horizontal-view-movement {
         spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
     }
-
-    // === 窗口操作：协调的物理反馈 ===
-    // 移动和调整大小使用相同参数确保同步
     window-movement {
         spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
     }
-
     window-resize {
         spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
     }
-
-    // === 系统通知：保持个性化 ===
-    // 轻微弹跳增加交互乐趣
     config-notification-open-close {
         spring damping-ratio=0.6 stiffness=1200 epsilon=0.001
     }
-
-    // === 辅助界面：简洁高效 ===
     screenshot-ui-open {
         duration-ms 150
         curve "ease-out-quad"
     }
-
     overview-open-close {
         spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
     }
@@ -326,11 +283,7 @@ animations {
 
 // ================================================================
 // ===                     窗口样式                             ===
-// ================================================================
-
-// 窗口规则让您调整单个窗口的行为。
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
-
 // 默认以浮动方式打开 Firefox 画中画播放器。
 window-rule {
     // 此 app-id 正则表达式适用于两者：
@@ -362,17 +315,11 @@ window-rule {
         draw-behind-window true
     }
 }
-
 // ================================================================
-// === 聚焦窗口：低透明度（0.97） ===
-// 活跃窗口获得更低的透明度，确保内容清晰可见
+// === 聚焦窗口 ===
 window-rule {
     match is-active=true
-
-    // 聚焦时的低透明度 - macOS Tahoe 风格
-    opacity 0.97
-
-    // 聚焦窗口的增强阴影
+    opacity 1.00
     shadow {
         on
         softness 30
@@ -382,16 +329,11 @@ window-rule {
         draw-behind-window true
     }
 }
-
 // === 非聚焦窗口：高透明度（0.75） ===
 // 非活跃窗口获得更高的透明度，创造层次感
 window-rule {
     match is-active=false
-
-    // 非聚焦时的高透明度 - 创造玻璃层次效果
     opacity 0.75
-
-    // 非聚焦窗口的柔和阴影
     shadow {
         softness 20
         spread 1
@@ -402,104 +344,88 @@ window-rule {
 }
 // ================================================================
 
-
 // ================================================================
-// === 应用程序特定透明度规则 ===
+// === 终端应用：聚焦1.00，非聚焦0.78 ===
+/-window-rule {
+    match is-active=true
 
-// === 终端应用：聚焦0.97，非聚焦0.78 ===
-// 终端需要稍高的不透明度确保文字清晰度
-window-rule {
     match app-id="alacritty"
     match app-id="ghostty" 
     match app-id="rio"
     match app-id="kitty"
     match app-id="wezterm"
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    match is-active=true
-
-    // 聚焦时的终端透明度
-    opacity 0.97
     
-    // 终端的专业圆角
+    opacity 1.00
     geometry-corner-radius 10
     clip-to-geometry true
 }
 
-window-rule {
+/-window-rule {
+    match is-active=false
+
     match app-id="alacritty"
     match app-id="ghostty"
     match app-id="rio" 
     match app-id="kitty"
     match app-id="wezterm"
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    match is-active=false
-
-    // 非聚焦时的终端透明度（稍高一些确保可读性）
-    opacity 0.78
     
+    opacity 0.78
     geometry-corner-radius 10
     clip-to-geometry true
 }
 
-// === 代码编辑器：VSCode & Zed ===
-// 代码编辑器需要清晰的文字显示
-window-rule {
-    match app-id="code"
-    match app-id="code-oss"
-    match app-id="vscodium"
-    match app-id="zed"
-    match title="Visual Studio Code"
+// === 代码编辑器===
+/-window-rule {
     match is-active=true
 
-    // 聚焦时的编辑器透明度
-    opacity 0.97
-    
+    match app-id="code"
+    match app-id="zed"
+    match title="Visual Studio Code"
+
+    opacity 1.00
     geometry-corner-radius 12
     clip-to-geometry true
 }
 
-window-rule {
-    match app-id="code"
-    match app-id="code-oss" 
-    match app-id="vscodium"
-    match app-id="zed"
-    match title="Visual Studio Code"
+/-window-rule {
     match is-active=false
 
-    // 非聚焦时的编辑器透明度
+    match app-id="code"
+    match app-id="zed"
+    match title="Visual Studio Code"
+
     opacity 0.75
-    
     geometry-corner-radius 12
     clip-to-geometry true
 }
 
 // === 浏览器应用透明度 ===
-window-rule {
-    match app-id="firefox"
-    match app-id="chromium"
-    match app-id="google-chrome"
-    match app-id="zen"
-    match app-id="brave"
+/-window-rule {
     match is-active=true
 
-    opacity 0.97
+    match app-id="firefox"
+    match app-id="google-chrome"
+    match app-id="zen"
+
+    opacity 1.00
     geometry-corner-radius 12
     clip-to-geometry true
 }
 
-window-rule {
-    match app-id="firefox"
-    match app-id="chromium"
-    match app-id="google-chrome"
-    match app-id="brave"
+/-window-rule {
     match is-active=false
+
+    match app-id="firefox"
+    match app-id="zen"
+    match app-id="google-chrome"
 
     opacity 0.75
     geometry-corner-radius 12
     clip-to-geometry true
 }
 // ================================================================
-
 
 // ================================================================
 // === 系统弹窗和对话框：固定透明度 ===
@@ -512,14 +438,9 @@ window-rule {
     match title="^Select"
     match title="^Browse"
 
-    // 固定透明度，不受聚焦状态影响
     opacity 0.82
-
-    // 系统对话框的圆角
     geometry-corner-radius 16
     clip-to-geometry true
-
-    // 悬浮效果阴影
     shadow {
         on
         softness 35
@@ -539,13 +460,9 @@ window-rule {
     match title="^Alert"
     match title="^Question"
 
-    // 固定透明度，确保重要信息可见
     opacity 0.85
-
     geometry-corner-radius 16
     clip-to-geometry true
-
-    // 警告弹窗的强烈阴影
     shadow {
         on
         softness 40
@@ -564,9 +481,7 @@ window-rule {
     match title="Preferences"
     match title="Settings"
 
-    // 设置窗口的固定透明度
     opacity 0.88
-
     geometry-corner-radius 14
     clip-to-geometry true
 }
@@ -577,15 +492,10 @@ window-rule {
     match app-id="dunst"
     match app-id="org.freedesktop.Notifications"
     match title="^notification"
-
-    // 通知的高透明度
+    
     opacity 0.78
-
-    // 完全胶囊形状
     geometry-corner-radius 25
     clip-to-geometry true
-
-    // 柔和的通知阴影
     shadow {
         softness 25
         spread 3
@@ -603,13 +513,9 @@ window-rule {
     match app-id="dmenu"
     match app-id="wofi"
 
-    // 菜单的透明度
     opacity 0.80
-
     geometry-corner-radius 12
     clip-to-geometry true
-
-    // 菜单的轻微阴影
     shadow {
         softness 20
         spread 2
@@ -618,19 +524,12 @@ window-rule {
         draw-behind-window true
     }
 }
-// ================================================================
-
-// ================================================================
 // === 浮动窗口 ===
-// === 浮动窗口增强效果 ===
 window-rule {
     match is-floating=true
 
-    // 浮动窗口的更大圆角
     geometry-corner-radius 16
     clip-to-geometry true
-
-    // 浮动窗口的增强阴影
     shadow {
         on
         softness 40
@@ -655,14 +554,9 @@ window-rule {
     match app-id="celluloid"
     match title="Picture-in-Picture"
 
-    // 媒体播放器固定透明度
     opacity 0.92
-
-    // 完全圆角，胶囊效果
     geometry-corner-radius 20
     clip-to-geometry true
-
-    // 媒体播放器的戏剧化阴影
     shadow {
         on
         softness 45
@@ -681,14 +575,9 @@ window-rule {
 // ================================================================
 
 binds {
-    // 键由用 + 号分隔的修饰符组成，最后跟一个 XKB 键名。
-    // 要找到特定键的 XKB 名称，您可以使用 wev 等程序。
-    //
     // "Mod" 是一个特殊修饰符，在 TTY 上运行时等于 Super，
     // 在作为 winit 窗口运行时等于 Alt。
-    //
     // 您可以在此处绑定的大多数操作也可以通过 `niri msg action do-something` 以编程方式调用。
-
     // Mod-Shift-/，通常与 Mod-? 相同，
     // 显示重要热键列表。
     Mod+Shift+Slash { show-hotkey-overlay; }
@@ -722,8 +611,6 @@ binds {
 
     Mod+Q repeat=false { close-window; }
 
-    // ---------------------同一工作区//不同工作区-----------------
-    // 移动焦点
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
     Mod+Up    { focus-window-up; }
@@ -732,7 +619,10 @@ binds {
     Mod+J     { focus-window-down; }
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
-    // 移动窗口
+    // 在到达列中第一个或最后一个窗口时跨工作区移动的替代命令。 
+    // Mod+J     { focus-window-or-workspace-down; }
+    // Mod+K     { focus-window-or-workspace-up; }
+    
     Mod+Shift+Left  { move-column-left; }
     Mod+Shift+Down  { move-window-down; }
     Mod+Shift+Up    { move-window-up; }
@@ -741,15 +631,11 @@ binds {
     Mod+Shift+J     { move-window-down; }
     Mod+Shift+K     { move-window-up; }
     Mod+Shift+L     { move-column-right; }
-    //
     // 在到达列中第一个或最后一个窗口时跨工作区移动的替代命令。 
-    // 我不太喜欢这么用，下面的用法破坏了工作区的隔离性
-    // Mod+J     { focus-window-or-workspace-down; }
-    // Mod+K     { focus-window-or-workspace-up; }
     // Mod+Shift+J     { move-window-down-or-to-workspace-down; }
     // Mod+Shift+K     { move-window-up-or-to-workspace-up; }
 
-    //  ----------显示器设置----------------
+
     // 焦点在显示器间转移
     Mod+Alt+Left  { focus-monitor-left; }
     Mod+Alt+Down  { focus-monitor-down; }
@@ -759,7 +645,8 @@ binds {
     Mod+Alt+J     { focus-monitor-down; }
     Mod+Alt+K     { focus-monitor-up; }
     Mod+Alt+L     { focus-monitor-right; }
-    // 窗口在显示器间转移
+    
+    // column在显示器间转移
     Mod+Alt+Shift+Left  { move-column-to-monitor-left; }
     Mod+Alt+Shift+Down  { move-column-to-monitor-down; }
     Mod+Alt+Shift+Up    { move-column-to-monitor-up; }
@@ -768,14 +655,19 @@ binds {
     Mod+Alt+Shift+J     { move-column-to-monitor-down; }
     Mod+Alt+Shift+K     { move-column-to-monitor-up; }
     Mod+Alt+Shift+L     { move-column-to-monitor-right; }
-
     // 有命令只移动单个窗口：
+    //不建议使用这个，因为 一个column至少包含一个window,想移动窗口可以通过快捷键排出多余窗口
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
-    
-    // 您还可以将整个工作区移动到另一个监视器：
-    // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
-    // ...   
 
+    // 您还可以将整个工作区移动到另一个监视器：
+    Mod+Alt+Ctrl+Shift+Up    { move-workspace-to-monitor-up; }
+    Mod+Alt+Ctrl+Shift+Down  { move-workspace-to-monitor-down; }
+    Mod+Alt+Ctrl+Shift+K     { move-workspace-to-monitor-up; }
+    Mod+Alt+Ctrl+Shift+J     { move-workspace-to-monitor-down; }
+    Mod+Alt+Ctrl+Shift+Left  { move-workspace-to-monitor-left; }
+    Mod+Alt+Ctrl+Shift+Right { move-workspace-to-monitor-right; }
+    Mod+Alt+Ctrl+Shift+H     { move-workspace-to-monitor-left; }
+    Mod+Alt+Ctrl+Shift+L     { move-workspace-to-monitor-right; }
     
     // 最后一个
     Mod+Home { focus-column-first; }
@@ -791,7 +683,6 @@ binds {
     Mod+Ctrl+Shift+H     { move-column-to-first; }
     Mod+Ctrl+Shift+L     { move-column-to-last; }
 
-
     Mod+Ctrl+J            { focus-workspace-down; }
     Mod+Ctrl+K            { focus-workspace-up; }
     Mod+Ctrl+Down         { focus-workspace-down; }
@@ -803,36 +694,32 @@ binds {
 
     // 或者，有命令只移动单个窗口：
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
-    // ...
 
     Mod+Shift+Page_Down { move-workspace-down; }
     Mod+Shift+Page_Up   { move-workspace-up; }
     Mod+Shift+D         { move-workspace-down; }
     Mod+Shift+U         { move-workspace-up; }
 
-    // 您可以使用以下语法绑定鼠标滚轮滚动刻度。
     // 这些绑定将根据 natural-scroll 设置改变方向。
-    //
     // 为了避免快速滚动工作区，您可以使用 cooldown-ms 属性。
     // 绑定将被限制为此值。
     // 您可以在任何绑定上设置冷却时间，但对滚轮最有用。
+
+    Mod+WheelScrollDown      { focus-window-down; }
+    Mod+WheelScrollUp        { focus-window-up; }
+    Mod+WheelScrollRight      { focus-column-right; }
+    Mod+WheelScrollLeft       { focus-column-left; }
+
+    Mod+Shift+WheelScrollDown { move-window-down; }
+    Mod+Shift+WheelScrollUp   { move-window-up; }
+    Mod+Shift+WheelScrollRight { move-column-right; }
+    Mod+Shift+WheelScrollLeft  { move-column-left; }
+
     Mod+Ctrl+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
     Mod+Ctrl+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
     Mod+Ctrl+Shift+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
     Mod+Ctrl+Shift+WheelScrollUp   cooldown-ms=150 { move-column-to-workspace-up; }
 
-    Mod+WheelScrollRight      { focus-column-right; }
-    Mod+WheelScrollLeft       { focus-column-left; }
-    Mod+Shift+WheelScrollRight { move-column-right; }
-    Mod+Shift+WheelScrollLeft  { move-column-left; }
-
-    // 通常在应用程序中使用 Shift 上下滚动会导致水平滚动；这些绑定复制了这种行为。
-    Mod+WheelScrollDown      { focus-window-down; }
-    Mod+WheelScrollUp        { focus-window-up; }
-    Mod+Shift+WheelScrollDown { move-window-down; }
-    Mod+Shift+WheelScrollUp   { move-window-up; }
-
-    // 同样，您可以绑定触摸板滚动"刻度"。
     // 触摸板滚动是连续的，所以对于这些绑定，它被分割成离散间隔。
     // 这些绑定也受触摸板的 natural-scroll 影响，所以这些示例绑定是"反向的"，
     // 因为我们默认为触摸板启用了 natural-scroll。
@@ -842,9 +729,7 @@ binds {
     // 您可以通过索引引用工作区。但是，请记住 niri 是一个动态工作区系统，
     // 尝试引用比当前工作区数量更大的工作区索引
     // 将引用最底部的（空）工作区。
-    //
-    // 例如，有 2 个工作区 + 1 个空的，索引 3、4、5 等
-    // 都将引用第 3 个工作区。
+    // 例如，有 2 个工作区 + 1 个空的，索引 3、4、5 等都将引用第 3 个工作区。
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -889,11 +774,11 @@ binds {
     Mod+Ctrl+R { reset-window-height; }
     Mod+M { maximize-column; }
     Mod+Shift+M { fullscreen-window; }
-
     // 将聚焦的列扩展到其他完全可见列未占用的空间。
     // 使列"填充剩余空间"。
     Mod+F { expand-column-to-available-width; }
 
+    Mod+T { toggle-column-tabbed-display; }
     Mod+C { center-column; }
     // 将屏幕上所有完全可见的列居中。
     Mod+Ctrl+C { center-visible-columns; }
@@ -905,7 +790,6 @@ binds {
     // * 将宽高度调整为屏幕宽高度的百分比："-10%" 或 "+10%"
     // 像素大小使用逻辑像素或缩放像素。即在缩放为 2.0 的输出上，
     // set-column-width "100" 将使列占用 200 个物理屏幕像素。
-    
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
     Mod+Shift+Minus { set-window-height "-10%"; }
@@ -915,18 +799,14 @@ binds {
     Mod+Ctrl+F       { toggle-window-floating; }
     Mod+Shift+S { switch-focus-between-floating-and-tiling; }
 
-    // 切换选项卡式列显示模式。
-    // 此列中的窗口将显示为垂直选项卡，
-    // 而不是堆叠在彼此之上。
-    Mod+T { toggle-column-tabbed-display; }
 
     // 切换布局的操作。
     // 注意：如果您取消注释这些，请确保您在上面的 xkb 选项中没有
     // 配置匹配的布局切换热键。
     // 在同一个热键上同时有两者会破坏切换，
     // 因为它会在按下热键时切换两次（一次由 xkb，一次由 niri）。
-    Mod+Shift+period { switch-layout "next"; }
-    Mod+Shift+comma  { switch-layout "prev"; }
+    // Mod+Shift+period { switch-layout "next"; }
+    // Mod+Shift+comma  { switch-layout "prev"; }
 
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
@@ -941,10 +821,6 @@ binds {
     // 这确保 niri 始终处理它们，即使抑制器处于活动状态。
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
-    // quit 操作将显示确认对话框以避免意外退出。
-    Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
-
-    // 关闭监视器。要重新打开它们，执行任何输入，如移动鼠标或按任何其他键。
+    Mod+Shift+Q { quit; }
     Mod+Shift+P { power-off-monitors; }
 }

@@ -62,9 +62,9 @@
 
         # ==================== 显示和主题配置 ====================
         theme = "rose-pine";        # 使用自定义主题
-        background-opacity = 0.7;            # 背景透明度
+        background-opacity = 1.00;            # 背景透明度
         background-blur = true;              # 背景模糊
-        unfocused-split-opacity = 0.5;        # 未聚焦分割窗口透明度
+        unfocused-split-opacity = 0.75;        # 未聚焦分割窗口透明度
         # minimum-contrast = 1.0;              # 最小对比度
         # bold-is-bright = false;               # 粗体使用亮色
 
