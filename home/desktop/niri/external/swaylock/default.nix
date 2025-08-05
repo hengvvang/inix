@@ -5,6 +5,7 @@
 
     home.packages = with pkgs; [
       swaylock
+      lxgw-wenkai         # 霞鹜文楷
     ];    
 
     # Swaylock 配置

@@ -5,9 +5,9 @@
 
     home.packages = with pkgs; [
       fuzzel
-    ];
+      lxgw-wenkai
 
-    fonts.packages = with pkgs; [ lxgw-wenkai ]; # 霞鹜文楷 字体支持
+    ];
 
     # Fuzzel 启动器配置
     # 可选主题：
