@@ -25,7 +25,7 @@
         bash.enable = true;
         fish.enable = true;
         nushell.enable = true;
-        alacritty.enable = false;
+        alacritty.enable = true;
         tmux.enable = true;
         git.enable = true;
         lazygit.enable = true;

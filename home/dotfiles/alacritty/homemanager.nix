@@ -33,7 +33,7 @@
           dynamic_padding = true;
           
           # 窗口装饰
-          decorations = "full";        # full, none, transparent, buttonless
+          decorations = "none";        # full, none, transparent, buttonless
           
           # 启动模式
           startup_mode = "Windowed";   # Windowed, Maximized, Fullscreen
@@ -51,7 +51,7 @@
           };
           
           # 窗口透明度 (0.0 - 1.0)
-          opacity = 0.95;
+          opacity = 1.00;
         };
         
         # === 滚动配置 ===
@@ -65,24 +65,24 @@
         
         # === 字体配置 ===
         font = {
-          # 字体族 - 您可以根据需要修改
           normal = {
-            family = "JetBrains Mono";       # 普通字体
+            family = "LXGW WenKai Mono";
+            
             style = "Regular";
           };
           
           bold = {
-            family = "JetBrains Mono";       # 粗体字体
+            family = "LXGW WenKai Mono";
             style = "Bold";
           };
           
           italic = {
-            family = "JetBrains Mono";       # 斜体字体
+            family = "LXGW WenKai Mono";
             style = "Italic";
           };
           
           bold_italic = {
-            family = "JetBrains Mono";       # 粗斜体字体
+            family = "LXGW WenKai Mono";
             style = "Bold Italic";
           };
           
@@ -165,8 +165,8 @@
         # === 鼠标配置 ===
         mouse = {
           # 双击选择模式
-          double_click = { threshold = 300; };
-          triple_click = { threshold = 300; };
+          # double_click = { threshold = 300; };
+          # triple_click = { threshold = 300; };
           
           # 隐藏鼠标延迟 (秒)
           hide_when_typing = false;
@@ -184,28 +184,10 @@
         # === 键盘快捷键配置 ===
         keyboard = {
           bindings = [
-            # 复制粘贴
-            { key = "C"; mods = "Control|Shift"; action = "Copy"; }
-            { key = "V"; mods = "Control|Shift"; action = "Paste"; }
-            
-            # 字体大小调整
-            { key = "Plus"; mods = "Control"; action = "IncreaseFontSize"; }
-            { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
-            { key = "Key0"; mods = "Control"; action = "ResetFontSize"; }
-            
-            # 全屏切换
-            { key = "F11"; mods = ""; action = "ToggleFullscreen"; }
-            
-            # 新建窗口/标签页 (需要支持)
-            { key = "N"; mods = "Control|Shift"; action = "SpawnNewInstance"; }
-            
-            # 清屏
-            { key = "L"; mods = "Control"; action = "ClearLogNotice"; }
-            { key = "L"; mods = "Control"; chars = "\\x0c"; }
-            
-            # 搜索
-            { key = "F"; mods = "Control|Shift"; action = "SearchForward"; }
-            { key = "B"; mods = "Control|Shift"; action = "SearchBackward"; }
+            # { key = "Plus"; mods = "Control"; action = "IncreaseFontSize"; }
+            # { key = "Minus"; mods = "Control"; action = "DecreaseFontSize"; }
+            # { key = "Key0"; mods = "Control"; action = "ResetFontSize"; }
+            # { key = "F11"; mods = ""; action = "ToggleFullscreen"; }
           ];
         };
         
@@ -231,7 +213,7 @@
         };
         
         # === 实时配置重载 ===
-        live_config_reload = true;
+        general.live_config_reload = true;
         
         # === 工作目录 ===
         working_directory = "None";          # 启动目录，None 表示继承

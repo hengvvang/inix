@@ -6,7 +6,7 @@ TERM = "alacritty"
 
 [window]
 opacity = 0.95
-decorations = "full"
+decorations = "none"
 
 [window.dimensions]
 columns = 120
