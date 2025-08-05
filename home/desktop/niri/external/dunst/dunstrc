@@ -1,0 +1,130 @@
+[global]
+    # 显示设置
+    monitor = 0
+    follow = mouse
+    
+    # 几何设置
+    width = (300, 400)
+    height = 300
+    origin = top-right
+    offset = 15x40
+    
+    # 透明度和视觉效果
+    transparency = 20
+    corner_radius = 12
+    
+    # 边框设置
+    frame_width = 1
+    frame_color = "#ffffff40"
+    
+    # 分隔符
+    separator_height = 1
+    separator_color = "#ffffff30"
+    
+    # 排序和堆叠
+    sort = yes
+    idle_threshold = 120
+    
+    # 字体设置 - 使用系统字体
+    font = "SF Pro Display 11"
+    line_height = 0
+    
+    # 文本格式
+    markup = full
+    format = "<b>%s</b>\n%b"
+    alignment = left
+    vertical_alignment = center
+    show_age_threshold = 60
+    word_wrap = yes
+    ellipsize = middle
+    ignore_newline = no
+    stack_duplicates = true
+    hide_duplicate_count = false
+    show_indicators = yes
+    
+    # 图标设置
+    icon_position = left
+    min_icon_size = 32
+    max_icon_size = 48
+    icon_path = /usr/share/icons/Papirus/16x16/status/:/usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/apps/
+    
+    # 历史
+    sticky_history = yes
+    history_length = 20
+    
+    # 浏览器设置
+    browser = /usr/bin/firefox -new-tab
+    
+    # 鼠标交互
+    mouse_left_click = close_current
+    mouse_middle_click = do_action, close_current
+    mouse_right_click = close_all
+
+# 普通优先级通知 - 透明玻璃效果
+[urgency_normal]
+    background = "#1e1e2e80"
+    foreground = "#cdd6f4"
+    highlight = "#89b4fa"
+    timeout = 5
+    default_icon = "dialog-information"
+
+# 低优先级通知
+[urgency_low]
+    background = "#1e1e2e60"
+    foreground = "#bac2de"
+    highlight = "#a6e3a1"
+    timeout = 3
+    default_icon = "dialog-information"
+
+# 高优先级/紧急通知
+[urgency_critical]
+    background = "#1e1e2e90"
+    foreground = "#f38ba8"
+    highlight = "#fab387"
+    timeout = 0
+    default_icon = "dialog-warning"
+
+# 特定应用程序自定义
+[spotify]
+    appname = "Spotify"
+    background = "#1db95490"
+    foreground = "#ffffff"
+    highlight = "#1ed760"
+    timeout = 10
+
+[discord]
+    appname = "Discord"
+    background = "#5865f280"
+    foreground = "#ffffff"
+    highlight = "#5865f2"
+    timeout = 8
+
+[telegram]
+    appname = "Telegram"
+    background = "#0088cc80"
+    foreground = "#ffffff"
+    highlight = "#0088cc"
+    timeout = 8
+
+# 系统通知
+[volume]
+    summary = "*Volume*"
+    background = "#1e1e2e70"
+    foreground = "#f9e2af"
+    highlight = "#f9e2af"
+    timeout = 2
+    
+[brightness]
+    summary = "*Brightness*"
+    background = "#1e1e2e70"
+    foreground = "#f9e2af"
+    highlight = "#f9e2af"
+    timeout = 2
+
+# 邮件通知
+[thunderbird]
+    appname = "Thunderbird"
+    background = "#ff660080"
+    foreground = "#ffffff"
+    highlight = "#ff6600"
+    timeout = 15

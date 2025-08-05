@@ -1,59 +1,3 @@
-# Mako macOS Tahoe 风格通知系统
-
-一套精美的 mako 通知配置，完美模仿 macOS Tahoe 的通知中心外观和交互体验，使用 LXGW WenKai Mono 字体，提供深色和浅色两种主题。
-
-## 🎨 主题特性
-
-### ✨ 视觉效果
-- **真实毛玻璃效果**: 极低透明度背景，营造真实的毛玻璃质感
-- **macOS Tahoe 设计语言**: 18px 圆角、0.5px 细边框、右上角显示
-- **优雅字体**: LXGW WenKai Mono 13pt，完美中文支持
-- **智能颜色**: 不同优先级和应用的专属配色
-- **图标支持**: Papirus 图标主题，32px 大小
-
-### 🌈 双主题支持
-- **深色主题** (`config`): 适合深色壁纸和夜间使用
-- **浅色主题** (`config-light`): 适合浅色壁纸和白天使用
-
-### 🎯 macOS 风格功能
-- **右上角显示**: 完全模仿 macOS 通知位置
-- **优先级区分**: 低/普通/紧急通知的不同样式
-- **应用分类**: 不同应用的专属颜色和图标
-- **智能分组**: 相同应用的通知自动分组
-- **操作支持**: 点击关闭、右键清除所有
-
-## 📋 主题详情
-
-### 深色主题 (`config`)
-
-**适用场景**:
-- 深色或高对比度壁纸
-- 夜间使用
-- 喜欢深色界面的用户
-
-**关键特性**:
-```ini
-# 核心配色
-background-color=#1d1d1f18    # 极低透明度深色背景（6%）
-text-color=#f2f2f7ff          # macOS 标准浅色文本
-border-color=#ffffff10        # 极淡白色边框
-icon-path=Papirus-Dark        # 深色图标主题
-```
-
-**视觉效果**:
-- 背景透明度仅 6%，营造深邃的毛玻璃效果
-- 浅色文本确保在深色背景上的可读性
-- 极细的白色边框和分隔线
-- 蓝色系强调色用于系统通知
-
-### 浅色主题 (`config-light`)
-
-**适用场景**:
-- 浅色或明亮壁纸
-- 白天使用
-- 明亮环境
-- 喜欢浅色界面的用户
-
 **关键特性**:
 ```ini
 # 核心配色
@@ -69,7 +13,6 @@ icon-path=Papirus-Light       # 浅色图标主题
 - 柔和的边框和分隔线
 - 适合明亮环境的配色方案
 
-## 🚀 快速开始
 
 ### 1. 应用主题
 
@@ -91,7 +34,6 @@ services.mako = {
 
 ### 2. 安装必需依赖
 
-在 NixOS 配置中添加：
 
 ```nix
 # 字体
@@ -125,49 +67,6 @@ spawn-at-startup "mako"
 mako &
 ```
 
-## 🔧 主题切换
-
-### 使用主题切换脚本
-
-我们提供了一个便捷的主题切换脚本：
-
-```bash
-# 安装主题切换器
-mako-theme-switcher --help
-
-# 切换到深色主题
-mako-theme-switcher dark
-
-# 切换到浅色主题  
-mako-theme-switcher light
-
-# 在两个主题间切换
-mako-theme-switcher toggle
-
-# 根据时间自动选择（06:00-18:00 浅色，其他时间深色）
-mako-theme-switcher auto
-
-# 查看当前主题状态
-mako-theme-switcher status
-
-# 发送测试通知
-mako-theme-switcher test
-```
-
-### 手动切换
-
-直接复制主题文件：
-
-```bash
-# 切换到深色主题
-cp ~/.config/mako/config ~/.config/mako/config.backup
-cp ./config ~/.config/mako/config
-makoctl reload
-
-# 切换到浅色主题
-cp ./config-light ~/.config/mako/config
-makoctl reload
-```
 
 ## ⚙️ 配置详解
 
@@ -637,22 +536,3 @@ fi
 - [LXGW WenKai 字体](https://github.com/lxgw/LxgwWenKai)
 - [Papirus 图标主题](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
 - [FreeDesktop 通知规范](https://specifications.freedesktop.org/notification-spec/)
-
-## 🤝 贡献
-
-如果你有改进建议或发现问题，欢迎：
-
-1. 提交 Issue 报告问题
-2. 提交 Pull Request 贡献代码
-3. 分享你的自定义配色方案
-4. 改进文档和使用指南
-
-## 📄 许可证
-
-本主题配置遵循 MIT 许可证，可自由使用、修改和分发。
-
----
-
-**享受你的 macOS Tahoe 风格通知体验！** 🎉
-
-*完美的通知系统让桌面使用更加愉悦和高效*
