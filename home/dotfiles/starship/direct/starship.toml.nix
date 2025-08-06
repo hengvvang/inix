@@ -62,66 +62,6 @@
         success_symbol = "[➜](bold green)"
         error_symbol = "[➜](bold red)"
 
-        # Python
-        [python]
-        symbol = " "
-        format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
-        style = "bold yellow"
-
-        # Node.js
-        [nodejs]
-        symbol = " "
-        format = "via [$symbol($version )]($style)"
-        style = "bold green"
-
-        # Rust
-        [rust]
-        symbol = " "
-        format = "via [$symbol($version )]($style)"
-        style = "bold red"
-
-        # Go
-        [golang]
-        symbol = " "
-        format = "via [$symbol($version )]($style)"
-        style = "bold cyan"
-
-        # Java
-        [java]
-        symbol = " "
-        format = "via [$symbol($version )]($style)"
-        style = "red dimmed"
-
-        # Kotlin
-        [kotlin]
-        symbol = "🅺 "
-        format = "via [$symbol($version )]($style)"
-        style = "bold blue"
-
-        # Haskell
-        [haskell]
-        symbol = " "
-        format = "via [$symbol($version )]($style)"
-        style = "bold purple"
-
-        # Swift
-        [swift]
-        symbol = "ﯣ "
-        format = "via [$symbol($version )]($style)"
-        style = "bold 202"
-
-        # Julia
-        [julia]
-        symbol = " "
-        format = "via [$symbol($version )]($style)"
-        style = "bold purple"
-
-        # Nix Shell
-        [nix_shell]
-        symbol = " "
-        format = 'via [$symbol$state( \($name\))]($style) '
-        style = "bold blue"
-
         # 内存使用
         [memory_usage]
         disabled = false
@@ -155,29 +95,6 @@
         format = '🕙[$time]($style) '
         time_format = "%R"
         style = "bright-white"
-
-        # Docker
-        [docker_context]
-        symbol = " "
-        format = "via [$symbol$context]($style) "
-        style = "blue bold"
-
-        # Kubernetes
-        [kubernetes]
-        format = 'on [⛵ $context \($namespace\)](dimmed green) '
-        disabled = false
-
-        # AWS
-        [aws]
-        symbol = "  "
-        format = 'on [$symbol($profile )(\($region\) )]($style)'
-        style = "bold blue"
-
-        # 包版本
-        [package]
-        symbol = " "
-        format = "is [$symbol$version]($style) "
-        style = "208"
       '';
       target = ".config/starship.toml";
       force = true;

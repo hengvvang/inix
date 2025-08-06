@@ -1,19 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./config.py.nix
-    ./quickmarks.nix
-  ];
-
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.qutebrowser.enable && config.myHome.dotfiles.qutebrowser.method == "direct") {
 
-    home.packages = with pkgs; [
-      qutebrowser
-    ];
-
-    home.file.".config/qutebrowser/quickmarks".text = ''
-    '';
-
+    home.file.".config/qutebrowser/config.py" = {
+      text = ''
+      '';
+      target = ".config/qutebrowser/config.py";
+      force = false;
+    };
   };
 }
