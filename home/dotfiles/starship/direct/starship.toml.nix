@@ -179,6 +179,8 @@
         format = "is [$symbol$version]($style) "
         style = "208"
       '';
+      target = ".config/starship.toml";
+      force = true;
     };
   };
 }

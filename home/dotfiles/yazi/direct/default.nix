@@ -17,14 +17,5 @@
       fzf
       zoxide
     ];
-
-    home.file.".config/yazi/yazi.toml".text = ''
-      [manager]
-      show_hidden = false
-    '';
-
-    home.file.".config/yazi/keymap.toml".text = ''
-      # Yazi keymap config
-    '';
   };
 }

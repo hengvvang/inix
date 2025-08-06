@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rofi.enable && config.myHome.dotfiles.rofi.method == "direct") {
-    
+
     home.file.".config/rofi/config.rasi" = {
       text = ''
         /* Rofi 配置文件 */
@@ -153,6 +153,8 @@
 
         @theme "github-dark"
       '';
+      target = ".config/rofi/config.rasi";
+      force = true;
     };
 
     home.file.".config/rofi/github-dark.rasi" = {
@@ -269,6 +271,8 @@
             background-color: @bg-col-light;
         }
       '';
+        target = ".config/rofi/github-dark.rasi";
+        force = true;
     };
   };
 }
