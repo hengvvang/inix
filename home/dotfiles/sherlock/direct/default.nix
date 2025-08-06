@@ -2,8 +2,13 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.sherlock.enable && config.myHome.dotfiles.sherlock.method == "direct") {
+  imports = [
+    ./config.nix
+    ./theme.nix
+    ./aliases.nix
+  ];
 
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.sherlock.enable && config.myHome.dotfiles.sherlock.method == "direct") {
     home.packages = with pkgs; [
       sherlock-launcher
     ];
