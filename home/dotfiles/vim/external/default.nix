@@ -5,7 +5,7 @@
     
     home.packages = with pkgs; [ vim ];
     
-    home.file.".vimrc".source = ../configs/vimrc;
+    home.file.".vimrc".source = ./configs/vimrc;
     
     # 创建必要的目录
     home.file.".vim/undo/.keep".text = "";

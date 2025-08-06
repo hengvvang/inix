@@ -5,6 +5,6 @@
 
     home.packages = with pkgs; [ lazygit ];
     
-    home.file.".config/lazygit/config.yml".text = builtins.readFile ../configs/config.yml;
+    home.file.".config/lazygit/config.yml".text = builtins.readFile ./configs/config.yml;
   };
 }

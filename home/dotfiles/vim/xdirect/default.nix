@@ -5,7 +5,7 @@
     
     home.packages = with pkgs; [ vim ];
     
-    home.file.".vimrc".text = builtins.readFile ../configs/vimrc;
+    home.file.".vimrc".text = builtins.readFile ./configs/vimrc;
     
     # 创建必要的目录
     home.file.".vim/undo/.keep".text = "";
