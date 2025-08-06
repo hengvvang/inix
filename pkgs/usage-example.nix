@@ -1,4 +1,4 @@
-# 示例：在用户配置中添加 raycast-linux
+# 示例：在用户配置中添加自定义包
 
 # 方法1：直接添加到用户的 laptop.nix 配置中
 # 在 /home/hengvvang/config.d/users/hengvvang/laptop.nix 中添加：
@@ -8,13 +8,21 @@
   config = lib.mkIf (config.host == "laptop") {
     home.packages = with pkgs; [
       # 其他包...
-      raycast-linux  # 添加我们的自定义包
+      raycast-linux       # Linux 版本的 Raycast
+      sherlock-launcher    # 更新版本的 Sherlock Launcher
     ];
-    
-    # 可选：创建快捷键绑定（如果使用支持的窗口管理器）
-    # 例如，对于使用 i3/sway 的情况：
+
+    # 可选：为 Sherlock Launcher 创建快捷键绑定
+    # 例如，对于使用 Hyprland 的情况：
+    # wayland.windowManager.hyprland.settings = {
+    #   bind = [
+    #     "SUPER, SPACE, exec, sherlock"
+    #   ];
+    # };
+
+    # 对于使用 i3/sway 的情况：
     # wayland.windowManager.sway.config.keybindings = {
-    #   "Mod1+space" = "exec raycast-linux";
+    #   "Mod4+space" = "exec sherlock";
     # };
   };
 }
@@ -33,7 +41,7 @@
 
 makeCommonHomeModules = arch: [
   {
-    home.packages = [ 
+    home.packages = [
       zen-browser.packages.${arch}.twilight
       # 添加自定义包，会在所有用户配置中可用
       pkgsFor.${arch}.raycast-linux

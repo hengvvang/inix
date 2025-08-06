@@ -57,27 +57,27 @@
         inherit inputs;
       };
       inherit (mylib) supportedSystems pkgsForSystem forEachSystem;
-      
+
       # 简化的变量配置 - 去除嵌套命名空间
       users = {
         user1 = "hengvvang";
         user2 = "zlritsu";
       };
-      
+
       hosts = {
         host1 = "laptop";
         host2 = "work";
         host3 = "daily";
       };
-      
+
       makeCommonHomeModules = arch: [
         {
-          home.packages = [ 
+          home.packages = [
             zen-browser.packages.${arch}.twilight
           ];
         }
       ];
-      
+
       makeHomeConfig = arch: userPath: host: home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsForSystem.${arch};
         modules = [
@@ -90,7 +90,7 @@
           inherit inputs outputs users hosts;
         };
       };
-      
+
     in {
       # 导出模块和工具
       inherit lib;
@@ -98,29 +98,30 @@
       inherit users hosts;
       system = import ./system;
       home = import ./home;
-      
+
       # 使用 forEachSystem 生成多架构输出
       packages = forEachSystem (pkgs: {
         # 导出我们的自定义包
         raycast-linux = pkgs.raycast-linux;
-        
+        sherlock-launcher = pkgs.sherlock-launcher;
+
         # 其他自定义包可以在这里添加
       });
-      
+
       devShells = forEachSystem (pkgs: {
         default = pkgs.mkShell {
           buildInputs = with pkgs; [ nixfmt alejandra ];
         };
       });
-      
+
       formatter = forEachSystem (pkgs: pkgs.alejandra);
-      
+
       nixosConfigurations = {
         ${hosts.host1} = lib.nixosSystem {
           modules = [
             ./hosts/host1
             {
-              environment.systemPackages = [ 
+              environment.systemPackages = [
                 zen-browser.packages.x86_64-linux.twilight
               ];
             }
@@ -129,12 +130,12 @@
             inherit inputs outputs users hosts;
           };
         };
-        
+
         ${hosts.host2} = lib.nixosSystem {
           modules = [
             ./hosts/host2
             {
-              environment.systemPackages = [ 
+              environment.systemPackages = [
                 zen-browser.packages.aarch64-linux.twilight
               ];
             }
@@ -144,13 +145,13 @@
           };
         };
       };
-      
+
       darwinConfigurations = {
         ${hosts.host3} = lib.darwinSystem {
           modules = [
             ./hosts/host3
             {
-              environment.systemPackages = [ 
+              environment.systemPackages = [
                 zen-browser.packages.aarch64-darwin.twilight
               ];
             }
@@ -160,16 +161,16 @@
           };
         };
       };
-      
+
       homeConfigurations = {
         # laptop主机上的用户配置 (x86_64-linux)
         "${users.user1}@${hosts.host1}" = makeHomeConfig "x86_64-linux" ./users/user1 hosts.host1;
         "${users.user2}@${hosts.host1}" = makeHomeConfig "x86_64-linux" ./users/user2 hosts.host1;
-        
+
         # daily主机上的用户配置 (aarch64-darwin)
         "${users.user1}@${hosts.host3}" = makeHomeConfig "aarch64-darwin" ./users/user1 hosts.host3;
         "${users.user2}@${hosts.host3}" = makeHomeConfig "aarch64-darwin" ./users/user2 hosts.host3;
-        
+
         # work主机上的用户配置 (aarch64-linux)
         "${users.user1}@${hosts.host2}" = makeHomeConfig "aarch64-linux" ./users/user1 hosts.host2;
         "${users.user2}@${hosts.host2}" = makeHomeConfig "aarch64-linux" ./users/user2 hosts.host2;

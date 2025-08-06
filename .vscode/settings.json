@@ -603,4 +603,5 @@
   // 类型: boolean - 差异编辑器并排显示
 
   "merge-conflict.autoNavigateNextConflict.enabled": true,
+  "workbench.editor.tabActionLocation": "right",
 }
