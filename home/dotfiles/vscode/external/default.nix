@@ -5,7 +5,6 @@
 
     home.packages = with pkgs; [
       vscode
-
       monaspace
       lxgw-wenkai
       nerd-fonts.sauce-code-pro

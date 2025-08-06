@@ -3,9 +3,9 @@
 {
   options.myHome.dotfiles.vscode = {
     enable = lib.mkEnableOption "Visual Studio Code 代码编辑器配置";
-    
+
     method = lib.mkOption {
-      type = lib.types.enum [ "homemanager" "direct" "external" ];
+      type = lib.types.enum [ "homemanager" "direct" "external" "xdirect" ];
       default = "homemanager";
       description = ''
         VSCode 配置方式:
@@ -17,8 +17,9 @@
   };
 
   imports = [
-    ./homemanager.nix
-    ./direct.nix
-    ./external.nix
+    ./homemanager
+    ./direct
+    ./external
+    ./xdirect
   ];
 }

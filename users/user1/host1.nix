@@ -38,7 +38,7 @@
         };
         vscode = {
           enable = true;
-          method = "external";
+          method = "xdirect";
         };
         rofi = {
           enable = false;

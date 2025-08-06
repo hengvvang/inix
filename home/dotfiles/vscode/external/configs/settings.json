@@ -547,40 +547,8 @@
   },
 
   // ===========================
-  // 自定义颜色主题 (Custom Color Theme)
-  // ===========================
-
-  "workbench.colorCustomizations": {
-    // 编辑器颜色自定义
-    "editor.background": "#1e1e1e",
-    "editor.foreground": "#d4d4d4",
-    "editor.lineHighlightBackground": "#2d2d30",
-    "editor.selectionBackground": "#264f78",
-    "editor.cursorForeground": "#aeafad",
-
-    // 侧边栏颜色
-    "sideBar.background": "#252526",
-    "sideBar.foreground": "#cccccc",
-
-    // 活动栏颜色
-    "activityBar.background": "#333333",
-    "activityBar.foreground": "#ffffff",
-
-    // 状态栏颜色
-    "statusBar.background": "#007acc",
-    "statusBar.foreground": "#ffffff",
-
-    // 标签页颜色
-    "tab.activeBackground": "#1e1e1e",
-    "tab.inactiveBackground": "#2d2d2d",
-    "tab.activeForeground": "#ffffff",
-    "tab.inactiveForeground": "#969696"
-  },
-
-  // ===========================
   // 扩展特定设置 (Extension-Specific Settings)
   // ===========================
-
   // Prettier 设置
   "prettier.singleQuote": true,
   "prettier.semi": true,
