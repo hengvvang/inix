@@ -33,11 +33,11 @@
         qutebrowser.enable = false;
         obs-studio.enable = false;
         zed = {
-          enable = true;
+          enable = false;
           method = "external";
         };
         vscode = {
-          enable = true;
+          enable = false;
           method = "external";
         };
         rofi = {

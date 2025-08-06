@@ -5,8 +5,8 @@
         home.packages = [
 
             # pkgs.vim
-            # pkgs.zed-editor
-            # pkgs.vscode
+            pkgs.zed-editor
+            pkgs.vscode
 
             pkgs.git
             # pkgs.rio
