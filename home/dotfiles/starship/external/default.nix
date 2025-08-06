@@ -2,12 +2,15 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.enable && config.myHome.dotfiles.starship.method == "external") {
-
-    home.file.".config/starship.toml".source = ./configs/starship.toml;
-    
     home.packages = with pkgs; [ starship ];
+
+    home.file.".config/starship.toml" = {
+      source = ./configs/starship.toml;
+      # 设置为只读，确保配置文件不被意外修改
+      # readonly = true;  # 可选，如果希望可以手动修改配置则注释此行
+    };
     
-    # 为各个 Shell 启用 Starship
+    # 为各个 Shell 启用 Starship (可选)
     programs.bash.enable = true;
     programs.bash.initExtra = ''
       eval "$(starship init bash)"
@@ -19,10 +22,8 @@
     '';
     
     programs.fish.enable = true;
-    programs.fish.interactiveShellInit = ''
+    programs.fish.shellInit = ''
       starship init fish | source
     '';
-    
-    # 注意: Nushell 的 Starship 初始化需要在其配置文件中设置
   };
 }
