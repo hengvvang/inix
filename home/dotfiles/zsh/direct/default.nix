@@ -4,8 +4,14 @@ let
   zshConfig = import ./zsh-config.nix { inherit config lib pkgs; };
 in
 {
+  imports = [
+    ./zsh-config.nix
+  ];
+  
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.method == "direct") {
 
+    home.packages = with pkgs; [ zsh ];
+    
     programs.zsh = {
       enable = true;
       package = pkgs.zsh;
