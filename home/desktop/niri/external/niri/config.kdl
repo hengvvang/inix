@@ -1,10 +1,17 @@
 // 此配置使用 KDL 格式：https://kdl.dev
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
-spawn-at-startup "waybar"
-// spawn-at-startup "ironbar"
-spawn-at-startup "swww-daemon"
-spawn-at-startup "xwayland-satellite"
+// === 系统服务 ===
+spawn-at-startup "waybar"                    // 状态栏
+// spawn-at-startup "ironbar"               // 替代状态栏
+spawn-at-startup "swww-daemon"               // 壁纸服务
+spawn-at-startup "xwayland-satellite"       // Xwayland 支持
+spawn-at-startup "dunst"                     // 通知服务
+
+
+// === 带参数的启动命令 ===
+// spawn-at-startup "sh" "-c" "sleep 5 && firefox"  // 延迟启动
+// spawn-at-startup "gammastep" "-O" "4500"          // 带参数启动
 
 prefer-no-csd
 

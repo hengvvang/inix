@@ -2,33 +2,33 @@
     # 显示设置
     monitor = 0
     follow = mouse
-    
+
     # 几何设置
     width = (300, 400)
     height = 300
     origin = top-right
     offset = 15x40
-    
+
     # 透明度和视觉效果
     transparency = 20
     corner_radius = 12
-    
+
     # 边框设置
     frame_width = 1
     frame_color = "#ffffff40"
-    
+
     # 分隔符
     separator_height = 1
     separator_color = "#ffffff30"
-    
+
     # 排序和堆叠
     sort = yes
     idle_threshold = 120
-    
+
     # 字体设置 - 使用系统字体
-    font = "SF Pro Display 11"
+    font = "LXGW WenKai 12"
     line_height = 0
-    
+
     # 文本格式
     markup = full
     format = "<b>%s</b>\n%b"
@@ -41,20 +41,20 @@
     stack_duplicates = true
     hide_duplicate_count = false
     show_indicators = yes
-    
+
     # 图标设置
     icon_position = left
     min_icon_size = 32
     max_icon_size = 48
     icon_path = /usr/share/icons/Papirus/16x16/status/:/usr/share/icons/Papirus/16x16/devices/:/usr/share/icons/Papirus/16x16/apps/
-    
+
     # 历史
     sticky_history = yes
     history_length = 20
-    
+
     # 浏览器设置
     browser = /usr/bin/firefox -new-tab
-    
+
     # 鼠标交互
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
@@ -113,7 +113,7 @@
     foreground = "#f9e2af"
     highlight = "#f9e2af"
     timeout = 2
-    
+
 [brightness]
     summary = "*Brightness*"
     background = "#1e1e2e70"
