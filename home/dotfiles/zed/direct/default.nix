@@ -1,18 +1,25 @@
 { config, lib, pkgs, ... }:
 
+let
+  zedConfig = import ./zed-config.nix { inherit config lib pkgs; };
+in
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.enable && config.myHome.dotfiles.zed.method == "direct") {
-    # Zed Editor 配置 - 直接安装包方式
-    home.packages = with pkgs; [
-      zed-editor                  # 官方 Zed Editor
-    ];
     
-    # 提示用户手动配置
-    home.file."zed-setup-note.txt" = {
-      text = ''
-        Zed Editor 直接安装模式配置说明:
-        
-        1. 已安装 Zed Editor 到系统环境
+    home.packages = with pkgs; [ zed-editor ];
+    
+    # 配置文件
+    home.file.".config/zed/settings.json" = {
+      text = builtins.toJSON zedConfig.settings;
+      force = false;
+    };
+    
+    home.file.".config/zed/keymap.json" = {
+      text = builtins.toJSON zedConfig.keymap;
+      force = false;
+    };
+  };
+}
         2. 已安装常用语言服务器和格式化工具
         3. 请手动配置 Zed 设置和扩展
         
