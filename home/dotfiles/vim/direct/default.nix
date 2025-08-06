@@ -4,9 +4,17 @@ let
   vimConfig = import ./vim-config.nix { inherit config lib pkgs; };
 in
 {
+  imports = [
+    ./vim-config.nix
+  ];
+  
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.method == "direct") {
     
     home.packages = with pkgs; [ vim ];
+    
+    home.file.".vimrc" = {
+      text = vimConfig.vimConfig;
+    };
     
     home.file.".vimrc".text = vimConfig.extraConfig;
     

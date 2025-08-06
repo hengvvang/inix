@@ -4,6 +4,10 @@ let
   tmuxConfig = import ./tmux-config.nix { inherit config lib pkgs; };
 in
 {
+  imports = [
+    ./tmux-config.nix
+  ];
+  
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && 
                     config.myHome.dotfiles.tmux.method == "direct") {
 

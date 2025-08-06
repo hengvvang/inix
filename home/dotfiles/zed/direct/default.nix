@@ -4,18 +4,22 @@ let
   zedConfig = import ./zed-config.nix { inherit config lib pkgs; };
 in
 {
+  imports = [
+    ./zed-config.nix
+  ];
+  
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.enable && config.myHome.dotfiles.zed.method == "direct") {
     
     home.packages = with pkgs; [ zed-editor ];
     
     # 配置文件
     home.file.".config/zed/settings.json" = {
-      text = builtins.toJSON zedConfig.settings;
+      text = zedConfig.zedSettings;
       force = false;
     };
     
     home.file.".config/zed/keymap.json" = {
-      text = builtins.toJSON zedConfig.keymap;
+      text = zedConfig.zedKeymap;
       force = false;
     };
   };
