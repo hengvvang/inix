@@ -1,30 +1,16 @@
 {
-
-  // ===========================
-  // 编辑器核心设置 (Editor Core Settings)
-  // ===========================
-
   "editor.fontFamily": "'LXGW WenKai Mono','JetBrains Mono', 'monospace', 'Consolas'",
-  // 类型: string - 字体系列，建议使用支持连字的等宽字体
-
   "editor.fontSize": 18,
-  // 类型: number (范围: 6-100) - 字体大小，14px 是舒适的阅读大小
-
   "editor.fontWeight": "400",
-  // 类型: string|number - 字体粗细，可选值: "normal", "bold", "100"-"900"
-
-  "editor.lineHeight": 1.6,
-  // 类型: number - 行高，1.6 是符合人体工程学的最佳比例
-
+  "editor.lineHeight": 1.8,
   "editor.letterSpacing": 0.5,
   // 类型: number - 字符间距，轻微增加可提高可读性
 
   "editor.fontLigatures": true,
   // 类型: boolean - 启用字体连字，美化代码显示
 
-  // 缩进和格式设置 (Indentation and Formatting)
+  // 缩进和格式设置 (Indentation and Formatting) ,类型: number - Tab 键的空格数，2 空格更紧凑
   "editor.tabSize": 4,
-  // 类型: number - Tab 键的空格数，2 空格更紧凑
 
   "editor.insertSpaces": true,
   // 类型: boolean - 使用空格而不是 Tab 字符
@@ -196,24 +182,14 @@
   "editor.hover.sticky": true,
   // 类型: boolean - 悬停提示粘性显示
 
-  // ===========================
-  // 工作台外观设置 (Workbench Appearance)
-  // ===========================
-
-  // 主题和图标 (Theme and Icons)
-  "workbench.colorTheme": "rose-pine",
-  // 类型: string - 颜色主题
-
+  // "workbench.colorTheme": "Rosé Pine (no italics)",
+  "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "vscode-great-icons",
-  // 类型: string - 图标主题
-
   "workbench.productIconTheme": "fluent-icons",
-  // 类型: string - 产品图标主题
 
   // 界面布局 (Interface Layout)
   "workbench.activityBar.location": "default",
   // 类型: string - 活动栏位置，可选值: "default", "top", "bottom", "hidden"
-
   "workbench.sideBar.location": "left",
   // 类型: string - 侧边栏位置，可选值: "left", "right"
 
@@ -333,10 +309,10 @@
   // ===========================
 
   // 终端外观 (Terminal Appearance)
-  "terminal.integrated.fontSize": 13,
+  "terminal.integrated.fontSize": 14,
   // 类型: number - 终端字体大小
 
-  "terminal.integrated.fontFamily": "'JetBrains Mono', 'Fira Code', monospace",
+  "terminal.integrated.fontFamily": "'LXGW WenKai Mono','JetBrains Mono', 'monospace', 'Consolas'",
   // 类型: string - 终端字体系列
 
   "terminal.integrated.lineHeight": 1.4,
@@ -372,10 +348,10 @@
   // 调试设置 (Debug Settings)
   // ===========================
 
-  "debug.console.fontSize": 13,
+  "debug.console.fontSize": 14,
   // 类型: number - 调试控制台字体大小
 
-  "debug.console.fontFamily": "'JetBrains Mono', monospace",
+  "debug.console.fontFamily": "'LXGW WenKai Mono','JetBrains Mono', 'monospace', 'Consolas'",
   // 类型: string - 调试控制台字体
 
   "debug.inlineValues": "auto",
