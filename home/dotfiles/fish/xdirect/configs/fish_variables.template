@@ -1,0 +1,52 @@
+# ============================================================================
+# Fish Variables 初始化文件
+# ============================================================================
+# 此文件用于预设置 Fish Shell 的内部变量
+# 
+# 注意：
+# - 通常此文件由 Fish 自动生成和管理
+# - 这里提供一个模板，包含常见的变量设置
+# - 实际的 fish_variables 文件会在 Fish 运行时自动更新
+# - 此文件主要用于版本控制和初始配置
+# ============================================================================
+
+# Fish 自动建议设置
+SETUVAR fish_autosuggestion_enabled:1
+
+# Fish 颜色配置（会被 conf.d/colors.fish 覆盖）
+SETUVAR fish_color_autosuggestion:555
+SETUVAR fish_color_command:blue
+SETUVAR fish_color_comment:red
+SETUVAR fish_color_cwd:green
+SETUVAR fish_color_end:green
+SETUVAR fish_color_error:red\x1e\x2d\x2dbold
+SETUVAR fish_color_escape:cyan
+SETUVAR fish_color_operator:yellow
+SETUVAR fish_color_param:cyan
+SETUVAR fish_color_quote:yellow
+SETUVAR fish_color_redirection:yellow
+SETUVAR fish_color_valid_path:\x2d\x2dunderline
+
+# Fish 分页器颜色
+SETUVAR fish_pager_color_completion:cyan
+SETUVAR fish_pager_color_description:yellow
+SETUVAR fish_pager_color_prefix:blue
+SETUVAR fish_pager_color_progress:cyan
+
+# Fish 键绑定模式（默认为 emacs 模式）
+SETUVAR fish_key_bindings:fish_default_key_bindings
+
+# Fish 用户路径（通过 fish_add_path 添加的路径）
+# SETUVAR fish_user_paths:/home/user/.local/bin\x1e/home/user/.cargo/bin
+
+# 历史记录设置
+SETUVAR fish_history_max:50000
+
+# Fish 欢迎信息设置
+SETUVAR fish_greeting:
+
+# 注意：
+# 1. SETUVAR 表示设置通用变量（Universal Variable）
+# 2. \x1e 是字段分隔符，用于列表变量
+# 3. 实际使用时，Fish 会自动管理这些变量
+# 4. 不建议手动编辑生产环境的 fish_variables 文件
