@@ -2,7 +2,6 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.method == "external") {
-
     home.packages = with pkgs; [ bash ];    
 
     home.file.".bashrc".source = ./configs/bashrc;
