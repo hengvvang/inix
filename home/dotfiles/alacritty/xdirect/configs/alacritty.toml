@@ -1,0 +1,74 @@
+# Alacritty 外部配置文件 - 演示用简化配置
+# 仅作为 external 配置方式的演示，实际建议使用 homemanager 方式
+
+[env]
+TERM = "alacritty"
+
+[window]
+opacity = 0.95
+decorations = "none"
+
+[window.dimensions]
+columns = 120
+lines = 30
+
+[window.padding]
+x = 8
+y = 8
+
+[font]
+size = 13
+
+[font.normal]
+family = "JetBrainsMono Nerd Font"
+style = "Regular"
+
+[scrolling]
+history = 10000
+
+[cursor]
+unfocused_hollow = true
+
+[cursor.style]
+shape = "Block"
+blinking = "On"
+
+# 主题配置 - Tokyo Night Dark
+[colors.primary]
+background = "#1a1b26"
+foreground = "#c0caf5"
+
+[colors.normal]
+black = "#15161e"
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+blue = "#7aa2f7"
+magenta = "#bb9af7"
+cyan = "#7dcfff"
+white = "#a9b1d6"
+
+[colors.bright]
+black = "#414868"
+red = "#f7768e"
+green = "#9ece6a"
+yellow = "#e0af68"
+blue = "#7aa2f7"
+magenta = "#bb9af7"
+cyan = "#7dcfff"
+white = "#c0caf5"
+
+# 基本快捷键
+[[keyboard.bindings]]
+key = "C"
+mods = "Control|Shift"
+action = "Copy"
+
+[[keyboard.bindings]]
+key = "V"
+mods = "Control|Shift"
+action = "Paste"
+
+[[keyboard.bindings]]
+key = "F11"
+action = "ToggleFullscreen"

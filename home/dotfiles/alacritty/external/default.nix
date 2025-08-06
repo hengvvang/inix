@@ -7,7 +7,8 @@
     
     home.file.".config/alacritty/alacritty.toml" = {
       source = ./configs/alacritty.toml;
-      executable = false;
+      # 设置为只读，确保配置文件不被意外修改
+      # readonly = true;  # 可选，如果希望可以手动修改配置则注释此行
     };
   };
 }
