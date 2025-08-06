@@ -6,7 +6,7 @@
     (lib.mkIf config.mySystem.locale.inputMethod.fcitx5.enable {
       # 基础本地化设置
       i18n.defaultLocale = "zh_CN.UTF-8";
-      
+
       i18n.extraLocaleSettings = {
         LC_ADDRESS = "zh_CN.UTF-8";
         LC_IDENTIFICATION = "zh_CN.UTF-8";
@@ -39,16 +39,16 @@
           # 中文输入法
           fcitx5-chinese-addons    # 中文拼音、五笔等
           fcitx5-rime             # Rime 输入法引擎
-          
+
           # 界面支持 (Wayland 优化)
           fcitx5-gtk              # GTK 应用支持 (包含 Wayland 支持)
           libsForQt5.fcitx5-qt    # Qt5 应用支持
           qt6Packages.fcitx5-qt   # Qt6 应用支持 (现代 Wayland 应用)
-          
+
           # 主题和外观
           fcitx5-nord             # Nord 主题
           fcitx5-material-color   # Material 主题
-          
+
           # 其他语言支持
           fcitx5-mozc             # 日语输入法
           fcitx5-hangul           # 韩语输入法
@@ -59,16 +59,20 @@
 
       # Fcitx5 环境变量配置
       # 针对 Wayland 桌面环境优化：
-      # - GTK_IM_MODULE: 在 Wayland 中使用原生输入法协议，注释掉避免冲突
+      # - GTK_IM_MODULE: 虽然 Wayland 有原生支持，但某些应用（如 VS Code）仍需要此设置
       # - QT_IM_MODULE: Qt 应用仍需要此设置
       # - XMODIFIERS: X11 应用兼容性
       # - SDL_IM_MODULE: SDL 应用支持
       environment.variables = {
-        # GTK_IM_MODULE = "fcitx";  # Wayland 原生支持，不需要此设置
+        # GTK_IM_MODULE = "fcitx";    # VS Code 等 Electron 应用需要此设置
         QT_IM_MODULE = "fcitx";
         XMODIFIERS = "@im=fcitx";
         SDL_IM_MODULE = "fcitx";
         GLFW_IM_MODULE = "fcitx";
+
+        # Wayland 特定设置
+        WAYLAND_IM_MODULE = "fcitx";
+        ELECTRON_OZONE_PLATFORM_HINT = "wayland";
       };
     })
 
@@ -76,7 +80,7 @@
     (lib.mkIf config.mySystem.locale.inputMethod.ibus.enable {
       # 基础本地化设置
       i18n.defaultLocale = "zh_CN.UTF-8";
-      
+
       i18n.extraLocaleSettings = {
         LC_ADDRESS = "zh_CN.UTF-8";
         LC_IDENTIFICATION = "zh_CN.UTF-8";
@@ -110,7 +114,7 @@
           ibus-libpinyin          # 拼音输入法
           ibus-rime               # Rime 输入法引擎
           ibus-table-chinese      # 中文表形输入法
-          
+
           # 其他语言支持
           ibus-mozc               # 日语输入法
           ibus-hangul             # 韩语输入法

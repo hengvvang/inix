@@ -1,0 +1,1416 @@
+{
+    // 用于 UI 的 Zed 主题名称。
+    //
+    // `mode` 选项为：
+    // - "system": 使用与系统外观对应的主题
+    // - "light": 使用 "light" 字段指定的主题
+    // - "dark": 使用 "dark" 字段指定的主题
+    "theme": {
+        "mode": "system",
+        "light": "Rosé Pine Dawn",
+        "dark": "Rosé Pine"
+    },
+    "icon_theme": "VSCode Great Icons Theme",
+    // 要使用的基础键位绑定设置的名称。
+    // 此设置可以取六个值，每个都以另一个文本编辑器命名：
+    //
+    // 1. "VSCode"
+    // 2. "Atom"
+    // 3. "JetBrains"
+    // 4. "None"
+    // 5. "SublimeText"
+    // 6. "TextMate"
+    "base_keymap": "VSCode",
+    // 可以全局启用或禁用的功能
+    "features": {
+        // 要使用的编辑预测提供程序。
+        "edit_prediction_provider": "zed"
+    },
+    // 用于在编辑器中渲染文本的字体名称
+    "buffer_font_family": "Zed Plex Mono",
+    // 设置缓冲区文本的字体回退，这将与平台的默认回退合并。
+    "buffer_font_fallbacks": null,
+    // 为编辑器中的文本启用的 OpenType 功能。
+    "buffer_font_features": {
+        // 禁用连字：
+        // "calt": false
+    },
+    // 编辑器中文本的默认字体大小
+    "buffer_font_size": 15,
+    // 编辑器字体的粗细，使用标准 CSS 单位，从 100 到 900。
+    "buffer_font_weight": 400,
+    // 设置缓冲区的行高。
+    // 可以取 3 个值：
+    //  1. 使用适合阅读的行高 (1.618)
+    //         "buffer_line_height": "comfortable"
+    //  2. 使用标准行高 (1.3)
+    //         "buffer_line_height": "standard",
+    //  3. 使用自定义行高
+    //         "buffer_line_height": 2
+    "buffer_line_height": {
+        "custom": 1.382
+    },
+    // UI 字体系列
+    "ui_font_family": "Zed Sans",
+    // 设置 UI 文本的字体回退，这将与平台的默认回退合并。
+    "ui_font_fallbacks": null,
+    // 为 UI 中的文本启用的 OpenType 功能。
+    "ui_font_features": {
+        // 启用上下文替代（连字）：
+        "calt": true
+    },
+    // UI 字体的粗细
+    "ui_font_weight": 400,
+    // UI 字体大小
+    "ui_font_size": 16,
+    // AI 助手字体大小
+    "agent_font_size": 14,
+    // 是否淡化不必要的代码
+    "unnecessary_code_fade": 0.6,
+    // 活动窗格修饰符
+    "active_pane_modifiers": {
+        // 边框大小（像素）
+        "border_size": 1,
+        // 非活动窗格的不透明度
+        "inactive_opacity": 0.6
+    },
+    // 底部面板布局
+    "bottom_dock_layout": "compact",
+    // 水平分割窗格的方向
+    "pane_split_direction_horizontal": "up",
+    // 垂直分割窗格的方向
+    "pane_split_direction_vertical": "left",
+    // 居中布局设置
+    "centered_layout": {
+        // 左侧填充
+        "left_padding": 0.15,
+        // 右侧填充
+        "right_padding": 0.15
+    },
+    // 图像查看器设置
+    "image_viewer": {
+        // 缩放单位（"fit" 或 "percent"）
+        "unit": "fit"
+    },
+    // 多光标修饰键。如果为 "cmd_or_ctrl"，则在 macOS 上使用 cmd，在 Linux/Windows 上使用 ctrl。
+    // 如果为 "alt"，则在所有平台上使用 alt 键。
+    "multi_cursor_modifier": "cmd_or_ctrl",
+    // 是否启用 vim 模式（默认：false）
+    "vim_mode": false,
+    // 是否启用 helix 模式（默认：false）
+    "helix_mode": false,
+    // 是否启用悬停弹出窗口
+    "hover_popover_enabled": true,
+    // 悬停弹出窗口延迟（毫秒）
+    "hover_popover_delay": 1500,
+    // 是否在退出时确认
+    "confirm_quit": true,
+    // 启动时恢复选项：
+    // - "last_workspace": 始终恢复上次工作空间（默认）
+    // - "last_session": 恢复上次会话，除非使用 CLI 参数提供路径
+    // - "none": 始终从空白状态开始，除非使用 CLI 参数提供路径
+    "restore_on_startup": "last_session",
+    // 重新打开文件时恢复选项：
+    // - "last_file": 重新打开上次查看的文件（默认）
+    // - "newest_file": 重新打开最新的文件
+    // - "oldest_file": 重新打开最旧的文件
+    // - "none": 不重新打开任何文件
+    "restore_on_file_reopen": "last_file",
+    // 文件被删除时是否关闭（默认：false）
+    "close_on_file_delete": false,
+    // 拖放目标大小（百分比）。值应在 0.0 到 1.0 之间。
+    // 较高的值会产生更大的拖放目标。
+    "drop_target_size": 0.2,
+    // 关闭没有标签页的窗口时的行为：
+    // - "close": 关闭窗口
+    // - "keep": 保持窗口打开
+    // - "platform_default": 使用平台默认行为
+    "when_closing_with_no_tabs": "platform_default",
+    // 关闭最后一个窗口时的行为：
+    // - "close": 关闭应用程序
+    // - "keep": 保持应用程序运行
+    // - "platform_default": 使用平台默认行为
+    "on_last_window_closed": "platform_default",
+    // 是否使用系统路径提示（默认：true）
+    "use_system_path_prompts": true,
+    // 是否使用系统提示对话框而不是内置提示
+    // 用于确认、警告等。（默认：true）
+    "use_system_prompts": true,
+    // 是否闪烁光标（默认：true）
+    "cursor_blink": true,
+    // 光标形状选项：
+    // - "bar": 竖线光标
+    // - "block": 块状光标
+    // - "underline": 下划线光标
+    // - "hollow": 空心光标
+    "cursor_shape": "bar",
+    // 是否在打字时隐藏鼠标光标
+    // - true: 打字时隐藏
+    // - false: 不隐藏
+    // - "on_keystroke": 按键时隐藏
+    "hide_mouse": false,
+    // 代码片段排序顺序：
+    // - "alphabetical": 按字母顺序排序
+    // - "recent": 按最近使用排序
+    "snippet_sort_order": "alphabetical",
+    // 当前行高亮设置：
+    // - "all": 高亮所有当前行
+    // - "gutter": 仅高亮行号区域
+    // - "line": 仅高亮行内容
+    // - "none": 不高亮
+    "current_line_highlight": "all",
+    // 选择高亮（默认：true）
+    "selection_highlight": true,
+    // LSP 高亮防抖时间（毫秒）
+    "lsp_highlight_debounce": 250,
+    // 是否在输入时显示补全（默认：true）
+    "show_completions_on_input": true,
+    // 是否显示补全文档（默认：true）
+    "show_completion_documentation": true,
+    // 是否自动显示签名帮助（默认：true）
+    "auto_signature_help": true,
+    // 编辑后是否显示签名帮助（默认：false）
+    "show_signature_help_after_edits": false,
+    // 是否显示内联代码操作（默认：true）
+    "inline_code_actions": true,
+    // 拖拽选择设置
+    "drag_and_drop_selection": {
+        // 是否启用拖拽选择
+        "enabled": true,
+        // 拖拽延迟（毫秒）
+        "delay": 150
+    },
+    // 转到定义的回退行为：
+    // - "lsp": 使用 LSP（语言服务器协议）
+    // - "grep": 使用文本搜索
+    "go_to_definition_fallback": "lsp",
+    // 诊断最大严重级别：
+    // - "error": 仅显示错误
+    // - "warning": 显示警告和错误
+    // - "information": 显示信息、警告和错误
+    // - "hint": 显示所有级别
+    "diagnostics_max_severity": "hint",
+    // 是否显示换行引导线（默认：true）
+    "show_wrap_guides": true,
+    // 换行引导线列位置
+    "wrap_guides": [80, 120],
+    // 是否编辑私有值（默认：false）
+    "redact_private_values": false,
+    // 展开摘录行数
+    "expand_excerpt_lines": 3,
+    // 私有文件模式
+    "private_files": [
+        "**/.env*",
+        "**/secrets.yml",
+        "**/credentials.yml",
+        "**/*key*",
+        "**/*secret*"
+    ],
+    // 是否使用输入时格式化（默认：false）
+    "use_on_type_format": false,
+    // 是否使用自动关闭括号等（默认：true）
+    "use_autoclose": true,
+    // 是否使用自动环绕（默认：true）
+    "use_auto_surround": true,
+    // 粘贴时是否自动缩进（默认：true）
+    "auto_indent_on_paste": true,
+    // 是否始终将括号视为自动关闭的（默认：false）
+    // 当为 true 时，删除左括号也会删除右括号，
+    // 无论它是如何插入的。
+    "always_treat_brackets_as_autoclosed": false,
+    // 是否允许重新换行（默认：false）
+    // 当为 true 时，Zed 将在 preferred_line_length 处换行长行
+    "allow_rewrap": false,
+    // 是否显示编辑预测（默认：true）
+    "show_edit_predictions": true,
+    // 在以下语言中禁用编辑预测
+    "edit_predictions_disabled_in": ["markdown"],
+    // 空白字符显示设置：
+    // - "all": 显示所有空白字符
+    // - "none": 不显示空白字符
+    // - "boundary": 仅在词边界显示
+    // - {
+    //     "selection": true,   // 在选择中显示
+    //     "indent": true       // 显示缩进空白
+    //   }
+    "show_whitespaces": "none",
+    // 通话设置
+    "calls": {
+        // 加入时是否静音（默认：false）
+        "mute_on_join": false,
+        // 加入时是否共享（默认：false）
+        "share_on_join": false
+    },
+    // 工具栏设置
+    "toolbar": {
+        // 是否显示面包屑导航（默认：true）
+        "breadcrumbs": true,
+        // 是否显示快速操作（默认：true）
+        "quick_actions": true,
+        // 是否显示选择菜单（默认：true）
+        "selections_menu": true,
+        // 是否显示 AI 助手审查（默认：true）
+        "agent_review": true,
+        // 是否显示代码操作（默认：true）
+        "code_actions": true
+    },
+    // 标题栏设置
+    "title_bar": {
+        // 是否显示分支图标（默认：true）
+        "show_branch_icon": true,
+        // 是否显示分支名称（默认：true）
+        "show_branch_name": true,
+        // 是否显示项目项目（默认：true）
+        "show_project_items": true,
+        // 是否显示入门横幅（默认：true）
+        "show_onboarding_banner": true,
+        // 是否显示用户头像（默认：true）
+        "show_user_picture": true,
+        // 是否显示登录按钮（默认：true）
+        "show_sign_in": true,
+        // 是否显示菜单（默认：true）
+        "show_menus": true
+    },
+    // 滚动条设置
+    "scrollbar": {
+        // 是否显示滚动条：
+        // - "auto": 根据需要自动显示
+        // - "system": 使用系统设置
+        // - "always": 始终显示
+        // - "never": 从不显示
+        "show": "auto",
+        // 是否在滚动条中显示光标位置（默认：true）
+        "cursors": true,
+        // 是否在滚动条中显示 git 差异（默认：true）
+        "git_diff": true,
+        // 是否在滚动条中显示搜索结果（默认：true）
+        "search_results": true,
+        // 是否在滚动条中显示选中的文本（默认：true）
+        "selected_text": true,
+        // 是否在滚动条中显示选中的符号（默认：true）
+        "selected_symbol": true,
+        // 是否在滚动条中显示诊断（默认：true）
+        "diagnostics": true,
+        // 滚动条轴设置
+        "axes": {
+            // 是否显示水平滚动条（默认：true）
+            "horizontal": true,
+            // 是否显示垂直滚动条（默认：true）
+            "vertical": true
+        }
+    },
+    // 小地图设置
+    "minimap": {
+        // 是否显示小地图：
+        // - true: 显示
+        // - false: 不显示
+        "show": false,
+        // 在何处显示小地图：
+        // - "right": 右侧
+        // - "left": 左侧
+        "display_in": "right",
+        // 小地图缩略图设置：
+        // - "hidden": 隐藏
+        // - "always": 始终显示
+        // - "on_hover": 悬停时显示
+        "thumb": "always",
+        // 是否显示缩略图边框（默认：true）
+        "thumb_border": true,
+        // 是否高亮当前行（默认：true）
+        "current_line_highlight": true,
+        // 最大宽度列数
+        "max_width_columns": 120
+    },
+    // 是否启用中键粘贴（默认：true）
+    "middle_click_paste": true,
+    // 在多缓冲区中双击的行为：
+    // - "select": 选择单词
+    // - "open": 打开缓冲区
+    "double_click_in_multibuffer": "select",
+    // 编辑器边距设置
+    "gutter": {
+        // 是否显示行号（默认：true）
+        "line_numbers": true,
+        // 是否显示可运行项（默认：true）
+        "runnables": true,
+        // 是否显示断点（默认：true）
+        "breakpoints": true,
+        // 是否显示代码折叠（默认：true）
+        "folds": true,
+        // 最小行号位数
+        "min_line_number_digits": 3
+    },
+    // 缩进引导线设置
+    "indent_guides": {
+        // 是否启用缩进引导线（默认：true）
+        "enabled": true,
+        // 引导线宽度（像素）
+        "line_width": 1,
+        // 活动行的引导线宽度（像素）
+        "active_line_width": 1,
+        // 引导线着色：
+        // - "disabled": 禁用着色
+        // - "indent_aware": 根据缩进级别着色
+        "coloring": "indent_aware",
+        // 背景着色：
+        // - "disabled": 禁用背景着色
+        // - "indent_aware": 根据缩进级别着色背景
+        "background_coloring": "disabled"
+    },
+    // 是否滚动超过最后一行（默认：true）
+    "scroll_beyond_last_line": true,
+    // 垂直滚动边距
+    "vertical_scroll_margin": 3,
+    // 点击时是否自动滚动（默认：true）
+    "autoscroll_on_clicks": true,
+    // 水平滚动边距
+    "horizontal_scroll_margin": 3,
+    // 滚动敏感度
+    "scroll_sensitivity": 3.0,
+    // 快速滚动敏感度
+    "fast_scroll_sensitivity": 5.0,
+    // 是否显示相对行号（默认：false）
+    "relative_line_numbers": false,
+    // 搜索是否换行（默认：true）
+    "search_wrap": true,
+    // 搜索设置
+    "search": {
+        // 是否显示搜索按钮（默认：true）
+        "button": true,
+        // 是否启用全词匹配（默认：false）
+        "whole_word": false,
+        // 是否启用区分大小写（默认：false）
+        "case_sensitive": false,
+        // 是否包含忽略的文件（默认：false）
+        "include_ignored": false,
+        // 是否启用正则表达式（默认：false）
+        "regex": false
+    },
+    // 是否从光标位置开始搜索查询（默认：true）
+    "seed_search_query_from_cursor": true,
+    // 是否使用智能大小写搜索（默认：true）
+    // 当查询全为小写时忽略大小写，否则区分大小写
+    "use_smartcase_search": true,
+    // 内联提示设置
+    "inlay_hints": {
+        // 是否启用内联提示（默认：true）
+        "enabled": true,
+        // 是否显示类型提示（默认：true）
+        "show_type_hints": true,
+        // 是否显示参数提示（默认：true）
+        "show_parameter_hints": true,
+        // 是否显示其他提示（默认：true）
+        "show_other_hints": true,
+        // 是否显示提示背景（默认：true）
+        "show_background": true,
+        // 编辑防抖时间（毫秒）
+        "edit_debounce_ms": 700,
+        // 滚动防抖时间（毫秒）
+        "scroll_debounce_ms": 50,
+        // 按修饰键时切换显示
+        "toggle_on_modifiers_press": {
+            "control": false,
+            "shift": false,
+            "alt": false,
+            "platform": false,
+            "function": false
+        }
+    },
+    // 是否调整面板中所有窗格的大小（默认：false）
+    "resize_all_panels_in_dock": false,
+    // 项目面板设置
+    "project_panel": {
+        // 是否显示项目面板按钮（默认：true）
+        "button": true,
+        // 是否隐藏 gitignore 文件（默认：true）
+        "hide_gitignore": true,
+        // 默认宽度（像素）
+        "default_width": 240,
+        // 面板停靠位置：
+        // - "left": 左侧
+        // - "right": 右侧
+        "dock": "left",
+        // 条目间距（像素）
+        "entry_spacing": 0,
+        // 是否显示文件图标（默认：true）
+        "file_icons": true,
+        // 是否显示文件夹图标（默认：true）
+        "folder_icons": true,
+        // 是否显示 git 状态（默认：true）
+        "git_status": true,
+        // 缩进大小（像素）
+        "indent_size": 20,
+        // 是否自动展开条目（默认：true）
+        "auto_reveal_entries": true,
+        // 是否自动折叠目录（默认：true）
+        "auto_fold_dirs": true,
+        // 滚动条设置
+        "scrollbar": {
+            // 是否显示滚动条：
+            // - "auto": 根据需要自动显示
+            // - "system": 使用系统设置
+            // - "always": 始终显示
+            // - "never": 从不显示
+            "show": "auto"
+        },
+        // 是否显示诊断（默认：true）
+        "show_diagnostics": true,
+        // 是否启用粘性滚动（默认：true）
+        "sticky_scroll": true,
+        // 缩进引导线设置
+        "indent_guides": {
+            // 是否显示缩进引导线（默认：true）
+            "show": true
+        },
+        // 是否隐藏根目录（默认：false）
+        "hide_root": false
+    },
+    // 大纲面板设置
+    "outline_panel": {
+        // 是否显示大纲面板按钮（默认：true）
+        "button": true,
+        // 默认宽度（像素）
+        "default_width": 300,
+        // 面板停靠位置：
+        // - "left": 左侧
+        // - "right": 右侧
+        "dock": "right",
+        // 是否显示文件图标（默认：true）
+        "file_icons": true,
+        // 是否显示文件夹图标（默认：true）
+        "folder_icons": true,
+        // 是否显示 git 状态（默认：true）
+        "git_status": true,
+        // 缩进大小（像素）
+        "indent_size": 20,
+        // 是否自动展开条目（默认：true）
+        "auto_reveal_entries": true,
+        // 是否自动折叠目录（默认：true）
+        "auto_fold_dirs": true,
+        // 缩进引导线设置
+        "indent_guides": {
+            // 是否显示缩进引导线（默认：true）
+            "show": true
+        },
+        // 滚动条设置
+        "scrollbar": {
+            // 是否显示滚动条：
+            // - "auto": 根据需要自动显示
+            // - "system": 使用系统设置
+            // - "always": 始终显示
+            // - "never": 从不显示
+            "show": "auto"
+        }
+    },
+    // 协作面板设置
+    "collaboration_panel": {
+        // 是否显示协作面板按钮（默认：true）
+        "button": true,
+        // 面板停靠位置：
+        // - "left": 左侧
+        // - "right": 右侧
+        "dock": "left",
+        // 默认宽度（像素）
+        "default_width": 240
+    },
+    // 聊天面板设置
+    "chat_panel": {
+        // 是否显示聊天面板按钮（默认：true）
+        "button": true,
+        // 面板停靠位置：
+        // - "left": 左侧
+        // - "right": 右侧
+        "dock": "right",
+        // 默认宽度（像素）
+        "default_width": 240
+    },
+    // Git 面板设置
+    "git_panel": {
+        // 是否显示 Git 面板按钮（默认：true）
+        "button": true,
+        // 面板停靠位置：
+        // - "left": 左侧
+        // - "right": 右侧
+        "dock": "right",
+        // 默认宽度（像素）
+        "default_width": 360,
+        // Git 状态样式：
+        // - "compact": 紧凑样式
+        // - "expanded": 展开样式
+        "status_style": "compact",
+        // 回退分支名称
+        "fallback_branch_name": "main",
+        // 是否按路径排序（默认：false）
+        "sort_by_path": false,
+        // 是否折叠未跟踪文件差异（默认：false）
+        "collapse_untracked_diff": false,
+        // 滚动条设置
+        "scrollbar": {
+            "show": "auto"
+        }
+    },
+    // 消息编辑器设置
+    "message_editor": {
+        // 是否自动替换表情符号短代码（默认：true）
+        "auto_replace_emoji_shortcode": true
+    },
+    // 通知面板设置
+    "notification_panel": {
+        // 是否显示通知面板按钮（默认：true）
+        "button": true,
+        // 面板停靠位置：
+        // - "left": 左侧
+        // - "right": 右侧
+        "dock": "right",
+        // 默认宽度（像素）
+        "default_width": 380
+    },
+    // AI 助手设置
+    "agent": {
+        // 是否启用 AI 助手（默认：true）
+        "enabled": true,
+        // 首选补全模式：
+        // - "automatic": 自动
+        // - "manual": 手动
+        "preferred_completion_mode": "automatic",
+        // 是否显示 AI 助手按钮（默认：true）
+        "button": true,
+        // 面板停靠位置：
+        // - "left": 左侧
+        // - "right": 右侧
+        // - "bottom": 底部
+        "dock": "right",
+        // 默认宽度（像素）
+        "default_width": 560,
+        // 默认高度（像素）
+        "default_height": 320,
+        // 默认模型
+        "default_model": {
+            // 提供商
+            "provider": "anthropic",
+            // 模型名称
+            "model": "claude-3-5-sonnet-20241022"
+        },
+        // 模型参数
+        "model_parameters": {
+            // 温度参数（0.0-2.0）
+            "temperature": 0,
+            // 最大输出令牌数
+            "max_tokens": 8192,
+            // 随机种子
+            "seed": null,
+            // 停止序列
+            "stop": null,
+            // Top-p 参数
+            "top_p": null,
+            // Top-k 参数
+            "top_k": null,
+            // 频率惩罚
+            "frequency_penalty": null,
+            // 存在惩罚
+            "presence_penalty": null
+        },
+        // 是否始终允许工具操作（默认：false）
+        "always_allow_tool_actions": false,
+        // 是否流式编辑（默认：true）
+        "stream_edits": true,
+        // 是否单文件审查（默认：false）
+        "single_file_review": false,
+        // 是否启用反馈（默认：true）
+        "enable_feedback": true,
+        // 默认配置文件
+        "default_profile": "write",
+        // 配置文件
+        "profiles": {
+            // 写作配置文件
+            "write": {
+                "name": "写作助手",
+                "enable_all_context_servers": false,
+                "tools": {
+                    "copy_path": true,
+                    "create_directory": true,
+                    "delete_path": true,
+                    "diagnostics": true,
+                    "edit_file": true,
+                    "fetch": true,
+                    "list_directory": true,
+                    "project_notifications": true,
+                    "move_path": true,
+                    "now": true,
+                    "find_path": true,
+                    "read_file": true,
+                    "grep": true,
+                    "terminal": true,
+                    "thinking": true,
+                    "web_search": true
+                }
+            },
+            // 询问配置文件
+            "ask": {
+                "name": "问答助手",
+                "tools": {
+                    "contents": true,
+                    "diagnostics": true,
+                    "fetch": true,
+                    "list_directory": true,
+                    "project_notifications": true,
+                    "now": true,
+                    "find_path": true,
+                    "read_file": true,
+                    "open": true,
+                    "grep": true,
+                    "thinking": true,
+                    "web_search": true
+                }
+            },
+            // 最小配置文件
+            "minimal": {
+                "name": "最小助手",
+                "enable_all_context_servers": false,
+                "tools": {}
+            }
+        },
+        // 助手等待时是否通知（默认：true）
+        "notify_when_agent_waiting": true,
+        // 助手完成时是否播放声音（默认：false）
+        "play_sound_when_agent_done": false,
+        // 是否展开编辑卡片（默认：true）
+        "expand_edit_card": true,
+        // 是否展开终端卡片（默认：true）
+        "expand_terminal_card": true
+    },
+    // 斜杠命令设置
+    "slash_commands": {
+        // 文档命令
+        "docs": {
+            // 是否启用（默认：true）
+            "enabled": true
+        },
+        // 项目命令
+        "project": {
+            // 是否启用（默认：true）
+            "enabled": true
+        }
+    },
+    // 是否显示通话状态图标（默认：true）
+    "show_call_status_icon": true,
+    // 是否启用语言服务器（默认：true）
+    "enable_language_server": true,
+    // 是否启用链接编辑（默认：false）
+    "linked_edits": false,
+    // 语言服务器设置
+    "language_servers": [
+        // 在此处可以配置特定的语言服务器
+    ],
+    // 自动保存设置：
+    // - "off": 关闭自动保存
+    // - "on_focus_change": 焦点改变时保存
+    // - "on_window_change": 窗口改变时保存
+    // - "after_delay": 延迟后保存
+    "autosave": "on_focus_change",
+    // 最大标签页数量
+    "max_tabs": null,
+    // 标签栏设置
+    "tab_bar": {
+        // 是否显示标签栏（默认：true）
+        "show": true,
+        // 是否显示导航历史按钮（默认：true）
+        "show_nav_history_buttons": true,
+        // 是否显示标签栏按钮（默认：true）
+        "show_tab_bar_buttons": true
+    },
+    // 标签页设置
+    "tabs": {
+        // 是否显示 git 状态（默认：false）
+        "git_status": false,
+        // 关闭按钮位置：
+        // - "left": 左侧
+        // - "right": 右侧
+        "close_position": "right",
+        // 是否显示文件图标（默认：true）
+        "file_icons": true,
+        // 是否显示关闭按钮：
+        // - true: 始终显示
+        // - false: 从不显示
+        // - "on_hover": 悬停时显示
+        "show_close_button": "on_hover",
+        // 关闭时激活的标签页：
+        // - "recent": 最近使用的
+        // - "next": 下一个
+        // - "previous": 上一个
+        "activate_on_close": "recent",
+        // 是否在标签页中显示诊断（默认：true）
+        "show_diagnostics": true
+    },
+    // 预览标签页设置
+    "preview_tabs": {
+        // 是否启用预览标签页（默认：true）
+        "enabled": true,
+        // 是否从文件查找器启用预览（默认：true）
+        "enable_preview_from_file_finder": true,
+        // 是否从代码导航启用预览（默认：true）
+        "enable_preview_from_code_navigation": true
+    },
+    // 文件查找器设置
+    "file_finder": {
+        // 是否显示文件图标（默认：true）
+        "file_icons": true,
+        // 模态框最大宽度（像素）
+        "modal_max_width": 1024,
+        // 搜索中活动文件时是否跳过焦点（默认：false）
+        "skip_focus_for_active_in_search": false,
+        // 是否显示 git 状态（默认：true）
+        "git_status": true,
+        // 是否包含忽略的文件（默认：false）
+        "include_ignored": false
+    },
+    // 保存时是否移除行尾空白（默认：true）
+    "remove_trailing_whitespace_on_save": true,
+    // 换行时是否扩展注释（默认：true）
+    "extend_comment_on_newline": true,
+    // 保存时是否确保文件末尾有换行符（默认：true）
+    "ensure_final_newline_on_save": true,
+    // 保存时格式化设置：
+    // - "off": 关闭
+    // - "on": 开启
+    // - { "external": { "command": "prettier", "arguments": ["--stdin-filepath", "{buffer_path}"] } }
+    "format_on_save": "on",
+    // 格式化程序设置：
+    // - "auto": 自动选择
+    // - "language_server": 使用语言服务器
+    // - "prettier": 使用 Prettier
+    // - { "external": { "command": "command_name", "arguments": ["-stdin"] } }
+    "formatter": "auto",
+    // 软换行设置：
+    // - "none": 不软换行
+    // - "editor_width": 根据编辑器宽度
+    // - "preferred_line_length": 根据首选行长度
+    // - 数字: 指定列数
+    "soft_wrap": "none",
+    // 首选行长度
+    "preferred_line_length": 80,
+    // 是否使用硬制表符（默认：false）
+    "hard_tabs": false,
+    // 制表符大小
+    "tab_size": 4,
+    // 调试器设置
+    "debuggers": {},
+    // 遥测设置
+    "telemetry": {
+        // 是否发送诊断遥测（默认：true）
+        "diagnostics": true,
+        // 是否发送指标遥测（默认：true）
+        "metrics": true
+    },
+    // 是否禁用 AI 功能（默认：false）
+    "disable_ai": false,
+    // 是否自动更新（默认：true）
+    "auto_update": true,
+    // 是否启用 LSP 文档颜色（默认：true）
+    "lsp_document_colors": true,
+    // 诊断设置
+    "diagnostics": {
+        // 是否显示诊断按钮（默认：true）
+        "button": true,
+        // 是否包含警告（默认：true）
+        "include_warnings": true,
+        // LSP 拉取诊断设置
+        "lsp_pull_diagnostics": {
+            // 是否启用（默认：true）
+            "enabled": true,
+            // 防抖时间（毫秒）
+            "debounce_ms": 1000
+        },
+        // 内联诊断设置
+        "inline": {
+            // 是否启用（默认：true）
+            "enabled": true,
+            // 更新防抖时间（毫秒）
+            "update_debounce_ms": 500,
+            // 内边距（像素）
+            "padding": 8,
+            // 最小列数
+            "min_column": 40,
+            // 最大严重级别
+            "max_severity": "error"
+        },
+        // Cargo 诊断设置
+        "cargo": {
+            // 是否获取 Cargo 诊断（默认：true）
+            "fetch_cargo_diagnostics": true
+        }
+    },
+    // 文件扫描排除列表
+    "file_scan_exclusions": [
+        "**/.git",
+        "**/.svn",
+        "**/.hg",
+        "**/CVS",
+        "**/.DS_Store",
+        "**/Thumbs.db",
+        "**/.classpath",
+        "**/.settings"
+    ],
+    // 文件扫描包含列表
+    "file_scan_inclusions": [],
+    // Git 设置
+    "git": {
+        // 是否显示 Git 边距（默认：true）
+        "git_gutter": "tracked_files",
+        // 内联责任设置
+        "inline_blame": {
+            // 是否启用（默认：false）
+            "enabled": false,
+            // 延迟时间（毫秒）
+            "delay_ms": 600,
+            // 是否显示提交摘要（默认：true）
+            "show_commit_summary": true,
+            // 最小列数
+            "min_column": 81
+        },
+        // 代码块样式：
+        // - "line": 行样式
+        // - "block": 块样式
+        "hunk_style": "line"
+    },
+    // Git 托管提供商设置
+    "git_hosting_providers": {
+        // 示例配置
+        // "github.com": {
+        //     "git_remote_url_patterns": ["https://github.com/{owner}/{repo}.git"]
+        // }
+    },
+    // 是否加载 direnv（默认：true）
+    "load_direnv": true,
+    // 编辑预测设置
+    "edit_predictions": {
+        // 禁用的文件模式
+        "disabled_globs": [
+            "**/.env*",
+            "**/secrets.yml",
+            "**/credentials.yml",
+            "**/*key*",
+            "**/*secret*"
+        ],
+        // 预测模式：
+        // - "diff": 差异模式
+        // - "completion": 补全模式
+        "mode": "completion",
+        // 是否在文本线程中启用（默认：false）
+        "enabled_in_text_threads": false
+    },
+    // 日志设置
+    "journal": {
+        // 日志文件路径
+        "path": "~",
+        // 小时格式：
+        // - "hour12": 12小时制
+        // - "hour24": 24小时制
+        "hour_format": "hour24"
+    },
+    // 终端设置
+    "terminal": {
+        // Shell 程序路径
+        "shell": "system",
+        // 面板停靠位置：
+        // - "left": 左侧
+        // - "right": 右侧
+        // - "bottom": 底部
+        "dock": "bottom",
+        // 默认宽度（像素）
+        "default_width": 640,
+        // 默认高度（像素）
+        "default_height": 320,
+        // 工作目录：
+        // - "current_project_directory": 当前项目目录
+        // - "first_project_directory": 第一个项目目录
+        // - "always_current_directory": 始终当前目录
+        "working_directory": "current_project_directory",
+        // 是否闪烁光标（默认：true）
+        "blinking": "terminal_controlled",
+        // 光标形状：
+        // - "bar": 竖线
+        // - "block": 块状
+        // - "underline": 下划线
+        // - "hollow": 空心
+        // - "terminal_default": 终端默认
+        "cursor_shape": "terminal_default",
+        // 是否启用备用滚动（默认：true）
+        "alternate_scroll": "on",
+        // Option 键作为 Meta 键（仅 macOS）
+        "option_as_meta": false,
+        // 选择时是否复制（默认：false）
+        "copy_on_select": false,
+        // 复制时是否保持选择（默认：false）
+        "keep_selection_on_copy": false,
+        // 是否显示终端按钮（默认：true）
+        "button": true,
+        // 环境变量
+        "env": {
+            // 示例: "KEY": "value"
+        },
+        // 行高
+        "line_height": "comfortable",
+        // 虚拟环境检测设置
+        "detect_venv": {
+            "on": {
+                // 虚拟环境目录
+                "directories": [".env", "env", ".venv", "venv"],
+                // 激活脚本
+                "activate_script": "default"
+            }
+        },
+        // 工具栏设置
+        "toolbar": {
+            // 是否显示面包屑导航（默认：true）
+            "breadcrumbs": true
+        },
+        // 滚动条设置
+        "scrollbar": {
+            // 是否显示滚动条：
+            // - "auto": 根据需要自动显示
+            // - "system": 使用系统设置
+            // - "always": 始终显示
+            // - "never": 从不显示
+            "show": "auto"
+        },
+        // 字体粗细
+        "font_weight": 400,
+        // 最大滚动历史行数
+        "max_scroll_history_lines": 10000,
+        // 最小对比度
+        "minimum_contrast": 5.0
+    },
+    // 格式化时的代码操作
+    "code_actions_on_format": {},
+    // 任务设置
+    "tasks": {
+        // 变量
+        "variables": {},
+        // 是否启用任务（默认：true）
+        "enabled": true,
+        // 是否优先使用 LSP 任务（默认：true）
+        "prefer_lsp": true
+    },
+    // 文件类型设置
+    "file_types": {
+        // JSONC 文件类型
+        "JSONC": [
+            "**/.zed/settings.json",
+            "**/.zed/keymap.json",
+            "**/.zed/snippets.json"
+        ],
+        // Shell 脚本文件类型
+        "Shell Script": ["**/.zshrc", "**/.bashrc"]
+    },
+    // Node.js 设置
+    "node": {
+        // 是否忽略系统版本（默认：false）
+        "ignore_system_version": false,
+        // Node.js 路径
+        "path": null,
+        // npm 路径
+        "npm_path": null
+    },
+    // 是否自动安装扩展
+    "auto_install_extensions": {
+        // HTML 扩展
+        "html": true
+    },
+    // 补全设置
+    "completions": {
+        // 是否启用单词补全（默认：true）
+        "words": true,
+        // 是否启用 LSP 补全（默认：true）
+        "lsp": true,
+        // LSP 获取超时时间（毫秒）
+        "lsp_fetch_timeout_ms": 5000,
+        // LSP 插入模式：
+        // - "insert": 插入模式
+        // - "replace": 替换模式
+        "lsp_insert_mode": "insert"
+    },
+    // 语言特定设置
+    "languages": {
+        // Astro 语言设置
+        "Astro": {
+            "language_servers": ["astro-language-server"],
+            "prettier": {
+                "allowed": true,
+                "plugins": ["prettier-plugin-astro"]
+            }
+        },
+        // Blade 语言设置
+        "Blade": {
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // C 语言设置
+        "C": {
+            "format_on_save": "on",
+            "use_on_type_format": false,
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // C++ 语言设置
+        "C++": {
+            "format_on_save": "on",
+            "use_on_type_format": false,
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // CSS 语言设置
+        "CSS": {
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // Dart 语言设置
+        "Dart": {
+            "tab_size": 2
+        },
+        // Diff 语言设置
+        "Diff": {
+            "show_edit_predictions": false,
+            "remove_trailing_whitespace_on_save": false,
+            "ensure_final_newline_on_save": false
+        },
+        // Elixir 语言设置
+        "Elixir": {
+            "language_servers": ["elixir-ls"]
+        },
+        // Elm 语言设置
+        "Elm": {
+            "tab_size": 4
+        },
+        // Erlang 语言设置
+        "Erlang": {
+            "language_servers": ["erlang-ls"]
+        },
+        // Git 提交消息设置
+        "Git Commit": {
+            "allow_rewrap": false,
+            "soft_wrap": "preferred_line_length",
+            "preferred_line_length": 72
+        },
+        // Go 语言设置
+        "Go": {
+            "code_actions_on_format": {
+                "source.organizeImports": true
+            },
+            "debuggers": ["lldb-dap"]
+        },
+        // GraphQL 语言设置
+        "GraphQL": {
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // HEEX 语言设置
+        "HEEX": {
+            "language_servers": ["elixir-ls"]
+        },
+        // HTML 语言设置
+        "HTML": {
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // Java 语言设置
+        "Java": {
+            "prettier": {
+                "allowed": true,
+                "plugins": ["prettier-plugin-java"]
+            }
+        },
+        // JavaScript 语言设置
+        "JavaScript": {
+            "language_servers": ["typescript-language-server"],
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // JSON 语言设置
+        "JSON": {
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // JSONC 语言设置
+        "JSONC": {
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // LaTeX 语言设置
+        "LaTeX": {
+            "formatter": "language_server",
+            "language_servers": ["texlab"],
+            "prettier": {
+                "allowed": true,
+                "plugins": ["@prettier/plugin-xml"]
+            }
+        },
+        // Markdown 语言设置
+        "Markdown": {
+            "format_on_save": "off",
+            "use_on_type_format": false,
+            "allow_rewrap": true,
+            "soft_wrap": "preferred_line_length",
+            "completions": {
+                "words": false
+            },
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // PHP 语言设置
+        "PHP": {
+            "language_servers": ["intelephense"],
+            "prettier": {
+                "allowed": true,
+                "plugins": ["@prettier/plugin-php"],
+                "parser": "php"
+            }
+        },
+        // 纯文本设置
+        "Plain Text": {
+            "completions": {
+                "words": false
+            },
+            "allow_rewrap": true
+        },
+        // Python 语言设置
+        "Python": {
+            "debuggers": ["lldb-dap"]
+        },
+        // Ruby 语言设置
+        "Ruby": {
+            "language_servers": ["ruby-lsp", "rubocop"]
+        },
+        // Rust 语言设置
+        "Rust": {
+            "debuggers": ["lldb-dap"]
+        },
+        // SCSS 语言设置
+        "SCSS": {
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // Starlark 语言设置
+        "Starlark": {
+            "language_servers": ["starpls"]
+        },
+        // Svelte 语言设置
+        "Svelte": {
+            "language_servers": ["svelte-language-server"],
+            "prettier": {
+                "allowed": true,
+                "plugins": ["prettier-plugin-svelte"]
+            }
+        },
+        // TSX 语言设置
+        "TSX": {
+            "language_servers": ["typescript-language-server"],
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // Twig 语言设置
+        "Twig": {
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // TypeScript 语言设置
+        "TypeScript": {
+            "language_servers": ["typescript-language-server"],
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // SystemVerilog 语言设置
+        "SystemVerilog": {
+            "format_on_save": "on",
+            "use_on_type_format": false
+        },
+        // Vue.js 语言设置
+        "Vue.js": {
+            "language_servers": ["vue-language-server"],
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // XML 语言设置
+        "XML": {
+            "prettier": {
+                "allowed": true,
+                "plugins": ["@prettier/plugin-xml"]
+            }
+        },
+        // YAML 语言设置
+        "YAML": {
+            "prettier": {
+                "allowed": true
+            }
+        },
+        // Zig 语言设置
+        "Zig": {
+            "language_servers": ["zls"]
+        }
+    },
+    // 语言模型设置
+    "language_models": {
+        // Anthropic 设置
+        "anthropic": {
+            "api_url": "https://api.anthropic.com"
+        },
+        // Google 设置
+        "google": {
+            "api_url": "https://generativelanguage.googleapis.com"
+        },
+        // Ollama 设置
+        "ollama": {
+            "api_url": "http://localhost:11434"
+        },
+        // OpenAI 设置
+        "openai": {
+            "api_url": "https://api.openai.com/v1"
+        },
+        // OpenAI 兼容设置
+        "openai_compatible": {},
+        // Open Router 设置
+        "open_router": {
+            "api_url": "https://openrouter.ai/api/v1"
+        },
+        // LM Studio 设置
+        "lmstudio": {
+            "api_url": "http://localhost:1234/v1"
+        },
+        // DeepSeek 设置
+        "deepseek": {
+            "api_url": "https://api.deepseek.com/v1"
+        },
+        // Mistral 设置
+        "mistral": {
+            "api_url": "https://api.mistral.ai/v1"
+        }
+    },
+    // Prettier 设置
+    "prettier": {
+        // 在此处可以添加全局 Prettier 配置
+    },
+    // JSX 标签自动关闭设置
+    "jsx_tag_auto_close": {
+        // 是否启用（默认：true）
+        "enabled": true
+    },
+    // LSP 设置
+    "lsp": {
+        // 在此处可以配置特定的 LSP 设置
+    },
+    // 全局 LSP 设置
+    "global_lsp_settings": {
+        // 是否显示 LSP 按钮（默认：true）
+        "button": true
+    },
+    // Jupyter 设置
+    "jupyter": {
+        // 是否启用 Jupyter 支持（默认：false）
+        "enabled": false
+    },
+    // Vim 模式设置
+    "vim": {
+        // 默认模式：
+        // - "normal": 普通模式
+        // - "insert": 插入模式
+        "default_mode": "normal",
+        // 是否切换相对行号（默认：false）
+        "toggle_relative_line_numbers": false,
+        // 是否使用系统剪贴板（默认：true）
+        "use_system_clipboard": "always",
+        // 是否使用智能大小写查找（默认：false）
+        "use_smartcase_find": false,
+        // 复制时高亮持续时间（毫秒）
+        "highlight_on_yank_duration": 200,
+        // 自定义二合字母
+        "custom_digraphs": {},
+        // 光标形状设置
+        "cursor_shape": {
+            // 插入模式光标形状
+            "insert": "bar",
+            // 普通模式光标形状
+            "normal": "block"
+        }
+    },
+    // 服务器 URL
+    "server_url": "https://zed.dev",
+    // 预览设置
+    "preview": {
+        // 是否启用预览功能（默认：true）
+        "enabled": true
+    },
+    // 夜间版设置
+    "nightly": {
+        // 是否启用夜间版功能（默认：false）
+        "enabled": false
+    },
+    // 稳定版设置
+    "stable": {
+        // 是否启用稳定版功能（默认：true）
+        "enabled": true
+    },
+    // 开发版设置
+    "dev": {
+        // 是否启用开发版功能（默认：false）
+        "enabled": false
+    },
+    // 行指示器格式：
+    // - "simple": 简单格式（行:列）
+    // - "long": 详细格式（第X行，第Y列）
+    "line_indicator_format": "short",
+    // 代理设置
+    "proxy": "http://127.0.0.1:7890",
+    // 命令别名
+    "command_aliases": {
+        // 示例: "custom_command": "original_command"
+    },
+    // SSH 连接设置
+    "ssh_connections": [
+        // 示例配置
+        // {
+        //     "host": "example.com",
+        //     "username": "user",
+        //     "port": 22,
+        //     "projects": [
+        //         {
+        //             "name": "Project Name",
+        //             "paths": ["/path/to/project"]
+        //         }
+        //     ]
+        // }
+    ],
+    // 是否读取 SSH 配置（默认：true）
+    "read_ssh_config": true,
+    // 上下文服务器设置
+    "context_servers": {},
+    // 代理服务器设置
+    "agent_servers": {},
+    // 调试器设置
+    "debugger": {
+        // 步进粒度：
+        // - "statement": 语句级别
+        // - "line": 行级别
+        "stepping_granularity": "line",
+        // 是否保存断点（默认：true）
+        "save_breakpoints": true,
+        // 面板停靠位置
+        "dock": "bottom",
+        // 是否显示调试器按钮（默认：true）
+        "button": true
+    }
+}

@@ -1,6 +1,13 @@
 // 此配置使用 KDL 格式：https://kdl.dev
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
+spawn-at-startup "waybar"
+// spawn-at-startup "ironbar"
+spawn-at-startup "swww-daemon"
+spawn-at-startup "xwayland-satellite"
+
+prefer-no-csd
+
 // 输入设备配置。
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
@@ -63,10 +70,7 @@ output "eDP-1" {
     // 取消注释此行以禁用此输出。
     // off
 
-    // 输出的分辨率，可选地包含刷新率。
     // 格式为 "<宽度>x<高度>" 或 "<宽度>x<高度>@<刷新率>"。
-    // 如果省略刷新率，niri 将选择该分辨率的最高刷新率。
-    // 如果完全省略模式或无效，niri 将自动选择一个。
     // 在 niri 实例内运行 `niri msg outputs` 列出所有输出及其模式。
     mode "2560x1600@240.003"
 
@@ -115,7 +119,7 @@ layout {
         proportion 0.5    // 二分之一
         proportion 0.618  // 黄金比例大
         proportion 0.75   // 四分之三
-        
+
         // Fixed 精确设置逻辑像素的宽度。
         // fixed 1920
     }
@@ -153,7 +157,6 @@ layout {
     }
 
     shadow {
-        // 启用阴影
         on
 
         // 在窗口后面绘制阴影，创造浮动效果
@@ -222,22 +225,12 @@ layout {
     }
 }
 
-spawn-at-startup "waybar"
-// spawn-at-startup "ironbar"
-spawn-at-startup "swww-daemon"
-spawn-at-startup "xwayland-satellite"
 
 hotkey-overlay {
     // 取消注释此行以在启动时禁用"重要热键"弹出窗口。
     skip-at-startup
 }
 
-// 取消注释此行以要求客户端尽可能省略其客户端装饰。
-// 如果客户端特别要求 CSD，请求将被接受。
-// 此外，客户端将被告知它们是平铺的，删除一些客户端圆角。
-// 此选项还将修复在一些半透明窗口后面绘制的边框/焦点环。
-// 启用或禁用此选项后，您需要重启应用程序才能生效。
-// prefer-no-csd
 
 // 路径使用 strftime(3) 格式化，为您提供截图日期和时间。
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -247,7 +240,6 @@ screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
 
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Animations
 animations {
-    
     slowdown 0.85
     workspace-switch {
         spring damping-ratio=1.0 stiffness=900 epsilon=0.0001
@@ -298,10 +290,10 @@ window-rule {
 window-rule {
     // 基础圆角半径：12px，创造胶囊形状
     geometry-corner-radius 12
-    
+
     // 裁剪到几何体，确保内容不会溢出圆角
     clip-to-geometry true
-    
+
     // 设置窗口为平铺状态，获得更好的边框绘制
     tiled-state true
 
@@ -350,12 +342,12 @@ window-rule {
     match is-active=true
 
     match app-id="alacritty"
-    match app-id="ghostty" 
+    match app-id="ghostty"
     match app-id="rio"
     match app-id="kitty"
     match app-id="wezterm"
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    
+
     opacity 1.00
     geometry-corner-radius 10
     clip-to-geometry true
@@ -366,11 +358,11 @@ window-rule {
 
     match app-id="alacritty"
     match app-id="ghostty"
-    match app-id="rio" 
+    match app-id="rio"
     match app-id="kitty"
     match app-id="wezterm"
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    
+
     opacity 0.78
     geometry-corner-radius 10
     clip-to-geometry true
@@ -395,31 +387,6 @@ window-rule {
     match app-id="code"
     match app-id="zed"
     match title="Visual Studio Code"
-
-    opacity 0.75
-    geometry-corner-radius 12
-    clip-to-geometry true
-}
-
-// === 浏览器应用透明度 ===
-/-window-rule {
-    match is-active=true
-
-    match app-id="firefox"
-    match app-id="google-chrome"
-    match app-id="zen"
-
-    opacity 1.00
-    geometry-corner-radius 12
-    clip-to-geometry true
-}
-
-/-window-rule {
-    match is-active=false
-
-    match app-id="firefox"
-    match app-id="zen"
-    match app-id="google-chrome"
 
     opacity 0.75
     geometry-corner-radius 12
@@ -492,7 +459,7 @@ window-rule {
     match app-id="dunst"
     match app-id="org.freedesktop.Notifications"
     match title="^notification"
-    
+
     opacity 0.78
     geometry-corner-radius 25
     clip-to-geometry true
@@ -547,38 +514,13 @@ window-rule {
     }
 }
 
-// === 媒体播放器：固定0.92透明度 ===
-window-rule {
-    match app-id="mpv"
-    match app-id="vlc"
-    match app-id="celluloid"
-    match title="Picture-in-Picture"
-
-    opacity 0.92
-    geometry-corner-radius 20
-    clip-to-geometry true
-    shadow {
-        on
-        softness 45
-        spread 8
-        offset x=0 y=20
-        color "#00000075"
-        draw-behind-window true
-    }
-
-    // 媒体播放器的彩色焦点环
-    focus-ring {
-        width 2.5
-        active-gradient from="#FF2D92" to="#FF6B35" angle=135 in="oklch longer hue"
-    }
-}
 // ================================================================
 
 binds {
     // "Mod" 是一个特殊修饰符，在 TTY 上运行时等于 Super，
     // 在作为 winit 窗口运行时等于 Alt。
     // 您可以在此处绑定的大多数操作也可以通过 `niri msg action do-something` 以编程方式调用。
-    // Mod-Shift-/，通常与 Mod-? 相同，
+
     // 显示重要热键列表。
     Mod+Shift+Slash { show-hotkey-overlay; }
 
@@ -619,10 +561,10 @@ binds {
     Mod+J     { focus-window-down; }
     Mod+K     { focus-window-up; }
     Mod+L     { focus-column-right; }
-    // 在到达列中第一个或最后一个窗口时跨工作区移动的替代命令。 
+    // 在到达列中第一个或最后一个窗口时跨工作区移动的替代命令。
     // Mod+J     { focus-window-or-workspace-down; }
     // Mod+K     { focus-window-or-workspace-up; }
-    
+
     Mod+Shift+Left  { move-column-left; }
     Mod+Shift+Down  { move-window-down; }
     Mod+Shift+Up    { move-window-up; }
@@ -631,7 +573,7 @@ binds {
     Mod+Shift+J     { move-window-down; }
     Mod+Shift+K     { move-window-up; }
     Mod+Shift+L     { move-column-right; }
-    // 在到达列中第一个或最后一个窗口时跨工作区移动的替代命令。 
+    // 在到达列中第一个或最后一个窗口时跨工作区移动的替代命令。
     // Mod+Shift+J     { move-window-down-or-to-workspace-down; }
     // Mod+Shift+K     { move-window-up-or-to-workspace-up; }
 
@@ -645,7 +587,7 @@ binds {
     Mod+Alt+J     { focus-monitor-down; }
     Mod+Alt+K     { focus-monitor-up; }
     Mod+Alt+L     { focus-monitor-right; }
-    
+
     // column在显示器间转移
     Mod+Alt+Shift+Left  { move-column-to-monitor-left; }
     Mod+Alt+Shift+Down  { move-column-to-monitor-down; }
@@ -668,7 +610,7 @@ binds {
     Mod+Alt+Ctrl+Shift+Right { move-workspace-to-monitor-right; }
     Mod+Alt+Ctrl+Shift+H     { move-workspace-to-monitor-left; }
     Mod+Alt+Ctrl+Shift+L     { move-workspace-to-monitor-right; }
-    
+
     // 最后一个
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
@@ -761,8 +703,9 @@ binds {
     // 以下绑定将聚焦的窗口移入和移出列。
     // 如果窗口单独存在，它们将其消费到侧边的附近列中。
     // 如果窗口已经在列中，它们将其排出。
-    Mod+BracketRight  { consume-or-expel-window-left; }
-    Mod+BracketLeft { consume-or-expel-window-right; }
+
+    Mod+Shift+period { consume-or-expel-window-left; }
+    Mod+Shift+comma  { consume-or-expel-window-right; }
 
     // 移动右侧一个窗口到聚焦列的底部。
     Mod+Comma  { consume-window-into-column; }
@@ -771,12 +714,14 @@ binds {
 
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
+
     Mod+Ctrl+R { reset-window-height; }
+
     Mod+M { maximize-column; }
     Mod+Shift+M { fullscreen-window; }
-    // 将聚焦的列扩展到其他完全可见列未占用的空间。
+
     // 使列"填充剩余空间"。
-    Mod+F { expand-column-to-available-width; }
+    // Mod+F { expand-column-to-available-width; }
 
     Mod+T { toggle-column-tabbed-display; }
     Mod+C { center-column; }
@@ -799,24 +744,14 @@ binds {
     Mod+Ctrl+F       { toggle-window-floating; }
     Mod+Shift+S { switch-focus-between-floating-and-tiling; }
 
-
     // 切换布局的操作。
-    // 注意：如果您取消注释这些，请确保您在上面的 xkb 选项中没有
-    // 配置匹配的布局切换热键。
-    // 在同一个热键上同时有两者会破坏切换，
-    // 因为它会在按下热键时切换两次（一次由 xkb，一次由 niri）。
-    // Mod+Shift+period { switch-layout "next"; }
-    // Mod+Shift+comma  { switch-layout "prev"; }
+    // Mod+BracketRight  { switch-layout "next"; }
+    // Mod+BracketLeft { switch-layout "prev"; }
 
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
-    // 远程桌面客户端和软件 KVM 交换机等应用程序可能会要求 niri 
-    // 停止处理此处定义的键盘快捷键，以便它们可以例如将按键原样转发到远程机器。
-    // 绑定一个逃生舱口来切换抑制器是个好主意，
-    // 这样有问题的应用程序就不会劫持您的会话。
-    //
     // allow-inhibiting=false 属性也可以应用于其他绑定，
     // 这确保 niri 始终处理它们，即使抑制器处于活动状态。
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
