@@ -3,6 +3,8 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rio.enable && config.myHome.dotfiles.rio.method == "homemanager") {
 
+    home.file.".config/rio/themes".source = ./configs/themes;
+
     programs.rio = {
       enable = true;
       package = pkgs.rio;
