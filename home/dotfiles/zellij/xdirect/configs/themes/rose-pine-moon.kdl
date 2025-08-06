@@ -1,0 +1,15 @@
+themes {
+    rose-pine-moon {
+        bg "#232136"      // 背景色
+        fg "#e0def4"      // 前景色
+        red "#eb6f92"     // 红色
+        green "#3e8fb0"   // 绿色 (使用 rose pine moon 的蓝绿色)
+        blue "#9ccfd8"    // 蓝色
+        yellow "#f6c177"  // 黄色
+        magenta "#c4a7e7" // 洋红色
+        orange "#ea9a97"  // 橙色
+        cyan "#9ccfd8"    // 青色
+        black "#2a273f"   // 黑色
+        white "#e0def4"   // 白色
+    }
+}

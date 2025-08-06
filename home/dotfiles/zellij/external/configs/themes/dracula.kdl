@@ -1,0 +1,15 @@
+themes {
+    dracula {
+        bg "#282a36"      // 背景色
+        fg "#f8f8f2"      // 前景色
+        red "#ff5555"     // 红色
+        green "#50fa7b"   // 绿色
+        blue "#8be9fd"    // 蓝色
+        yellow "#f1fa8c"  // 黄色
+        magenta "#ff79c6" // 洋红色
+        orange "#ffb86c"  // 橙色
+        cyan "#8be9fd"    // 青色
+        black "#21222c"   // 黑色
+        white "#f8f8f2"   // 白色
+    }
+}
