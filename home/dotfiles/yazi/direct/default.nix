@@ -1,22 +1,19 @@
 { config, lib, pkgs, ... }:
 
+let
+  yaziConfig = import ./yazi-config.nix { inherit config lib pkgs; };
+in
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "direct") {
     
     home.packages = with pkgs; [ yazi ];
 
-    home.file.".config/yazi/yazi.toml".text = ''
-    '';
-    
-    home.file.".config/yazi/keymap.toml".text = ''
-    '';
-    
-    home.file.".config/yazi/theme.toml".text = ''
-    '';
-
-    home.file.".config/yazi/plugins/smart-entry.yazi/main.lua".text = ''
-    '';
-    home.file.".config/yazi/plugins/smart-entry.yazi/LICENSE".text = ''
+    home.file.".config/yazi/yazi.toml".text = yaziConfig.yaziToml;
+    home.file.".config/yazi/keymap.toml".text = yaziConfig.keymapToml;
+    home.file.".config/yazi/theme.toml".text = yaziConfig.themeToml;
+    home.file.".config/yazi/init.lua".text = yaziConfig.initLua;
+  };
+}
     '';
     home.file.".config/yazi/plugins/smart-entry.yazi/README.md".text = ''
     '';
