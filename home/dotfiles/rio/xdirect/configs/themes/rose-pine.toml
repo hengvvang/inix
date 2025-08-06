@@ -1,0 +1,59 @@
+# Rosé Pine theme for Rio Terminal
+# Based on the official Rosé Pine color palette: https://rosepinetheme.com/
+
+[colors]
+# Background colors
+background = '#191724' # Base - Primary background
+foreground = '#e0def4' # Text - High contrast foreground
+
+# Normal colors
+black = '#26233a'   # Overlay
+red = '#eb6f92'     # Love - Per favore ama tutti
+green = '#31748f'   # Pine - Fresh winter greenery
+yellow = '#f6c177'  # Gold - Lemon tea on a summer morning
+blue = '#9ccfd8'    # Foam - Saltwater tidepools
+magenta = '#c4a7e7' # Iris - Smells of groundedness
+cyan = '#ebbcba'    # Rose - A beautiful yet cautious blossom
+white = '#e0def4'   # Text
+
+# Bright colors
+light-black = '#6e6a86'   # Muted - Low contrast foreground
+light-red = '#eb6f92'     # Love
+light-green = '#31748f'   # Pine
+light-yellow = '#f6c177'  # Gold
+light-blue = '#9ccfd8'    # Foam
+light-magenta = '#c4a7e7' # Iris
+light-cyan = '#ebbcba'    # Rose
+light-white = '#e0def4'   # Text
+
+# Dim colors
+dim-black = '#21202e'   # Highlight Low
+dim-red = '#eb6f92'     # Love
+dim-green = '#31748f'   # Pine
+dim-yellow = '#f6c177'  # Gold
+dim-blue = '#9ccfd8'    # Foam
+dim-magenta = '#c4a7e7' # Iris
+dim-cyan = '#ebbcba'    # Rose
+dim-white = '#908caa'   # Subtle
+
+# UI colors
+cursor = '#524f67'    # Highlight High
+vi-cursor = '#524f67' # Highlight High
+
+# Selection
+selection-foreground = '#e0def4' # Text
+selection-background = '#403d52' # Highlight Med
+
+# Search
+search-match-background = '#403d52'         # Highlight Med
+search-match-foreground = '#e0def4'         # Text
+search-focused-match-background = '#524f67' # Highlight High
+search-focused-match-foreground = '#e0def4' # Text
+
+# Navigation/Tabs
+tabs = '#1f1d2e'                   # Surface
+tabs-foreground = '#908caa'        # Subtle
+tabs-active = '#26233a'            # Overlay
+tabs-active-foreground = '#e0def4' # Text
+tabs-active-highlight = '#c4a7e7'  # Iris
+bar = '#191724'                    # Base
