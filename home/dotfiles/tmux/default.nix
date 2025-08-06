@@ -2,24 +2,18 @@
 
 {
   options.myHome.dotfiles.tmux = {
-
-    enable = lib.mkEnableOption "Tmux 会话管理配置";
-    
+    enable = lib.mkEnableOption "Enable tmux configuration";
     method = lib.mkOption {
-      type = lib.types.enum [ "homemanager" "direct" "external" ];
+      type = lib.types.enum [ "homemanager" "direct" "external" "xdirect" ];
       default = "homemanager";
-      description = ''
-        Tmux 配置方式选择:
-        - homemanager: 使用 Home Manager 的 programs.tmux 模块 (推荐)
-        - direct: 直接通过 Home Manager 配置文件管理
-        - external: 使用外部配置文件
-      '';
+      description = "Method to manage tmux configuration";
     };
   };
 
   imports = [
-    ./homemanager.nix
-    ./direct.nix
-    ./external.nix
+    ./homemanager
+    ./direct
+    ./external
+    ./xdirect
   ];
 }
