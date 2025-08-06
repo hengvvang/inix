@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.method == "direct") {
-    
+
     home.file.".config/ghostty/config" = {
       text = ''
         # Ghostty 终端配置

@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.fish.enable && config.myHome.dotfiles.fish.method == "direct") {
-    
+
     # 额外的 Fish 函数
     home.file.".config/fish/functions/weather.fish" = {
       text = ''

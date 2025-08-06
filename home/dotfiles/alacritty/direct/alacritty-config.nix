@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.enable && 
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.enable &&
                     config.myHome.dotfiles.alacritty.method == "direct") {
-    
+
     home.file.".config/alacritty/alacritty.toml" = {
       text = ''
         # Alacritty 终端配置文件

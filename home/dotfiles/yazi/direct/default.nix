@@ -4,7 +4,7 @@
   imports = [
     ./yazi-config.nix
   ];
-  
+
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "direct") {
     home.packages = with pkgs; [
       yazi
@@ -22,7 +22,7 @@
       [manager]
       show_hidden = false
     '';
-    
+
     home.file.".config/yazi/keymap.toml".text = ''
       # Yazi keymap config
     '';

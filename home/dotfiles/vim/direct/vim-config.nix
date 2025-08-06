@@ -67,7 +67,7 @@
         " 进入插入模式时关闭相对行号
         autocmd InsertEnter * :set norelativenumber
         autocmd InsertLeave * :set relativenumber
-        
+
         " 保存时自动删除行尾空格
         autocmd BufWritePre * :%s/\s\+$//e
     augroup END

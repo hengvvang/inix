@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.git.enable && config.myHome.dotfiles.git.method == "direct") {
-    
+
     home.file.".gitignore_global" = {
       text = ''
         # Git 全局忽略文件

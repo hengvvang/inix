@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.fish.enable && config.myHome.dotfiles.fish.method == "direct") {
-    
+
     home.file.".config/fish/config.fish" = {
       text = ''
         # Fish Shell 配置文件
@@ -53,7 +53,7 @@
         alias la='ls -A'
         alias l='ls -CF'
         alias grep='grep --color=auto'
-        
+
         # Git 别名
         alias g='git'
         alias gs='git status'
@@ -61,13 +61,13 @@
         alias gc='git commit'
         alias gp='git push'
         alias gl='git log --oneline'
-        
+
         # 系统别名
         alias df='df -h'
         alias du='du -h'
         alias free='free -h'
         alias ping='ping -c 5'
-        
+
         # Nix 别名
         alias rebuild='sudo nixos-rebuild switch'
         alias home-rebuild='home-manager switch'
@@ -123,7 +123,7 @@
             end
 
             set file $argv[1]
-            
+
             if not test -f "$file"
                 echo "Error: '$file' is not a valid file"
                 return 1

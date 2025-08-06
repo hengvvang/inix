@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.git.enable && config.myHome.dotfiles.git.method == "direct") {
-    
+
     home.file.".gitconfig" = {
       text = ''
         # Git 配置文件
@@ -77,29 +77,29 @@
             lga = log --oneline --graph --decorate --all
             ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
             ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-            
+
             # 状态和差异
             s = status -s
             d = diff
             dc = diff --cached
-            
+
             # 分支操作
             bd = branch -d
             bdd = branch -D
-            
+
             # 远程操作
             rao = remote add origin
             rso = remote set-url origin
-            
+
             # 快速提交
             ac = !git add -A && git commit -m
             acam = !git add -A && git commit --amend --no-edit
-            
+
             # 撤销操作
             undo = reset --soft HEAD^
             uncommit = reset --mixed HEAD~
             unstage = reset HEAD
-            
+
             # 清理操作
             cleanup = !git branch --merged | grep -v '\\*\\|master\\|main\\|develop' | xargs -n 1 git branch -d
 
@@ -143,12 +143,12 @@
     home.file.".gitmessage" = {
       text = ''
         # <类型>: <描述>
-        # 
+        #
         # 详细说明 (可选):
-        # 
+        #
         # 相关问题 (可选):
         # Fixes #issue_number
-        # 
+        #
         # 类型说明:
         # feat:     新功能
         # fix:      修复 bug

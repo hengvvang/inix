@@ -19,7 +19,7 @@
     grep = "grep --color=auto";
     fgrep = "fgrep --color=auto";
     egrep = "egrep --color=auto";
-    
+
     # Git 快捷命令
     g = "git";
     gs = "git status";
@@ -27,17 +27,17 @@
     gc = "git commit";
     gp = "git push";
     gl = "git log --oneline";
-    
+
     # 系统管理
     df = "df -h";
     du = "du -h";
     free = "free -h";
     ps = "ps aux";
-    
+
     # 网络工具
     ping = "ping -c 5";
     wget = "wget -c";
-    
+
     # Nix 快捷命令
     nix-shell = "nix-shell --run bash";
     rebuild = "sudo nixos-rebuild switch";

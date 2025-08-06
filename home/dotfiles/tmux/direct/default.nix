@@ -7,12 +7,12 @@ in
   imports = [
     ./tmux-config.nix
   ];
-  
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && 
+
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable &&
                     config.myHome.dotfiles.tmux.method == "direct") {
 
     home.packages = with pkgs; [ tmux ];
-    
+
     programs.tmux = {
       enable = true;
       package = pkgs.tmux;

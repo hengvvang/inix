@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "direct") {
-    
+
     home.file.".config/yazi/yazi.toml" = {
       text = ''
         # Yazi 文件管理器配置

@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.enable && config.myHome.dotfiles.lazygit.method == "direct") {
-    
+
     home.file.".config/lazygit/config.yml" = {
       text = ''
         # Lazygit 配置文件

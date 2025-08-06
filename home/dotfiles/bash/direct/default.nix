@@ -7,11 +7,11 @@ in
   imports = [
     ./bash-config.nix
   ];
-  
+
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.method == "direct") {
-    
+
     home.packages = with pkgs; [ bash ];
-    
+
     programs.bash = {
       enable = true;
       package = pkgs.bash;
