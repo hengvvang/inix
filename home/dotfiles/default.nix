@@ -26,5 +26,6 @@
     ./vscode
     ./zed
     ./rofi
+    ./sherlock
   ];
 }
