@@ -32,6 +32,10 @@
         starship.enable = true;
         qutebrowser.enable = false;
         obs-studio.enable = false;
+        sherlock = {
+            enable = true;
+            method = "external";
+        };
         zed = {
           enable = false;
           method = "external";

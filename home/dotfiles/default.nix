@@ -20,6 +20,7 @@
     ./git
     ./lazygit
     ./starship
+    ./sherlock
     ./qutebrowser
     ./obs-studio
     ./rmpc
