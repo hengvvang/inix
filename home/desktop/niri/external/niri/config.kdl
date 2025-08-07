@@ -7,13 +7,16 @@ spawn-at-startup "waybar"                    // 状态栏
 spawn-at-startup "swww-daemon"               // 壁纸服务
 spawn-at-startup "xwayland-satellite"       // Xwayland 支持
 spawn-at-startup "dunst"                     // 通知服务
-
-
 // === 带参数的启动命令 ===
 // spawn-at-startup "sh" "-c" "sleep 5 && firefox"  // 延迟启动
 // spawn-at-startup "gammastep" "-O" "4500"          // 带参数启动
 
 prefer-no-csd
+
+environment {
+    DISPLAY ":0"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
+}
 
 // 输入设备配置。
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Input
@@ -106,6 +109,9 @@ layout {
     // 设置窗口周围的间隙，以逻辑像素为单位
     gaps 6
 
+    // 新窗口的默认宽度
+    default-column-width { proportion 0.618; }
+
     // 改变焦点时何时将列居中，选项有：
     // - "never"，默认行为，聚焦屏幕外的列将保持在屏幕的左侧或右侧边缘。
     // - "always"，聚焦的列将始终居中。
@@ -138,11 +144,8 @@ layout {
         proportion 0.75
     }
 
-    // 新窗口的默认宽度
-    default-column-width { proportion 0.618; }
-
     focus-ring {
-        off
+        // off
         // 环宽度
         width 2
 

@@ -5,63 +5,44 @@
   "editor.lineHeight": 1.8,
   "editor.letterSpacing": 0.5,
   // 类型: number - 字符间距，轻微增加可提高可读性
-
   "editor.fontLigatures": true,
   // 类型: boolean - 启用字体连字，美化代码显示
-
   // 缩进和格式设置 (Indentation and Formatting) ,类型: number - Tab 键的空格数，2 空格更紧凑
   "editor.tabSize": 4,
-
   "editor.insertSpaces": true,
   // 类型: boolean - 使用空格而不是 Tab 字符
-
   "editor.detectIndentation": true,
   // 类型: boolean - 自动检测文件的缩进设置
-
   "editor.trimAutoWhitespace": true,
   // 类型: boolean - 自动修剪行尾空白字符
-
   // 视觉辅助设置 (Visual Aids)
   "editor.renderWhitespace": "boundary",
   // 类型: string - 空白字符显示方式，可选值: "none", "boundary", "selection", "trailing", "all"
-
   "editor.renderControlCharacters": true,
   // 类型: boolean - 显示控制字符
-
   "editor.renderLineHighlight": "all",
   // 类型: string - 当前行高亮方式，可选值: "none", "gutter", "line", "all"
-
   "editor.cursorBlinking": "smooth",
   // 类型: string - 光标闪烁动画，可选值: "blink", "smooth", "phase", "expand", "solid"
-
   "editor.cursorSmoothCaretAnimation": "on",
   // 类型: string - 光标平滑移动动画，可选值: "off", "explicit", "on"
-
   "editor.cursorWidth": 2,
   // 类型: number - 光标宽度
-
   // 代码折叠和缩略图 (Code Folding and Minimap)
   "editor.folding": true,
   // 类型: boolean - 启用代码折叠
-
   "editor.foldingStrategy": "indentation",
   // 类型: string - 折叠策略，可选值: "auto", "indentation"
-
   "editor.showFoldingControls": "mouseover",
   // 类型: string - 折叠控件显示时机，可选值: "always", "never", "mouseover"
-
   "editor.minimap.enabled": true,
   // 类型: boolean - 启用代码缩略图
-
   "editor.minimap.maxColumn": 120,
   // 类型: number - 缩略图最大列数
-
   "editor.minimap.renderCharacters": false,
   // 类型: boolean - 缩略图中渲染字符（false 提高性能）
-
   "editor.minimap.showSlider": "mouseover",
   // 类型: string - 缩略图滑块显示时机，可选值: "always", "mouseover"
-
   // 智能感知和建议 (IntelliSense and Suggestions)
   "editor.quickSuggestions": {
     "other": "on",
@@ -69,193 +50,139 @@
     "strings": "off"
   },
   // 类型: object|boolean - 快速建议设置
-
   "editor.quickSuggestionsDelay": 10,
   // 类型: number - 快速建议延迟时间（毫秒）
-
   "editor.suggestOnTriggerCharacters": true,
   // 类型: boolean - 在触发字符时显示建议
-
   "editor.acceptSuggestionOnCommitCharacter": true,
   // 类型: boolean - 在提交字符时接受建议
-
   "editor.acceptSuggestionOnEnter": "on",
   // 类型: string - Enter 键接受建议，可选值: "on", "smart", "off"
-
   "editor.suggest.insertMode": "insert",
   // 类型: string - 建议插入模式，可选值: "insert", "replace"
-
   "editor.suggest.filterGraceful": true,
   // 类型: boolean - 宽松的建议过滤
-
   "editor.suggest.localityBonus": true,
   // 类型: boolean - 本地性建议加权
-
   "editor.suggest.shareSuggestSelections": true,
   // 类型: boolean - 共享建议选择
-
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   // 类型: boolean - 代码片段是否阻止快速建议
-
   "editor.suggest.showKeywords": true,
   // 类型: boolean - 显示关键字建议
-
   "editor.suggest.showSnippets": true,
   // 类型: boolean - 显示代码片段建议
-
   // 自动补全和括号匹配 (Auto Completion and Bracket Matching)
   "editor.autoClosingBrackets": "languageDefined",
   // 类型: string - 自动闭合括号，可选值: "always", "languageDefined", "beforeWhitespace", "never"
-
   "editor.autoClosingQuotes": "languageDefined",
   // 类型: string - 自动闭合引号，可选值: "always", "languageDefined", "beforeWhitespace", "never"
-
   "editor.autoSurround": "languageDefined",
   // 类型: string - 自动包围选中文本，可选值: "languageDefined", "quotes", "brackets", "never"
-
   "editor.bracketPairColorization.enabled": true,
   // 类型: boolean - 启用括号对颜色化
-
   "editor.guides.bracketPairs": "active",
   // 类型: string - 括号对参考线，可选值: "active", "always", false
-
   "editor.guides.bracketPairsHorizontal": "active",
   // 类型: string - 水平括号对参考线，可选值: "active", "always", false
-
   // 代码格式化 (Code Formatting)
   "editor.formatOnSave": true,
   // 类型: boolean - 保存时自动格式化
-
   "editor.formatOnPaste": true,
   // 类型: boolean - 粘贴时自动格式化
-
   "editor.formatOnType": false,
   // 类型: boolean - 输入时自动格式化（可能影响性能）
-
   "editor.defaultFormatter": null,
   // 类型: string|null - 默认格式化工具
-
   // 单词换行和滚动 (Word Wrap and Scrolling)
   "editor.wordWrap": "bounded",
   // 类型: string - 自动换行，可选值: "off", "on", "wordWrapColumn", "bounded"
-
   "editor.wordWrapColumn": 120,
   // 类型: number - 换行列数
-
   "editor.wrappingIndent": "indent",
   // 类型: string - 换行缩进，可选值: "none", "same", "indent", "deepIndent"
-
   "editor.scrollBeyondLastLine": true,
   // 类型: boolean - 允许滚动超过最后一行
-
   "editor.smoothScrolling": true,
   // 类型: boolean - 平滑滚动
-
   // 选择和多光标 (Selection and Multi-cursor)
   "editor.multiCursorModifier": "ctrlCmd",
   // 类型: string - 多光标修饰键，可选值: "ctrlCmd", "alt"
-
   "editor.selectionHighlight": true,
   // 类型: boolean - 高亮选中的相同内容
-
   "editor.occurrencesHighlight": "singleFile",
   // 类型: string - 高亮出现次数，可选值: "off", "singleFile", "multiFile"
-
   // 搜索和查找 (Search and Find)
   "editor.find.autoFindInSelection": "never",
   // 类型: string - 自动在选择中查找，可选值: "never", "always", "multiline"
-
   "editor.find.seedSearchStringFromSelection": "always",
   // 类型: string - 从选择中获取搜索字符串，可选值: "never", "always", "selection"
-
   // 标尺和参考线 (Rulers and Guidelines)
-  "editor.rulers": [80, 120],
+  "editor.rulers": [
+    80,
+    120
+  ],
   // 类型: array - 标尺位置列表
-
   // 代码提示和悬停 (Code Hints and Hover)
   "editor.hover.enabled": true,
   // 类型: boolean - 启用悬停提示
-
   "editor.hover.delay": 300,
   // 类型: number - 悬停延迟时间（毫秒）
-
   "editor.hover.sticky": true,
   // 类型: boolean - 悬停提示粘性显示
-
   // "workbench.colorTheme": "Rosé Pine (no italics)",
   "workbench.colorTheme": "Dracula Theme",
   "workbench.iconTheme": "vscode-great-icons",
   // "workbench.productIconTheme": "fluent-icons",
-
   // 界面布局 (Interface Layout)
   "workbench.activityBar.location": "default",
   // 类型: string - 活动栏位置，可选值: "default", "top", "bottom", "hidden"
   "workbench.sideBar.location": "left",
   // 类型: string - 侧边栏位置，可选值: "left", "right"
-
   "workbench.panel.defaultLocation": "bottom",
   // 类型: string - 面板默认位置，可选值: "bottom", "right", "left"
-
   "workbench.statusBar.visible": true,
   // 类型: boolean - 显示状态栏
-
   "workbench.editor.showTabs": "multiple",
   // 类型: string - 显示标签页，可选值: "multiple", "single", "none"
-
   "workbench.editor.tabCloseButton": "right",
   // 类型: string - 标签页关闭按钮位置，可选值: "left", "right", "off"
-
   "workbench.editor.tabSizing": "fit",
   // 类型: string - 标签页大小，可选值: "fit", "shrink", "fixed"
-
   "workbench.editor.wrapTabs": false,
   // 类型: boolean - 标签页换行
-
   // 启动和欢迎 (Startup and Welcome)
   "workbench.startupEditor": "welcomePageInEmptyWorkbench",
   // 类型: string - 启动编辑器，可选值: "none", "welcomePage", "readme", "newUntitledFile", "welcomePageInEmptyWorkbench"
-
   "workbench.tips.enabled": true,
   // 类型: boolean - 显示提示
-
   // 编辑器组和分割 (Editor Groups and Splitting)
   "workbench.editor.splitInGroupLayout": "horizontal",
   // 类型: string - 组内分割布局，可选值: "vertical", "horizontal"
-
   "workbench.editor.focusRecentEditorAfterClose": true,
   // 类型: boolean - 关闭后聚焦最近的编辑器
-
   // 通知和对话框 (Notifications and Dialogs)
   "workbench.hover.delay": 1500,
   // 类型: number - 悬停延迟时间
-
   // ===========================
   // 文件和搜索设置 (Files and Search)
   // ===========================
-
   // 文件操作 (File Operations)
   "files.autoSave": "onFocusChange",
   // 类型: string - 自动保存，可选值: "off", "afterDelay", "onFocusChange", "onWindowChange"
-
   "files.autoSaveDelay": 1000,
   // 类型: number - 自动保存延迟时间（毫秒）
-
   "files.trimTrailingWhitespace": true,
   // 类型: boolean - 保存时修剪尾随空白
-
   "files.trimFinalNewlines": true,
   // 类型: boolean - 修剪文件末尾的空行
-
   "files.insertFinalNewline": true,
   // 类型: boolean - 文件末尾插入新行
-
   // 文件编码 (File Encoding)
   "files.encoding": "utf8",
   // 类型: string - 文件编码
-
   "files.eol": "\n",
   // 类型: string - 行结束符，可选值: "\n", "\r\n", "auto"
-
   // 文件监视 (File Watching)
   "files.watcherExclude": {
     "**/.git/objects/**": true,
@@ -267,7 +194,6 @@
     "**/dist/**": true
   },
   // 类型: object - 文件监视排除模式
-
   // 文件关联 (File Associations)
   "files.associations": {
     "*.env": "dotenv",
@@ -277,7 +203,6 @@
     "*.nix": "nix"
   },
   // 类型: object - 文件类型关联
-
   // 搜索设置 (Search Settings)
   "search.exclude": {
     "**/node_modules": true,
@@ -294,163 +219,116 @@
     "**/Thumbs.db": true
   },
   // 类型: object - 搜索排除模式
-
   "search.followSymlinks": false,
   // 类型: boolean - 跟随符号链接
-
   "search.smartCase": false,
   // 类型: boolean - 智能大小写匹配
-
   "search.globalFindClipboard": false,
   // 类型: boolean - 全局查找剪贴板
-
   // ===========================
   // 终端设置 (Terminal Settings)
   // ===========================
-
   // 终端外观 (Terminal Appearance)
   "terminal.integrated.fontSize": 14,
   // 类型: number - 终端字体大小
-
   "terminal.integrated.fontFamily": "'LXGW WenKai Mono','JetBrains Mono', 'monospace', 'Consolas'",
   // 类型: string - 终端字体系列
-
   "terminal.integrated.lineHeight": 1.4,
   // 类型: number - 终端行高
-
   "terminal.integrated.cursorBlinking": true,
   // 类型: boolean - 终端光标闪烁
-
   "terminal.integrated.cursorStyle": "block",
   // 类型: string - 终端光标样式，可选值: "block", "underline", "line"
-
   // 终端行为 (Terminal Behavior)
   "terminal.integrated.copyOnSelection": true,
   // 类型: boolean - 选择时复制
-
   "terminal.integrated.rightClickBehavior": "default",
   // 类型: string - 右键行为，可选值: "default", "copyPaste", "paste", "selectWord", "nothing"
-
   "terminal.integrated.confirmOnExit": "hasChildProcesses",
   // 类型: string - 退出确认，可选值: "never", "always", "hasChildProcesses"
-
   "terminal.integrated.enableVisualBell": false,
   // 类型: boolean - 启用视觉响铃
-
   "accessibility.signals.terminalBell": {
     "sound": "off"
   },
   // 类型: object - 终端响铃信号
-
   "terminal.integrated.scrollback": 10000,
   // 类型: number - 滚动缓冲区大小
-
   // 终端 Shell (Terminal Shell)
   "terminal.integrated.defaultProfile.linux": "fish",
   // 类型: string - Linux 默认终端配置文件
-
   // ===========================
   // 调试设置 (Debug Settings)
   // ===========================
-
   "debug.console.fontSize": 14,
   // 类型: number - 调试控制台字体大小
-
   "debug.console.fontFamily": "'LXGW WenKai Mono','JetBrains Mono', 'monospace', 'Consolas'",
   // 类型: string - 调试控制台字体
-
   "debug.inlineValues": "auto",
   // 类型: string - 内联值显示，可选值: "on", "off", "auto"
-
   "debug.openDebug": "openOnDebugBreak",
   // 类型: string - 调试时打开，可选值: "neverOpen", "openOnSessionStart", "openOnFirstSessionStart", "openOnDebugBreak"
-
   // ===========================
   // Git 和版本控制 (Git and SCM)
   // ===========================
-
   "git.enableSmartCommit": true,
   // 类型: boolean - 启用智能提交
-
   "git.confirmSync": false,
   // 类型: boolean - 同步确认
-
   "git.autofetch": true,
   // 类型: boolean - 自动获取
-
   "git.autofetchPeriod": 180,
   // 类型: number - 自动获取周期（秒）
-
   "git.openRepositoryInParentFolders": "always",
   // 类型: string - 在父文件夹中打开仓库，可选值: "always", "never", "prompt"
-
   "git.decorations.enabled": true,
   // 类型: boolean - 启用 Git 装饰
-
   "scm.diffDecorations": "all",
   // 类型: string - 差异装饰，可选值: "all", "gutter", "overview", "minimap", "none"
-
   "scm.diffDecorationsGutterWidth": 3,
   // 类型: number - 差异装饰边距宽度
-
   // ===========================
   // 扩展设置 (Extensions Settings)
   // ===========================
-
   "extensions.autoUpdate": true,
   // 类型: boolean - 自动更新扩展
-
   "extensions.autoCheckUpdates": true,
   // 类型: boolean - 自动检查更新
-
   "extensions.ignoreRecommendations": false,
   // 类型: boolean - 忽略推荐扩展
-
   // ===========================
   // 安全和隐私 (Security and Privacy)
   // ===========================
-
   "security.workspace.trust.untrustedFiles": "prompt",
   // 类型: string - 不受信任文件处理，可选值: "prompt", "open", "newWindow"
-
   "security.workspace.trust.enabled": true,
   // 类型: boolean - 启用工作区信任
-
   "telemetry.telemetryLevel": "off",
   // 类型: string - 遥测级别，可选值: "all", "error", "crash", "off"
-
   // ===========================
   // 可访问性 (Accessibility)
   // ===========================
-
   "accessibility.signals.lineHasBreakpoint": {
     "sound": "auto"
   },
   // 类型: object - 断点行信号
-
   "accessibility.signals.lineHasError": {
     "sound": "auto"
   },
   // 类型: object - 错误行信号
-
   "accessibility.signals.lineHasFoldedArea": {
     "sound": "auto"
   },
   // 类型: object - 折叠区域信号
-
   // ===========================
   // 性能优化 (Performance Optimization)
   // ===========================
-
   "search.collapseResults": "auto",
   // 类型: string - 折叠搜索结果，可选值: "auto", "alwaysCollapse", "alwaysExpand"
-
   "editor.semanticTokenColorCustomizations": {},
   // 类型: object - 语义标记颜色自定义
-
   "typescript.preferences.includePackageJsonAutoImports": "auto",
   // 类型: string - TypeScript 自动导入偏好
-
   // Python 设置
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff",
@@ -461,7 +339,6 @@
     "editor.tabSize": 4,
     "editor.insertSpaces": true
   },
-
   // JavaScript/TypeScript 设置
   "[javascript]": {
     "editor.defaultFormatter": null,
@@ -471,7 +348,6 @@
       "source.organizeImports": "explicit"
     }
   },
-
   "[typescript]": {
     "editor.defaultFormatter": null,
     "editor.formatOnSave": true,
@@ -480,7 +356,6 @@
       "source.organizeImports": "explicit"
     }
   },
-
   // JSON 设置
   "[json]": {
     "editor.defaultFormatter": "vscode.json-language-features",
@@ -489,14 +364,12 @@
     },
     "editor.suggest.insertMode": "replace"
   },
-
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features",
     "editor.quickSuggestions": {
       "strings": true
     }
   },
-
   // Markdown 设置
   "[markdown]": {
     "editor.wordWrap": "on",
@@ -508,42 +381,35 @@
     "editor.minimap.enabled": false,
     "editor.renderWhitespace": "all"
   },
-
   // HTML/CSS 设置
   "[html]": {
     "editor.defaultFormatter": "vscode.html-language-features",
     "editor.suggest.insertMode": "replace"
   },
-
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features",
     "editor.suggest.insertMode": "replace"
   },
-
   // Rust 设置
   "[rust]": {
     "editor.defaultFormatter": "rust-lang.rust-analyzer",
     "editor.formatOnSave": true,
     "editor.semanticHighlighting.enabled": true
   },
-
   // C/C++ 设置
   "[c]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "editor.tabSize": 4
   },
-
   "[cpp]": {
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "editor.tabSize": 4
   },
-
   // Nix 设置
   "[nix]": {
     "editor.tabSize": 2,
     "editor.insertSpaces": true
   },
-
   // Prettier 设置
   "prettier.singleQuote": true,
   "prettier.semi": true,
@@ -551,7 +417,6 @@
   "prettier.useTabs": false,
   "prettier.printWidth": 100,
   "prettier.trailingComma": "es5",
-
   // Copilot 设置
   "github.copilot.enable": {
     "*": true,
@@ -559,49 +424,34 @@
     "plaintext": false,
     "markdown": true
   },
-
   "editor.inlineSuggest.enabled": true,
   // 类型: boolean - 启用内联建议（GitHub Copilot 等）
-
   "editor.unicodeHighlight.ambiguousCharacters": true,
   // 类型: boolean - 高亮模糊的 Unicode 字符
-
   "editor.unicodeHighlight.invisibleCharacters": true,
   // 类型: boolean - 高亮不可见的 Unicode 字符
-
   "window.zoomLevel": 0,
   // 类型: number - 窗口缩放级别
-
   "window.restoreWindows": "all",
   // 类型: string - 重启后恢复窗口，可选值: "all", "folders", "one", "none"
-
   "window.title": "${dirty}${activeEditorShort}${separator}${rootName}${separator}${appName}",
   // 类型: string - 窗口标题格式
-
   "breadcrumbs.enabled": true,
   // 类型: boolean - 启用面包屑导航
-
   "breadcrumbs.showFiles": true,
   // 类型: boolean - 面包屑中显示文件
-
   "breadcrumbs.showSymbols": true,
   // 类型: boolean - 面包屑中显示符号
-
   "problems.decorations.enabled": true,
   // 类型: boolean - 启用问题装饰
-
   "outline.showFiles": false,
   // 类型: boolean - 大纲中显示文件
-
   "outline.showModules": true,
   // 类型: boolean - 大纲中显示模块
-
   "diffEditor.ignoreTrimWhitespace": false,
   // 类型: boolean - 差异编辑器忽略空白修剪
-
   "diffEditor.renderSideBySide": true,
   // 类型: boolean - 差异编辑器并排显示
-
   "merge-conflict.autoNavigateNextConflict.enabled": true,
   "workbench.editor.tabActionLocation": "right",
 }
