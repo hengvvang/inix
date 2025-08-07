@@ -145,7 +145,7 @@ layout {
     }
 
     focus-ring {
-        // off
+        off
         // 环宽度
         width 2
 
@@ -537,6 +537,7 @@ binds {
     // 运行程序的建议绑定：终端、应用启动器、屏幕锁定器。
     Mod+Return hotkey-overlay-title="打开终端：rio" { spawn "rio"; }
     Mod+Slash hotkey-overlay-title="运行应用程序：rofi" { spawn "rofi" "-show" "drun"; }
+    Mod+B hotkey-overlay-title="运行应用程序：rofi" { spawn "zen"; }
     Mod+Alt+Escape hotkey-overlay-title="锁定屏幕：swaylock" { spawn "swaylock"; }
     Mod+Ctrl+Escape hotkey-overlay-title="电源菜单：wlogout" { spawn "wlogout"; }
 
