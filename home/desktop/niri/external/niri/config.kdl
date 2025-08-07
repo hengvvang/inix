@@ -1,13 +1,16 @@
 // 此配置使用 KDL 格式：https://kdl.dev
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
-// === 系统服务 ===
+// === 开机启动服务 ===
 spawn-at-startup "waybar"                    // 状态栏
-// spawn-at-startup "ironbar"               // 替代状态栏
+// spawn-at-startup "ironbar"               // 另一个状态栏
 spawn-at-startup "swww-daemon"               // 壁纸服务
-spawn-at-startup "xwayland-satellite"       // Xwayland 支持
+// spawn-at-startup "swaybg"               //另一个壁纸服务
 spawn-at-startup "dunst"                     // 通知服务
-// === 带参数的启动命令 ===
+// spawn-at-startup "mako"                     // 另一个通知服务
+spawn-at-startup "xwayland-satellite"       // Xwayland 支持
+// -- 带参数的启动命令 --
+spawn-at-startup "niri" "msg" "action" "focus-workspace" "2"      // 开机切换到工作区2
 // spawn-at-startup "sh" "-c" "sleep 5 && firefox"  // 延迟启动
 // spawn-at-startup "gammastep" "-O" "4500"          // 带参数启动
 
@@ -18,20 +21,17 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
-// 输入设备配置。
-// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
 input {
     keyboard {
         xkb {
             layout "us,cn"
-            options "grp:win_space_toggle,compose:ralt"
+            options "grp:win_space_toggle"
+            // options "grp:win_space_toggle,compose:ralt"
         }
         // 启动时启用数字锁，省略此设置将禁用它。
         numlock
     }
 
-    // 下面的部分包含 libinput 设置。
-    // 省略设置会禁用它们，或保持默认值。
     touchpad {
         // off
         tap
@@ -70,7 +70,7 @@ input {
 
     // 当鼠标移入窗口和输出时自动聚焦它们。
     // 设置 max-scroll-amount="0%" 使其仅在已完全显示在屏幕上的窗口上工作。
-    //focus-follows-mouse max-scroll-amount="0%"
+    // focus-follows-mouse max-scroll-amount="40%"  // 仅在另一个窗口大于40%时聚焦
 }
 
 // 您可以通过名称配置输出，您可以通过在 niri 实例内运行 `niri msg outputs` 来找到名称。
@@ -226,12 +226,11 @@ layout {
         gradient from="#007AFF80" to="#5AC8FA80" angle=45 relative-to="workspace-view"
     }
 
-    // Struts 配置保持不变
     struts {
-        // left 64
-        // right 64
-        // top 64
-        // bottom 64
+        left 1
+        right 1
+        top 1
+        bottom 1
     }
 }
 
