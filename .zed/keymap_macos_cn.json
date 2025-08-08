@@ -1,0 +1,1370 @@
+[
+  // 标准 macOS 绑定（详细注释版）
+  {
+    "use_key_equivalents": true,
+    "bindings": {
+      "f4": "debugger::Start", // 启动调试器（使用当前配置）
+      "shift-f5": "debugger::Stop", // 停止调试会话
+      "shift-cmd-f5": "debugger::RerunSession", // 重新运行当前调试会话
+      "f6": "debugger::Pause", // 暂停调试中的程序
+      "f7": "debugger::StepOver", // 单步跳过（不进入函数）
+      "ctrl-f11": "debugger::StepInto", // 单步进入（进入函数内部）
+      "shift-f11": "debugger::StepOut", // 单步跳出（返回调用处）
+      "home": "menu::SelectFirst", // 在菜单/选择器中选中第一项
+      "shift-pageup": "menu::SelectFirst", // 快速跳到第一项并选中
+      "pageup": "menu::SelectFirst", // 跳到第一项并选中
+      "cmd-up": "menu::SelectFirst", // 使用 Cmd+↑ 跳到第一项并选中
+      "end": "menu::SelectLast", // 在菜单/选择器中选中最后一项
+      "shift-pagedown": "menu::SelectLast", // 快速跳到最后一项并选中
+      "pagedown": "menu::SelectLast", // 跳到最后一项并选中
+      "cmd-down": "menu::SelectLast", // 使用 Cmd+↓ 跳到最后一项并选中
+      "tab": "menu::SelectNext", // 在菜单/选择器中选中下一项
+      "ctrl-n": "menu::SelectNext", // 选择下一项（Emacs 风格）
+      "down": "menu::SelectNext", // 下移选择
+      "shift-tab": "menu::SelectPrevious", // 在菜单/选择器中选中上一项
+      "ctrl-p": "menu::SelectPrevious", // 选择上一项（Emacs 风格）
+      "up": "menu::SelectPrevious", // 上移选择
+      "enter": "menu::Confirm", // 对当前选项执行主确认动作
+      "ctrl-enter": "menu::SecondaryConfirm", // 对当前选项执行次确认动作
+      "cmd-enter": "menu::SecondaryConfirm", // 次确认（通常为“在侧边打开”等）
+      "cmd-escape": "menu::Cancel", // 取消并关闭当前菜单/对话/选择器
+      "ctrl-escape": "menu::Cancel", // 取消（备用）
+      "ctrl-c": "menu::Cancel", // 取消（备用）
+      "escape": "menu::Cancel", // 取消（标准）
+      "alt-shift-enter": "menu::Restart", // 重新开始当前菜单/选择流程（重置输入与状态）
+      "cmd-shift-w": "workspace::CloseWindow", // 关闭当前 Zed 窗口
+      "shift-escape": "workspace::ToggleZoom", // 切换工作区放大/还原
+      "cmd-o": "workspace::Open", // 打开文件/项目
+      "cmd-=": ["zed::IncreaseBufferFontSize", { "persist": false }], // 增大编辑器字体（临时）
+      "cmd-+": ["zed::IncreaseBufferFontSize", { "persist": false }], // 增大编辑器字体（临时）
+      "cmd--": ["zed::DecreaseBufferFontSize", { "persist": false }], // 减小编辑器字体（临时）
+      "cmd-0": ["zed::ResetBufferFontSize", { "persist": false }], // 重置编辑器字体大小（临时）
+      "cmd-,": "zed::OpenSettings", // 打开设置
+      "cmd-q": "zed::Quit", // 退出 Zed
+      "cmd-h": "zed::Hide", // 隐藏 Zed
+      "alt-cmd-h": "zed::HideOthers", // 隐藏其他应用
+      "cmd-m": "zed::Minimize", // 最小化窗口
+      "fn-f": "zed::ToggleFullScreen", // 切换全屏（Fn+F）
+      "ctrl-cmd-f": "zed::ToggleFullScreen", // 切换全屏（标准 macOS 快捷）
+      "ctrl-cmd-z": "edit_prediction::RateCompletions", // 评估编辑预测（反馈质量）
+      "ctrl-cmd-i": "edit_prediction::ToggleMenu", // 打开/关闭编辑预测菜单
+      "ctrl-cmd-l": "lsp_tool::ToggleMenu" // 打开/关闭 LSP 工具菜单
+    }
+  },
+
+  // 编辑器通用（详细注释）
+  {
+    "context": "Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "editor::Cancel", // 取消编辑器中的临时模式（悬浮、选择、菜单等）
+      "shift-backspace": "editor::Backspace", // 向后删除一个字符（等价 Backspace）
+      "ctrl-h": "editor::Backspace", // 向后删除（Emacs 风格）
+      "backspace": "editor::Backspace", // 向后删除字符/删除选区
+      "ctrl-d": "editor::Delete", // 向前删除一个字符（Emacs 风格）
+      "delete": "editor::Delete", // 向前删除字符/删除选区
+      "tab": "editor::Tab", // 插入制表/前进片段（按上下文）
+      "shift-tab": "editor::Backtab", // 反缩进（减少缩进）
+      "ctrl-t": "editor::Transpose", // 交换光标左右字符（Transpose）
+      "ctrl-k": "editor::KillRingCut", // 从光标到行尾剪切到 Kill Ring（Emacs 风格）
+      "ctrl-y": "editor::KillRingYank", // 从 Kill Ring 粘贴（Emacs 风格）
+      "cmd-k cmd-q": "editor::Rewrap", // 重新换行当前段落/选区（按列宽重排）
+      "cmd-k q": "editor::Rewrap", // 同上（快捷序列变体）
+      "cmd-backspace": "editor::DeleteToBeginningOfLine", // 删除到行首（含行首空白）
+      "cmd-delete": "editor::DeleteToEndOfLine", // 删除到行尾（不含换行）
+      "alt-backspace": "editor::DeleteToPreviousWordStart", // 删除到上一个单词起始
+      "ctrl-w": "editor::DeleteToPreviousWordStart", // 删除到上一个单词起始（Emacs 风格）
+      "alt-delete": "editor::DeleteToNextWordEnd", // 删除到下一个单词末尾
+      "cmd-x": "editor::Cut", // 剪切
+      "cmd-c": "editor::Copy", // 复制
+      "cmd-v": "editor::Paste", // 粘贴
+      "cmd-z": "editor::Undo", // 撤销
+      "cmd-shift-z": "editor::Redo", // 重做
+      "up": "editor::MoveUp", // 光标上移一行
+      "ctrl-up": "editor::MoveToStartOfParagraph", // 移动到段落开头
+      "pageup": "editor::MovePageUp", // 光标上翻一页
+      "shift-pageup": "editor::SelectPageUp", // 向上按页扩展选择
+      "cmd-pageup": "editor::PageUp", // 视图上翻一页（不移动光标）
+      "ctrl-pageup": "editor::LineUp", // 视图上移一行（保持光标相对位置）
+      "down": "editor::MoveDown", // 光标下移一行
+      "ctrl-down": "editor::MoveToEndOfParagraph", // 移动到段落末尾
+      "pagedown": "editor::MovePageDown", // 光标下翻一页
+      "shift-pagedown": "editor::SelectPageDown", // 向下按页扩展选择
+      "cmd-pagedown": "editor::PageDown", // 视图下翻一页（不移动光标）
+      "ctrl-pagedown": "editor::LineDown", // 视图下移一行
+      "ctrl-p": "editor::MoveUp", // 上移（Emacs 风格）
+      "ctrl-n": "editor::MoveDown", // 下移（Emacs 风格）
+      "ctrl-b": "editor::MoveLeft", // 左移（Emacs 风格）
+      "left": "editor::MoveLeft", // 光标左移一个字符
+      "ctrl-f": "editor::MoveRight", // 右移（Emacs 风格）
+      "right": "editor::MoveRight", // 光标右移一个字符
+      "ctrl-l": "editor::ScrollCursorCenter", // 将光标滚动到视图中央
+      "alt-left": "editor::MoveToPreviousWordStart", // 移动到上一个单词的起始
+      "alt-right": "editor::MoveToNextWordEnd", // 移动到下一个单词的末尾
+      "cmd-left": ["editor::MoveToBeginningOfLine", { "stop_at_soft_wraps": true, "stop_at_indent": true }], // 到行首（优先缩进，软换行考虑可视行首）
+      "ctrl-a": ["editor::MoveToBeginningOfLine", { "stop_at_soft_wraps": false, "stop_at_indent": true }], // 到行首（不考虑软换行，可到缩进起点）
+      "home": ["editor::MoveToBeginningOfLine", { "stop_at_soft_wraps": true, "stop_at_indent": true }], // 到行首（与 cmd-left 类似）
+      "cmd-right": ["editor::MoveToEndOfLine", { "stop_at_soft_wraps": true }], // 到行尾（考虑软换行的可视行尾）
+      "ctrl-e": ["editor::MoveToEndOfLine", { "stop_at_soft_wraps": false }], // 到行尾（忽略软换行）
+      "end": ["editor::MoveToEndOfLine", { "stop_at_soft_wraps": true }], // 到行尾（考虑软换行）
+      "cmd-up": "editor::MoveToBeginning", // 到文档开头
+      "cmd-down": "editor::MoveToEnd", // 到文档末尾
+      "cmd-home": "editor::MoveToBeginning", // 通过 cmd+fn+← 输入：到文档开头
+      "cmd-end": "editor::MoveToEnd", // 通过 cmd+fn+→ 输入：到文档末尾
+      "shift-up": "editor::SelectUp", // 向上扩展选择
+      "ctrl-shift-p": "editor::SelectUp", // 向上扩展选择（Emacs 风格）
+      "shift-down": "editor::SelectDown", // 向下扩展选择
+      "ctrl-shift-n": "editor::SelectDown", // 向下扩展选择（Emacs 风格）
+      "shift-left": "editor::SelectLeft", // 向左扩展选择
+      "ctrl-shift-b": "editor::SelectLeft", // 向左扩展选择（Emacs 风格）
+      "shift-right": "editor::SelectRight", // 向右扩展选择
+      "ctrl-shift-f": "editor::SelectRight", // 向右扩展选择（Emacs 风格）
+      "alt-shift-left": "editor::SelectToPreviousWordStart", // 选择到上一个单词起始
+      "alt-shift-right": "editor::SelectToNextWordEnd", // 选择到下一个单词末尾
+      "ctrl-shift-up": "editor::SelectToStartOfParagraph", // 选择到段落开头
+      "ctrl-shift-down": "editor::SelectToEndOfParagraph", // 选择到段落末尾
+      "cmd-shift-up": "editor::SelectToBeginning", // 选择到文档开头
+      "cmd-shift-down": "editor::SelectToEnd", // 选择到文档末尾
+      "cmd-a": "editor::SelectAll", // 全选
+      "cmd-l": "editor::SelectLine", // 选择整行（可重复）
+      "cmd-shift-i": "editor::Format", // 格式化文档/选区
+      "alt-shift-o": "editor::OrganizeImports", // 组织/排序/去重导入
+      "cmd-shift-left": ["editor::SelectToBeginningOfLine", { "stop_at_soft_wraps": true, "stop_at_indent": true }], // 选择到行首（考虑缩进/软换行）
+      "shift-home": ["editor::SelectToBeginningOfLine", { "stop_at_soft_wraps": true, "stop_at_indent": true }], // 同上
+      "ctrl-shift-a": ["editor::SelectToBeginningOfLine", { "stop_at_soft_wraps": true, "stop_at_indent": true }], // 同上（Emacs 风格）
+      "cmd-shift-right": ["editor::SelectToEndOfLine", { "stop_at_soft_wraps": true }], // 选择到行尾（考虑软换行）
+      "shift-end": ["editor::SelectToEndOfLine", { "stop_at_soft_wraps": true }], // 同上
+      "ctrl-shift-e": ["editor::SelectToEndOfLine", { "stop_at_soft_wraps": true }], // 同上（Emacs 风格）
+      "ctrl-v": ["editor::MovePageDown", { "center_cursor": true }], // 向下翻页并居中光标（Emacs 风格）
+      "ctrl-shift-v": ["editor::MovePageUp", { "center_cursor": true }], // 向上翻页并居中光标（Emacs 风格）
+      "ctrl-cmd-space": "editor::ShowCharacterPalette", // 打开字符面板（特殊符号/表情）
+      "cmd-;": "editor::ToggleLineNumbers", // 显示/隐藏行号
+      "cmd-'": "editor::ToggleSelectedDiffHunks", // 切换选中差异块的折叠/展开
+      "cmd-\"": "editor::ExpandAllDiffHunks", // 展开所有差异区块
+      "cmd-alt-g b": "git::Blame", // 打开 Git Blame（查看行级提交信息）
+      "cmd-alt-g m": "git::OpenModifiedFiles", // 打开已修改文件列表
+      "cmd-i": "editor::ShowSignatureHelp", // 显示函数签名/参数提示
+      "f9": "editor::ToggleBreakpoint", // 切换断点（设置/移除）
+      "shift-f9": "editor::EditLogBreakpoint", // 配置日志断点（到达时记录日志）
+      "ctrl-f12": "editor::GoToDeclaration", // 跳转到声明
+      "alt-ctrl-f12": "editor::GoToDeclarationSplit", // 在分屏中打开声明
+      "ctrl-cmd-e": "editor::ToggleEditPrediction" // 显示/隐藏编辑预测
+    }
+  },
+
+  // 编辑器（完整模式）
+  {
+    "context": "Editor && mode == full",
+    "use_key_equivalents": true,
+    "bindings": {
+      "shift-enter": "editor::Newline", // 插入换行（避免触发提交）
+      "enter": "editor::Newline", // 插入换行
+      "cmd-enter": "editor::NewlineBelow", // 在当前行下方插入新行
+      "cmd-shift-enter": "editor::NewlineAbove", // 在当前行上方插入新行
+      "cmd-k z": "editor::ToggleSoftWrap", // 切换软换行
+      "cmd-f": "buffer_search::Deploy", // 打开查找
+      "cmd-alt-f": "buffer_search::DeployReplace", // 打开查找并启用替换
+      "cmd-alt-l": ["buffer_search::Deploy", { "selection_search_enabled": true }], // 以当前选区作为查询内容进行查找
+      "cmd-e": ["buffer_search::Deploy", { "focus": false }], // 打开查找但不聚焦输入框（便于立即导航）
+      "cmd->": "assistant::QuoteSelection", // 将选中文本引用到 AI 助手
+      "cmd-<": "assistant::InsertIntoEditor", // 将 AI 助手内容插入到编辑器
+      "cmd-alt-e": "editor::SelectEnclosingSymbol", // 选择包裹当前的语法符号（如函数/块）
+      "alt-enter": "editor::OpenSelectionsInMultibuffer" // 将选区在多缓冲视图中打开（并行查看）
+    }
+  },
+
+  // 编辑器多缓冲（多摘录导航）
+  {
+    "context": "Editor && multibuffer",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-up": "editor::MoveToStartOfExcerpt", // 跳到当前摘录开头
+      "cmd-down": "editor::MoveToStartOfNextExcerpt", // 跳到下个摘录开头
+      "cmd-shift-up": "editor::SelectToStartOfExcerpt", // 选择到当前摘录开头
+      "cmd-shift-down": "editor::SelectToStartOfNextExcerpt" // 选择到下个摘录开头
+    }
+  },
+
+  // 编辑预测相关
+  {
+    "context": "Editor && mode == full && edit_prediction",
+    "use_key_equivalents": true,
+    "bindings": {
+      "alt-tab": "editor::NextEditPrediction", // 切换到下一条编辑预测
+      "alt-shift-tab": "editor::PreviousEditPrediction" // 切换到上一条编辑预测
+    }
+  },
+  {
+    "context": "Editor && !edit_prediction",
+    "use_key_equivalents": true,
+    "bindings": {
+      "alt-tab": "editor::ShowEditPrediction" // 显示编辑预测
+    }
+  },
+
+  // 自动高度输入框（如小编辑器）
+  {
+    "context": "Editor && mode == auto_height",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-enter": "editor::Newline", // 插入换行（不触发提交）
+      "shift-enter": "editor::Newline", // 插入换行
+      "ctrl-shift-enter": "editor::NewlineBelow" // 在下方插入一行
+    }
+  },
+
+  // Markdown
+  {
+    "context": "Markdown",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-c": "markdown::Copy" // 复制选中的 Markdown 文本
+    }
+  },
+
+  // Jupyter/REPL
+  {
+    "context": "Editor && jupyter && !ContextEditor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-shift-enter": "repl::Run", // 运行当前单元并跳至下一单元
+      "ctrl-alt-enter": "repl::RunInPlace" // 就地运行当前单元
+    }
+  },
+
+  // 编辑器内 Git 操作（非 agent_diff）
+  {
+    "context": "Editor && !agent_diff",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-alt-z": "git::Restore", // 恢复变更（丢弃对当前文件的修改）
+      "cmd-alt-y": "git::ToggleStaged", // 切换暂存状态（暂存/取消暂存）
+      "cmd-y": "git::StageAndNext", // 暂存当前并跳到下一个变更
+      "cmd-shift-y": "git::UnstageAndNext" // 取消暂存并跳到下一个变更
+    }
+  },
+
+  // AgentDiff 独立视图
+  {
+    "context": "AgentDiff",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-y": "agent::Keep", // 保留当前变更
+      "cmd-n": "agent::Reject", // 拒绝当前变更
+      "cmd-shift-y": "agent::KeepAll", // 保留全部
+      "cmd-shift-n": "agent::RejectAll" // 拒绝全部
+    }
+  },
+
+  // 编辑器中嵌入的 agent diff
+  {
+    "context": "Editor && editor_agent_diff",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-y": "agent::Keep", // 保留
+      "cmd-n": "agent::Reject", // 拒绝
+      "cmd-shift-y": "agent::KeepAll", // 全部保留
+      "cmd-shift-n": "agent::RejectAll", // 全部拒绝
+      "shift-ctrl-r": "agent::OpenAgentDiff" // 打开 Agent 差异视图
+    }
+  },
+
+  // 上下文编辑器（AI 面板内的编辑器）
+  {
+    "context": "ContextEditor > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-enter": "assistant::Assist", // 触发助手执行（运行提示）
+      "cmd-s": "workspace::Save", // 保存
+      "cmd-<": "assistant::InsertIntoEditor", // 从助手插入内容到编辑器
+      "shift-enter": "assistant::Split", // 将当前消息拆分（如分步执行）
+      "ctrl-r": "assistant::CycleMessageRole", // 切换消息角色（user/system/assistant）
+      "enter": "assistant::ConfirmCommand", // 确认命令（在提示上下文）
+      "alt-enter": "editor::Newline", // 插入新行（不提交）
+      "cmd-k c": "assistant::CopyCode", // 复制助手消息中的代码块
+      "cmd-g": "search::SelectNextMatch", // 选中下一个匹配（在搜索结果中）
+      "cmd-shift-g": "search::SelectPreviousMatch", // 选中上一个匹配
+      "cmd-k l": "agent::OpenRulesLibrary" // 打开规则库
+    }
+  },
+
+  // Agent 面板
+  {
+    "context": "AgentPanel",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-n": "agent::NewThread", // 新建对话线程
+      "cmd-alt-n": "agent::NewTextThread", // 新建纯文本线程
+      "cmd-shift-h": "agent::OpenHistory", // 打开历史
+      "cmd-alt-c": "agent::OpenSettings", // 打开助手设置
+      "cmd-alt-p": "agent::OpenRulesLibrary", // 打开规则库
+      "cmd-i": "agent::ToggleProfileSelector", // 切换档案选择器
+      "cmd-alt-/": "agent::ToggleModelSelector", // 切换模型选择器
+      "cmd-shift-a": "agent::ToggleContextPicker", // 切换上下文选择器
+      "cmd-shift-j": "agent::ToggleNavigationMenu", // 切换导航菜单
+      "cmd-shift-i": "agent::ToggleOptionsMenu", // 切换选项菜单
+      "shift-alt-escape": "agent::ExpandMessageEditor", // 展开消息编辑器
+      "cmd->": "assistant::QuoteSelection", // 引用选区到助手
+      "cmd-alt-e": "agent::RemoveAllContext", // 移除所有上下文
+      "cmd-shift-e": "project_panel::ToggleFocus", // 聚焦项目面板
+      "cmd-ctrl-b": "agent::ToggleBurnMode", // 切换 Burn 模式
+      "cmd-shift-enter": "agent::ContinueThread", // 继续当前线程
+      "alt-enter": "agent::ContinueWithBurnMode" // 以 Burn 模式继续
+    }
+  },
+  {
+    "context": "AgentPanel > NavigationMenu",
+    "bindings": {
+      "shift-backspace": "agent::DeleteRecentlyOpenThread" // 删除最近打开的线程
+    }
+  },
+  {
+    "context": "AgentPanel > Markdown",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-c": "markdown::CopyAsMarkdown" // 复制为 Markdown
+    }
+  },
+  {
+    "context": "AgentPanel && prompt_editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-n": "agent::NewTextThread", // 新建文本线程
+      "cmd-alt-t": "agent::NewThread" // 新建线程
+    }
+  },
+  {
+    "context": "AgentPanel && external_agent_thread",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-n": "agent::NewExternalAgentThread", // 新建外部代理线程
+      "cmd-alt-t": "agent::NewThread" // 新建线程
+    }
+  },
+
+  // 消息编辑器（发送键行为依配置变化）
+  {
+    "context": "MessageEditor && !Picker > Editor && !use_modifier_to_send",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "agent::Chat", // 直接发送消息
+      "cmd-enter": "agent::ChatWithFollow", // 发送并跟进
+      "cmd-i": "agent::ToggleProfileSelector", // 切换档案选择器
+      "shift-ctrl-r": "agent::OpenAgentDiff", // 打开差异
+      "cmd-shift-y": "agent::KeepAll", // 全部保留
+      "cmd-shift-n": "agent::RejectAll" // 全部拒绝
+    }
+  },
+  {
+    "context": "MessageEditor && !Picker > Editor && use_modifier_to_send",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-enter": "agent::Chat", // Cmd+Enter 发送
+      "enter": "editor::Newline", // Enter 换行（不发送）
+      "cmd-i": "agent::ToggleProfileSelector",
+      "shift-ctrl-r": "agent::OpenAgentDiff",
+      "cmd-shift-y": "agent::KeepAll",
+      "cmd-shift-n": "agent::RejectAll"
+    }
+  },
+
+  // 消息编辑框内的编辑/反馈
+  {
+    "context": "EditMessageEditor > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "menu::Cancel", // 取消编辑
+      "enter": "menu::Confirm", // 确认
+      "alt-enter": "editor::Newline" // 换行（不确认）
+    }
+  },
+  {
+    "context": "AgentFeedbackMessageEditor > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "menu::Cancel",
+      "enter": "menu::Confirm",
+      "alt-enter": "editor::Newline"
+    }
+  },
+
+  // 上下文条目（上下文条带导航/操作）
+  {
+    "context": "ContextStrip",
+    "use_key_equivalents": true,
+    "bindings": {
+      "up": "agent::FocusUp", // 上移焦点
+      "right": "agent::FocusRight", // 右移焦点
+      "left": "agent::FocusLeft", // 左移焦点
+      "down": "agent::FocusDown", // 下移焦点
+      "backspace": "agent::RemoveFocusedContext", // 移除聚焦的上下文
+      "enter": "agent::AcceptSuggestedContext" // 接受建议上下文
+    }
+  },
+
+  // Agent 配置/线程历史
+  {
+    "context": "AgentConfiguration",
+    "bindings": {
+      "ctrl--": "pane::GoBack" // 返回（面板级）
+    }
+  },
+  {
+    "context": "AcpThread > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "agent::Chat", // 发送
+      "up": "agent::PreviousHistoryMessage", // 上一条历史消息
+      "down": "agent::NextHistoryMessage", // 下一条历史消息
+      "shift-ctrl-r": "agent::OpenAgentDiff", // 打开差异
+      "cmd-shift-y": "agent::KeepAll", // 全部保留
+      "cmd-shift-n": "agent::RejectAll" // 全部拒绝
+    }
+  },
+  {
+    "context": "ThreadHistory",
+    "bindings": {
+      "ctrl--": "pane::GoBack" // 返回
+    }
+  },
+  {
+    "context": "ThreadHistory > Editor",
+    "bindings": {
+      "shift-backspace": "agent::RemoveSelectedThread" // 删除选中的线程
+    }
+  },
+
+  // 规则库（PromptLibrary）
+  {
+    "context": "PromptLibrary",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-n": "rules_library::NewRule", // 新建规则
+      "cmd-shift-s": "rules_library::ToggleDefaultRule", // 切换默认规则
+      "cmd-w": "workspace::CloseWindow" // 关闭窗口
+    }
+  },
+
+  // 缓冲区搜索栏/项目搜索栏/视图
+  {
+    "context": "BufferSearchBar",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "buffer_search::Dismiss", // 关闭搜索栏
+      "tab": "buffer_search::FocusEditor", // 焦点切回编辑器
+      "enter": "search::SelectNextMatch", // 选中下一个匹配
+      "shift-enter": "search::SelectPreviousMatch", // 选中上一个匹配
+      "alt-enter": "search::SelectAllMatches", // 选中所有匹配
+      "cmd-f": "search::FocusSearch", // 聚焦搜索输入
+      "cmd-alt-f": "search::ToggleReplace", // 切换替换输入
+      "cmd-alt-l": "search::ToggleSelection", // 仅在选区中搜索
+      "cmd-shift-o": "outline::Toggle" // 切换大纲面板
+    }
+  },
+  {
+    "context": "BufferSearchBar && in_replace > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "search::ReplaceNext", // 替换下一个
+      "cmd-enter": "search::ReplaceAll" // 全部替换
+    }
+  },
+  {
+    "context": "BufferSearchBar && !in_replace > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "up": "search::PreviousHistoryQuery", // 上一个历史查询
+      "down": "search::NextHistoryQuery" // 下一个历史查询
+    }
+  },
+  {
+    "context": "ProjectSearchBar",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "project_search::ToggleFocus", // 在搜索栏与结果间切换焦点
+      "cmd-shift-j": "project_search::ToggleFilters", // 切换过滤器面板
+      "cmd-shift-f": "search::FocusSearch", // 聚焦搜索
+      "cmd-shift-h": "search::ToggleReplace", // 切换替换
+      "alt-cmd-g": "search::ToggleRegex", // 切换正则
+      "alt-cmd-x": "search::ToggleRegex" // 切换正则（等价）
+    }
+  },
+  {
+    "context": "ProjectSearchBar > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "up": "search::PreviousHistoryQuery",
+      "down": "search::NextHistoryQuery"
+    }
+  },
+  {
+    "context": "ProjectSearchBar && in_replace > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "search::ReplaceNext",
+      "cmd-enter": "search::ReplaceAll"
+    }
+  },
+  {
+    "context": "ProjectSearchView",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "project_search::ToggleFocus",
+      "cmd-shift-j": "project_search::ToggleFilters",
+      "cmd-shift-h": "search::ToggleReplace",
+      "alt-cmd-g": "search::ToggleRegex",
+      "alt-cmd-x": "search::ToggleRegex"
+    }
+  },
+
+  // Pane（标签/项）导航与管理
+  {
+    "context": "Pane",
+    "use_key_equivalents": true,
+    "bindings": {
+      "alt-cmd-left": "pane::ActivatePreviousItem", // 激活上一个项
+      "cmd-{": "pane::ActivatePreviousItem", // 激活上一个项（VSCode 风格）
+      "alt-cmd-right": "pane::ActivateNextItem", // 激活下一个项
+      "cmd-}": "pane::ActivateNextItem", // 激活下一个项（VSCode 风格）
+      "ctrl-shift-pageup": "pane::SwapItemLeft", // 将当前项与左侧项交换
+      "ctrl-shift-pagedown": "pane::SwapItemRight", // 将当前项与右侧项交换
+      "cmd-w": ["pane::CloseActiveItem", { "close_pinned": false }], // 关闭当前项（跳过置顶项）
+      "alt-cmd-t": ["pane::CloseOtherItems", { "close_pinned": false }], // 关闭其他项（保留置顶状态）
+      "ctrl-alt-cmd-w": "workspace::CloseInactiveTabsAndPanes", // 关闭非活动的标签与面板
+      "cmd-k e": ["pane::CloseItemsToTheLeft", { "close_pinned": false }], // 关闭左侧项
+      "cmd-k t": ["pane::CloseItemsToTheRight", { "close_pinned": false }], // 关闭右侧项
+      "cmd-k u": ["pane::CloseCleanItems", { "close_pinned": false }], // 关闭“干净”（无改动）的项
+      "cmd-k w": ["pane::CloseAllItems", { "close_pinned": false }], // 关闭所有项（不含置顶项）
+      "cmd-k cmd-w": "workspace::CloseAllItemsAndPanes", // 关闭所有项与面板
+      "cmd-f": "project_search::ToggleFocus", // 在项目搜索视图切换焦点
+      "cmd-g": "search::SelectNextMatch", // 选中下一个匹配
+      "cmd-shift-g": "search::SelectPreviousMatch", // 选中上一个匹配
+      "cmd-shift-h": "search::ToggleReplace", // 切换替换
+      "cmd-alt-l": "search::ToggleSelection", // 仅选区搜索开/关
+      "alt-enter": "search::SelectAllMatches", // 选择所有匹配
+      "alt-cmd-c": "search::ToggleCaseSensitive", // 区分大小写开/关
+      "alt-cmd-w": "search::ToggleWholeWord", // 整词匹配开/关
+      "alt-cmd-f": "project_search::ToggleFilters", // 项目搜索过滤器开/关
+      "alt-cmd-x": "search::ToggleRegex", // 正则开/关
+      "cmd-k shift-enter": "pane::TogglePinTab" // 切换标签置顶
+    }
+  },
+
+  // 来自 VS Code 的绑定（编辑器）
+  {
+    "context": "Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-[": "editor::Outdent", // 减少缩进
+      "cmd-]": "editor::Indent", // 增加缩进
+      "cmd-ctrl-p": "editor::AddSelectionAbove", // 在上方添加光标（多光标）
+      "cmd-alt-up": "editor::AddSelectionAbove", // 在上方添加光标
+      "cmd-ctrl-n": "editor::AddSelectionBelow", // 在下方添加光标
+      "cmd-alt-down": "editor::AddSelectionBelow", // 在下方添加光标
+      "cmd-shift-k": "editor::DeleteLine", // 删除当前行
+      "alt-up": "editor::MoveLineUp", // 当前行上移
+      "alt-down": "editor::MoveLineDown", // 当前行下移
+      "alt-shift-up": "editor::DuplicateLineUp", // 向上复制行
+      "alt-shift-down": "editor::DuplicateLineDown", // 向下复制行
+      "ctrl-shift-right": "editor::SelectLargerSyntaxNode", // 按语法扩展选择
+      "ctrl-shift-left": "editor::SelectSmallerSyntaxNode", // 按语法收缩选择
+      "cmd-d": ["editor::SelectNext", { "replace_newest": false }], // 将选择扩展到下一个匹配（保留现有）
+      "cmd-shift-l": "editor::SelectAllMatches", // 选中当前选区的所有匹配
+      "cmd-f2": "editor::SelectAllMatches", // 选中当前单词的所有匹配
+      "cmd-k cmd-d": ["editor::SelectNext", { "replace_newest": true }], // 将最新选区跳过当前，移动到下个匹配
+      // macOS 系统将 ctrl-cmd-d 绑定为“字典查询”，会冲突
+      // 如需在 Zed 使用 ctrl-cmd-d 或 cmd-k ctrl-cmd-d，请先禁用系统该快捷并重启：
+      //   defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 70 '<dict><key>enabled</key><false/></dict>'
+      "ctrl-cmd-d": ["editor::SelectPrevious", { "replace_newest": false }], // 将选择扩展到上一个匹配
+      "cmd-k ctrl-cmd-d": ["editor::SelectPrevious", { "replace_newest": true }], // 将最新选区跳到上一个匹配（跳过当前）
+      "cmd-k cmd-i": "editor::Hover", // 显示悬浮信息（类型/文档等）
+      "cmd-k cmd-b": "editor::BlameHover", // 显示 Git Blame 悬浮信息
+      "cmd-/": ["editor::ToggleComments", { "advance_downwards": false }], // 切换行注释（不自动选中下一行）
+      "f8": ["editor::GoToDiagnostic", { "severity": { "min": "hint", "max": "error" } }], // 跳到下一个诊断
+      "shift-f8": ["editor::GoToPreviousDiagnostic", { "severity": { "min": "hint", "max": "error" } }], // 跳到上一个诊断
+      "f2": "editor::Rename", // 重命名符号
+      "f12": "editor::GoToDefinition", // 跳到定义
+      "alt-f12": "editor::GoToDefinitionSplit", // 在分屏打开定义
+      "cmd-f12": "editor::GoToTypeDefinition", // 跳到类型定义
+      "shift-f12": "editor::GoToImplementation", // 跳到实现
+      "alt-cmd-f12": "editor::GoToTypeDefinitionSplit", // 分屏打开类型定义
+      "alt-shift-f12": "editor::FindAllReferences", // 查找所有引用
+      "cmd-|": "editor::MoveToEnclosingBracket", // 跳到外层括号
+      "ctrl-m": "editor::MoveToEnclosingBracket", // 跳到外层括号（JetBrains 风格）
+      "alt-cmd-[": "editor::Fold", // 折叠
+      "alt-cmd-]": "editor::UnfoldLines", // 展开
+      "cmd-k cmd-l": "editor::ToggleFold", // 切换折叠
+      "cmd-k cmd-[": "editor::FoldRecursive", // 递归折叠
+      "cmd-k cmd-]": "editor::UnfoldRecursive", // 递归展开
+      "cmd-k cmd-1": ["editor::FoldAtLevel", 1], // 折叠到第 1 层
+      "cmd-k cmd-2": ["editor::FoldAtLevel", 2],
+      "cmd-k cmd-3": ["editor::FoldAtLevel", 3],
+      "cmd-k cmd-4": ["editor::FoldAtLevel", 4],
+      "cmd-k cmd-5": ["editor::FoldAtLevel", 5],
+      "cmd-k cmd-6": ["editor::FoldAtLevel", 6],
+      "cmd-k cmd-7": ["editor::FoldAtLevel", 7],
+      "cmd-k cmd-8": ["editor::FoldAtLevel", 8],
+      "cmd-k cmd-9": ["editor::FoldAtLevel", 9],
+      "cmd-k cmd-0": "editor::FoldAll", // 折叠全部
+      "cmd-k cmd-j": "editor::UnfoldAll", // 展开全部
+      // 使用 ctrl-space/ctrl-shift-space 需关闭 macOS 全局输入法快捷
+      // 系统设置->键盘->键盘快捷键->输入法->取消“选择上一个输入源”等
+      "ctrl-space": "editor::ShowCompletions", // 显示补全
+      "ctrl-shift-space": "editor::ShowWordCompletions", // 显示词法/参数类补全
+      "cmd-.": "editor::ToggleCodeActions", // 显示代码操作（快速修复/重构）
+      "cmd-k r": "editor::RevealInFileManager", // 在 Finder 中显示
+      "cmd-k p": "editor::CopyPath", // 复制绝对路径
+      "cmd-\\": "pane::SplitRight", // 向右分屏
+      "ctrl-cmd-c": "editor::DisplayCursorNames" // 显示协作光标名称
+    }
+  },
+
+  // 扩展特定（Markdown/SVG 预览）
+  {
+    "context": "Editor && extension == md",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-k v": "markdown::OpenPreviewToTheSide", // 在侧边打开 Markdown 预览
+      "cmd-shift-v": "markdown::OpenPreview" // 在当前视图打开预览
+    }
+  },
+  {
+    "context": "Editor && extension == svg",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-k v": "svg::OpenPreviewToTheSide", // 在侧边打开 SVG 预览
+      "cmd-shift-v": "svg::OpenPreview" // 在当前视图打开 SVG 预览
+    }
+  },
+
+  // 编辑器（完整模式补充）
+  {
+    "context": "Editor && mode == full",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-shift-o": "outline::Toggle", // 切换大纲面板
+      "ctrl-g": "go_to_line::Toggle", // 跳转到指定行
+      "cmd-shift-backspace": "editor::GoToPreviousChange", // 跳转到上一个变更
+      "cmd-shift-alt-backspace": "editor::GoToNextChange" // 跳转到下一个变更
+    }
+  },
+
+  // Pane（通过数字定位项）
+  {
+    "context": "Pane",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-1": ["pane::ActivateItem", 0], // 激活第 1 个项
+      "ctrl-2": ["pane::ActivateItem", 1],
+      "ctrl-3": ["pane::ActivateItem", 2],
+      "ctrl-4": ["pane::ActivateItem", 3],
+      "ctrl-5": ["pane::ActivateItem", 4],
+      "ctrl-6": ["pane::ActivateItem", 5],
+      "ctrl-7": ["pane::ActivateItem", 6],
+      "ctrl-8": ["pane::ActivateItem", 7],
+      "ctrl-9": ["pane::ActivateItem", 8],
+      "ctrl-0": "pane::ActivateLastItem", // 激活最后一个项
+      "ctrl--": "pane::GoBack", // 后退
+      "ctrl-_": "pane::GoForward", // 前进
+      "cmd-shift-f": "pane::DeploySearch" // 打开项目搜索
+    }
+  },
+
+  // Workspace（工作区/窗口/面板/命令/任务）
+  {
+    "context": "Workspace",
+    "use_key_equivalents": true,
+    "bindings": {
+      // 可通过参数改变 `menu::Confirm` 的默认动作（此处为不新窗口打开）
+      "alt-cmd-o": ["projects::OpenRecent", { "create_new_window": false }], // 打开最近项目选择器
+      "ctrl-cmd-o": ["projects::OpenRemote", { "from_existing_connection": false, "create_new_window": false }], // 打开远程项目（新连接）
+      "ctrl-cmd-shift-o": ["projects::OpenRemote", { "from_existing_connection": true, "create_new_window": false }], // 打开远程项目（从现有连接）
+      "cmd-ctrl-b": "branches::OpenRecent", // 打开最近分支列表
+      "ctrl-~": "workspace::NewTerminal", // 新建集成终端
+      "cmd-s": "workspace::Save", // 保存当前文件
+      "cmd-k s": "workspace::SaveWithoutFormat", // 保存但跳过格式化
+      "alt-shift-enter": "toast::RunAction", // 执行提示气泡的推荐操作
+      "cmd-shift-s": "workspace::SaveAs", // 另存为
+      "cmd-shift-n": "workspace::NewWindow", // 新建窗口
+      "ctrl-`": "terminal_panel::ToggleFocus", // 显示/隐藏终端面板并切换焦点
+      "cmd-1": ["workspace::ActivatePane", 0], // 激活第 1 个编辑面板
+      "cmd-2": ["workspace::ActivatePane", 1],
+      "cmd-3": ["workspace::ActivatePane", 2],
+      "cmd-4": ["workspace::ActivatePane", 3],
+      "cmd-5": ["workspace::ActivatePane", 4],
+      "cmd-6": ["workspace::ActivatePane", 5],
+      "cmd-7": ["workspace::ActivatePane", 6],
+      "cmd-8": ["workspace::ActivatePane", 7],
+      "cmd-9": ["workspace::ActivatePane", 8],
+      "cmd-b": "workspace::ToggleLeftDock", // 左侧停靠开/关
+      "cmd-alt-b": "workspace::ToggleRightDock", // 右侧停靠开/关
+      "cmd-r": "workspace::ToggleRightDock", // 右侧停靠开/关（备用）
+      "cmd-j": "workspace::ToggleBottomDock", // 底部停靠开/关
+      "alt-cmd-y": "workspace::CloseAllDocks", // 关闭所有停靠
+      // px 为 0 时按 UI 字体大小步进
+      "ctrl-alt-0": "workspace::ResetActiveDockSize", // 重置当前活动停靠尺寸
+      "ctrl-alt--": ["workspace::DecreaseActiveDockSize", { "px": 0 }], // 减小当前停靠尺寸
+      "ctrl-alt-=": ["workspace::IncreaseActiveDockSize", { "px": 0 }], // 增大当前停靠尺寸
+      "ctrl-alt-)": "workspace::ResetOpenDocksSize", // 重置所有已打开停靠尺寸
+      "ctrl-alt-_": ["workspace::DecreaseOpenDocksSize", { "px": 0 }], // 减小所有已打开停靠尺寸
+      "ctrl-alt-+": ["workspace::IncreaseOpenDocksSize", { "px": 0 }], // 增大所有已打开停靠尺寸
+      "cmd-shift-f": "pane::DeploySearch", // 打开项目搜索
+      "cmd-shift-h": ["pane::DeploySearch", { "replace_enabled": true }], // 打开搜索并启用替换
+      "cmd-shift-t": "pane::ReopenClosedItem", // 重新打开最近关闭项
+      "cmd-k cmd-s": "zed::OpenKeymapEditor", // 打开键位编辑器
+      "cmd-k cmd-t": "theme_selector::Toggle", // 打开主题选择器
+      "ctrl-alt-cmd-p": "settings_profile_selector::Toggle", // 切换设置档案选择器
+      "cmd-t": "project_symbols::Toggle", // 打开项目符号（按符号名跳转）
+      "cmd-p": "file_finder::Toggle", // 打开快速打开文件
+      "ctrl-tab": "tab_switcher::Toggle", // 打开标签切换器
+      "ctrl-shift-tab": ["tab_switcher::Toggle", { "select_last": true }], // 打开并选中最近使用项
+      "cmd-shift-p": "command_palette::Toggle", // 打开命令面板
+      "cmd-shift-m": "diagnostics::Deploy", // 打开诊断面板
+      "cmd-shift-e": "project_panel::ToggleFocus", // 聚焦/打开项目面板
+      "cmd-shift-b": "outline_panel::ToggleFocus", // 聚焦/打开大纲面板
+      "ctrl-shift-g": "git_panel::ToggleFocus", // 聚焦/打开 Git 面板
+      "cmd-shift-d": "debug_panel::ToggleFocus", // 聚焦/打开 调试面板
+      "cmd-?": "agent::ToggleFocus", // 聚焦/打开 AI 助手面板
+      "cmd-alt-s": "workspace::SaveAll", // 保存全部
+      "cmd-k m": "language_selector::Toggle", // 切换语言模式
+      "escape": "workspace::Unfollow", // 取消跟随（例如协作时停止跟随）
+      "cmd-k cmd-left": "workspace::ActivatePaneLeft", // 激活左侧面板
+      "cmd-k cmd-right": "workspace::ActivatePaneRight", // 激活右侧面板
+      "cmd-k cmd-up": "workspace::ActivatePaneUp", // 激活上方面板
+      "cmd-k cmd-down": "workspace::ActivatePaneDown", // 激活下方面板
+      "cmd-k shift-left": "workspace::SwapPaneLeft", // 与左侧面板交换
+      "cmd-k shift-right": "workspace::SwapPaneRight", // 与右侧面板交换
+      "cmd-k shift-up": "workspace::SwapPaneUp", // 与上方面板交换
+      "cmd-k shift-down": "workspace::SwapPaneDown", // 与下方面板交换
+      "cmd-shift-x": "zed::Extensions", // 打开扩展管理
+      "f5": "debugger::Rerun", // 重新运行调试（非继续）
+      "cmd-w": "workspace::CloseActiveDock" // 关闭活动停靠面板
+    }
+  },
+
+  // 工作区（非终端）— 文件/任务
+  {
+    "context": "Workspace && !Terminal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-n": "workspace::NewFile", // 新建文件
+      "cmd-shift-r": "task::Spawn", // 运行任务
+      "cmd-alt-r": "task::Rerun", // 重新运行任务
+      "ctrl-alt-shift-r": ["task::Spawn", { "reveal_target": "center" }] // 运行任务并在中心展示输出
+      // 也可按名称或标签运行任务（见默认文件注释）
+    }
+  },
+
+  // 调试器状态下 F5 行为
+  {
+    "context": "Workspace && debugger_running",
+    "use_key_equivalents": true,
+    "bindings": {
+      "f5": "zed::NoAction" // 运行中禁用 F5（避免误触继续/重启）
+    }
+  },
+  {
+    "context": "Workspace && debugger_stopped",
+    "use_key_equivalents": true,
+    "bindings": {
+      "f5": "debugger::Continue" // 暂停状态下 F5 继续运行
+    }
+  },
+
+  // 来自 Sublime Text 的编辑操作
+  {
+    "context": "Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-u": "editor::UndoSelection", // 撤销最近选择操作（不影响文本）
+      "cmd-shift-u": "editor::RedoSelection", // 重做选择操作
+      "ctrl-j": "editor::JoinLines", // 合并行（移除换行并处理空格）
+      "ctrl-alt-backspace": "editor::DeleteToPreviousSubwordStart", // 删除到上一个子词起点（驼峰/下划线边界）
+      "ctrl-alt-h": "editor::DeleteToPreviousSubwordStart", // 等价快捷
+      "ctrl-alt-delete": "editor::DeleteToNextSubwordEnd", // 删除到下一个子词末尾
+      "ctrl-alt-d": "editor::DeleteToNextSubwordEnd", // 等价快捷
+      "ctrl-alt-left": "editor::MoveToPreviousSubwordStart", // 移动到上一个子词起点
+      "ctrl-alt-b": "editor::MoveToPreviousSubwordStart", // 等价快捷
+      "ctrl-alt-right": "editor::MoveToNextSubwordEnd", // 移动到下一个子词末尾
+      "ctrl-alt-f": "editor::MoveToNextSubwordEnd", // 等价快捷
+      "ctrl-alt-shift-left": "editor::SelectToPreviousSubwordStart", // 按子词向左扩选
+      "ctrl-alt-shift-b": "editor::SelectToPreviousSubwordStart", // 等价快捷
+      "ctrl-alt-shift-right": "editor::SelectToNextSubwordEnd", // 按子词向右扩选
+      "ctrl-alt-shift-f": "editor::SelectToNextSubwordEnd" // 等价快捷
+    }
+  },
+
+  // 来自 Atom 的 Pane 分屏操作
+  {
+    "context": "Pane",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-k up": "pane::SplitUp", // 向上分割
+      "cmd-k down": "pane::SplitDown", // 向下分割
+      "cmd-k left": "pane::SplitLeft", // 向左分割
+      "cmd-k right": "pane::SplitRight" // 向右分割
+    }
+  },
+
+  // 重命名模式
+  {
+    "context": "Editor && renaming",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "editor::ConfirmRename" // 确认重命名
+    }
+  },
+
+  // 补全/代码操作/签名帮助
+  {
+    "context": "Editor && showing_completions",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "editor::ConfirmCompletion", // 接受补全
+      "shift-enter": "editor::ConfirmCompletionReplace", // 替换当前词/选区为补全
+      "tab": "editor::ComposeCompletion" // 逐段确认补全（片段前进）
+    }
+  },
+  {
+    "context": "Editor && edit_prediction",
+    "bindings": {
+      "alt-tab": "editor::AcceptEditPrediction", // 接受整条编辑预测
+      "tab": "editor::AcceptEditPrediction", // 以 Tab 接受整条预测
+      "ctrl-cmd-right": "editor::AcceptPartialEditPrediction" // 部分接受预测（渐进式）
+    }
+  },
+  {
+    "context": "Editor && edit_prediction_conflict",
+    "use_key_equivalents": true,
+    "bindings": {
+      "alt-tab": "editor::AcceptEditPrediction", // 冲突状态下接受整条预测
+      "ctrl-cmd-right": "editor::AcceptPartialEditPrediction" // 冲突状态下部分接受
+    }
+  },
+  {
+    "context": "Editor && showing_code_actions",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "editor::ConfirmCodeAction" // 确认代码操作
+    }
+  },
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "use_key_equivalents": true,
+    "bindings": {
+      "up": "editor::ContextMenuPrevious", // 选择上一项（菜单/补全）
+      "ctrl-p": "editor::ContextMenuPrevious", // 上一项（Emacs 风格）
+      "down": "editor::ContextMenuNext", // 选择下一项
+      "ctrl-n": "editor::ContextMenuNext", // 下一项（Emacs 风格）
+      "pageup": "editor::ContextMenuFirst", // 跳到第一项
+      "pagedown": "editor::ContextMenuLast" // 跳到最后一项
+    }
+  },
+  {
+    "context": "Editor && showing_signature_help && !showing_completions",
+    "bindings": {
+      "up": "editor::SignatureHelpPrevious", // 上一个签名/参数
+      "down": "editor::SignatureHelpNext" // 下一个签名/参数
+    }
+  },
+
+  // 自定义绑定
+  {
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-alt-cmd-f": "workspace::FollowNextCollaborator", // 跟随下一个协作者视图
+      // TODO: 未来迁入 dock 打开动作
+      "cmd-shift-c": "collab_panel::ToggleFocus", // 打开/聚焦协作面板
+      // 仅调试构建可用：UI 元素检查器
+      "cmd-alt-i": "dev::ToggleInspector" // 切换开发者元素检查器
+    }
+  },
+
+  // 编辑器（完整模式 + 非 ContextEditor）
+  {
+    "context": "!ContextEditor > Editor && mode == full",
+    "use_key_equivalents": true,
+    "bindings": {
+      "alt-enter": "editor::OpenExcerpts", // 将选区作为摘录打开
+      "shift-enter": "editor::ExpandExcerpts", // 扩展摘录范围
+      "cmd-alt-enter": "editor::OpenExcerptsSplit", // 在分屏打开摘录
+      "cmd-shift-e": "pane::RevealInProjectPanel", // 在项目面板定位文件
+      "cmd-f8": "editor::GoToHunk", // 跳到下一个差异区块
+      "cmd-shift-f8": "editor::GoToPreviousHunk", // 跳到上一个差异区块
+      "ctrl-enter": "assistant::InlineAssist", // 触发内联助手
+      "ctrl-:": "editor::ToggleInlayHints" // 切换 Inlay Hints
+    }
+  },
+
+  // Prompt 编辑器/提示选择器
+  {
+    "context": "PromptEditor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-shift-a": "agent::ToggleContextPicker", // 上下文选择器
+      "cmd-alt-/": "agent::ToggleModelSelector", // 模型选择器
+      "cmd-alt-e": "agent::RemoveAllContext", // 移除全部上下文
+      "ctrl-[": "agent::CyclePreviousInlineAssist", // 上一个内联建议
+      "ctrl-]": "agent::CycleNextInlineAssist" // 下一个内联建议
+    }
+  },
+  {
+    "context": "Prompt",
+    "use_key_equivalents": true,
+    "bindings": {
+      "left": "menu::SelectPrevious", // 选择上一项
+      "right": "menu::SelectNext", // 选择下一项
+      "h": "menu::SelectPrevious", // Vim 风格：h 上一项
+      "l": "menu::SelectNext" // Vim 风格：l 下一项
+    }
+  },
+  {
+    "context": "ProjectSearchBar && !in_replace",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-enter": "project_search::SearchInNew" // 在新结果视图执行搜索
+    }
+  },
+
+  // 大纲/项目面板
+  {
+    "context": "OutlinePanel && not_editing",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "menu::Cancel", // 取消交互
+      "left": "outline_panel::CollapseSelectedEntry", // 折叠
+      "right": "outline_panel::ExpandSelectedEntry", // 展开
+      "cmd-alt-c": "workspace::CopyPath", // 复制路径
+      "alt-cmd-shift-c": "workspace::CopyRelativePath", // 复制相对路径
+      "alt-cmd-r": "outline_panel::RevealInFileManager", // 在 Finder 显示
+      "space": "outline_panel::OpenSelectedEntry", // 打开所选条目
+      "shift-down": "menu::SelectNext", // 向下选中（列表）
+      "shift-up": "menu::SelectPrevious", // 向上选中
+      "alt-enter": "editor::OpenExcerpts", // 打开摘录
+      "cmd-alt-enter": "editor::OpenExcerptsSplit" // 分屏打开摘录
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "use_key_equivalents": true,
+    "bindings": {
+      "left": "project_panel::CollapseSelectedEntry", // 折叠当前目录
+      "right": "project_panel::ExpandSelectedEntry", // 展开当前目录
+      "cmd-n": "project_panel::NewFile", // 新建文件
+      "cmd-d": "project_panel::Duplicate", // 复制（生成副本）
+      "alt-cmd-n": "project_panel::NewDirectory", // 新建目录
+      "cmd-x": "project_panel::Cut", // 剪切
+      "cmd-c": "project_panel::Copy", // 复制
+      "cmd-v": "project_panel::Paste", // 粘贴
+      "cmd-alt-c": "workspace::CopyPath", // 复制绝对路径
+      "alt-cmd-shift-c": "workspace::CopyRelativePath", // 复制相对路径
+      "enter": "project_panel::Rename", // 重命名
+      "f2": "project_panel::Rename", // 重命名（备用）
+      "backspace": ["project_panel::Trash", { "skip_prompt": false }], // 移至废纸篓（确认）
+      "delete": ["project_panel::Trash", { "skip_prompt": false }], // 移至废纸篓（确认）
+      "cmd-backspace": ["project_panel::Trash", { "skip_prompt": true }], // 移至废纸篓（直接）
+      "cmd-delete": ["project_panel::Delete", { "skip_prompt": false }], // 直接删除（确认）
+      "alt-cmd-r": "project_panel::RevealInFileManager", // 在 Finder 显示
+      "ctrl-shift-enter": "project_panel::OpenWithSystem", // 用系统默认程序打开
+      "alt-d": "project_panel::CompareMarkedFiles", // 比较已标记的两个文件
+      "cmd-alt-backspace": ["project_panel::Delete", { "skip_prompt": false }], // 直接删除（快捷）
+      "cmd-alt-shift-f": "project_panel::NewSearchInDirectory", // 在目录中创建新搜索
+      "shift-down": "menu::SelectNext", // 下移选择
+      "shift-up": "menu::SelectPrevious", // 上移选择
+      "escape": "menu::Cancel" // 取消面板交互
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "use_key_equivalents": true,
+    "bindings": {
+      "space": "project_panel::Open" // 打开文件/进入目录
+    }
+  },
+
+  // 调试变量列表/断点列表
+  {
+    "context": "VariableList",
+    "use_key_equivalents": true,
+    "bindings": {
+      "left": "variable_list::CollapseSelectedEntry", // 折叠变量
+      "right": "variable_list::ExpandSelectedEntry", // 展开变量
+      "enter": "variable_list::EditVariable", // 编辑变量值
+      "cmd-c": "variable_list::CopyVariableValue", // 复制变量值
+      "cmd-alt-c": "variable_list::CopyVariableName", // 复制变量名
+      "delete": "variable_list::RemoveWatch", // 移除监视
+      "backspace": "variable_list::RemoveWatch", // 移除监视（等价）
+      "alt-enter": "variable_list::AddWatch" // 添加监视表达式
+    }
+  },
+  {
+    "context": "GitPanel && ChangesList",
+    "use_key_equivalents": true,
+    "bindings": {
+      "up": "menu::SelectPrevious", // 上移选择
+      "down": "menu::SelectNext", // 下移选择
+      "cmd-up": "menu::SelectFirst", // 跳到第一项
+      "cmd-down": "menu::SelectLast", // 跳到最后一项
+      "enter": "menu::Confirm", // 打开变更详情
+      "cmd-alt-y": "git::ToggleStaged", // 切换暂存
+      "space": "git::ToggleStaged", // 切换暂存（空格快捷）
+      "shift-space": "git::StageRange", // 暂存选中范围（按块/行）
+      "cmd-y": "git::StageFile", // 暂存文件
+      "cmd-shift-y": "git::UnstageFile", // 取消暂存文件
+      "alt-down": "git_panel::FocusEditor", // 焦点切至差异编辑器
+      "tab": "git_panel::FocusEditor", // 焦点切换
+      "shift-tab": "git_panel::FocusEditor", // 焦点切换
+      "escape": "git_panel::ToggleFocus", // 在列表/编辑器间切换焦点
+      "backspace": ["git::RestoreFile", { "skip_prompt": false }], // 恢复文件（确认）
+      "delete": ["git::RestoreFile", { "skip_prompt": false }], // 恢复文件（确认）
+      "cmd-backspace": ["git::RestoreFile", { "skip_prompt": true }], // 恢复文件（直接）
+      "cmd-delete": ["git::RestoreFile", { "skip_prompt": true }] // 恢复文件（直接）
+    }
+  },
+  {
+    "context": "GitPanel && CommitEditor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "git::Cancel" // 取消提交编辑
+    }
+  },
+  {
+    "context": "GitDiff > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-enter": "git::Commit", // 提交
+      "cmd-shift-enter": "git::Amend", // 修订上一次提交
+      "cmd-ctrl-y": "git::StageAll", // 暂存全部
+      "cmd-ctrl-shift-y": "git::UnstageAll" // 取消暂存全部
+    }
+  },
+  {
+    "context": "CommitEditor > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "editor::Newline", // 换行
+      "cmd-enter": "git::Commit", // 提交
+      "cmd-shift-enter": "git::Amend", // 修订上一次提交
+      "tab": "git_panel::FocusChanges", // 焦点切到“更改”列表
+      "shift-tab": "git_panel::FocusChanges", // 焦点切换
+      "alt-up": "git_panel::FocusChanges", // 焦点切到“更改”列表
+      "shift-escape": "git::ExpandCommitEditor", // 展开提交信息编辑器
+      "alt-tab": "git::GenerateCommitMessage" // 生成提交信息（AI）
+    }
+  },
+  {
+    "context": "GitPanel",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-g ctrl-g": "git::Fetch", // 获取远端更新
+      "ctrl-g up": "git::Push", // 推送
+      "ctrl-g down": "git::Pull", // 拉取并合并
+      "ctrl-g shift-up": "git::ForcePush", // 强制推送（慎用）
+      "ctrl-g d": "git::Diff", // 查看差异
+      "ctrl-g backspace": "git::RestoreTrackedFiles", // 恢复已跟踪文件到 HEAD
+      "ctrl-g shift-backspace": "git::TrashUntrackedFiles", // 删除未跟踪文件（移至废纸篓）
+      "cmd-ctrl-y": "git::StageAll", // 暂存全部
+      "cmd-ctrl-shift-y": "git::UnstageAll", // 取消暂存全部
+      "cmd-enter": "git::Commit", // 提交
+      "cmd-shift-enter": "git::Amend" // 修订上一提交
+    }
+  },
+  {
+    "context": "GitCommit > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "editor::Newline", // 换行
+      "escape": "menu::Cancel", // 取消
+      "cmd-enter": "git::Commit", // 提交
+      "cmd-shift-enter": "git::Amend", // 修订上一提交
+      "alt-tab": "git::GenerateCommitMessage" // 生成提交信息
+    }
+  },
+
+  // 调试面板/断点列表
+  {
+    "context": "DebugPanel",
+    "bindings": {
+      "cmd-t": "debugger::ToggleThreadPicker", // 切换线程选择器
+      "cmd-i": "debugger::ToggleSessionPicker", // 切换会话选择器
+      "shift-alt-escape": "debugger::ToggleExpandItem" // 展开/折叠选中项
+    }
+  },
+  {
+    "context": "BreakpointList",
+    "bindings": {
+      "space": "debugger::ToggleEnableBreakpoint", // 启用/禁用断点
+      "backspace": "debugger::UnsetBreakpoint", // 移除断点
+      "left": "debugger::PreviousBreakpointProperty", // 上一个断点属性
+      "right": "debugger::NextBreakpointProperty" // 下一个断点属性
+    }
+  },
+
+  // 协作面板/编辑
+  {
+    "context": "CollabPanel && not_editing",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-backspace": "collab_panel::Remove", // 移除协作面板选中项
+      "space": "menu::Confirm" // 确认
+    }
+  },
+  {
+    "context": "CollabPanel",
+    "use_key_equivalents": true,
+    "bindings": {
+      "alt-up": "collab_panel::MoveChannelUp", // 频道上移
+      "alt-down": "collab_panel::MoveChannelDown" // 频道下移
+    }
+  },
+  {
+    "context": "(CollabPanel && editing) > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "space": "collab_panel::InsertSpace" // 插入空格（避免触发确认）
+    }
+  },
+
+  // 频道/选择器
+  {
+    "context": "ChannelModal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "tab": "channel_modal::ToggleMode" // 切换频道模式
+    }
+  },
+  {
+    "context": "Picker > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "menu::Cancel", // 取消并关闭选择器
+      "up": "menu::SelectPrevious", // 选择上一项
+      "down": "menu::SelectNext", // 选择下一项
+      "tab": "picker::ConfirmCompletion", // 确认当前补全项并填充输入
+      "alt-enter": ["picker::ConfirmInput", { "secondary": false }], // 用当前输入值执行主确认
+      "cmd-alt-enter": ["picker::ConfirmInput", { "secondary": true }] // 用当前输入值执行次确认
+    }
+  },
+  {
+    "context": "ChannelModal > Picker > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "tab": "channel_modal::ToggleMode" // 在通道选择器中切换模式
+    }
+  },
+
+  // FileFinder/TabSwitcher
+  {
+    "context": "FileFinder || (FileFinder > Picker > Editor)",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-shift-a": "file_finder::ToggleSplitMenu", // 切换分屏打开菜单
+      "cmd-shift-i": "file_finder::ToggleFilterMenu" // 切换过滤菜单
+    }
+  },
+  {
+    "context": "FileFinder || (FileFinder > Picker > Editor) || (FileFinder > Picker > menu)",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-shift-p": "file_finder::SelectPrevious", // 选择上一项
+      "cmd-j": "pane::SplitDown", // 向下分屏并打开
+      "cmd-k": "pane::SplitUp", // 向上分屏并打开
+      "cmd-h": "pane::SplitLeft", // 向左分屏并打开
+      "cmd-l": "pane::SplitRight" // 向右分屏并打开
+    }
+  },
+  {
+    "context": "TabSwitcher",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-shift-tab": "menu::SelectPrevious", // 标签切换器：上一项
+      "ctrl-up": "menu::SelectPrevious", // 上移选择
+      "ctrl-down": "menu::SelectNext", // 下移选择
+      "ctrl-backspace": "tab_switcher::CloseSelectedItem" // 关闭选中项
+    }
+  },
+
+  // 终端（Terminal）
+  {
+    "context": "Terminal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-cmd-space": "terminal::ShowCharacterPalette", // 字符面板
+      "cmd-c": "terminal::Copy", // 复制终端选中内容
+      "cmd-v": "terminal::Paste", // 粘贴到终端
+      "cmd-f": "buffer_search::Deploy", // 搜索终端输出
+      "cmd-a": "editor::SelectAll", // 全选终端输出
+      "cmd-k": "terminal::Clear", // 清屏
+      "cmd-n": "workspace::NewTerminal", // 新建终端
+      "ctrl-enter": "assistant::InlineAssist", // 终端中触发内联助手
+      "ctrl-_": null, // 预留 Emacs 撤销（不绑定）
+      // 常用便捷映射
+      "cmd-backspace": ["terminal::SendText", "\u0015"], // 发送 Ctrl+U：清空行
+      "alt-delete": ["terminal::SendText", "\u001bd"], // 发送 Alt+D：删除到词尾
+      "cmd-delete": ["terminal::SendText", "\u000b"], // 发送 Ctrl+K：删至行尾
+      "cmd-right": ["terminal::SendText", "\u0005"], // 发送 Ctrl+E：行尾
+      "cmd-left": ["terminal::SendText", "\u0001"], // 发送 Ctrl+A：行首
+      // Terminal.app 兼容
+      "alt-left": ["terminal::SendText", "\u001bb"], // Alt+左：按词后退
+      "alt-right": ["terminal::SendText", "\u001bf"], // Alt+右：按词前进
+      "alt-b": ["terminal::SendText", "\u001bb"], // Alt+B：词后退
+      "alt-f": ["terminal::SendText", "\u001bf"], // Alt+F：词前进
+      "ctrl-delete": ["terminal::SendText", "\u001bd"], // Ctrl+Delete：按词删除
+      // 与全局冲突的绑定在终端中被覆盖，确保按键送入终端：
+      "up": ["terminal::SendKeystroke", "up"],
+      "pageup": ["terminal::SendKeystroke", "pageup"],
+      "down": ["terminal::SendKeystroke", "down"],
+      "pagedown": ["terminal::SendKeystroke", "pagedown"],
+      "escape": ["terminal::SendKeystroke", "escape"],
+      "enter": ["terminal::SendKeystroke", "enter"],
+      "ctrl-c": ["terminal::SendKeystroke", "ctrl-c"],
+      "ctrl-backspace": ["terminal::SendKeystroke", "ctrl-w"], // 删除一个“词”
+      "shift-pageup": "terminal::ScrollPageUp", // 视图向上翻页
+      "cmd-up": "terminal::ScrollPageUp", // 视图向上翻页（快捷）
+      "shift-pagedown": "terminal::ScrollPageDown", // 视图向下翻页
+      "cmd-down": "terminal::ScrollPageDown", // 视图向下翻页（快捷）
+      "shift-up": "terminal::ScrollLineUp", // 视图上滚一行
+      "shift-down": "terminal::ScrollLineDown", // 视图下滚一行
+      "shift-home": "terminal::ScrollToTop", // 滚动到顶部
+      "cmd-home": "terminal::ScrollToTop", // 顶部（快捷）
+      "shift-end": "terminal::ScrollToBottom", // 滚动到底部
+      "cmd-end": "terminal::ScrollToBottom", // 底部（快捷）
+      // 使用 ctrl-shift-space 需禁用 macOS 全局快捷（同上）
+      "ctrl-shift-space": "terminal::ToggleViMode", // 切换 vi 模式
+      "ctrl-alt-up": "pane::SplitUp", // 在终端上下文快速分屏（上）
+      "ctrl-alt-down": "pane::SplitDown", // 分屏（下）
+      "ctrl-alt-left": "pane::SplitLeft", // 分屏（左）
+      "ctrl-alt-right": "pane::SplitRight", // 分屏（右）
+      "cmd-alt-r": "terminal::RerunTask" // 重新运行绑定到该终端的任务
+    }
+  },
+
+  // 预测评分（AI completions 评分弹窗）
+  {
+    "context": "RateCompletionModal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-shift-enter": "zeta::ThumbsUpActiveCompletion", // 对当前建议点赞
+      "cmd-shift-backspace": "zeta::ThumbsDownActiveCompletion", // 对当前建议点踩
+      "shift-down": "zeta::NextEdit", // 下一条编辑建议
+      "shift-up": "zeta::PreviousEdit", // 上一条编辑建议
+      "right": "zeta::PreviewCompletion" // 预览建议
+    }
+  },
+  {
+    "context": "RateCompletionModal > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "zeta::FocusCompletions", // 焦点返回建议列表
+      "cmd-shift-enter": "zeta::ThumbsUpActiveCompletion", // 点赞
+      "cmd-shift-backspace": "zeta::ThumbsDownActiveCompletion" // 点踩
+    }
+  },
+
+  // 预测/上下文服务/Onboarding 等 Modal
+  {
+    "context": "ZedPredictModal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "menu::Cancel" // 关闭预测弹窗
+    }
+  },
+  {
+    "context": "ConfigureContextServerModal > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "menu::Cancel", // 取消配置
+      "enter": "editor::Newline", // 输入框换行
+      "cmd-enter": "menu::Confirm" // 确认保存配置
+    }
+  },
+  {
+    "context": "OnboardingAiConfigurationModal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "escape": "menu::Cancel" // 取消引导步骤
+    }
+  },
+
+  // 诊断/调试控制台/运行对话/Markdown 预览/键位编辑器/按键录制/键位编辑 Modal/Onboarding
+  {
+    "context": "Diagnostics",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-r": "diagnostics::ToggleDiagnosticsRefresh" // 切换诊断自动刷新
+    }
+  },
+  {
+    "context": "DebugConsole > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "menu::Confirm", // 执行控制台输入
+      "alt-enter": "console::WatchExpression" // 添加为监视表达式
+    }
+  },
+  {
+    "context": "RunModal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "ctrl-tab": "pane::ActivateNextItem", // 切换到下一个项/视图
+      "ctrl-shift-tab": "pane::ActivatePreviousItem" // 切换到上一个项/视图
+    }
+  },
+  {
+    "context": "MarkdownPreview",
+    "bindings": {
+      "pageup": "markdown::MovePageUp", // 预览向上翻页
+      "pagedown": "markdown::MovePageDown" // 预览向下翻页
+    }
+  },
+  {
+    "context": "KeymapEditor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-f": "search::FocusSearch", // 聚焦搜索
+      "cmd-alt-f": "keymap_editor::ToggleKeystrokeSearch", // 切换按键序列搜索
+      "cmd-alt-c": "keymap_editor::ToggleConflictFilter", // 仅显示冲突
+      "enter": "keymap_editor::EditBinding", // 编辑当前绑定
+      "alt-enter": "keymap_editor::CreateBinding", // 新建绑定
+      "cmd-c": "keymap_editor::CopyAction", // 复制动作名
+      "cmd-shift-c": "keymap_editor::CopyContext", // 复制上下文表达式
+      "cmd-t": "keymap_editor::ShowMatchingKeybinds" // 显示匹配/冲突绑定
+    }
+  },
+  {
+    "context": "KeystrokeInput",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "keystroke_input::StartRecording", // 开始录制按键序列
+      "escape escape escape": "keystroke_input::StopRecording", // 连按三次 Esc 停止录制
+      "delete": "keystroke_input::ClearKeystrokes" // 清空已录制按键
+    }
+  },
+  {
+    "context": "KeybindEditorModal",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-enter": "menu::Confirm", // 确认保存键位编辑
+      "escape": "menu::Cancel" // 取消并关闭
+    }
+  },
+  {
+    "context": "KeybindEditorModal > Editor",
+    "use_key_equivalents": true,
+    "bindings": {
+      "up": "menu::SelectPrevious", // 列表上一项
+      "down": "menu::SelectNext" // 列表下一项
+    }
+  },
+  {
+    "context": "Onboarding",
+    "use_key_equivalents": true,
+    "bindings": {
+      "cmd-1": "onboarding::ActivateBasicsPage", // 引导：切到基础页
+      "cmd-2": "onboarding::ActivateEditingPage", // 引导：切到编辑页
+      "cmd-3": "onboarding::ActivateAISetupPage", // 引导：切到 AI 设置页
+      "cmd-escape": "onboarding::Finish", // 完成引导
+      "alt-tab": "onboarding::SignIn" // 在引导中执行登录
+    }
+  }
+]
