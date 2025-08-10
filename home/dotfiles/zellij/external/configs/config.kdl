@@ -123,15 +123,16 @@ keybinds clear-defaults=true {
         bind "Tab" { ToggleTab; }
     }
     scroll {
+        bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "e" { EditScrollback; }
         bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
-        bind "Ctrl c" { ScrollToBottom; }
+        bind "G" { ScrollToBottom; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
-        bind "Ctrl f" "f" "PageDown" "Right" "l" { PageScrollDown; }
-        bind "Ctrl b" "b" "PageUp" "Left" "h" { PageScrollUp; }
-        bind "Ctrl d" "d" { HalfPageScrollDown; }
-        bind "Ctrl u" "u" { HalfPageScrollUp; }
+        bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
+        bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
+        bind "Ctrl d" { HalfPageScrollDown; }
+        bind "Ctrl u" { HalfPageScrollUp; }
         // uncomment this and adjust key if using copy_on_select=false
         // bind "Alt c" { Copy; }
     }
@@ -139,10 +140,10 @@ keybinds clear-defaults=true {
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
-        bind "Ctrl f" "f" "PageDown" "Right" "l" { PageScrollDown; }
-        bind "Ctrl b" "b" "PageUp" "Left" "h" { PageScrollUp; }
-        bind "Ctrl d" "d" { HalfPageScrollDown; }
-        bind "Ctrl u" "u" { HalfPageScrollUp; }
+        bind "Ctrl f" "PageDown" "Right" "l" { PageScrollDown; }
+        bind "Ctrl b" "PageUp" "Left" "h" { PageScrollUp; }
+        bind "Ctrl d" { HalfPageScrollDown; }
+        bind "Ctrl u" { HalfPageScrollUp; }
         bind "n" { Search "down"; }
         bind "N" { Search "up"; }
         bind "p" { Search "up"; }
