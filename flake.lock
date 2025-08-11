@@ -231,7 +231,7 @@
         "type": "github"
       }
     },
-    "impermmanence": {
+    "impermanence": {
       "locked": {
         "lastModified": 1737831083,
         "narHash": "sha256-LJggUHbpyeDvNagTUrdhe/pRVp4pnS6wVKALS782gRI=",
@@ -366,6 +366,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-stable": {
+      "locked": {
+        "lastModified": 1754689972,
+        "narHash": "sha256-eogqv6FqZXHgqrbZzHnq43GalnRbLTkbBbFtEfm1RSc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "fc756aa6f5d3e2e5666efcf865d190701fef150a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-wayland": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -417,12 +433,13 @@
       "inputs": {
         "disko": "disko",
         "home-manager": "home-manager",
-        "impermmanence": "impermmanence",
+        "impermanence": "impermanence",
         "nix-darwin": "nix-darwin",
         "nix-flatpak": "nix-flatpak",
         "nix-sops": "nix-sops",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-wayland": "nixpkgs-wayland",
         "rust-overlay": "rust-overlay",
         "stylix": "stylix",
