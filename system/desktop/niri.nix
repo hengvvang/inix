@@ -7,8 +7,8 @@
         # ========== Niri 核心配置 ==========
         # Niri 是一个基于 Rust 和 Smithay 的滚动平铺 Wayland 合成器
         programs.niri = {
-            enable = true;                    # 启用 Niri 窗口管理器
-            package = pkgs.niri;              # 使用稳定版本的 Niri
+            enable = true;
+            package = pkgs.niri;
         };
 
         # ========== 显示管理器配置 ==========
@@ -29,16 +29,16 @@
         environment.sessionVariables = {
             # 启用 Chromium/Electron 应用的原生 Wayland 支持
             NIXOS_OZONE_WL = "1";
-            
+
             # Qt 应用程序使用 Wayland 后端
             QT_QPA_PLATFORM = "wayland";
-            
+
             # Mozilla 应用程序启用 Wayland 支持
             MOZ_ENABLE_WAYLAND = "1";
-            
+
             # 设置默认会话类型为 Wayland
             XDG_SESSION_TYPE = "wayland";
-            
+
             # 设置当前桌面环境
             XDG_CURRENT_DESKTOP = "niri";
         };
@@ -56,8 +56,6 @@
 
         # 仅包含 Niri 桌面环境运行所需的最基本包
         environment.systemPackages = with pkgs; [
-            
-            xdg-utils
             fuzzel     # default application launcher
             alacritty  # default terminal emulator
         ];

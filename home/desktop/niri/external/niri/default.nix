@@ -5,10 +5,13 @@
 
     home.packages = with pkgs; [
       niri
-    ];    
+      swww
+      apple-cursor
+      xwayland-satellite
+    ];
 
     # Niri 核心配置
     xdg.configFile."niri/config.kdl".source = ./config.kdl;
-    
+
   };
 }

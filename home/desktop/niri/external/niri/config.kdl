@@ -21,6 +21,14 @@ environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
+cursor {
+    xcursor-theme "macOS"
+    xcursor-size 24
+
+    // hide-when-typing
+    // hide-after-inactive-ms 1000
+}
+
 input {
     keyboard {
         xkb {
@@ -91,15 +99,8 @@ output "eDP-1" {
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 和 flipped-270。
     transform "normal"
 
-    // 输出在全局坐标空间中的位置。
-    // 这影响方向性监视器操作如 "focus-monitor-left" 和光标移动。
-    // 光标只能在直接相邻的输出之间移动。
-    // 输出缩放和旋转必须考虑在内：
-    // 输出以逻辑像素或缩放像素为单位。
-    // 例如，一个 3840×2160 的输出，缩放为 2.0，逻辑大小为 1920×1080，
-    // 所以要在右侧直接相邻放置另一个输出，将其 x 设置为 1920。
-    // 如果位置未设置或导致重叠，输出将自动放置。
-    position x=1280 y=0
+    // 让 niri 自动处理输出位置，避免潜在的渲染问题
+    // position x=1280 y=0
 }
 
 // 影响窗口定位和大小的设置。

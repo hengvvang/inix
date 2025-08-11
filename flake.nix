@@ -23,12 +23,9 @@
     };
     impermanence = {
       url = "github:nix-community/impermanence";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak/";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
     nix-sops = {
       url = "github:Mic92/sops-nix";

@@ -16,14 +16,22 @@
 
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.method == "external") {
 
+    # ========== 环境变量配置 ==========
+    # macOS 风格光标主题配置
+    home.sessionVariables = {
+      XDG_CURRENT_DESKTOP = "niri";
+
+      QT_QPA_PLATFORM = "wayland;xcb";
+
+      MOZ_ENABLE_WAYLAND = "1";
+    };
+
     home.packages = with pkgs; [
 
-      swww       # wallpaper manager
       # swaybg   # wallpaper manager
       swayidle   # idle management
 
       niriswitcher           # Niri 应用切换器
-      xwayland-satellite     # X11 应用支持 (推荐用于 niri)
 
       # ===== 截图和录屏工具 =====
       grim                   # Wayland 截图工具
