@@ -8,6 +8,7 @@
     ./waybar
     ./fuzzel
     ./swaylock
+    ./swayidle
     ./wlogout
     ./scripts
     ./dunst
@@ -29,8 +30,6 @@
     home.packages = with pkgs; [
 
       # swaybg   # wallpaper manager
-      swayidle   # idle management
-
       niriswitcher           # Niri 应用切换器
 
       # ===== 截图和录屏工具 =====

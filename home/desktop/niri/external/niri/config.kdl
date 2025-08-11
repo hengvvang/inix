@@ -8,6 +8,7 @@ spawn-at-startup "swww-daemon"               // 壁纸服务
 // spawn-at-startup "swaybg"               //另一个壁纸服务
 spawn-at-startup "dunst"                     // 通知服务
 // spawn-at-startup "mako"                     // 另一个通知服务
+spawn-at-startup "swayidle"                  // 空闲管理服务
 spawn-at-startup "xwayland-satellite"       // Xwayland 支持
 // -- 带参数的启动命令 --
 spawn-at-startup "niri" "msg" "action" "focus-workspace" "2"      // 开机切换到工作区2

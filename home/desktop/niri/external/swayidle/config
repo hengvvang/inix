@@ -1,0 +1,52 @@
+# Swayidle 空闲管理配置 - Niri 桌面环境
+# 基于 Swayidle 官方文档和 Niri Wiki 推荐配置
+# 采用 Catppuccin Mocha 主题色彩与现代化体验
+
+# ========== 渐进式空闲管理 ==========
+# 第一阶段：5分钟后锁定屏幕（优雅过渡）
+timeout 300 'swaylock -f'
+
+# 第二阶段：10分钟后降低屏幕亮度（节能准备）
+timeout 600 'brightnessctl -s set 10%' resume 'brightnessctl -r'
+
+# 第三阶段：12分钟后关闭显示器（深度节能）
+timeout 720 'niri msg action power-off-monitors' resume 'niri msg action power-on-monitors'
+
+# 第四阶段：30分钟后系统挂起（可选 - 取消注释启用）
+# timeout 1800 'systemctl suspend'
+
+# ========== 系统集成与会话管理 ==========
+# 系统即将睡眠时锁定屏幕（确保安全）
+before-sleep 'swaylock -f'
+
+# 从睡眠中恢复的处理
+after-resume 'notify-send -i preferences-desktop-screensaver "🌙 系统恢复" "欢迎回来！系统已从睡眠中恢复" -t 3000'
+
+# 会话锁定事件（系统级别）
+lock 'swaylock -f'
+
+# 会话解锁事件处理
+unlock 'notify-send -i emblem-unlocked "🔓 会话解锁" "屏幕锁定已解除" -t 2000'
+
+# ========== 智能空闲提示 ==========
+# 在8分钟后向 systemd-logind 设置空闲提示
+# 这有助于其他服务了解用户的空闲状态
+idlehint 480
+
+# ========== 配置说明 ==========
+# 此配置实现了分层的电源管理：
+# 1. 保护隐私：首先锁定屏幕
+# 2. 节约能源：逐步降低功耗
+# 3. 用户体验：平滑的亮度过渡和友好的通知
+# 4. 系统集成：与 systemd 和桌面环境协调工作
+#
+# 时间轴：
+# 0min   -> 用户活动
+# 5min   -> 锁定屏幕 (swaylock)
+# 10min  -> 降低亮度至10%
+# 12min  -> 关闭显示器
+# 30min  -> 系统挂起 (可选)
+#
+# 配色方案：Catppuccin Mocha
+# 字体支持：霞鹜文楷 (LXGW WenKai)
+# 兼容性：支持 Niri + Wayland 生态
