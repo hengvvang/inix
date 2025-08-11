@@ -13,6 +13,7 @@
     ./scripts
     ./dunst
     ./mako
+    ./appearance
   ];
 
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.method == "external") {
@@ -48,7 +49,7 @@
       playerctl              # 媒体播放控制
 
       # ===== 文件管理器 =====
-      nautilus               # GNOME 文件管理器
+      nautilus
     ];
   };
 }
