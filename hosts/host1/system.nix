@@ -4,12 +4,12 @@
   mySystem = {
 
     pkgs = {
-      enable = true;     
+      enable = true;
       apps.enable = true;
       toolkits.enable = true;
       workflows.enable = true;
     };
-    
+
     desktop = {
       enable = true;
       preset = "niri";
@@ -20,7 +20,7 @@
         enable = false;
         preset = "zen";
       };
-      
+
       stylix = {
         enable = true;
         polarity = "dark";
@@ -29,35 +29,35 @@
           enable = false;
           preset = "sea";
         };
-        
+
         fonts = {
           enable = false;
         };
-        
+
         colors = {
           enable = true;
           scheme = "catppuccin-latte";
         };
-        
+
         targets = {
           enable = true;
-          
+
           # 系统启动
           boot = {
             grub.enable = true;  # 启用 GRUB 引导主题
           };
-          
+
           # 系统级桌面环境
           desktop = {
             gtk.enable = true;   # 启用系统级 GTK 主题
           };
-          
+
           # 系统控制台
           console.enable = true; # 启用控制台主题
         };
       };
     };
-    
+
     locale = {
       enable = true;
       timeZone = {
@@ -69,17 +69,17 @@
         fcitx5.enable = true;
       };
     };
-    
+
     services = {
       enable = true;
-      
+
       containers = {
         enable = true;                 # 启用容器服务模块
 
         appimage = {
           enable = true;               # 启用 AppImage 服务
         };
-        
+
         # Docker 容器服务配置
         docker = {
           enable = true;               # 启用 Docker 服务
@@ -92,7 +92,7 @@
             port = 5000;              # Registry 端口
           };
         };
-        
+
         # Flatpak 容器服务配置
         flatpak = {
           enable = true;               # 启用 Flatpak 服务
@@ -102,10 +102,10 @@
           xdgPortal = true;            # 启用 XDG 门户支持
         };
       };
-      
+
       network = {
         enable = true;                 # 启用网络服务
-        
+
         # 网络管理器配置
         manager = {
           enable = true;               # 🟢 启用网络管理器
@@ -116,7 +116,7 @@
             gui = true;                # 启用图形化管理工具
           };
         };
-        
+
         # SSH 服务配置
         ssh = {
           enable = true;               # 🟢 启用 SSH 服务
@@ -129,7 +129,7 @@
             enable = true;             # 启用 SSH 客户端工具
           };
         };
-        
+
         # 虚拟网卡支持（TUN/TAP）
         virtualInterface = {
           enable = true;               # 🟢 启用虚拟网卡支持
@@ -144,21 +144,21 @@
             bridge = false;            # 禁用网桥工具
           };
         };
-        
+
         proxy = {
           enable = true;               # 启用代理服务模块
-          
+
           mihomo = {
             enable = false;  # 暂时禁用以解决构建问题
             webui = "metacubexd";  # 使用 metacubexd Web UI
             tunMode = true;  # 启用 TUN 模式，提供透明代理
-            configFile = ../../system/services/network/proxy/mihomo/config.yaml;
+            configFile = null;
             extraOpts = null;
           };
 
         };
       };
-      
+
       # 媒体服务配置
       media = {
         enable = true;                 # 🟢 启用媒体服务
@@ -181,7 +181,7 @@
           enable = true;               # 启用流媒体工具
           download = true;             # yt-dlp 下载工具
         };
-        
+
         mpd = {
           enable = false;              # � 禁用系统级 MPD - 使用用户级配置
         #   musicDirectory = "/srv/Music";  # 用户音乐目录，更合理的位置
@@ -190,23 +190,23 @@
         #   enableFileOutput = false;    # 暂时禁用 FIFO 输出避免崩溃
         };
       };
-      
+
       # 硬件驱动配置
       drivers = {
         enable = true;                 # 🟢 启用硬件驱动模块
-        
+
         # 音频驱动配置
         audio = {
           enable = true;               # 🟢 启用音频驱动 (PipeWire + ALSA)
           controls = true;             # 启用音频控制工具
         };
-        
+
         # 触摸板驱动配置
         touchpad = {
           enable = true;               # 🟢 启用触摸板驱动 (libinput)
           gestures = false;            # 可选：启用手势支持
         };
-        
+
         # 打印驱动配置
         printing = {
           enable = true;               # 🟢 启用打印功能 (CUPS)
@@ -230,12 +230,12 @@
             brother = false;           # Brother 打印机驱动
           };
         };
-        
+
         bluetooth = {
           enable = true;               # 启用蓝牙支持
           gui = true;                  # 图形管理工具
         };
-        
+
         # NVIDIA 显卡配置
         nvidia = {
           enable = true;               # 🟢 启用 NVIDIA 支持
@@ -259,7 +259,7 @@
             overclocking = false;      # 超频工具支持
           };
         };
-        
+
         # 调试探针配置
         debug = {
           enable = true;               # 🟢 启用调试探针支持
@@ -272,4 +272,3 @@
     };
   };
 }
-
