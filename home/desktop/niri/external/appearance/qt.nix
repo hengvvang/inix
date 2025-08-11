@@ -5,9 +5,15 @@
     # ========== Qt 配置 ==========
     qt = {
       enable = true;
-      platformTheme.name = "gtk3";
-      style = {
+
+      # 使用新的 platformTheme 配置选项
+      platformTheme = {
         name = "gtk3";
+      };
+
+      # Qt 样式配置
+      style = {
+        name = "gtk2";  # 使用gtk2样式以更好地与macOS主题兼容
       };
     };
   };

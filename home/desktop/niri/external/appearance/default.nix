@@ -10,10 +10,10 @@
 
     # ========== macOS 风格主题包 ==========
     home.packages = with pkgs; [
-      whitesur-gtk-theme       # macOS 风格 GTK 主题
-      whitesur-icon-theme      # macOS 风格图标主题
-      apple-cursor             # macOS 光标主题
-      lxgw-wenkai              # 霞鹜文楷字体
+      whitesur-gtk-theme
+      whitesur-icon-theme
+      apple-cursor
+      lxgw-wenkai
     ];
 
     # ========== 鼠标光标配置 ==========
@@ -36,15 +36,8 @@
     };
 
     # ========== 环境变量 ==========
+    # 光标主题相关环境变量保留，因为某些应用可能需要
     home.sessionVariables = {
-      # GTK 主题
-      GTK_THEME = "WhiteSur-Light";
-
-      # Qt 主题
-      QT_QPA_PLATFORMTHEME = "gtk3";
-      QT_STYLE_OVERRIDE = "gtk3";
-
-      # 光标主题
       XCURSOR_THEME = "macOS";
       XCURSOR_SIZE = "24";
     };
