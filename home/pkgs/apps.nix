@@ -16,7 +16,7 @@
             telegram-desktop
             discord
             qq
-            #wechat
+            wechat
 
             wpsoffice-cn
             pot
@@ -27,7 +27,7 @@
             # clash-nyanpasu    # 代理工具（备用）
             # clash-meta        # Clash 内核
 
-            # steam
+            steam
             # lutris
 
             # blender           # 3D 建模
