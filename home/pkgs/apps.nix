@@ -27,8 +27,8 @@
             # clash-nyanpasu    # 代理工具（备用）
             # clash-meta        # Clash 内核
 
-            steam
-            # lutris
+            # steam                 # Steam 游戏平台
+            lutris
 
             # blender           # 3D 建模
             # gimp              # 图像编辑
