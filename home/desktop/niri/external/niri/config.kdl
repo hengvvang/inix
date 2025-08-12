@@ -23,19 +23,19 @@ environment {
 
     // ========== Xwayland 应用缩放设置 ==========
     // GTK 应用程序缩放（影响大部分 X11/GTK 应用）
-    GDK_SCALE "1.5"                       // 1.5倍缩放，根据需要调整
+    GDK_SCALE "1.25"                       // 1.5倍缩放，根据需要调整
     GDK_DPI_SCALE "1.0"                   // DPI缩放，通常保持1.0
 
     // Qt 应用程序缩放
-    QT_SCALE_FACTOR "1.5"                 // Qt 应用整体缩放
+    QT_SCALE_FACTOR "1.25"                 // Qt 应用整体缩放
     QT_AUTO_SCREEN_SCALE_FACTOR "1"       // 启用自动屏幕缩放
-    QT_FONT_DPI "144"                     // 字体 DPI，1.5倍缩放对应144
+    // QT_FONT_DPI "144"                     // 字体 DPI，1.5倍缩放对应144
 
     // X11 应用程序缩放设置
-    XWAYLAND_SCALE "1.5"                  // Xwayland 整体缩放
+    XWAYLAND_SCALE "1.25"                  // Xwayland 整体缩放
 
     // 光标缩放
-    XCURSOR_SIZE "36"                     // 光标大小，1.5倍缩放对应36
+    XCURSOR_SIZE "24"                     // 光标大小，1.5倍缩放对应36
 }
 
 cursor {
@@ -746,7 +746,6 @@ binds {
     Mod+Ctrl+R { reset-window-height; }
 
     Mod+M { maximize-column; }
-    Mod+Shift+M { fullscreen-window
     Mod+Shift+M { fullscreen-window; }
 
     // 使列"填充剩余空间"
