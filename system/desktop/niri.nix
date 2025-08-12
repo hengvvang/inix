@@ -41,6 +41,19 @@
 
             # 设置当前桌面环境
             XDG_CURRENT_DESKTOP = "niri";
+
+            # ========== Xwayland 缩放配置 ==========
+            # GTK 应用程序缩放
+            GDK_SCALE = "1.5";
+            GDK_DPI_SCALE = "1.0";
+
+            # Qt 应用程序缩放
+            QT_SCALE_FACTOR = "1.5";
+            QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+            QT_FONT_DPI = "144";  # 1.5 * 96 = 144
+
+            # X11 光标大小
+            XCURSOR_SIZE = "36";  # 1.5 * 24 = 36
         };
 
         # ========== XDG 桌面门户配置 ==========

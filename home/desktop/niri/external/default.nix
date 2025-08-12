@@ -19,12 +19,10 @@
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.method == "external") {
 
     # ========== 环境变量配置 ==========
-    # macOS 风格光标主题配置
+    # Niri 桌面环境和缩放配置
     home.sessionVariables = {
       XDG_CURRENT_DESKTOP = "niri";
-
       QT_QPA_PLATFORM = "wayland;xcb";
-
       MOZ_ENABLE_WAYLAND = "1";
     };
 
