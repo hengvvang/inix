@@ -6,63 +6,56 @@ in
   imports = [
     inputs.stylix.homeModules.stylix
     ./presets.nix
-    ./advanced.nix
   ];
 
   options.myHome.profiles.stylix = {
     enable = lib.mkEnableOption "Stylix 主题系统配置";
 
-    # 基础主题配置
-    theme = {
-      # 色彩方案配置
-      colorScheme = {
-        preset = lib.mkOption {
+    # 色彩方案配置
+    colorScheme = {
+        usePreset = lib.mkOption {
           type = lib.types.nullOr (lib.types.enum [
             "catppuccin-latte" "catppuccin-frappe" "catppuccin-macchiato" "catppuccin-mocha"
             "tokyo-night-dark" "tokyo-night-light" "tokyo-night-storm"
             "dracula" "nord" "gruvbox-dark-hard" "gruvbox-light-hard"
-            "solarized-dark" "solarized-light"
           ]);
           default = "catppuccin-mocha";
           description = "预设色彩方案";
         };
-
         custom = lib.mkOption {
           type = lib.types.nullOr lib.types.path;
           default = null;
           description = "自定义色彩方案文件路径 (Base16 YAML)";
           example = "./themes/my-theme.yaml";
         };
-
-        polarity = lib.mkOption {
-          type = lib.types.enum [ "either" "light" "dark" ];
-          default = "either";
-          description = "强制使用亮色或暗色主题";
-        };
-      };
-
-      # 壁纸配置
-      wallpaper = {
-        enable = lib.mkEnableOption "壁纸主题配置" // { default = true; };
-
-        image = lib.mkOption {
-          type = lib.types.nullOr lib.types.path;
-          default = null;
-          description = "壁纸图片路径";
-          example = "./wallpapers/landscape.jpg";
-        };
-
-        scaling = lib.mkOption {
-          type = lib.types.enum [ "stretch" "fill" "fit" "center" "tile" ];
-          default = "fill";
-          description = "壁纸缩放模式";
-        };
-
         generateFromImage = lib.mkOption {
           type = lib.types.bool;
           default = false;
           description = "从壁纸自动生成色彩方案";
         };
+      };
+
+    polarity = lib.mkOption {
+      type = lib.types.enum [ "either" "light" "dark" ];
+      default = "either";
+      description = "强制使用亮色或暗色主题";
+    };
+
+    # 壁纸配置
+    wallpaper = {
+      enable = lib.mkEnableOption "壁纸主题配置" // { default = true; };
+
+      image = lib.mkOption {
+        type = lib.types.nullOr lib.types.path;
+        default = null;
+        description = "壁纸图片路径";
+        example = "./wallpapers/landscape.jpg";
+      };
+
+      scalingMode = lib.mkOption {
+        type = lib.types.enum [ "stretch" "fill" "fit" "center" "tile" ];
+        default = "fill";
+        description = "壁纸缩放模式";
       };
     };
 
@@ -157,7 +150,6 @@ in
     cursor = {
       enable = lib.mkEnableOption "光标主题配置" // { default = true; };
 
-      theme = {
         name = lib.mkOption {
           type = lib.types.str;
           default = "Adwaita";
@@ -175,7 +167,6 @@ in
           default = 24;
           description = "光标大小 (像素)";
         };
-      };
     };
 
     # 透明度配置
@@ -345,9 +336,9 @@ in
 
     # 色彩方案配置
     stylix.base16Scheme =
-      if cfg.theme.colorScheme.custom != null then
-        cfg.theme.colorScheme.custom
-      else if cfg.theme.wallpaper.generateFromImage then
+      if cfg.colorScheme.custom != null then
+        cfg.colorScheme.custom
+      else if cfg.colorScheme.generateFromImage then
         null  # 从壁纸生成
       else
         let
@@ -363,24 +354,16 @@ in
             "nord" = "${pkgs.base16-schemes}/share/themes/nord.yaml";
             "gruvbox-dark-hard" = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
             "gruvbox-light-hard" = "${pkgs.base16-schemes}/share/themes/gruvbox-light-hard.yaml";
-            "solarized-dark" = "${pkgs.base16-schemes}/share/themes/solarized-dark.yaml";
-            "solarized-light" = "${pkgs.base16-schemes}/share/themes/solarized-light.yaml";
-            "onedark" = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
-            "github-dark" = "${pkgs.base16-schemes}/share/themes/github.yaml";
-            "github-light" = "${pkgs.base16-schemes}/share/themes/github.yaml";
-            "monokai" = "${pkgs.base16-schemes}/share/themes/monokai.yaml";
-            "material-darker" = "${pkgs.base16-schemes}/share/themes/material-darker.yaml";
-            "material-palenight" = "${pkgs.base16-schemes}/share/themes/material-palenight.yaml";
           };
         in
-          schemeMap.${cfg.theme.colorScheme.preset} or "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+          schemeMap.${cfg.colorScheme.usePreset} or "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
     # 极性配置
-    stylix.polarity = cfg.theme.colorScheme.polarity;
+    stylix.polarity = cfg.polarity;
 
     # 壁纸配置
-    stylix.image = lib.mkIf (cfg.theme.wallpaper.enable && cfg.theme.wallpaper.image != null) cfg.theme.wallpaper.image;
-    stylix.imageScalingMode = cfg.theme.wallpaper.scaling;
+    stylix.image = lib.mkIf (cfg.wallpaper.enable && cfg.wallpaper.image != null) cfg.wallpaper.image;
+    stylix.imageScalingMode = cfg.wallpaper.scalingMode;
 
     # 字体配置
     stylix.fonts = lib.mkIf cfg.fonts.enable {
@@ -410,9 +393,9 @@ in
 
     # 光标配置
     stylix.cursor = lib.mkIf cfg.cursor.enable {
-      name = cfg.cursor.theme.name;
-      package = cfg.cursor.theme.package;
-      size = cfg.cursor.theme.size;
+      name = cfg.cursor.name;
+      package = cfg.cursor.package;
+      size = cfg.cursor.size;
     };
 
     # 透明度配置
