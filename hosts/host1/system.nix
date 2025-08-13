@@ -23,37 +23,34 @@
 
       stylix = {
         enable = true;
-        polarity = "dark";
-        wallpapers = {
+        image = ../../../system/profiles/stylix/wallpapers/sea.jpg;
+        colorScheme = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
+        polarity = "light";  # catppuccin-latte 是浅色主题
 
-          enable = false;
-          preset = "sea";
-        };
-
+        # 字体配置
         fonts = {
-          enable = false;
-        };
-
-        colors = {
-          enable = true;
-          scheme = "catppuccin-latte";
-        };
-
-        targets = {
-          enable = true;
-
-          # 系统启动
-          boot = {
-            grub.enable = true;  # 启用 GRUB 引导主题
+          monospace = {
+            package = pkgs.nerd-fonts.jetbrains-mono;
+            name = "JetBrainsMono Nerd Font Mono";
           };
-
-          # 系统级桌面环境
-          desktop = {
-            gtk.enable = true;   # 启用系统级 GTK 主题
+          sansSerif = {
+            package = pkgs.noto-fonts;
+            name = "Noto Sans";
           };
-
-          # 系统控制台
-          console.enable = true; # 启用控制台主题
+          serif = {
+            package = pkgs.noto-fonts;
+            name = "Noto Serif";
+          };
+          emoji = {
+            package = pkgs.noto-fonts-emoji;
+            name = "Noto Color Emoji";
+          };
+          sizes = {
+            applications = 12;
+            terminal = 14;
+            desktop = 11;
+            popups = 11;
+          };
         };
       };
     };

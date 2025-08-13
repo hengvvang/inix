@@ -66,7 +66,6 @@
       };
 
       makeCommonHomeModules = arch: [
-        stylix.homeManagerModules.stylix
         {
           home.packages = [
             zen-browser.packages.${arch}.twilight
@@ -116,7 +115,6 @@
         ${hosts.host1} = lib.nixosSystem {
           modules = [
             ./hosts/host1
-            stylix.nixosModules.stylix
             {
               environment.systemPackages = [
                 zen-browser.packages.x86_64-linux.twilight
@@ -131,7 +129,6 @@
         ${hosts.host2} = lib.nixosSystem {
           modules = [
             ./hosts/host2
-            stylix.nixosModules.stylix
             {
               environment.systemPackages = [
                 zen-browser.packages.aarch64-linux.twilight
@@ -148,7 +145,6 @@
         ${hosts.host3} = lib.darwinSystem {
           modules = [
             ./hosts/host3
-            stylix.darwinModules.stylix
             {
               environment.systemPackages = [
                 zen-browser.packages.aarch64-darwin.twilight

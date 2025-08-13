@@ -117,68 +117,55 @@
         };
         stylix = {
           enable = true;
+
+          # 用户级覆盖配置（可选）
           polarity = "dark";
 
-          # 🎨 启用自定义颜色配置
-          colors = {
-            enable = true;
-            scheme = "dark-elegant";
+          # 指定特定颜色方案（覆盖系统配置）
+          colorScheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
+
+          # 用户特定的字体大小调整
+          fontSize = {
+            terminal = 16;
+            applications = 12;
+            desktop = 12;
+            popups = 12;
           };
 
-          wallpapers = {
-            enable = false;
-            # preset = "tokyo";
-            # custom = {
-            #   url = "https://example.com/path/to/your/wallpaper.jpg";  # ✅ 自定义壁纸 URL
-            #   position = "center";  # ✅ 壁纸位置（center, fill, stretch 等）
-            # };
-          };
-
-          fonts = {
-            enable = false;
-            names = {
-              monospace = "JetBrainsMono Nerd Font Mono";
-              sansSerif = "Noto Sans";
-              serif = "Noto Serif";
-              emoji = "Noto Color Emoji";
-            };
-            sizes = {
-              terminal = 16;
-              applications = 12;
-              desktop = 12;
-              popups = 12;
-            };
-          };
-
+          # 目标应用配置 - 基于您实际使用的应用
           targets = {
-            enable = true;
-
             terminals = {
-              alacritty.enable = false;
+              alacritty.enable = true;  # 您启用了 alacritty
               kitty.enable = false;
             };
 
             editors = {
-              vim.enable = true;
+              vim.enable = true;        # 您启用了 vim
               neovim.enable = false;
             };
 
             tools = {
-              tmux.enable = true;
+              tmux.enable = true;       # 您启用了 tmux
               bat.enable = true;
               fzf.enable = true;
+              zellij.enable = true;     # 您启用了 zellij
             };
 
             desktop = {
               gtk.enable = true;
+              qt.enable = true;
             };
 
             browsers = {
-              firefox.enable = false;
+              firefox.enable = false;   # 您禁用了 qutebrowser
+              qutebrowser.enable = false;
             };
 
-            inputMethods = {
-              fcitx5.enable = true;
+            others = {
+              rofi.enable = false;      # 您禁用了 rofi
+              mako.enable = false;
+              dunst.enable = false;
+              waybar.enable = false;
             };
           };
         };
