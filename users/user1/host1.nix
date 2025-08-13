@@ -123,9 +123,11 @@
               name = "tokyo-night-dark";
             };
           };
-          # 禁用光标配置，使用现有 niri 配置避免冲突
           cursor = {
-            enable = false;
+            enable = true;
+            name = "macOS";
+            package = pkgs.apple-cursor;
+            size = 24;
           };
           fonts = {
             enable = true;
