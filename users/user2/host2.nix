@@ -46,39 +46,16 @@
         };
         stylix = {
           enable = true;
-          polarity = "dark";
-          wallpapers = {
-            enable = true;
-            preset = "sea";
-          };
-          fonts = {
-            enable = true;
-            sizes = {
-              applications = 10;
-              terminal = 11;
-            };
+          # user2 在 work 主机上的配置
+          fontSize = {
+            applications = 10;  # 较小的字体适合工作环境
+            terminal = 11;
           };
           targets = {
-            enable = true;
-            terminals = {
-              alacritty.enable = false;
-              kitty.enable = false;
-            };
-            editors = {
-              vim.enable = true;
-              neovim.enable = false;
-            };
-            tools = {
-              tmux.enable = false;
-              bat.enable = false;
-              fzf.enable = false;
-            };
-            desktop = {
-              gtk.enable = true;
-            };
-            browsers = {
-              firefox.enable = true;
-            };
+            editors.vim.enable = true;        # 使用 vim
+            desktop.gtk.enable = true;        # GTK 应用主题
+            browsers.firefox.enable = true;   # 使用 Firefox
+            # 其他应用跟随自动检测
           };
         };
       };

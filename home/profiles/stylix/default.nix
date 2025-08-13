@@ -3,259 +3,230 @@
 {
   imports = [
     inputs.stylix.homeModules.stylix
-    ./wallpapers.nix
-    ./fonts.nix
-    ./targets.nix
-    ./colors.nix
   ];
-  
+
   options.myHome.profiles.stylix = {
-    enable = lib.mkEnableOption "Stylix 主题系统";
+    enable = lib.mkEnableOption "Stylix Home Manager 主题配置";
     
-    # 主题极性
+    # 用户级壁纸覆盖（可选）
+    image = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      default = null;
+      description = "用户自定义壁纸，设置后不再跟随系统";
+    };
+    
+    # 用户级颜色方案覆盖（可选）
+    colorScheme = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+      description = "用户颜色方案，设置后不再跟随系统";
+      example = "\${pkgs.base16-schemes}/share/themes/nord.yaml";
+    };
+    
+    # 用户级主题极性覆盖（可选）
     polarity = lib.mkOption {
-      type = lib.types.enum [ "light" "dark" ];
-      default = "dark";
-      description = "主题极性（明亮/暗色）";
+      type = lib.types.nullOr (lib.types.enum [ "light" "dark" ]);
+      default = null;
+      description = "用户主题极性，设置后不再跟随系统";
     };
     
-    # 壁纸配置
-    wallpapers = {
-      enable = lib.mkEnableOption "Stylix 壁纸配置";
-      
-      # 预设壁纸选择
-      preset = lib.mkOption {
-        type = lib.types.enum [ "sea" "home" "maori" "pixabay" "blue-sky"];
-        default = "sea";
-        description = "预设壁纸选择";
-      };
-      
-      # 自定义壁纸路径
-      custom = lib.mkOption {
-        type = lib.types.nullOr lib.types.path;
+    # 字体大小覆盖
+    fontSize = {
+      applications = lib.mkOption {
+        type = lib.types.nullOr lib.types.int;
         default = null;
-        description = "自定义壁纸路径，优先于预设壁纸";
+        description = "用户应用程序字体大小覆盖";
+      };
+      terminal = lib.mkOption {
+        type = lib.types.nullOr lib.types.int;
+        default = null;
+        description = "用户终端字体大小覆盖";
+      };
+      desktop = lib.mkOption {
+        type = lib.types.nullOr lib.types.int;
+        default = null;
+        description = "用户桌面字体大小覆盖";
+      };
+      popups = lib.mkOption {
+        type = lib.types.nullOr lib.types.int;
+        default = null;
+        description = "用户弹窗字体大小覆盖";
       };
     };
     
-    # 字体配置
-    fonts = {
-      enable = lib.mkEnableOption "Stylix 字体配置";
-      
-      # 字体包选择
-      packages = {
-        monospace = lib.mkOption {
-          type = lib.types.package;
-          default = pkgs.nerd-fonts.jetbrains-mono;
-          description = "等宽字体包";
-        };
-        
-        sansSerif = lib.mkOption {
-          type = lib.types.package;
-          default = pkgs.noto-fonts;
-          description = "无衬线字体包";
-        };
-        
-        serif = lib.mkOption {
-          type = lib.types.package;
-          default = pkgs.noto-fonts;
-          description = "衬线字体包";
-        };
-        
-        emoji = lib.mkOption {
-          type = lib.types.package;
-          default = pkgs.noto-fonts-emoji;
-          description = "表情字体包";
-        };
-      };
-      
-      # 字体名称
-      names = {
-        monospace = lib.mkOption {
-          type = lib.types.str;
-          default = "JetBrainsMono Nerd Font Mono";
-          description = "等宽字体名称";
-        };
-        
-        sansSerif = lib.mkOption {
-          type = lib.types.str;
-          default = "Noto Sans";
-          description = "无衬线字体名称";
-        };
-        
-        serif = lib.mkOption {
-          type = lib.types.str;
-          default = "Noto Serif";
-          description = "衬线字体名称";
-        };
-        
-        emoji = lib.mkOption {
-          type = lib.types.str;
-          default = "Noto Color Emoji";
-          description = "表情字体名称";
-        };
-      };
-      
-      # 字体大小
-      sizes = {
-        applications = lib.mkOption {
-          type = lib.types.int;
-          default = 11;
-          description = "应用程序字体大小";
-        };
-        
-        terminal = lib.mkOption {
-          type = lib.types.int;
-          default = 12;
-          description = "终端字体大小";
-        };
-        
-        desktop = lib.mkOption {
-          type = lib.types.int;
-          default = 10;
-          description = "桌面字体大小";
-        };
-        
-        popups = lib.mkOption {
-          type = lib.types.int;
-          default = 10;
-          description = "弹窗字体大小";
-        };
-      };
-    };
-    
-    # 目标应用配置
+    # 目标应用配置 - 基于实际安装的应用自动检测
     targets = {
-      enable = lib.mkEnableOption "Stylix 目标应用配置";
-      
       # 终端应用
       terminals = {
-        alacritty.enable = lib.mkEnableOption "Alacritty 主题";
-        kitty.enable = lib.mkEnableOption "Kitty 主题";
+        alacritty.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.alacritty.enable or false;
+          description = "Alacritty 主题，默认跟随程序启用状态";
+        };
+        kitty.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.kitty.enable or false;
+          description = "Kitty 主题，默认跟随程序启用状态";
+        };
+        wezterm.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.wezterm.enable or false;
+          description = "WezTerm 主题，默认跟随程序启用状态";
+        };
       };
       
       # 编辑器
       editors = {
-        vim.enable = lib.mkEnableOption "Vim 主题";
-        neovim.enable = lib.mkEnableOption "Neovim 主题";
+        vim.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.vim.enable or false;
+          description = "Vim 主题，默认跟随程序启用状态";
+        };
+        neovim.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.neovim.enable or false;
+          description = "Neovim 主题，默认跟随程序启用状态";
+        };
+        emacs.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.emacs.enable or false;
+          description = "Emacs 主题，默认跟随程序启用状态";
+        };
       };
       
-      # 工具
+      # 开发工具
       tools = {
-        tmux.enable = lib.mkEnableOption "Tmux 主题";
-        bat.enable = lib.mkEnableOption "Bat 主题";
-        fzf.enable = lib.mkEnableOption "Fzf 主题";
+        tmux.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.tmux.enable or false;
+          description = "Tmux 主题，默认跟随程序启用状态";
+        };
+        bat.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.bat.enable or false;
+          description = "Bat 主题，默认跟随程序启用状态";
+        };
+        fzf.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.fzf.enable or false;
+          description = "Fzf 主题，默认跟随程序启用状态";
+        };
+        zellij.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.zellij.enable or false;
+          description = "Zellij 主题，默认跟随程序启用状态";
+        };
       };
       
       # 桌面环境
       desktop = {
-        gtk.enable = lib.mkEnableOption "GTK 主题";
+        gtk.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = "GTK 应用主题";
+        };
+        qt.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = "Qt 应用主题";
+        };
       };
       
       # 浏览器
       browsers = {
-        firefox.enable = lib.mkEnableOption "Firefox 主题";
+        firefox.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.firefox.enable or false;
+          description = "Firefox 主题，默认跟随程序启用状态";
+        };
+        qutebrowser.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.qutebrowser.enable or false;
+          description = "Qutebrowser 主题，默认跟随程序启用状态";
+        };
       };
-         # 输入法
-    inputMethods = {
-      fcitx5.enable = lib.mkEnableOption "Fcitx5 主题";
-    };
-  };
-  
-  # 颜色自定义配置
-  colors = {
-    enable = lib.mkEnableOption "Stylix 自定义颜色配置";
-    
-    scheme = lib.mkOption {
-      type = lib.types.enum [ 
-        # 🎨 自定义主题
-        "warm-white"        # 🤍 简约白色暖色调（推荐亮色主题）
-        "cool-blue"         # 🩵 冷静蓝色主题
-        "forest-green"      # 🌿 森林绿色主题 
-        "sunset-orange"     # 🧡 日落橙色主题
-        "lavender-purple"   # 💜 薰衣草紫色主题
-        "dark-elegant"      # 🖤 优雅深色主题
-        
-        # 🔄 动态主题
-        "auto"              # 从壁纸自动生成
-        
-        # 🌹 Rose Pine 系列
-        "rose-pine"         # Rose Pine 标准版
-        "rose-pine-moon"    # Rose Pine Moon 月夜版
-        "rose-pine-dawn"    # Rose Pine Dawn 晨曦版
-        
-        # 😺 Catppuccin 系列
-        "catppuccin-latte"  # Catppuccin 拿铁（浅色）
-        "catppuccin-frappe" # Catppuccin 法芮（中度深色）
-        "catppuccin-macchiato" # Catppuccin 玛奇朵（深色）
-        "catppuccin-mocha"  # Catppuccin 摩卡（最深色）
-        
-        # 🔥 热门预设主题
-        "gruvbox-light"     # Gruvbox 亮色
-        "gruvbox-dark-hard" # Gruvbox 深色
-        "gruvbox-dark-medium" # Gruvbox 中度深色
-        "gruvbox-dark-soft" # Gruvbox 柔和深色
-
-        "solarized-light"   # Solarized 亮色
-        "solarized-dark"    # Solarized 深色
-
-        "nord"              # Nord 北欧风
-        "dracula"           # Dracula 吸血鬼
-
-        "tokyo-night"       # 东京夜色
-        "tokyo-night-light" # 东京夜色 浅色版
-        "tokyo-night-storm" # 东京夜色 暴风版
-
-        "one-light"         # Atom One 亮色
-        "one-dark"          # Atom One 深色
-        "monokai"           # Monokai 经典
-
-        "github-light"      # GitHub 浅色
-        "github-dark"       # GitHub 深色
-
-        "material-darker"   # Material Darker
-        "material-palenight" # Material Palenight
-
-        "ayu-light"         # Ayu 浅色
-        "ayu-mirage"        # Ayu 海市蜃楼
-        "ayu-dark"          # Ayu 深色
-      ];
-      default = "rose-pine";  # 🌹 默认使用 Rose Pine
-      description = "颜色方案选择";
-    };
-    
-    # 自定义颜色覆盖
-    override = lib.mkOption {
-      type = lib.types.attrsOf lib.types.str;
-      default = {};
-      description = "自定义颜色覆盖 (base00-base0F)";
-      example = {
-        base00 = "ffffff";  # 背景
-        base05 = "000000";  # 前景
+      
+      # 其他工具
+      others = {
+        rofi.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.rofi.enable or false;
+          description = "Rofi 主题，默认跟随程序启用状态";
+        };
+        mako.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.services.mako.enable or false;
+          description = "Mako 主题，默认跟随程序启用状态";
+        };
+        dunst.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.services.dunst.enable or false;
+          description = "Dunst 主题，默认跟随程序启用状态";
+        };
+        waybar.enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.programs.waybar.enable or false;
+          description = "Waybar 主题，默认跟随程序启用状态";
+        };
       };
     };
   };
-  };
 
-
-  # 核心 Stylix 配置直接在 default.nix 中处理
   config = lib.mkIf config.myHome.profiles.stylix.enable {
+    # 直接使用 Stylix 官方 Home Manager 配置
     stylix = {
       enable = true;
-      autoEnable = false;  # 完全手动控制
       
-      # 基础配置
-      image = lib.mkIf (!config.myHome.profiles.stylix.colors.enable || config.myHome.profiles.stylix.colors.scheme == "auto") (
-        if config.myHome.profiles.stylix.wallpapers.custom != null
-        then config.myHome.profiles.stylix.wallpapers.custom
-        else ./wallpapers + "/${config.myHome.profiles.stylix.wallpapers.preset}.jpg"
-      );
+      # 用户覆盖配置（可选）
+      image = lib.mkIf (config.myHome.profiles.stylix.image != null)
+        config.myHome.profiles.stylix.image;
+      
+      base16Scheme = lib.mkIf (config.myHome.profiles.stylix.colorScheme != null)
+        config.myHome.profiles.stylix.colorScheme;
+      
+      polarity = lib.mkIf (config.myHome.profiles.stylix.polarity != null)
+        config.myHome.profiles.stylix.polarity;
+      
+      # 字体大小覆盖
+      fonts.sizes = lib.filterAttrs (_: v: v != null) {
+        applications = config.myHome.profiles.stylix.fontSize.applications;
+        terminal = config.myHome.profiles.stylix.fontSize.terminal;
+        desktop = config.myHome.profiles.stylix.fontSize.desktop;
+        popups = config.myHome.profiles.stylix.fontSize.popups;
+      };
+      
+      # 目标应用配置
+      targets = {
+        # 终端
+        alacritty.enable = config.myHome.profiles.stylix.targets.terminals.alacritty.enable;
+        kitty.enable = config.myHome.profiles.stylix.targets.terminals.kitty.enable;
+        wezterm.enable = config.myHome.profiles.stylix.targets.terminals.wezterm.enable;
         
-      polarity = config.myHome.profiles.stylix.polarity;
-      
-      # 颜色覆盖
-      override = lib.mkIf (config.myHome.profiles.stylix.colors.override != {}) 
-        config.myHome.profiles.stylix.colors.override;
+        # 编辑器
+        vim.enable = config.myHome.profiles.stylix.targets.editors.vim.enable;
+        neovim.enable = config.myHome.profiles.stylix.targets.editors.neovim.enable;
+        emacs.enable = config.myHome.profiles.stylix.targets.editors.emacs.enable;
+        
+        # 工具
+        tmux.enable = config.myHome.profiles.stylix.targets.tools.tmux.enable;
+        bat.enable = config.myHome.profiles.stylix.targets.tools.bat.enable;
+        fzf.enable = config.myHome.profiles.stylix.targets.tools.fzf.enable;
+        zellij.enable = config.myHome.profiles.stylix.targets.tools.zellij.enable;
+        
+        # 桌面
+        gtk.enable = config.myHome.profiles.stylix.targets.desktop.gtk.enable;
+        qt.enable = config.myHome.profiles.stylix.targets.desktop.qt.enable;
+        
+        # 浏览器
+        firefox.enable = config.myHome.profiles.stylix.targets.browsers.firefox.enable;
+        qutebrowser.enable = config.myHome.profiles.stylix.targets.browsers.qutebrowser.enable;
+        
+        # 其他
+        rofi.enable = config.myHome.profiles.stylix.targets.others.rofi.enable;
+        mako.enable = config.myHome.profiles.stylix.targets.others.mako.enable;
+        dunst.enable = config.myHome.profiles.stylix.targets.others.dunst.enable;
+        waybar.enable = config.myHome.profiles.stylix.targets.others.waybar.enable;
+      };
     };
   };
 }

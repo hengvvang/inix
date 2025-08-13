@@ -55,42 +55,16 @@
         };
         stylix = {
           enable = true;
-          polarity = "dark";
-          wallpapers = {
-            enable = true;
-            preset = "sea";  # zlritsu 使用不同的预设壁纸
-          };
-          fonts = {
-            enable = true;
-            # 轻量级字体配置
-            sizes = {
-              applications = 10;  # 更小的字体
-              terminal = 11;
-            };
-          };
+          # 跟随系统配置，仅配置用户级目标
           targets = {
-            enable = true;
-            terminals = {
-              alacritty.enable = false;
-              kitty.enable = false;
-            };
-            editors = {
-              vim.enable = false;
-              neovim.enable = false;
-            };
-            tools = {
-              tmux.enable = false;
-              bat.enable = false;
-              fzf.enable = false;
-            };
-            desktop = {
-              gtk.enable = false;
-            };
-            browsers = {
-              firefox.enable = false;
-            };
-            inputMethods = {
-              fcitx5.enable = true;
+            # 基于实际使用的应用启用主题
+            editors.vim.enable = true;      # user2 使用 vim
+            tools.bat.enable = false;       # 不使用 bat
+            desktop.gtk.enable = true;      # GTK 应用主题
+            browsers.qutebrowser.enable = true; # 使用 qutebrowser
+            others = {
+              rofi.enable = false;          # 不使用 rofi
+              mako.enable = false;          # 不使用 mako
             };
           };
         };

@@ -46,38 +46,22 @@
           preset = "ocean";   # 日常使用舒适字体
         };
         stylix = {
-          enable = false;
-          polarity = "dark";
-          wallpapers = {
-            enable = true;
-            preset = "sea";
-          };
-          fonts = {
-            enable = true;
-            # 使用默认字体配置，也可以自定义
-          };
+          enable = true;  # 在 macOS 上也启用主题
           targets = {
-            enable = true;
-            terminals = {
-              alacritty.enable = false;  # 避免与现有 alacritty 配置冲突
-              kitty.enable = true;
-            };
+            # macOS 上的应用主题配置
+            terminals.kitty.enable = true;    # 使用 Kitty
             editors = {
-              vim.enable = true;
+              vim.enable = true;               # 使用 vim 和 neovim
               neovim.enable = true;
             };
             tools = {
-              tmux.enable = true;
+              tmux.enable = true;              # 使用开发工具
               bat.enable = true;
               fzf.enable = true;
             };
-            desktop = {
-              gtk.enable = true;
-            };
-            browsers = {
-              firefox.enable = true;
-            };
+            browsers.firefox.enable = true;   # Firefox 主题
           };
+        };
         };
       };
     };

@@ -88,5 +88,17 @@
         };
       };
     };
+    
+    # 系统级主题配置
+    profiles = {
+      enable = true;
+      
+      stylix = {
+        enable = true;
+        image = ../../../system/profiles/stylix/wallpapers/sea.jpg;
+        polarity = "dark";
+        # 使用系统默认字体配置
+      };
+    };
   };
 }
