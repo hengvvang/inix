@@ -1,4 +1,4 @@
-{ config, lib, hosts, ... }:
+{ config, lib, pkgs, hosts, ... }:
 
 {
   # host1 主机特定配置
@@ -116,16 +116,43 @@
           preset = "tokyo";
         };
         stylix = {
-          enable = true;
+          enable = false;
           colorScheme = {
             mode = "preset";
             preset = {
-              name = "catppuccin-mocha";
+              name = "tokyo-night-dark";
+            };
+          };
+          # 禁用光标配置，使用现有 niri 配置避免冲突
+          cursor = {
+            enable = false;
+          };
+          fonts = {
+            enable = true;
+            families = {
+              sansSerif = {
+                name = "LXGW WenKai";
+                package = pkgs.lxgw-wenkai;
+              };
+              serif = {
+                name = "LXGW WenKai";
+                package = pkgs.lxgw-wenkai;
+              };
+              monospace = {
+                name = "LXGW WenKai Mono";
+                package = pkgs.lxgw-wenkai;
+              };
+              emoji = {
+                name = "Noto Color Emoji";
+                package = pkgs.noto-fonts-color-emoji;
+              };
             };
           };
           targets = {
             vim.enable = true;
             gtk.enable = false;
+            tmux.enable = true;
+            btop.enable = true;
           };
         };
       };
