@@ -176,7 +176,7 @@ in
 
     # 光标主题配置
     cursor = {
-      enable = lib.mkEnableOption "光标主题配置" // { default = true; };
+      enable = lib.mkEnableOption "光标主题配置" // { default = false; };
 
         name = lib.mkOption {
           type = lib.types.str;
@@ -307,7 +307,6 @@ in
 
       # 文件管理器
       yazi.enable = lib.mkEnableOption "Yazi 文件管理器主题" // { default = false; };
-      nnn.enable = lib.mkEnableOption "NNN 文件管理器主题" // { default = false; };
 
       # 终端多路复用器
       tmux.enable = lib.mkEnableOption "Tmux 主题" // { default = false; };
@@ -472,7 +471,6 @@ in
 
       # 文件管理器
       yazi.enable = cfg.targets.yazi.enable;
-      nnn.enable = cfg.targets.nnn.enable;
 
       # 终端多路复用器
       tmux.enable = cfg.targets.tmux.enable;
