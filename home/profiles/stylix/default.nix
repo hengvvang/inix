@@ -277,45 +277,45 @@ in
       };
 
       # 终端应用
-      alacritty.enable = lib.mkEnableOption "Alacritty 终端主题" // { default = cfg.enable; };
-      kitty.enable = lib.mkEnableOption "Kitty 终端主题" // { default = cfg.enable; };
-      ghostty.enable = lib.mkEnableOption "Ghostty 终端主题" // { default = cfg.enable; };
-      foot.enable = lib.mkEnableOption "Foot 终端主题" // { default = cfg.enable; };
-      wezterm.enable = lib.mkEnableOption "WezTerm 终端主题" // { default = cfg.enable; };
+      alacritty.enable = lib.mkEnableOption "Alacritty 终端主题" // { default = false; };
+      kitty.enable = lib.mkEnableOption "Kitty 终端主题" // { default = false; };
+      ghostty.enable = lib.mkEnableOption "Ghostty 终端主题" // { default = false; };
+      foot.enable = lib.mkEnableOption "Foot 终端主题" // { default = false; };
+      wezterm.enable = lib.mkEnableOption "WezTerm 终端主题" // { default = false; };
 
       # 编辑器
-      vim.enable = lib.mkEnableOption "Vim/Neovim 主题" // { default = cfg.enable; };
-      emacs.enable = lib.mkEnableOption "Emacs 主题" // { default = cfg.enable; };
-      vscode.enable = lib.mkEnableOption "VSCode 主题" // { default = cfg.enable; };
-      zed.enable = lib.mkEnableOption "Zed 编辑器主题" // { default = cfg.enable; };
+      vim.enable = lib.mkEnableOption "Vim/Neovim 主题" // { default = false; };
+      emacs.enable = lib.mkEnableOption "Emacs 主题" // { default = false; };
+      vscode.enable = lib.mkEnableOption "VSCode 主题" // { default = false; };
+      zed.enable = lib.mkEnableOption "Zed 编辑器主题" // { default = false; };
 
       # 浏览器
-      firefox.enable = lib.mkEnableOption "Firefox 浏览器主题" // { default = cfg.enable; };
-      chromium.enable = lib.mkEnableOption "Chromium 浏览器主题" // { default = cfg.enable; };
-      qutebrowser.enable = lib.mkEnableOption "Qutebrowser 主题" // { default = cfg.enable; };
+      firefox.enable = lib.mkEnableOption "Firefox 浏览器主题" // { default = false; };
+      chromium.enable = lib.mkEnableOption "Chromium 浏览器主题" // { default = false; };
+      qutebrowser.enable = lib.mkEnableOption "Qutebrowser 主题" // { default = false; };
 
       # 媒体应用
-      mpv.enable = lib.mkEnableOption "MPV 播放器主题" // { default = cfg.enable; };
-      spotify.enable = lib.mkEnableOption "Spotify 主题" // { default = cfg.enable; };
+      mpv.enable = lib.mkEnableOption "MPV 播放器主题" // { default = false; };
+      spotify.enable = lib.mkEnableOption "Spotify 主题" // { default = false; };
 
       # 开发工具
-      git.enable = lib.mkEnableOption "Git 主题配置" // { default = cfg.enable; };
-      lazygit.enable = lib.mkEnableOption "LazyGit 主题" // { default = cfg.enable; };
+      git.enable = lib.mkEnableOption "Git 主题配置" // { default = false; };
+      lazygit.enable = lib.mkEnableOption "LazyGit 主题" // { default = false; };
 
       # 系统工具
-      btop.enable = lib.mkEnableOption "Btop 系统监控主题" // { default = cfg.enable; };
-      rofi.enable = lib.mkEnableOption "Rofi 启动器主题" // { default = cfg.enable; };
-      dunst.enable = lib.mkEnableOption "Dunst 通知主题" // { default = cfg.enable; };
-      waybar.enable = lib.mkEnableOption "Waybar 状态栏主题" // { default = cfg.enable; };
-      swaynotificationcenter.enable = lib.mkEnableOption "Sway 通知中心主题" // { default = cfg.enable; };
+      btop.enable = lib.mkEnableOption "Btop 系统监控主题" // { default = false; };
+      rofi.enable = lib.mkEnableOption "Rofi 启动器主题" // { default = false; };
+      dunst.enable = lib.mkEnableOption "Dunst 通知主题" // { default = false; };
+      waybar.enable = lib.mkEnableOption "Waybar 状态栏主题" // { default = false; };
+      swaynotificationcenter.enable = lib.mkEnableOption "Sway 通知中心主题" // { default = false; };
 
       # 文件管理器
-      yazi.enable = lib.mkEnableOption "Yazi 文件管理器主题" // { default = cfg.enable; };
-      nnn.enable = lib.mkEnableOption "NNN 文件管理器主题" // { default = cfg.enable; };
+      yazi.enable = lib.mkEnableOption "Yazi 文件管理器主题" // { default = false; };
+      nnn.enable = lib.mkEnableOption "NNN 文件管理器主题" // { default = false; };
 
       # 终端多路复用器
-      tmux.enable = lib.mkEnableOption "Tmux 主题" // { default = cfg.enable; };
-      zellij.enable = lib.mkEnableOption "Zellij 主题" // { default = cfg.enable; };
+      tmux.enable = lib.mkEnableOption "Tmux 主题" // { default = false; };
+      zellij.enable = lib.mkEnableOption "Zellij 主题" // { default = false; };
     };
 
     # 高级配置
@@ -323,7 +323,7 @@ in
       # 自动启用目标
       autoEnable = lib.mkOption {
         type = lib.types.bool;
-        default = true;
+        default = false;
         description = "自动为已安装的应用启用主题";
       };
 
@@ -390,10 +390,6 @@ in
     # 壁纸配置
     stylix.image = lib.mkIf (cfg.wallpaper.enable && cfg.wallpaper.image != null) cfg.wallpaper.image;
     stylix.imageScalingMode = cfg.wallpaper.scalingMode;
-
-    # 图片生成配色时的特殊处理
-    stylix.image = lib.mkIf (cfg.colorScheme.mode == "image" && cfg.colorScheme.image.source != null)
-      cfg.colorScheme.image.source;
 
     # 字体配置
     stylix.fonts = lib.mkIf cfg.fonts.enable {
