@@ -5,7 +5,6 @@ in
 {
   imports = [
     inputs.stylix.homeModules.stylix
-    ./presets.nix
   ];
 
   options.myHome.profiles.stylix = {
@@ -13,27 +12,56 @@ in
 
     # 色彩方案配置
     colorScheme = {
-        usePreset = lib.mkOption {
-          type = lib.types.nullOr (lib.types.enum [
+      # 配色方案类型
+      mode = lib.mkOption {
+        type = lib.types.enum [ "preset" "image" "custom" ];
+        default = "preset";
+        description = "配色方案模式:preset=预设主题,image=从壁纸生成,custom=自定义配色";
+      };
+
+      # 预设配色方案
+      preset = {
+        name = lib.mkOption {
+          type = lib.types.enum [
             "catppuccin-latte" "catppuccin-frappe" "catppuccin-macchiato" "catppuccin-mocha"
             "tokyo-night-dark" "tokyo-night-light" "tokyo-night-storm"
             "dracula" "nord" "gruvbox-dark-hard" "gruvbox-light-hard"
-          ]);
+          ];
           default = "catppuccin-mocha";
-          description = "预设色彩方案";
-        };
-        custom = lib.mkOption {
-          type = lib.types.nullOr lib.types.path;
-          default = null;
-          description = "自定义色彩方案文件路径 (Base16 YAML)";
-          example = "./themes/my-theme.yaml";
-        };
-        generateFromImage = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-          description = "从壁纸自动生成色彩方案";
+          description = "预设色彩方案名称";
         };
       };
+
+      # 从图片生成配色（简化版）
+      image = {
+        source = lib.mkOption {
+          type = lib.types.nullOr lib.types.path;
+          default = null;
+          description = "生成配色的图片路径,null则使用壁纸";
+        };
+      };
+
+      # 自定义配色方案
+      custom = {
+        file = lib.mkOption {
+          type = lib.types.nullOr lib.types.path;
+          default = null;
+          description = "自定义配色文件路径 (Base16 YAML)";
+        };
+
+        colors = lib.mkOption {
+          type = lib.types.nullOr (lib.types.attrsOf lib.types.str);
+          default = null;
+          description = "直接定义 Base16 颜色值";
+          example = {
+            base00 = "1e1e1e"; # 背景
+            base05 = "c5c8c6"; # 前景
+            base08 = "cc6666"; # 红色
+            base0D = "81a2be"; # 蓝色
+          };
+        };
+      };
+    };
 
     polarity = lib.mkOption {
       type = lib.types.enum [ "either" "light" "dark" ];
@@ -336,27 +364,25 @@ in
 
     # 色彩方案配置
     stylix.base16Scheme =
-      if cfg.colorScheme.custom != null then
-        cfg.colorScheme.custom
-      else if cfg.colorScheme.generateFromImage then
-        null  # 从壁纸生成
+      if cfg.colorScheme.mode == "preset" then
+        # 使用预设配色方案
+        "${pkgs.base16-schemes}/share/themes/${cfg.colorScheme.preset.name}.yaml"
+
+      else if cfg.colorScheme.mode == "image" then
+        # 从图片生成配色方案
+        null
+
+      else if cfg.colorScheme.mode == "custom" then
+        # 使用自定义配色方案
+        if cfg.colorScheme.custom.colors != null then
+          cfg.colorScheme.custom.colors
+        else if cfg.colorScheme.custom.file != null then
+          cfg.colorScheme.custom.file
+        else
+          "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml"
       else
-        let
-          schemeMap = {
-            "catppuccin-latte" = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
-            "catppuccin-frappe" = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
-            "catppuccin-macchiato" = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
-            "catppuccin-mocha" = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
-            "tokyo-night-dark" = "${pkgs.base16-schemes}/share/themes/tokyo-night-dark.yaml";
-            "tokyo-night-light" = "${pkgs.base16-schemes}/share/themes/tokyo-night-light.yaml";
-            "tokyo-night-storm" = "${pkgs.base16-schemes}/share/themes/tokyo-night-storm.yaml";
-            "dracula" = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
-            "nord" = "${pkgs.base16-schemes}/share/themes/nord.yaml";
-            "gruvbox-dark-hard" = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-            "gruvbox-light-hard" = "${pkgs.base16-schemes}/share/themes/gruvbox-light-hard.yaml";
-          };
-        in
-          schemeMap.${cfg.colorScheme.usePreset} or "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
+        # 默认配色
+        "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
 
     # 极性配置
     stylix.polarity = cfg.polarity;
@@ -364,6 +390,10 @@ in
     # 壁纸配置
     stylix.image = lib.mkIf (cfg.wallpaper.enable && cfg.wallpaper.image != null) cfg.wallpaper.image;
     stylix.imageScalingMode = cfg.wallpaper.scalingMode;
+
+    # 图片生成配色时的特殊处理
+    stylix.image = lib.mkIf (cfg.colorScheme.mode == "image" && cfg.colorScheme.image.source != null)
+      cfg.colorScheme.image.source;
 
     # 字体配置
     stylix.fonts = lib.mkIf cfg.fonts.enable {
