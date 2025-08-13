@@ -20,39 +20,6 @@
         enable = false;
         preset = "zen";
       };
-
-      stylix = {
-        enable = true;
-        image = ../../../system/profiles/stylix/wallpapers/sea.jpg;
-        colorScheme = "${pkgs.base16-schemes}/share/themes/catppuccin-latte.yaml";
-        polarity = "light";  # catppuccin-latte 是浅色主题
-
-        # 字体配置
-        fonts = {
-          monospace = {
-            package = pkgs.nerd-fonts.jetbrains-mono;
-            name = "JetBrainsMono Nerd Font Mono";
-          };
-          sansSerif = {
-            package = pkgs.noto-fonts;
-            name = "Noto Sans";
-          };
-          serif = {
-            package = pkgs.noto-fonts;
-            name = "Noto Serif";
-          };
-          emoji = {
-            package = pkgs.noto-fonts-emoji;
-            name = "Noto Color Emoji";
-          };
-          sizes = {
-            applications = 12;
-            terminal = 14;
-            desktop = 11;
-            popups = 11;
-          };
-        };
-      };
     };
 
     locale = {

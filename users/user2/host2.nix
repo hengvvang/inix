@@ -20,7 +20,7 @@
         typescript.enable = false;
         cpp.enable = false;
       };
-      
+
       dotfiles = {
         enable = true;
 
@@ -37,26 +37,11 @@
         lazygit.enable = false;
         starship.enable = true;
       };
-      
+
       profiles = {
         enable = true;
-
         fonts = {
           preset = "nordic";
-        };
-        stylix = {
-          enable = true;
-          # user2 在 work 主机上的配置
-          fontSize = {
-            applications = 10;  # 较小的字体适合工作环境
-            terminal = 11;
-          };
-          targets = {
-            editors.vim.enable = true;        # 使用 vim
-            desktop.gtk.enable = true;        # GTK 应用主题
-            browsers.firefox.enable = true;   # 使用 Firefox
-            # 其他应用跟随自动检测
-          };
         };
       };
     };

@@ -27,7 +27,7 @@
         typescript.enable = false;
         cpp.enable = false;
       };
-      
+
       dotfiles = {
         enable = true;
 
@@ -45,28 +45,13 @@
         starship.enable = true;
         qutebrowser.enable = true;
       };
-      
+
 
       profiles = {
         enable = true;
-        
+
         fonts = {
           preset = "zen";   # 简洁专注的字体配置
-        };
-        stylix = {
-          enable = true;
-          # 跟随系统配置，仅配置用户级目标
-          targets = {
-            # 基于实际使用的应用启用主题
-            editors.vim.enable = true;      # user2 使用 vim
-            tools.bat.enable = false;       # 不使用 bat
-            desktop.gtk.enable = true;      # GTK 应用主题
-            browsers.qutebrowser.enable = true; # 使用 qutebrowser
-            others = {
-              rofi.enable = false;          # 不使用 rofi
-              mako.enable = false;          # 不使用 mako
-            };
-          };
         };
       };
     };

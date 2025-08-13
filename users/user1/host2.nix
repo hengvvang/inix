@@ -14,7 +14,7 @@
           cache = true;         # 启用构建缓存优化
         };
         # 工作环境的开发配置
-        rust.enable = trupkgs,e;
+        rust.enable = true;
         python.enable = true;
         javascript.enable = true;
         typescript.enable = true;

@@ -19,7 +19,7 @@
         typescript.enable = false;
         cpp.enable = false;
       };
-      
+
       dotfiles = {
         enable = true;
 
@@ -36,32 +36,12 @@
         lazygit.enable = false;
         starship.enable = true;
       };
-      
-
 
       profiles = {
         enable = true;
 
         fonts = {
           preset = "ocean";   # 日常使用舒适字体
-        };
-        stylix = {
-          enable = true;  # 在 macOS 上也启用主题
-          targets = {
-            # macOS 上的应用主题配置
-            terminals.kitty.enable = true;    # 使用 Kitty
-            editors = {
-              vim.enable = true;               # 使用 vim 和 neovim
-              neovim.enable = true;
-            };
-            tools = {
-              tmux.enable = true;              # 使用开发工具
-              bat.enable = true;
-              fzf.enable = true;
-            };
-            browsers.firefox.enable = true;   # Firefox 主题
-          };
-        };
         };
       };
     };

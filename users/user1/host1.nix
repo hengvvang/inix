@@ -115,60 +115,6 @@
           enable = true;
           preset = "tokyo";
         };
-        stylix = {
-          enable = true;
-
-          # 用户级覆盖配置（可选）
-          polarity = "dark";
-
-          # 指定特定颜色方案（覆盖系统配置）
-          colorScheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
-
-          # 用户特定的字体大小调整
-          fontSize = {
-            terminal = 16;
-            applications = 12;
-            desktop = 12;
-            popups = 12;
-          };
-
-          # 目标应用配置 - 基于您实际使用的应用
-          targets = {
-            terminals = {
-              alacritty.enable = true;  # 您启用了 alacritty
-              kitty.enable = false;
-            };
-
-            editors = {
-              vim.enable = true;        # 您启用了 vim
-              neovim.enable = false;
-            };
-
-            tools = {
-              tmux.enable = true;       # 您启用了 tmux
-              bat.enable = true;
-              fzf.enable = true;
-              zellij.enable = true;     # 您启用了 zellij
-            };
-
-            desktop = {
-              gtk.enable = true;
-              qt.enable = true;
-            };
-
-            browsers = {
-              firefox.enable = false;   # 您禁用了 qutebrowser
-              qutebrowser.enable = false;
-            };
-
-            others = {
-              rofi.enable = false;      # 您禁用了 rofi
-              mako.enable = false;
-              dunst.enable = false;
-              waybar.enable = false;
-            };
-          };
-        };
       };
     };
   };
