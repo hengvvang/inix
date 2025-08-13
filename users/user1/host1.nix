@@ -93,22 +93,6 @@
         };
       };
 
-      profiles = {
-        stylix = {
-          enable = true;
-          colorScheme = {
-            mode = "preset";
-            preset = {
-              name = "catppuccin-mocha";
-            };
-          };
-          targets = {
-            vim.enable = true;
-            gtk.enable = true;
-          };
-        };
-      };
-
       services = {
         media = {
           # MPD 用户级音乐服务配置
@@ -130,6 +114,19 @@
         fonts = {
           enable = true;
           preset = "tokyo";
+        };
+        stylix = {
+          enable = true;
+          colorScheme = {
+            mode = "preset";
+            preset = {
+              name = "catppuccin-mocha";
+            };
+          };
+          targets = {
+            vim.enable = true;
+            gtk.enable = false;
+          };
         };
       };
     };
