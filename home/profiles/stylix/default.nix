@@ -291,23 +291,19 @@ in
 
       # 浏览器
       firefox.enable = lib.mkEnableOption "Firefox 浏览器主题" // { default = false; };
-      chromium.enable = lib.mkEnableOption "Chromium 浏览器主题" // { default = false; };
       qutebrowser.enable = lib.mkEnableOption "Qutebrowser 主题" // { default = false; };
 
       # 媒体应用
       mpv.enable = lib.mkEnableOption "MPV 播放器主题" // { default = false; };
-      spotify.enable = lib.mkEnableOption "Spotify 主题" // { default = false; };
 
       # 开发工具
-      git.enable = lib.mkEnableOption "Git 主题配置" // { default = false; };
-      lazygit.enable = lib.mkEnableOption "LazyGit 主题" // { default = false; };
 
       # 系统工具
       btop.enable = lib.mkEnableOption "Btop 系统监控主题" // { default = false; };
       rofi.enable = lib.mkEnableOption "Rofi 启动器主题" // { default = false; };
       dunst.enable = lib.mkEnableOption "Dunst 通知主题" // { default = false; };
       waybar.enable = lib.mkEnableOption "Waybar 状态栏主题" // { default = false; };
-      swaynotificationcenter.enable = lib.mkEnableOption "Sway 通知中心主题" // { default = false; };
+      swaync.enable = lib.mkEnableOption "SwayNC 通知中心主题" // { default = false; };
 
       # 文件管理器
       yazi.enable = lib.mkEnableOption "Yazi 文件管理器主题" // { default = false; };
@@ -462,22 +458,17 @@ in
 
       # 浏览器
       firefox.enable = cfg.targets.firefox.enable;
-      chromium.enable = cfg.targets.chromium.enable;
       qutebrowser.enable = cfg.targets.qutebrowser.enable;
 
       # 媒体
       mpv.enable = cfg.targets.mpv.enable;
-
-      # 开发工具
-      git.enable = cfg.targets.git.enable;
-      lazygit.enable = cfg.targets.lazygit.enable;
 
       # 系统工具
       btop.enable = cfg.targets.btop.enable;
       rofi.enable = cfg.targets.rofi.enable;
       dunst.enable = cfg.targets.dunst.enable;
       waybar.enable = cfg.targets.waybar.enable;
-      swaynotificationcenter.enable = cfg.targets.swaynotificationcenter.enable;
+      swaync.enable = cfg.targets.swaync.enable;
 
       # 文件管理器
       yazi.enable = cfg.targets.yazi.enable;
