@@ -2,15 +2,12 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.git.enable && config.myHome.dotfiles.git.method == "homemanager") {
-    # Git Home Manager 完整配置
     programs.git = {
-      # ===== 基础配置 =====
       enable = true;
-      package = pkgs.git;  # 指定 Git 包，默认使用 nixpkgs 中的 git
+      package = pkgs.git;
 
-      # 用户信息
       userName = "hengvvang";
-      userEmail = "hengvvang@example.com";  # 请替换为您的邮箱
+      userEmail = "hengvvang@proton.me";
 
       # ===== 代码签名配置 =====
       # GPG 签名提交和标签（如果不使用 GPG 签名可以禁用）
@@ -56,13 +53,10 @@
         d = "diff";
         dc = "diff --cached";
         ds = "diff --stat";
-        dt = "difftool";
 
         # 历史相关
         l = "log --oneline";
-        lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit";
-        lga = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all";
-        ll = "log --pretty=format:'%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]' --decorate --numstat";
+        lg = "log --oneline --graph";
 
         # 推送拉取
         p = "push";
@@ -105,36 +99,6 @@
         rbc = "rebase --continue";
         rba = "rebase --abort";
 
-        # 清理操作
-        cleanup = "!git branch --merged | grep -v '\\*\\|master\\|main\\|develop' | xargs -n 1 git branch -d";
-
-        # 工作流相关
-        wip = "!git add -A && git commit -m 'WIP: work in progress'";
-        unwip = "!git log -n 1 | grep -q -c 'WIP' && git reset HEAD~1";
-
-        # 查找相关
-        find = "!git ls-files | grep -i";
-        grep = "grep -Ii";
-        gra = "!f() { A=$(pwd) && TOPLEVEL=$(git rev-parse --show-toplevel) && cd $TOPLEVEL && git grep --full-name -In $1 | xargs -I{} echo $TOPLEVEL/{} && cd $A; }; f";
-
-        # 统计相关
-        count = "!git shortlog -sn";
-        stats = "!git log --pretty=format: --name-only | sort | uniq -c | sort -rg | head -10";
-
-        # 网络相关
-        serve = "!git daemon --reuseaddr --verbose --base-path=. --export-all ./.git";
-
-        # 特殊功能
-        ignored = "!git ls-files -v | grep '^[[:lower:]]'";
-        assume = "update-index --assume-unchanged";
-        unassume = "update-index --no-assume-unchanged";
-        assumed = "!git ls-files -v | grep ^h | cut -c 3-";
-        snapshot = "!git stash save 'snapshot: $(date)' && git stash apply 'stash@{0}'";
-
-        # 可视化和比较
-        visual = "!gitk";
-        kdiff = "!git difftool --tool=meld";
-
         # 查看贡献
         contributors = "shortlog --summary --numbered";
 
@@ -142,50 +106,11 @@
         filelog = "log -u";
         fl = "log -u";
 
-        # 搜索相关
-        search = "!f() { git rev-list --all | xargs git grep \"$@\"; }; f";
-
-        # 分支合并和变基
-        rewrite = "rebase -i HEAD~";
-
         # 显示最近的标签
         lasttag = "describe --tags --abbrev=0";
 
-        # 显示远程分支
-        remote-branches = "branch -r";
-
         # 当前分支名
         current-branch = "rev-parse --abbrev-ref HEAD";
-
-        # 创建和推送分支
-        publish = "!git push -u origin $(git current-branch)";
-
-        # 删除远程分支
-        unpublish = "!git push origin :$(git current-branch)";
-
-        # 合并工具
-        mt = "mergetool";
-
-        # 清理未跟踪的文件
-        clean-all = "clean -fd";
-
-        # 显示变更文件
-        changed = "show --pretty=\"format:\" --name-only";
-
-        # 检查是否有未提交的更改
-        dirty = "!git diff --quiet --ignore-submodules HEAD 2>/dev/null; [ $? -eq 1 ]";
-
-        # 显示第一次提交
-        first = "!git log --pretty=format:'%H' | tail -1";
-
-        # 显示上一次提交
-        last = "log -1 HEAD";
-
-        # 显示提交图
-        graph = "log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all";
-
-        # 显示简单的提交图
-        tree = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --all";
       };
 
       # ===== 高级配置 =====

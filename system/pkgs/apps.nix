@@ -3,53 +3,50 @@
 {
     config = lib.mkIf config.mySystem.pkgs.apps.enable {
         environment.systemPackages = with pkgs; [
-        google-chrome
-        clash-verge-rev    # 代理工具（主要）
-        mihomo             # Clash 内核
-        # clash-nyanpasu     # 代理工具（备用）
-        # webkitgtk_4_1
-        # gtk3
-        # glib
-        #
-        # lutris
-        # wechat
-        # pkgs.spotify
-        #pkgs.cider-2
-        pkgs.kdePackages.kdenlive
+            pkgs.google-chrome
+            pkgs.clash-verge-rev
 
-        (wrapOBS {
-            plugins = with pkgs.obs-studio-plugins; [
-            wlrobs
-            input-overlay
-            obs-backgroundremoval
-            obs-pipewire-audio-capture
-            obs-vaapi #optional AMD hardware acceleration
-            obs-gstreamer
-            obs-vkcapture
-            ];
-        })
+            # pkgs.lutris
+            # pkgs.wechat
+            # pkgs.qq
+            # pkgs.spotify
+            # pkgs.cider-2
+            pkgs.kdePackages.kdenlive
 
-        # Nix 系统管理工具
-        nh                    # NixOS/Home Manager 助手
-        nom                   # NixOS 选项管理工具
-        nix-output-monitor    # 美化 Nix 构建输出 (nom)
-        nix-tree             # 查看 Nix store 依赖关系
-        nixos-rebuild        # NixOS 系统重建工具
-        nvd                  # Nix 版本差异比较工具
+            (pkgs.wrapOBS {
+                plugins = with pkgs.obs-studio-plugins; [
+                    wlrobs
+                    obs-backgroundremoval
+                    obs-pipewire-audio-capture
+                    input-overlay
+                    obs-vaapi #optional AMD hardware acceleration
+                    obs-gstreamer
+                    obs-vkcapture
+                ];
+            })
+
+            # Nix 系统管理工具
+            pkgs.nh                    # NixOS/Home Manager 助手
+            pkgs.nom                   # NixOS 选项管理工具
+            pkgs.nix-output-monitor    # 美化 Nix 构建输出 (nom)
+            pkgs.nix-tree             # 查看 Nix store 依赖关系
+            pkgs.nixos-rebuild        # NixOS 系统重建工具
+            pkgs.nvd                  # Nix 版本差异比较工具
         ];
 
         # NH 配置
         programs.nh = {
-        enable = true;
-        clean.enable = true;
-        clean.extraArgs = "--keep-since 4d --keep 3";
-        flake = "/home/hengvvang/inix";
+            enable = true;
+            clean.enable = true;
+            clean.extraArgs = "--keep-since 4d --keep 3";
+            flake = "/home/hengvvang/inix";
         };
+
         programs.steam = {
-          enable = true;
-          remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-          dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-          localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+            enable = true;
+            remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+            dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+            localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
         };
     };
 }

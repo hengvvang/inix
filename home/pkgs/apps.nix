@@ -4,14 +4,11 @@
     config = lib.mkIf config.myHome.pkgs.apps.enable {
         home.packages = with pkgs; [
 
-            # ghostty
-
             lazygit
 
             # qutebrowser
-
-            #google-chrome
-            #firefox
+            # google-chrome
+            # firefox
 
             telegram-desktop
             discord
@@ -22,12 +19,12 @@
             pot
 
             spotify
+            # cider-2
             vlc
-            # clash-verge-rev   # 代理工具（主要）
-            # clash-nyanpasu    # 代理工具（备用）
-            # clash-meta        # Clash 内核
 
-            # steam                 # Steam 游戏平台
+            # clash-verge-rev
+            # clash-nyanpasu
+
             lutris
 
             # blender           # 3D 建模
@@ -36,17 +33,7 @@
             # davinci-resolve   # 视频编辑 (需要 unfree)
 
             # virtualbox        # VirtualBox (需要 unfree)
-
-            # 系统工具
             # gparted           # 分区工具
         ];
-        programs.obs-studio = {
-            enable = true;
-            plugins = with pkgs.obs-studio-plugins; [
-                wlrobs
-                obs-backgroundremoval
-                obs-pipewire-audio-capture
-            ];
-        };
     };
 }

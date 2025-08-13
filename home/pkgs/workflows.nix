@@ -8,11 +8,12 @@
             pkgs.zed-editor
             pkgs.vscode
 
-            pkgs.git
+            # pkgs.git
             # pkgs.rio
             # pkgs.zellij
             # pkgs.rmpc
             # pkgs.yazi
+            # pkgs.ghostty
             pkgs.calcure
             pkgs.flameshot
             pkgs.satty
