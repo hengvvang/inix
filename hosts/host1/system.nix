@@ -14,6 +14,7 @@
       enable = true;
       preset = "niri";
     };
+
     profiles = {
       enable = true;
       fonts = {
@@ -36,14 +37,11 @@
 
     services = {
       enable = true;
-
       containers = {
         enable = true;                 # 启用容器服务模块
-
         appimage = {
           enable = true;               # 启用 AppImage 服务
         };
-
         # Docker 容器服务配置
         docker = {
           enable = true;               # 启用 Docker 服务
@@ -56,7 +54,6 @@
             port = 5000;              # Registry 端口
           };
         };
-
         # Flatpak 容器服务配置
         flatpak = {
           enable = true;               # 启用 Flatpak 服务
@@ -68,8 +65,7 @@
       };
 
       network = {
-        enable = true;                 # 启用网络服务
-
+        enable = true;
         # 网络管理器配置
         manager = {
           enable = true;               # 🟢 启用网络管理器
@@ -80,7 +76,6 @@
             gui = true;                # 启用图形化管理工具
           };
         };
-
         # SSH 服务配置
         ssh = {
           enable = true;               # 🟢 启用 SSH 服务
@@ -93,7 +88,6 @@
             enable = true;             # 启用 SSH 客户端工具
           };
         };
-
         # 虚拟网卡支持（TUN/TAP）
         virtualInterface = {
           enable = true;               # 🟢 启用虚拟网卡支持
@@ -108,10 +102,8 @@
             bridge = false;            # 禁用网桥工具
           };
         };
-
         proxy = {
           enable = true;               # 启用代理服务模块
-
           mihomo = {
             enable = false;  # 暂时禁用以解决构建问题
             webui = "metacubexd";  # 使用 metacubexd Web UI
@@ -119,7 +111,6 @@
             configFile = null;
             extraOpts = null;
           };
-
         };
       };
 
