@@ -27,8 +27,7 @@
         noto-fonts-emoji
         source-han-sans
         source-han-serif
-        wqy_microhei
-        wqy_zenhei
+        source-han-mono
       ];
 
       # Fcitx5 输入法配置
@@ -64,7 +63,7 @@
       # - XMODIFIERS: X11 应用兼容性
       # - SDL_IM_MODULE: SDL 应用支持
       environment.variables = {
-        # GTK_IM_MODULE = "fcitx";    # VS Code 等 Electron 应用需要此设置
+        GTK_IM_MODULE = "fcitx";    # VS Code 等 Electron 应用需要此设置
         QT_IM_MODULE = "fcitx";
         XMODIFIERS = "@im=fcitx";
         SDL_IM_MODULE = "fcitx";
@@ -101,8 +100,7 @@
         noto-fonts-emoji
         source-han-sans
         source-han-serif
-        wqy_microhei
-        wqy_zenhei
+        source-han-mono
       ];
 
       # IBus 输入法配置

@@ -131,7 +131,7 @@
   "editor.hover.sticky": true,
   // 类型: boolean - 悬停提示粘性显示
   // "workbench.colorTheme": "Rosé Pine (no italics)",
-  "workbench.colorTheme": "Tokyo Night",
+  "workbench.colorTheme": "GitHub Dark",
   "workbench.iconTheme": "vscode-great-icons",
   // "workbench.productIconTheme": "fluent-icons",
   // 界面布局 (Interface Layout)
