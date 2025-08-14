@@ -21,6 +21,25 @@
         enable = false;
         preset = "zen";
       };
+      # 启用系统级统一主题配置
+      stylix = {
+        enable = false;
+        colorScheme = {
+          mode = "preset";
+          preset.name = "catppuccin-mocha";  # 统一使用深色主题
+        };
+        polarity = "dark";  # 强制深色模式
+        # 系统级目标
+        targets = {
+          gtk.enable = true;
+          console.enable = true;
+        };
+        # Home Manager 集成
+        homeManagerIntegration = {
+          autoImport = true;   # 自动为所有用户导入
+          followSystem = true; # 用户配置跟随系统配置
+        };
+      };
     };
 
     locale = {
