@@ -1,13 +1,13 @@
 # Sherlock Launcher - External Configuration Mode
 # macOS Tahoe-inspired design with external config files
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.sherlock.enable && config.myHome.dotfiles.sherlock.method == "external") {
 
-    # Install Sherlock package
-    home.packages = with pkgs; [
-      sherlock-launcher
+    # Install Sherlock package from flake input
+    home.packages = [
+      inputs.sherlock.packages.${pkgs.system}.default
     ];
 
     # Main configuration file (TOML format)

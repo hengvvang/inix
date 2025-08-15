@@ -43,9 +43,13 @@
       url = "github:hengvvang/zen-browser";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sherlock = {
+        url = "github:Skxxtz/sherlock";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, sherlock, ... } @ inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib // nix-darwin.lib;
@@ -98,7 +102,7 @@
       packages = forEachSystem (pkgs: {
         # 导出我们的自定义包
         raycast-linux = pkgs.raycast-linux;
-        sherlock-launcher = pkgs.sherlock-launcher;
+        # sherlock-launcher = pkgs.sherlock-launcher;
 
         # 其他自定义包可以在这里添加
       });
