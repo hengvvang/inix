@@ -35,12 +35,12 @@
         ];
 
         # NH 配置
-        programs.nh = {
-            enable = true;
-            clean.enable = true;
-            clean.extraArgs = "--keep-since 4d --keep 3";
-            flake = "/home/hengvvang/inix";
-        };
+        # programs.nh = {
+        #     enable = true;
+        #     clean.enable = true;
+        #     clean.extraArgs = "--keep-since 4d --keep 3";
+        #     flake = "path/to/flake.nix";  # Replace with your actual flake path
+        # };
 
         programs.steam = {
             enable = true;
