@@ -65,9 +65,6 @@ in
 
     # === CPU 电源管理服务 ===
     services = {
-      # 温度监控守护进程
-      lm-sensors.enable = true;
-
       # 电源配置文件守护进程
       power-profiles-daemon.enable = lib.mkIf cfg.cpu.power.enable true;
 
