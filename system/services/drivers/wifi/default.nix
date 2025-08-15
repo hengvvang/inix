@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./core.nix      # WiFi 核心驱动和固件
+    ./wifi.nix      # WiFi 核心驱动和固件
     ./manager.nix   # 网络管理器配置
     ./hotspot.nix   # WiFi 热点功能
     ./tools.nix     # WiFi 工具集
