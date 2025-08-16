@@ -1,8 +1,4 @@
-# MPD (Music Player Daemon) 系统服务配置模块
-# 简化配置，保持完备性
-
 { config, lib, pkgs, ... }:
-
 let
   cfg = config.mySystem.services.media.mpd;
 in
@@ -30,12 +26,12 @@ in
       group = cfg.group;
       dataDir = cfg.dataDir;
       musicDirectory = cfg.musicDirectory;
-      
+
       network = {
         listenAddress = "127.0.0.1";
         port = cfg.port;
       };
-      
+
       extraConfig = ''
         # 数据文件配置
         db_file         "${cfg.dataDir}/database"
@@ -43,7 +39,7 @@ in
         state_file      "${cfg.dataDir}/state"
         sticker_file    "${cfg.dataDir}/sticker.sql"
         playlist_directory "${cfg.dataDir}/playlists"
-        
+
         # 音频输出配置
         ${lib.optionalString cfg.enablePulseaudio ''
         audio_output {
@@ -52,7 +48,7 @@ in
             server      "unix:/run/user/1000/pulse/native"
         }
         ''}
-        
+
         ${lib.optionalString cfg.enableAlsa ''
         audio_output {
             type        "alsa"
@@ -63,7 +59,7 @@ in
             mixer_control "Master"
         }
         ''}
-        
+
         ${lib.optionalString (cfg.httpPort != null) ''
         audio_output {
             type        "httpd"
@@ -76,7 +72,7 @@ in
             tags        "yes"
         }
         ''}
-        
+
         ${lib.optionalString cfg.enableFileOutput ''
         audio_output {
             type        "fifo"
@@ -85,32 +81,32 @@ in
             format      "44100:16:2"
         }
         ''}
-        
+
         # 输入和解码器配置
         input {
             plugin "curl"
         }
-        
+
         decoder {
             plugin      "mad"
             enabled     "yes"
         }
-        
+
         decoder {
-            plugin      "vorbis" 
+            plugin      "vorbis"
             enabled     "yes"
         }
-        
+
         decoder {
             plugin      "flac"
             enabled     "yes"
         }
-        
+
         decoder {
             plugin      "ffmpeg"
             enabled     "yes"
         }
-        
+
         # 基础配置
         filesystem_charset      "UTF-8"
         metadata_to_use         "artist,album,title,track,name,genre,date,composer,performer,disc,albumartist"
@@ -119,13 +115,13 @@ in
         follow_outside_symlinks "yes"
         follow_inside_symlinks  "yes"
         mixer_type              "software"
-        
+
         # 重播增益配置
         replaygain              "auto"
         replaygain_preamp       "0"
         replaygain_missing_preamp "0"
         replaygain_limit        "yes"
-        
+
         # 网络和性能配置
         connection_timeout      "60"
         max_connections         "10"
@@ -138,14 +134,14 @@ in
 
     # 网络防火墙配置
     networking.firewall = {
-      allowedTCPPorts = [ 
+      allowedTCPPorts = [
         cfg.port
       ] ++ lib.optional (cfg.httpPort != null) cfg.httpPort;
     };
 
     # 音频系统集成
     security.rtkit.enable = lib.mkIf cfg.enablePulseaudio true;
-    
+
     systemd.user.services = lib.mkIf cfg.enablePulseaudio {
       pulseaudio.wantedBy = lib.mkForce [];
     };

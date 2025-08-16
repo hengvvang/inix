@@ -129,18 +129,16 @@
         };
       };
 
-      # 媒体服务配置
       media = {
-        enable = true;                 # 🟢 启用媒体服务
+        enable = true;
         video = {
-          enable = true;               # 启用视频播放器
-          mpv = true;                  # MPV 播放器
-          vlc = false;                 # VLC 播放器
+          enable = true;
+          mpv = true;
+          vlc = false;
         };
         audio = {
-          enable = true;               # 启用音频播放器
-          spotify = false;              # Spotify（需要时启用）
-          audacious = false;           # Audacious
+          enable = true;
+          spotify = false;
         };
         codecs = {
           enable = true;               # 启用编解码器
@@ -148,8 +146,8 @@
           gstreamer = false;           # GStreamer
         };
         streaming = {
-          enable = true;               # 启用流媒体工具
-          download = true;             # yt-dlp 下载工具
+          enable = true;
+          download = true;
         };
 
         mpd = {
