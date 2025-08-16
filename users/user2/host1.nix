@@ -7,9 +7,7 @@
 
       pkgs = {
         enable = true;
-        apps.enable = true;
-        toolkits.enable = true;
-        workflows.enable = true;
+        user2.enable = true;
       };
 
       develop = {
@@ -30,7 +28,6 @@
 
       dotfiles = {
         enable = true;
-
         vim.enable = true;
         zsh.enable = false;
         bash.enable = true;

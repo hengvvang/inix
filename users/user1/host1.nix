@@ -12,9 +12,7 @@
 
       pkgs = {
         enable = true;
-        apps.enable = true;
-        toolkits.enable = true;
-        workflows.enable = true;
+        user1.enable = true;
       };
 
       dotfiles = {

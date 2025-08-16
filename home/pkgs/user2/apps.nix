@@ -1,9 +1,8 @@
 {config, lib, pkgs, ...}:
 
 {
-    config = lib.mkIf config.myHome.pkgs.apps.enable {
+    config = lib.mkIf config.myHome.pkgs.user2.enable {
         home.packages = with pkgs; [
-
             lazygit
 
             # qutebrowser
@@ -14,9 +13,7 @@
             discord
             qq
             wechat
-
             wpsoffice-cn
-            pot
 
             spotify
             # cider-2
@@ -26,7 +23,6 @@
             # clash-nyanpasu
 
             lutris
-
             # blender           # 3D 建模
             # gimp              # 图像编辑
             # inkscape          # 矢量图编辑
@@ -34,6 +30,22 @@
 
             # virtualbox        # VirtualBox (需要 unfree)
             # gparted           # 分区工具
+
+            # vim
+            zed-editor
+            vscode
+            # git
+            # rio
+            # zellij
+            # rmpc
+            # yazi
+            # ghostty
+            calcure
+            flameshot
+            satty
+            mise
+            just
+            devenv
         ];
     };
 }

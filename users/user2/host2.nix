@@ -6,7 +6,6 @@
     myHome = {
       develop = {
         enable = true;
-
         devenv = {
           enable = false;
           autoSwitch = false;
@@ -23,7 +22,6 @@
 
       dotfiles = {
         enable = true;
-
         vim.enable = true;
         zsh.enable = false;
         bash.enable = true;

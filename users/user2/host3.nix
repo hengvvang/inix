@@ -22,7 +22,6 @@
 
       dotfiles = {
         enable = true;
-
         vim.enable = true;
         zsh.enable = false;
         bash.enable = true;
@@ -39,7 +38,6 @@
 
       profiles = {
         enable = true;
-
         fonts = {
           preset = "ocean";   # 日常使用舒适字体
         };

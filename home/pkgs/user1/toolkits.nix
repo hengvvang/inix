@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-    config = lib.mkIf config.myHome.pkgs.toolkits.enable {
+    config = lib.mkIf config.myHome.pkgs.user1.enable {
         home.packages = with pkgs; [
             bat  # cat
             # ls
