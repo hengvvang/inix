@@ -31,8 +31,5 @@ in
                 9097  # Web 控制面板端口
             ];
         };
-
-        # 添加用户到 mihomo 组
-        users.groups.mihomo = {};
     };
 }

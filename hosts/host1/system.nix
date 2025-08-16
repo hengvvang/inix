@@ -120,7 +120,7 @@
         proxy = {
           enable = true;
           mihomo = {
-            enable = false;
+            enable = true;
             webui = "metacubexd";  # 使用 metacubexd Web UI
             tunMode = true;
             configFile.enable = true;
