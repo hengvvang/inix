@@ -1,10 +1,5 @@
-# MPD (Music Player Daemon) 用户级配置模块
-# 简化配置，仅保留核心功能
-
 { config, lib, pkgs, ... }:
-
 with lib;
-
 let
   cfg = config.myHome.services.media.mpd;
 in {
@@ -18,16 +13,16 @@ in {
     # MPD 用户级服务配置
     services.mpd = {
       enable = true;
-      
+
       # 音乐目录 - 用户可配置
       musicDirectory = cfg.musicDirectory;
-      
+
       # 网络配置 - 用户可配置端口
       network = {
         listenAddress = "127.0.0.1";
         port = cfg.port;
       };
-      
+
       # 基础音频输出配置
       extraConfig = ''
         # PipeWire 音频输出
@@ -35,7 +30,7 @@ in {
             type        "pipewire"
             name        "PipeWire Output"
         }
-        
+
         # 基础配置
         auto_update             "yes"
         mixer_type              "software"
@@ -46,7 +41,7 @@ in {
     home.activation.createMusicDirectory = lib.hm.dag.entryAfter ["writeBoundary"] ''
       $DRY_RUN_CMD mkdir -p "${cfg.musicDirectory}"
     '';
-    
+
     # 根据用户配置设置自动启动
     systemd.user.services.mpd = mkIf cfg.autoStart {
       Install.WantedBy = [ "default.target" ];

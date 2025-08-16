@@ -57,9 +57,9 @@
     services = {
       enable = true;
       containers = {
-        enable = true;                 # 启用容器服务模块
+        enable = true;
         appimage = {
-          enable = true;               # 启用 AppImage 服务
+          enable = true;
         };
         # Docker 容器服务配置
         docker = {
@@ -71,9 +71,8 @@
             port = 5000;              # Registry 端口
           };
         };
-        # Flatpak 容器服务配置
         flatpak = {
-          enable = true;               # 启用 Flatpak 服务
+          enable = true;
           flathub.enable = true;              # 启用 Flathub 仓库
           xdgPortal.enable = true;            # 启用 XDG 门户支持
         };
