@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./app.nix
-    ./toolkit.nix
+    ./apps.nix
+    ./toolkits.nix
   ];
 }
