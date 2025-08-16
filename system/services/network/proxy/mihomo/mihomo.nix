@@ -15,11 +15,13 @@ in
             # - clash-dashboard: 暂无包，可以使用在线版本
             webui = lib.mkIf (cfg.webui == "metacubexd") pkgs.metacubexd;
 
+            # 只有在启用额外选项时才设置 extraOpts
+            extraOpts = lib.mkIf cfg.extraOpts.enable cfg.extraOpts.value;
             tunMode = cfg.tunMode;
 
-            configFile = lib.mkIf cfg.configFile.enable cfg.configFile.path;
-
-            extraOpts = lib.mkIf cfg.extraOpts.enable cfg.extraOpts.value;
+            # 只有在启用自定义配置文件时才设置 configFile
+        } // lib.optionalAttrs cfg.configFile.enable {
+            configFile = cfg.configFile.path;
         };
 
         # 开启必要的防火墙端口
