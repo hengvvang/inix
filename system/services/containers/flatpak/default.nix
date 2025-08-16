@@ -5,9 +5,9 @@
   options.mySystem.services.containers.flatpak = {
     enable = lib.mkEnableOption "Flatpak 应用容器";
 
-    flathub = lib.mkEnableOption "Flathub 应用商店" // { default = true; };
+    xdgPortal.enable = lib.mkEnableOption "XDG 门户支持" // { default = true; };
 
-    xdgPortal = lib.mkEnableOption "XDG 门户支持" // { default = true; };
+    flathub.enable = lib.mkEnableOption "Flathub 应用商店" // { default = true; };
 
     remotes = lib.mkOption {
       type = lib.types.listOf (lib.types.submodule {

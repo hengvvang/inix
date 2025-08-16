@@ -74,8 +74,8 @@
         # Flatpak 容器服务配置
         flatpak = {
           enable = true;               # 启用 Flatpak 服务
-          flathub = true;              # 启用 Flathub 仓库
-          xdgPortal = true;            # 启用 XDG 门户支持
+          flathub.enable = true;              # 启用 Flathub 仓库
+          xdgPortal.enable = true;            # 启用 XDG 门户支持
         };
       };
 

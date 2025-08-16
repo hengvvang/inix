@@ -6,13 +6,13 @@ in
 {
   config = lib.mkIf cfg.enable {
 
-    services.flatpak.enable = true;
-    environment.systemPackages = with pkgs; [
-      flatpak
-    ];
+    services.flatpak = {
+      enable = true;
+      package = pkgs.flatpak;
+    };
 
     # XDG 门户支持
-    xdg.portal = lib.mkIf cfg.xdgPortal {
+    xdg.portal = lib.mkIf cfg.xdgPortal.enable {
       enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
@@ -20,7 +20,7 @@ in
     };
 
     # Flathub 远程仓库配置
-    systemd.services.configure-flathub-repo = lib.mkIf cfg.flathub {
+    systemd.services.configure-flathub-repo = lib.mkIf cfg.flathub.enable {
       wantedBy = [ "multi-user.target" ];
       path = [ pkgs.flatpak ];
       script = ''

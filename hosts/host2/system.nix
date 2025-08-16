@@ -39,26 +39,24 @@
 
         # Docker 容器服务配置 - 禁用
         docker = {
-          enable = false;              # 🔴 禁用 Docker 服务
-          rootless = false;            # 不使用 Rootless 模式
-          nvidia = false;              # 不启用 NVIDIA GPU 支持
+          enable = false;
+          rootless = false;
+          nvidia = false;
           registry = {
-            enable = false;            # 不启用本地 Registry
-            port = 5000;              # Registry 端口
+            enable = false;
+            port = 5000;
           };
         };
 
-        # Flatpak 容器服务配置 - 禁用
         flatpak = {
-          enable = false;              # 🔴 禁用 Flatpak 服务
-          flathub = false;             # 禁用 Flathub 仓库
-          xdgPortal = false;           # 禁用 XDG 门户支持
+          enable = false;
+          flathub.enable = false;
+          xdgPortal.enable = false;
         };
       };
 
       network = {
-        enable = true;                 # 启用网络服务
-
+        enable = true;
         # 网络管理器配置
         manager = {
           enable = true;               # 启用网络管理器
