@@ -28,7 +28,10 @@
         lazygit.enable = true;
         starship.enable = true;
         qutebrowser.enable = false;
-        obs-studio.enable = false;
+        obs-studio = {
+          enable = true;
+          method = "homemanager";
+        };
         sherlock = {
             enable = true;
             method = "external";
