@@ -120,10 +120,10 @@
         proxy = {
           enable = true;
           mihomo = {
-            enable = true;
+            enable = false;
             webui = "metacubexd";  # 使用 metacubexd Web UI
             tunMode = true;
-            configFile.enable = false;
+            configFile.enable = true;
             extraOpts.enable = false;
           };
         };
