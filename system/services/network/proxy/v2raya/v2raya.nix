@@ -6,8 +6,8 @@ in
     config = lib.mkIf cfg.enable {
         services.v2raya = {
             enable = true;
+            package = pkgs.v2raya;
             cliPackage = cfg.cliPackage;
-            package = cfg.package;
         };
 
         # 开启必要的防火墙端口
