@@ -22,12 +22,15 @@
         bash.enable = true;
         fish.enable = true;
         nushell.enable = true;
-        alacritty.enable = true;
         tmux.enable = true;
         git.enable = true;
         lazygit.enable = true;
         starship.enable = true;
         qutebrowser.enable = false;
+        alacritty = {
+          enable = true;
+          method = "external";
+        };
         obs-studio = {
           enable = true;
           method = "homemanager";
