@@ -63,11 +63,9 @@
         };
         # Docker 容器服务配置
         docker = {
-          enable = true;               # 启用 Docker 服务
-          compose = true;              # 启用 Docker Compose
-          monitoring = true;           # 启用容器监控工具
+          enable = true;
           rootless = false;            # 使用标准 Docker 模式
-          nvidia = false;              # 暂不启用 NVIDIA GPU 支持
+          nvidia = true;
           registry = {
             enable = false;            # 暂不启用本地 Registry
             port = 5000;              # Registry 端口

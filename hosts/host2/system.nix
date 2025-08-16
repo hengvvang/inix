@@ -40,8 +40,6 @@
         # Docker 容器服务配置 - 禁用
         docker = {
           enable = false;              # 🔴 禁用 Docker 服务
-          compose = false;             # 禁用 Docker Compose
-          monitoring = false;          # 禁用容器监控工具
           rootless = false;            # 不使用 Rootless 模式
           nvidia = false;              # 不启用 NVIDIA GPU 支持
           registry = {
@@ -54,8 +52,6 @@
         flatpak = {
           enable = false;              # 🔴 禁用 Flatpak 服务
           flathub = false;             # 禁用 Flathub 仓库
-          fonts = false;               # 禁用字体支持
-          themes = false;              # 禁用主题支持
           xdgPortal = false;           # 禁用 XDG 门户支持
         };
       };

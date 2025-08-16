@@ -5,15 +5,10 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    # 启用 AppImage 支持
     programs.appimage = {
+      package = pkgs.appimage-run;
       enable = true;
-      binfmt = true;  # 启用自动挂载
+      binfmt = true;
     };
-
-    # 安装 AppImage 运行工具
-    environment.systemPackages = with pkgs; [
-      appimage-run
-    ];
   };
 }
