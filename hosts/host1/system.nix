@@ -123,8 +123,8 @@
             enable = true;
             webui = "metacubexd";  # 使用 metacubexd Web UI
             tunMode = true;
-            configFile = /home/hengvvang/.config/mihomo/config.yaml;
-            extraOpts = null;
+            configFile.enable = false;
+            extraOpts.enable = false;
           };
         };
       };
