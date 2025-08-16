@@ -118,12 +118,12 @@
           };
         };
         proxy = {
-          enable = true;               # 启用代理服务模块
+          enable = true;
           mihomo = {
-            enable = false;  # 暂时禁用以解决构建问题
+            enable = true;
             webui = "metacubexd";  # 使用 metacubexd Web UI
-            tunMode = true;  # 启用 TUN 模式，提供透明代理
-            configFile = null;
+            tunMode = true;
+            configFile = /home/hengvvang/.config/mihomo/config.yaml;
             extraOpts = null;
           };
         };

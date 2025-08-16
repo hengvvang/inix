@@ -4,7 +4,7 @@
     imports = [
         ./mihomo.nix
     ];
-    
+
     options.mySystem.services.network.proxy.mihomo = {
         enable = lib.mkEnableOption "Mihomo 代理支持";
         webui = lib.mkOption {
@@ -14,18 +14,18 @@
         };
         tunMode = lib.mkOption {
             type = lib.types.bool;
-            default = true;
+            default = false;
             description = "启用 TUN 模式";
+        };
+        configFile = lib.mkOption {
+            type = lib.types.path;
+            default = /etc/mihomo/config.yaml;
+            description = "Mihomo 配置文件路径";
         };
         extraOpts = lib.mkOption {
             type = lib.types.nullOr lib.types.str;
             default = null;
             description = "Mihomo 额外配置选项";
-        };
-        configFile = lib.mkOption {
-            type = lib.types.nullOr lib.types.path;
-            default = null;
-            description = "Mihomo 配置文件路径";
         };
     };
 }
