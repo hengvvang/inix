@@ -77,8 +77,6 @@
         flatpak = {
           enable = true;               # 启用 Flatpak 服务
           flathub = true;              # 启用 Flathub 仓库
-          fonts = true;                # 启用字体支持
-          themes = true;               # 启用主题支持
           xdgPortal = true;            # 启用 XDG 门户支持
         };
       };

@@ -5,7 +5,7 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    
+
     services.flatpak.enable = true;
 
     # XDG 门户支持
@@ -15,18 +15,10 @@ in
         xdg-desktop-portal-gtk
       ];
     };
-    
+
     environment.systemPackages = with pkgs; [
       flatpak
     ];
-
-    # 字体支持
-    fonts.fontDir.enable = lib.mkIf cfg.fonts true;
-    
-    # 主题支持
-    environment.sessionVariables = lib.mkIf cfg.themes {
-      GTK_THEME = lib.mkDefault "Adwaita:dark";
-    };
 
     # Flathub 远程仓库配置
     systemd.services.configure-flathub-repo = lib.mkIf cfg.flathub {
