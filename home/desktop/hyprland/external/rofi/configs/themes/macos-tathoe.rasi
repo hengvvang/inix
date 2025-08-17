@@ -1,205 +1,238 @@
-/**
- * macOS Tathoe 毛玻璃风格主题
- * 使用半透明背景和模糊效果模拟毛玻璃外观
- */
+/*******************************************************************************
+ * macOS Big Sur/Monterey 风格透明主题
+ * 基于 Rofi 官方文档创建
+ *******************************************************************************/
 
+/* ===== 全局属性 ===== */
 * {
-    /* 主色调 - 基于 macOS Tathoe 配色 */
-    bg0: rgba(40, 44, 52, 0.85);          /* 主背景 - 半透明深色 */
-    bg1: rgba(50, 56, 66, 0.9);           /* 选中项背景 */
-    bg2: rgba(60, 68, 82, 0.8);           /* 次要背景 */
-    bg3: rgba(70, 78, 94, 0.7);           /* 边框颜色 */
+    /* 颜色定义 - 极高透明度的 macOS 风格 */
+    background:     rgba ( 15, 15, 20, 0.5 );      /* 极透明的深色背景 */
+    background-alt: rgba ( 25, 25, 30, 0.4 );      /* 极透明的替代背景色 */
+    foreground:     rgba ( 255, 255, 255, 0.95 );  /* 主文字颜色 */
+    selected:       rgba ( 0, 122, 255, 0.7 );     /* macOS 蓝色选中 */
+    active:         rgba ( 52, 199, 89, 0.7 );     /* macOS 绿色激活 */
+    urgent:         rgba ( 255, 59, 48, 0.7 );     /* macOS 红色紧急 */
     
-    fg0: rgba(248, 248, 242, 1.0);        /* 主文字颜色 */
-    fg1: rgba(248, 248, 242, 0.8);        /* 次要文字颜色 */
-    fg2: rgba(248, 248, 242, 0.6);        /* 占位符文字颜色 */
+    /* 透明度和边框 */
+    transparent:    rgba ( 0, 0, 0, 0 );
+    border-colour:  rgba ( 255, 255, 255, 0.25 );
+    separatorcolor: rgba ( 255, 255, 255, 0.2 );
     
-    accent: rgba(0, 122, 255, 0.9);       /* macOS 蓝色强调色 */
-    urgent: rgba(255, 69, 58, 0.9);       /* macOS 红色 */
+    /* 字体 */
+    font: "LXGW WenKai 12";
     
+    /* 基础样式 */
     background-color: transparent;
-    text-color: @fg0;
-    font: "LXGW WenKai Mono 12";
+    text-color: @foreground;
 }
 
+/* ===== 主窗口 ===== */
 window {
-    background-color: @bg0;
-    border: 1px solid @bg3;
-    border-radius: 12px;
+    /* 透明效果 - 针对 Wayland/Hyprland 优化 */
+    transparency: "real";
+    
+    /* 窗口样式 */
+    background-color: @background;
+    border: 1px solid;
+    border-color: @border-colour;
+    border-radius: 16px;
+    
+    /* 窗口大小和位置 */
+    location: center;
+    width: 650px;
+    anchor: center;
+    
+    /* 内边距 */
     padding: 20px;
     
-    /* 毛玻璃效果的关键 - 使用半透明背景 */
-    transparency: "real";
+    /* 启用模糊效果 */
+    fullscreen: false;
+    
+    /* Wayland 特定设置 */
+    children: [ mainbox ];
 }
 
+/* ===== 主容器 ===== */
 mainbox {
     background-color: transparent;
     children: [ inputbar, message, listview, mode-switcher ];
     spacing: 15px;
 }
 
+/* ===== 输入栏 ===== */
 inputbar {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+    background-color: rgba ( 20, 20, 25, 0.3 );  /* 极透明的输入栏 */
+    border: 1px solid;
+    border-color: @border-colour;
+    border-radius: 12px;
     padding: 12px 16px;
     children: [ prompt, textbox-prompt-colon, entry, case-indicator ];
+    spacing: 8px;
 }
 
 prompt {
     background-color: transparent;
-    text-color: @accent;
-    font: "LXGW WenKai Mono Bold 12";
+    text-color: @selected;
+    font: "LXGW WenKai Bold 12";
 }
 
 textbox-prompt-colon {
     background-color: transparent;
-    text-color: @fg1;
+    text-color: @foreground;
     expand: false;
     str: ":";
-    margin: 0px 0.3em 0em 0em;
 }
 
 entry {
     background-color: transparent;
-    text-color: @fg0;
-    cursor-color: @accent;
-    placeholder-color: @fg2;
-    placeholder: "搜索应用...";
+    text-color: @foreground;
+    placeholder: "搜索应用程序...";
+    placeholder-color: rgba ( 255, 255, 255, 0.5 );
+    cursor: text;
+    blink: true;
+    cursor-color: @selected;
+    cursor-width: 2px;
 }
 
 case-indicator {
     background-color: transparent;
-    text-color: @fg2;
+    text-color: @foreground;
 }
 
+/* ===== 消息框 ===== */
+message {
+    background-color: transparent;
+    padding: 8px;
+}
+
+textbox {
+    background-color: rgba ( 25, 25, 30, 0.3 );  /* 极透明的文本框 */
+    border: 1px solid;
+    border-color: @border-colour;
+    border-radius: 8px;
+    padding: 12px;
+    text-color: @foreground;
+}
+
+/* ===== 列表视图 ===== */
 listview {
     background-color: transparent;
     columns: 1;
     lines: 8;
     cycle: true;
     dynamic: true;
+    scrollbar: true;
     layout: vertical;
-    spacing: 2px;
-    scrollbar: false;
+    reverse: false;
+    fixed-height: false;
+    fixed-columns: true;
+    spacing: 4px;
+    padding: 8px 0px;
 }
 
+/* ===== 滚动条 ===== */
+scrollbar {
+    background-color: rgba ( 255, 255, 255, 0.1 );
+    handle-color: rgba ( 255, 255, 255, 0.3 );
+    border-radius: 4px;
+    handle-width: 6px;
+    padding: 0px;
+}
+
+/* ===== 列表项 ===== */
 element {
     background-color: transparent;
-    text-color: @fg0;
+    text-color: @foreground;
     orientation: horizontal;
-    border-radius: 6px;
-    padding: 10px 12px;
-}
-
-element-icon {
-    background-color: transparent;
-    size: 24px;
-    margin: 0px 12px 0px 0px;
-}
-
-element-text {
-    background-color: transparent;
-    text-color: inherit;
-    expand: true;
-    horizontal-align: 0;
-    vertical-align: 0.5;
+    border-radius: 8px;
+    padding: 8px 12px;
+    children: [ element-icon, element-text ];
+    spacing: 12px;
+    cursor: pointer;
 }
 
 element normal.normal {
     background-color: transparent;
-    text-color: @fg0;
+    text-color: @foreground;
 }
 
 element normal.urgent {
     background-color: @urgent;
-    text-color: @fg0;
+    text-color: @foreground;
 }
 
 element normal.active {
-    background-color: @accent;
-    text-color: @fg0;
+    background-color: @active;
+    text-color: @foreground;
 }
 
 element selected.normal {
-    background-color: rgba(0, 122, 255, 0.3);
-    text-color: @fg0;
-    border: 1px solid @accent;
+    background-color: @selected;
+    text-color: white;
 }
 
 element selected.urgent {
     background-color: @urgent;
-    text-color: @fg0;
+    text-color: white;
 }
 
 element selected.active {
-    background-color: @accent;
-    text-color: @fg0;
+    background-color: @active;
+    text-color: white;
 }
 
 element alternate.normal {
     background-color: transparent;
-    text-color: @fg0;
+    text-color: @foreground;
 }
 
 element alternate.urgent {
     background-color: @urgent;
-    text-color: @fg0;
+    text-color: @foreground;
 }
 
 element alternate.active {
-    background-color: @accent;
-    text-color: @fg0;
+    background-color: @active;
+    text-color: @foreground;
 }
 
+/* ===== 列表项图标 ===== */
+element-icon {
+    background-color: transparent;
+    size: 28px;
+    cursor: inherit;
+}
+
+/* ===== 列表项文本 ===== */
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    cursor: inherit;
+    vertical-align: 0.5;
+    horizontal-align: 0.0;
+}
+
+/* ===== 模式切换器 ===== */
 mode-switcher {
     background-color: transparent;
-    spacing: 0px;
+    children: [ button ];
+    spacing: 6px;
+    padding: 12px 0px 0px 0px;
 }
 
 button {
-    background-color: rgba(255, 255, 255, 0.1);
-    text-color: @fg1;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 6px;
+    background-color: rgba ( 25, 25, 30, 0.4 );  /* 极透明的按钮 */
+    text-color: rgba ( 255, 255, 255, 0.8 );
+    border: 1px solid;
+    border-color: @border-colour;
+    border-radius: 8px;
     padding: 8px 16px;
-    margin: 0px 2px;
+    font: "LXGW WenKai 11";
+    cursor: pointer;
 }
 
 button selected {
-    background-color: @accent;
-    text-color: @fg0;
-    border: 1px solid @accent;
-}
-
-scrollbar {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 0px;
-    border-radius: 3px;
-    margin: 0px 0px 0px 5px;
-    width: 6px;
-}
-
-scrollbar handle {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 3px;
-}
-
-message {
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    padding: 12px;
-}
-
-textbox {
-    background-color: transparent;
-    text-color: @fg0;
-}
-
-error-message {
-    background-color: @urgent;
-    text-color: @fg0;
-    border-radius: 8px;
-    padding: 12px;
+    background-color: @selected;
+    text-color: white;
+    border-color: @selected;
 }

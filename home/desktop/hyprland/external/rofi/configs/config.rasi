@@ -1,25 +1,38 @@
 configuration {
-    modi: "drun,run,window";
-    font: "LXGW WenKai Mono 12";
+    /* 基础配置 */
+    modi: "drun,run,window,ssh,filebrowser";
+    font: "LXGW WenKai 12";
     show-icons: true;
     icon-theme: "Papirus";
-    display-drun: "应用";
-    display-run: "运行";
-    display-window: "窗口";
-    drun-display-format: "{name}";
-    disable-history: false;
-    fullscreen: false;
-    hide-scrollbar: true;
-    sidebar-mode: false;
-    
-    /* 窗口位置和大小 */
-    location: 0;
-    width: 35%;
-    height: 50%;
-    
-    /* 毛玻璃效果需要透明背景 */
-    window-background: rgba(255, 255, 255, 0.1);
-    
-    /* 导入主题 */
-    @theme "macos-tathoe";
+    display-drun: " 应用";
+    display-run: " 运行";
+    display-window: " 窗口";
+    display-ssh: " SSH";
+    display-filebrowser: " 文件";
+
+    /* 行为配置 */
+    case-sensitive: false;
+    sort: true;
+    sorting-method: "fzf";
+    matching: "fuzzy";
+    cycle: true;
+
+    /* 窗口配置 */
+    location: 0;         /* 居中 */
+    width: 650;
+    lines: 8;
+    columns: 1;
+    fixed-num-lines: false;
+    hide-scrollbar: false;
+
+    /* 终端配置 */
+    terminal: "rio";
+
+    /* 性能配置 */
+    lazy-grab: true;
+    parse-hosts: true;
+    parse-known-hosts: true;
 }
+
+/* 应用主题 */
+@theme "macos-tathoe"
