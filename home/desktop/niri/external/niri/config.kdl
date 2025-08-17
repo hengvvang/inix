@@ -253,12 +253,10 @@ layout {
     }
 }
 
-
 hotkey-overlay {
     // 取消注释此行以在启动时禁用"重要热键"弹出窗口。
     skip-at-startup
 }
-
 
 // 路径使用 strftime(3) 格式化，为您提供截图日期和时间。
 screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
@@ -553,11 +551,11 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // 运行程序的建议绑定：终端、应用启动器、屏幕锁定器。
-    Mod+Return hotkey-overlay-title="打开终端：rio" { spawn "rio"; }
-    Mod+Slash hotkey-overlay-title="运行应用程序：rofi" { spawn "rofi" "-show" "drun"; }
-    Mod+B hotkey-overlay-title="运行应用程序：rofi" { spawn "zen"; }
-    Mod+Alt+Escape hotkey-overlay-title="锁定屏幕：swaylock" { spawn "swaylock"; }
-    Mod+Ctrl+Escape hotkey-overlay-title="电源菜单：wlogout" { spawn "wlogout"; }
+    Mod+Return hotkey-overlay-title="打开终端:ghostty" { spawn "ghostty"; }
+    Mod+Slash hotkey-overlay-title="运行应用程序:rofi" { spawn "rofi" "-show" "drun"; }
+    Mod+B hotkey-overlay-title="运行应用程序:zen-browser" { spawn "zen"; }
+    Ctrl+Mod+Escape hotkey-overlay-title="锁定屏幕:swaylock" { spawn "swaylock"; }
+    Ctrl+Alt+Escape hotkey-overlay-title="电源菜单:wlogout" { spawn "wlogout"; }
 
     // 您也可以使用 shell。如果您需要管道、多个命令等，请执行此操作。
     // 注意：整个命令最后作为单个参数。
@@ -606,6 +604,15 @@ binds {
     // Mod+Shift+J     { move-window-down-or-to-workspace-down; }
     // Mod+Shift+K     { move-window-up-or-to-workspace-up; }
 
+    Mod+Ctrl+J            { focus-workspace-down; }
+    Mod+Ctrl+K            { focus-workspace-up; }
+    Mod+Ctrl+Down         { focus-workspace-down; }
+    Mod+Ctrl+Up           { focus-workspace-up; }
+
+    Mod+Ctrl+Shift+Down   { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+Up     { move-column-to-workspace-up; }
+    Mod+Ctrl+Shift+J      { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+K      { move-column-to-workspace-up; }
 
     // 焦点在显示器间转移
     Mod+Alt+Left  { focus-monitor-left; }
@@ -640,28 +647,20 @@ binds {
     Mod+Alt+Ctrl+Shift+H     { move-workspace-to-monitor-left; }
     Mod+Alt+Ctrl+Shift+L     { move-workspace-to-monitor-right; }
 
-    // 最后一个
+    // column 在单个工作区
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
-    Mod+Shift+Home { move-column-to-first; }
-    Mod+Shift+End  { move-column-to-last; }
     Mod+Ctrl+Left  { focus-column-first; }
     Mod+Ctrl+Right { focus-column-last; }
     Mod+Ctrl+H     { focus-column-first; }
     Mod+Ctrl+L     { focus-column-last; }
+
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Shift+End  { move-column-to-last; }
     Mod+Ctrl+Shift+Left  { move-column-to-first; }
     Mod+Ctrl+Shift+Right { move-column-to-last; }
     Mod+Ctrl+Shift+H     { move-column-to-first; }
     Mod+Ctrl+Shift+L     { move-column-to-last; }
-
-    Mod+Ctrl+J            { focus-workspace-down; }
-    Mod+Ctrl+K            { focus-workspace-up; }
-    Mod+Ctrl+Down         { focus-workspace-down; }
-    Mod+Ctrl+Up           { focus-workspace-up; }
-    Mod+Ctrl+Shift+Down   { move-column-to-workspace-down; }
-    Mod+Ctrl+Shift+Up     { move-column-to-workspace-up; }
-    Mod+Ctrl+Shift+J      { move-column-to-workspace-down; }
-    Mod+Ctrl+Shift+K      { move-column-to-workspace-up; }
 
     // 或者，有命令只移动单个窗口：
     // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
@@ -764,10 +763,10 @@ binds {
     // * 将宽高度调整为屏幕宽高度的百分比："-10%" 或 "+10%"
     // 像素大小使用逻辑像素或缩放像素。即在缩放为 2.0 的输出上，
     // set-column-width "100" 将使列占用 200 个物理屏幕像素。
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
-    Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Minus { set-column-width "-5%"; }
+    Mod+Equal { set-column-width "+5%"; }
+    Mod+Shift+Minus { set-window-height "-5%"; }
+    Mod+Shift+Equal { set-window-height "+5%"; }
 
     // 在浮动和平铺布局之间移动聚焦的窗口。
     Mod+Ctrl+F       { toggle-window-floating; }
