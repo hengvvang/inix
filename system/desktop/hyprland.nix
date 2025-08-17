@@ -6,7 +6,6 @@
 
         # ========== Hyprland 核心配置 ==========
         # Hyprland 是一个基于 wlroots 的动态平铺 Wayland 合成器
-        # 提供现代化的窗口管理和动画效果
         programs.hyprland = {
             enable = true;                    # 启用 Hyprland 窗口管理器
             xwayland.enable = true;           # 启用 XWayland 支持 (运行 X11 应用)
@@ -15,37 +14,19 @@
         };
 
         # ========== 环境变量配置 ==========
-        # 针对 Wayland 环境优化应用程序兼容性
         environment.sessionVariables = {
             # 启用 Chromium/Electron 应用的原生 Wayland 支持
             NIXOS_OZONE_WL = "1";
-            
             # 禁用硬件光标，解决某些显卡的光标问题
             WLR_NO_HARDWARE_CURSORS = "1";
-            
             # Qt 应用程序使用 Wayland 后端
             QT_QPA_PLATFORM = "wayland";
-            
             # Mozilla 应用程序启用 Wayland 支持
             MOZ_ENABLE_WAYLAND = "1";
-            
             # 设置默认会话类型为 Wayland
             XDG_SESSION_TYPE = "wayland";
-            
             # 设置当前桌面环境
             XDG_CURRENT_DESKTOP = "Hyprland";
-        };
-
-        # ========== 安全和会话管理服务 ==========
-        # Hyprlock - Hyprland 专用的屏幕锁定程序
-        programs.hyprlock = {
-            enable = true;                    # 启用屏幕锁定功能
-        };
-
-        # Hypridle - Hyprland 的空闲管理守护进程
-        # 自动管理屏幕亮度、锁屏、待机等功能
-        services.hypridle = {
-            enable = true;                    # 启用空闲管理
         };
 
         # ========== 桌面门户服务 ==========

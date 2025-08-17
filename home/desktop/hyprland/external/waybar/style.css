@@ -10,9 +10,12 @@
 
 /* 主窗口 - macOS 风格透明效果 */
 window#waybar {
-    background: rgba(20, 25, 30, 0.4);  /* 极透明的深色背景 */
-    border-radius: 16px;                /* macOS 风格圆角 */
-    border: 1px solid rgba(255, 255, 255, 0.1);  /* 微妙边框 */
+    background: rgba(20, 25, 30, 0.4);
+    /* 极透明的深色背景 */
+    border-radius: 16px;
+    /* macOS 风格圆角 */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    /* 微妙边框 */
     color: rgba(255, 255, 255, 0.9);
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -32,7 +35,7 @@ tooltip label {
 
 /* 模块组样式 */
 .modules-left,
-.modules-center, 
+.modules-center,
 .modules-right {
     background: transparent;
     margin: 4px 8px;
@@ -50,7 +53,8 @@ tooltip label {
 /* 通用模块样式 */
 label.module {
     padding: 4px 12px;
-    background: rgba(255, 255, 255, 0.05);  /* 极透明的模块背景 */
+    background: rgba(255, 255, 255, 0.05);
+    /* 极透明的模块背景 */
     border-radius: 8px;
     margin: 0 2px;
     transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -84,13 +88,15 @@ label.module:hover {
 }
 
 #workspaces button.active {
-    background: rgba(0, 122, 255, 0.7);  /* macOS 蓝色 */
+    background: rgba(0, 122, 255, 0.7);
+    /* macOS 蓝色 */
     color: white;
     font-weight: 600;
 }
 
 #workspaces button.urgent {
-    background: rgba(255, 69, 58, 0.8);  /* macOS 红色 */
+    background: rgba(255, 69, 58, 0.8);
+    /* macOS 红色 */
     color: white;
     animation: urgent-blink 1s ease-in-out infinite alternate;
 }
@@ -129,11 +135,11 @@ label.module:hover {
     padding: 2px 8px;
 }
 
-#tray > .passive {
+#tray>.passive {
     -gtk-icon-effect: dim;
 }
 
-#tray > .needs-attention {
+#tray>.needs-attention {
     -gtk-icon-effect: highlight;
     background-color: rgba(255, 214, 10, 0.8);
 }
@@ -145,7 +151,8 @@ label.module:hover {
 }
 
 #idle_inhibitor.activated {
-    background: rgba(52, 199, 89, 0.7);  /* macOS 绿色 */
+    background: rgba(52, 199, 89, 0.7);
+    /* macOS 绿色 */
     color: white;
 }
 
@@ -264,7 +271,7 @@ label.module:hover {
     margin: 0 4px;
 }
 
-.modules-right > widget > label {
+.modules-right>widget>label {
     margin: 0 1px;
 }
 
