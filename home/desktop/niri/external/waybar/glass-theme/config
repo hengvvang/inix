@@ -8,7 +8,6 @@
     "margin-top": 4,
     "margin-left": 4,
     "margin-right": 4,
-    
     "modules-left": [
         "niri/workspaces",
         "niri/window"
@@ -23,9 +22,9 @@
         "memory",
         "temperature",
         "network",
-        "battery"
+        "battery",
+        "tray"
     ],
-
     "niri/workspaces": {
         "format": "{icon}",
         "format-icons": {
@@ -39,7 +38,6 @@
         "on-scroll-up": "niri msg action focus-workspace-up",
         "on-scroll-down": "niri msg action focus-workspace-down"
     },
-
     "niri/window": {
         "format": " {title} ",
         "icon": true,
@@ -55,14 +53,12 @@
             "nautilus": "Files"
         }
     },
-
     "niri/language": {
         "format": "{}",
         "format-en": "EN",
         "format-zh": "CN",
         "tooltip": false
     },
-
     "clock": {
         "interval": 1,
         "format": "{:%H:%M}",
@@ -72,13 +68,11 @@
             "on-click-right": "mode"
         }
     },
-
     "tray": {
         "icon-size": 16,
         "spacing": 8,
         "show-passive-items": false
     },
-
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -87,7 +81,6 @@
         },
         "tooltip": false
     },
-
     "pulseaudio": {
         "format": " {icon} {volume}% ",
         "format-bluetooth": "󰂯 {volume}%",
@@ -102,7 +95,11 @@
             "phone": "󰏲",
             "portable": "󰏲",
             "car": "󰄋",
-            "default": ["󰕿", "󰖀", "󰕾"]
+            "default": [
+                "󰕿",
+                "󰖀",
+                "󰕾"
+            ]
         },
         "scroll-step": 5,
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
@@ -112,7 +109,6 @@
         "max-volume": 100,
         "tooltip": false
     },
-
     "network": {
         "format-wifi": " 󰤨 {signalStrength}% ",
         "format-ethernet": " 󰈀 Connected ",
@@ -125,7 +121,6 @@
         "on-click": "nm-connection-editor",
         "interval": 5
     },
-
     "cpu": {
         "interval": 3,
         "format": " 󰻠 {usage}% ",
@@ -136,7 +131,6 @@
             "critical": 90
         }
     },
-
     "memory": {
         "interval": 5,
         "format": " 󰍛 {percentage}% ",
@@ -147,7 +141,6 @@
             "critical": 90
         }
     },
-
     "temperature": {
         "thermal-zone": 0,
         "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
@@ -155,7 +148,13 @@
         "interval": 5,
         "format": " {icon} {temperatureC}°C ",
         "format-critical": " 󰸁 {temperatureC}°C ",
-        "format-icons": ["󰜗", "󱃃", "󰔏", "󱃂", "󰸁"],
+        "format-icons": [
+            "󰜗",
+            "󱃃",
+            "󰔏",
+            "󱃂",
+            "󰸁"
+        ],
         "tooltip": true,
         "tooltip-format": "CPU温度: {temperatureC}°C",
         "on-click": "sensors",
@@ -165,7 +164,6 @@
             "critical": 80
         }
     },
-
     "battery": {
         "states": {
             "warning": 30,
@@ -175,11 +173,21 @@
         "format-charging": " 󰂄 {capacity}% ",
         "format-plugged": " 󰂄 {capacity}% ",
         "format-alt": " {capacity}% ",
-        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "format-icons": [
+            "󰁺",
+            "󰁻",
+            "󰁼",
+            "󰁽",
+            "󰁾",
+            "󰁿",
+            "󰂀",
+            "󰂁",
+            "󰂂",
+            "󰁹"
+        ],
         "tooltip": true,
         "tooltip-format": "{capacity}% ({timeTo})"
     },
- 
     "custom/wallpaper": {
         "format": "{}",
         "exec": "echo ' 󰸉 ' ",

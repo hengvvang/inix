@@ -10,6 +10,5 @@
     ];
 
     xdg.configFile."swayidle/config".source = ./config;
-
   };
 }

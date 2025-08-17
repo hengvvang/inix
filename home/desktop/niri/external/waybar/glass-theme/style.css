@@ -1,8 +1,3 @@
-/*
- * Simple Glass theme for Waybar (Niri)
- * Compatible with older GTK/CSS versions
- */
-
 /* Global styles */
 * {
     border: none;
@@ -119,11 +114,11 @@ window#waybar.empty {
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-#tray > .passive {
+#tray>.passive {
     -gtk-icon-effect: dim;
 }
 
-#tray > .needs-attention {
+#tray>.needs-attention {
     -gtk-icon-effect: highlight;
     background: rgba(255, 100, 100, 0.3);
 }
