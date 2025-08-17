@@ -9,9 +9,9 @@
 
     # 通知服务
     services.dunst.enable = true;
-    
+
     # Dunst 配置文件
     xdg.configFile."dunst/dunstrc".source = ./dunstrc;
-    
+
   };
 }
