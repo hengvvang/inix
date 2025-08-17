@@ -2,6 +2,7 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
 // === 开机启动服务 ===
+spawn-at-startup "fcitx5 -d"                       // 输入法守护进程
 spawn-at-startup "waybar"                    // 状态栏
 // spawn-at-startup "ironbar"               // 另一个状态栏
 spawn-at-startup "swww-daemon"               // 壁纸服务

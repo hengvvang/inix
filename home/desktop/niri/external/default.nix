@@ -19,11 +19,25 @@
   config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.method == "external") {
 
     # ========== 环境变量配置 ==========
-    # Niri 桌面环境和缩放配置
+    # Niri 桌面环境配置
     home.sessionVariables = {
+      # Niri 相关环境变量
       XDG_CURRENT_DESKTOP = "niri";
+      XDG_SESSION_DESKTOP = "niri";
+      XDG_SESSION_TYPE = "wayland";
+      # Wayland 相关环境变量
+      WAYLAND_DISPLAY = "wayland-1";
       QT_QPA_PLATFORM = "wayland;xcb";
+      GDK_BACKEND = "wayland,x11";
+      SDL_VIDEODRIVER = "wayland";
+      CLUTTER_BACKEND = "wayland";
       MOZ_ENABLE_WAYLAND = "1";
+      # 输入法支持
+      QT_IM_MODULE = "fcitx";
+      GTK_IM_MODULE = "fcitx";
+      XMODIFIERS = "@im=fcitx";
+      WLR_NO_HARDWARE_CURSORS = "1";
+      NIXOS_OZONE_WL = "1";
     };
 
     home.packages = with pkgs; [
