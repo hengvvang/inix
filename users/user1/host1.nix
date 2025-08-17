@@ -7,7 +7,7 @@
 
       desktop = {
         enable = true;
-        preset = "hyprland";
+        preset = "niri";
       };
 
       pkgs = {
