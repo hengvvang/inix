@@ -1,10 +1,9 @@
-# Sakura 樱花主题 - 优雅的日式美学字体配置
 { config, lib, pkgs, ... }:
 
 {
   config = lib.mkIf (config.myHome.profiles.enable && config.myHome.profiles.fonts.enable && config.myHome.profiles.fonts.preset == "sakura") {
+    # 字体包配置 - 樱花风格
     home.packages = with pkgs; [
-
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
       nerd-fonts.iosevka
@@ -26,28 +25,30 @@
       nerd-fonts.go-mono
       nerd-fonts.agave
 
-      monaspace
-      
-      # 中文字体 - 优雅的中日文支持
-      lxgw-wenkai
+
+      noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
+      noto-fonts-emoji
       source-han-sans
       source-han-serif
-      
+      source-han-mono
+
+      monaspace
+      # 中文字体 - 优雅的中日文支持
+      lxgw-wenkai
+
       # 西文字体 - 现代简约
       inter
       source-sans-pro
       source-serif-pro
-      noto-fonts
-      noto-fonts-emoji
-      
+
       # 终端和编辑器字体
       fira-code
       jetbrains-mono
       cascadia-code
       victor-mono
-      
+
       # 图标和符号字体
       font-awesome
       material-design-icons
@@ -57,23 +58,23 @@
       twemoji-color-font
     ];
 
-    # 字体配置 - 樱花优雅风格
+    # 系统级字体配置
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        sansSerif = [ 
-          "Inter" "Noto Sans CJK SC" "LXGW WenKai" 
+        sansSerif = [
+          "Inter" "Noto Sans CJK SC" "LXGW WenKai"
           "Font Awesome 6 Free" "Material Design Icons"
         ];
-        serif = [ 
+        serif = [
           "Source Serif Pro" "Noto Serif CJK SC" "LXGW WenKai"
           "Klee One" "Zen Old Mincho"
         ];
-        monospace = [ 
+        monospace = [
           "JetBrains Mono Nerd Font" "Monaspace Neon Var" "LXGW WenKai Mono"
           "Cascadia Code NF" "Victor Mono Nerd Font" "Iosevka Nerd Font"
         ];
-        emoji = [ 
+        emoji = [
           "Noto Color Emoji" "OpenMoji Color" "Twemoji" "Font Awesome 6 Free"
         ];
       };

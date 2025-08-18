@@ -8,14 +8,14 @@
       dejavu_fonts         # 经典字体包
       source-serif-pro     # Adobe 现代衬线字体
       crimson              # 优雅的阅读字体
-      
+
       nerd-fonts.fira-code
       nerd-fonts.jetbrains-mono
       nerd-fonts.iosevka
       nerd-fonts.sauce-code-pro
       nerd-fonts.roboto-mono
       nerd-fonts.hack
-      nerd-fonts.caskaydia-mono
+      nerd-fonts.caskaydia-mono      # Cascadia Code 的 nerd-fonts 版本
       nerd-fonts.ubuntu
       nerd-fonts.ubuntu-mono
       nerd-fonts.dejavu-sans-mono
@@ -30,21 +30,27 @@
       nerd-fonts.go-mono
       nerd-fonts.agave
 
+
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif # Google 传统中文衬线
+      noto-fonts-emoji
+      source-han-sans      # Adobe 思源黑体
+      source-han-serif     # Adobe 思源宋体
+      source-han-mono
+
       monaspace            # GitHub 现代编程字体
       courier-prime        # 现代复古等宽字体
       inconsolata          # 现代复古等宽字体
       source-code-pro      # Adobe 经典编程字体
-      
+
       # 无衬线字体 - 经典现代
       source-sans-pro      # Adobe 经典无衬线
       open-sans           # 经典人文主义字体
-      
+
       # 中文字体 - 传统优雅
       lxgw-wenkai         # 霞鹜文楷，传统美感
-      noto-fonts-cjk-serif # Google 传统中文衬线
-      source-han-serif     # Adobe 思源宋体
-      source-han-sans      # Adobe 思源黑体
-      
+
       # 系统字体和图标支持
       noto-fonts
       noto-fonts-emoji
@@ -56,19 +62,19 @@
       powerline-fonts     # Powerline 字体支持
     ];
 
-    # 字体配置 - 复古经典优化
+    # 系统级字体配置
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
         serif = [ "Source Serif Pro" "Liberation Serif" "Source Han Serif SC" "LXGW WenKai" ];
         sansSerif = [ "Source Sans Pro" "Open Sans" "Source Han Sans SC" "LXGW WenKai" ];
-        monospace = [ 
-          "Inconsolata Go Nerd Font" 
+        monospace = [
+          "Inconsolata Go Nerd Font"
           "Source Code Pro Nerd Font"
           "JetBrains Mono Nerd Font"
           "DejaVu Sans Mono Nerd Font"
           "Liberation Mono Nerd Font"
-          "Monaspace Radon" 
+          "Monaspace Radon"
         ];
         emoji = [ "Noto Color Emoji" ];
       };

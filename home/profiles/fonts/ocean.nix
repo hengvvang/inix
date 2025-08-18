@@ -25,32 +25,36 @@
       nerd-fonts.proggy-clean-tt
       nerd-fonts.go-mono
       nerd-fonts.agave
-
       monaspace
+
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-emoji
+      source-han-sans
+      source-han-serif
+      source-han-mono
 
       # 中文字体 - 现代简洁
       lxgw-wenkai
-      noto-fonts-cjk-sans
-      source-han-sans
       sarasa-gothic
-      
+
       # 西文字体 - 现代设计
       roboto
       open-sans
       source-sans-pro
       noto-fonts
-      noto-fonts-emoji
-      
+
       # 特色字体
       fira-sans
       ubuntu_font_family
-      
+
       # 编程和终端
       fira-code
       source-code-pro
       hack-font
       iosevka
-      
+
       # 图标和符号字体
       font-awesome
       material-design-icons
@@ -60,21 +64,22 @@
       twemoji-color-font
     ];
 
+    # 系统级字体配置 - 海洋深邃风格
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        sansSerif = [ 
+        sansSerif = [
           "Roboto" "Noto Sans CJK SC" "Sarasa Gothic SC"
           "Font Awesome 6 Free" "Material Design Icons"
         ];
-        serif = [ 
+        serif = [
           "Source Serif Pro" "Noto Serif CJK SC" "Sarasa Gothic SC"
         ];
-        monospace = [ 
+        monospace = [
           "Fira Code Nerd Font" "Monaspace Argon Var" "LXGW WenKai Mono"
           "Hack Nerd Font" "Iosevka Nerd Font" "Source Code Pro Nerd Font"
         ];
-        emoji = [ 
+        emoji = [
           "Noto Color Emoji" "OpenMoji Color" "Twemoji" "Font Awesome 6 Free"
         ];
       };
