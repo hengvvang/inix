@@ -109,61 +109,8 @@
         };
 
         # 樱花主题字体优化
-        localConf = ''
-          <?xml version="1.0"?>
-          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-          <fontconfig>
-            <!-- Sakura 主题优化字体渲染 -->
-            
-            <!-- Lato 温暖优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>Lato</string>
-              </test>
-              <edit name="hintstyle" mode="assign">
-                <const>hintslight</const>
-              </edit>
-            </match>
-            
-            <!-- EB Garamond 优雅优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>EB Garamond</string>
-              </test>
-              <edit name="hintstyle" mode="assign">
-                <const>hintslight</const>
-              </edit>
-            </match>
-            
-            <!-- 编程字体柔美化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>Fira Code</string>
-              </test>
-              <edit name="fontfeatures" mode="append">
-                <string>liga on</string>
-                <string>calt on</string>
-              </edit>
-              <edit name="hintstyle" mode="assign">
-                <const>hintslight</const>
-              </edit>
-            </match>
-            
-            <!-- 中文樱花风格优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>LXGW WenKai</string>
-              </test>
-              <edit name="spacing" mode="assign">
-                <int>0</int>
-              </edit>
-              <edit name="hintstyle" mode="assign">
-                <const>hintslight</const>
-              </edit>
-            </match>
-            
-          </fontconfig>
-        '';
+        # localConf = ''
+        # '';
       };
     };
   };

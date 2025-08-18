@@ -106,46 +106,8 @@
         };
 
         # 海洋主题字体优化
-        localConf = ''
-          <?xml version="1.0"?>
-          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-          <fontconfig>
-            <!-- Ocean 主题优化字体渲染 -->
-            
-            <!-- EB Garamond 深邃优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>EB Garamond</string>
-              </test>
-              <edit name="hintstyle" mode="assign">
-                <const>hintmedium</const>
-              </edit>
-            </match>
-            
-            <!-- Inter 深度字体优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>Inter</string>
-              </test>
-              <edit name="fontfeatures" mode="append">
-                <string>cv01 on</string>
-                <string>cv08 on</string>
-              </edit>
-            </match>
-            
-            <!-- JetBrains Mono 深邃编程优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>JetBrains Mono</string>
-              </test>
-              <edit name="fontfeatures" mode="append">
-                <string>liga on</string>
-                <string>cv01 on</string>
-              </edit>
-            </match>
-            
-          </fontconfig>
-        '';
+        # localConf = ''
+        # '';
       };
     };
   };

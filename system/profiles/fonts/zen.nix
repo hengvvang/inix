@@ -107,47 +107,8 @@
         };
 
         # 禅意主题字体优化
-        localConf = ''
-          <?xml version="1.0"?>
-          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-          <fontconfig>
-            <!-- Zen 主题优化字体渲染 -->
-            
-            <!-- 禅意字体简化处理 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>Inter</string>
-              </test>
-              <edit name="fontfeatures" mode="append">
-                <string>cv01 on</string>
-                <string>cv02 on</string>
-              </edit>
-            </match>
-            
-            <!-- Iosevka 编程字体优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>Iosevka</string>
-              </test>
-              <edit name="fontfeatures" mode="append">
-                <string>cv01 on</string>
-                <string>cv02 on</string>
-                <string>cv03 on</string>
-              </edit>
-            </match>
-            
-            <!-- 中文字体禅意优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>LXGW WenKai</string>
-              </test>
-              <edit name="spacing" mode="assign">
-                <int>0</int>
-              </edit>
-            </match>
-            
-          </fontconfig>
-        '';
+        # localConf = ''
+        # '';
       };
     };
   };

@@ -105,58 +105,8 @@
         };
 
         # 复古主题字体优化
-        localConf = ''
-          <?xml version="1.0"?>
-          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-          <fontconfig>
-            <!-- Vintage 主题优化字体渲染 -->
-            
-            <!-- 复古衬线字体优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>Crimson</string>
-              </test>
-              <edit name="hintstyle" mode="assign">
-                <const>hintmedium</const>
-              </edit>
-            </match>
-            
-            <!-- Liberation 字体经典优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="contains">
-                <string>Liberation</string>
-              </test>
-              <edit name="hintstyle" mode="assign">
-                <const>hintmedium</const>
-              </edit>
-            </match>
-            
-            <!-- 经典编程字体优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>Source Code Pro</string>
-              </test>
-              <edit name="hintstyle" mode="assign">
-                <const>hintmedium</const>
-              </edit>
-            </match>
-            
-            <!-- 中文复古字体优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>LXGW WenKai</string>
-              </test>
-              <edit name="spacing" mode="assign">
-                <int>0</int>
-              </edit>
-              <edit name="hintstyle" mode="assign">
-                <const>hintmedium</const>
-              </edit>
-            </match>
-            
-          </fontconfig>
-        '';
-      };
+      #   localConf = ''
+      # };
     };
   };
 }

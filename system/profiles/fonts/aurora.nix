@@ -105,50 +105,8 @@
         };
 
         # 极光主题字体优化
-        localConf = ''
-          <?xml version="1.0"?>
-          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
-          <fontconfig>
-            <!-- Aurora 主题优化字体渲染 -->
-            
-            <!-- 针对小字体的清新优化 -->
-            <match target="font">
-              <test name="size" qual="any" compare="less">
-                <double>10</double>
-              </test>
-              <edit name="autohint" mode="assign">
-                <bool>true</bool>
-              </edit>
-              <edit name="hintstyle" mode="assign">
-                <const>hintslight</const>
-              </edit>
-            </match>
-            
-            <!-- Inter 字体清新优化 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>Inter</string>
-              </test>
-              <edit name="fontfeatures" mode="append">
-                <string>cv02 on</string>
-                <string>cv03 on</string>
-                <string>cv04 on</string>
-              </edit>
-            </match>
-            
-            <!-- 编程字体连字支持 -->
-            <match target="font">
-              <test name="family" qual="any" compare="eq">
-                <string>Fira Code</string>
-              </test>
-              <edit name="fontfeatures" mode="append">
-                <string>liga on</string>
-                <string>calt on</string>
-              </edit>
-            </match>
-            
-          </fontconfig>
-        '';
+        # localConf = ''
+        # '';
       };
     };
   };
