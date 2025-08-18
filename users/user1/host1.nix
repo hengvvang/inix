@@ -115,7 +115,7 @@
         enable = true;
         fonts = {
           enable = true;
-          preset = "forest";
+          preset = "zen";
         };
         stylix = {
           enable = false;  # 启用用户级 stylix
