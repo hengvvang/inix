@@ -17,16 +17,6 @@
         LC_TELEPHONE = "zh_CN.UTF-8";
         LC_TIME = "zh_CN.UTF-8";
       };
-      # 字体支持
-      fonts.packages = with pkgs; [
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-cjk-serif
-        noto-fonts-emoji
-        source-han-sans
-        source-han-serif
-        source-han-mono
-      ];
       # Fcitx5 输入法配置
       i18n.inputMethod = {
         type = "fcitx5";
@@ -86,18 +76,6 @@
         LC_TELEPHONE = "zh_CN.UTF-8";
         LC_TIME = "zh_CN.UTF-8";
       };
-
-      # 字体支持
-      fonts.packages = with pkgs; [
-        noto-fonts
-        noto-fonts-cjk-sans
-        noto-fonts-cjk-serif
-        noto-fonts-emoji
-        source-han-sans
-        source-han-serif
-        source-han-mono
-      ];
-
       # IBus 输入法配置
       i18n.inputMethod = {
         type = "ibus";
