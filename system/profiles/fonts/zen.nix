@@ -10,7 +10,7 @@
       nerd-fonts.sauce-code-pro
       nerd-fonts.roboto-mono
       nerd-fonts.hack
-      nerd-fonts.caskaydia-mono      # Cascadia Code 的 nerd-fonts 版本
+      nerd-fonts.caskaydia-mono
       nerd-fonts.ubuntu
       nerd-fonts.ubuntu-mono
       nerd-fonts.dejavu-sans-mono
@@ -24,34 +24,29 @@
       nerd-fonts.proggy-clean-tt
       nerd-fonts.go-mono
       nerd-fonts.agave
+      nerd-fonts.monaspace
 
-      monaspace
-      
-      # 中文字体 - 传统与现代融合
-      lxgw-wenkai
+      noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
+      noto-fonts-emoji
       source-han-sans
       source-han-serif
-      
-      # 西文字体 - 简约优雅
+      source-han-mono
+
+      monaspace
+      lxgw-wenkai
+
       inter
       source-sans-pro
       source-serif-pro
       noto-fonts
-      
-      # 特色字体 - 禅意设计
       inconsolata
       ubuntu_font_family
-      
-      # 编程字体
       iosevka
       jetbrains-mono
-      
+
       # 系统字体和图标支持
-      noto-fonts
-      noto-fonts-emoji
-      noto-fonts-extra
       liberation_ttf
       dejavu_fonts
       font-awesome        # Font Awesome 图标字体
@@ -64,13 +59,13 @@
       defaultFonts = {
         sansSerif = [ "Inter" "Source Han Sans SC" "LXGW WenKai" ];
         serif = [ "Source Serif Pro" "Source Han Serif SC" "LXGW WenKai" ];
-        monospace = [ 
-          "Iosevka Nerd Font" 
+        monospace = [
+          "Iosevka Nerd Font"
           "JetBrains Mono Nerd Font"
           "Inconsolata Go Nerd Font"
           "Source Code Pro Nerd Font"
-          "Monaspace Xenon" 
-          "LXGW WenKai Mono" 
+          "Monaspace Xenon"
+          "LXGW WenKai Mono"
         ];
         emoji = [ "Noto Color Emoji" ];
       };

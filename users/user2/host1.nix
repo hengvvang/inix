@@ -4,7 +4,6 @@
   # host1 主机特定配置 - user2 轻量级配置
   config = lib.mkIf (config.host == hosts.host1) {
     myHome = {
-
       pkgs = {
         enable = true;
         user2.enable = true;

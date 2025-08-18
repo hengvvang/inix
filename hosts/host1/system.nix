@@ -2,17 +2,16 @@
 
 {
   mySystem = {
+    desktop = {
+      enable = true;
+      preset = "niri";
+    };
 
     pkgs = {
       enable = true;
       apps.enable = true;
       toolkits.enable = true;
       workflows.enable = true;
-    };
-
-    desktop = {
-      enable = true;
-      preset = "niri";
     };
 
     profiles = {
@@ -80,14 +79,13 @@
 
       network = {
         enable = true;
-        # 网络管理器配置
         manager = {
-          enable = true;               # 🟢 启用网络管理器
-          hostname = "laptop";         # 系统主机名
+          enable = true;
+          hostname = "laptop";
           preset = "networkmanager";
           tools = {
-            enable = true;             # 启用网络诊断工具
-            gui = true;                # 启用图形化管理工具
+            enable = true;
+            gui = true;
           };
         };
         # SSH 服务配置

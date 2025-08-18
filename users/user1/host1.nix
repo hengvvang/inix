@@ -4,7 +4,6 @@
   # host1 主机特定配置
   config = lib.mkIf (config.host == hosts.host1) {
     myHome = {
-
       desktop = {
         enable = true;
         preset = "niri";

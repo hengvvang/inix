@@ -6,7 +6,6 @@
     myHome = {
       develop = {
         enable = true;
-
         devenv = {
           enable = true;        # 启用 devenv
           autoSwitch = true;    # 启用自动环境切换（direnv）
@@ -23,7 +22,6 @@
 
       dotfiles = {
         enable = true;
-
         vim.enable = true;
         zsh.enable = true;
         bash.enable = true;
@@ -40,7 +38,6 @@
 
       profiles = {
         enable = true;
-
         fonts = {
           preset = "bauhaus";
         };

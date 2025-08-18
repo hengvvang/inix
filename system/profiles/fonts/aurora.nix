@@ -11,7 +11,7 @@
       nerd-fonts.sauce-code-pro
       nerd-fonts.roboto-mono
       nerd-fonts.hack
-      nerd-fonts.caskaydia-mono      # Cascadia Code 的 nerd-fonts 版本
+      nerd-fonts.caskaydia-mono
       nerd-fonts.ubuntu
       nerd-fonts.ubuntu-mono
       nerd-fonts.dejavu-sans-mono
@@ -26,30 +26,39 @@
       nerd-fonts.go-mono
       nerd-fonts.agave
 
+
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      noto-fonts-emoji
+      source-han-sans
+      source-han-serif
+      source-han-mono
+
       monaspace
       # 中文字体 - 现代设计
       lxgw-wenkai
       noto-fonts-cjk-sans
       sarasa-gothic
       source-han-sans
-      
+
       # 西文字体 - 现代时尚
       inter
       roboto
       ubuntu_font_family
       noto-fonts
       noto-fonts-emoji
-      
+
       # 特色字体
       cascadia-code
       victor-mono
       fira-sans
-      
+
       # 编程字体
       fira-code
       victor-mono
       cascadia-code
-      
+
       # 图标和符号字体
       font-awesome
       material-design-icons
@@ -63,18 +72,18 @@
     fonts.fontconfig = {
       enable = true;
       defaultFonts = {
-        sansSerif = [ 
+        sansSerif = [
           "Inter" "Roboto" "Sarasa Gothic SC"
           "Font Awesome 6 Free" "Material Design Icons"
         ];
-        serif = [ 
+        serif = [
           "Source Serif Pro" "Noto Serif CJK SC" "Sarasa Gothic SC"
         ];
-        monospace = [ 
+        monospace = [
           "Cascadia Code Nerd Font" "Monaspace Krypton Var" "Victor Mono Nerd Font"
           "Fira Code Nerd Font" "JetBrains Mono Nerd Font" "Iosevka Nerd Font"
         ];
-        emoji = [ 
+        emoji = [
           "Noto Color Emoji" "OpenMoji Color" "Twemoji" "Font Awesome 6 Free"
         ];
       };

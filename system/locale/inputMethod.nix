@@ -6,7 +6,6 @@
     (lib.mkIf config.mySystem.locale.inputMethod.fcitx5.enable {
       # 基础本地化设置
       i18n.defaultLocale = "zh_CN.UTF-8";
-
       i18n.extraLocaleSettings = {
         LC_ADDRESS = "zh_CN.UTF-8";
         LC_IDENTIFICATION = "zh_CN.UTF-8";
@@ -18,7 +17,6 @@
         LC_TELEPHONE = "zh_CN.UTF-8";
         LC_TIME = "zh_CN.UTF-8";
       };
-
       # 字体支持
       fonts.packages = with pkgs; [
         noto-fonts
@@ -29,7 +27,6 @@
         source-han-serif
         source-han-mono
       ];
-
       # Fcitx5 输入法配置
       i18n.inputMethod = {
         type = "fcitx5";
@@ -77,9 +74,7 @@
 
     # IBus 配置
     (lib.mkIf config.mySystem.locale.inputMethod.ibus.enable {
-      # 基础本地化设置
       i18n.defaultLocale = "zh_CN.UTF-8";
-
       i18n.extraLocaleSettings = {
         LC_ADDRESS = "zh_CN.UTF-8";
         LC_IDENTIFICATION = "zh_CN.UTF-8";
