@@ -3,85 +3,149 @@
 
 {
   config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "ocean") {
-    fonts.packages = with pkgs; [
 
-      nerd-fonts.fira-code
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.iosevka
-      nerd-fonts.sauce-code-pro
-      nerd-fonts.roboto-mono
-      nerd-fonts.hack
-      nerd-fonts.caskaydia-mono
-      nerd-fonts.ubuntu
-      nerd-fonts.ubuntu-mono
-      nerd-fonts.dejavu-sans-mono
-      nerd-fonts.inconsolata-go
-      nerd-fonts.space-mono
-      nerd-fonts.droid-sans-mono
-      nerd-fonts.meslo-lg
-      nerd-fonts.anonymice
-      nerd-fonts.liberation
-      nerd-fonts.profont
-      nerd-fonts.proggy-clean-tt
-      nerd-fonts.go-mono
-      nerd-fonts.agave
-      monaspace
+    fonts = {
+      # 启用默认字体包
+      enableDefaultPackages = true;
 
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-emoji
-      source-han-sans
-      source-han-serif
-      source-han-mono
+      # 启用 Ghostscript 字体支持（用于 PDF 和 PostScript）
+      enableGhostscriptFonts = true;
 
-      # 中文字体 - 现代简洁
-      lxgw-wenkai
-      sarasa-gothic
+      # 字体目录配置
+      fontDir.enable = true;
 
-      # 西文字体 - 现代设计
-      roboto
-      open-sans
-      source-sans-pro
-      noto-fonts
+      packages = with pkgs; [
+        # 主要字体 - 海洋风格
+        inter                # 现代深邃设计
+        source-sans-pro      # Adobe 清晰无衬线
+        roboto              # Google 现代字体
 
-      # 特色字体
-      fira-sans
-      ubuntu_font_family
+        # 衬线字体 - 海洋深沉
+        source-serif-pro     # Adobe 现代衬线
+        crimson              # 深邃优雅字体
+        eb-garamond         # 经典优雅衬线
 
-      # 编程和终端
-      fira-code
-      source-code-pro
-      hack-font
-      iosevka
+        nerd-fonts.fira-code
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.iosevka
+        nerd-fonts.sauce-code-pro
+        nerd-fonts.roboto-mono
+        nerd-fonts.hack
+        nerd-fonts.caskaydia-mono
+        nerd-fonts.ubuntu
+        nerd-fonts.ubuntu-mono
+        nerd-fonts.dejavu-sans-mono
+        nerd-fonts.inconsolata-go
+        nerd-fonts.space-mono
+        nerd-fonts.droid-sans-mono
+        nerd-fonts.meslo-lg
+        nerd-fonts.anonymice
+        nerd-fonts.liberation
+        nerd-fonts.profont
+        nerd-fonts.proggy-clean-tt
+        nerd-fonts.go-mono
+        nerd-fonts.agave
 
-      # 图标和符号字体
-      font-awesome
-      material-design-icons
-      powerline-fonts
-      noto-fonts-emoji-blob-bin
-      openmoji-color
-      twemoji-color-font
-    ];
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
+        noto-fonts-emoji
+        source-han-sans
+        source-han-serif
+        source-han-mono
 
-    # 系统级字体配置 - 海洋深邃风格
-    fonts.fontconfig = {
-      enable = true;
-      defaultFonts = {
-        sansSerif = [
-          "Roboto" "Noto Sans CJK SC" "Sarasa Gothic SC"
-          "Font Awesome 6 Free" "Material Design Icons"
-        ];
-        serif = [
-          "Source Serif Pro" "Noto Serif CJK SC" "Sarasa Gothic SC"
-        ];
-        monospace = [
-          "Fira Code Nerd Font" "Monaspace Argon Var" "LXGW WenKai Mono"
-          "Hack Nerd Font" "Iosevka Nerd Font" "Source Code Pro Nerd Font"
-        ];
-        emoji = [
-          "Noto Color Emoji" "OpenMoji Color" "Twemoji" "Font Awesome 6 Free"
-        ];
+        # 等宽字体 - 海洋深度
+        monaspace            # GitHub 现代编程字体
+        fira-code            # 连字编程字体
+        jetbrains-mono       # 现代等宽字体
+
+        # 中文字体 - 海洋宁静
+        lxgw-wenkai         # 霞鹜文楷，宁静优雅
+        sarasa-gothic       # 更纱黑体
+
+        # 系统字体和图标支持
+        liberation_ttf
+        dejavu_fonts
+        font-awesome        # Font Awesome 图标字体
+        material-design-icons # Material Design 图标
+        powerline-fonts     # Powerline 字体支持
+      ];
+
+      fontconfig = {
+        enable = true;
+
+        # 字体渲染优化配置
+        antialias = true;              # 开启抗锯齿
+        cache32Bit = true;             # 启用32位字体缓存
+        hinting = {
+          enable = true;               # 启用字体微调
+          autohint = false;            # 禁用自动微调，使用内置微调
+          style = "medium";            # 海洋风格使用中等微调，保持深度感
+        };
+        subpixel = {
+          rgba = "rgb";                # 子像素渲染：rgb, bgr, vrgb, vbgr, none
+          lcdfilter = "default";       # LCD滤镜：default, light, legacy, none
+        };
+
+        # 字体回退和替换配置
+        includeUserConf = true;        # 包含用户字体配置
+        allowBitmaps = true;           # 允许位图字体
+        allowType1 = true;             # 允许 Type1 字体
+        useEmbeddedBitmaps = true;     # 使用嵌入式位图
+
+        defaultFonts = {
+          serif = [ "EB Garamond" "Source Serif Pro" "Crimson" "Source Han Serif SC" "LXGW WenKai" ];
+          sansSerif = [ "Inter" "Roboto" "Source Han Sans SC" "LXGW WenKai" ];
+          monospace = [
+            "JetBrains Mono Nerd Font"
+            "Fira Code Nerd Font"
+            "Monaspace Radon"
+            "Sarasa Gothic SC"
+          ];
+          emoji = [ "Noto Color Emoji" ];
+        };
+
+        # 海洋主题字体优化
+        localConf = ''
+          <?xml version="1.0"?>
+          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+          <fontconfig>
+            <!-- Ocean 主题优化字体渲染 -->
+            
+            <!-- EB Garamond 深邃优化 -->
+            <match target="font">
+              <test name="family" qual="any" compare="eq">
+                <string>EB Garamond</string>
+              </test>
+              <edit name="hintstyle" mode="assign">
+                <const>hintmedium</const>
+              </edit>
+            </match>
+            
+            <!-- Inter 深度字体优化 -->
+            <match target="font">
+              <test name="family" qual="any" compare="eq">
+                <string>Inter</string>
+              </test>
+              <edit name="fontfeatures" mode="append">
+                <string>cv01 on</string>
+                <string>cv08 on</string>
+              </edit>
+            </match>
+            
+            <!-- JetBrains Mono 深邃编程优化 -->
+            <match target="font">
+              <test name="family" qual="any" compare="eq">
+                <string>JetBrains Mono</string>
+              </test>
+              <edit name="fontfeatures" mode="append">
+                <string>liga on</string>
+                <string>cv01 on</string>
+              </edit>
+            </match>
+            
+          </fontconfig>
+        '';
       };
     };
   };

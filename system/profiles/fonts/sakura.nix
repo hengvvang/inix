@@ -2,81 +2,168 @@
 
 {
   config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "sakura") {
-    # 系统级字体包配置 - 樱花风格
-    fonts.packages = with pkgs; [
-      nerd-fonts.fira-code
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.iosevka
-      nerd-fonts.sauce-code-pro
-      nerd-fonts.roboto-mono
-      nerd-fonts.hack
-      nerd-fonts.caskaydia-mono
-      nerd-fonts.ubuntu
-      nerd-fonts.ubuntu-mono
-      nerd-fonts.dejavu-sans-mono
-      nerd-fonts.inconsolata-go
-      nerd-fonts.space-mono
-      nerd-fonts.droid-sans-mono
-      nerd-fonts.meslo-lg
-      nerd-fonts.anonymice
-      nerd-fonts.liberation
-      nerd-fonts.profont
-      nerd-fonts.proggy-clean-tt
-      nerd-fonts.go-mono
-      nerd-fonts.agave
 
+    fonts = {
+      # 启用默认字体包
+      enableDefaultPackages = true;
 
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-emoji
-      source-han-sans
-      source-han-serif
-      source-han-mono
+      # 启用 Ghostscript 字体支持（用于 PDF 和 PostScript）
+      enableGhostscriptFonts = true;
 
-      monaspace
-      # 中文字体 - 优雅的中日文支持
-      lxgw-wenkai
+      # 字体目录配置
+      fontDir.enable = true;
 
-      # 西文字体 - 现代简约
-      inter
-      source-sans-pro
-      source-serif-pro
+      packages = with pkgs; [
+        # 主要字体 - 樱花风格
+        lato                 # 温暖人文字体
+        open-sans            # 人文主义无衬线
+        source-sans-pro      # Adobe 清晰易读
 
-      # 终端和编辑器字体
-      fira-code
-      jetbrains-mono
-      cascadia-code
-      victor-mono
+        # 衬线字体 - 樱花优雅
+        source-serif-pro     # Adobe 现代衬线
+        crimson              # 优雅阅读字体
+        eb-garamond         # 经典优雅衬线
 
-      # 图标和符号字体
-      font-awesome
-      material-design-icons
-      powerline-fonts
-      noto-fonts-emoji-blob-bin
-      openmoji-color
-      twemoji-color-font
-    ];
+        nerd-fonts.fira-code
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.iosevka
+        nerd-fonts.sauce-code-pro
+        nerd-fonts.roboto-mono
+        nerd-fonts.hack
+        nerd-fonts.caskaydia-mono
+        nerd-fonts.ubuntu
+        nerd-fonts.ubuntu-mono
+        nerd-fonts.dejavu-sans-mono
+        nerd-fonts.inconsolata-go
+        nerd-fonts.space-mono
+        nerd-fonts.droid-sans-mono
+        nerd-fonts.meslo-lg
+        nerd-fonts.anonymice
+        nerd-fonts.liberation
+        nerd-fonts.profont
+        nerd-fonts.proggy-clean-tt
+        nerd-fonts.go-mono
+        nerd-fonts.agave
 
-    # 系统级字体配置
-    fonts.fontconfig = {
-      enable = true;
-      defaultFonts = {
-        sansSerif = [
-          "Inter" "Noto Sans CJK SC" "LXGW WenKai"
-          "Font Awesome 6 Free" "Material Design Icons"
-        ];
-        serif = [
-          "Source Serif Pro" "Noto Serif CJK SC" "LXGW WenKai"
-          "Klee One" "Zen Old Mincho"
-        ];
-        monospace = [
-          "JetBrains Mono Nerd Font" "Monaspace Neon Var" "LXGW WenKai Mono"
-          "Cascadia Code NF" "Victor Mono Nerd Font" "Iosevka Nerd Font"
-        ];
-        emoji = [
-          "Noto Color Emoji" "OpenMoji Color" "Twemoji" "Font Awesome 6 Free"
-        ];
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
+        noto-fonts-emoji
+        source-han-sans
+        source-han-serif
+        source-han-mono
+
+        # 等宽字体 - 樱花柔美
+        monaspace            # GitHub 现代编程字体
+        fira-code            # 连字编程字体
+        jetbrains-mono       # 现代等宽字体
+
+        # 中文字体 - 樱花风雅
+        lxgw-wenkai         # 霞鹜文楷，温暖优雅
+        sarasa-gothic       # 更纱黑体
+
+        # 日式字体支持
+        noto-fonts-cjk-sans
+        noto-fonts-cjk-serif
+
+        # 系统字体和图标支持
+        liberation_ttf
+        dejavu_fonts
+        font-awesome        # Font Awesome 图标字体
+        material-design-icons # Material Design 图标
+        powerline-fonts     # Powerline 字体支持
+      ];
+
+      fontconfig = {
+        enable = true;
+
+        # 字体渲染优化配置
+        antialias = true;              # 开启抗锯齿
+        cache32Bit = true;             # 启用32位字体缓存
+        hinting = {
+          enable = true;               # 启用字体微调
+          autohint = false;            # 禁用自动微调，使用内置微调
+          style = "slight";            # 樱花风格使用轻微微调，保持柔美
+        };
+        subpixel = {
+          rgba = "rgb";                # 子像素渲染：rgb, bgr, vrgb, vbgr, none
+          lcdfilter = "light";         # 樱花风格使用轻量LCD滤镜
+        };
+
+        # 字体回退和替换配置
+        includeUserConf = true;        # 包含用户字体配置
+        allowBitmaps = true;           # 允许位图字体
+        allowType1 = true;             # 允许 Type1 字体
+        useEmbeddedBitmaps = true;     # 使用嵌入式位图
+
+        defaultFonts = {
+          serif = [ "EB Garamond" "Crimson" "Source Serif Pro" "Noto Serif CJK SC" "LXGW WenKai" ];
+          sansSerif = [ "Lato" "Open Sans" "Noto Sans CJK SC" "LXGW WenKai" ];
+          monospace = [
+            "Fira Code Nerd Font"
+            "JetBrains Mono Nerd Font"
+            "Monaspace Neon"
+            "Sarasa Gothic SC"
+          ];
+          emoji = [ "Noto Color Emoji" ];
+        };
+
+        # 樱花主题字体优化
+        localConf = ''
+          <?xml version="1.0"?>
+          <!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+          <fontconfig>
+            <!-- Sakura 主题优化字体渲染 -->
+            
+            <!-- Lato 温暖优化 -->
+            <match target="font">
+              <test name="family" qual="any" compare="eq">
+                <string>Lato</string>
+              </test>
+              <edit name="hintstyle" mode="assign">
+                <const>hintslight</const>
+              </edit>
+            </match>
+            
+            <!-- EB Garamond 优雅优化 -->
+            <match target="font">
+              <test name="family" qual="any" compare="eq">
+                <string>EB Garamond</string>
+              </test>
+              <edit name="hintstyle" mode="assign">
+                <const>hintslight</const>
+              </edit>
+            </match>
+            
+            <!-- 编程字体柔美化 -->
+            <match target="font">
+              <test name="family" qual="any" compare="eq">
+                <string>Fira Code</string>
+              </test>
+              <edit name="fontfeatures" mode="append">
+                <string>liga on</string>
+                <string>calt on</string>
+              </edit>
+              <edit name="hintstyle" mode="assign">
+                <const>hintslight</const>
+              </edit>
+            </match>
+            
+            <!-- 中文樱花风格优化 -->
+            <match target="font">
+              <test name="family" qual="any" compare="eq">
+                <string>LXGW WenKai</string>
+              </test>
+              <edit name="spacing" mode="assign">
+                <int>0</int>
+              </edit>
+              <edit name="hintstyle" mode="assign">
+                <const>hintslight</const>
+              </edit>
+            </match>
+            
+          </fontconfig>
+        '';
       };
     };
   };
