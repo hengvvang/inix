@@ -115,7 +115,7 @@
         enable = true;
         fonts = {
           enable = true;
-          preset = "tokyo";
+          preset = "forest";
         };
         stylix = {
           enable = false;  # 启用用户级 stylix
