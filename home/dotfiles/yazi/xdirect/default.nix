@@ -3,7 +3,7 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "xdirect") {
 
-    home.packages = with pkgs; [ yazi ];
+    home.packages = lib.optionals config.myHome.dotfiles.yazi.packageEnable (with pkgs; [ yazi ]);
 
     # 配置文件
     home.file.".config/yazi/yazi.toml".text = builtins.readFile ./configs/yazi.toml;

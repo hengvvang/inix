@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && 
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable &&
                     config.myHome.dotfiles.tmux.method == "external") {
 
-    home.packages = with pkgs; [ tmux ];
-    
+    home.packages = lib.optionals config.myHome.dotfiles.tmux.packageEnable (with pkgs; [ tmux ]);
+
     home.file.".config/tmux/tmux.conf".source = ./configs/tmux.conf;
   };
 }

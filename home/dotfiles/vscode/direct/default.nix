@@ -6,8 +6,8 @@
     ./extensions.json.nix
   ];
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.enable && config.myHome.dotfiles.vscode.method == "direct") {
-    home.packages = with pkgs; [
+    home.packages = lib.optionals config.myHome.dotfiles.vscode.packageEnable (with pkgs; [
       vscode
-    ];
+    ]);
   };
 }

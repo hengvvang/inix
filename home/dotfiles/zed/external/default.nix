@@ -3,9 +3,9 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.enable && config.myHome.dotfiles.zed.method == "external") {
 
-    home.packages = with pkgs; [
+    home.packages = lib.optionals config.myHome.dotfiles.zed.packageEnable (with pkgs; [
       zed-editor
-    ];
+    ]);
 
     home.file.".config/zed/settings.json" = {
       source = ./configs/settings.json;

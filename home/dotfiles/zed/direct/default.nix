@@ -8,6 +8,6 @@
 
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.enable && config.myHome.dotfiles.zed.method == "direct") {
 
-    home.packages = with pkgs; [ zed-editor ];
+    home.packages = lib.optionals config.myHome.dotfiles.zed.packageEnable (with pkgs; [ zed-editor ]);
   };
 }

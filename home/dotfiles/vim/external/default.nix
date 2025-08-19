@@ -3,7 +3,7 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.method == "external") {
 
-    home.packages = with pkgs; [ vim ];
+    home.packages = lib.optionals config.myHome.dotfiles.vim.packageEnable (with pkgs; [ vim ]);
 
     home.file.".vimrc".source = ./configs/vimrc;
 

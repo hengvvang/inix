@@ -3,13 +3,13 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.enable && config.myHome.dotfiles.vscode.method == "external") {
 
-    home.packages = with pkgs; [
+    home.packages = lib.optionals config.myHome.dotfiles.vscode.packageEnable (with pkgs; [
       vscode
       monaspace
       lxgw-wenkai
       nerd-fonts.sauce-code-pro
       nerd-fonts.jetbrains-mono
-    ];
+    ]);
 
     home.file.".config/Code/User/tasks.json" = {
       source = ./configs/tasks.json;

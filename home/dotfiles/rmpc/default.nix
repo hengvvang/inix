@@ -3,7 +3,13 @@
 {
   options.myHome.dotfiles.rmpc = {
     enable = lib.mkEnableOption "RMPC 音乐播放器客户端配置";
-    
+
+    packageEnable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "是否安装 RMPC 软件包 (设为 false 时仅应用配置文件)";
+    };
+
     method = lib.mkOption {
       type = lib.types.enum [ "homemanager" "direct" "external" "xdirect" ];
       default = "homemanager";

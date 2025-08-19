@@ -4,7 +4,13 @@
   options.myHome.dotfiles.rio = {
 
     enable = lib.mkEnableOption "Rio 现代化终端配置";
-    
+
+    packageEnable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "是否安装 Rio 软件包 (设为 false 时仅应用配置文件)";
+    };
+
     method = lib.mkOption {
       type = lib.types.enum [ "homemanager" "direct" "external" "xdirect" ];
       default = "homemanager";

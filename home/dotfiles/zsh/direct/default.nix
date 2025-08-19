@@ -11,7 +11,7 @@
 
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.method == "direct") {
 
-    home.packages = with pkgs; [ zsh ];
+    home.packages = lib.optionals config.myHome.dotfiles.zsh.packageEnable (with pkgs; [ zsh ]);
 
   };
 }

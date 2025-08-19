@@ -7,10 +7,10 @@
 
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zellij.enable && config.myHome.dotfiles.zellij.method == "direct") {
     # 直接安装zellij包
-    home.packages = with pkgs; [
+    home.packages = lib.optionals config.myHome.dotfiles.zellij.packageEnable (with pkgs; [
         zellij
         wl-clipboard
-    ];
+    ]);
 
     # Fish shell集成
     programs.fish.shellInit = lib.mkIf config.programs.fish.enable ''

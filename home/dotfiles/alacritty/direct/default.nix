@@ -8,6 +8,6 @@
 
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.enable &&
                     config.myHome.dotfiles.alacritty.method == "direct") {
-    home.packages = with pkgs; [ alacritty ];
+    home.packages = lib.optionals config.myHome.dotfiles.alacritty.packageEnable (with pkgs; [ alacritty ]);
   };
 }

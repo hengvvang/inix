@@ -1,6 +1,8 @@
 # Sherlock Tahoe Theme - Additional styling and configuration
 { config, lib, pkgs, ... }:
 
+lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.sherlock.enable) {
+
 let
   # macOS Tahoe color palette
   tahoeColors = {
@@ -17,7 +19,7 @@ let
       warning = "35, 100%, 50%";
       error = "0, 100%, 67%";
     };
-    
+
     dark = {
       background = "0, 0%, 8%";
       backgroundSoft = "0, 0%, 12%";
@@ -48,7 +50,7 @@ let
       --success: ${colors.success};
       --warning: ${colors.warning};
       --error: ${colors.error};
-      
+
       /* macOS-like design tokens */
       --radius-small: 8px;
       --radius-medium: 12px;
@@ -63,7 +65,7 @@ let
   fullThemeCSS = ''
     /* macOS Tahoe-inspired Sherlock theme */
     /* Auto-adapting light/dark theme */
-    
+
     ${generateThemeCSS tahoeColors.light}
 
     /* Main window with vibrancy effect */
@@ -143,7 +145,7 @@ let
     /* Dark mode adaptation */
     @media (prefers-color-scheme: dark) {
       ${generateThemeCSS tahoeColors.dark}
-      
+
       #search-icon-holder image {
         -gtk-icon-filter: brightness(0) saturate(100%) invert(90%);
       }
@@ -184,26 +186,26 @@ in {
         -gtk-icon-filter: brightness(0) saturate(100%) invert(27%);
       }
     '';
-    
+
     "sherlock/themes/tahoe-dark.css".text = generateThemeCSS tahoeColors.dark + ''
       /* Dark theme specific overrides */
       #search-icon-holder image {
         -gtk-icon-filter: brightness(0) saturate(100%) invert(90%);
       }
     '';
-    
+
     "sherlock/themes/tahoe-auto.css".text = fullThemeCSS;
   };
 
   # Additional scripts for theme management
-  home.packages = with pkgs; [
+  home.packages = lib.optionals config.myHome.dotfiles.sherlock.packageEnable (with pkgs; [
     (writeShellScriptBin "sherlock-theme" ''
       #!/usr/bin/env bash
       # Sherlock theme switcher
-      
+
       THEMES_DIR="$HOME/.config/sherlock/themes"
       CONFIG_DIR="$HOME/.config/sherlock"
-      
+
       case "$1" in
         light)
           ln -sf "$THEMES_DIR/tahoe-light.css" "$CONFIG_DIR/main.css"
@@ -218,7 +220,7 @@ in {
           echo "Switched to Tahoe Auto theme (adapts to system)"
           ;;
       esac
-      
+
       # Restart sherlock daemon if running
       if pgrep -x "sherlock" > /dev/null; then
         echo "Restarting Sherlock to apply theme..."
@@ -227,28 +229,28 @@ in {
         ${pkgs.sherlock-launcher}/bin/sherlock --daemonize &
       fi
     '')
-    
+
     (writeShellScriptBin "sherlock-launcher" ''
       #!/usr/bin/env bash
       # Enhanced Sherlock launcher with error handling
-      
+
       # Ensure config directory exists
       mkdir -p "$HOME/.config/sherlock"
-      
+
       # Initialize config if it doesn't exist
       if [[ ! -f "$HOME/.config/sherlock/config.toml" ]]; then
         echo "Initializing Sherlock configuration..."
         ${pkgs.sherlock-launcher}/bin/sherlock init
       fi
-      
+
       # Set default theme if no theme is set
       if [[ ! -f "$HOME/.config/sherlock/main.css" ]]; then
         echo "Setting up default Tahoe theme..."
         sherlock-theme auto
       fi
-      
+
       # Launch sherlock with error handling
       exec ${pkgs.sherlock-launcher}/bin/sherlock "$@"
     '')
-  ];
+  ]);
 }

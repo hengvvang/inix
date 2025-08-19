@@ -6,7 +6,7 @@
   ];
 
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "direct") {
-    home.packages = with pkgs; [
+    home.packages = lib.optionals config.myHome.dotfiles.yazi.packageEnable (with pkgs; [
       yazi
       ffmpegthumbnailer
       unar
@@ -16,6 +16,6 @@
       ripgrep
       fzf
       zoxide
-    ];
+    ]);
   };
 }

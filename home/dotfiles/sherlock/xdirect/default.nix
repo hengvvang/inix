@@ -38,9 +38,9 @@
     };
 
     # 包和环境变量
-    home.packages = with pkgs; [
+    home.packages = lib.optionals config.myHome.dotfiles.sherlock.packageEnable (with pkgs; [
       sherlock-launcher
-    ];
+    ]);
 
     home.sessionVariables = {
       LAUNCHER = "sherlock";

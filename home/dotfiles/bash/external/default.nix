@@ -2,7 +2,7 @@
 
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.method == "external") {
-    home.packages = with pkgs; [ bash ];    
+    home.packages = lib.optionals config.myHome.dotfiles.bash.packageEnable (with pkgs; [ bash ]);
 
     home.file.".bashrc".source = ./configs/bashrc;
     home.file.".bash_profile".source = ./configs/bash_profile;

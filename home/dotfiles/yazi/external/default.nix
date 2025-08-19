@@ -6,7 +6,7 @@
 
     # ===== 包依赖确保 =====
     # 确保必要的系统工具可用
-    home.packages = with pkgs; [
+    home.packages = lib.optionals config.myHome.dotfiles.yazi.packageEnable (with pkgs; [
       # 核心文件管理器
       yazi
 
@@ -37,7 +37,7 @@
       ripgrep                 # 快速搜索
       fd                      # 快速文件查找
       fzf                     # 模糊搜索
-    ];
+    ]);
 
     home.file.".config/yazi/yazi.toml".source = ./configs/yazi.toml;
     home.file.".config/yazi/keymap.toml".source = ./configs/keymap.toml;
@@ -70,7 +70,7 @@
         [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
         rm -f -- "$tmp"
       }
-      
+
       # 添加 Yazi 别名命令
       function y() { yazi "$@"; }
       function ya() { yazi "$@"; }
@@ -86,7 +86,7 @@
         [ -n "$cwd" ] && [ "$cwd" != "$PWD" ] && builtin cd -- "$cwd"
         rm -f -- "$tmp"
       }
-      
+
       # 添加 Yazi 别名命令
       function y() { yazi "$@"; }
       function ya() { yazi "$@"; }
@@ -103,16 +103,16 @@
         end
         rm -f -- "$tmp"
       end
-      
+
       # 添加 Yazi 别名命令
       function y
         yazi $argv
       end
-      
+
       function ya
         yazi $argv
       end
-      
+
       function yz
         yazi $argv
       end
@@ -129,7 +129,7 @@
         }
         rm -fp $tmp
       }
-      
+
       # 添加 Yazi 别名命令
       def --env y [...args] { yazi ...$args }
       def --env ya [...args] { yazi ...$args }

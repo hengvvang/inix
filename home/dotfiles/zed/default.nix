@@ -3,7 +3,13 @@
 {
   options.myHome.dotfiles.zed = {
     enable = lib.mkEnableOption "Zed Editor 高性能代码编辑器配置";
-    
+
+    packageEnable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "是否安装 Zed Editor 软件包 (设为 false 时仅应用配置文件)";
+    };
+
     method = lib.mkOption {
       type = lib.types.enum [ "homemanager" "direct" "external" "xdirect" ];
       default = "homemanager";

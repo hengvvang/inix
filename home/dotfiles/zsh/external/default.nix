@@ -3,7 +3,7 @@
 {
   config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.method == "external") {
 
-    home.packages = with pkgs; [ zsh ];
+    home.packages = lib.optionals config.myHome.dotfiles.zsh.packageEnable (with pkgs; [ zsh ]);
 
     # Zsh 官方配置文件结构
     # 环境变量文件（所有 shell 都会读取）
