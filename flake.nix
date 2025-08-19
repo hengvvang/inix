@@ -53,10 +53,6 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib // nix-darwin.lib;
-      mylib = import ./lib {
-        inherit inputs;
-      };
-      inherit (mylib) supportedSystems pkgsForSystem forEachSystem;
 
       userMapping = {
         user1 = "hengvvang";
@@ -69,46 +65,41 @@
         host3 = "daily";
       };
 
-      makeCommonHomeModules = arch: [
-        {
-          # 通用的 home-manager 配置
-        }
-      ];
-
-      makeHomeConfig = arch: userPath: hostInstance: home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsForSystem.${arch};
-        modules = [
-          userPath
-        ] ++ (makeCommonHomeModules arch);
-        extraSpecialArgs = {
-          inherit inputs outputs userMapping hostMapping hostInstance;
-        };
-      };
-
     in {
       # 导出模块和工具
       inherit lib;
-      mylib = mylib;
       inherit userMapping hostMapping;
       system = import ./system;
       home = import ./home;
+      packages = import ./packages {
+        inherit inputs outputs;
+      };
 
-      # 使用 forEachSystem 生成多架构输出
-      packages = forEachSystem (pkgs: {
-        # 导出我们的自定义包
-        raycast-linux = pkgs.raycast-linux;
-        # sherlock-launcher = pkgs.sherlock-launcher;
-
-        # 其他自定义包可以在这里添加
-      });
-
-      devShells = forEachSystem (pkgs: {
-        default = pkgs.mkShell {
-          buildInputs = with pkgs; [ nixfmt alejandra ];
+      devShells = {
+        x86_64-linux = {
+          default = nixpkgs.legacyPackages.x86_64-linux.mkShell {
+            buildInputs = with nixpkgs.legacyPackages.x86_64-linux; [ nixfmt alejandra ];
+          };
         };
-      });
 
-      formatter = forEachSystem (pkgs: pkgs.alejandra);
+        aarch64-linux = {
+          default = nixpkgs.legacyPackages.aarch64-linux.mkShell {
+            buildInputs = with nixpkgs.legacyPackages.aarch64-linux; [ nixfmt alejandra ];
+          };
+        };
+
+        aarch64-darwin = {
+          default = nixpkgs.legacyPackages.aarch64-darwin.mkShell {
+            buildInputs = with nixpkgs.legacyPackages.aarch64-darwin; [ nixfmt alejandra ];
+          };
+        };
+      };
+
+      formatter = {
+        x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+        aarch64-linux = nixpkgs.legacyPackages.aarch64-linux.alejandra;
+        aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.alejandra;
+      };
 
       nixosConfigurations = {
         ${hostMapping.host1} = lib.nixosSystem {
@@ -143,16 +134,73 @@
 
       homeConfigurations = {
         # laptop主机上的用户配置 (x86_64-linux)
-        "${userMapping.user1}@${hostMapping.host1}" = makeHomeConfig "x86_64-linux" ./users/user1 hostMapping.host1;
-        "${userMapping.user2}@${hostMapping.host1}" = makeHomeConfig "x86_64-linux" ./users/user2 hostMapping.host1;
+        "${userMapping.user1}@${hostMapping.host1}" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./users/user1
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs userMapping hostMapping;
+            hostInstance = hostMapping.host1;
+          };
+        };
+
+        "${userMapping.user2}@${hostMapping.host1}" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./users/user2
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs userMapping hostMapping;
+            hostInstance = hostMapping.host1;
+          };
+        };
 
         # daily主机上的用户配置 (aarch64-darwin)
-        "${userMapping.user1}@${hostMapping.host3}" = makeHomeConfig "aarch64-darwin" ./users/user1 hostMapping.host3;
-        "${userMapping.user2}@${hostMapping.host3}" = makeHomeConfig "aarch64-darwin" ./users/user2 hostMapping.host3;
+        "${userMapping.user1}@${hostMapping.host3}" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [
+            ./users/user1
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs userMapping hostMapping;
+            hostInstance = hostMapping.host3;
+          };
+        };
+
+        "${userMapping.user2}@${hostMapping.host3}" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [
+            ./users/user2
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs userMapping hostMapping;
+            hostInstance = hostMapping.host3;
+          };
+        };
 
         # work主机上的用户配置 (aarch64-linux)
-        "${userMapping.user1}@${hostMapping.host2}" = makeHomeConfig "aarch64-linux" ./users/user1 hostMapping.host2;
-        "${userMapping.user2}@${hostMapping.host2}" = makeHomeConfig "aarch64-linux" ./users/user2 hostMapping.host2;
+        "${userMapping.user1}@${hostMapping.host2}" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-linux;
+          modules = [
+            ./users/user1
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs userMapping hostMapping;
+            hostInstance = hostMapping.host2;
+          };
+        };
+
+        "${userMapping.user2}@${hostMapping.host2}" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-linux;
+          modules = [
+            ./users/user2
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs userMapping hostMapping;
+            hostInstance = hostMapping.host2;
+          };
+        };
       };
     };
 }
