@@ -4,6 +4,11 @@
   # host3 主机特定配置
   config = lib.mkIf (config.host == hosts.host3) {
     myHome = {
+      pkgs = {
+        enable = true;
+        user1.enable = true;
+      };
+
       develop = {
         enable = true;
         devenv = {
@@ -28,7 +33,7 @@
         fish.enable = true;
         nushell.enable = true;
         yazi.enable = true;
-        ghostty.enable = true;
+        # ghostty.enable = true;  # macOS 上 broken
         alacritty.enable = true;
         tmux.enable = true;
         git.enable = true;

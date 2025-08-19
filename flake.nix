@@ -71,9 +71,8 @@
 
       makeCommonHomeModules = arch: [
         {
-          home.packages = [
-            zen-browser.packages.${arch}.twilight
-          ];
+          # 通用的 home-manager 配置
+          # zen-browser 已在系统级别配置，这里不需要重复
         }
       ];
 
@@ -119,11 +118,6 @@
         ${hosts.host1} = lib.nixosSystem {
           modules = [
             ./hosts/host1
-            {
-              environment.systemPackages = [
-                zen-browser.packages.x86_64-linux.twilight
-              ];
-            }
           ];
           specialArgs = {
             inherit inputs outputs users hosts;
@@ -133,11 +127,6 @@
         ${hosts.host2} = lib.nixosSystem {
           modules = [
             ./hosts/host2
-            {
-              environment.systemPackages = [
-                zen-browser.packages.aarch64-linux.twilight
-              ];
-            }
           ];
           specialArgs = {
             inherit inputs outputs users hosts;
@@ -149,11 +138,6 @@
         ${hosts.host3} = lib.darwinSystem {
           modules = [
             ./hosts/host3
-            {
-              environment.systemPackages = [
-                zen-browser.packages.aarch64-darwin.twilight
-              ];
-            }
           ];
           specialArgs = {
             inherit inputs outputs users hosts;

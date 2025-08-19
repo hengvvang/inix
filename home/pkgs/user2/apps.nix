@@ -1,9 +1,12 @@
-{config, lib, pkgs, ...}:
+{config, lib, pkgs, inputs, ...}:
 
 {
     config = lib.mkIf config.myHome.pkgs.user2.enable {
         home.packages = with pkgs; [
             lazygit
+
+            # 浏览器
+            inputs.zen-browser.packages.${pkgs.system}.twilight
 
             # qutebrowser
             # google-chrome
@@ -12,17 +15,14 @@
             telegram-desktop
             discord
             qq
-            wechat
-            wpsoffice-cn
 
             spotify
             # cider-2
-            vlc
 
             # clash-verge-rev
             # clash-nyanpasu
 
-            lutris
+            # lutris (仅 Linux)
             # blender           # 3D 建模
             # gimp              # 图像编辑
             # inkscape          # 矢量图编辑
@@ -41,11 +41,19 @@
             # yazi
             # ghostty
             calcure
-            flameshot
-            satty
+            # flameshot (仅 Linux)
+            # satty (仅 Linux)
             mise
             just
             devenv
+        ] ++ lib.optionals pkgs.stdenv.isLinux [
+            # Linux 特有的应用
+            flameshot         # 截图工具 (仅 Linux)
+            satty             # 截图编辑工具 (仅 Linux)
+            lutris            # 游戏启动器 (仅 Linux)
+            vlc               # VLC 媒体播放器 (仅 Linux)
+            wechat            # 微信 (仅 Linux x86_64)
+            wpsoffice-cn      # WPS Office 中文版 (仅 Linux x86_64)
         ];
     };
 }

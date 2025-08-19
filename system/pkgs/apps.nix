@@ -1,4 +1,4 @@
-{config, lib, pkgs, ...}:
+{config, lib, pkgs, inputs, ...}:
 
 {
     config = lib.mkIf config.mySystem.pkgs.apps.enable {
@@ -7,6 +7,8 @@
             pkgs.clash-verge-rev
             pkgs.git
             pkgs.vim
+            # 浏览器
+            inputs.zen-browser.packages.${pkgs.system}.twilight
             # pkgs.zed-editor
             # pkgs.vscode
 
