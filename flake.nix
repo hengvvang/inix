@@ -72,7 +72,6 @@
       makeCommonHomeModules = arch: [
         {
           # 通用的 home-manager 配置
-          # zen-browser 已在系统级别配置，这里不需要重复
         }
       ];
 
@@ -80,12 +79,9 @@
         pkgs = pkgsForSystem.${arch};
         modules = [
           userPath
-          {
-            inherit host;
-          }
         ] ++ (makeCommonHomeModules arch);
         extraSpecialArgs = {
-          inherit inputs outputs users hosts;
+          inherit inputs outputs users hosts host;
         };
       };
 

@@ -3,12 +3,13 @@
 {
     config = lib.mkIf config.mySystem.pkgs.apps.enable {
         environment.systemPackages = with pkgs; [
+            inputs.zen-browser.packages.${pkgs.system}.twilight
+
             pkgs.google-chrome
             pkgs.clash-verge-rev
             pkgs.git
             pkgs.vim
             # 浏览器
-            inputs.zen-browser.packages.${pkgs.system}.twilight
             # pkgs.zed-editor
             # pkgs.vscode
 
