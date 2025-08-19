@@ -19,11 +19,9 @@
             pkgs.just
             pkgs.devenv
 
-            # pkgs.lutris
             # pkgs.wechat
             # pkgs.qq
             # pkgs.spotify
-            # pkgs.cider-2
             pkgs.kdePackages.kdenlive
 
             (pkgs.wrapOBS {

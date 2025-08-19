@@ -3,18 +3,18 @@
 {
   options.myHome.develop.devenv = {
     enable = lib.mkEnableOption "devenv 项目环境管理";
-    
+
     # 自动环境切换配置
     autoSwitch = lib.mkOption {
       type = lib.types.bool;
       default = true;
       description = ''
-        启用自动环境切换功能（使用 direnv）
+        启用自动环境切换功能（使用 direnv)
         - true: 进入项目目录自动激活环境
-        - false: 仅安装 devenv，需手动执行 `devenv shell`
+        - false: 仅安装 devenv,需手动执行 `devenv shell`
       '';
     };
-    
+
     # Shell 集成配置
     shell = lib.mkOption {
       type = lib.types.enum [ "bash" "fish" "zsh" ];
@@ -24,7 +24,7 @@
         注意：仅在 autoSwitch = true 时生效
       '';
     };
-    
+
     # 项目模板工具配置
     templates = lib.mkOption {
       type = lib.types.bool;
@@ -35,7 +35,7 @@
         轻量级用户建议设为 false
       '';
     };
-    
+
     # 构建缓存配置
     cache = lib.mkOption {
       type = lib.types.bool;

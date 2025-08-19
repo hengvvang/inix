@@ -73,7 +73,6 @@
 
       fontconfig = {
         enable = true;
-
         # 字体渲染优化配置
         antialias = true;              # 开启抗锯齿
         cache32Bit = true;             # 启用32位字体缓存

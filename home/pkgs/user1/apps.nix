@@ -14,6 +14,7 @@
             qq
             wechat
             wpsoffice-cn
+            libreoffice-qt6
 
             spotify
             # cider-2
@@ -31,7 +32,6 @@
             # virtualbox        # VirtualBox (需要 unfree)
             # gparted           # 分区工具
 
-            # vim
             zed-editor
             vscode
             # git

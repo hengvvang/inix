@@ -21,7 +21,6 @@
     ];
 
     environment.systemPackages = [
-
       pkgs.gnome-tweaks
       pkgs.dconf-editor
       pkgs.refine
