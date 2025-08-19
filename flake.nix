@@ -73,24 +73,8 @@
         inherit inputs outputs;
       };
 
-      devShells = {
-        x86_64-linux = {
-          default = nixpkgs.legacyPackages.x86_64-linux.mkShell {
-            buildInputs = with nixpkgs.legacyPackages.x86_64-linux; [ nixfmt alejandra ];
-          };
-        };
-
-        aarch64-linux = {
-          default = nixpkgs.legacyPackages.aarch64-linux.mkShell {
-            buildInputs = with nixpkgs.legacyPackages.aarch64-linux; [ nixfmt alejandra ];
-          };
-        };
-
-        aarch64-darwin = {
-          default = nixpkgs.legacyPackages.aarch64-darwin.mkShell {
-            buildInputs = with nixpkgs.legacyPackages.aarch64-darwin; [ nixfmt alejandra ];
-          };
-        };
+      devShells = import ./devshells {
+        inherit inputs outputs;
       };
 
       formatter = {
