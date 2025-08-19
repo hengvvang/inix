@@ -26,7 +26,6 @@
             SDL_VIDEODRIVER = "wayland";
             CLUTTER_BACKEND = "wayland";
 
-
             # Qt 应用程序使用 Wayland 后端
             QT_QPA_PLATFORM = "wayland;";
             # 启用 Chromium/Electron 应用的原生 Wayland 支持

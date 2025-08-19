@@ -11,7 +11,6 @@
       enable = true;
       apps.enable = true;
       toolkits.enable = true;
-      workflows.enable = true;
     };
 
     profiles = {
@@ -60,7 +59,6 @@
         appimage = {
           enable = true;
         };
-        # Docker 容器服务配置
         docker = {
           enable = true;
           rootless = false;            # 使用标准 Docker 模式
@@ -88,7 +86,6 @@
             gui = true;
           };
         };
-        # SSH 服务配置
         ssh = {
           enable = true;               # 🟢 启用 SSH 服务
           server = {
@@ -146,7 +143,6 @@
           enable = true;
           download = true;
         };
-
         mpd = {
           enable = false;              # � 禁用系统级 MPD - 使用用户级配置
         #   musicDirectory = "/srv/Music";  # 用户音乐目录，更合理的位置
@@ -159,19 +155,16 @@
       # 硬件驱动配置
       drivers = {
         enable = true;                 # 🟢 启用硬件驱动模块
-
         # 音频驱动配置
         audio = {
           enable = true;               # 🟢 启用音频驱动 (PipeWire + ALSA)
           controls = true;             # 启用音频控制工具
         };
-
         # 触摸板驱动配置
         touchpad = {
           enable = true;               # 🟢 启用触摸板驱动 (libinput)
           gestures = false;            # 可选：启用手势支持
         };
-
         # 打印驱动配置
         printing = {
           enable = true;               # 🟢 启用打印功能 (CUPS)
@@ -195,12 +188,10 @@
             brother = false;           # Brother 打印机驱动
           };
         };
-
         bluetooth = {
           enable = true;               # 启用蓝牙支持
           gui = true;                  # 图形管理工具
         };
-
         # NVIDIA 显卡配置
         nvidia = {
           enable = true;               # 🟢 启用 NVIDIA 支持

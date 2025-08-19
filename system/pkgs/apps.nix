@@ -5,6 +5,19 @@
         environment.systemPackages = with pkgs; [
             pkgs.google-chrome
             pkgs.clash-verge-rev
+            pkgs.git
+            pkgs.vim
+            # pkgs.zed-editor
+            # pkgs.vscode
+
+            # pkgs.rio
+            # pkgs.zellij
+            # pkgs.rmpc
+            # pkgs.yazi
+
+            pkgs.mise
+            pkgs.just
+            pkgs.devenv
 
             # pkgs.lutris
             # pkgs.wechat

@@ -108,7 +108,6 @@
           emoji = [ "Noto Color Emoji" ];
         };
 
-        # 赛博朋克主题字体优化
         # localConf = ''
         # '';
       };

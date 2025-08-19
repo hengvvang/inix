@@ -104,7 +104,6 @@
           emoji = [ "Noto Color Emoji" "Noto Emoji" ];
         };
 
-        # 复古主题字体优化
       #   localConf = ''
       };
     };
