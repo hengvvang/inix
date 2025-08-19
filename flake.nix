@@ -53,24 +53,22 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib // nix-darwin.lib;
-
-      userMapping = {
-        user1 = "hengvvang";
-        user2 = "zlritsu";
-      };
-
       hostMapping = {
         host1 = "laptop";
         host2 = "work";
         host3 = "daily";
       };
-
+      userMapping = {
+        user1 = "hengvvang";
+        user2 = "zlritsu";
+      };
     in {
       # 导出模块和工具
       inherit lib;
       inherit userMapping hostMapping;
       system = import ./system;
       home = import ./home;
+
       packages = import ./packages {
         inherit inputs outputs;
       };
@@ -110,7 +108,6 @@
             inherit inputs outputs userMapping hostMapping;
           };
         };
-
         ${hostMapping.host2} = lib.nixosSystem {
           modules = [
             ./hosts/host2
@@ -144,7 +141,6 @@
             hostInstance = hostMapping.host1;
           };
         };
-
         "${userMapping.user2}@${hostMapping.host1}" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
@@ -167,7 +163,6 @@
             hostInstance = hostMapping.host3;
           };
         };
-
         "${userMapping.user2}@${hostMapping.host3}" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [
@@ -190,7 +185,6 @@
             hostInstance = hostMapping.host2;
           };
         };
-
         "${userMapping.user2}@${hostMapping.host2}" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux;
           modules = [
