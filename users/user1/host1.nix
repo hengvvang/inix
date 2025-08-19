@@ -1,8 +1,8 @@
-{ config, lib, pkgs, hosts, ... }:
+{ config, lib, pkgs, hostMapping, ... }:
 
 {
   # host1 主机特定配置
-  config = lib.mkIf (config.host == hosts.host1) {
+  config = lib.mkIf (config.hostInstance == hostMapping.host1) {
     myHome = {
       desktop = {
         enable = true;

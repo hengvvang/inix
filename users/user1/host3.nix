@@ -1,8 +1,8 @@
-{ config, lib, hosts, ... }:
+{ config, lib, hostMapping, ... }:
 
 {
   # host3 主机特定配置
-  config = lib.mkIf (config.host == hosts.host3) {
+  config = lib.mkIf (config.hostInstance == hostMapping.host3) {
     myHome = {
       pkgs = {
         enable = true;

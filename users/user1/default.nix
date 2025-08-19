@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, users, hosts, ... }:
+{ config, pkgs, lib, inputs, outputs, userMapping, hostMapping, hostInstance, ... }:
 
 {
   imports = [
@@ -10,10 +10,10 @@
   ];
 
   # 主机选项
-  options.host = lib.mkOption {
-    type = lib.types.enum [ hosts.host1 hosts.host2 hosts.host3 ];
-    default = hosts.host1;
-    description = "Host type";
+  options.hostInstance = lib.mkOption {
+    type = lib.types.enum [ hostMapping.host1 hostMapping.host2 hostMapping.host3 ];
+    default = hostMapping.host1;
+    description = "Host instance type";
   };
 
   config = {
@@ -23,8 +23,8 @@
         "libsoup-2.74.3"
       ];
     };
-    home.username = users.user1;
-    home.homeDirectory = "/home/${users.user1}";
+    home.username = userMapping.user1;
+    home.homeDirectory = "/home/${userMapping.user1}";
     home.stateVersion = "25.05";
     programs.home-manager.enable = true;
   };

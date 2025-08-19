@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, outputs, users, hosts, ... }:
+{ config, lib, pkgs, inputs, outputs, userMapping, hostMapping, ... }:
 
 {
   imports = [
@@ -28,7 +28,7 @@
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ users.user1 users.user2 ];
+    trusted-users = [ userMapping.user1 userMapping.user2 ];
     # 并行构建限制 - 平衡性能与内存使用
     # max-jobs = 12;  # 32核心的37.5%，提升构建速度
     # cores = 2;      # 每个构建任务使用2个核心
@@ -41,9 +41,9 @@
   # 启用 fish shell 程序
   programs.fish.enable = true;
   # 用户配置
-  users.users.${users.user1} = {
+  users.users.${userMapping.user1} = {
     isNormalUser = true;
-    description = users.user1;
+    description = userMapping.user1;
     extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" "input" "mpd" ];
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
@@ -51,9 +51,9 @@
     shell = pkgs.fish;
   };
 
-  users.users.${users.user2} = {
+  users.users.${userMapping.user2} = {
     isNormalUser = true;
-    description = users.user2;
+    description = userMapping.user2;
     extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" "input" "mpd" ];
     packages = with pkgs; [
       # 用户特定的包可以在这里定义

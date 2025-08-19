@@ -1,8 +1,8 @@
-{ config, lib, hosts, ... }:
+{ config, lib, hostMapping, ... }:
 
 {
-  # host3 主机特定配置 - user2 日常使用配置
-  config = lib.mkIf (config.host == hosts.host3) {
+  # host3 主机特定配置
+  config = lib.mkIf (config.hostInstance == hostMapping.host3) {
     myHome = {
       develop = {
         enable = true;

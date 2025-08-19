@@ -58,12 +58,12 @@
       };
       inherit (mylib) supportedSystems pkgsForSystem forEachSystem;
 
-      users = {
+      userMapping = {
         user1 = "hengvvang";
         user2 = "zlritsu";
       };
 
-      hosts = {
+      hostMapping = {
         host1 = "laptop";
         host2 = "work";
         host3 = "daily";
@@ -75,13 +75,13 @@
         }
       ];
 
-      makeHomeConfig = arch: userPath: host: home-manager.lib.homeManagerConfiguration {
+      makeHomeConfig = arch: userPath: hostInstance: home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsForSystem.${arch};
         modules = [
           userPath
         ] ++ (makeCommonHomeModules arch);
         extraSpecialArgs = {
-          inherit inputs outputs users hosts host;
+          inherit inputs outputs userMapping hostMapping hostInstance;
         };
       };
 
@@ -89,7 +89,7 @@
       # 导出模块和工具
       inherit lib;
       mylib = mylib;
-      inherit users hosts;
+      inherit userMapping hostMapping;
       system = import ./system;
       home = import ./home;
 
@@ -111,48 +111,48 @@
       formatter = forEachSystem (pkgs: pkgs.alejandra);
 
       nixosConfigurations = {
-        ${hosts.host1} = lib.nixosSystem {
+        ${hostMapping.host1} = lib.nixosSystem {
           modules = [
             ./hosts/host1
           ];
           specialArgs = {
-            inherit inputs outputs users hosts;
+            inherit inputs outputs userMapping hostMapping;
           };
         };
 
-        ${hosts.host2} = lib.nixosSystem {
+        ${hostMapping.host2} = lib.nixosSystem {
           modules = [
             ./hosts/host2
           ];
           specialArgs = {
-            inherit inputs outputs users hosts;
+            inherit inputs outputs userMapping hostMapping;
           };
         };
       };
 
       darwinConfigurations = {
-        ${hosts.host3} = lib.darwinSystem {
+        ${hostMapping.host3} = lib.darwinSystem {
           modules = [
             ./hosts/host3
           ];
           specialArgs = {
-            inherit inputs outputs users hosts;
+            inherit inputs outputs userMapping hostMapping;
           };
         };
       };
 
       homeConfigurations = {
         # laptop主机上的用户配置 (x86_64-linux)
-        "${users.user1}@${hosts.host1}" = makeHomeConfig "x86_64-linux" ./users/user1 hosts.host1;
-        "${users.user2}@${hosts.host1}" = makeHomeConfig "x86_64-linux" ./users/user2 hosts.host1;
+        "${userMapping.user1}@${hostMapping.host1}" = makeHomeConfig "x86_64-linux" ./users/user1 hostMapping.host1;
+        "${userMapping.user2}@${hostMapping.host1}" = makeHomeConfig "x86_64-linux" ./users/user2 hostMapping.host1;
 
         # daily主机上的用户配置 (aarch64-darwin)
-        "${users.user1}@${hosts.host3}" = makeHomeConfig "aarch64-darwin" ./users/user1 hosts.host3;
-        "${users.user2}@${hosts.host3}" = makeHomeConfig "aarch64-darwin" ./users/user2 hosts.host3;
+        "${userMapping.user1}@${hostMapping.host3}" = makeHomeConfig "aarch64-darwin" ./users/user1 hostMapping.host3;
+        "${userMapping.user2}@${hostMapping.host3}" = makeHomeConfig "aarch64-darwin" ./users/user2 hostMapping.host3;
 
         # work主机上的用户配置 (aarch64-linux)
-        "${users.user1}@${hosts.host2}" = makeHomeConfig "aarch64-linux" ./users/user1 hosts.host2;
-        "${users.user2}@${hosts.host2}" = makeHomeConfig "aarch64-linux" ./users/user2 hosts.host2;
+        "${userMapping.user1}@${hostMapping.host2}" = makeHomeConfig "aarch64-linux" ./users/user1 hostMapping.host2;
+        "${userMapping.user2}@${hostMapping.host2}" = makeHomeConfig "aarch64-linux" ./users/user2 hostMapping.host2;
       };
     };
 }

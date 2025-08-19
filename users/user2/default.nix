@@ -1,4 +1,6 @@
-{ config, pkgs, lib, inputs, outputs, users, hosts, ... }:
+{ config, pkgs, lib,    home.username = userMapping.user2;
+    home.homeDirectory = "/home/${userMapping.user2}";
+    home.stateVersion = "24.05";puts, outputs, userMapping, hostMapping, hostInstance, ... }:
 
 {
   imports = [
@@ -8,14 +10,14 @@
     ./host2.nix
     ./host3.nix
   ];
-  
+
   # 主机选项
-  options.host = lib.mkOption {
-    type = lib.types.enum [ hosts.host1 hosts.host2 hosts.host3 ];
-    default = hosts.host1;
-    description = "Host type";
+  options.hostInstance = lib.mkOption {
+    type = lib.types.enum [ hostMapping.host1 hostMapping.host2 hostMapping.host3 ];
+    default = hostMapping.host1;
+    description = "Host instance type";
   };
-  
+
   config = {
     nixpkgs.config.allowUnfree = true;
     home.username = users.user2;
