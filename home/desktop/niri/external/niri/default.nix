@@ -5,6 +5,7 @@
 
     home.packages = with pkgs; [
       niri
+      niriswitcher
       swww
       apple-cursor
       xwayland-satellite

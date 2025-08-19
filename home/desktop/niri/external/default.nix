@@ -43,8 +43,6 @@
     home.packages = with pkgs; [
 
       # swaybg   # wallpaper manager
-      niriswitcher           # Niri 应用切换器
-
       # ===== 截图和录屏工具 =====
       grim                   # Wayland 截图工具
       slurp                  # 区域选择工具
