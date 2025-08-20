@@ -3,7 +3,7 @@
 {
   imports = [
     ./options.nix
-    ./nixMod
     ./tilde
+    ./nixMod
   ];
 }

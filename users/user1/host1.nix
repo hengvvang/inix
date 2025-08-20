@@ -16,12 +16,18 @@
 
       dotfiles = {
         enable = true;
-        vim.enable = true;
+        vim = {
+          enable = true;
+          method = "homemanager";
+        };
         zsh = {
           enable = true;
           method = "homemanager";
         };
-        bash.enable = true;
+        bash = {
+          enable = true;
+          method = "homemanager";
+        };
         fish = {
           enable = true;
           method = "homemanager";
