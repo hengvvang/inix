@@ -17,14 +17,26 @@
       dotfiles = {
         enable = true;
         vim.enable = true;
-        zsh.enable = true;
+        zsh = {
+          enable = true;
+          method = "homemanager";
+        };
         bash.enable = true;
-        fish.enable = true;
-        nushell.enable = true;
+        fish = {
+          enable = true;
+          method = "homemanager";
+        };
+        nushell = {
+          enable = true;
+          method = "homemanager";
+        };
         tmux.enable = true;
         git.enable = true;
         lazygit.enable = true;
-        starship.enable = true;
+        starship = {
+          enable = true;
+          method = "homemanager";
+        };
         qutebrowser.enable = false;
         alacritty = {
           enable = true;

@@ -30,35 +30,3 @@ set -U fish_autosuggestion_highlight_color 5f5f5f
 
 # 欢迎信息设置
 set -U fish_greeting ""
-
-# 键绑定模式设置
-set -U fish_key_bindings fish_default_key_bindings
-
-# 初始化检查
-# ===========
-
-# 检查重要工具是否安装
-function __fish_check_tools
-    set -l missing_tools
-    
-    # 检查现代化工具
-    for tool in eza bat fd rg
-        if not command -v $tool >/dev/null 2>&1
-            set -a missing_tools $tool
-        end
-    end
-    
-    # 如果有缺失工具，给出提示
-    if test (count $missing_tools) -gt 0
-        echo "提示: 以下现代化工具未安装，建议通过 Nix 安装以获得更好体验:"
-        for tool in $missing_tools
-            echo "  - $tool"
-        end
-        echo ""
-    end
-end
-
-# 仅在交互式 shell 中运行检查
-if status is-interactive
-    __fish_check_tools
-end

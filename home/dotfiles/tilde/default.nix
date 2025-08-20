@@ -38,15 +38,10 @@
     (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.fish.enable && config.myHome.dotfiles.fish.method == "copy") {
       home.packages = lib.optionals config.myHome.dotfiles.fish.useNixPackage (with pkgs; [ fish ]);
 
-      # Fish 配置文件通常在 ~/.config/fish/ 目录下
       home.file.".config/fish/config.fish".source = ./.config/fish/config.fish;
-      home.file.".config/fish/fish_variables".source = ./.config/fish/fish_variables.template;
-
-      # Fish 其他配置目录
       home.file.".config/fish/completions".source = ./.config/fish/completions;
       home.file.".config/fish/conf.d".source = ./.config/fish/conf.d;
       home.file.".config/fish/functions".source = ./.config/fish/functions;
-      home.file.".config/fish/fish_plugins".source = ./.config/fish/fish_plugins;
     })
 
     # Nushell 配置

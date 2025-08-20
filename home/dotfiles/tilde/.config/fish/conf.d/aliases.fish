@@ -12,13 +12,6 @@ alias ls='eza --icons --group-directories-first'
 alias l='eza -l --icons'
 alias tree='eza --tree --icons'
 
-# 目录导航别名
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-
-# 现代工具替换传统命令
 # ====================
 alias cat='bat --paging=never'
 alias less='bat --paging=always'
@@ -53,16 +46,6 @@ alias gcb='git checkout -b'
 alias gm='git merge'
 alias gr='git rebase'
 alias gst='git stash'
-alias gstp='git stash pop'
-
-# 系统相关别名
-# =============
-alias c='clear'
-alias h='history'
-alias j='jobs'
-alias x='exit'
-alias q='exit'
-alias reload='source ~/.config/fish/config.fish'
 
 # 安全的文件操作
 alias cp='cp -i'
@@ -84,18 +67,4 @@ alias disk='df -h'
 
 # 开发相关别名
 # =============
-alias py='python'
 alias py3='python3'
-alias pip='pip3'
-alias node='node'
-alias npm='npm'
-alias yarn='yarn'
-
-# Docker 相关别名（如果使用 Docker）
-# ==================================
-# alias d='docker'
-# alias dc='docker-compose'
-# alias dps='docker ps'
-# alias di='docker images'
-# alias drm='docker rm'
-# alias drmi='docker rmi'
