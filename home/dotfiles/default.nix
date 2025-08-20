@@ -6,6 +6,7 @@
   };
 
   imports = [
+    # ./tilde
     ./vim
     ./zsh
     ./bash
@@ -27,6 +28,6 @@
     ./vscode
     ./zed
     ./rofi
-    ./sherlock
+  ];
   ];
 }

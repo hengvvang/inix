@@ -1,0 +1,37 @@
+# Hide technical/development applications from main view
+nvim
+vim
+emacs
+code-insiders
+
+# Hide duplicate terminals
+xterm
+gnome-terminal
+konsole
+
+# Hide system utilities that users rarely need
+dconf-editor
+gparted
+seahorse
+gnome-disk-utility
+
+# Hide broken/incomplete entries
+avahi-discover
+bssh
+bvnc
+
+# Hide Nix-specific tools
+nix-shell
+nix-env
+nix-store
+
+# Hide development tools
+gcc
+gdb
+strace
+valgrind
+
+# Hide redundant office applications
+libreoffice-calc
+libreoffice-writer
+libreoffice-impress

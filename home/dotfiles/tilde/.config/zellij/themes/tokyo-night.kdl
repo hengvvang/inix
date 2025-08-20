@@ -1,0 +1,15 @@
+themes {
+    tokyo-night {
+        bg "#1a1b26"      // 背景色
+        fg "#c0caf5"      // 前景色
+        red "#f7768e"     // 红色
+        green "#9ece6a"   // 绿色
+        blue "#7aa2f7"    // 蓝色
+        yellow "#e0af68"  // 黄色
+        magenta "#bb9af7" // 洋红色
+        orange "#ff9e64"  // 橙色
+        cyan "#7dcfff"    // 青色
+        black "#15161e"   // 黑色
+        white "#c0caf5"   // 白色
+    }
+}
