@@ -4,7 +4,7 @@
   options.myHome.desktop.hyprland = {
 
     packages = {
-      enable = lib.mkEnableOption "Enable Hyprland ecosystem packages";
+      enable = lib.mkEnableOption "Enable Hyprland ecosystem packages" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -14,7 +14,7 @@
 
     # 环境变量选项
     environment = {
-      enable = lib.mkEnableOption "Enable Hyprland environment variables";
+      enable = lib.mkEnableOption "Enable Hyprland environment variables" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -23,7 +23,7 @@
     };
 
     hypr = {
-      enable = lib.mkEnableOption "Enable Hyprland core configuration";
+      enable = lib.mkEnableOption "Enable Hyprland core configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -37,7 +37,7 @@
     };
 
     waybar = {
-      enable = lib.mkEnableOption "Enable Waybar configuration";
+      enable = lib.mkEnableOption "Enable Waybar configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -51,7 +51,7 @@
     };
 
     dunst = {
-      enable = lib.mkEnableOption "Enable Dunst notification daemon configuration";
+      enable = lib.mkEnableOption "Enable Dunst notification daemon configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -65,7 +65,7 @@
     };
 
     rofi = {
-      enable = lib.mkEnableOption "Enable Rofi application launcher configuration";
+      enable = lib.mkEnableOption "Enable Rofi application launcher configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -79,7 +79,7 @@
     };
 
     swappy = {
-      enable = lib.mkEnableOption "Enable Swappy screenshot annotation tool configuration";
+      enable = lib.mkEnableOption "Enable Swappy screenshot annotation tool configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -93,7 +93,7 @@
     };
 
     wlogout = {
-      enable = lib.mkEnableOption "Enable Wlogout session manager configuration";
+      enable = lib.mkEnableOption "Enable Wlogout session manager configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -107,7 +107,7 @@
     };
 
     fuzzel = {
-      enable = lib.mkEnableOption "Enable Fuzzel application launcher configuration";
+      enable = lib.mkEnableOption "Enable Fuzzel application launcher configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -121,7 +121,7 @@
     };
 
     ironbar = {
-      enable = lib.mkEnableOption "Enable IronBar status bar configuration";
+      enable = lib.mkEnableOption "Enable IronBar status bar configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";

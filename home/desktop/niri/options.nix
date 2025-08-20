@@ -4,7 +4,7 @@
   options.myHome.desktop.niri = {
 
     packages = {
-      enable = lib.mkEnableOption "Enable Niri ecosystem packages";
+      enable = lib.mkEnableOption "Enable Niri ecosystem packages" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -14,7 +14,7 @@
 
     # 环境变量选项
     environment = {
-      enable = lib.mkEnableOption "Enable Niri environment variables";
+      enable = lib.mkEnableOption "Enable Niri environment variables" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -23,7 +23,7 @@
     };
 
     niri = {
-      enable = lib.mkEnableOption "Enable Niri core configuration";
+      enable = lib.mkEnableOption "Enable Niri core configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -37,7 +37,7 @@
     };
 
     waybar = {
-      enable = lib.mkEnableOption "Enable Waybar configuration";
+      enable = lib.mkEnableOption "Enable Waybar configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -51,7 +51,7 @@
     };
 
     ironbar = {
-      enable = lib.mkEnableOption "Enable Ironbar configuration";
+      enable = lib.mkEnableOption "Enable Ironbar configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -65,7 +65,7 @@
     };
 
     rofi = {
-      enable = lib.mkEnableOption "Enable Rofi configuration";
+      enable = lib.mkEnableOption "Enable Rofi configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -79,7 +79,7 @@
     };
 
     fuzzel = {
-      enable = lib.mkEnableOption "Enable Fuzzel configuration";
+      enable = lib.mkEnableOption "Enable Fuzzel configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -93,7 +93,7 @@
     };
 
     swaylock = {
-      enable = lib.mkEnableOption "Enable Swaylock configuration";
+      enable = lib.mkEnableOption "Enable Swaylock configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -107,7 +107,7 @@
     };
 
     swayidle = {
-      enable = lib.mkEnableOption "Enable Swayidle configuration";
+      enable = lib.mkEnableOption "Enable Swayidle configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -121,7 +121,7 @@
     };
 
     wlogout = {
-      enable = lib.mkEnableOption "Enable Wlogout configuration";
+      enable = lib.mkEnableOption "Enable Wlogout configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -135,7 +135,7 @@
     };
 
     dunst = {
-      enable = lib.mkEnableOption "Enable Dunst configuration";
+      enable = lib.mkEnableOption "Enable Dunst configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -149,7 +149,7 @@
     };
 
     mako = {
-      enable = lib.mkEnableOption "Enable Mako configuration";
+      enable = lib.mkEnableOption "Enable Mako configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "copy";
@@ -163,7 +163,7 @@
     };
 
     appearance = {
-      enable = lib.mkEnableOption "Enable Niri appearance configuration";
+      enable = lib.mkEnableOption "Enable Niri appearance configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copy" "symlink" "homemanager" ];
         default = "homemanager";
