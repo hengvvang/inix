@@ -1,8 +1,3 @@
-/*******************************************************************************
- * macOS Big Sur/Monterey 风格透明主题
- * 基于 Rofi 官方文档创建
- *******************************************************************************/
-
 /* ===== 全局属性 ===== */
 * {
     /* 颜色定义 - 极高透明度的 macOS 风格 */
@@ -12,15 +7,15 @@
     selected:       rgba ( 0, 122, 255, 0.7 );     /* macOS 蓝色选中 */
     active:         rgba ( 52, 199, 89, 0.7 );     /* macOS 绿色激活 */
     urgent:         rgba ( 255, 59, 48, 0.7 );     /* macOS 红色紧急 */
-    
+
     /* 透明度和边框 */
     transparent:    rgba ( 0, 0, 0, 0 );
     border-colour:  rgba ( 255, 255, 255, 0.25 );
     separatorcolor: rgba ( 255, 255, 255, 0.2 );
-    
+
     /* 字体 */
     font: "LXGW WenKai 12";
-    
+
     /* 基础样式 */
     background-color: transparent;
     text-color: @foreground;
@@ -30,24 +25,24 @@
 window {
     /* 透明效果 - 针对 Wayland/Hyprland 优化 */
     transparency: "real";
-    
+
     /* 窗口样式 */
     background-color: @background;
     border: 1px solid;
     border-color: @border-colour;
     border-radius: 16px;
-    
+
     /* 窗口大小和位置 */
     location: center;
     width: 650px;
     anchor: center;
-    
+
     /* 内边距 */
     padding: 20px;
-    
+
     /* 启用模糊效果 */
     fullscreen: false;
-    
+
     /* Wayland 特定设置 */
     children: [ mainbox ];
 }
