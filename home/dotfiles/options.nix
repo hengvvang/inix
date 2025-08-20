@@ -297,19 +297,5 @@
         description = "Whether to install zed-editor package";
       };
     };
-
-    tilde = {
-      enable = lib.mkEnableOption "Enable tilde configuration";
-      method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy tilde configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
-      };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install tilde package";
-      };
-    };
   };
 }
