@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../options.nix  # 引用上级目录的选项定义
+    ../options.nix
   ];
 
   config = lib.mkMerge [
@@ -146,7 +146,7 @@
       xdg.configFile = {
         "wlogout/layout".source = ./.config/wlogout/layout;
         "wlogout/style.css".source = ./.config/wlogout/style.css;
-        "wlogout/icons".source = ./.config/wlogout/icons
+        "wlogout/icons".source = ./.config/wlogout/icons;
       };
     })
 
