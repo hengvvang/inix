@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./options.nix
+    ../options.nix  # 引用上级目录的统一选项定义
   ];
 
   config = lib.mkMerge [

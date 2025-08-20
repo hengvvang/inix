@@ -1,0 +1,88 @@
+[
+  {
+    "name": "Power",
+    "entries": [
+      {
+        "name": "Sleep",
+        "exec": "systemctl suspend",
+        "icon": "weather-clear-night",
+        "keywords": ["sleep", "suspend", "休眠"]
+      },
+      {
+        "name": "Restart",
+        "exec": "systemctl reboot",
+        "icon": "system-reboot",
+        "keywords": ["restart", "reboot", "重启"]
+      },
+      {
+        "name": "Shutdown",
+        "exec": "systemctl poweroff",
+        "icon": "system-shutdown",
+        "keywords": ["shutdown", "poweroff", "关机"]
+      },
+      {
+        "name": "Lock Screen",
+        "exec": "loginctl lock-session",
+        "icon": "system-lock-screen",
+        "keywords": ["lock", "锁屏"]
+      },
+      {
+        "name": "Log Out",
+        "exec": "loginctl terminate-session $XDG_SESSION_ID",
+        "icon": "system-log-out",
+        "keywords": ["logout", "exit", "退出"]
+      }
+    ]
+  },
+  {
+    "name": "Quick",
+    "entries": [
+      {
+        "name": "Screenshot",
+        "exec": "gnome-screenshot -i",
+        "icon": "applets-screenshooter",
+        "keywords": ["screenshot", "capture", "截图"]
+      },
+      {
+        "name": "Screen Recording",
+        "exec": "obs --startrecording",
+        "icon": "media-record",
+        "keywords": ["record", "recording", "录制"]
+      },
+      {
+        "name": "Night Light Toggle",
+        "exec": "gsettings set org.gnome.settings-daemon.plugins.color night-light-enabled $(gsettings get org.gnome.settings-daemon.plugins.color night-light-enabled | grep -q 'true' && echo 'false' || echo 'true')",
+        "icon": "night-light",
+        "keywords": ["night", "light", "夜间模式"]
+      },
+      {
+        "name": "Do Not Disturb",
+        "exec": "gsettings set org.gnome.desktop.notifications show-banners false",
+        "icon": "notifications-disabled",
+        "keywords": ["dnd", "notifications", "勿扰模式"]
+      }
+    ]
+  },
+  {
+    "name": "Calculator",
+    "entries": [
+      {
+        "name": "Calculator",
+        "exec": "gnome-calculator",
+        "icon": "accessories-calculator",
+        "keywords": ["calc", "calculator", "计算器"]
+      }
+    ]
+  },
+  {
+    "name": "Emoji",
+    "entries": [
+      {
+        "name": "Emoji Picker",
+        "exec": "sherlock -sm emoji",
+        "icon": "face-smile",
+        "keywords": ["emoji", "表情"]
+      }
+    ]
+  }
+]

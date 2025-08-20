@@ -1,0 +1,8 @@
+# XDirect mode - minimal ignore list
+avahi-discover
+bssh
+bvnc
+qv4l2
+qvidcap
+htop
+nvtop

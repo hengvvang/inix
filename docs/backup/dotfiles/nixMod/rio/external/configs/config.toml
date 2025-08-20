@@ -1,0 +1,175 @@
+# Rio Terminal 完整外部配置文件
+# 现代化 GPU 加速终端的专业配置
+
+# 渲染器设置
+[renderer]
+backend = "automatic"                  # 自动选择最佳渲染后端
+disable-renderer-when-unfocused = true
+
+# 窗口配置
+[window]
+width = 120
+height = 40
+mode = "Windowed"
+decorations = "Enabled"
+opacity = 0.96
+blur = false
+
+# 高级字体配置
+[fonts]
+family = "FiraCode Nerd Font"
+size = 14
+
+[fonts.extras]
+ligatures = true
+
+[fonts.regular]
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+[fonts.bold]
+family = "FiraCode Nerd Font"
+style = "Bold"
+
+[fonts.italic]
+family = "FiraCode Nerd Font"
+style = "Italic"
+
+[fonts.bold-italic]
+family = "FiraCode Nerd Font"
+style = "Bold Italic"
+
+# Shell 配置
+[shell]
+program = "/run/current-system/sw/bin/fish"
+args = []
+
+# 环境变量
+[env]
+TERM = "xterm-256color"
+COLORTERM = "truecolor"
+RIO_TERMINAL = "1"
+
+# Catppuccin Mocha 完整主题
+[colors]
+background = "#1e1e2e"
+foreground = "#cdd6f4"
+cursor = "#f5e0dc"
+selection-foreground = "#1e1e2e"
+selection-background = "#f5e0dc"
+
+# 标准颜色
+[colors.normal]
+black = "#45475a"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#bac2de"
+
+# 高亮颜色
+[colors.bright]
+black = "#585b70"
+red = "#f38ba8"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#a6adc8"
+
+# 暗色调
+[colors.dim]
+black = "#1e1e2e"
+red = "#eba0ac"
+green = "#a6e3a1"
+yellow = "#f9e2af"
+blue = "#89b4fa"
+magenta = "#f5c2e7"
+cyan = "#94e2d5"
+white = "#cdd6f4"
+
+# 完整键绑定配置
+[bindings]
+keys = [
+    # 基础编辑
+    { key = "c", mods = "control|shift", action = "Copy" },
+    { key = "v", mods = "control|shift", action = "Paste" },
+    { key = "a", mods = "control|shift", action = "SelectAll" },
+
+    # 字体大小
+    { key = "plus", mods = "control", action = "IncreaseFontSize" },
+    { key = "minus", mods = "control", action = "DecreaseFontSize" },
+    { key = "0", mods = "control", action = "ResetFontSize" },
+
+    # 窗口管理
+    { key = "f11", action = "ToggleFullscreen" },
+    { key = "return", mods = "alt", action = "ToggleFullscreen" },
+
+    # 标签页管理
+    { key = "t", mods = "control|shift", action = "CreateWindow" },
+    { key = "w", mods = "control|shift", action = "CloseWindow" },
+
+    # 标签页导航
+    { key = "tab", mods = "control", action = "SelectNextTab" },
+    { key = "tab", mods = "control|shift", action = "SelectPrevTab" },
+
+    # 数字键快速切换
+    { key = "1", mods = "control", action = "SelectTab", args = "0" },
+    { key = "2", mods = "control", action = "SelectTab", args = "1" },
+    { key = "3", mods = "control", action = "SelectTab", args = "2" },
+    { key = "4", mods = "control", action = "SelectTab", args = "3" },
+    { key = "5", mods = "control", action = "SelectTab", args = "4" },
+    { key = "6", mods = "control", action = "SelectTab", args = "5" },
+    { key = "7", mods = "control", action = "SelectTab", args = "6" },
+    { key = "8", mods = "control", action = "SelectTab", args = "7" },
+    { key = "9", mods = "control", action = "SelectTab", args = "8" },
+
+    # 滚动控制
+    { key = "page_up", mods = "shift", action = "ScrollPageUp" },
+    { key = "page_down", mods = "shift", action = "ScrollPageDown" },
+    { key = "home", mods = "shift", action = "ScrollToTop" },
+    { key = "end", mods = "shift", action = "ScrollToBottom" },
+
+    # 搜索功能
+    { key = "f", mods = "control|shift", action = "SearchForward" },
+    { key = "b", mods = "control|shift", action = "SearchBackward" },
+
+    # Vi 风格滚动
+    { key = "k", mods = "control|shift", action = "ScrollLineUp" },
+    { key = "j", mods = "control|shift", action = "ScrollLineDown" },
+    { key = "u", mods = "control|shift", action = "ScrollHalfPageUp" },
+    { key = "d", mods = "control|shift", action = "ScrollHalfPageDown" },
+]
+# 行为配置
+[behavior]
+confirm-before-quit = false
+quit-after-last-window-closed = false
+hide-cursor-when-typing = true
+
+# 光标配置
+[cursor]
+style = "Block" # Block, Underline, Beam
+blinking = true
+
+# 滚动配置
+[scroll]
+history = 10000
+auto-scroll = true
+
+# 性能优化
+[performance]
+disable-renderer-when-unfocused = true
+use-fork = false
+
+# 导航配置
+[navigation]
+color-automation = []
+clickable-url = true
+
+# 开发者选项
+[developer]
+log-level = "OFF"
+enable-fps-counter = false

@@ -1,11 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  options.myHome.dotfiles = {
-    enable = lib.mkEnableOption "Dotfiles 配置管理";
-  };
-
   imports = [
+    ./options.nix  # 统一的选项定义
     # ./tilde
     ./vim
     ./zsh

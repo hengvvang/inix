@@ -1,0 +1,259 @@
+/* macOS Tahoe-inspired Sherlock theme */
+/* Auto-adapting light/dark theme with modern vibrancy */
+
+:root {
+  /* Light theme colors */
+  --background: 0, 0%, 98%;
+  --background-soft: 0, 0%, 95%;
+  --background-glass: 0, 0%, 97%;
+  
+  --foreground: 0, 0%, 92%;
+  --foreground-soft: 0, 0%, 90%;
+  
+  --text: 0, 0%, 15%;
+  --text-active: 0, 0%, 10%;
+  --text-secondary: 0, 0%, 45%;
+  
+  --border: 0, 0%, 85%;
+  --border-soft: 0, 0%, 90%;
+  
+  --accent: 211, 100%, 50%; /* macOS system blue */
+  --accent-hover: 211, 100%, 45%;
+  
+  --tag-background: 0, 0%, 88%;
+  --tag-color: 0, 0%, 35%;
+  
+  --success: 142, 76%, 36%;
+  --warning: 35, 100%, 50%;
+  --error: 0, 100%, 67%;
+  
+  /* Design tokens - macOS style */
+  --radius-small: 8px;
+  --radius-medium: 12px;
+  --radius-large: 16px;
+  --shadow-light: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0px 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0px 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Main window with vibrancy effect */
+window {
+  background: hsla(var(--background-glass), 0.95);
+  border-radius: var(--radius-large);
+  box-shadow: var(--shadow-heavy);
+  border: 1px solid hsla(var(--border), 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Search bar - Spotlight-inspired */
+#search-bar {
+  background: hsla(var(--background), 0.8);
+  border: 1px solid hsla(var(--border), 0.4);
+  border-radius: var(--radius-medium);
+  padding: 12px 16px;
+  margin: 16px;
+  box-shadow: var(--shadow-light);
+  backdrop-filter: blur(10px);
+  font-size: 16px;
+  color: hsl(var(--text));
+  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+#search-bar:focus {
+  border-color: hsl(var(--accent));
+  box-shadow: 0px 0px 0px 3px hsla(var(--accent), 0.1);
+  outline: none;
+}
+
+/* Search icon */
+#search-icon-holder {
+  margin: 0 8px;
+}
+
+#search-icon-holder image {
+  -gtk-icon-filter: brightness(0) saturate(100%) invert(27%);
+}
+
+/* Tiles with modern styling */
+.tile {
+  background: hsla(var(--foreground), 0.6);
+  border: 1px solid hsla(var(--border), 0.3);
+  border-radius: var(--radius-medium);
+  margin: 4px 8px;
+  padding: 12px 16px;
+  transition: all 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-light);
+}
+
+.tile:hover {
+  background: hsla(var(--foreground), 0.8);
+  border-color: hsla(var(--accent), 0.3);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-1px);
+}
+
+.tile:selected {
+  background: hsla(var(--accent), 0.1);
+  border-color: hsl(var(--accent));
+  box-shadow: 0px 0px 0px 2px hsla(var(--accent), 0.2);
+}
+
+/* Typography */
+#title {
+  font-size: 15px;
+  font-weight: 500;
+  color: hsl(var(--text));
+  margin-bottom: 2px;
+}
+
+.tile:selected #title {
+  color: hsl(var(--text-active));
+  font-weight: 600;
+}
+
+#description {
+  font-size: 13px;
+  color: hsl(var(--text-secondary));
+  line-height: 1.3;
+}
+
+.tile:selected #description {
+  color: hsl(var(--text));
+}
+
+/* Icon styling */
+#icon-holder {
+  margin-right: 12px;
+  border-radius: var(--radius-small);
+  overflow: hidden;
+}
+
+/* Tags */
+.tag {
+  background: hsl(var(--tag-background));
+  color: hsl(var(--tag-color));
+  border-radius: var(--radius-small);
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid hsla(var(--border), 0.4);
+  margin-left: 8px;
+}
+
+.tile:selected .tag {
+  background: hsla(var(--accent), 0.15);
+  color: hsl(var(--accent));
+  border-color: hsla(var(--accent), 0.3);
+}
+
+/* Context menu */
+#context-menu {
+  background: hsla(var(--background), 0.95);
+  border: 1px solid hsla(var(--border), 0.3);
+  border-radius: var(--radius-medium);
+  box-shadow: var(--shadow-heavy);
+  backdrop-filter: blur(20px);
+  padding: 8px;
+}
+
+#context-menu row {
+  border-radius: var(--radius-small);
+  padding: 8px 12px;
+  transition: all 0.15s ease;
+}
+
+#context-menu row:hover {
+  background: hsla(var(--accent), 0.1);
+}
+
+#context-menu row:selected {
+  background: hsla(var(--accent), 0.15);
+}
+
+/* Scrollbar styling */
+scrollbar {
+  background: transparent;
+  width: 6px;
+}
+
+scrollbar slider {
+  background: hsla(var(--text-secondary), 0.3);
+  border-radius: 3px;
+  min-height: 20px;
+}
+
+scrollbar slider:hover {
+  background: hsla(var(--text-secondary), 0.5);
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.tile {
+  animation: slideIn 0.2s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+window {
+  animation: fadeIn 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+/* Dark mode adaptation */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 0, 0%, 8%;
+    --background-soft: 0, 0%, 12%;
+    --background-glass: 0, 0%, 10%;
+    
+    --foreground: 0, 0%, 15%;
+    --foreground-soft: 0, 0%, 18%;
+    
+    --text: 0, 0%, 90%;
+    --text-active: 0, 0%, 95%;
+    --text-secondary: 0, 0%, 65%;
+    
+    --border: 0, 0%, 25%;
+    --border-soft: 0, 0%, 20%;
+    
+    --tag-background: 0, 0%, 22%;
+    --tag-color: 0, 0%, 75%;
+    
+    --accent: 211, 100%, 60%;
+  }
+  
+  #search-icon-holder image {
+    -gtk-icon-filter: brightness(0) saturate(100%) invert(90%);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  window {
+    border-radius: var(--radius-medium);
+  }
+  
+  #search-bar {
+    margin: 8px;
+    padding: 10px 14px;
+  }
+  
+  .tile {
+    margin: 2px 4px;
+    padding: 10px 12px;
+  }
+}

@@ -1,0 +1,112 @@
+# Starship 配置文件 - 现代化美观提示符
+
+# 基础设置
+add_newline = true
+
+# 提示符格式 - 美观的多行式布局
+format = '''
+[╭─](bold bright-black)$username$hostname$directory$git_branch$git_status$package$nix_shell
+[│](bold bright-black)$nodejs$python$rust$cmd_duration$jobs
+[╰─](bold bright-black)$character'''
+
+# 字符设置
+[character]
+success_symbol = "[❯](bold bright-green)"
+error_symbol = "[❯](bold bright-red)"
+
+# 用户名
+[username]
+style_user = "white bold bg:blue"
+style_root = "white bold bg:red"
+format = "[ $user ]($style)"
+disabled = false
+show_always = true
+
+# 主机名
+[hostname]
+ssh_only = false
+format = "[@$hostname](white bold bg:purple) "
+trim_at = "."
+disabled = false
+
+# 目录显示
+[directory]
+style = "white bold bg:cyan"
+format = "[ 📁 $path ]($style)"
+truncation_length = 4
+truncation_symbol = "…/"
+truncate_to_repo = true
+home_symbol = "🏠"
+read_only = " 🔒"
+read_only_style = "red"
+
+# Git 分支
+[git_branch]
+symbol = "🌿 "
+style = "white bold bg:green"
+format = "[ $symbol$branch ]($style)"
+truncation_length = 15
+truncation_symbol = "…"
+
+# Git 状态
+[git_status]
+style = "white bold bg:red"
+format = "[ $all_status$ahead_behind ]($style)"
+conflicted = "⚔️ "
+ahead = "🏎️ ×${count} "
+behind = "🐌 ×${count} "
+diverged = "🔱 ×${ahead_count} ×${behind_count} "
+up_to_date = "✅ "
+untracked = "🛤️ ×${count} "
+stashed = "📦 "
+modified = "📝 ×${count} "
+staged = "🗃️ ×${count} "
+renamed = "📛 ×${count} "
+deleted = "🗑️ ×${count} "
+
+# 包管理器
+[package]
+format = "[ 📦 $version ](bright-blue bold)"
+symbol = "📦 "
+style = "bright-blue bold"
+
+# 命令执行时间
+[cmd_duration]
+min_time = 2000
+format = "[ ⏱️ $duration ]($style)"
+style = "yellow bold"
+show_milliseconds = true
+
+# Nix Shell
+[nix_shell]
+format = "[ ❄️ $state ]($style)"
+style = "bright-blue bold"
+
+# 编程语言
+[nodejs]
+format = "[ ⬢ $version ]($style)"
+style = "bright-green bold"
+symbol = "⬢ "
+
+[python]
+format = "[ 🐍 $version ]($style)"
+style = "bright-yellow bold"
+symbol = "🐍 "
+
+[rust]
+format = "[ 🦀 $version ]($style)"
+style = "bright-red bold"
+symbol = "🦀 "
+
+# 系统状态
+[jobs]
+threshold = 1
+format = "[ ⚙️ $number ]($style)"
+symbol = "⚙️ "
+style = "bright-red bold"
+
+[time]
+disabled = false
+format = "[ 🕐 $time ]($style)"
+style = "bright-yellow bold"
+time_format = "%H:%M:%S"

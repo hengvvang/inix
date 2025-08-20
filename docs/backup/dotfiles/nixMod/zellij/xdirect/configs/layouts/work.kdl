@@ -1,0 +1,60 @@
+// 工作布局 - 多项目管理
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+    
+    // 主项目
+    tab name="Project-1" focus=true {
+        pane split_direction="vertical" {
+            pane size="75%" {
+                // 项目1工作区
+            }
+            pane size="25%" {
+                // 项目1终端
+            }
+        }
+    }
+    
+    // 副项目
+    tab name="Project-2" {
+        pane split_direction="vertical" {
+            pane size="75%" {
+                // 项目2工作区  
+            }
+            pane size="25%" {
+                // 项目2终端
+            }
+        }
+    }
+    
+    // 沟通协作
+    tab name="Communication" {
+        pane split_direction="horizontal" {
+            pane size="60%" {
+                // 邮件/聊天工具
+            }
+            pane size="40%" {
+                // 笔记/待办事项
+            }
+        }
+    }
+    
+    // 系统管理
+    tab name="System" {
+        pane split_direction="vertical" {
+            pane size="50%" {
+                command "htop"
+            }
+            pane size="50%" {
+                // 系统日志或管理终端
+            }
+        }
+    }
+}

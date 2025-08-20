@@ -1,0 +1,212 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+[
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-k ctrl-b": "zed::OpenKeymapEditor"
+        }
+    },
+    {
+        "bindings": {
+            "alt-n": "notification_panel::ToggleFocus"
+        }
+    },
+    {
+        "bindings": {
+            "alt-a": "agent::ToggleFocus"
+        }
+    },
+    {
+        "bindings": {
+            "alt-g": "git_panel::ToggleFocus"
+        }
+    },
+    {
+        "bindings": {
+            "alt-p": "project_panel::ToggleFocus"
+        }
+    },
+    {
+        "bindings": {
+            "alt-c": "collab_panel::ToggleFocus"
+        }
+    },
+    {
+        "bindings": {
+            "alt-d": "debug_panel::ToggleFocus"
+        }
+    },
+    {
+        "bindings": {
+            "alt-s": "project_search::ToggleFocus"
+        }
+    },
+    {
+        "bindings": {
+            "alt-t": "terminal_panel::ToggleFocus"
+        }
+    },
+    {
+        "bindings": {
+            "alt-o": "outline_panel::ToggleFocus"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-.": "zed::OpenDefaultSettings"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-<": "zed::OpenKeymap"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl->": "zed::OpenDefaultKeymap"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-alt-b": "workspace::ToggleBottomDock"
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-alt-b": null
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-b": null
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-j": null
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-b": "workspace::ToggleLeftDock"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-,": "zed::OpenSettings"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-q": "zed::Quit"
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-k ctrl-s": null
+        }
+    },
+    {
+        "context": "BufferSearchBar",
+        "bindings": {
+            "find": null
+        }
+    },
+    {
+        "context": "BufferSearchBar",
+        "bindings": {
+            "ctrl-f": null
+        }
+    },
+    {
+        "context": "ProjectSearchBar",
+        "bindings": {
+            "ctrl-shift-f": null
+        }
+    },
+    {
+        "context": "ProjectSearchBar",
+        "bindings": {
+            "shift-find": null
+        }
+    },
+    {
+        "context": "Terminal",
+        "bindings": {
+            "alt-t": null
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "alt-t": null
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-shift-e": null
+        }
+    },
+    {
+        "context": "AgentPanel",
+        "bindings": {
+            "ctrl-shift-e": null
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-?": null
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-shift-g": null
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-shift-d": null
+        }
+    },
+    {
+        "context": "!Terminal",
+        "bindings": {
+            "ctrl-shift-c": null
+        }
+    },
+    {
+        "context": "Workspace",
+        "bindings": {
+            "ctrl-shift-b": null
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-shift-p": "command_palette::Toggle"
+        }
+    },
+    {
+        "bindings": {
+            "ctrl-=": [
+                "zed::IncreaseBufferFontSize",
+                {
+                    "persist": false
+                }
+            ]
+        }
+    }
+]

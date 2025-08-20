@@ -1,0 +1,37 @@
+# One Dark 主题 - Rio Terminal
+[colors]
+background = "#282c34"
+foreground = "#abb2bf"
+cursor = "#abb2bf"
+selection-foreground = "#abb2bf"
+selection-background = "#3e4451"
+
+[colors.normal]
+black = "#282c34"
+red = "#e06c75"
+green = "#98c379"
+yellow = "#e5c07b"
+blue = "#61afef"
+magenta = "#c678dd"
+cyan = "#56b6c2"
+white = "#abb2bf"
+
+[colors.bright]
+black = "#5c6370"
+red = "#e06c75"
+green = "#98c379"
+yellow = "#e5c07b"
+blue = "#61afef"
+magenta = "#c678dd"
+cyan = "#56b6c2"
+white = "#ffffff"
+
+[colors.dim]
+black = "#1e2227"
+red = "#be5046"
+green = "#7a9f60"
+yellow = "#d19a66"
+blue = "#4b8bec"
+magenta = "#a86db8"
+cyan = "#42919b"
+white = "#828997"

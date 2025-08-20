@@ -1,0 +1,44 @@
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器文件
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# 临时文件
+*.tmp
+*.temp
+*.log
+
+# 构建文件
+node_modules/
+target/
+build/
+dist/
+.cache/
+
+# 环境文件
+.env
+.env.local
+.env.*.local
+
+# 编译文件
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+
+# 包管理器
+Cargo.lock
+package-lock.json
+yarn.lock
+
+# 测试覆盖率
+coverage/
+*.coverage
+.nyc_output/
