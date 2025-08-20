@@ -28,7 +28,7 @@
         qutebrowser.enable = false;
         alacritty = {
           enable = true;
-          method = "external";
+          method = "copy";
         };
         obs-studio = {
           enable = true;
@@ -36,19 +36,19 @@
         };
         sherlock = {
             enable = true;
-            method = "external";
+            method = "copy";
         };
         zed = {
           enable = false;
-          method = "external";
+          method = "copy";
         };
         vscode = {
           enable = false;
-          method = "external";
+          method = "copy";
         };
         rofi = {
           enable = false;
-          method = "external";
+          method = "copy";
         };
         ghostty = {
           enable = true;
@@ -56,11 +56,11 @@
         };
         yazi = {
           enable = true;
-          method = "external";
+          method = "copy";
         };
         zellij = {
           enable = true;
-          method = "external";
+          method = "copy";
         };
         rio = {
           enable = true;
@@ -68,7 +68,7 @@
         };
         rmpc = {
           enable = true;
-          method = "external";
+          method = "copy";
         };
       };
 

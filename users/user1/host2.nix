@@ -21,22 +21,6 @@
         cpp.enable = true;
       };
 
-      dotfiles = {
-        enable = true;
-        vim.enable = true;
-        zsh.enable = true;
-        bash.enable = true;
-        fish.enable = true;
-        nushell.enable = true;
-        yazi.enable = true;
-        ghostty.enable = true;
-        alacritty.enable = true;
-        tmux.enable = true;
-        git.enable = true;
-        lazygit.enable = true;
-        starship.enable = true;
-      };
-
       profiles = {
         enable = true;
         fonts = {
