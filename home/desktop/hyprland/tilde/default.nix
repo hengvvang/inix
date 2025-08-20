@@ -6,7 +6,7 @@
   ];
 
   config = lib.mkMerge [
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.packages.enable && config.myHome.desktop.hyprland.packages.method == "copy") {
       home.packages = with pkgs; [
         # Hyprland 生态系统工具
         grimblast           # 截图工具 (Hyprland 优化版)
@@ -21,6 +21,9 @@
         libnotify           # 发送桌面通知的库
         nautilus            # 文件管理器
       ];
+    })
+
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.environment.enable && config.myHome.desktop.hyprland.environment.method == "copy") {
       home.sessionVariables =   {
           # Hyprland 相关环境变量
           XDG_CURRENT_DESKTOP = "Hyprland";
@@ -40,6 +43,7 @@
           NIXOS_OZONE_WL = "1";
         };
     })
+
     # Hyprland 核心配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.hypr.enable && config.myHome.desktop.hyprland.hypr.method == "copy") {
       home.packages = lib.optionals config.myHome.desktop.hyprland.hypr.useNixPackage (with pkgs; [

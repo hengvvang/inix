@@ -3,6 +3,25 @@
 {
   options.myHome.desktop.hyprland = {
 
+    packages = {
+      enable = lib.mkEnableOption "Enable Hyprland ecosystem packages";
+      method = lib.mkOption {
+        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
+        default = "copy";
+        description = "Method to deploy Hyprland configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+      };
+    };
+
+    # 环境变量选项
+    environment = {
+      enable = lib.mkEnableOption "Enable Hyprland environment variables";
+      method = lib.mkOption {
+        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
+        default = "copy";
+        description = "Method to deploy Hyprland configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+      };
+    };
+
     hypr = {
       enable = lib.mkEnableOption "Enable Hyprland core configuration";
       method = lib.mkOption {
