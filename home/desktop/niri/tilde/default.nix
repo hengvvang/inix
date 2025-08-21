@@ -9,7 +9,6 @@
     # Niri 生态系统包配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.packages.enable && config.myHome.desktop.niri.packages.method == "copy") {
       home.packages = with pkgs; [
-        # Niri 生态系统工具
         grim                   # Wayland 截图工具
         slurp                  # 区域选择工具
         swappy                 # 截图编辑器
@@ -68,7 +67,7 @@
 
       xdg.configFile = {
         "waybar/config".source = ./.config/waybar/config;
-        "waybarstyle.css".source = ./.config/waybar/style.css;
+        "waybar/style.css".source = ./.config/waybar/style.css;
         "waybar/scripts/wallpaper.sh" = {
           source = ./.config/waybar/scripts/wallpaper.sh;
           executable = true;
@@ -102,13 +101,8 @@
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.fuzzel.enable && config.myHome.desktop.niri.fuzzel.method == "copy") {
       home.packages = lib.optionals config.myHome.desktop.niri.fuzzel.useNixPackage (with pkgs; [ fuzzel lxgw-wenkai ]);
 
-      # Fuzzel 启动器配置
-      # 可选主题：
-      # - ./fuzzel.ini
-      # - ./fuzzel-glass.ini
-      # - ./fuzzel-glass-light.ini
       xdg.configFile = {
-        "fuzzel/fuzzel.ini".source = ./.config/fuzzel/fuzzel-glass.ini;
+        "fuzzel/fuzzel.ini".source = ./.config/fuzzel/fuzzel.ini;
       };
     })
 
