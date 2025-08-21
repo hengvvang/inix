@@ -11,7 +11,7 @@
 
     /* 透明度和边框 */
     transparent:    rgba(0, 0, 0, 0);
-    border-colour:  rgba(255, 255, 255, 0.15);      /* 更柔和的边框 */
+    border-colour:  rgba(54, 97, 191, 0.25);      /* 更柔和的边框 */
     separatorcolor: rgba(255, 255, 255, 0.12);
 
     /* 字体 - 改进可读性 */
@@ -29,7 +29,7 @@ window {
 
     /* 窗口样式 - 增强视觉效果 */
     background-color: @background;
-    border: 1px solid;
+    border: 2px solid;
     border-color: @border-colour;
     border-radius: 16px;
 
@@ -52,15 +52,15 @@ window {
 mainbox {
     background-color: transparent;
     children: [ inputbar, message, listview, mode-switcher ];
-    spacing: 18px;                                   /* 增加组件间距 */
+    spacing: 8px;                                   /* 增加组件间距 */
 }
 
 /* ===== 输入栏 ===== */
 inputbar {
     background-color: rgba(16, 16, 22, 0.6);        /* 微调输入栏背景 */
-    border: 1px solid;
+    border: 3px solid;
     border-color: @border-colour;
-    border-radius: 14px;
+    border-radius: 28px;
     padding: 12px 14px;
     children: [ prompt, textbox-prompt-colon, entry, case-indicator ];
     spacing: 10px;
@@ -107,10 +107,10 @@ message {
 
 textbox {
     background-color: rgba(22, 22, 28, 0.5);        /* 微调文本框背景 */
-    border: 1px solid;
+    border: 0px solid;
     border-color: @border-colour;
-    border-radius: 10px;
-    padding: 14px;
+    border-radius: 0px;
+    padding: 7px;
     text-color: @foreground;
 }
 
@@ -118,7 +118,7 @@ textbox {
 listview {
     background-color: transparent;
     columns: 1;
-    lines: 8;
+    lines: 7;
     cycle: true;
     dynamic: true;
     scrollbar: true;
@@ -126,14 +126,14 @@ listview {
     reverse: false;
     fixed-height: false;
     fixed-columns: true;
-    spacing: 6px;                                    /* 增加间距 */
+    spacing: 3px;                                    /* 增加间距 */
     padding: 10px 4px;                               /* 优化内边距 */
 }
 
 /* ===== 滚动条 ===== */
 scrollbar {
     background-color: rgba(255, 255, 255, 0.08);
-    handle-color: rgba(255, 255, 255, 0.25);
+    handle-color: rgba(0, 115, 255, 0.75);
     border-radius: 6px;                              /* 增加圆角 */
     handle-width: 8px;                               /* 增加宽度 */
     padding: 2px;
