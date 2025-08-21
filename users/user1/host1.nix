@@ -46,7 +46,7 @@
         qutebrowser.enable = false;
         alacritty = {
           enable = true;
-          method = "copy";
+          method = "copyLink";
         };
         obs-studio = {
           enable = true;
@@ -54,19 +54,19 @@
         };
         sherlock = {
             enable = true;
-            method = "copy";
+            method = "copyLink";
         };
         zed = {
           enable = false;
-          method = "copy";
+          method = "copyLink";
         };
         vscode = {
           enable = false;
-          method = "copy";
+          method = "copyLink";
         };
         rofi = {
           enable = false;
-          method = "copy";
+          method = "copyLink";
         };
         ghostty = {
           enable = true;
@@ -74,11 +74,11 @@
         };
         yazi = {
           enable = true;
-          method = "copy";
+          method = "copyLink";
         };
         zellij = {
           enable = true;
-          method = "copy";
+          method = "copyLink";
         };
         rio = {
           enable = true;
@@ -86,7 +86,7 @@
         };
         rmpc = {
           enable = true;
-          method = "copy";
+          method = "copyLink";
         };
       };
 

@@ -7,9 +7,9 @@
     bash = {
       enable = lib.mkEnableOption "Enable bash configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy bash configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy bash configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -21,9 +21,9 @@
     zsh = {
       enable = lib.mkEnableOption "Enable zsh configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy zsh configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy zsh configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -35,9 +35,9 @@
     vim = {
       enable = lib.mkEnableOption "Enable vim configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy vim configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy vim configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -49,9 +49,9 @@
     fish = {
       enable = lib.mkEnableOption "Enable fish configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy fish configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy fish configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -63,9 +63,9 @@
     nushell = {
       enable = lib.mkEnableOption "Enable nushell configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy nushell configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy nushell configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -77,9 +77,9 @@
     starship = {
       enable = lib.mkEnableOption "Enable starship configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy starship configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy starship configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -91,9 +91,9 @@
     alacritty = {
       enable = lib.mkEnableOption "Enable alacritty configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy alacritty configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy alacritty configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -105,9 +105,9 @@
     ghostty = {
       enable = lib.mkEnableOption "Enable ghostty configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy ghostty configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy ghostty configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -119,9 +119,9 @@
     rio = {
       enable = lib.mkEnableOption "Enable rio configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy rio configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy rio configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -133,9 +133,9 @@
     git = {
       enable = lib.mkEnableOption "Enable git configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy git configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy git configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -147,9 +147,9 @@
     lazygit = {
       enable = lib.mkEnableOption "Enable lazygit configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy lazygit configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy lazygit configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -161,9 +161,9 @@
     tmux = {
       enable = lib.mkEnableOption "Enable tmux configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy tmux configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy tmux configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -175,9 +175,9 @@
     zellij = {
       enable = lib.mkEnableOption "Enable zellij configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy zellij configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy zellij configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -189,9 +189,9 @@
     rofi = {
       enable = lib.mkEnableOption "Enable rofi configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy rofi configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy rofi configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -203,9 +203,9 @@
     sherlock = {
       enable = lib.mkEnableOption "Enable sherlock configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy sherlock configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy sherlock configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -217,9 +217,9 @@
     rmpc = {
       enable = lib.mkEnableOption "Enable rmpc configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy rmpc configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy rmpc configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -231,9 +231,9 @@
     yazi = {
       enable = lib.mkEnableOption "Enable yazi configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy yazi configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy yazi configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -245,9 +245,9 @@
     qutebrowser = {
       enable = lib.mkEnableOption "Enable qutebrowser configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy qutebrowser configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy qutebrowser configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -259,9 +259,9 @@
     obs-studio = {
       enable = lib.mkEnableOption "Enable obs-studio configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy obs-studio configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy obs-studio configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -273,9 +273,9 @@
     vscode = {
       enable = lib.mkEnableOption "Enable vscode configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy vscode configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy vscode configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
@@ -287,9 +287,9 @@
     zed = {
       enable = lib.mkEnableOption "Enable zed configuration";
       method = lib.mkOption {
-        type = lib.types.enum [ "copy" "symlink" "homemanager" ];
-        default = "copy";
-        description = "Method to deploy zed configuration files: copy (file copy), symlink (symbolic link), or homemanager (Home Manager native)";
+        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        default = "copyLink";
+        description = "Method to deploy zed configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       useNixPackage = lib.mkOption {
         type = lib.types.bool;
