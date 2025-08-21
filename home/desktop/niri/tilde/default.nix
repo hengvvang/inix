@@ -93,7 +93,7 @@
 
       xdg.configFile = {
         "rofi/config.rasi".source = ./.config/rofi/config.rasi;
-        "rofi/themes/macos-tathoe.rasi".source = ./.config/rofi/themes/macos-tathoe.rasi;
+        "rofi/themes/dark.rasi".source = ./.config/rofi/themes/dark.rasi;
       };
     })
 
