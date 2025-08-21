@@ -130,14 +130,8 @@
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.fuzzel.enable && config.myHome.desktop.hyprland.fuzzel.method == "copy") {
       home.packages = lib.optionals config.myHome.desktop.hyprland.fuzzel.useNixPackage (with pkgs; [ fuzzel ]);
 
-      # Fuzzel 启动器配置
-      # 可选主题：
-      # - ./fuzzel/fuzzel.ini (默认深色主题)
-      # - ./fuzzel/fuzzel-macos-glass.ini (macOS 毛玻璃效果 - 深色，推荐)
-      # - ./fuzzel/fuzzel-macos-glass-light.ini (macOS 毛玻璃效果 - 浅色)
-      # 当前使用：macOS 毛玻璃效果深色主题
       xdg.configFile = {
-        "fuzzel/fuzzel.ini".source = ./.config/fuzzel/fuzzel-macos-glass.ini;
+        "fuzzel/fuzzel.ini".source = ./.config/fuzzel/fuzzel.ini;
       };
     })
 
