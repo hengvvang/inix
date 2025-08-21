@@ -21,7 +21,6 @@
   # Python 开发环境
   python = pkgs.mkShell {
     buildInputs = with pkgs; [
-      python3 python3Packages.pip python3Packages.poetry
       python3Packages.pytest python3Packages.black
     ];
     shellHook = ''

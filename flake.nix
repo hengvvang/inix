@@ -47,9 +47,13 @@
         url = "github:Skxxtz/sherlock";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    zed-editor = {
+        url = "github:zed-industries/zed";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, sherlock, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, sherlock, zed-editor, ... } @ inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib // nix-darwin.lib;
