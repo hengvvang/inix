@@ -46,8 +46,8 @@
 
     # Hyprland 核心配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.hypr.enable && config.myHome.desktop.hyprland.hypr.method == "copyLink") {
-      home.packages = lib.optionals config.myHome.desktop.hyprland.hypr.useNixPackage (
-        if config.myHome.desktop.hyprland.hypr.useFlakePackage then [
+      home.packages =
+        if config.myHome.desktop.hyprland.hypr.packageSource == "flake" then [
           # 使用 Hyprland 官方 flake 中的最新版本
           inputs.hyprland.packages.${pkgs.system}.hyprland
           inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
@@ -56,7 +56,7 @@
           pkgs.hypridle
           pkgs.hyprlock
           pkgs.hyprcursor
-        ] else (with pkgs; [
+        ] else if config.myHome.desktop.hyprland.hypr.packageSource == "nixpkgs" then (with pkgs; [
           # 使用 nixpkgs 中的稳定版本
           hyprland
           xdg-desktop-portal-hyprland
@@ -64,8 +64,9 @@
           hypridle
           hyprlock
           hyprcursor
-        ])
-      );
+        ]) else [
+          # packageSource == "none": 不安装任何包
+        ];
       xdg.configFile = {
         "hypr/hyprland.conf".source = ./.config/hypr/hyprland.conf;
         "hypr/hypridle.conf".source = ./.config/hypr/hypridle.conf;
@@ -86,7 +87,7 @@
 
     # Waybar 配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.waybar.enable && config.myHome.desktop.hyprland.waybar.method == "copyLink") {
-      home.packages = lib.optionals config.myHome.desktop.hyprland.waybar.useNixPackage (with pkgs; [ waybar ]);
+      home.packages = if config.myHome.desktop.hyprland.waybar.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
       xdg.configFile = {
         "waybar/config".source = ./.config/waybar/config;
         "waybar/style.css".source = ./.config/waybar/style.css;
@@ -95,7 +96,7 @@
 
     # Dunst 配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.dunst.enable && config.myHome.desktop.hyprland.dunst.method == "copyLink") {
-      home.packages = lib.optionals config.myHome.desktop.hyprland.dunst.useNixPackage (with pkgs; [ dunst ]);
+      home.packages = if config.myHome.desktop.hyprland.dunst.packageSource == "nixpkgs" then (with pkgs; [ dunst ]) else [];
       xdg.configFile = {
         "dunst/dunstrc".source = ./.config/dunst/dunstrc;
       };
@@ -103,10 +104,10 @@
 
     # Rofi 配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.rofi.enable && config.myHome.desktop.hyprland.rofi.method == "copyLink") {
-      home.packages = lib.optionals config.myHome.desktop.hyprland.rofi.useNixPackage (with pkgs; [
+      home.packages = if config.myHome.desktop.hyprland.rofi.packageSource == "nixpkgs" then (with pkgs; [
         rofi-wayland
         whitesur-icon-theme
-      ]);
+      ]) else [];
       home.file = {
         ".config/rofi/config.rasi".source = ./.config/rofi/config.rasi;
         ".config/rofi/themes".source = ./.config/rofi/themes;
@@ -121,7 +122,7 @@
 
     # Swappy 配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.swappy.enable && config.myHome.desktop.hyprland.swappy.method == "copyLink") {
-      home.packages = lib.optionals config.myHome.desktop.hyprland.swappy.useNixPackage (with pkgs; [ swappy ]);
+      home.packages = if config.myHome.desktop.hyprland.swappy.packageSource == "nixpkgs" then (with pkgs; [ swappy ]) else [];
 
       xdg.configFile = {
         "swappy/config".source = ./.config/swappy/config;
@@ -130,7 +131,7 @@
 
     # Wlogout 配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.wlogout.enable && config.myHome.desktop.hyprland.wlogout.method == "copyLink") {
-      home.packages = lib.optionals config.myHome.desktop.hyprland.wlogout.useNixPackage (with pkgs; [ wlogout ]);
+      home.packages = if config.myHome.desktop.hyprland.wlogout.packageSource == "nixpkgs" then (with pkgs; [ wlogout ]) else [];
 
       xdg.configFile = {
         "wlogout/layout".source = ./.config/wlogout/layout;
@@ -140,7 +141,7 @@
 
     # Fuzzel 配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.fuzzel.enable && config.myHome.desktop.hyprland.fuzzel.method == "copyLink") {
-      home.packages = lib.optionals config.myHome.desktop.hyprland.fuzzel.useNixPackage (with pkgs; [ fuzzel ]);
+      home.packages = if config.myHome.desktop.hyprland.fuzzel.packageSource == "nixpkgs" then (with pkgs; [ fuzzel ]) else [];
 
       xdg.configFile = {
         "fuzzel/fuzzel.ini".source = ./.config/fuzzel/fuzzel.ini;
@@ -149,7 +150,7 @@
 
     # IronBar 配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.ironbar.enable && config.myHome.desktop.hyprland.ironbar.method == "copyLink") {
-      home.packages = lib.optionals config.myHome.desktop.hyprland.ironbar.useNixPackage (with pkgs; [ ironbar ]);
+      home.packages = if config.myHome.desktop.hyprland.ironbar.packageSource == "nixpkgs" then (with pkgs; [ ironbar ]) else [];
 
       xdg.configFile = {
         "ironbar/config.toml".source = ./.config/ironbar/config.toml;

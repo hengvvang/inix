@@ -29,15 +29,15 @@
         default = "copyLink";
         description = "Method to deploy Niri configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install Niri packages";
-      };
-      useFlakePackage = lib.mkOption {
-        type = lib.types.bool;
-        default = false;
-        description = "Whether to use Niri packages from official flake for newer versions";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "flake";
+        description = ''
+          Source for Niri package installation:
+          - none: Don't install Niri package (use system-level installation)
+          - nixpkgs: Use stable Niri package from nixpkgs
+          - flake: Use newer Niri package from official upstream flake
+        '';
       };
     };
 
@@ -48,10 +48,14 @@
         default = "copyLink";
         description = "Method to deploy Waybar configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install Waybar package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" ];
+        default = "nixpkgs";
+        description = ''
+          Source for Waybar package installation:
+          - none: Don't install Waybar package
+          - nixpkgs: Use Waybar package from nixpkgs
+        '';
       };
     };
 
@@ -62,10 +66,14 @@
         default = "copyLink";
         description = "Method to deploy Ironbar configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install Ironbar package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" ];
+        default = "nixpkgs";
+        description = ''
+          Source for Ironbar package installation:
+          - none: Don't install Ironbar package
+          - nixpkgs: Use Ironbar package from nixpkgs
+        '';
       };
     };
 
@@ -76,10 +84,14 @@
         default = "copyLink";
         description = "Method to deploy Rofi configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install Rofi package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" ];
+        default = "nixpkgs";
+        description = ''
+          Source for Rofi package installation:
+          - none: Don't install Rofi package
+          - nixpkgs: Use Rofi package from nixpkgs
+        '';
       };
     };
 
@@ -90,10 +102,14 @@
         default = "copyLink";
         description = "Method to deploy Fuzzel configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install Fuzzel package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" ];
+        default = "none";
+        description = ''
+          Source for Fuzzel package installation:
+          - none: Don't install Fuzzel package (use system-level installation)
+          - nixpkgs: Use Fuzzel package from nixpkgs
+        '';
       };
     };
 
@@ -104,10 +120,14 @@
         default = "copyLink";
         description = "Method to deploy Swaylock configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install Swaylock package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" ];
+        default = "nixpkgs";
+        description = ''
+          Source for Swaylock package installation:
+          - none: Don't install Swaylock package
+          - nixpkgs: Use Swaylock package from nixpkgs
+        '';
       };
     };
 
@@ -118,10 +138,14 @@
         default = "copyLink";
         description = "Method to deploy Swayidle configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install Swayidle package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" ];
+        default = "nixpkgs";
+        description = ''
+          Source for Swayidle package installation:
+          - none: Don't install Swayidle package
+          - nixpkgs: Use Swayidle package from nixpkgs
+        '';
       };
     };
 
@@ -132,10 +156,14 @@
         default = "copyLink";
         description = "Method to deploy Wlogout configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install Wlogout package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" ];
+        default = "nixpkgs";
+        description = ''
+          Source for Wlogout package installation:
+          - none: Don't install Wlogout package
+          - nixpkgs: Use Wlogout package from nixpkgs
+        '';
       };
     };
 
@@ -146,10 +174,14 @@
         default = "copyLink";
         description = "Method to deploy Dunst configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install Dunst package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" ];
+        default = "nixpkgs";
+        description = ''
+          Source for Dunst package installation:
+          - none: Don't install Dunst package
+          - nixpkgs: Use Dunst package from nixpkgs
+        '';
       };
     };
 
@@ -160,10 +192,14 @@
         default = "copyLink";
         description = "Method to deploy Mako configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install Mako package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" ];
+        default = "nixpkgs";
+        description = ''
+          Source for Mako package installation:
+          - none: Don't install Mako package
+          - nixpkgs: Use Mako package from nixpkgs
+        '';
       };
     };
 

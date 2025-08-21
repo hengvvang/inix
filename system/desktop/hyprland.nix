@@ -1,5 +1,5 @@
 
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
     config = lib.mkIf (config.mySystem.desktop.enable && config.mySystem.desktop.preset == "hyprland") {
@@ -10,7 +10,8 @@
             enable = true;                    # 启用 Hyprland 窗口管理器
             xwayland.enable = true;           # 启用 XWayland 支持 (运行 X11 应用)
             withUWSM = true;                  # 启用通用 Wayland 会话管理器
-            package = pkgs.hyprland;          # 使用稳定版本的 Hyprland
+            # package = pkgs.hyprland;          # 使用稳定版本的 Hyprland
+            package = inputs.hyprland.packages.${pkgs.system}.hyprland;
         };
 
         # ========== 环境变量配置 ==========
