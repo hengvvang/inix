@@ -1,5 +1,3 @@
-# Nushell 配置文件 - 外部文件方式
-
 # 主配置
 $env.config = {
   show_banner: false

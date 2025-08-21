@@ -1,6 +1,3 @@
-# Rio Terminal 完整外部配置文件
-# 现代化 GPU 加速终端的专业配置
-
 # 渲染器设置
 [renderer]
 backend = "automatic"                  # 自动选择最佳渲染后端

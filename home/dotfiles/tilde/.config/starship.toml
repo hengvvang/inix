@@ -1,5 +1,3 @@
-# Starship 配置文件 - 现代化美观提示符
-
 # 基础设置
 add_newline = true
 

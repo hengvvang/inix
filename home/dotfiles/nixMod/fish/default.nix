@@ -96,11 +96,11 @@
         # 历史设置
         set -g fish_history_timeout 60   # 历史超时时间
 
-        # 禁用Fish默认提示符（如果使用Starship等外部提示符）
+        # 禁用Fish默认提示符 (如果使用Starship等外部提示符)
         # functions --erase fish_prompt
         # functions --erase fish_right_prompt
 
-        # Starship提示符配置（如果使用）
+        # Starship提示符配置 (如果使用)
         # set -gx STARSHIP_CONFIG ~/.config/starship.toml
 
         # 终端标题设置
@@ -130,7 +130,6 @@
           '';
         };
       };
-
     };
   };
 }

@@ -1,12 +1,12 @@
 [user]
     name = hengvvang
-    email = hengvvang@example.com
+    email = hengvvang@proton.me
 
 [init]
     defaultBranch = main
 
 [core]
-    editor = nvim
+    editor = vim
     autocrlf = input
     safecrlf = true
     pager = delta
