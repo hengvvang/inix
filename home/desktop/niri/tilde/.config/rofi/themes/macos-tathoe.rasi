@@ -1,6 +1,6 @@
 /* ===== 全局属性 ===== */
 * {
-    /* 颜色定义 - 极高透明度的 macOS 风格 */
+    /* 颜色定义 - 极高透明度的 */
     background:     rgba ( 15, 15, 20, 0.5 );      /* 极透明的深色背景 */
     background-alt: rgba ( 25, 25, 30, 0.4 );      /* 极透明的替代背景色 */
     foreground:     rgba ( 255, 255, 255, 0.95 );  /* 主文字颜色 */
@@ -38,7 +38,7 @@ window {
     anchor: center;
 
     /* 内边距 */
-    padding: 20px;
+    padding: 14px;
 
     /* 启用模糊效果 */
     fullscreen: false;

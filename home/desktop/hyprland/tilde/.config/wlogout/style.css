@@ -1,12 +1,10 @@
-/* ========================================
-   WLogout 样式配置 - Catppuccin Mocha 主题
-   ======================================== */
-
 window {
     font-family: "JetBrains Mono Nerd Font";
     font-size: 14px;
-    color: #cdd6f4; /* text */
-    background-color: rgba(30, 30, 46, 0.95); /* base */
+    color: #cdd6f4;
+    /* text */
+    background-color: rgba(30, 30, 46, 0.95);
+    /* base */
 }
 
 button {
@@ -15,23 +13,30 @@ button {
     background-size: 25%;
     border-style: solid;
     border-width: 3px;
-    background-color: rgba(49, 50, 68, 0.8); /* surface0 */
-    border-color: rgba(137, 180, 250, 0.8); /* blue */
+    background-color: rgba(49, 50, 68, 0.8);
+    /* surface0 */
+    border-color: rgba(137, 180, 250, 0.8);
+    /* blue */
     border-radius: 12px;
-    color: #cdd6f4; /* text */
+    color: #cdd6f4;
+    /* text */
     margin: 10px;
     transition: all 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: rgba(69, 71, 90, 0.9); /* surface1 */
-    border-color: rgba(203, 166, 247, 0.9); /* mauve */
+    background-color: rgba(69, 71, 90, 0.9);
+    /* surface1 */
+    border-color: rgba(203, 166, 247, 0.9);
+    /* mauve */
     transform: scale(1.05);
 }
 
 button:focus {
-    background-color: rgba(88, 91, 112, 0.9); /* surface2 */
-    border-color: rgba(250, 179, 135, 0.9); /* peach */
+    background-color: rgba(88, 91, 112, 0.9);
+    /* surface2 */
+    border-color: rgba(250, 179, 135, 0.9);
+    /* peach */
 }
 
 #lock {

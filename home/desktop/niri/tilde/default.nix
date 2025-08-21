@@ -102,7 +102,7 @@
       home.packages = lib.optionals config.myHome.desktop.niri.fuzzel.useNixPackage (with pkgs; [ fuzzel lxgw-wenkai ]);
 
       xdg.configFile = {
-        "fuzzel/fuzzel.ini".source = ./.config/fuzzel/fuzzel-macos-glass-light.ini;
+        "fuzzel/fuzzel.ini".source = ./.config/fuzzel/fuzzel.ini;
       };
     })
 

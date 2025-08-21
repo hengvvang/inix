@@ -1,6 +1,4 @@
 # Swayidle 空闲管理配置 - Niri 桌面环境
-# 基于 Swayidle 官方文档和 Niri Wiki 推荐配置
-# 采用 Catppuccin Mocha 主题色彩与现代化体验
 
 # ========== 渐进式空闲管理 ==========
 # 第一阶段：5分钟后锁定屏幕（优雅过渡）
