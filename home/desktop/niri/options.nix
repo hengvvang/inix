@@ -34,6 +34,11 @@
         default = true;
         description = "Whether to install Niri packages";
       };
+      useFlakePackage = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Whether to use Niri packages from official flake for newer versions";
+      };
     };
 
     waybar = {

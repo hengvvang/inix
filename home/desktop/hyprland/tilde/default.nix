@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -46,14 +46,26 @@
 
     # Hyprland 核心配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.hypr.enable && config.myHome.desktop.hyprland.hypr.method == "copyLink") {
-      home.packages = lib.optionals config.myHome.desktop.hyprland.hypr.useNixPackage (with pkgs; [
-        hyprland
-        xdg-desktop-portal-hyprland
-        hyprpaper
-        hypridle
-        hyprlock
-        hyprcursor
-      ]);
+      home.packages = lib.optionals config.myHome.desktop.hyprland.hypr.useNixPackage (
+        if config.myHome.desktop.hyprland.hypr.useFlakePackage then [
+          # 使用 Hyprland 官方 flake 中的最新版本
+          inputs.hyprland.packages.${pkgs.system}.hyprland
+          inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
+          # 其他相关包仍使用 nixpkgs
+          pkgs.hyprpaper
+          pkgs.hypridle
+          pkgs.hyprlock
+          pkgs.hyprcursor
+        ] else (with pkgs; [
+          # 使用 nixpkgs 中的稳定版本
+          hyprland
+          xdg-desktop-portal-hyprland
+          hyprpaper
+          hypridle
+          hyprlock
+          hyprcursor
+        ])
+      );
       xdg.configFile = {
         "hypr/hyprland.conf".source = ./.config/hypr/hyprland.conf;
         "hypr/hypridle.conf".source = ./.config/hypr/hypridle.conf;

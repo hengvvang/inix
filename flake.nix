@@ -51,9 +51,17 @@
         url = "github:zed-industries/zed";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+        url = "github:hyprwm/Hyprland";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
+    niri = {
+        url = "github:YaLTeR/niri";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, sherlock, zed-editor, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, zen-browser, stylix, nix-darwin, rust-overlay, sherlock, zed-editor, hyprland, niri, ... } @ inputs:
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib // nix-darwin.lib;

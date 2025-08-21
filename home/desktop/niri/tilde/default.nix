@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   imports = [
@@ -48,13 +48,24 @@
 
     # Niri 核心配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.niri.enable && config.myHome.desktop.niri.niri.method == "copyLink") {
-      home.packages = lib.optionals config.myHome.desktop.niri.niri.useNixPackage (with pkgs; [
-        niri
-        niriswitcher
-        swww
-        apple-cursor
-        xwayland-satellite
-      ]);
+      home.packages = lib.optionals config.myHome.desktop.niri.niri.useNixPackage (
+        if config.myHome.desktop.niri.niri.useFlakePackage then [
+          # 使用 Niri 官方 flake 中的最新版本
+          inputs.niri.packages.${pkgs.system}.niri
+          # 其他相关包仍使用 nixpkgs
+          pkgs.niriswitcher
+          pkgs.swww
+          pkgs.apple-cursor
+          pkgs.xwayland-satellite
+        ] else (with pkgs; [
+          # 使用 nixpkgs 中的稳定版本
+          niri
+          niriswitcher
+          swww
+          apple-cursor
+          xwayland-satellite
+        ])
+      );
 
       xdg.configFile = {
         "niri/config.kdl".source = ./.config/niri/config.kdl;
