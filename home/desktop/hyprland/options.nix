@@ -49,12 +49,13 @@
         description = "Method to deploy Waybar configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       packageSource = lib.mkOption {
-        type = lib.types.enum [ "none" "nixpkgs" ];
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
         default = "nixpkgs";
         description = ''
           Source for Waybar package installation:
           - none: Don't install Waybar package
           - nixpkgs: Use Waybar package from nixpkgs
+          - flake: Use Waybar package from flake
         '';
       };
     };
@@ -67,12 +68,13 @@
         description = "Method to deploy Dunst configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       packageSource = lib.mkOption {
-        type = lib.types.enum [ "none" "nixpkgs" ];
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
         default = "nixpkgs";
         description = ''
           Source for Dunst package installation:
           - none: Don't install Dunst package
           - nixpkgs: Use Dunst package from nixpkgs
+          - flake: Use Dunst package from flake
         '';
       };
     };
@@ -85,12 +87,13 @@
         description = "Method to deploy Rofi configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       packageSource = lib.mkOption {
-        type = lib.types.enum [ "none" "nixpkgs" ];
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
         default = "nixpkgs";
         description = ''
           Source for Rofi package installation:
           - none: Don't install Rofi package
           - nixpkgs: Use Rofi package from nixpkgs
+          - flake: Use Rofi package from flake
         '';
       };
     };
@@ -103,12 +106,13 @@
         description = "Method to deploy Swappy configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       packageSource = lib.mkOption {
-        type = lib.types.enum [ "none" "nixpkgs" ];
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
         default = "nixpkgs";
         description = ''
           Source for Swappy package installation:
           - none: Don't install Swappy package
           - nixpkgs: Use Swappy package from nixpkgs
+          - flake: Use Swappy package from flake
         '';
       };
     };
@@ -121,12 +125,13 @@
         description = "Method to deploy Wlogout configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       packageSource = lib.mkOption {
-        type = lib.types.enum [ "none" "nixpkgs" ];
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
         default = "nixpkgs";
         description = ''
           Source for Wlogout package installation:
           - none: Don't install Wlogout package
           - nixpkgs: Use Wlogout package from nixpkgs
+          - flake: Use Wlogout package from flake
         '';
       };
     };
@@ -139,12 +144,13 @@
         description = "Method to deploy Fuzzel configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       packageSource = lib.mkOption {
-        type = lib.types.enum [ "none" "nixpkgs" ];
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
         default = "nixpkgs";
         description = ''
           Source for Fuzzel package installation:
           - none: Don't install Fuzzel package
           - nixpkgs: Use Fuzzel package from nixpkgs
+          - flake: Use Fuzzel package from flake
         '';
       };
     };
@@ -157,12 +163,13 @@
         description = "Method to deploy IronBar configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
       packageSource = lib.mkOption {
-        type = lib.types.enum [ "none" "nixpkgs" ];
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
         default = "nixpkgs";
         description = ''
           Source for IronBar package installation:
           - none: Don't install IronBar package
           - nixpkgs: Use IronBar package from nixpkgs
+          - flake: Use IronBar package from flake
         '';
       };
     };
