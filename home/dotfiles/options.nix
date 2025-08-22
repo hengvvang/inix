@@ -11,10 +11,15 @@
         default = "copyLink";
         description = "Method to deploy bash configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install bash package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for bash package installation:
+          - none: Don't install bash package
+          - nixpkgs: Use bash package from nixpkgs
+          - flake: Use bash package from flake
+        '';
       };
     };
 
@@ -25,10 +30,15 @@
         default = "copyLink";
         description = "Method to deploy zsh configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install zsh package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for zsh package installation:
+          - none: Don't install zsh package
+          - nixpkgs: Use zsh package from nixpkgs
+          - flake: Use zsh package from flake
+        '';
       };
     };
 
@@ -39,10 +49,15 @@
         default = "copyLink";
         description = "Method to deploy vim configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install vim package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for vim package installation:
+          - none: Don't install vim package
+          - nixpkgs: Use vim package from nixpkgs
+          - flake: Use vim package from flake
+        '';
       };
     };
 
@@ -53,10 +68,15 @@
         default = "copyLink";
         description = "Method to deploy fish configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install fish package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for fish package installation:
+          - none: Don't install fish package
+          - nixpkgs: Use fish package from nixpkgs
+          - flake: Use fish package from flake
+        '';
       };
     };
 
@@ -67,10 +87,15 @@
         default = "copyLink";
         description = "Method to deploy nushell configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install nushell package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for nushell package installation:
+          - none: Don't install nushell package
+          - nixpkgs: Use nushell package from nixpkgs
+          - flake: Use nushell package from flake
+        '';
       };
     };
 
@@ -81,10 +106,15 @@
         default = "copyLink";
         description = "Method to deploy starship configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install starship package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for starship package installation:
+          - none: Don't install starship package
+          - nixpkgs: Use starship package from nixpkgs
+          - flake: Use starship package from flake
+        '';
       };
     };
 
@@ -95,10 +125,15 @@
         default = "copyLink";
         description = "Method to deploy alacritty configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install alacritty package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for alacritty package installation:
+          - none: Don't install alacritty package
+          - nixpkgs: Use alacritty package from nixpkgs
+          - flake: Use alacritty package from flake
+        '';
       };
     };
 
@@ -109,10 +144,15 @@
         default = "copyLink";
         description = "Method to deploy ghostty configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install ghostty package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for ghostty package installation:
+          - none: Don't install ghostty package
+          - nixpkgs: Use ghostty package from nixpkgs
+          - flake: Use ghostty package from flake
+        '';
       };
     };
 
@@ -123,10 +163,15 @@
         default = "copyLink";
         description = "Method to deploy rio configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install rio package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for rio package installation:
+          - none: Don't install rio package
+          - nixpkgs: Use rio package from nixpkgs
+          - flake: Use rio package from flake
+        '';
       };
     };
 
@@ -137,10 +182,15 @@
         default = "copyLink";
         description = "Method to deploy git configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install git package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for git package installation:
+          - none: Don't install git package
+          - nixpkgs: Use git package from nixpkgs
+          - flake: Use git package from flake
+        '';
       };
     };
 
@@ -151,10 +201,15 @@
         default = "copyLink";
         description = "Method to deploy lazygit configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install lazygit package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for lazygit package installation:
+          - none: Don't install lazygit package
+          - nixpkgs: Use lazygit package from nixpkgs
+          - flake: Use lazygit package from flake
+        '';
       };
     };
 
@@ -165,10 +220,15 @@
         default = "copyLink";
         description = "Method to deploy tmux configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install tmux package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for tmux package installation:
+          - none: Don't install tmux package
+          - nixpkgs: Use tmux package from nixpkgs
+          - flake: Use tmux package from flake
+        '';
       };
     };
 
@@ -179,10 +239,15 @@
         default = "copyLink";
         description = "Method to deploy zellij configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install zellij package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for zellij package installation:
+          - none: Don't install zellij package
+          - nixpkgs: Use zellij package from nixpkgs
+          - flake: Use zellij package from flake
+        '';
       };
     };
 
@@ -193,10 +258,15 @@
         default = "copyLink";
         description = "Method to deploy rofi configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install rofi package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for rofi package installation:
+          - none: Don't install rofi package
+          - nixpkgs: Use rofi package from nixpkgs
+          - flake: Use rofi package from flake
+        '';
       };
     };
 
@@ -207,10 +277,15 @@
         default = "copyLink";
         description = "Method to deploy sherlock configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install sherlock package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for sherlock package installation:
+          - none: Don't install sherlock package
+          - nixpkgs: Use sherlock package from nixpkgs
+          - flake: Use sherlock package from flake
+        '';
       };
     };
 
@@ -221,10 +296,15 @@
         default = "copyLink";
         description = "Method to deploy rmpc configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install rmpc package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for rmpc package installation:
+          - none: Don't install rmpc package
+          - nixpkgs: Use rmpc package from nixpkgs
+          - flake: Use rmpc package from flake
+        '';
       };
     };
 
@@ -235,10 +315,15 @@
         default = "copyLink";
         description = "Method to deploy yazi configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install yazi package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for yazi package installation:
+          - none: Don't install yazi package
+          - nixpkgs: Use yazi package from nixpkgs
+          - flake: Use yazi package from flake
+        '';
       };
     };
 
@@ -249,10 +334,15 @@
         default = "copyLink";
         description = "Method to deploy qutebrowser configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install qutebrowser package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for qutebrowser package installation:
+          - none: Don't install qutebrowser package
+          - nixpkgs: Use qutebrowser package from nixpkgs
+          - flake: Use qutebrowser package from flake
+        '';
       };
     };
 
@@ -263,10 +353,15 @@
         default = "copyLink";
         description = "Method to deploy obs-studio configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install obs-studio package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for obs-studio package installation:
+          - none: Don't install obs-studio package
+          - nixpkgs: Use obs-studio package from nixpkgs
+          - flake: Use obs-studio package from flake
+        '';
       };
     };
 
@@ -277,10 +372,15 @@
         default = "copyLink";
         description = "Method to deploy vscode configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install vscode package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for vscode package installation:
+          - none: Don't install vscode package
+          - nixpkgs: Use vscode package from nixpkgs
+          - flake: Use vscode package from flake
+        '';
       };
     };
 
@@ -291,10 +391,15 @@
         default = "copyLink";
         description = "Method to deploy zed configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
       };
-      useNixPackage = lib.mkOption {
-        type = lib.types.bool;
-        default = true;
-        description = "Whether to install zed-editor package";
+      packageSource = lib.mkOption {
+        type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+        default = "nixpkgs";
+        description = ''
+          Source for zed package installation:
+          - none: Don't install zed package
+          - nixpkgs: Use zed package from nixpkgs
+          - flake: Use zed package from flake
+        '';
       };
     };
   };
