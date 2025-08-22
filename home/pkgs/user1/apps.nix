@@ -4,7 +4,9 @@
     config = lib.mkIf config.myHome.pkgs.user1.enable {
         home.packages = with pkgs; [
             # inputs.zen-browser.packages.${pkgs.system}.twilight
-            inputs.zed-editor.packages.${pkgs.system}.default
+            # inputs.zed-editor.packages.${pkgs.system}.default
+            zed-editor
+            vscode
             # qutebrowser
             # google-chrome
             # firefox
@@ -18,7 +20,6 @@
             # gimp              # 图像编辑
             # inkscape          # 矢量图编辑
             # davinci-resolve   # 视频编辑 (需要 unfree)
-            vscode
             calcure
             mise
             just

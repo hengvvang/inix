@@ -2,10 +2,10 @@
 
 {
   options.myHome.dotfiles = {
-    enable = lib.mkEnableOption "Enable dotfiles management";
+    enable = lib.mkEnableOption "Enable dotfiles management" // { default = false; };
 
     bash = {
-      enable = lib.mkEnableOption "Enable bash configuration";
+      enable = lib.mkEnableOption "Enable bash configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -24,7 +24,7 @@
     };
 
     zsh = {
-      enable = lib.mkEnableOption "Enable zsh configuration";
+      enable = lib.mkEnableOption "Enable zsh configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -43,7 +43,7 @@
     };
 
     vim = {
-      enable = lib.mkEnableOption "Enable vim configuration";
+      enable = lib.mkEnableOption "Enable vim configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -62,7 +62,7 @@
     };
 
     fish = {
-      enable = lib.mkEnableOption "Enable fish configuration";
+      enable = lib.mkEnableOption "Enable fish configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -81,7 +81,7 @@
     };
 
     nushell = {
-      enable = lib.mkEnableOption "Enable nushell configuration";
+      enable = lib.mkEnableOption "Enable nushell configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -100,7 +100,7 @@
     };
 
     starship = {
-      enable = lib.mkEnableOption "Enable starship configuration";
+      enable = lib.mkEnableOption "Enable starship configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -119,7 +119,7 @@
     };
 
     alacritty = {
-      enable = lib.mkEnableOption "Enable alacritty configuration";
+      enable = lib.mkEnableOption "Enable alacritty configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -138,7 +138,7 @@
     };
 
     ghostty = {
-      enable = lib.mkEnableOption "Enable ghostty configuration";
+      enable = lib.mkEnableOption "Enable ghostty configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -157,7 +157,7 @@
     };
 
     rio = {
-      enable = lib.mkEnableOption "Enable rio configuration";
+      enable = lib.mkEnableOption "Enable rio configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -176,7 +176,7 @@
     };
 
     git = {
-      enable = lib.mkEnableOption "Enable git configuration";
+      enable = lib.mkEnableOption "Enable git configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -195,7 +195,7 @@
     };
 
     lazygit = {
-      enable = lib.mkEnableOption "Enable lazygit configuration";
+      enable = lib.mkEnableOption "Enable lazygit configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -214,7 +214,7 @@
     };
 
     tmux = {
-      enable = lib.mkEnableOption "Enable tmux configuration";
+      enable = lib.mkEnableOption "Enable tmux configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -233,7 +233,7 @@
     };
 
     zellij = {
-      enable = lib.mkEnableOption "Enable zellij configuration";
+      enable = lib.mkEnableOption "Enable zellij configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -252,7 +252,7 @@
     };
 
     rofi = {
-      enable = lib.mkEnableOption "Enable rofi configuration";
+      enable = lib.mkEnableOption "Enable rofi configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -271,7 +271,7 @@
     };
 
     sherlock = {
-      enable = lib.mkEnableOption "Enable sherlock configuration";
+      enable = lib.mkEnableOption "Enable sherlock configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -290,7 +290,7 @@
     };
 
     rmpc = {
-      enable = lib.mkEnableOption "Enable rmpc configuration";
+      enable = lib.mkEnableOption "Enable rmpc configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -309,7 +309,7 @@
     };
 
     yazi = {
-      enable = lib.mkEnableOption "Enable yazi configuration";
+      enable = lib.mkEnableOption "Enable yazi configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -328,7 +328,7 @@
     };
 
     qutebrowser = {
-      enable = lib.mkEnableOption "Enable qutebrowser configuration";
+      enable = lib.mkEnableOption "Enable qutebrowser configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -347,7 +347,7 @@
     };
 
     obs-studio = {
-      enable = lib.mkEnableOption "Enable obs-studio configuration";
+      enable = lib.mkEnableOption "Enable obs-studio configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -366,7 +366,7 @@
     };
 
     vscode = {
-      enable = lib.mkEnableOption "Enable vscode configuration";
+      enable = lib.mkEnableOption "Enable vscode configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
@@ -385,7 +385,7 @@
     };
 
     zed = {
-      enable = lib.mkEnableOption "Enable zed configuration";
+      enable = lib.mkEnableOption "Enable zed configuration" // { default = false; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
         default = "copyLink";
