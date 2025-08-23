@@ -112,7 +112,7 @@
           };
         };
         proxy = {
-          enable = true;
+          enable = false;
           mihomo = {
             enable = false;
             webui = "metacubexd";  # 使用 metacubexd Web UI
