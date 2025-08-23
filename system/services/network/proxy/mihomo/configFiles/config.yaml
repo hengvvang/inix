@@ -6,8 +6,6 @@ ipv6: true
 external-controller: 127.0.0.1:9097
 secret: set-your-secret
 unified-delay: true
-profile:
-  store-selected: true
 external-controller-cors:
   allow-private-network: true
   allow-origins:
@@ -16,16 +14,9 @@ external-controller-cors:
     - https://yacd.metacubex.one
     - https://metacubex.github.io
     - https://board.zash.run.place
-tun:
-  auto-detect-interface: true
-  auto-route: true
-  device: Mihomo
-  dns-hijack:
-    - any:53
-  mtu: 1500
-  stack: gvisor
-  strict-route: false
-  enable: false
+hosts:
+  mtalk.google.com: 108.177.125.188
+bind-address: "*"
 dns:
   enable: true
   ipv6: true
@@ -95,18 +86,27 @@ dns:
     - https://223.6.6.6/dns-query
     - https://120.53.53.53/dns-query
     - tls://223.5.5.5:853
-bind-address: "*"
-hosts:
-  mtalk.google.com: 108.177.125.188
+tun:
+  auto-detect-interface: true
+  auto-route: true
+  device: Mihomo
+  dns-hijack:
+    - any:53
+  mtu: 1500
+  stack: gvisor
+  strict-route: false
+  enable: true
+profile:
+  store-selected: true
 proxies:
-  - name: 剩余流量：137.38 GB
+  - name: 剩余流量：131.61 GB
     type: ss
     server: sd.youtu1.top
     port: 34101
     cipher: chacha20-ietf-poly1305
     password: 1ae5ba28-bbcf-46b3-a21e-10c6cf9df5e0
     udp: true
-  - name: 距离下次重置剩余：28 天
+  - name: 距离下次重置剩余：27 天
     type: ss
     server: sd.youtu1.top
     port: 34101
@@ -490,8 +490,8 @@ proxy-groups:
     proxies:
       - 自动选择
       - 故障转移
-      - 剩余流量：137.38 GB
-      - 距离下次重置剩余：28 天
+      - 剩余流量：131.61 GB
+      - 距离下次重置剩余：27 天
       - 套餐到期：2026-07-19
       - youtu0.com
       - 专线2.5x-香港1
@@ -548,8 +548,8 @@ proxy-groups:
   - name: 自动选择
     type: url-test
     proxies:
-      - 剩余流量：137.38 GB
-      - 距离下次重置剩余：28 天
+      - 剩余流量：131.61 GB
+      - 距离下次重置剩余：27 天
       - 套餐到期：2026-07-19
       - youtu0.com
       - 专线2.5x-香港1
@@ -608,8 +608,8 @@ proxy-groups:
   - name: 故障转移
     type: fallback
     proxies:
-      - 剩余流量：137.38 GB
-      - 距离下次重置剩余：28 天
+      - 剩余流量：131.61 GB
+      - 距离下次重置剩余：27 天
       - 套餐到期：2026-07-19
       - youtu0.com
       - 专线2.5x-香港1

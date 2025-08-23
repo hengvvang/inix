@@ -25,7 +25,7 @@
             };
             path = lib.mkOption {
                 type = lib.types.path;
-                default = ./config.yaml;
+                default = ./configFiles/config.yaml;
                 description = "Mihomo 配置文件路径";
             };
         };
