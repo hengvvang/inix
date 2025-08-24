@@ -18,30 +18,30 @@
         enable = true;
         vim = {
           enable = true;
-          method = "homemanager";
+          method = "homeManager";
         };
         zsh = {
           enable = true;
-          method = "homemanager";
+          method = "homeManager";
         };
         bash = {
           enable = true;
-          method = "homemanager";
+          method = "homeManager";
         };
         fish = {
           enable = true;
-          method = "homemanager";
+          method = "homeManager";
         };
         nushell = {
           enable = true;
-          method = "homemanager";
+          method = "homeManager";
         };
         tmux.enable = true;
         git.enable = true;
         lazygit.enable = true;
         starship = {
           enable = true;
-          method = "homemanager";
+          method = "homeManager";
         };
         qutebrowser.enable = false;
         alacritty = {
@@ -50,7 +50,7 @@
         };
         obs-studio = {
           enable = true;
-          method = "homemanager";
+          method = "homeManager";
         };
         sherlock = {
             enable = true;
@@ -70,7 +70,7 @@
         };
         ghostty = {
           enable = true;
-          method = "homemanager";
+          method = "homeManager";
         };
         yazi = {
           enable = true;
@@ -82,7 +82,7 @@
         };
         rio = {
           enable = true;
-          method = "homemanager";
+          method = "homeManager";
         };
         rmpc = {
           enable = true;

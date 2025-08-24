@@ -6,9 +6,9 @@
     packages = {
       enable = lib.mkEnableOption "Enable Hyprland ecosystem packages" // { default = true; };
       method = lib.mkOption {
-        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        type = lib.types.enum [ "copyLink" "symLink" "homeManager" ];
         default = "copyLink";
-        description = "Method to deploy Hyprland configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
+        description = "Method to deploy Hyprland configuration files: copyLink (file copyLink), symLink (symbolic link), or homeManager (Home Manager native)";
       };
     };
 
@@ -16,18 +16,18 @@
     environment = {
       enable = lib.mkEnableOption "Enable Hyprland environment variables" // { default = true; };
       method = lib.mkOption {
-        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        type = lib.types.enum [ "copyLink" "symLink" "homeManager" ];
         default = "copyLink";
-        description = "Method to deploy Hyprland configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
+        description = "Method to deploy Hyprland configuration files: copyLink (file copyLink), symLink (symbolic link), or homeManager (Home Manager native)";
       };
     };
 
     hypr = {
       enable = lib.mkEnableOption "Enable Hyprland core configuration" // { default = true; };
       method = lib.mkOption {
-        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        type = lib.types.enum [ "copyLink" "symLink" "homeManager" ];
         default = "copyLink";
-        description = "Method to deploy Hyprland configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
+        description = "Method to deploy Hyprland configuration files: copyLink (file copyLink), symLink (symbolic link), or homeManager (Home Manager native)";
       };
       packageSource = lib.mkOption {
         type = lib.types.enum [ "none" "nixpkgs" "flake" ];
@@ -44,9 +44,9 @@
     waybar = {
       enable = lib.mkEnableOption "Enable Waybar configuration" // { default = true; };
       method = lib.mkOption {
-        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        type = lib.types.enum [ "copyLink" "symLink" "homeManager" ];
         default = "copyLink";
-        description = "Method to deploy Waybar configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
+        description = "Method to deploy Waybar configuration files: copyLink (file copyLink), symLink (symbolic link), or homeManager (Home Manager native)";
       };
       packageSource = lib.mkOption {
         type = lib.types.enum [ "none" "nixpkgs" "flake" ];
@@ -63,9 +63,9 @@
     dunst = {
       enable = lib.mkEnableOption "Enable Dunst notification daemon configuration" // { default = true; };
       method = lib.mkOption {
-        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        type = lib.types.enum [ "copyLink" "symLink" "homeManager" ];
         default = "copyLink";
-        description = "Method to deploy Dunst configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
+        description = "Method to deploy Dunst configuration files: copyLink (file copyLink), symLink (symbolic link), or homeManager (Home Manager native)";
       };
       packageSource = lib.mkOption {
         type = lib.types.enum [ "none" "nixpkgs" "flake" ];
@@ -82,9 +82,9 @@
     rofi = {
       enable = lib.mkEnableOption "Enable Rofi application launcher configuration" // { default = true; };
       method = lib.mkOption {
-        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        type = lib.types.enum [ "copyLink" "symLink" "homeManager" ];
         default = "copyLink";
-        description = "Method to deploy Rofi configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
+        description = "Method to deploy Rofi configuration files: copyLink (file copyLink), symLink (symbolic link), or homeManager (Home Manager native)";
       };
       packageSource = lib.mkOption {
         type = lib.types.enum [ "none" "nixpkgs" "flake" ];
@@ -101,9 +101,9 @@
     swappy = {
       enable = lib.mkEnableOption "Enable Swappy screenshot annotation tool configuration" // { default = true; };
       method = lib.mkOption {
-        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        type = lib.types.enum [ "copyLink" "symLink" "homeManager" ];
         default = "copyLink";
-        description = "Method to deploy Swappy configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
+        description = "Method to deploy Swappy configuration files: copyLink (file copyLink), symLink (symbolic link), or homeManager (Home Manager native)";
       };
       packageSource = lib.mkOption {
         type = lib.types.enum [ "none" "nixpkgs" "flake" ];
@@ -120,9 +120,9 @@
     wlogout = {
       enable = lib.mkEnableOption "Enable Wlogout session manager configuration" // { default = true; };
       method = lib.mkOption {
-        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        type = lib.types.enum [ "copyLink" "symLink" "homeManager" ];
         default = "copyLink";
-        description = "Method to deploy Wlogout configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
+        description = "Method to deploy Wlogout configuration files: copyLink (file copyLink), symLink (symbolic link), or homeManager (Home Manager native)";
       };
       packageSource = lib.mkOption {
         type = lib.types.enum [ "none" "nixpkgs" "flake" ];
@@ -139,9 +139,9 @@
     fuzzel = {
       enable = lib.mkEnableOption "Enable Fuzzel application launcher configuration" // { default = true; };
       method = lib.mkOption {
-        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        type = lib.types.enum [ "copyLink" "symLink" "homeManager" ];
         default = "copyLink";
-        description = "Method to deploy Fuzzel configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
+        description = "Method to deploy Fuzzel configuration files: copyLink (file copyLink), symLink (symbolic link), or homeManager (Home Manager native)";
       };
       packageSource = lib.mkOption {
         type = lib.types.enum [ "none" "nixpkgs" "flake" ];
@@ -158,9 +158,9 @@
     ironbar = {
       enable = lib.mkEnableOption "Enable IronBar status bar configuration" // { default = true; };
       method = lib.mkOption {
-        type = lib.types.enum [ "copyLink" "symlink" "homemanager" ];
+        type = lib.types.enum [ "copyLink" "symLink" "homeManager" ];
         default = "copyLink";
-        description = "Method to deploy IronBar configuration files: copyLink (file copyLink), symlink (symbolic link), or homemanager (Home Manager native)";
+        description = "Method to deploy IronBar configuration files: copyLink (file copyLink), symLink (symbolic link), or homeManager (Home Manager native)";
       };
       packageSource = lib.mkOption {
         type = lib.types.enum [ "none" "nixpkgs" "flake" ];

@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.enable && config.myHome.dotfiles.lazygit.method == "homemanager") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.enable && config.myHome.dotfiles.lazygit.method == "homeManager") {
     programs.lazygit = {
       enable = true;
 
@@ -49,7 +49,7 @@
           skipRewordInEditorWarning = false;
           border = "single";
         };
-        
+
         git = {
           paging = {
             colorArg = "always";
@@ -79,20 +79,20 @@
           diffContextSize = 3;
           truncateCopiedCommitHashesTo = 12;
         };
-        
+
         update = {
           method = "prompt";
           days = 14;
         };
-        
+
         refresher = {
           refreshInterval = 10;
           fetchInterval = 60;
         };
-        
+
         confirmOnQuit = false;
         quitOnTopLevelReturn = false;
-        
+
         keybinding = {
           universal = {
             quit = "q";
@@ -158,13 +158,13 @@
             decreaseRenameSimilarityThreshold = "(";
             openDiffTool = "<c-t>";
           };
-          
+
           status = {
             checkForUpdate = "u";
             recentRepos = "<enter>";
             allBranchesLogGraph = "a";
           };
-          
+
           files = {
             commitChanges = "c";
             commitChangesWithoutHook = "w";
@@ -181,7 +181,7 @@
             openMergeTool = "M";
             openStatusFilter = "<c-b>";
           };
-          
+
           branches = {
             createPullRequest = "o";
             viewPullRequestOptions = "O";
@@ -197,7 +197,7 @@
             setUpstream = "u";
             fetchRemote = "f";
           };
-          
+
           commits = {
             squashDown = "s";
             renameCommit = "r";
@@ -221,22 +221,22 @@
             openLogMenu = "<c-l>";
             viewBisectOptions = "b";
           };
-          
+
           stash = {
             popStash = "g";
             renameStash = "r";
           };
-          
+
           commitFiles = {
             checkoutCommitFile = "c";
           };
-          
+
           main = {
             toggleSelectHunk = "a";
             pickBothHunks = "b";
             editSelectHunk = "E";
           };
-          
+
           submodules = {
             init = "i";
             update = "u";

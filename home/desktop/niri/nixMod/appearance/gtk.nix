@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri"&& config.myHome.desktop.niri.appearance.enable && config.myHome.desktop.niri.appearance.method == "homemanager") {
+  config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri"&& config.myHome.desktop.niri.appearance.enable && config.myHome.desktop.niri.appearance.method == "homeManager") {
     # ========== GTK 配置 ==========
     gtk = {
       enable = true;
