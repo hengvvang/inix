@@ -5,6 +5,7 @@
         environment.systemPackages = [
             pkgs.git
             pkgs.vim
+            pkgs.mihomo
 
             # pkgs.clash-verge-rev
 
@@ -15,7 +16,13 @@
             # pkgs.zed-editor
             # pkgs.vscode
         ];
-
+        programs.clash-verge = {
+            enable = true;
+            package = pkgs.clash-verge-rev;
+            tunMode = true;
+            # autoStart = true;
+            # serviceMode = "systemd";
+        };
         programs.steam = {
             enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
