@@ -112,6 +112,14 @@
             inherit inputs outputs userMapping hostMapping;
           };
         };
+        vm = lib.nixosSystem {
+          modules = [
+            ./hosts/vm
+          ];
+          specialArgs = {
+            inherit inputs outputs userMapping hostMapping;
+          };
+        };
       };
 
       darwinConfigurations = {
