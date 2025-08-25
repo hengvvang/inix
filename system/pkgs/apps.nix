@@ -5,7 +5,6 @@
         environment.systemPackages = [
             pkgs.git
             pkgs.vim
-            pkgs.mihomo
 
             # pkgs.clash-verge-rev
 
@@ -21,7 +20,7 @@
             package = pkgs.clash-verge-rev;
             tunMode = true;
             # autoStart = true;
-            # serviceMode = "systemd";
+            serviceMode = true;
         };
         programs.steam = {
             enable = true;
