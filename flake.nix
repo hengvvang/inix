@@ -158,7 +158,7 @@
         "${userMapping.user1}@${hostMapping.host2}" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux;
           modules = [
-            .hosts/host2/users/user1
+            ./hosts/host2/users/user1
           ];
           extraSpecialArgs = {
             inherit inputs outputs userMapping hostMapping;
@@ -187,7 +187,7 @@
         "${userMapping.user2}@${hostMapping.host3}" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [
-            .hosts/host3/users/user2
+            ./hosts/host3/users/user2
           ];
           extraSpecialArgs = {
             inherit inputs outputs userMapping hostMapping;
