@@ -18,7 +18,8 @@
 
             pkgs.spotify
 
-            pkgs.clash-verge-rev
+            # pkgs.clash-verge-rev
+            # pkgs.mihomo
             # pkgs.clash-nyanpasu
 
             # pkgs.blender           # 3D 建模

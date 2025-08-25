@@ -15,7 +15,13 @@
             # pkgs.zed-editor
             # pkgs.vscode
         ];
-
+        programs.clash-verge = {
+            enable = true;
+            package = pkgs.clash-verge-rev;
+            tunMode = true;
+            # autoStart = true;
+            serviceMode = true;
+        };
         programs.steam = {
             enable = true;
             remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
