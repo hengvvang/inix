@@ -13,22 +13,22 @@
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ userMapping.user1 userMapping.user2 ];
+    trusted-users = [ hengvvang zlritsu ];
   };
 
   # 启用 fish shell 程序 (macOS 方式)
   programs.fish.enable = true;
 
   # macOS 用户配置
-  users.users.${userMapping.user1} = {
-    name = userMapping.user1;
-    home = "/Users/${userMapping.user1}";
+  users.users.hengvvang = {
+    name = hengvvang;
+    home = "/Users/hengvvang";
     shell = pkgs.fish;
   };
 
-  users.users.${userMapping.user2} = {
-    name = userMapping.user2;
-    home = "/Users/${userMapping.user2}";
+  users.users.zlritsu = {
+    name = zlritsu;
+    home = "/Users/zlritsu";
     shell = pkgs.fish;
   };
 }

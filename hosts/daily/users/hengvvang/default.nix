@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, userMapping, hostMapping, ... }:
+{ config, pkgs, lib, inputs, outputs, ... }:
 
 {
   imports = [
@@ -12,8 +12,8 @@
         "libsoup-2.74.3"
       ];
     };
-    home.username = userMapping.user1;
-    home.homeDirectory = "/home/${userMapping.user1}";
+    home.username = hengvvang;
+    home.homeDirectory = "/home/hengvvang";
     home.stateVersion = "25.05";
     programs.home-manager.enable = true;
 

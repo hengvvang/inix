@@ -65,19 +65,9 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib // nix-darwin.lib;
-      hostMapping = {
-        host1 = "laptop";
-        host2 = "work";
-        host3 = "daily";
-      };
-      userMapping = {
-        user1 = "hengvvang";
-        user2 = "zlritsu";
-      };
     in {
       # 导出模块和工具
       inherit lib;
-      inherit userMapping hostMapping;
       system = import ./system;
       home = import ./home;
 
@@ -96,20 +86,20 @@
       };
 
       nixosConfigurations = {
-        ${hostMapping.host1} = lib.nixosSystem {
+        laptop = lib.nixosSystem {
           modules = [
-            ./hosts/host1
+            ./hosts/laptop
           ];
           specialArgs = {
-            inherit inputs outputs userMapping hostMapping;
+            inherit inputs outputs;
           };
         };
-        ${hostMapping.host2} = lib.nixosSystem {
+        work = lib.nixosSystem {
           modules = [
-            ./hosts/host2
+            ./hosts/work
           ];
           specialArgs = {
-            inherit inputs outputs userMapping hostMapping;
+            inherit inputs outputs;
           };
         };
         vm = lib.nixosSystem {
@@ -117,80 +107,99 @@
             ./hosts/vm
           ];
           specialArgs = {
-            inherit inputs outputs userMapping hostMapping;
+            inherit inputs outputs;
           };
         };
       };
 
       darwinConfigurations = {
-        ${hostMapping.host3} = lib.darwinSystem {
+        daily = lib.darwinSystem {
           modules = [
-            ./hosts/host3
+            ./hosts/daily
           ];
           specialArgs = {
-            inherit inputs outputs userMapping hostMapping;
+            inherit inputs outputs;
           };
         };
       };
 
       homeConfigurations = {
         # laptop主机上的用户配置 (x86_64-linux)
-        "${userMapping.user1}@${hostMapping.host1}" = home-manager.lib.homeManagerConfiguration {
+        "laptop@hengvvang" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            ./hosts/host1/users/user1
+            ./hosts/laptop/users/hengvvang
           ];
           extraSpecialArgs = {
-            inherit inputs outputs userMapping hostMapping;
+            inherit inputs outputs;
           };
         };
-        "${userMapping.user2}@${hostMapping.host1}" = home-manager.lib.homeManagerConfiguration {
+        "laptop@zlritsu" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            ./hosts/host1/users/user2
+            ./hosts/laptop/users/zlritsu
           ];
           extraSpecialArgs = {
-            inherit inputs outputs userMapping hostMapping;
+            inherit inputs outputs;
           };
         };
 
         # work主机上的用户配置 (aarch64-linux)
-        "${userMapping.user1}@${hostMapping.host2}" = home-manager.lib.homeManagerConfiguration {
+        "work@hengvvang" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux;
           modules = [
-            ./hosts/host2/users/user1
+            ./hosts/work/users/hengvvang
           ];
           extraSpecialArgs = {
-            inherit inputs outputs userMapping hostMapping;
+            inherit inputs outputs;
           };
         };
-        "${userMapping.user2}@${hostMapping.host2}" = home-manager.lib.homeManagerConfiguration {
+        "work@zlritsu" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux;
           modules = [
-            ./hosts/host2/users/user2
+            ./hosts/work/users/zlritsu
           ];
           extraSpecialArgs = {
-            inherit inputs outputs userMapping hostMapping;
+            inherit inputs outputs;
           };
         };
 
         # daily主机上的用户配置 (aarch64-darwin)
-        "${userMapping.user1}@${hostMapping.host3}" = home-manager.lib.homeManagerConfiguration {
+        "daily@hengvvang" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [
-            ./hosts/host3/users/user1
+            ./hosts/daily/users/hengvvang
           ];
           extraSpecialArgs = {
-            inherit inputs outputs userMapping hostMapping;
+            inherit inputs outputs;
           };
         };
-        "${userMapping.user2}@${hostMapping.host3}" = home-manager.lib.homeManagerConfiguration {
+        "daily@zlritsu" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [
-            ./hosts/host3/users/user2
+            ./hosts/daily/users/zlritsu
           ];
           extraSpecialArgs = {
-            inherit inputs outputs userMapping hostMapping;
+            inherit inputs outputs;
+          };
+        };
+
+        "vm@hengvvang" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./hosts/vm/users/hengvvang
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs;
+          };
+        };
+        "vm@zlritsu" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./hosts/vm/users/zlritsu
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs;
           };
         };
       };

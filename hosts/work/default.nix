@@ -17,16 +17,16 @@
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ userMapping.user1 userMapping.user2 ];
+    trusted-users = [ hengvvang zlritsu ];
   };
 
   # 启用 fish shell 程序
   programs.fish.enable = true;
 
   # 用户配置 - 工作环境限制权限
-  users.users.${userMapping.user1} = {
+  users.users.hengvvang = {
     isNormalUser = true;
-    description = userMapping.user1;
+    description = hengvvang;
     extraGroups = [ "networkmanager" "wheel" ];  # 工作环境移除 docker 组
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
@@ -34,9 +34,9 @@
     shell = pkgs.fish;
   };
 
-  users.users.${userMapping.user2} = {
+  users.users.zlritsu = {
     isNormalUser = true;
-    description = userMapping.user2;
+    description = zlritsu;
     extraGroups = [ "networkmanager" "wheel" ];  # 工作环境移除 docker 组
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
