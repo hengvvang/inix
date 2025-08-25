@@ -1,8 +1,22 @@
-{ config, lib, pkgs, hostMapping, ... }:
+{ config, pkgs, lib, inputs, outputs, userMapping, hostMapping, ... }:
 
 {
-  # host2 主机特定配置
-  config = lib.mkIf (config.hostInstance == hostMapping.host2) {
+  imports = [
+    outputs.home
+  ];
+
+  config = {
+    nixpkgs.config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "libsoup-2.74.3"
+      ];
+    };
+    home.username = userMapping.user1;
+    home.homeDirectory = "/home/${userMapping.user1}";
+    home.stateVersion = "25.05";
+    programs.home-manager.enable = true;
+
     myHome = {
       develop = {
         enable = true;

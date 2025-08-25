@@ -1,8 +1,18 @@
-{ config, lib, hostMapping, ... }:
+{ config, pkgs, lib, inputs, outputs, userMapping, hostMapping, ... }:
 
 {
-  # host3 主机特定配置
-  config = lib.mkIf (config.hostInstance == hostMapping.host3) {
+  imports = [
+    outputs.home
+    ./host2.nix
+  ];
+
+  config = {
+    nixpkgs.config.allowUnfree = true;
+    home.username = users.user2;
+    home.homeDirectory = "/home/${users.user2}";
+    home.stateVersion = "25.05";
+    programs.home-manager.enable = true;
+
     myHome = {
       develop = {
         enable = true;
@@ -15,7 +25,7 @@
         };
         rust.enable = false;
         python.enable = true;
-        javascript.enable = false;
+        javascript.enable = true;
         typescript.enable = false;
         cpp.enable = false;
       };
@@ -39,7 +49,7 @@
       profiles = {
         enable = true;
         fonts = {
-          preset = "ocean";   # 日常使用舒适字体
+          preset = "nordic";
         };
       };
     };
