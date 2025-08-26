@@ -125,7 +125,7 @@
 
       homeConfigurations = {
         # laptop主机上的用户配置 (x86_64-linux)
-        "laptop@hengvvang" = home-manager.lib.homeManagerConfiguration {
+        "laptop@hengvvang" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./hosts/laptop/users/hengvvang
@@ -134,7 +134,7 @@
             inherit inputs outputs;
           };
         };
-        "laptop@zlritsu" = home-manager.lib.homeManagerConfiguration {
+        "laptop@zlritsu" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./hosts/laptop/users/zlritsu
@@ -145,7 +145,7 @@
         };
 
         # work主机上的用户配置 (aarch64-linux)
-        "work@hengvvang" = home-manager.lib.homeManagerConfiguration {
+        "work@hengvvang" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux;
           modules = [
             ./hosts/work/users/hengvvang
@@ -154,7 +154,7 @@
             inherit inputs outputs;
           };
         };
-        "work@zlritsu" = home-manager.lib.homeManagerConfiguration {
+        "work@zlritsu" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux;
           modules = [
             ./hosts/work/users/zlritsu
@@ -165,7 +165,7 @@
         };
 
         # daily主机上的用户配置 (aarch64-darwin)
-        "daily@hengvvang" = home-manager.lib.homeManagerConfiguration {
+        "daily@hengvvang" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [
             ./hosts/daily/users/hengvvang
@@ -174,7 +174,7 @@
             inherit inputs outputs;
           };
         };
-        "daily@zlritsu" = home-manager.lib.homeManagerConfiguration {
+        "daily@zlritsu" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [
             ./hosts/daily/users/zlritsu
@@ -184,7 +184,7 @@
           };
         };
 
-        "vm@hengvvang" = home-manager.lib.homeManagerConfiguration {
+        "vm@hengvvang" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./hosts/vm/users/hengvvang
@@ -193,7 +193,7 @@
             inherit inputs outputs;
           };
         };
-        "vm@zlritsu" = home-manager.lib.homeManagerConfiguration {
+        "vm@zlritsu" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
             ./hosts/vm/users/zlritsu

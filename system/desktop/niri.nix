@@ -25,10 +25,7 @@
         services.dbus.enable = true;         # D-Bus 系统消息总线
         security.polkit.enable = true;       # PolicyKit 权限管理
 
-        # ========== 环境变量配置 ==========
-        # 针对 Wayland 环境优化应用程序兼容性
         environment.sessionVariables = {
-            # 设置当前桌面环境
             XDG_CURRENT_DESKTOP = "niri";
             XDG_SESSION_DESKTOP = "niri";
             # 设置默认会话类型为 Wayland
