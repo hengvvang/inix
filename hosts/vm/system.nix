@@ -1,136 +1,230 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  mySystem = {
+    desktop = {
+      enable = false;
+      preset = "niri";
+    };
 
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+    pkgs = {
+      enable = true;
+      apps.enable = false;
+      toolkits.enable = true;
+    };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+    profiles = {
+      enable = true;
+      fonts = {
+        enable = false;
+        preset = "zen";
+      };
+      # 启用系统级统一主题配置
+      stylix = {
+        enable = false;
+        colorScheme = {
+          mode = "preset";
+          preset.name = "catppuccin-mocha";  # 统一使用深色主题
+        };
+        polarity = "dark";  # 强制深色模式
+        # 系统级目标
+        targets = {
+          gtk.enable = true;
+          console.enable = true;
+        };
+        # Home Manager 集成
+        homeManagerIntegration = {
+          autoImport = true;   # 自动为所有用户导入
+          followSystem = true; # 用户配置跟随系统配置
+        };
+      };
+    };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    locale = {
+      enable = true;
+      timeZone = {
+        enable = true;
+        preset = "shanghai";
+      };
+      inputMethod = {
+        enable = true;
+        fcitx5.enable = true;
+      };
+    };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
+    services = {
+      enable = false;
+      containers = {
+        enable = true;
+        appimage = {
+          enable = true;
+        };
+        docker = {
+          enable = true;
+          rootless = false;            # 使用标准 Docker 模式
+          nvidia = true;
+          registry = {
+            enable = false;            # 暂不启用本地 Registry
+            port = 5000;              # Registry 端口
+          };
+        };
+        flatpak = {
+          enable = true;
+          flathub.enable = true;              # 启用 Flathub 仓库
+          xdgPortal.enable = true;            # 启用 XDG 门户支持
+        };
+      };
 
-  # Set your time zone.
-  time.timeZone = "Asia/Shanghai";
+      network = {
+        enable = true;
+        manager = {
+          enable = true;
+          hostname = "laptop";
+          preset = "networkmanager";
+          tools = {
+            enable = true;
+            gui = true;
+          };
+        };
+        ssh = {
+          enable = true;               # 🟢 启用 SSH 服务
+          server = {
+            enable = true;             # 启用 SSH 服务端
+            port = 22;                 # SSH 端口
+            passwordAuth = false;      # 禁用密码认证，仅使用密钥认证
+          };
+          client = {
+            enable = true;             # 启用 SSH 客户端工具
+          };
+        };
+        # 虚拟网卡支持（TUN/TAP）
+        virtualInterface = {
+          enable = true;               # 🟢 启用虚拟网卡支持
+          tun = true;                  # 启用 TUN 支持
+          tap = false;                 # 禁用 TAP 支持
+          forwarding = {
+            ipv4 = true;               # 启用 IPv4 转发
+            ipv6 = false;              # 禁用 IPv6 转发
+          };
+          tools = {
+            basic = true;              # 启用基础网络工具
+            bridge = false;            # 禁用网桥工具
+          };
+        };
+        proxy = {
+          enable = false;
+          mihomo = {
+            enable = false;
+            webui = "metacubexd";  # 使用 metacubexd Web UI
+            tunMode = true;
+            configFile.enable = true;
+            extraOpts.enable = false;
+          };
+        };
+      };
 
-  # Select internationalisation properties.
-  i18n.defaultLocale = "zh_CN.UTF-8";
+      media = {
+        enable = false;
+        video = {
+          enable = true;
+          mpv = true;
+          vlc = false;
+        };
+        audio = {
+          enable = true;
+          spotify = false;
+        };
+        codecs = {
+          enable = true;               # 启用编解码器
+          ffmpeg = true;               # FFmpeg
+          gstreamer = false;           # GStreamer
+        };
+        streaming = {
+          enable = true;
+          download = true;
+        };
+        mpd = {
+          enable = false;              # � 禁用系统级 MPD - 使用用户级配置
+        #   musicDirectory = "/srv/Music";  # 用户音乐目录，更合理的位置
+        #   port = 6600;                 # MPD 服务端口
+        #   httpPort = 8000;             # HTTP 音频流端口
+        #   enableFileOutput = false;    # 暂时禁用 FIFO 输出避免崩溃
+        };
+      };
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "zh_CN.UTF-8";
-    LC_IDENTIFICATION = "zh_CN.UTF-8";
-    LC_MEASUREMENT = "zh_CN.UTF-8";
-    LC_MONETARY = "zh_CN.UTF-8";
-    LC_NAME = "zh_CN.UTF-8";
-    LC_NUMERIC = "zh_CN.UTF-8";
-    LC_PAPER = "zh_CN.UTF-8";
-    LC_TELEPHONE = "zh_CN.UTF-8";
-    LC_TIME = "zh_CN.UTF-8";
-  };
+      # 硬件驱动配置
+      drivers = {
+        enable = false;                 # 🟢 启用硬件驱动模块
+        # 音频驱动配置
+        audio = {
+          enable = true;               # 🟢 启用音频驱动 (PipeWire + ALSA)
+          controls = true;             # 启用音频控制工具
+        };
+        # 触摸板驱动配置
+        touchpad = {
+          enable = true;               # 🟢 启用触摸板驱动 (libinput)
+          gestures = false;            # 可选：启用手势支持
+        };
+        # 打印驱动配置
+        printing = {
+          enable = true;               # 🟢 启用打印功能 (CUPS)
+          service = {
+            discovery = true;          # 网络打印机自动发现
+            sharing = false;           # 打印机网络共享
+          };
+          scanning = {
+            enable = true;             # 启用扫描功能
+            network = false;           # 网络扫描支持
+          };
+          tools = {
+            gui = true;                # 图形管理工具
+            maintenance = false;       # 打印机维护工具
+          };
+          # 根据需要启用特定品牌驱动
+          drivers = {
+            hp = false;                # HP 打印机驱动
+            canon = false;             # Canon 打印机驱动
+            epson = false;             # Epson 打印机驱动
+            brother = false;           # Brother 打印机驱动
+          };
+        };
+        bluetooth = {
+          enable = true;               # 启用蓝牙支持
+          gui = true;                  # 图形管理工具
+        };
+        # NVIDIA 显卡配置
+        nvidia = {
+          enable = false;               # 🟢 启用 NVIDIA 支持
+          driver = {
+            openSource = false;        # 使用专有驱动（性能更好）
+            package = "stable";        # 驱动版本选择
+          };
+          power = {
+            enable = true;             # 启用电源管理
+            finegrained = false;       # 细粒度电源管理（可选）
+            suspend = true;            # 挂起/唔醒支持
+          };
+          graphics = {
+            vulkan = true;             # Vulkan API 支持
+            cuda = false;              # CUDA 计算支持（需要时启用）
+            nvenc = true;              # NVENC 视频编码
+          };
+          tools = {
+            settings = true;           # NVIDIA 设置面板
+            monitoring = true;         # 性能监控工具
+            overclocking = false;      # 超频工具支持
+          };
+        };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "cn";
-    variant = "";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.hengvvang = {
-    isNormalUser = true;
-    description = "hengvvang";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
-  };
-
-  # Install firefox.
-  programs.firefox.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-    git
-    vscode
-  ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
-  nix = {
-    package = pkgs.nix;
-    settings.experimental-features = [ "nix-command" "flakes" ];
+        # 调试探针配置
+        debug = {
+          enable = false;               # 🟢 启用调试探针支持
+          stlink = true;               # ST-Link 调试器
+          jlink = true;                # J-Link 调试器
+          daplink = true;              # DAPLink 调试器
+          blackmagic = true;           # Black Magic Probe
+        };
+      };
+    };
   };
 }

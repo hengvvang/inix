@@ -59,6 +59,12 @@
 
   nixpkgs.config.allowUnfree = true;
   programs.fish.enable = true;
+  programs.firefox.enable = true;
+  environment.systemPackages = with pkgs; [
+    vim
+    git
+    vscode
+  ];
 
   users.users.hengvvang = {
     isNormalUser = true;
@@ -79,12 +85,4 @@
     ];
     shell = pkgs.fish;
   };
-
-  programs.firefox.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-    vscode
-  ];
 }
