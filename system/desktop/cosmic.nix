@@ -3,7 +3,6 @@
 
 {
   config = lib.mkIf (config.mySystem.desktop.enable && config.mySystem.desktop.preset == "cosmic") {
-    # ----- cosmic -----
     services = {
       displayManager.cosmic-greeter.package = pkgs.cosmic-greeter;
       displayManager.cosmic-greeter.enable = true;
@@ -16,8 +15,6 @@
       # konsole # Comment out this line if you use KDE's default terminal app
       # oxygen
     ];
-
-
 
     environment.systemPackages = [
       # pkgs.cosmic-shell,

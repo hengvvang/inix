@@ -4,7 +4,7 @@
   mySystem = {
     desktop = {
       enable = true;
-      preset = "niri";
+      preset = "gnome";
     };
 
     profiles = {
