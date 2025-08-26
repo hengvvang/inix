@@ -99,7 +99,7 @@
         };
         # 虚拟网卡支持（TUN/TAP）
         virtualInterface = {
-          enable = false;               # 🟢 启用虚拟网卡支持
+          enable = false;
           tun = true;                  # 启用 TUN 支持
           tap = false;                 # 禁用 TAP 支持
           forwarding = {

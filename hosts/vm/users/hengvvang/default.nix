@@ -16,7 +16,7 @@
   };
   myHome = {
     desktop = {
-      enable = true;
+      enable = false;
       preset = "niri";
     };
 
@@ -56,15 +56,15 @@
       };
       qutebrowser.enable = false;
       alacritty = {
-        enable = true;
+        enable = false;
         method = "copyLink";
       };
       obs-studio = {
-        enable = true;
+        enable = false;
         method = "homeManager";
       };
       sherlock = {
-          enable = true;
+          enable = false;
           method = "copyLink";
       };
       zed = {
@@ -96,7 +96,7 @@
         method = "homeManager";
       };
       rmpc = {
-        enable = true;
+        enable = false;
         method = "copyLink";
       };
     };
