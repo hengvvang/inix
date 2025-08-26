@@ -57,19 +57,19 @@
       containers = {
         enable = false;
         appimage = {
-          enable = true;
+          enable = false;
         };
         docker = {
-          enable = true;
+          enable = false;
           rootless = false;            # 使用标准 Docker 模式
-          nvidia = true;
+          nvidia = false;
           registry = {
             enable = false;            # 暂不启用本地 Registry
             port = 5000;              # Registry 端口
           };
         };
         flatpak = {
-          enable = true;
+          enable = false;
           flathub.enable = true;              # 启用 Flathub 仓库
           xdgPortal.enable = true;            # 启用 XDG 门户支持
         };
@@ -87,7 +87,7 @@
           };
         };
         ssh = {
-          enable = true;               # 🟢 启用 SSH 服务
+          enable = true;
           server = {
             enable = true;             # 启用 SSH 服务端
             port = 22;                 # SSH 端口
