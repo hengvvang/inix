@@ -11,8 +11,8 @@
     };
 
     environment.gnome.excludePackages = [
-      #pkgs.gnome-backgrounds
-      #pkgs.gnome-video-effects
+      # pkgs.gnome-backgrounds
+      # pkgs.gnome-video-effects
       # pkgs.gnome-maps
       # pkgs.gnome-music
       # pkgs.gnome-tour
@@ -21,9 +21,9 @@
     ];
 
     environment.systemPackages = [
+      pkgs.refine
       pkgs.gnome-tweaks
       pkgs.dconf-editor
-      pkgs.refine
     ];
   };
 }

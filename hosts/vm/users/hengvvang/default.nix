@@ -19,7 +19,7 @@
     myHome = {
       desktop = {
         enable = true;
-        preset = "niri";
+        preset = "gnome";
       };
 
       dotfiles = {
@@ -53,7 +53,7 @@
         };
         qutebrowser.enable = false;
         alacritty = {
-          enable = false;
+          enable = true;
           method = "copyLink";
         };
         obs-studio = {

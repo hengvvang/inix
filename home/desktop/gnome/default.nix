@@ -7,18 +7,18 @@
     };
 
     config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "gnome") {
-        
-        # GNOME 主题配置
-        home.file.".themes" = lib.mkIf config.myHome.desktop.gnome.themes.enable {
-            source = ./assets/themes;
-            executable = false;
-        };
 
-        # GNOME 图标配置  
-        home.file.".icons" = lib.mkIf config.myHome.desktop.gnome.icons.enable {
-            source = ./assets/icons;
-            executable = false;
-        };
+        # GNOME 主题配置
+        # home.file.".themes" = lib.mkIf config.myHome.desktop.gnome.themes.enable {
+        #     source = ./assets/themes;
+        #     executable = false;
+        # };
+
+        # GNOME 图标配置
+        # home.file.".icons" = lib.mkIf config.myHome.desktop.gnome.icons.enable {
+        #     source = ./assets/icons;
+        #     executable = false;
+        # };
 
         # GNOME 桌面环境包
         home.packages = with pkgs; [
@@ -44,12 +44,12 @@
         ];
 
         # GNOME 设置
-        dconf.settings = {
-            "org/gnome/desktop/interface" = {
-                gtk-theme = "Adwaita";
-                icon-theme = "Adwaita";
-                cursor-theme = "Adwaita";
-            };
-        };
+        # dconf.settings = {
+        #     "org/gnome/desktop/interface" = {
+        #         gtk-theme = "Adwaita";
+        #         icon-theme = "Adwaita";
+        #         cursor-theme = "Adwaita";
+        #     };
+        # };
     };
 }
