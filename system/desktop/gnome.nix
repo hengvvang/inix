@@ -1,4 +1,3 @@
-
 { config, lib, pkgs, ... }:
 
 {
@@ -12,11 +11,11 @@
 
     environment.gnome.excludePackages = [
       # pkgs.gnome-backgrounds
-      # pkgs.gnome-video-effects
-      # pkgs.gnome-maps
-      # pkgs.gnome-music
-      # pkgs.gnome-tour
-      # pkgs.gnome-text-editor
+      pkgs.gnome-video-effects
+      pkgs.gnome-maps
+      pkgs.gnome-music
+      pkgs.gnome-tour
+      pkgs.gnome-text-editor
       # pkgs.gnome-user-docs
     ];
 

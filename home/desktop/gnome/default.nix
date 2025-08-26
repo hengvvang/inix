@@ -10,13 +10,13 @@
 
         # GNOME 主题配置
         # home.file.".themes" = lib.mkIf config.myHome.desktop.gnome.themes.enable {
-        #     source = ./assets/themes;
+        #     source = ./profiles/themes;
         #     executable = false;
         # };
 
         # GNOME 图标配置
         # home.file.".icons" = lib.mkIf config.myHome.desktop.gnome.icons.enable {
-        #     source = ./assets/icons;
+        #     source = ./profiles/icons;
         #     executable = false;
         # };
 
