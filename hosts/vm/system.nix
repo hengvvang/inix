@@ -154,15 +154,13 @@
 
       # 硬件驱动配置
       drivers = {
-        enable = false;                 # 🟢 启用硬件驱动模块
-        # 音频驱动配置
+        enable = true;
         audio = {
-          enable = true;               # 🟢 启用音频驱动 (PipeWire + ALSA)
-          controls = true;             # 启用音频控制工具
+          enable = true;
+          controls = true;
         };
-        # 触摸板驱动配置
         touchpad = {
-          enable = true;               # 🟢 启用触摸板驱动 (libinput)
+          enable = false;               # 🟢 启用触摸板驱动 (libinput)
           gestures = false;            # 可选：启用手势支持
         };
         # 打印驱动配置

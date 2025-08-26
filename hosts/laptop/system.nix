@@ -154,20 +154,17 @@
 
       # 硬件驱动配置
       drivers = {
-        enable = true;                 # 🟢 启用硬件驱动模块
-        # 音频驱动配置
+        enable = true;
         audio = {
-          enable = true;               # 🟢 启用音频驱动 (PipeWire + ALSA)
-          controls = true;             # 启用音频控制工具
+          enable = true;
+          toolkits = true;
         };
-        # 触摸板驱动配置
         touchpad = {
-          enable = true;               # 🟢 启用触摸板驱动 (libinput)
-          gestures = false;            # 可选：启用手势支持
+          enable = true;
+          gestures = false;
         };
-        # 打印驱动配置
         printing = {
-          enable = true;               # 🟢 启用打印功能 (CUPS)
+          enable = true;
           service = {
             discovery = true;          # 网络打印机自动发现
             sharing = false;           # 打印机网络共享
@@ -194,7 +191,7 @@
         };
         # NVIDIA 显卡配置
         nvidia = {
-          enable = true;               # 🟢 启用 NVIDIA 支持
+          enable = true;
           driver = {
             openSource = false;        # 使用专有驱动（性能更好）
             package = "stable";        # 驱动版本选择
