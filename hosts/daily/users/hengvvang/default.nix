@@ -12,7 +12,7 @@
         "libsoup-2.74.3"
       ];
     };
-    home.username = hengvvang;
+    home.username = "hengvvang";
     home.homeDirectory = "/home/hengvvang";
     home.stateVersion = "25.05";
     programs.home-manager.enable = true;
