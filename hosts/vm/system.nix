@@ -53,9 +53,9 @@
     };
 
     services = {
-      enable = false;
+      enable = true;
       containers = {
-        enable = true;
+        enable = false;
         appimage = {
           enable = true;
         };
@@ -79,7 +79,7 @@
         enable = true;
         manager = {
           enable = true;
-          hostname = "laptop";
+          hostname = "vm";
           preset = "networkmanager";
           tools = {
             enable = true;
@@ -99,7 +99,7 @@
         };
         # 虚拟网卡支持（TUN/TAP）
         virtualInterface = {
-          enable = true;               # 🟢 启用虚拟网卡支持
+          enable = false;               # 🟢 启用虚拟网卡支持
           tun = true;                  # 启用 TUN 支持
           tap = false;                 # 禁用 TAP 支持
           forwarding = {
