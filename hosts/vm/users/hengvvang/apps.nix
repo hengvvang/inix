@@ -17,5 +17,5 @@
     pkgs.mise
     pkgs.just
     pkgs.devenv
-  ]
+  ];
 }

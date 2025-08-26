@@ -67,10 +67,10 @@
     rsync             # 文件同步
     hexyl             # 十六进制查看器
     viu
-    iotop             # IO 监控 (仅 Linux)
-    nethogs           # 网络监控 (仅 Linux)
-    lshw              # 硬件信息 (仅 Linux)
-    usbutils          # USB 工具 (仅 Linux)
-    pciutils          # PCI 工具 (仅 Linux)
-  ]
+    iotop             # IO 监控
+    nethogs           # 网络监控
+    lshw              # 硬件信息
+    usbutils          # USB 工具
+    pciutils          # PCI 工具
+  ];
 }

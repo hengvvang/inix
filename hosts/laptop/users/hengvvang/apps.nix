@@ -40,5 +40,5 @@
     pkgs.wechat
     pkgs.wpsoffice-cn
     pkgs.libreoffice-qt6
-  ]
+  ];
 }
