@@ -157,7 +157,7 @@
         enable = true;
         audio = {
           enable = true;
-          controls = true;
+          toolkits = true;
         };
         touchpad = {
           enable = false;               # 🟢 启用触摸板驱动 (libinput)
