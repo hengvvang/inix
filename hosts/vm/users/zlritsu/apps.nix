@@ -12,33 +12,10 @@
     pkgs.vscode
 
     pkgs.qq
-    pkgs.discord
-    pkgs.telegram-desktop
-
-    pkgs.spotify
-
-    # pkgs.clash-verge-rev
-    # pkgs.mihomo
-    # pkgs.clash-nyanpasu
-
-    # pkgs.blender           # 3D 建模
-    # pkgs.gimp              # 图像编辑
-    # pkgs.inkscape          # 矢量图编辑
-    # pkgs.davinci-resolve   # 视频编辑 (需要 unfree)
-    pkgs.kdePackages.kdenlive
-
-    pkgs.calcure
+    pkgs.wechat
 
     pkgs.mise
     pkgs.just
     pkgs.devenv
-
-    pkgs.flameshot
-    pkgs.satty
-    pkgs.lutris
-    pkgs.vlc
-    pkgs.wechat
-    pkgs.wpsoffice-cn
-    pkgs.libreoffice-qt6
   ]
 }
