@@ -160,22 +160,22 @@
           toolkits = true;
         };
         touchpad = {
-          enable = false;               # 🟢 启用触摸板驱动 (libinput)
+          enable = false;
           gestures = false;            # 可选：启用手势支持
         };
         # 打印驱动配置
         printing = {
-          enable = true;               # 🟢 启用打印功能 (CUPS)
+          enable = false;
           service = {
             discovery = true;          # 网络打印机自动发现
             sharing = false;           # 打印机网络共享
           };
           scanning = {
-            enable = true;             # 启用扫描功能
+            enable = false;             # 启用扫描功能
             network = false;           # 网络扫描支持
           };
           tools = {
-            gui = true;                # 图形管理工具
+            gui = true;
             maintenance = false;       # 打印机维护工具
           };
           # 根据需要启用特定品牌驱动
