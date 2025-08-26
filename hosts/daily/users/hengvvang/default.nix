@@ -18,10 +18,6 @@
     programs.home-manager.enable = true;
 
     myHome = {
-      pkgs = {
-        enable = true;
-        user1.enable = true;
-      };
 
       develop = {
         enable = true;

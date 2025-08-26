@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, outputs, userMapping, hostMapping, ... }:
+{ config, lib, pkgs, inputs, outputs, ... }:
 
 {
   imports = [
@@ -34,15 +34,7 @@
     # trusted-users = [ hengvvang zlritsu ];
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
-
   nixpkgs.config.allowUnfree = true;
-  programs.fish.enable = true;
-  programs.firefox.enable = true;
-  environment.systemPackages = with pkgs; [
-    vim
-    git
-    vscode
-  ];
 
   users.users.hengvvang = {
     isNormalUser = true;
@@ -63,4 +55,22 @@
     ];
     shell = pkgs.fish;
   };
+
+  environment.systemPackages = [
+      pkgs.git
+      pkgs.vim
+      # inputs.zen-browser.packages.${pkgs.system}.twilight
+      # pkgs.google-chrome
+      # inputs.zed-editor.packages.${pkgs.system}.default
+      # pkgs.zed-editor
+      pkgs.vscode
+
+      # pkgs.nh                    # NixOS/Home Manager 助手
+      # pkgs.nix-output-monitor    # 美化 Nix 构建输出 (提供 nom 命令)
+      # pkgs.nix-tree             # 查看 Nix store 依赖关系
+      # pkgs.nixos-rebuild        # NixOS 系统重建工具
+      # pkgs.nvd                  # Nix 版本差异比较工具
+  ];
+  programs.fish.enable = true;
+  programs.firefox.enable = true;
 }

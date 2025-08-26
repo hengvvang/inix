@@ -3,7 +3,10 @@
 {
   imports = [
     outputs.home
+    ./apps.nix
+    ./toolkits.nix
   ];
+
   config = {
     nixpkgs.config = {
       allowUnfree = true;
@@ -17,11 +20,6 @@
       desktop = {
         enable = false;
         preset = "niri";
-      };
-
-      pkgs = {
-        enable = true;
-        user1.enable = true;
       };
 
       dotfiles = {

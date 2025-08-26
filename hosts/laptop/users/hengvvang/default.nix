@@ -3,6 +3,8 @@
 {
   imports = [
     outputs.home
+    ./apps.nix
+    ./toolkits.nix
   ];
 
   config = {
@@ -19,11 +21,6 @@
       desktop = {
         enable = true;
         preset = "niri";
-      };
-
-      pkgs = {
-        enable = true;
-        user1.enable = true;
       };
 
       dotfiles = {

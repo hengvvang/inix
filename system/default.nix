@@ -5,7 +5,6 @@
     ./desktop
     ./locale
     ./services
-    ./pkgs
     ./profiles
   ];
 }

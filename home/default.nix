@@ -6,7 +6,6 @@
     ./desktop
     ./profiles
     ./dotfiles
-    ./pkgs
     ./services
   ];
 }

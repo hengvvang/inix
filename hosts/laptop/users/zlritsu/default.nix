@@ -3,6 +3,8 @@
 {
   imports = [
     outputs.home
+    ./apps.nix
+    ./toolkits.nix
   ];
 
   config = {
@@ -14,11 +16,6 @@
 
 
     myHome = {
-      pkgs = {
-        enable = true;
-        user2.enable = true;
-      };
-
       develop = {
         enable = true;
         devenv = {

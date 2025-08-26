@@ -3,13 +3,6 @@
 {
   # 系统模块配置 - 工作主机配置
   mySystem = {
-    # 系统级应用配置
-    pkgs = {
-      enable = true;
-      apps.enable = true;
-      toolkits.enable = true;
-    };
-
     # 桌面环境配置
     desktop = {
       enable = true;                   # 启用桌面环境模块

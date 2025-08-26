@@ -3,6 +3,8 @@
 {
   imports = [
     outputs.home
+    ./apps.nix
+    ./toolkits.nix
   ];
 
   config = {

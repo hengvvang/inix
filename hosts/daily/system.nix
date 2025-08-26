@@ -25,12 +25,4 @@
     onActivation.autoUpdate = true;
     onActivation.cleanup = "zap";
   };
-
-  environment.systemPackages = with pkgs; [
-    inputs.zen-browser.packages.${pkgs.system}.twilight
-    vim
-    git
-    curl
-    wget
-  ];
 }

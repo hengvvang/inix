@@ -7,12 +7,6 @@
       preset = "niri";
     };
 
-    pkgs = {
-      enable = true;
-      apps.enable = false;
-      toolkits.enable = true;
-    };
-
     profiles = {
       enable = true;
       fonts = {

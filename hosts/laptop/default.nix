@@ -13,7 +13,6 @@
 
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";
-
   # 启用zram来缓解内存压力
   # zramSwap = {
   #   enable = true;
@@ -25,7 +24,6 @@
   #   "vm.swappiness" = 60;        # 适度使用swap
   #   "vm.vfs_cache_pressure" = 50; # 减少缓存压力
   # };
-
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
     trusted-users = [ hengvvang zlritsu ];
@@ -38,8 +36,6 @@
     # max-silent-time = 7200;  # 2小时无输出超时
   };
 
-  # 启用 fish shell 程序
-  programs.fish.enable = true;
   # 用户配置
   users.users.hengvvang = {
     isNormalUser = true;
@@ -60,4 +56,35 @@
     ];
     shell = pkgs.fish;
   };
+
+  environment.systemPackages = [
+      pkgs.git
+      pkgs.vim
+      # inputs.zen-browser.packages.${pkgs.system}.twilight
+      # pkgs.google-chrome
+      # inputs.zed-editor.packages.${pkgs.system}.default
+      # pkgs.zed-editor
+      # pkgs.vscode
+      # pkgs.nh                    # NixOS/Home Manager 助手
+      # pkgs.nix-output-monitor    # 美化 Nix 构建输出 (提供 nom 命令)
+      # pkgs.nix-tree             # 查看 Nix store 依赖关系
+      # pkgs.nixos-rebuild        # NixOS 系统重建工具
+      # pkgs.nvd                  # Nix 版本差异比较工具
+  ];
+  programs.clash-verge = {
+      enable = true;
+      package = pkgs.clash-verge-rev;
+      tunMode = true;
+      # autoStart = true;
+      serviceMode = true;
+  };
+  programs.steam = {
+      enable = true;
+      remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+      dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+      localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+  };
+  programs.fish.enable = true;
+
+
 }
