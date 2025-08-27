@@ -1,14 +1,20 @@
-/* Ironbar 极简透明主题 */
 /* 适用于 niri 窗口管理器 */
 
 /* 颜色定义 */
-@define-color bg_transparent rgba(0, 0, 0, 0.3);          /* 半透明黑色背景 */
-@define-color bg_hover rgba(255, 255, 255, 0.1);          /* 悬停效果 */
-@define-color bg_active rgba(255, 255, 255, 0.15);        /* 激活状态 */
-@define-color text_primary rgba(255, 255, 255, 0.9);      /* 主要文字颜色 */
-@define-color text_secondary rgba(255, 255, 255, 0.7);    /* 次要文字颜色 */
-@define-color accent rgba(138, 173, 244, 0.8);            /* 强调色 */
-@define-color border rgba(255, 255, 255, 0.1);            /* 边框颜色 */
+@define-color bg_transparent rgba(0, 0, 0, 0.3);
+/* 半透明黑色背景 */
+@define-color bg_hover rgba(255, 255, 255, 0.1);
+/* 悬停效果 */
+@define-color bg_active rgba(255, 255, 255, 0.15);
+/* 激活状态 */
+@define-color text_primary rgba(255, 255, 255, 0.9);
+/* 主要文字颜色 */
+@define-color text_secondary rgba(255, 255, 255, 0.7);
+/* 次要文字颜色 */
+@define-color accent rgba(138, 173, 244, 0.8);
+/* 强调色 */
+@define-color border rgba(255, 255, 255, 0.1);
+/* 边框颜色 */
 
 /* 全局样式 */
 * {
@@ -36,7 +42,9 @@
 }
 
 /* 基础组件样式 */
-box, menubar, button {
+box,
+menubar,
+button {
     background-color: transparent;
     background-image: none;
     color: @text_primary;
@@ -106,8 +114,15 @@ label {
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
 }
 
 /* 聚焦窗口标题 */
@@ -288,7 +303,7 @@ label {
         max-width: 250px;
         font-size: 14px;
     }
-    
+
     .wm-label {
         font-size: 15px;
     }
@@ -298,16 +313,16 @@ label {
     .focused {
         display: none;
     }
-    
+
     .sysinfo .item:not(:first-child) {
         display: none;
     }
-    
+
     .wm-label {
         font-size: 14px;
         margin-right: 8px;
     }
-    
+
     .clock {
         font-size: 14px;
     }

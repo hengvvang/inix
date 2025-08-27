@@ -213,5 +213,3 @@
     foreground = "#ffffff"
     frame_color = "#007aff80"
     timeout = 3
-
-# vim: ft=dosini

@@ -40,11 +40,11 @@
     home.sessionVariables = {
       # ========== Xwayland 应用缩放设置 ==========
       # GTK 应用缩放
-      GDK_SCALE = "1.25";
+      GDK_SCALE = "1.00";
       GDK_DPI_SCALE = "1.0";
 
       # Qt 应用缩放
-      QT_SCALE_FACTOR = "1.25";
+      QT_SCALE_FACTOR = "1.00";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       QT_FONT_DPI = "144";
 

@@ -55,6 +55,7 @@
           # 其他相关包仍使用 nixpkgs
           pkgs.niriswitcher
           pkgs.swww
+          pkgs.sunsetr
           pkgs.apple-cursor
           pkgs.xwayland-satellite
         ] else if config.myHome.desktop.niri.niri.packageSource == "nixpkgs" then (with pkgs; [
