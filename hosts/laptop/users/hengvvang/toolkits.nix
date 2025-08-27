@@ -28,7 +28,7 @@
     # wget // curl
     httpie
     xh
-    hurl
+    # hurl  # 临时禁用，等待上游修复编译问题
     fzf
     skim
     # top

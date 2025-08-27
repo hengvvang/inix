@@ -193,7 +193,7 @@
           power = {
             enable = true;             # 启用电源管理
             finegrained = false;       # 细粒度电源管理（可选）
-            suspend = true;            # 挂起/唔醒支持
+            suspend = false;           # 暂时禁用挂起支持以避免构建问题
           };
           graphics = {
             vulkan = true;             # Vulkan API 支持
