@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ../options.nix  # 引用上级目录的统一选项定义
     ./vim
     ./zsh
     ./bash

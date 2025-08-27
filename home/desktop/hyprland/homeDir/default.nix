@@ -1,10 +1,6 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  imports = [
-    ../options.nix  # 引用上级目录的选项定义
-  ];
-
   config = lib.mkMerge [
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.packages.enable && config.myHome.desktop.hyprland.packages.method == "copyLink") {
       home.packages = with pkgs; [

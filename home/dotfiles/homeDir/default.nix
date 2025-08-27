@@ -1,10 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ../options.nix  # 引用上级目录的统一选项定义
-  ];
-
   config = lib.mkMerge [
     # Bash 配置
     (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.method == "copyLink") {
