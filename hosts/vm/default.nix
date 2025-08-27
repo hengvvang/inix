@@ -24,7 +24,7 @@
   system.stateVersion = "25.05"; # Did you read the comment?
   nix = {
     package = pkgs.nix;
-    # trusted-users = [ hengvvang zlritsu ];
+    trusted-users = [ "hengvvang" "zlritsu" ];
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
   nixpkgs.config.allowUnfree = true;

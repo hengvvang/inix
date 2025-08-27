@@ -26,7 +26,7 @@
   # };
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ hengvvang zlritsu ];
+    trusted-users = [ "hengvvang" "zlritsu" ];
     # 并行构建限制 - 平衡性能与内存使用
     # max-jobs = 12;  # 32核心的37.5%，提升构建速度
     # cores = 2;      # 每个构建任务使用2个核心
@@ -39,7 +39,7 @@
   # 用户配置
   users.users.hengvvang = {
     isNormalUser = true;
-    description = hengvvang;
+    description = "hengvvang";
     extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" "input" "mpd" ];
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
@@ -49,7 +49,7 @@
 
   users.users.zlritsu = {
     isNormalUser = true;
-    description = zlritsu;
+    description = "zlritsu";
     extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" "input" "mpd" ];
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
@@ -85,6 +85,4 @@
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
   programs.fish.enable = true;
-
-
 }

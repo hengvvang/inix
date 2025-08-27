@@ -12,18 +12,18 @@
   system.stateVersion = 4;  # macOS 使用数字版本
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ hengvvang zlritsu ];
+    trusted-users = [ "hengvvang" "zlritsu" ];
   };
 
   # macOS 用户配置
   users.users.hengvvang = {
-    name = hengvvang;
+    name = "hengvvang";
     home = "/Users/hengvvang";
     shell = pkgs.fish;
   };
 
   users.users.zlritsu = {
-    name = zlritsu;
+    name = "zlritsu";
     home = "/Users/zlritsu";
     shell = pkgs.fish;
   };
