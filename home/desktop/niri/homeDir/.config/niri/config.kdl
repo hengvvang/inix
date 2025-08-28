@@ -749,7 +749,7 @@ binds {
     Mod+T { toggle-column-tabbed-display; }
     Mod+C { center-column; }
     // 将屏幕上所有完全可见的列居中。
-    Mod+Ctrl+C { center-visible-columns; }
+    Mod+Shift+C { center-visible-columns; }
 
     // 宽高度调整:
     // * 以像素设置宽高度："1000"
