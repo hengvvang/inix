@@ -542,8 +542,7 @@ window-rule {
 // ================================================================
 
 binds {
-    // "Mod" 是一个特殊修饰符，在 TTY 上运行时等于 Super，
-    // 在作为 winit 窗口运行时等于 Alt。
+    // "Mod" 是一个特殊修饰符，在 TTY 上运行时等于 Super，在作为 winit 窗口运行时等于 Alt。
     // 您可以在此处绑定的大多数操作也可以通过 `niri msg action do-something` 以编程方式调用。
 
     // 显示重要热键列表。
@@ -554,10 +553,9 @@ binds {
     Mod+Slash hotkey-overlay-title="运行应用程序:rofi" { spawn "rofi" "-show" "drun"; }
     Mod+B hotkey-overlay-title="运行应用程序:zen-browser" { spawn "zen"; }
     Ctrl+Mod+Escape hotkey-overlay-title="锁定屏幕:swaylock" { spawn "swaylock"; }
-    Ctrl+Alt+Escape hotkey-overlay-title="电源菜单:wlogout" { spawn "wlogout"; }
+    Ctrl+Mod+Shift+Escape hotkey-overlay-title="电源菜单:wlogout" { spawn "wlogout"; }
 
-    // 您也可以使用 shell。如果您需要管道、多个命令等，请执行此操作。
-    // 注意：整个命令最后作为单个参数。
+    // 您也可以使用 shell。如果您需要管道、多个命令等，请执行此操作。注意：整个命令最后作为单个参数。
     // 例如，这是切换屏幕阅读器 (orca) 的标准绑定。
     Mod+Alt+S hotkey-overlay-title=null { spawn "sh" "-c" "pkill orca || exec orca"; }
 
@@ -572,9 +570,7 @@ binds {
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
 
-    // 打开/关闭概览：工作区和窗口的缩小视图。
-    // 您也可以将鼠标移到左上角热角，
-    // 或在触摸板上执行四指向上滑动。
+    // 打开/关闭概览：工作区和窗口的缩小视图 // 也可以将鼠标移到左上角热角 // 或在触摸板上执行四指向上滑动。
     Mod+Ctrl+O repeat=false { toggle-overview; }
 
     Mod+Q repeat=false { close-window; }
@@ -590,6 +586,13 @@ binds {
     // 在到达列中第一个或最后一个窗口时跨工作区移动的替代命令。
     // Mod+J     { focus-window-or-workspace-down; }
     // Mod+K     { focus-window-or-workspace-up; }
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Ctrl+Left  { focus-column-first; }
+    Mod+Ctrl+Right { focus-column-last; }
+    Mod+Ctrl+H     { focus-column-first; }
+    Mod+Ctrl+L     { focus-column-last; }
+
 
     Mod+Shift+Left  { move-column-left; }
     Mod+Shift+Down  { move-window-down; }
@@ -602,16 +605,32 @@ binds {
     // 在到达列中第一个或最后一个窗口时跨工作区移动的替代命令。
     // Mod+Shift+J     { move-window-down-or-to-workspace-down; }
     // Mod+Shift+K     { move-window-up-or-to-workspace-up; }
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Shift+End  { move-column-to-last; }
+    Mod+Ctrl+Shift+Left  { move-column-to-first; }
+    Mod+Ctrl+Shift+Right { move-column-to-last; }
+    Mod+Ctrl+Shift+H     { move-column-to-first; }
+    Mod+Ctrl+Shift+L     { move-column-to-last; }
 
+    // 焦点在工作区间转移
     Mod+Ctrl+J            { focus-workspace-down; }
     Mod+Ctrl+K            { focus-workspace-up; }
     Mod+Ctrl+Down         { focus-workspace-down; }
     Mod+Ctrl+Up           { focus-workspace-up; }
 
+
     Mod+Ctrl+Shift+Down   { move-column-to-workspace-down; }
     Mod+Ctrl+Shift+Up     { move-column-to-workspace-up; }
     Mod+Ctrl+Shift+J      { move-column-to-workspace-down; }
     Mod+Ctrl+Shift+K      { move-column-to-workspace-up; }
+    // 或者，有命令只移动单个窗口：
+    // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
+
+    // 移动整个工作区，而不是column/window：
+    Mod+Ctrl+Shift+Page_Down { move-workspace-down; }
+    Mod+Ctrl+Shift+Page_Up   { move-workspace-up; }
+    Mod+Ctrl+Shift+D         { move-workspace-down; }
+    Mod+Ctrl+Shift+U         { move-workspace-up; }
 
     // 焦点在显示器间转移
     Mod+Alt+Left  { focus-monitor-left; }
@@ -622,7 +641,6 @@ binds {
     Mod+Alt+J     { focus-monitor-down; }
     Mod+Alt+K     { focus-monitor-up; }
     Mod+Alt+L     { focus-monitor-right; }
-
     // column在显示器间转移
     Mod+Alt+Shift+Left  { move-column-to-monitor-left; }
     Mod+Alt+Shift+Down  { move-column-to-monitor-down; }
@@ -635,7 +653,6 @@ binds {
     // 有命令只移动单个窗口：
     //不建议使用这个，因为 一个column至少包含一个window,想移动窗口可以通过快捷键排出多余窗口
     // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
-
     // 您还可以将整个工作区移动到另一个监视器：
     Mod+Alt+Ctrl+Shift+Up    { move-workspace-to-monitor-up; }
     Mod+Alt+Ctrl+Shift+Down  { move-workspace-to-monitor-down; }
@@ -646,34 +663,11 @@ binds {
     Mod+Alt+Ctrl+Shift+H     { move-workspace-to-monitor-left; }
     Mod+Alt+Ctrl+Shift+L     { move-workspace-to-monitor-right; }
 
-    // column 在单个工作区
-    Mod+Home { focus-column-first; }
-    Mod+End  { focus-column-last; }
-    Mod+Ctrl+Left  { focus-column-first; }
-    Mod+Ctrl+Right { focus-column-last; }
-    Mod+Ctrl+H     { focus-column-first; }
-    Mod+Ctrl+L     { focus-column-last; }
-
-    Mod+Shift+Home { move-column-to-first; }
-    Mod+Shift+End  { move-column-to-last; }
-    Mod+Ctrl+Shift+Left  { move-column-to-first; }
-    Mod+Ctrl+Shift+Right { move-column-to-last; }
-    Mod+Ctrl+Shift+H     { move-column-to-first; }
-    Mod+Ctrl+Shift+L     { move-column-to-last; }
-
-    // 或者，有命令只移动单个窗口：
-    // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
-
-    Mod+Shift+Page_Down { move-workspace-down; }
-    Mod+Shift+Page_Up   { move-workspace-up; }
-    Mod+Shift+D         { move-workspace-down; }
-    Mod+Shift+U         { move-workspace-up; }
 
     // 这些绑定将根据 natural-scroll 设置改变方向。
     // 为了避免快速滚动工作区，您可以使用 cooldown-ms 属性。
     // 绑定将被限制为此值。
     // 您可以在任何绑定上设置冷却时间，但对滚轮最有用。
-
     Mod+WheelScrollDown      { focus-window-down; }
     Mod+WheelScrollUp        { focus-window-up; }
     Mod+WheelScrollRight      { focus-column-right; }
@@ -694,38 +688,40 @@ binds {
     // 因为我们默认为触摸板启用了 natural-scroll。
     Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
     Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
+    Mod+Shift+TouchpadScrollDown { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
+    Mod+Shift+TouchpadScrollUp   { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
 
     // 您可以通过索引引用工作区。但是，请记住 niri 是一个动态工作区系统，
     // 尝试引用比当前工作区数量更大的工作区索引
     // 将引用最底部的（空）工作区。
     // 例如，有 2 个工作区 + 1 个空的，索引 3、4、5 等都将引用第 3 个工作区。
-    Mod+1 { focus-workspace 1; }
-    Mod+2 { focus-workspace 2; }
-    Mod+3 { focus-workspace 3; }
-    Mod+4 { focus-workspace 4; }
-    Mod+5 { focus-workspace 5; }
-    Mod+6 { focus-workspace 6; }
-    Mod+7 { focus-workspace 7; }
-    Mod+8 { focus-workspace 8; }
-    Mod+9 { focus-workspace 255; }
-    Mod+0 { focus-workspace 1; }
+    Ctrl+Mod+1 { focus-workspace 1; }
+    Ctrl+Mod+2 { focus-workspace 2; }
+    Ctrl+Mod+3 { focus-workspace 3; }
+    Ctrl+Mod+4 { focus-workspace 4; }
+    Ctrl+Mod+5 { focus-workspace 5; }
+    Ctrl+Mod+6 { focus-workspace 6; }
+    Ctrl+Mod+7 { focus-workspace 7; }
+    Ctrl+Mod+8 { focus-workspace 8; }
+    Ctrl+Mod+9 { focus-workspace 255; }
+    Ctrl+Mod+0 { focus-workspace 1; }
 
-    Mod+Shift+1 { move-column-to-workspace 1; }
-    Mod+Shift+2 { move-column-to-workspace 2; }
-    Mod+Shift+3 { move-column-to-workspace 3; }
-    Mod+Shift+4 { move-column-to-workspace 4; }
-    Mod+Shift+5 { move-column-to-workspace 5; }
-    Mod+Shift+6 { move-column-to-workspace 6; }
-    Mod+Shift+7 { move-column-to-workspace 7; }
-    Mod+Shift+8 { move-column-to-workspace 8; }
-    Mod+Shift+9 { move-column-to-workspace 255; }
-    Mod+Shift+0 { move-column-to-workspace 0; }
+    Ctrl+Mod+Shift+1 { move-column-to-workspace 1; }
+    Ctrl+Mod+Shift+2 { move-column-to-workspace 2; }
+    Ctrl+Mod+Shift+3 { move-column-to-workspace 3; }
+    Ctrl+Mod+Shift+4 { move-column-to-workspace 4; }
+    Ctrl+Mod+Shift+5 { move-column-to-workspace 5; }
+    Ctrl+Mod+Shift+6 { move-column-to-workspace 6; }
+    Ctrl+Mod+Shift+7 { move-column-to-workspace 7; }
+    Ctrl+Mod+Shift+8 { move-column-to-workspace 8; }
+    Ctrl+Mod+Shift+9 { move-column-to-workspace 255; }
+    Ctrl+Mod+Shift+0 { move-column-to-workspace 0; }
 
     // 或者，有命令只移动单个窗口：
     // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
     // 在当前和之前的工作区之间切换焦点。
-    // Mod+Tab { focus-workspace-previous; }
+    Mod+Tab { focus-workspace-previous; }
 
     // 以下绑定将聚焦的窗口移入和移出列。
     // 如果窗口单独存在，它们将其消费到侧边的附近列中。
@@ -769,7 +765,7 @@ binds {
 
     // 在浮动和平铺布局之间移动聚焦的窗口。
     Mod+Ctrl+F       { toggle-window-floating; }
-    Mod+Shift+S { switch-focus-between-floating-and-tiling; }
+    Mod+Ctrl+S { switch-focus-between-floating-and-tiling; }
 
     // 切换布局的操作。
     // Mod+BracketRight  { switch-layout "next"; }
