@@ -14,7 +14,7 @@
     pkgs.just
     pkgs.devenv
 
-    # pkgs.qq
+    pkgs.qq
     pkgs.wechat
     pkgs.discord
     pkgs.telegram-desktop
