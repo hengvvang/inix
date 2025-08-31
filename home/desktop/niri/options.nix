@@ -31,7 +31,7 @@
       };
       packageSource = lib.mkOption {
         type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-        default = "flake";
+        default = "nixpkgs";
         description = ''
           Source for Niri package installation:
           - none: Don't install Niri package (use system-level installation)

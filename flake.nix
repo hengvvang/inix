@@ -134,10 +134,10 @@
             inherit inputs outputs;
           };
         };
-        "laptop@zlritsu" = lib.homeManagerConfiguration {
+        "laptop@rosenzwy" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            ./hosts/laptop/users/zlritsu
+            ./hosts/laptop/users/rosenzwy
           ];
           extraSpecialArgs = {
             inherit inputs outputs;

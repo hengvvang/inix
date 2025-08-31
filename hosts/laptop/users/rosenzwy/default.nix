@@ -9,8 +9,8 @@
 
   config = {
     nixpkgs.config.allowUnfree = true;
-    home.username = "zlritsu";
-    home.homeDirectory = "/home/zlritsu";
+    home.username = "rosenzwy";
+    home.homeDirectory = "/home/rosenzwy";
     home.stateVersion = "25.05";
     programs.home-manager.enable = true;
 

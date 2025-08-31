@@ -26,7 +26,7 @@
   # };
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "hengvvang" "zlritsu" ];
+    trusted-users = [ "hengvvang" "rosenzwy" ];
     # 并行构建限制 - 平衡性能与内存使用
     # max-jobs = 12;  # 32核心的37.5%，提升构建速度
     # cores = 2;      # 每个构建任务使用2个核心
@@ -44,17 +44,17 @@
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
     ];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
-  users.users.zlritsu = {
+  users.users.rosenzwy = {
     isNormalUser = true;
-    description = "zlritsu";
+    description = "rosenzwy";
     extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" "input" "mpd" ];
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
     ];
-    shell = pkgs.fish;
+    shell = pkgs.zsh;
   };
 
   environment.systemPackages = [
@@ -84,5 +84,5 @@
       dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
       localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
-  programs.fish.enable = true;
+  programs.zsh.enable = true;
 }
