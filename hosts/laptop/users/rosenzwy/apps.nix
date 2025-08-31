@@ -14,9 +14,10 @@
     pkgs.just
     pkgs.devenv
 
-    # pkgs.qq
+    pkgs.qq
     pkgs.wechat
     pkgs.discord
+    pkgs.element-desktop
     pkgs.telegram-desktop
 
     # pkgs.clash-verge-rev

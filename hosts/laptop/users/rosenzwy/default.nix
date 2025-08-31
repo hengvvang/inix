@@ -8,56 +8,144 @@
   ];
 
   config = {
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+      allowUnfree = true;
+    };
     home.username = "rosenzwy";
     home.homeDirectory = "/home/rosenzwy";
     home.stateVersion = "25.05";
     programs.home-manager.enable = true;
 
     myHome = {
-      develop = {
+      desktop = {
         enable = true;
-        devenv = {
-          enable = false;
-          autoSwitch = false;
-          shell = "fish";
-          templates = false;
-          cache = false;
-        };
-        rust.enable = false;
-        python.enable = true;
-        javascript.enable = false;
-        typescript.enable = false;
-        cpp.enable = false;
+        preset = "niri";
       };
 
       dotfiles = {
         enable = true;
-        vim.enable = true;
-        zsh.enable = false;
-        bash.enable = true;
-        fish.enable = true;
-        nushell.enable = false;
-        yazi.enable = true;
-        ghostty.enable = false;
-        alacritty.enable = false;
-        tmux.enable = false;
+        vim = {
+          enable = true;
+          method = "homeManager";
+        };
+        zsh = {
+          enable = true;
+          method = "homeManager";
+        };
+        bash = {
+          enable = true;
+          method = "homeManager";
+        };
+        fish = {
+          enable = true;
+          method = "homeManager";
+        };
+        nushell = {
+          enable = true;
+          method = "homeManager";
+        };
+        tmux.enable = true;
         git.enable = true;
-        lazygit.enable = false;
-        starship.enable = true;
-        qutebrowser.enable = true;
+        lazygit.enable = true;
+        starship = {
+          enable = true;
+          method = "homeManager";
+        };
+        qutebrowser.enable = false;
+        alacritty = {
+          enable = true;
+          method = "copyLink";
+        };
+        obs-studio = {
+          enable = true;
+          method = "homeManager";
+        };
+        sherlock = {
+            enable = true;
+            method = "copyLink";
+        };
+        zed = {
+          enable = false;
+          method = "copyLink";
+        };
+        vscode = {
+          enable = false;
+          method = "copyLink";
+        };
+        rofi = {
+          enable = false;
+          method = "copyLink";
+        };
+        ghostty = {
+          enable = true;
+          method = "homeManager";
+        };
+        yazi = {
+          enable = true;
+          method = "copyLink";
+        };
+        zellij = {
+          enable = true;
+          method = "copyLink";
+        };
+        rio = {
+          enable = true;
+          method = "homeManager";
+        };
+        rmpc = {
+          enable = true;
+          method = "copyLink";
+        };
       };
 
+      develop = {
+        enable = true;
+        devenv = {
+          enable = true;
+          autoSwitch = true;    # 启用自动环境切换（direnv）
+          shell = "fish";
+          templates = true;     # 安装项目模板工具（完整功能）
+          cache = true;         # 启用构建缓存优化
+        };
+        # 按语言直接配置
+        rust = {
+          enable = true;
+          embedded.enable = true;
+        };
+        python.enable = true;
+        javascript.enable = true;
+        typescript.enable = true;
+        cpp = {
+          enable = true;
+          embedded.enable = true;
+        };
+      };
+
+      services = {
+        media = {
+          # MPD 用户级音乐服务配置
+          mpd = {
+            enable = true;                        # 启用用户级 MPD 服务
+            musicDirectory = "${config.home.homeDirectory}/Music";  # 音乐目录
+            port = 6600;                          # MPD 端口
+            autoStart = true;                     # 开机自动启动
+            clients = {
+              mpc = true;                         # 安装 mpc 命令行客户端
+              rmpc = true;
+            };
+          };
+        };
+      };
 
       profiles = {
         enable = true;
         fonts = {
-          preset = "zen";   # 简洁专注的字体配置
+          enable = true;
+          preset = "zen";
         };
-        # 添加统一主题配置
         stylix = {
           enable = false;  # 启用用户级 stylix
-          # 跟随系统配置
+          # 跟随系统配置，确保一致性
           colorScheme = {
             mode = "preset";
             preset = {
@@ -65,11 +153,41 @@
             };
           };
           polarity = "dark";  # 强制深色模式
-          # 启用基础应用主题
+          cursor = {
+            enable = true;
+            name = "macOS";
+            package = pkgs.apple-cursor;
+            size = 24;
+          };
+          fonts = {
+            enable = true;
+            families = {
+              sansSerif = {
+                name = "LXGW WenKai";
+                package = pkgs.lxgw-wenkai;
+              };
+              serif = {
+                name = "LXGW WenKai";
+                package = pkgs.lxgw-wenkai;
+              };
+              monospace = {
+                name = "LXGW WenKai Mono";
+                package = pkgs.lxgw-wenkai;
+              };
+              emoji = {
+                name = "Noto Color Emoji";
+                package = pkgs.noto-fonts-color-emoji;
+              };
+            };
+          };
+          # 启用更多应用主题
           targets = {
-            gtk.enable = true;
             vim.enable = true;
-            yazi.enable = true;
+            gtk.enable = true;  # 启用 GTK 主题
+            tmux.enable = true;
+            btop.enable = true;
+            alacritty.enable = true;  # 启用 Alacritty 主题
+            yazi.enable = true;       # 启用 Yazi 主题
           };
         };
       };
