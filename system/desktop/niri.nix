@@ -8,8 +8,8 @@
         # Niri 是一个基于 Rust 和 Smithay 的滚动平铺 Wayland 合成器
         programs.niri = {
             enable = true;
-            # package = pkgs.niri;
-            package = inputs.niri.packages.${pkgs.system}.niri;
+            package = pkgs.niri;
+            # package = inputs.niri.packages.${pkgs.system}.niri;
         };
 
         # ========== 显示管理器配置 ==========
