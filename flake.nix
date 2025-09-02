@@ -202,6 +202,44 @@
             inherit inputs outputs;
           };
         };
+        #
+        # wsl
+        #
+        "wsl-archlinux@hengvvang" = lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./hosts/wsl/archlinux/users/hengvvang
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs;
+        };
+      };
+      "wsl-archlinux@rosenzwy" = lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          ./hosts/wsl/archlinux/users/rosenzwy
+        ];
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+      };
+      "wsl-ubuntu@hengvvang" = lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          ./hosts/wsl/ubuntu/users/hengvvang
+        ];
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
+      };
+      "wsl-ubuntu@rosenzwy" = lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [
+          ./hosts/wsl/ubuntu/users/rosenzwy
+        ];
+        extraSpecialArgs = {
+          inherit inputs outputs;
+        };
       };
     };
 }
