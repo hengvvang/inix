@@ -2,9 +2,10 @@
 
 {
   home.packages = [
+    pkgs.google-chrome
+    pkgs.firefox
+
+    pkgs.zed-editor
     pkgs.vscode
-    pkgs.mise
-    pkgs.just
-    pkgs.devenv
   ];
 }

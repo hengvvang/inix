@@ -3,8 +3,5 @@
 {
   home.packages = [
     pkgs.vscode
-    pkgs.mise
-    pkgs.just
-    pkgs.devenv
   ];
 }

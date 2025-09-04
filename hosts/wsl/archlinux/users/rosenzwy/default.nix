@@ -3,6 +3,7 @@
 {
   imports = [
     outputs.home
+    ./home.nix
     ./apps.nix
     ./toolkits.nix
   ];
@@ -15,8 +16,8 @@
     home.homeDirectory = "/home/rosenzwy";
     home.stateVersion = "25.05";
     programs.home-manager.enable = true;
-
-    myHome = {
+  };
+}
       desktop = {
         enable = true;
         preset = "niri";

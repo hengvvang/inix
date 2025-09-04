@@ -2,9 +2,7 @@
 
 {
   home.packages = [
+    pkgs.firefox
     pkgs.vscode
-    pkgs.mise
-    pkgs.just
-    pkgs.devenv
   ];
 }
