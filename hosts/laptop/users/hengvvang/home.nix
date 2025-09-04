@@ -92,18 +92,6 @@
         templates = true;     # 安装项目模板工具（完整功能）
         cache = true;         # 启用构建缓存优化
       };
-      # 按语言直接配置
-      rust = {
-        enable = true;
-        embedded.enable = true;
-      };
-      python.enable = true;
-      javascript.enable = true;
-      typescript.enable = true;
-      cpp = {
-        enable = true;
-        embedded.enable = true;
-      };
     };
 
     services = {

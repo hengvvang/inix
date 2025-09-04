@@ -44,11 +44,6 @@
         templates = false;
         cache = false;
       };
-      python.enable = true;
-      rust.enable = false;
-      javascript.enable = false;
-      typescript.enable = false;
-      cpp.enable = false;
     };
 
     profiles = {

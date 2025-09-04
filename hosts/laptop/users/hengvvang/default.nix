@@ -6,6 +6,7 @@
     ./home.nix
     ./apps.nix
     ./toolkits.nix
+    ./develop.nix
   ];
 
   config = {

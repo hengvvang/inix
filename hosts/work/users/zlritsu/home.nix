@@ -16,11 +16,6 @@
         templates = false;
         cache = false;
       };
-      rust.enable = false;
-      python.enable = true;
-      javascript.enable = true;
-      typescript.enable = false;
-      cpp.enable = false;
     };
 
     dotfiles = {
