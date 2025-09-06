@@ -2,19 +2,18 @@
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Introduction
 
 // === 开机启动服务 ===
-spawn-at-startup "fcitx5 -d"                       // 输入法守护进程
-spawn-at-startup "waybar"                    // 状态栏
-// spawn-at-startup "ironbar"               // 另一个状态栏
-spawn-at-startup "swww-daemon"               // 壁纸服务
-// spawn-at-startup "swaybg"               //另一个壁纸服务
-spawn-at-startup "dunst"                     // 通知服务
-// spawn-at-startup "mako"                     // 另一个通知服务
-spawn-at-startup "swayidle"                  // 空闲管理服务
-spawn-at-startup "xwayland-satellite"       // Xwayland 支持
+// 使用 spawn-sh-at-startup 来运行带参数的命令更加清晰
+spawn-sh-at-startup "fcitx5 -d"                    // 输入法守护进程
+spawn-at-startup "waybar"                          // 状态栏
+// spawn-at-startup "ironbar"                      // 另一个状态栏
+spawn-at-startup "swww-daemon"                     // 壁纸服务
+// spawn-at-startup "swaybg"                       // 另一个壁纸服务
+spawn-at-startup "dunst"                           // 通知服务
+// spawn-at-startup "mako"                         // 另一个通知服务
+spawn-at-startup "swayidle"                        // 空闲管理服务
 spawn-at-startup "niriswitcher"
 spawn-at-startup "sunsetr"
 // -- 带参数的启动命令 --
-spawn-at-startup "niri" "msg" "action" "focus-workspace" "2"      // 开机切换到工作区2
 // spawn-at-startup "sh" "-c" "sleep 5 && firefox"  // 延迟启动
 // spawn-at-startup "gammastep" "-O" "4500"          // 带参数启动
 
@@ -298,7 +297,30 @@ animations {
     }
 }
 
-// ================================================================
+// 手势配置 - niri 25.08 新功能
+// 配置鼠标和触摸屏的手势行为
+gestures {
+    // 拖拽时边缘滚动配置
+    dnd-edge-view-scroll {
+        trigger-width 40          // 触发区域宽度（逻辑像素）
+        delay-ms 150              // 延迟时间（毫秒）
+        max-speed 2000            // 最大滚动速度（像素/秒）
+    }
+
+    // 概览模式下的工作区切换
+    dnd-edge-workspace-switch {
+        trigger-height 60         // 触发区域高度（逻辑像素）
+        delay-ms 150              // 延迟时间（毫秒）
+        max-speed 2000            // 最大滚动速度
+    }
+
+    // 热角功能：鼠标移到屏幕左上角触发概览
+    hot-corners {
+        // 启用热角功能（移除 'off' 即启用）
+        // 如果不想要这个功能，取消注释下面这行：
+        // off
+    }
+}// ================================================================
 // ===                     窗口样式                             ===
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 // 默认以浮动方式打开 Firefox 画中画播放器。
@@ -549,11 +571,11 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
     // 运行程序的建议绑定：终端、应用启动器、屏幕锁定器。
-    Mod+Return hotkey-overlay-title="打开终端:ghostty" { spawn "ghostty"; }
-    Mod+Slash hotkey-overlay-title="运行应用程序:rofi" { spawn "rofi" "-show" "drun"; }
-    Mod+B hotkey-overlay-title="运行应用程序:zen-browser" { spawn "zen"; }
-    Ctrl+Mod+Escape hotkey-overlay-title="锁定屏幕:swaylock" { spawn "swaylock"; }
-    Ctrl+Mod+Shift+Escape hotkey-overlay-title="电源菜单:wlogout" { spawn "wlogout"; }
+    Mod+Return hotkey-overlay-title="打开终端: ghostty" { spawn "ghostty"; }
+    Mod+Slash hotkey-overlay-title="运行应用程序: rofi" { spawn "rofi" "-show" "drun"; }
+    Mod+B hotkey-overlay-title="运行浏览器: zen-browser" { spawn "zen"; }
+    Ctrl+Mod+Escape hotkey-overlay-title="锁定屏幕: swaylock" { spawn "swaylock"; }
+    Ctrl+Mod+Shift+Escape hotkey-overlay-title="电源菜单: wlogout" { spawn "wlogout"; }
 
     // 您也可以使用 shell。如果您需要管道、多个命令等，请执行此操作。注意：整个命令最后作为单个参数。
     // 例如，这是切换屏幕阅读器 (orca) 的标准绑定。
@@ -561,10 +583,10 @@ binds {
 
     // PipeWire 和 WirePlumber 的示例音量键映射。
     // allow-when-locked=true 属性使它们即使在会话锁定时也能工作。
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
-    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
     // brightnessctl 的示例亮度键映射。
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
@@ -686,8 +708,8 @@ binds {
     // 触摸板滚动是连续的，所以对于这些绑定，它被分割成离散间隔。
     // 这些绑定也受触摸板的 natural-scroll 影响，所以这些示例绑定是"反向的"，
     // 因为我们默认为触摸板启用了 natural-scroll。
-    Mod+TouchpadScrollDown { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
-    Mod+TouchpadScrollUp   { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
+    Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
+    Mod+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
     Mod+Shift+TouchpadScrollDown { spawn "brightnessctl" "--class=backlight" "set" "+5%"; }
     Mod+Shift+TouchpadScrollUp   { spawn "brightnessctl" "--class=backlight" "set" "5%-"; }
 
@@ -779,6 +801,10 @@ binds {
     // 这确保 niri 始终处理它们，即使抑制器处于活动状态。
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
+    // quit 操作会显示确认对话框以避免意外退出
     Mod+Shift+Q { quit; }
+    // 经典的 Ctrl+Alt+Delete 组合键
+    Ctrl+Alt+Delete { quit; }
+
     Mod+Shift+P { power-off-monitors; }
 }
