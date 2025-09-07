@@ -78,8 +78,8 @@
         ] else if config.myHome.desktop.niri.waybar.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
 
       xdg.configFile = {
-        "waybar/config".source = ./.config/waybar/config;
-        "waybar/style.css".source = ./.config/waybar/style.css;
+        "waybar/config".source = ./.config/waybar/rose-pine/config;
+        "waybar/style.css".source = ./.config/waybar/rose-pine/style.css;
         "waybar/scripts/wallpaper.sh" = {
           source = ./.config/waybar/scripts/wallpaper.sh;
           executable = true;
