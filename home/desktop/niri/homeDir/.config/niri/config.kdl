@@ -690,15 +690,22 @@ binds {
     // 为了避免快速滚动工作区，您可以使用 cooldown-ms 属性。
     // 绑定将被限制为此值。
     // 您可以在任何绑定上设置冷却时间，但对滚轮最有用。
-    Mod+WheelScrollDown      { focus-window-down; }
-    Mod+WheelScrollUp        { focus-window-up; }
-    Mod+WheelScrollRight      { focus-column-right; }
-    Mod+WheelScrollLeft       { focus-column-left; }
+    Mod+WheelScrollDown      { focus-column-right; }
+    Mod+WheelScrollUp       { focus-column-left; }
 
-    Mod+Shift+WheelScrollDown { move-window-down; }
-    Mod+Shift+WheelScrollUp   { move-window-up; }
-    Mod+Shift+WheelScrollRight { move-column-right; }
-    Mod+Shift+WheelScrollLeft  { move-column-left; }
+    Mod+Shift+WheelScrollDown { move-column-right; }
+    Mod+Shift+WheelScrollUp  { move-column-left; }
+
+
+    // Mod+WheelScrollDown      { focus-window-down; }
+    // Mod+WheelScrollUp        { focus-window-up; }
+    // Mod+WheelScrollRight      { focus-column-right; }
+    // Mod+WheelScrollLeft       { focus-column-left; }
+
+    // Mod+Shift+WheelScrollDown { move-window-down; }
+    // Mod+Shift+WheelScrollUp   { move-window-up; }
+    // Mod+Shift+WheelScrollRight { move-column-right; }
+    // Mod+Shift+WheelScrollLeft  { move-column-left; }
 
     Mod+Ctrl+WheelScrollDown      cooldown-ms=150 { focus-workspace-down; }
     Mod+Ctrl+WheelScrollUp        cooldown-ms=150 { focus-workspace-up; }
@@ -759,7 +766,6 @@ binds {
 
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { switch-preset-window-height; }
-
     Mod+Ctrl+R { reset-window-height; }
 
     Mod+M { maximize-column; }
