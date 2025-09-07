@@ -1,5 +1,8 @@
 { config, lib, pkgs, inputs, ... }:
-
+let
+  # 定义当前目录的绝对路径
+  currentDir = toString ./.;
+in
 {
   config = lib.mkMerge [
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.packages.enable && config.myHome.desktop.hyprland.packages.method == "realTime") {
@@ -64,18 +67,18 @@
           # packageSource == "none": 不安装任何包
         ];
       xdg.configFile = {
-        "hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/hypr/hyprland.conf";
-        "hypr/hypridle.conf".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/hypr/hypridle.conf";
-        "hypr/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/hypr/hyprlock.conf";
-        "hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/hypr/hyprpaper.conf";
+        "hypr/hyprland.conf".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/hypr/hyprland.conf";
+        "hypr/hypridle.conf".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/hypr/hypridle.conf";
+        "hypr/hyprlock.conf".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/hypr/hyprlock.conf";
+        "hypr/hyprpaper.conf".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/hypr/hyprpaper.conf";
 
         # 主题配置
-        "hypr/themes/catppuccin.conf".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/hypr/themes/catppuccin.conf";
-        "hypr/themes/macos-tahoe-glass.conf".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/hypr/themes/macos-tahoe-glass.conf";
+        "hypr/themes/catppuccin.conf".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/hypr/themes/catppuccin.conf";
+        "hypr/themes/macos-tahoe-glass.conf".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/hypr/themes/macos-tahoe-glass.conf";
 
         # 脚本配置
         "hypr/scripts/wallpaper.sh" = {
-          source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/hypr/scripts/wallpaper.sh";
+          source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/hypr/scripts/wallpaper.sh";
           executable = true;
         };
       };
@@ -88,8 +91,8 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.desktop.hyprland.waybar.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
       xdg.configFile = {
-        "waybar/config".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/waybar/config";
-        "waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/waybar/style.css";
+        "waybar/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/waybar/config";
+        "waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/waybar/style.css";
       };
     })
 
@@ -100,7 +103,7 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.desktop.hyprland.dunst.packageSource == "nixpkgs" then (with pkgs; [ dunst ]) else [];
       xdg.configFile = {
-        "dunst/dunstrc".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/dunst/dunstrc";
+        "dunst/dunstrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/dunst/dunstrc";
       };
     })
 
@@ -114,8 +117,8 @@
           whitesur-icon-theme
         ]) else [];
       home.file = {
-        ".config/rofi/config.rasi".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/rofi/config.rasi";
-        ".config/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/rofi/themes";
+        ".config/rofi/config.rasi".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rofi/config.rasi";
+        ".config/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rofi/themes";
       };
 
       # Rofi 环境变量
@@ -133,7 +136,7 @@
         ] else if config.myHome.desktop.hyprland.swappy.packageSource == "nixpkgs" then (with pkgs; [ swappy ]) else [];
 
       xdg.configFile = {
-        "swappy/config".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/swappy/config";
+        "swappy/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/swappy/config";
       };
     })
 
@@ -145,8 +148,8 @@
         ] else if config.myHome.desktop.hyprland.wlogout.packageSource == "nixpkgs" then (with pkgs; [ wlogout ]) else [];
 
       xdg.configFile = {
-        "wlogout/layout".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/wlogout/layout";
-        "wlogout/style.css".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/wlogout/style.css";
+        "wlogout/layout".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/wlogout/layout";
+        "wlogout/style.css".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/wlogout/style.css";
       };
     })
 
@@ -158,7 +161,7 @@
         ] else if config.myHome.desktop.hyprland.fuzzel.packageSource == "nixpkgs" then (with pkgs; [ fuzzel ]) else [];
 
       xdg.configFile = {
-        "fuzzel/fuzzel.ini".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/fuzzel/fuzzel.ini";
+        "fuzzel/fuzzel.ini".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/fuzzel/fuzzel.ini";
       };
     })
 
@@ -170,8 +173,8 @@
         ] else if config.myHome.desktop.hyprland.ironbar.packageSource == "nixpkgs" then (with pkgs; [ ironbar ]) else [];
 
       xdg.configFile = {
-        "ironbar/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/ironbar/config.toml";
-        "ironbar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/ironbar/style.css";
+        "ironbar/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/ironbar/config.toml";
+        "ironbar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/ironbar/style.css";
       };
     })
   ];

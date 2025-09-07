@@ -1,5 +1,8 @@
 { config, lib, pkgs, ... }:
-
+let
+  # 定义当前目录的绝对路径
+  currentDir = toString ./.;
+in
 {
   config = lib.mkMerge [
     # Bash 配置
@@ -9,10 +12,10 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.bash.packageSource == "nixpkgs" then (with pkgs; [ bash ]) else [];
 
-      home.file.".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.bashrc";
-      home.file.".bash_profile".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.bash_profile";
-      home.file.".bash_aliases".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.bash_aliases";
-      home.file.".bash_functions".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.bash_functions";
+      home.file.".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bashrc";
+      home.file.".bash_profile".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bash_profile";
+      home.file.".bash_aliases".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bash_aliases";
+      home.file.".bash_functions".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bash_functions";
     })
 
     # Zsh 配置
@@ -22,11 +25,11 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.zsh.packageSource == "nixpkgs" then (with pkgs; [ zsh ]) else [];
 
-      home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.zshrc";
-      home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.zprofile";
-      home.file.".zlogin".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.zlogin";
-      home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.zshenv";
-      home.file.".zlogout".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.zlogout";
+      home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zshrc";
+      home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zprofile";
+      home.file.".zlogin".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zlogin";
+      home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zshenv";
+      home.file.".zlogout".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zlogout";
     })
 
     # Vim 配置
@@ -36,7 +39,7 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.vim.packageSource == "nixpkgs" then (with pkgs; [ vim ]) else [];
 
-      home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.vimrc";
+      home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.vimrc";
     })
 
     # Fish 配置
@@ -46,10 +49,10 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.fish.packageSource == "nixpkgs" then (with pkgs; [ fish ]) else [];
 
-      home.file.".config/fish/config.fish".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/fish/config.fish";
-      home.file.".config/fish/completions".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/fish/completions";
-      home.file.".config/fish/conf.d".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/fish/conf.d";
-      home.file.".config/fish/functions".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/fish/functions";
+      home.file.".config/fish/config.fish".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/fish/config.fish";
+      home.file.".config/fish/completions".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/fish/completions";
+      home.file.".config/fish/conf.d".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/fish/conf.d";
+      home.file.".config/fish/functions".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/fish/functions";
     })
 
     # Nushell 配置
@@ -60,8 +63,8 @@
         ] else if config.myHome.dotfiles.nushell.packageSource == "nixpkgs" then (with pkgs; [ nushell ]) else [];
 
       # Nushell 配置文件通常在 ~/.config/nushell/ 目录下
-      home.file.".config/nushell/config.nu".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/nushell/config.nu";
-      home.file.".config/nushell/env.nu".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/nushell/env.nu";
+      home.file.".config/nushell/config.nu".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/nushell/config.nu";
+      home.file.".config/nushell/env.nu".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/nushell/env.nu";
     })
 
     # Starship 配置
@@ -71,7 +74,7 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.starship.packageSource == "nixpkgs" then (with pkgs; [ starship ]) else [];
 
-      home.file.".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/starship.toml";
+      home.file.".config/starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/starship.toml";
     })
 
     # Alacritty 配置
@@ -81,8 +84,8 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.alacritty.packageSource == "nixpkgs" then (with pkgs; [ alacritty ]) else [];
 
-      home.file.".config/alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/alacritty/alacritty.toml";
-      home.file.".config/alacritty/themes".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/alacritty/themes";
+      home.file.".config/alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/alacritty/alacritty.toml";
+      home.file.".config/alacritty/themes".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/alacritty/themes";
     })
 
     # Ghostty 配置
@@ -92,8 +95,8 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.ghostty.packageSource == "nixpkgs" then (with pkgs; [ ghostty ]) else [];
 
-      home.file.".config/ghostty/config".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/ghostty/config";
-      home.file.".config/ghostty/themes".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/ghostty/themes";
+      home.file.".config/ghostty/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/ghostty/config";
+      home.file.".config/ghostty/themes".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/ghostty/themes";
     })
 
     # Rio 配置
@@ -103,8 +106,8 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.rio.packageSource == "nixpkgs" then (with pkgs; [ rio ]) else [];
 
-      home.file.".config/rio/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/rio/config.toml";
-      home.file.".config/rio/themes".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/rio/themes";
+      home.file.".config/rio/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rio/config.toml";
+      home.file.".config/rio/themes".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rio/themes";
     })
 
     # Git 配置
@@ -114,8 +117,8 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.git.packageSource == "nixpkgs" then (with pkgs; [ git ]) else [];
 
-      home.file.".config/git/config".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/git/gitconfig";
-      home.file.".config/git/ignore".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/git/gitignore_global";
+      home.file.".config/git/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/git/gitconfig";
+      home.file.".config/git/ignore".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/git/gitignore_global";
     })
 
     # Lazygit 配置
@@ -125,7 +128,7 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.lazygit.packageSource == "nixpkgs" then (with pkgs; [ lazygit ]) else [];
 
-      home.file.".config/lazygit/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/lazygit/config.yml";
+      home.file.".config/lazygit/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/lazygit/config.yml";
     })
 
     # Tmux 配置
@@ -135,7 +138,7 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.tmux.packageSource == "nixpkgs" then (with pkgs; [ tmux ]) else [];
 
-      home.file.".config/tmux/tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/tmux/tmux.conf";
+      home.file.".config/tmux/tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/tmux/tmux.conf";
     })
 
     # Zellij 配置
@@ -145,9 +148,9 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.zellij.packageSource == "nixpkgs" then (with pkgs; [ zellij ]) else [];
 
-      home.file.".config/zellij/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/zellij/config.kdl";
-      home.file.".config/zellij/layouts".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/zellij/layouts";
-      home.file.".config/zellij/themes".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/zellij/themes";
+      home.file.".config/zellij/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/zellij/config.kdl";
+      home.file.".config/zellij/layouts".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/zellij/layouts";
+      home.file.".config/zellij/themes".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/zellij/themes";
     })
 
     # Rofi 配置
@@ -157,9 +160,9 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.rofi.packageSource == "nixpkgs" then (with pkgs; [ rofi ]) else [];
 
-      home.file.".config/rofi/config.rasi".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/rofi/config.rasi";
-      home.file.".config/rofi/scripts".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/rofi/scripts";
-      home.file.".config/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/rofi/themes";
+      home.file.".config/rofi/config.rasi".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rofi/config.rasi";
+      home.file.".config/rofi/scripts".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rofi/scripts";
+      home.file.".config/rofi/themes".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rofi/themes";
     })
 
     # Sherlock 配置
@@ -169,14 +172,14 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.sherlock.packageSource == "nixpkgs" then (with pkgs; [ sherlock ]) else [];
 
-      home.file.".config/sherlock/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/sherlock/config.toml";
-      home.file.".config/sherlock/fallback.json".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/sherlock/fallback.json";
-      home.file.".config/sherlock/icons".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/sherlock/icons";
-      home.file.".config/sherlock/scripts".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/sherlock/scripts";
-      home.file.".config/sherlock/sherlock_actions.json".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/sherlock/sherlock_actions.json";
-      home.file.".config/sherlock/sherlock_alias.json".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/sherlock/sherlock_alias.json";
-      home.file.".config/sherlock/sherlockignore".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/sherlock/sherlockignore";
-      home.file.".config/sherlock/themes".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/sherlock/themes";
+      home.file.".config/sherlock/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/sherlock/config.toml";
+      home.file.".config/sherlock/fallback.json".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/sherlock/fallback.json";
+      home.file.".config/sherlock/icons".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/sherlock/icons";
+      home.file.".config/sherlock/scripts".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/sherlock/scripts";
+      home.file.".config/sherlock/sherlock_actions.json".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/sherlock/sherlock_actions.json";
+      home.file.".config/sherlock/sherlock_alias.json".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/sherlock/sherlock_alias.json";
+      home.file.".config/sherlock/sherlockignore".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/sherlock/sherlockignore";
+      home.file.".config/sherlock/themes".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/sherlock/themes";
     })
 
     # RMPC 配置
@@ -186,7 +189,7 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.rmpc.packageSource == "nixpkgs" then (with pkgs; [ rmpc ]) else [];
 
-      home.file.".config/rmpc/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/rmpc/config.toml";
+      home.file.".config/rmpc/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rmpc/config.toml";
     })
 
     # Yazi 配置
@@ -196,9 +199,9 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.yazi.packageSource == "nixpkgs" then (with pkgs; [ yazi ]) else [];
 
-      home.file.".config/yazi/yazi.toml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/yazi/yazi.toml";
-      home.file.".config/yazi/keymap.toml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/yazi/keymap.toml";
-      home.file.".config/yazi/theme.toml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/yazi/theme.toml";
+      home.file.".config/yazi/yazi.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/yazi/yazi.toml";
+      home.file.".config/yazi/keymap.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/yazi/keymap.toml";
+      home.file.".config/yazi/theme.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/yazi/theme.toml";
     })
 
     # Qutebrowser 配置
@@ -208,7 +211,7 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.qutebrowser.packageSource == "nixpkgs" then (with pkgs; [ qutebrowser ]) else [];
 
-      home.file.".config/qutebrowser/config.py".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/qutebrowser/config.py";
+      home.file.".config/qutebrowser/config.py".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/qutebrowser/config.py";
     })
 
     # OBS Studio 配置
@@ -218,7 +221,7 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.obs-studio.packageSource == "nixpkgs" then (with pkgs; [ obs-studio ]) else [];
 
-      home.file.".config/obs-studio/README.md".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/obs-studio/README.md";
+      home.file.".config/obs-studio/README.md".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/obs-studio/README.md";
     })
 
     # VSCode 配置
@@ -228,7 +231,7 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.vscode.packageSource == "nixpkgs" then (with pkgs; [ vscode ]) else [];
 
-      home.file.".config/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/Code/User/settings.json";
+      home.file.".config/Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/Code/User/settings.json";
     })
 
     # Zed 配置
@@ -238,7 +241,7 @@
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.zed.packageSource == "nixpkgs" then (with pkgs; [ zed-editor ]) else [];
 
-      home.file.".config/zed/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/zed/settings.json";
+      home.file.".config/zed/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/zed/settings.json";
     })
   ];
 }

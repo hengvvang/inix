@@ -1,5 +1,8 @@
 { config, lib, pkgs, inputs, ... }:
-
+let
+  # 定义当前目录的绝对路径
+  currentDir = toString ./.;
+in
 {
   config = lib.mkMerge [
     # Niri 生态系统包配置
@@ -66,7 +69,7 @@
         ];
 
       xdg.configFile = {
-        "niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/niri/config.kdl";
+        "niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/config.kdl";
       };
     })
 
@@ -78,10 +81,10 @@
         ] else if config.myHome.desktop.niri.waybar.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
 
       xdg.configFile = {
-        "waybar/config".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/waybar/config";
-        "waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/waybar/style.css";
+        "waybar/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/waybar/config";
+        "waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/waybar/style.css";
         "waybar/scripts/wallpaper.sh" = {
-          source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/waybar/scripts/wallpaper.sh";
+          source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/waybar/scripts/wallpaper.sh";
           executable = true;
         };
       };
@@ -95,8 +98,8 @@
         ] else if config.myHome.desktop.niri.ironbar.packageSource == "nixpkgs" then (with pkgs; [ ironbar ]) else [];
 
       xdg.configFile = {
-        "ironbar/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/ironbar/config.toml";
-        "ironbar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/ironbar/style.css";
+        "ironbar/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/ironbar/config.toml";
+        "ironbar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/ironbar/style.css";
       };
     })
 
@@ -110,8 +113,8 @@
         ]) else [];
 
       xdg.configFile = {
-        "rofi/config.rasi".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/rofi/config.rasi";
-        "rofi/themes/dark.rasi".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/rofi/themes/dark.rasi";
+        "rofi/config.rasi".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rofi/config.rasi";
+        "rofi/themes/dark.rasi".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rofi/themes/dark.rasi";
       };
     })
 
@@ -123,7 +126,7 @@
         ] else if config.myHome.desktop.niri.fuzzel.packageSource == "nixpkgs" then (with pkgs; [ fuzzel lxgw-wenkai ]) else [];
 
       xdg.configFile = {
-        "fuzzel/fuzzel.ini".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/fuzzel/fuzzel.ini";
+        "fuzzel/fuzzel.ini".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/fuzzel/fuzzel.ini";
       };
     })
 
@@ -138,7 +141,7 @@
         ]) else [];
 
       xdg.configFile = {
-        "swaylock/config".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/swaylock/config";
+        "swaylock/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/swaylock/config";
       };
     })
 
@@ -154,7 +157,7 @@
         ]) else [];
 
       xdg.configFile = {
-        "swayidle/config".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/swayidle/config";
+        "swayidle/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/swayidle/config";
       };
     })
 
@@ -168,9 +171,9 @@
         ]) else [];
 
       xdg.configFile = {
-        "wlogout/layout".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/wlogout/layout";
-        "wlogout/style.css".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/wlogout/style.css";
-        "wlogout/icons".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/wlogout/icons";
+        "wlogout/layout".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/wlogout/layout";
+        "wlogout/style.css".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/wlogout/style.css";
+        "wlogout/icons".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/wlogout/icons";
       };
     })
 
@@ -184,7 +187,7 @@
         ]) else [];
 
       xdg.configFile = {
-        "dunst/dunstrc".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/dunst/dunstrc";
+        "dunst/dunstrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/dunst/dunstrc";
       };
 
       services.dunst.enable = true;
@@ -201,7 +204,7 @@
         ]) else [];
 
       xdg.configFile = {
-        "mako/config".source = config.lib.file.mkOutOfStoreSymlink "${toString ./.}/.config/mako/config";
+        "mako/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/mako/config";
       };
 
       # Mako 通知守护进程配置
