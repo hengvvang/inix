@@ -26,7 +26,7 @@
       enable = lib.mkEnableOption "Enable Niri core configuration" // { default = true; };
       method = lib.mkOption {
         type = lib.types.enum [ "copyLink" "realTime" "homeManager" ];
-        default = "realTime";
+        default = "copyLink";
         description = "Method to deploy Niri configuration files: copyLink (file copyLink), realTime (symbolic link), or homeManager (Home Manager native)";
       };
       packageSource = lib.mkOption {
