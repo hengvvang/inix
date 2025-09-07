@@ -7,7 +7,7 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: "LXGW WenKai Mono", "JetBrainsMono Nerd Font",  monospace;
+    font-family: "LXGW WenKai Mono", "JetBrainsMono Nerd Font", monospace;
     font-weight: 500;
     font-size: 14px;
     min-height: 0;
@@ -15,16 +15,16 @@
 
 /* Main window */
 window#waybar {
-    background-color: rgba(25, 23, 36, 0.95);  /* base */
-    /* border-bottom: 2px solid #524f67;*/  /* highlight high */ 
-    color: #e0def4;  /* text */
+    background-color: rgba(25, 23, 36, 0.95); /* base */
+    /* border-bottom: 2px solid #524f67;*/ /* highlight high */
+    color: #e0def4; /* text */
     transition-property: background-color;
     transition-duration: 0.5s;
 }
 
 /* Window states */
 window#waybar.hidden {
-    opacity: 0.0;
+    opacity: 0;
 }
 
 window#waybar.empty {
@@ -40,7 +40,7 @@ window#waybar.solo {
 #workspaces {
     margin: 0 8px;
     padding: 0 8px;
-    background-color: #1f1d2e;  /* surface */
+    background-color: #1f1d2e; /* surface */
     border-radius: 0;
 }
 
@@ -48,73 +48,73 @@ window#waybar.solo {
     padding: 0 8px;
     margin: 2px;
     border-radius: 0;
-    color: #908caa;  /* subtle */
+    color: #908caa; /* subtle */
     background-color: transparent;
-    transition: all 0.3s cubic-bezier(.55,-0.68,.48,1.68);
+    transition: all 0.3s cubic-bezier(0.55, -0.68, 0.48, 1.68);
 }
 
 #workspaces button:hover {
-    background-color: #26233a;  /* overlay */
-    color: #c4a7e7;  /* iris */
+    background-color: #26233a; /* overlay */
+    color: #c4a7e7; /* iris */
     box-shadow: inset 0 -2px #c4a7e7;
 }
 
 #workspaces button.active {
-    background-color: #26233a;  /* overlay */
-    color: #9ccfd8;  /* foam */
+    background-color: #26233a; /* overlay */
+    color: #9ccfd8; /* foam */
     box-shadow: inset 0 -2px #9ccfd8;
 }
 
 #workspaces button.focused {
-    background-color: #31748f;  /* pine */
-    color: #e0def4;  /* text */
+    background-color: #31748f; /* pine */
+    color: #e0def4; /* text */
     box-shadow: inset 0 -1px #f6c177;
 }
 
 #workspaces button.empty {
-    color: #6e6a86;  /* muted */
+    color: #6e6a86; /* muted */
 }
 
 #workspaces button.current_output {
-    background-color: #26233a;  /* overlay */
-    color: #ebbcba;  /* rose */
+    background-color: #26233a; /* overlay */
+    color: #ebbcba; /* rose */
 }
 
 /* Window title */
 #window {
     margin: 0 8px;
     padding: 0 16px;
-    background-color: #1f1d2e;  /* surface */
+    background-color: #1f1d2e; /* surface */
     border-radius: 18px;
-    color: #e0def4;  /* text */
+    color: #e0def4; /* text */
     font-weight: 500;
 }
 
 #window.empty {
     background-color: transparent;
-    color: #6e6a86;  /* muted */
+    color: #6e6a86; /* muted */
 }
 
 /* Clock */
 #clock {
     margin: 0 8px;
     padding: 0 16px;
-    background-color: #1f1d2e;  /* surface */
+    background-color: #1f1d2e; /* surface */
     border-radius: 16px;
-    color: #f6c177;  /* gold */
+    color: #f6c177; /* gold */
     font-weight: 600;
 }
 
 #clock:hover {
-    background-color: #26233a;  /* overlay */
-    color: #eb6f92;  /* love */
+    background-color: #26233a; /* overlay */
+    color: #eb6f92; /* love */
 }
 
 /* System tray */
 #tray {
     margin: 0 8px;
     padding: 0 8px;
-    background-color: #1f1d2e;  /* surface */
+    background-color: #1f1d2e; /* surface */
     border-radius: 16px;
 }
 
@@ -124,7 +124,7 @@ window#waybar.solo {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: #eb6f92;  /* love */
+    background-color: #eb6f92; /* love */
 }
 
 /* Module styles */
@@ -139,176 +139,177 @@ window#waybar.solo {
 #custom-wallpaper {
     margin: 0 4px;
     padding: 0 12px;
-    background-color: #1f1d2e;  /* surface */
+    background-color: #1f1d2e; /* surface */
     border-radius: 16px;
-    color: #e0def4;  /* text */
+    color: #e0def4; /* text */
     font-weight: 500;
 }
 
 /* Idle inhibitor */
 #idle_inhibitor.activated {
-    background-color: #eb6f92;  /* love */
-    color: #191724;  /* base */
+    background-color: #eb6f92; /* love */
+    color: #191724; /* base */
 }
 
 #idle_inhibitor.deactivated {
-    background-color: #6e6a86;  /* muted */
-    color: #e0def4;  /* text */
+    background-color: #6e6a86; /* muted */
+    color: #e0def4; /* text */
 }
 
 /* Audio */
 #pulseaudio {
-    color: #9ccfd8;  /* foam */
+    color: #9ccfd8; /* foam */
 }
 
 #pulseaudio.muted {
-    background-color: #6e6a86;  /* muted */
-    color: #191724;  /* base */
+    background-color: #6e6a86; /* muted */
+    color: #191724; /* base */
 }
 
 #pulseaudio:hover {
-    background-color: #26233a;  /* overlay */
-    color: #c4a7e7;  /* iris */
+    background-color: #26233a; /* overlay */
+    color: #c4a7e7; /* iris */
 }
 
 /* Network */
 #network {
-    color: #31748f;  /* pine */
+    color: #31748f; /* pine */
 }
 
 #network.disconnected {
-    background-color: #eb6f92;  /* love */
-    color: #191724;  /* base */
+    background-color: #eb6f92; /* love */
+    color: #191724; /* base */
 }
 
 #network:hover {
-    background-color: #26233a;  /* overlay */
-    color: #9ccfd8;  /* foam */
+    background-color: #26233a; /* overlay */
+    color: #9ccfd8; /* foam */
 }
 
 /* CPU */
 #cpu {
-    color: #c4a7e7;  /* iris */
+    color: #c4a7e7; /* iris */
 }
 
 #cpu.warning {
-    background-color: #f6c177;  /* gold */
-    color: #191724;  /* base */
+    background-color: #f6c177; /* gold */
+    color: #191724; /* base */
 }
 
 #cpu.critical {
-    background-color: #eb6f92;  /* love */
-    color: #191724;  /* base */
+    background-color: #eb6f92; /* love */
+    color: #191724; /* base */
 }
 
 #cpu:hover {
-    background-color: #26233a;  /* overlay */
+    background-color: #26233a; /* overlay */
 }
 
 /* Memory */
 #memory {
-    color: #ebbcba;  /* rose */
+    color: #ebbcba; /* rose */
 }
 
 #memory.warning {
-    background-color: #f6c177;  /* gold */
-    color: #191724;  /* base */
+    background-color: #f6c177; /* gold */
+    color: #191724; /* base */
 }
 
 #memory.critical {
-    background-color: #eb6f92;  /* love */
-    color: #191724;  /* base */
+    background-color: #eb6f92; /* love */
+    color: #191724; /* base */
 }
 
 #memory:hover {
-    background-color: #26233a;  /* overlay */
+    background-color: #26233a; /* overlay */
 }
 
 /* Temperature */
 #temperature {
-    color: #9ccfd8;  /* foam */
+    color: #9ccfd8; /* foam */
 }
 
 #temperature.critical {
-    background-color: #eb6f92;  /* love */
-    color: #191724;  /* base */
+    background-color: #eb6f92; /* love */
+    color: #191724; /* base */
 }
 
 #temperature:hover {
-    background-color: #26233a;  /* overlay */
+    background-color: #26233a; /* overlay */
 }
 
 /* Battery */
 #battery {
-    color: #31748f;  /* pine */
+    color: #31748f; /* pine */
 }
 
-#battery.charging, #battery.plugged {
-    color: #9ccfd8;  /* foam */
-    background-color: #26233a;  /* overlay */
+#battery.charging,
+#battery.plugged {
+    color: #9ccfd8; /* foam */
+    background-color: #26233a; /* overlay */
 }
 
 #battery.warning:not(.charging) {
-    background-color: #f6c177;  /* gold */
-    color: #191724;  /* base */
+    background-color: #f6c177; /* gold */
+    color: #191724; /* base */
 }
 
 #battery.critical:not(.charging) {
-    background-color: #eb6f92;  /* love */
-    color: #191724;  /* base */
+    background-color: #eb6f92; /* love */
+    color: #191724; /* base */
     animation: blink 0.5s linear infinite alternate;
 }
 
 #battery:hover {
-    background-color: #26233a;  /* overlay */
+    background-color: #26233a; /* overlay */
 }
 
 /* Language */
 #language {
-    color: #f6c177;  /* gold */
+    color: #f6c177; /* gold */
 }
 
 #language:hover {
-    background-color: #26233a;  /* overlay */
-    color: #c4a7e7;  /* iris */
+    background-color: #26233a; /* overlay */
+    color: #c4a7e7; /* iris */
 }
 
 /* Custom wallpaper module */
 #custom-wallpaper {
-    color: #ebbcba;  /* rose */
+    color: #ebbcba; /* rose */
     font-size: 16px;
     font-weight: 600;
 }
 
 #custom-wallpaper:hover {
-    background-color: #26233a;  /* overlay */
-    color: #eb6f92;  /* love */
+    background-color: #26233a; /* overlay */
+    color: #eb6f92; /* love */
     transition: all 0.3s ease;
 }
 
 #custom-wallpaper:active {
-    background-color: #eb6f92;  /* love */
-    color: #191724;  /* base */
+    background-color: #eb6f92; /* love */
+    color: #191724; /* base */
 }
 
 /* Animations */
 @keyframes blink {
     to {
-        background-color: #e0def4;  /* text */
-        color: #191724;  /* base */
+        background-color: #e0def4; /* text */
+        color: #191724; /* base */
     }
 }
 
 /* Tooltips */
 tooltip {
-    background-color: #26233a;  /* overlay */
-    border: 1px solid #524f67;  /* highlight high */
+    background-color: #26233a; /* overlay */
+    border: 1px solid #524f67; /* highlight high */
     border-radius: 16px;
-    color: #e0def4;  /* text */
+    color: #e0def4; /* text */
 }
 
 tooltip label {
-    color: #e0def4;  /* text */
+    color: #e0def4; /* text */
 }
 
 /* Additional module specific hover effects */
@@ -330,41 +331,41 @@ tooltip label {
 /* Active window styling based on app */
 window#waybar.firefox #window,
 window#waybar.Navigator #window {
-    background-color: #eb6f92;  /* love */
-    color: #191724;  /* base */
+    background-color: #eb6f92; /* love */
+    color: #191724; /* base */
 }
 
 window#waybar.chromium #window,
 window#waybar.google-chrome #window {
-    background-color: #f6c177;  /* gold */
-    color: #191724;  /* base */
+    background-color: #f6c177; /* gold */
+    color: #191724; /* base */
 }
 
 window#waybar.code-oss #window,
 window#waybar.code #window {
-    background-color: #31748f;  /* pine */
-    color: #e0def4;  /* text */
+    background-color: #31748f; /* pine */
+    color: #e0def4; /* text */
 }
 
 window#waybar.Alacritty #window,
 window#waybar.kitty #window,
 window#waybar.foot #window {
-    background-color: #6e6a86;  /* muted */
-    color: #e0def4;  /* text */
+    background-color: #6e6a86; /* muted */
+    color: #e0def4; /* text */
 }
 
 window#waybar.thunar #window,
 window#waybar.nautilus #window {
-    background-color: #9ccfd8;  /* foam */
-    color: #191724;  /* base */
+    background-color: #9ccfd8; /* foam */
+    color: #191724; /* base */
 }
 
 window#waybar.spotify #window {
-    background-color: #31748f;  /* pine */
-    color: #e0def4;  /* text */
+    background-color: #31748f; /* pine */
+    color: #e0def4; /* text */
 }
 
 window#waybar.discord #window {
-    background-color: #c4a7e7;  /* iris */
-    color: #191724;  /* base */
+    background-color: #c4a7e7; /* iris */
+    color: #191724; /* base */
 }

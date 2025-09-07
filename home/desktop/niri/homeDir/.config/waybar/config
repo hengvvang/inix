@@ -2,12 +2,12 @@
     "layer": "top",
     "position": "top",
     "height": 24,
-    "spacing": 6,
+    "spacing": 4,
     "exclusive": true,
     "fixed-center": true,
-    "margin-top": 4,
-    "margin-left": 4,
-    "margin-right": 4,
+    "margin-top": 3,
+    "margin-left": 3,
+    "margin-right": 3,
     "modules-left": [
         "niri/workspaces",
         "niri/window"
