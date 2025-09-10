@@ -1,9 +1,13 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./timeZone.nix
+    ./inputMethod.nix
+  ];
+
   options.mySystem.locale = {
     enable = lib.mkEnableOption "本地化配置支持";
-    
     # 时区配置选项
     timeZone = {
       enable = lib.mkEnableOption "时区配置支持";
@@ -20,7 +24,6 @@
         '';
       };
     };
-    
     # 输入法配置选项
     inputMethod = {
       enable = lib.mkEnableOption "输入法配置支持";
@@ -28,9 +31,4 @@
       ibus.enable = lib.mkEnableOption "IBus 输入法框架";
     };
   };
-
-  imports = [
-    ./timeZone.nix
-    ./inputMethod.nix
-  ];
 }

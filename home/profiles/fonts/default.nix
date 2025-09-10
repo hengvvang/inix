@@ -1,6 +1,12 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./cyberPunk.nix
+    ./vintage.nix
+    ./zen.nix
+  ];
+
   options.myHome.profiles.fonts = {
     enable = lib.mkEnableOption "字体配置支持";
 
@@ -15,10 +21,4 @@
       '';
     };
   };
-
-  imports = [
-    ./cyberPunk.nix
-    ./vintage.nix
-    ./zen.nix
-  ];
 }

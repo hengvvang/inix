@@ -6,19 +6,15 @@
     fonts = {
       # 启用默认字体包
       enableDefaultPackages = true;
-
       # 启用 Ghostscript 字体支持（用于 PDF 和 PostScript）
       enableGhostscriptFonts = true;
-
       # 字体目录配置
       fontDir.enable = true;
-
       packages = with pkgs; [
         # 主要字体 - 禅意风格
         inter                # 现代简约设计
         source-sans-pro      # Adobe 清晰无衬线
         ubuntu_font_family   # Ubuntu 温和字体
-
         # 衬线字体 - 禅意优雅
         source-serif-pro     # Adobe 现代衬线
         crimson              # 优雅阅读字体

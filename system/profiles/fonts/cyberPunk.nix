@@ -2,23 +2,18 @@
 
 {
   config = lib.mkIf (config.mySystem.profiles.enable && config.mySystem.profiles.fonts.enable && config.mySystem.profiles.fonts.preset == "cyberPunk") {
-
     fonts = {
       # 启用默认字体包
       enableDefaultPackages = true;
-
       # 启用 Ghostscript 字体支持（用于 PDF 和 PostScript）
       enableGhostscriptFonts = true;
-
       # 字体目录配置
       fontDir.enable = true;
-
       packages = with pkgs; [
         # 主要字体 - 赛博朋克风格
         inter                # 现代几何设计
         roboto              # Google 现代字体
         source-sans-pro     # Adobe 清晰字体
-
         # 衬线字体 - 现代科技
         noto-serif          # Google 现代衬线
         source-serif-pro    # Adobe 现代衬线

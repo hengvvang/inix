@@ -1,6 +1,9 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./flatpak.nix
+  ];
   # Flatpak 配置选项
   options.mySystem.services.containers.flatpak = {
     enable = lib.mkEnableOption "Flatpak 应用容器";
@@ -26,8 +29,4 @@
       description = "额外的 Flatpak 远程仓库";
     };
   };
-
-  imports = [
-    ./flatpak.nix
-  ];
 }

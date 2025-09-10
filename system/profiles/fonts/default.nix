@@ -1,9 +1,14 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./cyberPunk.nix
+    ./vintage.nix
+    ./zen.nix
+  ];
+
   options.mySystem.profiles.fonts = {
     enable = lib.mkEnableOption "系统级字体配置支持";
-
     preset = lib.mkOption {
       type = lib.types.enum [ "cyberPunk" "vintage" "zen" ];
       default = "zen";
@@ -15,10 +20,4 @@
       '';
     };
   };
-
-  imports = [
-    ./cyberPunk.nix
-    ./vintage.nix
-    ./zen.nix
-  ];
 }

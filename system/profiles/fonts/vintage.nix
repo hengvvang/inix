@@ -6,20 +6,16 @@
     fonts = {
       # 启用默认字体包
       enableDefaultPackages = true;
-
       # 启用 Ghostscript 字体支持（用于 PDF 和 PostScript）
       enableGhostscriptFonts = true;
-
       # 字体目录配置
       fontDir.enable = true;
-
       packages = with pkgs; [
         # 主要字体 - 复古风格
         liberation_ttf       # 包含 Times New Roman 风格字体
         dejavu_fonts         # 经典字体包
         source-serif-pro     # Adobe 现代衬线字体
         crimson              # 优雅的阅读字体
-
         # 无衬线字体 - 经典现代
         source-sans-pro      # Adobe 经典无衬线
         open-sans           # 经典人文主义字体

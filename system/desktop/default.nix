@@ -1,9 +1,17 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ./cosmic.nix
+    ./gnome.nix
+    ./kde.nix
+    ./hyprland.nix
+    ./niri.nix
+  ];
+
   options.mySystem.desktop = {
     enable = lib.mkEnableOption "桌面环境支持";
-    
+
     preset = lib.mkOption {
       type = lib.types.enum [ "gnome" "kde" "cosmic" "hyprland" "niri"];
       default = "gnome";
@@ -17,12 +25,4 @@
       '';
     };
   };
-
-  imports = [
-    ./cosmic.nix
-    ./gnome.nix
-    ./kde.nix
-    ./hyprland.nix
-    ./niri.nix
-  ];
 }
