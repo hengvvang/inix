@@ -3,7 +3,6 @@
 
 {
     config = lib.mkIf (config.mySystem.desktop.enable && config.mySystem.desktop.preset == "hyprland") {
-
         # ========== Hyprland 核心配置 ==========
         # Hyprland 是一个基于 wlroots 的动态平铺 Wayland 合成器
         programs.hyprland = {
@@ -13,7 +12,6 @@
             # package = pkgs.hyprland;          # 使用稳定版本的 Hyprland
             package = inputs.hyprland.packages.${pkgs.system}.hyprland;
         };
-
         # ========== 环境变量配置 ==========
         environment.sessionVariables = {
             # 设置当前桌面环境
@@ -54,7 +52,6 @@
             # 禁用硬件光标，解决某些显卡的光标问题
             WLR_NO_HARDWARE_CURSORS = "1";
         };
-
         # ========== 桌面门户服务 ==========
         # 为 Flatpak 应用和其他沙盒应用提供桌面集成
         xdg.portal = {
@@ -73,11 +70,9 @@
                 ];
             };
         };
-
         environment.systemPackages = with pkgs; [
             kitty
         ];
-
         # ========== 显示管理器配置 ==========
         # 使用 GDM 作为显示管理器启动 Hyprland 会话
         services.xserver.enable = true;
@@ -85,25 +80,19 @@
             enable = true;
             wayland = true;           # 启用 Wayland 支持
         };
-
         # ========== 系统服务配置 ==========
         # 启用必要的系统服务支持 Hyprland 桌面环境
 
         # GNOME Keyring - 密码和密钥管理
         services.gnome.gnome-keyring.enable = true;
-
         # PolicyKit - 权限管理服务 (Wayland 窗口管理器必需)
         security.polkit.enable = true;
-
         # D-Bus - 系统消息总线 (桌面应用通信必需)
         services.dbus.enable = true;
-
         # GVfs - 虚拟文件系统，支持网络位置和外部设备
         services.gvfs.enable = true;
-
         # UDISKS2 - 磁盘管理服务，支持自动挂载
         services.udisks2.enable = true;
-
         # ========== 硬件支持 ==========
         # 启用 Wayland 相关的硬件加速
         hardware.graphics = {

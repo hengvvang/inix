@@ -8,14 +8,12 @@
       displayManager.sddm.enable = true;
       displayManager.sddm.wayland.enable = true;
     };
-
     environment.plasma6.excludePackages = with pkgs.kdePackages; [
       plasma-browser-integration
       kdepim-runtime
       konsole
       oxygen
     ];
-
     environment.systemPackages = with pkgs; [
 
     ];

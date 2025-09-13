@@ -1,4 +1,3 @@
-
 { config, lib, pkgs, ... }:
 
 {
@@ -15,7 +14,6 @@
       # konsole # Comment out this line if you use KDE's default terminal app
       # oxygen
     ];
-
     environment.systemPackages = [
       # pkgs.cosmic-shell,
       # pkgs.cosmic-terminal,

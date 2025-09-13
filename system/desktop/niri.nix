@@ -3,7 +3,6 @@
 
 {
     config = lib.mkIf (config.mySystem.desktop.enable && config.mySystem.desktop.preset == "niri") {
-
         # ========== Niri 核心配置 ==========
         # Niri 是一个基于 Rust 和 Smithay 的滚动平铺 Wayland 合成器
         programs.niri = {
@@ -11,7 +10,6 @@
             package = pkgs.niri;
             # package = inputs.niri.packages.${pkgs.system}.niri;
         };
-
         # ========== 显示管理器配置 ==========
         # 使用 GDM 作为显示管理器来启动 Niri 会话
         services.xserver.enable = true;
@@ -19,12 +17,10 @@
             enable = true;
             wayland = true;                   # 启用 Wayland 支持
         };
-
         # ========== 系统服务配置 ==========
         # 启用必要的系统服务支持 Niri 桌面环境
         services.dbus.enable = true;         # D-Bus 系统消息总线
         security.polkit.enable = true;       # PolicyKit 权限管理
-
         environment.sessionVariables = {
             XDG_CURRENT_DESKTOP = "niri";
             XDG_SESSION_DESKTOP = "niri";
@@ -63,7 +59,6 @@
             # 禁用硬件光标，解决某些显卡的光标问题
             WLR_NO_HARDWARE_CURSORS = "1";
         };
-
         # ========== XDG 桌面门户配置 ==========
         # Niri 推荐使用 GNOME 的桌面门户实现
         xdg.portal = {
@@ -74,7 +69,6 @@
                 niri = { default = [ "gnome" ]; };
             };
         };
-
         # 仅包含 Niri 桌面环境运行所需的最基本包
         environment.systemPackages = with pkgs; [
             fuzzel     # default application launcher
