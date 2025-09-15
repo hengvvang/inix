@@ -113,7 +113,7 @@ in
         if config.myHome.desktop.hyprland.rofi.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.desktop.hyprland.rofi.packageSource == "nixpkgs" then (with pkgs; [
-          rofi-wayland
+          rofi
           whitesur-icon-theme
         ]) else [];
       home.file = {

@@ -106,7 +106,7 @@
         if config.myHome.desktop.niri.rofi.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.desktop.niri.rofi.packageSource == "nixpkgs" then (with pkgs; [
-          rofi-wayland
+          rofi
         ]) else [];
 
       xdg.configFile = {
