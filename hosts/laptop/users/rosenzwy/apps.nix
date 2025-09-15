@@ -36,8 +36,7 @@
     # pkgs.inkscape          # 矢量图编辑
     # pkgs.davinci-resolve   # 视频编辑 (需要 unfree)
     pkgs.kdePackages.kdenlive
-
-
+  ] ++ (with pkgs;[
     #
     # toolkits
     #
@@ -100,5 +99,5 @@
     lshw              # 硬件信息
     usbutils          # USB 工具
     pciutils          # PCI 工具
-  ];
+  ]);
 }
