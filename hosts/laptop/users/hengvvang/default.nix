@@ -5,7 +5,6 @@
     outputs.home
     ./home.nix
     ./apps.nix
-    ./toolkits.nix
     ./develop.nix
   ];
 

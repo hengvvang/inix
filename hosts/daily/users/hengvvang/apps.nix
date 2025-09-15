@@ -15,5 +15,14 @@
     pkgs.discord
     pkgs.element-desktop
     pkgs.telegram-desktop
+
+    #
+    # toolkits
+    #
+    nh
+    nix-output-monitor
+    nix-tree
+    nixos-rebuild
+    nvd
   ];
 }
