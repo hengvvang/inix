@@ -10,9 +10,7 @@
     # inputs.zed-editor.packages.${pkgs.system}.default
     pkgs.zed-editor
     pkgs.vscode
-    pkgs.mise
-    pkgs.just
-    pkgs.devenv
+
 
     pkgs.qq
     pkgs.wechat
@@ -28,7 +26,6 @@
     pkgs.satty
     pkgs.lutris
     pkgs.spotify
-    pkgs.calcure
     pkgs.wpsoffice-cn
     pkgs.libreoffice-qt6
     # pkgs.blender           # 3D 建模
@@ -94,10 +91,27 @@
     yq                # YAML 处理
     rsync             # 文件同步
     hexyl             # 十六进制查看器
-    iotop             # IO 监控
-    nethogs           # 网络监控
-    lshw              # 硬件信息
-    usbutils          # USB 工具
-    pciutils          # PCI 工具
+    ast-grep
+    calcure
+    czkawka
+  ]) ++ (with pkgs; [
+    #
+    # develop
+    #
+    mise
+    just
+    devenv
+    # rust
+    rustc
+    cargo
+    rustfmt
+    clippy
+    rust-analyzer
+    mdbook
+    # python
+    uv
+    ty
+    ruff
+    pyrefly
   ]);
 }

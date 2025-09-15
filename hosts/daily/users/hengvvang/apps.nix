@@ -25,5 +25,12 @@
     nix-tree             # 查看 Nix store 依赖关系
     nixos-rebuild        # NixOS 系统重建工具
     nvd                  # Nix 版本差异比较工具
+  ]) ++ (with pkgs; [
+    #
+    # develop
+    #
+    mise                 # 多语言开发环境管理工具
+    just                 # 命令行任务运行工具
+    devenv               # 开发环境管理工具
   ]);
 }
