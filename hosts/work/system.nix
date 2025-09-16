@@ -53,10 +53,10 @@
         # 网络管理器配置
         manager = {
           enable = true;               # 启用网络管理器
-          hostname = "work";           # 系统主机名
           preset = "networkmanager";   # 使用 NetworkManager
           tools = {
             enable = true;             # 启用网络诊断工具
+            cli = true;                # 启用命令行网络工具
             gui = true;                # 启用图形化管理工具
           };
         };

@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
+{ config, lib, pkgs, inputs, outputs, hostName, user1, user2, ... }:
 
 {
   imports = [
@@ -12,19 +12,19 @@
   system.stateVersion = 4;  # macOS 使用数字版本
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "hengvvang" "zlritsu" ];
+    trusted-users = [ user1 user2 ];
   };
 
   # macOS 用户配置
-  users.users.hengvvang = {
-    name = "hengvvang";
-    home = "/Users/hengvvang";
+  users.users.${user1} = {
+    name = user1;
+    home = "/Users/${user1}";
     shell = pkgs.fish;
   };
 
-  users.users.zlritsu = {
-    name = "zlritsu";
-    home = "/Users/zlritsu";
+  users.users.${user2} = {
+    name = user2;
+    home = "/Users/${user2}";
     shell = pkgs.fish;
   };
 

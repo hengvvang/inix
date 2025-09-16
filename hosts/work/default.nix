@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
+{ config, lib, pkgs, inputs, outputs, hostName, user1, user2, ... }:
 
 {
   imports = [
@@ -8,6 +8,7 @@
     outputs.system
   ];
 
+  networking.hostName =  hostName;
   # Bootloader配置
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -16,13 +17,13 @@
   system.stateVersion = "25.05";
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "hengvvang" "zlritsu" ];
+    trusted-users = [ user1 user2 ];
   };
 
   # 用户配置 - 工作环境限制权限
-  users.users.hengvvang = {
+  users.users.${user1} = {
     isNormalUser = true;
-    description = "hengvvang";
+    description = user1;
     extraGroups = [ "networkmanager" "wheel" ];  # 工作环境移除 docker 组
     packages = with pkgs; [
       # 用户特定的包可以在这里定义
@@ -30,9 +31,9 @@
     shell = pkgs.fish;
   };
 
-  users.users.zlritsu = {
+  users.users.${user2} = {
     isNormalUser = true;
-    description = "zlritsu";
+    description = user2;
     extraGroups = [ "networkmanager" "wheel" ];  # 工作环境移除 docker 组
     packages = with pkgs; [
       # 用户特定的包可以在这里定义

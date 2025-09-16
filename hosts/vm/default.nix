@@ -1,4 +1,4 @@
-{ config, lib, pkgs, inputs, outputs, ... }:
+{ config, lib, pkgs, inputs, outputs, hostName, user1, user2, ... }:
 
 {
   imports = [
@@ -7,6 +7,7 @@
     ./system.nix
   ];
 
+  networking.hostName =  hostName;
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -24,14 +25,14 @@
   system.stateVersion = "25.05"; # Did you read the comment?
   nix = {
     package = pkgs.nix;
-    trusted-users = [ "hengvvang" "zlritsu" ];
+    trusted-users = [ user1 user2 ];
     settings.experimental-features = [ "nix-command" "flakes" ];
   };
   nixpkgs.config.allowUnfree = true;
 
-  users.users.hengvvang = {
+  users.users.${user1} = {
     isNormalUser = true;
-    description = "hengvvang";
+    description = user1;
     extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" "input" "mpd" ];
     packages = with pkgs; [
     #  thunderbird
@@ -39,9 +40,9 @@
     shell = pkgs.fish;
   };
 
-  users.users.zlritsu = {
+  users.users.${user2} = {
     isNormalUser = true;
-    description = "zlritsu";
+    description = user2;
     extraGroups = [ "networkmanager" "wheel" "docker" "flatpak" "dialout" "plugdev" "input" "mpd" ];
     packages = with pkgs; [
       # 用户特定的包可以在这里定义

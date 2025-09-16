@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, outputs, userMapping, hostMapping, ... }:
+{ config, pkgs, lib, inputs, outputs, userName, ... }:
 
 {
   imports = [
@@ -10,8 +10,8 @@
 
   config = {
     nixpkgs.config.allowUnfree = true;
-    home.username = "zlritsu";
-    home.homeDirectory = "/home/zlritsu";
+    home.username = userName;
+    home.homeDirectory = "/home/${userName}";
     home.stateVersion = "25.05";
     programs.home-manager.enable = true;
   };

@@ -9,14 +9,6 @@
   options.mySystem.services.network.manager = {
     enable = lib.mkEnableOption "网络管理器配置支持";
 
-    # 主机名配置
-    hostname = lib.mkOption {
-      type = lib.types.str;
-      default = "nixos";
-      example = "my-laptop";
-      description = "系统主机名";
-    };
-
     preset = lib.mkOption {
       type = lib.types.enum [ "networkmanager" "wpa_supplicant" ];
       default = "networkmanager";
@@ -30,16 +22,15 @@
     # 网络工具
     tools = {
       enable = lib.mkEnableOption "网络诊断工具" // { default = true; };
+      cli = lib.mkEnableOption "命令行网络工具" // { default = true; };
       gui = lib.mkEnableOption "图形化网络管理工具" // { default = true; };
     };
   };
 
   config = lib.mkIf config.mySystem.services.network.manager.enable {
-    # 设置主机名
-    networking.hostName = config.mySystem.services.network.manager.hostname;
 
     # 基础网络工具
-    environment.systemPackages = lib.optionals config.mySystem.services.network.manager.tools.enable [
+    environment.systemPackages = lib.optionals (config.mySystem.services.network.manager.tools.enable && config.mySystem.services.network.manager.tools.cli) [
       pkgs.wget
       pkgs.curl
       pkgs.dig
@@ -48,6 +39,23 @@
       pkgs.whois
       pkgs.nettools
       pkgs.iproute2
+    ]
+    # 图形化网络工具 - 通用
+    ++ lib.optionals (config.mySystem.services.network.manager.tools.enable && config.mySystem.services.network.manager.tools.gui) [
+      pkgs.wireshark
+      pkgs.zenmap
+    ]
+    # NetworkManager 专用图形界面
+    ++ lib.optionals (config.mySystem.services.network.manager.tools.enable &&
+                      config.mySystem.services.network.manager.tools.gui &&
+                      config.mySystem.services.network.manager.preset == "networkmanager") [
+      pkgs.networkmanagerapplet
+    ]
+    # wpa_supplicant 专用图形界面
+    ++ lib.optionals (config.mySystem.services.network.manager.tools.enable &&
+                      config.mySystem.services.network.manager.tools.gui &&
+                      config.mySystem.services.network.manager.preset == "wpa_supplicant") [
+      pkgs.wpa_supplicant_gui
     ];
   };
 }

@@ -7,6 +7,7 @@
     outputs.system  # 通过 outputs 导入系统模块     ../../system
   ];
 
+  networking.hostName =  hostName;
   # Bootloader配置
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -26,7 +27,7 @@
   # };
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
-    trusted-users = [ "hengvvang" "rosenzwy" ];
+    trusted-users = [ user1 user2 ];
     # 并行构建限制 - 平衡性能与内存使用
     # max-jobs = 12;  # 32核心的37.5%，提升构建速度
     # cores = 2;      # 每个构建任务使用2个核心

@@ -73,10 +73,10 @@
         enable = true;
         manager = {
           enable = true;
-          hostname = "laptop";
           preset = "networkmanager";
           tools = {
             enable = true;
+            cli = true;
             gui = true;
           };
         };

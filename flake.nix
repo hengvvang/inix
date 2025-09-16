@@ -103,6 +103,9 @@
           ];
           specialArgs = {
             inherit inputs outputs;
+            hostName = "work";
+            user1 = "hengvvang";
+            user2 = "zlritsu";
           };
         };
         vm = lib.nixosSystem {
@@ -111,6 +114,9 @@
           ];
           specialArgs = {
             inherit inputs outputs;
+            hostName = "vm";
+            user1 = "hengvvang";
+            user2 = "zlritsu";
           };
         };
       };
@@ -122,6 +128,9 @@
           ];
           specialArgs = {
             inherit inputs outputs;
+            hostName = "daily";
+            user1 = "hengvvang";
+            user2 = "zlritsu";
           };
         };
       };
@@ -135,7 +144,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
-            username = "hengvvang";
+            userName = "hengvvang";
           };
         };
         "laptop@rosenzwy" = lib.homeManagerConfiguration {
@@ -145,7 +154,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
-            username = "rosenzwy";
+            userName = "rosenzwy";
           };
         };
 
@@ -157,6 +166,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
+            userName = "hengvvang";
           };
         };
         "work@zlritsu" = lib.homeManagerConfiguration {
@@ -166,6 +176,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
+            userName = "zlritsu";
           };
         };
 
@@ -177,6 +188,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
+            userName = "hengvvang";
           };
         };
         "daily@zlritsu" = lib.homeManagerConfiguration {
@@ -186,6 +198,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
+            userName = "zlritsu";
           };
         };
 
@@ -196,6 +209,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
+            userName = "hengvvang";
           };
         };
         "vm@zlritsu" = lib.homeManagerConfiguration {
@@ -205,6 +219,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
+            userName = "zlritsu";
           };
         };
         #
@@ -217,35 +232,39 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
+            userName = "hengvvang";
+          };
         };
-      };
-      "wsl-archlinux@rosenzwy" = lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [
-          ./hosts/wsl/archlinux/users/rosenzwy
-        ];
-        extraSpecialArgs = {
-          inherit inputs outputs;
+        "wsl-archlinux@rosenzwy" = lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./hosts/wsl/archlinux/users/rosenzwy
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs;
+            userName = "rosenzwy";
+          };
         };
-      };
-      "wsl-ubuntu@hengvvang" = lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [
-          ./hosts/wsl/ubuntu/users/hengvvang
-        ];
-        extraSpecialArgs = {
-          inherit inputs outputs;
+        "wsl-ubuntu@hengvvang" = lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./hosts/wsl/ubuntu/users/hengvvang
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs;
+            userName = "hengvvang";
+          };
         };
-      };
-      "wsl-ubuntu@rosenzwy" = lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [
-          ./hosts/wsl/ubuntu/users/rosenzwy
-        ];
-        extraSpecialArgs = {
-          inherit inputs outputs;
+        "wsl-ubuntu@rosenzwy" = lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            ./hosts/wsl/ubuntu/users/rosenzwy
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs;
+            userName = "rosenzwy";
+          };
         };
-      };
     };
   };
 }
