@@ -5,7 +5,6 @@
     outputs.home
     ./home.nix
     ./apps.nix
-    ./develop.nix
   ];
 
   config = {
