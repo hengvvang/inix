@@ -65,7 +65,7 @@
     let
       inherit (self) outputs;
       lib = nixpkgs.lib // home-manager.lib // nix-darwin.lib;
-    in {
+    in rec {
       # 导出模块和工具
       inherit lib;
       system = import ./system;
@@ -105,7 +105,7 @@
             inherit inputs outputs;
             hostName = "work";
             user1 = "hengvvang";
-            user2 = "zlritsu";
+            user2 = "rosenzwy";
           };
         };
         vm = lib.nixosSystem {
@@ -116,7 +116,7 @@
             inherit inputs outputs;
             hostName = "vm";
             user1 = "hengvvang";
-            user2 = "zlritsu";
+            user2 = "rosenzwy";
           };
         };
       };
@@ -130,7 +130,7 @@
             inherit inputs outputs;
             hostName = "daily";
             user1 = "hengvvang";
-            user2 = "zlritsu";
+            user2 = "rosenzwy";
           };
         };
       };
@@ -169,14 +169,14 @@
             userName = "hengvvang";
           };
         };
-        "work@zlritsu" = lib.homeManagerConfiguration {
+        "work@rosenzwy" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-linux;
           modules = [
-            ./hosts/work/users/zlritsu
+            ./hosts/work/users/rosenzwy
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
-            userName = "zlritsu";
+            userName = "rosenzwy";
           };
         };
 
@@ -191,14 +191,14 @@
             userName = "hengvvang";
           };
         };
-        "daily@zlritsu" = lib.homeManagerConfiguration {
+        "daily@rosenzwy" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.aarch64-darwin;
           modules = [
-            ./hosts/daily/users/zlritsu
+            ./hosts/daily/users/rosenzwy
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
-            userName = "zlritsu";
+            userName = "rosenzwy";
           };
         };
 
@@ -212,14 +212,14 @@
             userName = "hengvvang";
           };
         };
-        "vm@zlritsu" = lib.homeManagerConfiguration {
+        "vm@rosenzwy" = lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux;
           modules = [
-            ./hosts/vm/users/zlritsu
+            ./hosts/vm/users/rosenzwy
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
-            userName = "zlritsu";
+            userName = "rosenzwy";
           };
         };
         #
