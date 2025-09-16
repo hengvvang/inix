@@ -92,6 +92,8 @@
           ];
           specialArgs = {
             inherit inputs outputs;
+            user1 = "hengvvang";
+            user2 = "rosenzwy";
           };
         };
         work = lib.nixosSystem {
