@@ -92,6 +92,7 @@
           ];
           specialArgs = {
             inherit inputs outputs;
+            hostName = "laptop";
             user1 = "hengvvang";
             user2 = "rosenzwy";
           };
@@ -134,6 +135,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
+            username = "hengvvang";
           };
         };
         "laptop@rosenzwy" = lib.homeManagerConfiguration {
@@ -143,6 +145,7 @@
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
+            username = "rosenzwy";
           };
         };
 
