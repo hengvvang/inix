@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 let
   # 定义当前目录的绝对路径
-  currentDir = toString ./.;
+  # currentDir = toString ./.;
+  currentDir = builtins.getEnv "PWD";
 in
 {
   config = lib.mkMerge [
