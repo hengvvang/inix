@@ -1,7 +1,7 @@
 { config, lib, pkgs, inputs, ... }:
 let
   # 定义当前目录的绝对路径
-  currentDir = toString ./.;
+  currentDir = "${config.home.homeDirectory}/config.d/home/dotfiles/homeDir";
 in
 {
   config = lib.mkMerge [
