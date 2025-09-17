@@ -1,6 +1,3 @@
-# Dunst Configuration - macOS Tahoe Style with Fluent Glass Effect
-# Designed for modern macOS-like notification experience
-
 [global]
     ### Display ###
     monitor = 0
@@ -14,7 +11,7 @@
     scale = 0
     notification_limit = 5
 
-    ### Visual Design - macOS Tahoe Glass Effect ###
+    ### Visual Design
     # Transparency and blur for glass effect
     transparency = 15
 
@@ -216,5 +213,3 @@
     foreground = "#ffffff"
     frame_color = "#007aff80"
     timeout = 3
-
-# vim: ft=dosini

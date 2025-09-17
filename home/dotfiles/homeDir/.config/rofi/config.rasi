@@ -35,4 +35,4 @@ configuration {
 }
 
 /* 应用主题 */
-@theme "glass"
+@theme "dark"
