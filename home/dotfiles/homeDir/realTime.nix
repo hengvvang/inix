@@ -1,8 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   # 定义当前目录的绝对路径
-  # currentDir = toString ./.;
-  currentDir = builtins.getEnv "PWD";
+  currentDir = toString ./.;
 in
 {
   config = lib.mkMerge [
@@ -13,10 +12,12 @@ in
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.bash.packageSource == "nixpkgs" then (with pkgs; [ bash ]) else [];
 
-      home.file.".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bashrc";
-      home.file.".bash_profile".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bash_profile";
-      home.file.".bash_aliases".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bash_aliases";
-      home.file.".bash_functions".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bash_functions";
+      home.file = {
+        "bashrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bashrc";
+        "bash_profile".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bash_profile";
+        "bash_aliases".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bash_aliases";
+        "bash_functions".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bash_functions";
+      };
     })
 
     # Zsh 配置
@@ -26,11 +27,13 @@ in
           # 如果使用 flake 源，设置为空数组
         ] else if config.myHome.dotfiles.zsh.packageSource == "nixpkgs" then (with pkgs; [ zsh ]) else [];
 
-      home.file.".zshrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zshrc";
-      home.file.".zprofile".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zprofile";
-      home.file.".zlogin".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zlogin";
-      home.file.".zshenv".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zshenv";
-      home.file.".zlogout".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zlogout";
+      home.file = {
+        "zshrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zshrc";
+        "zprofile".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zprofile";
+        "zlogin".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zlogin";
+        "zshenv".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zshenv";
+        "zlogout".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zlogout";
+      };
     })
 
     # Vim 配置
