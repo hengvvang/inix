@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.enable && config.myHome.dotfiles.lazygit.method == "homeManager") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.homeManager.enable) {
     programs.lazygit = {
       enable = true;
 

@@ -1,8 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.enable &&
-                    config.myHome.dotfiles.alacritty.method == "homeManager") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.homeManager.enable) {
     programs.alacritty = {
       enable = true;
       package = pkgs.alacritty;

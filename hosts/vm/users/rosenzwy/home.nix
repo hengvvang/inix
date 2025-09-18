@@ -10,29 +10,50 @@
     dotfiles = {
       enable = true;
       vim = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       bash = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       fish = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       yazi = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
-      git.enable = true;
+      git = {
+        homeManager = {
+          enable = true;
+        };
+      };
       starship = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
-      ripgrep.enable = true;
-      fd.enable = true;
-      lsd.enable = true;
+      ripgrep = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      fd = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      lsd = {
+        homeManager = {
+          enable = true;
+        };
+      };
     };
 
     develop = {

@@ -21,47 +21,80 @@
     dotfiles = {
       enable = true;
       vim = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       zsh = {
-        enable = false;
-        method = "homeManager";
+        homeManager = {
+          enable = false;
+        };
       };
       bash = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       fish = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       nushell = {
-        enable = false;
-        method = "homeManager";
+        homeManager = {
+          enable = false;
+        };
       };
       yazi = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       ghostty = {
-        enable = false;
-        method = "homeManager";
+        homeManager = {
+          enable = false;
+        };
       };
       alacritty = {
-        enable = false;
-        method = "copyLink";
+        copyLink = {
+          enable = false;
+        };
       };
-      tmux.enable = false;
-      git.enable = true;
-      lazygit.enable = false;
+      tmux = {
+        homeManager = {
+          enable = false;
+        };
+      };
+      git = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      lazygit = {
+        homeManager = {
+          enable = false;
+        };
+      };
       starship = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
-      ripgrep.enable = true;
-      fd.enable = true;
-      lsd.enable = true;
+      ripgrep = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      fd = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      lsd = {
+        homeManager = {
+          enable = true;
+        };
+      };
     };
 
     profiles = {

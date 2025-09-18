@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.method == "homeManager") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.homeManager.enable) {
     programs.ghostty = {
       enable = true;
       package = pkgs.ghostty;

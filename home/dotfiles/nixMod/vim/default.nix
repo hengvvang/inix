@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.method == "homeManager") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.homeManager.enable) {
 
     programs.vim = {
       enable = true;

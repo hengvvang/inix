@@ -4,7 +4,7 @@
 		{
 			"label": "Build Home Manager Configuration",
 			"type": "shell",
-			"command": "nix build .#homeConfigurations.\"hengvvang@laptop\".activationPackage",
+			"command": "nix build .#homeConfigurations.\"laptop@hengvvang\".activationPackage",
 			"group": "build",
 			"isBackground": false,
 			"problemMatcher": []

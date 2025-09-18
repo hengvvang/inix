@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.enable && config.myHome.dotfiles.vscode.method == "homeManager") {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.homeManager.enable) {
     # Visual Studio Code 配置 - 使用 Home Manager
     programs.vscode = {
       enable = true;

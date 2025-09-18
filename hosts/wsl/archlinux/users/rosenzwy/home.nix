@@ -5,76 +5,109 @@
     dotfiles = {
       enable = true;
       vim = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       zsh = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       bash = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       fish = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       nushell = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
-      tmux.enable = true;
-      git.enable = true;
-      lazygit.enable = true;
+      tmux = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      git = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      lazygit = {
+        homeManager = {
+          enable = true;
+        };
+      };
       starship = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
-      qutebrowser.enable = false;
+      qutebrowser = {
+        homeManager = {
+          enable = false;
+        };
+      };
       alacritty = {
-        enable = true;
-        method = "copyLink";
+        copyLink = {
+          enable = true;
+        };
       };
       obs-studio = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       sherlock = {
+        copyLink = {
           enable = true;
-          method = "copyLink";
+        };
       };
       zed = {
-        enable = false;
-        method = "copyLink";
+        copyLink = {
+          enable = false;
+        };
       };
       vscode = {
-        enable = false;
-        method = "copyLink";
+        copyLink = {
+          enable = false;
+        };
       };
       rofi = {
-        enable = false;
-        method = "copyLink";
+        copyLink = {
+          enable = false;
+        };
       };
       ghostty = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       yazi = {
-        enable = true;
-        method = "copyLink";
+        copyLink = {
+          enable = true;
+        };
       };
       zellij = {
-        enable = true;
-        method = "copyLink";
+        copyLink = {
+          enable = true;
+        };
       };
       rio = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       rmpc = {
-        enable = true;
-        method = "copyLink";
+        copyLink = {
+          enable = true;
+        };
       };
     };
 

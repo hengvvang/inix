@@ -3,7 +3,7 @@
 {
   config = lib.mkMerge [
     # Niri 生态系统包配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.packages.enable && config.myHome.desktop.niri.packages.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.packages.copyLink.enable) {
       home.packages = with pkgs; [
         grim                   # Wayland 截图工具
         slurp                  # 区域选择工具
@@ -20,7 +20,7 @@
     })
 
     # Niri 环境变量配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.environment.enable && config.myHome.desktop.niri.environment.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.environment.copyLink.enable) {
       home.sessionVariables = {
         # Niri 相关环境变量
         XDG_CURRENT_DESKTOP = "niri";
@@ -43,9 +43,9 @@
     })
 
     # Niri 核心配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.niri.enable && config.myHome.desktop.niri.niri.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.niri.copyLink.enable) {
       home.packages =
-        if config.myHome.desktop.niri.niri.packageSource == "flake" then [
+        if config.myHome.desktop.niri.niri.copyLink.packageSource == "flake" then [
           # 使用 Niri 官方 flake 中的最新版本
           inputs.niri.packages.${pkgs.system}.niri
           # 其他相关包仍使用 nixpkgs
@@ -54,7 +54,7 @@
           pkgs.sunsetr
           pkgs.apple-cursor
           pkgs.xwayland-satellite
-        ] else if config.myHome.desktop.niri.niri.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.niri.copyLink.packageSource == "nixpkgs" then (with pkgs; [
           # 使用 nixpkgs 中的稳定版本
           niri
           niriswitcher
@@ -71,11 +71,11 @@
     })
 
     # Waybar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.waybar.enable && config.myHome.desktop.niri.waybar.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.waybar.copyLink.enable) {
       home.packages =
-        if config.myHome.desktop.niri.waybar.packageSource == "flake" then [
+        if config.myHome.desktop.niri.waybar.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.waybar.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
+        ] else if config.myHome.desktop.niri.waybar.copyLink.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
 
       xdg.configFile = {
         "waybar/config".source = ./.config/waybar/config;
@@ -88,11 +88,11 @@
     })
 
     # Ironbar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.ironbar.enable && config.myHome.desktop.niri.ironbar.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.ironbar.copyLink.enable) {
       home.packages =
-        if config.myHome.desktop.niri.ironbar.packageSource == "flake" then [
+        if config.myHome.desktop.niri.ironbar.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.ironbar.packageSource == "nixpkgs" then (with pkgs; [ ironbar ]) else [];
+        ] else if config.myHome.desktop.niri.ironbar.copyLink.packageSource == "nixpkgs" then (with pkgs; [ ironbar ]) else [];
 
       xdg.configFile = {
         "ironbar/config.toml".source = ./.config/ironbar/config.toml;
@@ -101,11 +101,11 @@
     })
 
     # Rofi 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.rofi.enable && config.myHome.desktop.niri.rofi.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.rofi.copyLink.enable) {
       home.packages =
-        if config.myHome.desktop.niri.rofi.packageSource == "flake" then [
+        if config.myHome.desktop.niri.rofi.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.rofi.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.rofi.copyLink.packageSource == "nixpkgs" then (with pkgs; [
           rofi
         ]) else [];
 
@@ -116,11 +116,11 @@
     })
 
     # Fuzzel 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.fuzzel.enable && config.myHome.desktop.niri.fuzzel.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.fuzzel.copyLink.enable) {
       home.packages =
-        if config.myHome.desktop.niri.fuzzel.packageSource == "flake" then [
+        if config.myHome.desktop.niri.fuzzel.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.fuzzel.packageSource == "nixpkgs" then (with pkgs; [ fuzzel lxgw-wenkai ]) else [];
+        ] else if config.myHome.desktop.niri.fuzzel.copyLink.packageSource == "nixpkgs" then (with pkgs; [ fuzzel lxgw-wenkai ]) else [];
 
       xdg.configFile = {
         "fuzzel/fuzzel.ini".source = ./.config/fuzzel/fuzzel.ini;
@@ -128,11 +128,11 @@
     })
 
     # Swaylock 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swaylock.enable && config.myHome.desktop.niri.swaylock.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swaylock.copyLink.enable) {
       home.packages =
-        if config.myHome.desktop.niri.swaylock.packageSource == "flake" then [
+        if config.myHome.desktop.niri.swaylock.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.swaylock.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.swaylock.copyLink.packageSource == "nixpkgs" then (with pkgs; [
           swaylock
           lxgw-wenkai
         ]) else [];
@@ -143,11 +143,11 @@
     })
 
     # Swayidle 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swayidle.enable && config.myHome.desktop.niri.swayidle.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swayidle.copyLink.enable) {
       home.packages =
-        if config.myHome.desktop.niri.swayidle.packageSource == "flake" then [
+        if config.myHome.desktop.niri.swayidle.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.swayidle.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.swayidle.copyLink.packageSource == "nixpkgs" then (with pkgs; [
           swayidle
           brightnessctl    # 亮度控制（用于渐进式节能）
           libnotify        # 通知支持
@@ -159,11 +159,11 @@
     })
 
     # Wlogout 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.wlogout.enable && config.myHome.desktop.niri.wlogout.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.wlogout.copyLink.enable) {
       home.packages =
-        if config.myHome.desktop.niri.wlogout.packageSource == "flake" then [
+        if config.myHome.desktop.niri.wlogout.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.wlogout.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.wlogout.copyLink.packageSource == "nixpkgs" then (with pkgs; [
           wlogout
         ]) else [];
 
@@ -175,11 +175,11 @@
     })
 
     # Dunst 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.dunst.enable && config.myHome.desktop.niri.dunst.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.dunst.copyLink.enable) {
       home.packages =
-        if config.myHome.desktop.niri.dunst.packageSource == "flake" then [
+        if config.myHome.desktop.niri.dunst.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.dunst.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.dunst.copyLink.packageSource == "nixpkgs" then (with pkgs; [
           dunst
         ]) else [];
 
@@ -191,11 +191,11 @@
     })
 
     # Mako 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.mako.enable && config.myHome.desktop.niri.mako.method == "copyLink") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.mako.copyLink.enable) {
       home.packages =
-        if config.myHome.desktop.niri.mako.packageSource == "flake" then [
+        if config.myHome.desktop.niri.mako.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.mako.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.mako.copyLink.packageSource == "nixpkgs" then (with pkgs; [
           mako
           lxgw-wenkai         # 霞鹜文楷
         ]) else [];

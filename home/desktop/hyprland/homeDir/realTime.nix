@@ -5,7 +5,7 @@ let
 in
 {
   config = lib.mkMerge [
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.packages.enable && config.myHome.desktop.hyprland.packages.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.packages.realTime.enable) {
       home.packages = with pkgs; [
         # Hyprland 生态系统工具
         grimblast           # 截图工具 (Hyprland 优化版)
@@ -22,7 +22,7 @@ in
       ];
     })
 
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.environment.enable && config.myHome.desktop.hyprland.environment.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.environment.realTime.enable) {
       home.sessionVariables =   {
           # Hyprland 相关环境变量
           XDG_CURRENT_DESKTOP = "Hyprland";
@@ -44,9 +44,9 @@ in
     })
 
     # Hyprland 核心配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.hypr.enable && config.myHome.desktop.hyprland.hypr.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.hypr.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.hyprland.hypr.packageSource == "flake" then [
+        if config.myHome.desktop.hyprland.hypr.realTime.packageSource == "flake" then [
           # 使用 Hyprland 官方 flake 中的最新版本
           inputs.hyprland.packages.${pkgs.system}.hyprland
           inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
@@ -55,7 +55,7 @@ in
           pkgs.hypridle
           pkgs.hyprlock
           pkgs.hyprcursor
-        ] else if config.myHome.desktop.hyprland.hypr.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.hyprland.hypr.realTime.packageSource == "nixpkgs" then (with pkgs; [
           # 使用 nixpkgs 中的稳定版本
           hyprland
           xdg-desktop-portal-hyprland
@@ -85,11 +85,11 @@ in
     })
 
     # Waybar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.waybar.enable && config.myHome.desktop.hyprland.waybar.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.waybar.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.hyprland.waybar.packageSource == "flake" then [
+        if config.myHome.desktop.hyprland.waybar.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.hyprland.waybar.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
+        ] else if config.myHome.desktop.hyprland.waybar.realTime.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
       xdg.configFile = {
         "waybar/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/waybar/config";
         "waybar/style.css".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/waybar/style.css";
@@ -97,22 +97,22 @@ in
     })
 
     # Dunst 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.dunst.enable && config.myHome.desktop.hyprland.dunst.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.dunst.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.hyprland.dunst.packageSource == "flake" then [
+        if config.myHome.desktop.hyprland.dunst.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.hyprland.dunst.packageSource == "nixpkgs" then (with pkgs; [ dunst ]) else [];
+        ] else if config.myHome.desktop.hyprland.dunst.realTime.packageSource == "nixpkgs" then (with pkgs; [ dunst ]) else [];
       xdg.configFile = {
         "dunst/dunstrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/dunst/dunstrc";
       };
     })
 
     # Rofi 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.rofi.enable && config.myHome.desktop.hyprland.rofi.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.rofi.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.hyprland.rofi.packageSource == "flake" then [
+        if config.myHome.desktop.hyprland.rofi.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.hyprland.rofi.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.hyprland.rofi.realTime.packageSource == "nixpkgs" then (with pkgs; [
           rofi
           whitesur-icon-theme
         ]) else [];
@@ -129,11 +129,11 @@ in
     })
 
     # Swappy 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.swappy.enable && config.myHome.desktop.hyprland.swappy.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.swappy.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.hyprland.swappy.packageSource == "flake" then [
+        if config.myHome.desktop.hyprland.swappy.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.hyprland.swappy.packageSource == "nixpkgs" then (with pkgs; [ swappy ]) else [];
+        ] else if config.myHome.desktop.hyprland.swappy.realTime.packageSource == "nixpkgs" then (with pkgs; [ swappy ]) else [];
 
       xdg.configFile = {
         "swappy/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/swappy/config";
@@ -141,11 +141,11 @@ in
     })
 
     # Wlogout 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.wlogout.enable && config.myHome.desktop.hyprland.wlogout.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.wlogout.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.hyprland.wlogout.packageSource == "flake" then [
+        if config.myHome.desktop.hyprland.wlogout.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.hyprland.wlogout.packageSource == "nixpkgs" then (with pkgs; [ wlogout ]) else [];
+        ] else if config.myHome.desktop.hyprland.wlogout.realTime.packageSource == "nixpkgs" then (with pkgs; [ wlogout ]) else [];
 
       xdg.configFile = {
         "wlogout/layout".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/wlogout/layout";
@@ -154,11 +154,11 @@ in
     })
 
     # Fuzzel 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.fuzzel.enable && config.myHome.desktop.hyprland.fuzzel.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.fuzzel.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.hyprland.fuzzel.packageSource == "flake" then [
+        if config.myHome.desktop.hyprland.fuzzel.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.hyprland.fuzzel.packageSource == "nixpkgs" then (with pkgs; [ fuzzel ]) else [];
+        ] else if config.myHome.desktop.hyprland.fuzzel.realTime.packageSource == "nixpkgs" then (with pkgs; [ fuzzel ]) else [];
 
       xdg.configFile = {
         "fuzzel/fuzzel.ini".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/fuzzel/fuzzel.ini";
@@ -166,11 +166,11 @@ in
     })
 
     # IronBar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.ironbar.enable && config.myHome.desktop.hyprland.ironbar.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.ironbar.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.hyprland.ironbar.packageSource == "flake" then [
+        if config.myHome.desktop.hyprland.ironbar.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.hyprland.ironbar.packageSource == "nixpkgs" then (with pkgs; [ ironbar ]) else [];
+        ] else if config.myHome.desktop.hyprland.ironbar.realTime.packageSource == "nixpkgs" then (with pkgs; [ ironbar ]) else [];
 
       xdg.configFile = {
         "ironbar/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/ironbar/config.toml";

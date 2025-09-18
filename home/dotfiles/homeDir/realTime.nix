@@ -6,11 +6,11 @@ in
 {
   config = lib.mkMerge [
     # Bash 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.bash.packageSource == "flake" then [
+        if config.myHome.dotfiles.bash.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.bash.packageSource == "nixpkgs" then (with pkgs; [ bash ]) else [];
+        ] else if config.myHome.dotfiles.bash.realTime.packageSource == "nixpkgs" then (with pkgs; [ bash ]) else [];
 
       home.file = {
         "bashrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.bashrc";
@@ -21,11 +21,11 @@ in
     })
 
     # Zsh 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.zsh.packageSource == "flake" then [
+        if config.myHome.dotfiles.zsh.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.zsh.packageSource == "nixpkgs" then (with pkgs; [ zsh ]) else [];
+        ] else if config.myHome.dotfiles.zsh.realTime.packageSource == "nixpkgs" then (with pkgs; [ zsh ]) else [];
 
       home.file = {
         "zshrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.zshrc";
@@ -37,21 +37,21 @@ in
     })
 
     # Vim 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.vim.packageSource == "flake" then [
+        if config.myHome.dotfiles.vim.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.vim.packageSource == "nixpkgs" then (with pkgs; [ vim ]) else [];
+        ] else if config.myHome.dotfiles.vim.realTime.packageSource == "nixpkgs" then (with pkgs; [ vim ]) else [];
 
       home.file.".vimrc".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.vimrc";
     })
 
     # Fish 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.fish.enable && config.myHome.dotfiles.fish.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.fish.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.fish.packageSource == "flake" then [
+        if config.myHome.dotfiles.fish.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.fish.packageSource == "nixpkgs" then (with pkgs; [ fish ]) else [];
+        ] else if config.myHome.dotfiles.fish.realTime.packageSource == "nixpkgs" then (with pkgs; [ fish ]) else [];
 
       xdg.configFile = {
         "fish/config.fish".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/fish/config.fish";
@@ -62,11 +62,11 @@ in
     })
 
     # Nushell 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.nushell.enable && config.myHome.dotfiles.nushell.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.nushell.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.nushell.packageSource == "flake" then [
+        if config.myHome.dotfiles.nushell.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.nushell.packageSource == "nixpkgs" then (with pkgs; [ nushell ]) else [];
+        ] else if config.myHome.dotfiles.nushell.realTime.packageSource == "nixpkgs" then (with pkgs; [ nushell ]) else [];
 
       xdg.configFile = {
         "nushell/config.nu".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/nushell/config.nu";
@@ -75,21 +75,21 @@ in
     })
 
     # Starship 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.enable && config.myHome.dotfiles.starship.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.starship.packageSource == "flake" then [
+        if config.myHome.dotfiles.starship.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.starship.packageSource == "nixpkgs" then (with pkgs; [ starship ]) else [];
+        ] else if config.myHome.dotfiles.starship.realTime.packageSource == "nixpkgs" then (with pkgs; [ starship ]) else [];
 
       xdg.configFile."starship.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/starship.toml";
     })
 
     # Alacritty 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.enable && config.myHome.dotfiles.alacritty.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.alacritty.packageSource == "flake" then [
+        if config.myHome.dotfiles.alacritty.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.alacritty.packageSource == "nixpkgs" then (with pkgs; [ alacritty ]) else [];
+        ] else if config.myHome.dotfiles.alacritty.realTime.packageSource == "nixpkgs" then (with pkgs; [ alacritty ]) else [];
 
       xdg.configFile = {
         "alacritty/alacritty.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/alacritty/alacritty.toml";
@@ -98,11 +98,11 @@ in
     })
 
     # Ghostty 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.ghostty.packageSource == "flake" then [
+        if config.myHome.dotfiles.ghostty.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.ghostty.packageSource == "nixpkgs" then (with pkgs; [ ghostty ]) else [];
+        ] else if config.myHome.dotfiles.ghostty.realTime.packageSource == "nixpkgs" then (with pkgs; [ ghostty ]) else [];
 
       xdg.configFile = {
         "ghostty/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/ghostty/config";
@@ -111,11 +111,11 @@ in
     })
 
     # Rio 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rio.enable && config.myHome.dotfiles.rio.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rio.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.rio.packageSource == "flake" then [
+        if config.myHome.dotfiles.rio.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.rio.packageSource == "nixpkgs" then (with pkgs; [ rio ]) else [];
+        ] else if config.myHome.dotfiles.rio.realTime.packageSource == "nixpkgs" then (with pkgs; [ rio ]) else [];
 
       xdg.configFile = {
         "rio/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rio/config.toml";
@@ -124,11 +124,11 @@ in
     })
 
     # Git 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.git.enable && config.myHome.dotfiles.git.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.git.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.git.packageSource == "flake" then [
+        if config.myHome.dotfiles.git.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.git.packageSource == "nixpkgs" then (with pkgs; [ git ]) else [];
+        ] else if config.myHome.dotfiles.git.realTime.packageSource == "nixpkgs" then (with pkgs; [ git ]) else [];
 
       xdg.configFile = {
         "git/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/git/gitconfig";
@@ -137,31 +137,31 @@ in
     })
 
     # Lazygit 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.enable && config.myHome.dotfiles.lazygit.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.lazygit.packageSource == "flake" then [
+        if config.myHome.dotfiles.lazygit.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.lazygit.packageSource == "nixpkgs" then (with pkgs; [ lazygit ]) else [];
+        ] else if config.myHome.dotfiles.lazygit.realTime.packageSource == "nixpkgs" then (with pkgs; [ lazygit ]) else [];
 
       xdg.configFile."lazygit/config.yml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/lazygit/config.yml";
     })
 
     # Tmux 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && config.myHome.dotfiles.tmux.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.tmux.packageSource == "flake" then [
+        if config.myHome.dotfiles.tmux.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.tmux.packageSource == "nixpkgs" then (with pkgs; [ tmux ]) else [];
+        ] else if config.myHome.dotfiles.tmux.realTime.packageSource == "nixpkgs" then (with pkgs; [ tmux ]) else [];
 
       xdg.configFile."tmux/tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/tmux/tmux.conf";
     })
 
     # Zellij 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zellij.enable && config.myHome.dotfiles.zellij.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zellij.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.zellij.packageSource == "flake" then [
+        if config.myHome.dotfiles.zellij.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.zellij.packageSource == "nixpkgs" then (with pkgs; [ zellij ]) else [];
+        ] else if config.myHome.dotfiles.zellij.realTime.packageSource == "nixpkgs" then (with pkgs; [ zellij ]) else [];
 
       xdg.configFile = {
         "zellij/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/zellij/config.kdl";
@@ -171,11 +171,11 @@ in
     })
 
     # Rofi 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rofi.enable && config.myHome.dotfiles.rofi.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rofi.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.rofi.packageSource == "flake" then [
+        if config.myHome.dotfiles.rofi.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.rofi.packageSource == "nixpkgs" then (with pkgs; [ rofi ]) else [];
+        ] else if config.myHome.dotfiles.rofi.realTime.packageSource == "nixpkgs" then (with pkgs; [ rofi ]) else [];
 
       xdg.configFile = {
         "rofi/config.rasi".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rofi/config.rasi";
@@ -185,11 +185,11 @@ in
     })
 
     # Sherlock 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.sherlock.enable && config.myHome.dotfiles.sherlock.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.sherlock.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.sherlock.packageSource == "flake" then [
+        if config.myHome.dotfiles.sherlock.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.sherlock.packageSource == "nixpkgs" then (with pkgs; [ sherlock ]) else [];
+        ] else if config.myHome.dotfiles.sherlock.realTime.packageSource == "nixpkgs" then (with pkgs; [ sherlock ]) else [];
 
       xdg.configFile = {
         "sherlock/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/sherlock/config.toml";
@@ -204,21 +204,21 @@ in
     })
 
     # RMPC 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rmpc.enable && config.myHome.dotfiles.rmpc.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rmpc.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.rmpc.packageSource == "flake" then [
+        if config.myHome.dotfiles.rmpc.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.rmpc.packageSource == "nixpkgs" then (with pkgs; [ rmpc ]) else [];
+        ] else if config.myHome.dotfiles.rmpc.realTime.packageSource == "nixpkgs" then (with pkgs; [ rmpc ]) else [];
 
       xdg.configFile."rmpc/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/rmpc/config.toml";
     })
 
     # Yazi 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.yazi.packageSource == "flake" then [
+        if config.myHome.dotfiles.yazi.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.yazi.packageSource == "nixpkgs" then (with pkgs; [ yazi ]) else [];
+        ] else if config.myHome.dotfiles.yazi.realTime.packageSource == "nixpkgs" then (with pkgs; [ yazi ]) else [];
 
       xdg.configFile = {
         "yazi/yazi.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/yazi/yazi.toml";
@@ -228,41 +228,41 @@ in
     })
 
     # Qutebrowser 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.qutebrowser.enable && config.myHome.dotfiles.qutebrowser.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.qutebrowser.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.qutebrowser.packageSource == "flake" then [
+        if config.myHome.dotfiles.qutebrowser.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.qutebrowser.packageSource == "nixpkgs" then (with pkgs; [ qutebrowser ]) else [];
+        ] else if config.myHome.dotfiles.qutebrowser.realTime.packageSource == "nixpkgs" then (with pkgs; [ qutebrowser ]) else [];
 
       xdg.configFile."qutebrowser/config.py".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/qutebrowser/config.py";
     })
 
     # OBS Studio 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.obs-studio.enable && config.myHome.dotfiles.obs-studio.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.obs-studio.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.obs-studio.packageSource == "flake" then [
+        if config.myHome.dotfiles.obs-studio.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.obs-studio.packageSource == "nixpkgs" then (with pkgs; [ obs-studio ]) else [];
+        ] else if config.myHome.dotfiles.obs-studio.realTime.packageSource == "nixpkgs" then (with pkgs; [ obs-studio ]) else [];
 
       xdg.configFile."obs-studio/README.md".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/obs-studio/README.md";
     })
 
     # VSCode 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.enable && config.myHome.dotfiles.vscode.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.vscode.packageSource == "flake" then [
+        if config.myHome.dotfiles.vscode.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.vscode.packageSource == "nixpkgs" then (with pkgs; [ vscode ]) else [];
+        ] else if config.myHome.dotfiles.vscode.realTime.packageSource == "nixpkgs" then (with pkgs; [ vscode ]) else [];
 
       xdg.configFile."Code/User/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/Code/User/settings.json";
     })
 
     # Zed 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.enable && config.myHome.dotfiles.zed.method == "realTime") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.realTime.enable) {
       home.packages =
-        if config.myHome.dotfiles.zed.packageSource == "flake" then [
+        if config.myHome.dotfiles.zed.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.zed.packageSource == "nixpkgs" then (with pkgs; [ zed-editor ]) else [];
+        ] else if config.myHome.dotfiles.zed.realTime.packageSource == "nixpkgs" then (with pkgs; [ zed-editor ]) else [];
 
       xdg.configFile."zed/settings.json".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/zed/settings.json";
     })

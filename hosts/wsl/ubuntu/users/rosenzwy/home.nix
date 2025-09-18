@@ -5,57 +5,100 @@
     dotfiles = {
       enable = true;
       vim = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       zsh = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       bash = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       fish = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       nushell = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
-      tmux.enable = true;
-      git.enable = true;
-      lazygit.enable = true;
+      tmux = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      git = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      lazygit = {
+        homeManager = {
+          enable = true;
+        };
+      };
       starship = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
-      qutebrowser.enable = false;
+      qutebrowser = {
+        homeManager = {
+          enable = false;
+        };
+      };
       alacritty = {
-        enable = false;  # WSL 中通常不需要
-        method = "copyLink";
+        copyLink = {
+          enable = false;  # WSL 中通常不需要
+        };
       };
       obs-studio = {
-        enable = false;
-        method = "homeManager";
+        homeManager = {
+          enable = false;
+        };
       };
       sherlock = {
+        copyLink = {
           enable = true;
-          method = "copyLink";
+        };
       };
       yazi = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
       zellij = {
-        enable = true;
-        method = "homeManager";
+        homeManager = {
+          enable = true;
+        };
       };
-      ripgrep.enable = true;
-      fd.enable = true;
-      tealdeer.enable = true;
-      lsd.enable = true;
+      ripgrep = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      fd = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      tealdeer = {
+        homeManager = {
+          enable = true;
+        };
+      };
+      lsd = {
+        homeManager = {
+          enable = true;
+        };
+      };
     };
 
     develop = {

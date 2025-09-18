@@ -3,11 +3,11 @@
 {
   config = lib.mkMerge [
     # Bash 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.bash.packageSource == "flake" then [
+        if config.myHome.dotfiles.bash.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.bash.packageSource == "nixpkgs" then (with pkgs; [ bash ]) else [];
+        ] else if config.myHome.dotfiles.bash.copyLink.packageSource == "nixpkgs" then (with pkgs; [ bash ]) else [];
 
       home.file = {
         ".bashrc".source = ./.bashrc;
@@ -18,11 +18,11 @@
     })
 
     # Zsh 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.zsh.packageSource == "flake" then [
+        if config.myHome.dotfiles.zsh.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.zsh.packageSource == "nixpkgs" then (with pkgs; [ zsh ]) else [];
+        ] else if config.myHome.dotfiles.zsh.copyLink.packageSource == "nixpkgs" then (with pkgs; [ zsh ]) else [];
 
       home.file = {
         ".zshrc".source = ./.zshrc;
@@ -34,21 +34,21 @@
     })
 
     # Vim 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.vim.packageSource == "flake" then [
+        if config.myHome.dotfiles.vim.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.vim.packageSource == "nixpkgs" then (with pkgs; [ vim ]) else [];
+        ] else if config.myHome.dotfiles.vim.copyLink.packageSource == "nixpkgs" then (with pkgs; [ vim ]) else [];
 
       home.file.".vimrc".source = ./.vimrc;
     })
 
     # Fish 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.fish.enable && config.myHome.dotfiles.fish.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.fish.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.fish.packageSource == "flake" then [
+        if config.myHome.dotfiles.fish.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.fish.packageSource == "nixpkgs" then (with pkgs; [ fish ]) else [];
+        ] else if config.myHome.dotfiles.fish.copyLink.packageSource == "nixpkgs" then (with pkgs; [ fish ]) else [];
 
       xdg.configFile = {
         "fish/config.fish".source = ./.config/fish/config.fish;
@@ -59,11 +59,11 @@
     })
 
     # Nushell 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.nushell.enable && config.myHome.dotfiles.nushell.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.nushell.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.nushell.packageSource == "flake" then [
+        if config.myHome.dotfiles.nushell.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.nushell.packageSource == "nixpkgs" then (with pkgs; [ nushell ]) else [];
+        ] else if config.myHome.dotfiles.nushell.copyLink.packageSource == "nixpkgs" then (with pkgs; [ nushell ]) else [];
 
       xdg.configFile = {
         "nushell/env.nu".source = ./.config/nushell/env.nu;
@@ -72,20 +72,20 @@
     })
 
     # Starship 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.enable && config.myHome.dotfiles.starship.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.starship.packageSource == "flake" then [
+        if config.myHome.dotfiles.starship.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.starship.packageSource == "nixpkgs" then (with pkgs; [ starship ]) else [];
+        ] else if config.myHome.dotfiles.starship.copyLink.packageSource == "nixpkgs" then (with pkgs; [ starship ]) else [];
       xdg.configFile."starship.toml".source = ./.config/starship.toml;
     })
 
     # Alacritty 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.enable && config.myHome.dotfiles.alacritty.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.alacritty.packageSource == "flake" then [
+        if config.myHome.dotfiles.alacritty.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.alacritty.packageSource == "nixpkgs" then (with pkgs; [ alacritty ]) else [];
+        ] else if config.myHome.dotfiles.alacritty.copyLink.packageSource == "nixpkgs" then (with pkgs; [ alacritty ]) else [];
 
       xdg.configFile = {
         "alacritty/alacritty.toml".source = ./.config/alacritty/alacritty.toml;
@@ -94,11 +94,11 @@
     })
 
     # Ghostty 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.ghostty.packageSource == "flake" then [
+        if config.myHome.dotfiles.ghostty.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.ghostty.packageSource == "nixpkgs" then (with pkgs; [ ghostty ]) else [];
+        ] else if config.myHome.dotfiles.ghostty.copyLink.packageSource == "nixpkgs" then (with pkgs; [ ghostty ]) else [];
 
       xdg.configFile = {
         "ghostty/config".source = ./.config/ghostty/config;
@@ -107,11 +107,11 @@
     })
 
     # Rio 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rio.enable && config.myHome.dotfiles.rio.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rio.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.rio.packageSource == "flake" then [
+        if config.myHome.dotfiles.rio.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.rio.packageSource == "nixpkgs" then (with pkgs; [ rio ]) else [];
+        ] else if config.myHome.dotfiles.rio.copyLink.packageSource == "nixpkgs" then (with pkgs; [ rio ]) else [];
 
       xdg.configFile = {
         "rio/config.toml".source = ./.config/rio/config.toml;
@@ -120,11 +120,11 @@
     })
 
     # Git 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.git.enable && config.myHome.dotfiles.git.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.git.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.git.packageSource == "flake" then [
+        if config.myHome.dotfiles.git.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.git.packageSource == "nixpkgs" then (with pkgs; [ git ]) else [];
+        ] else if config.myHome.dotfiles.git.copyLink.packageSource == "nixpkgs" then (with pkgs; [ git ]) else [];
 
       xdg.configFile = {
         "git/config".source = ./.config/git/gitconfig;
@@ -133,21 +133,21 @@
     })
 
     # Lazygit 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.enable && config.myHome.dotfiles.lazygit.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.lazygit.packageSource == "flake" then [
+        if config.myHome.dotfiles.lazygit.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.lazygit.packageSource == "nixpkgs" then (with pkgs; [ lazygit ]) else [];
+        ] else if config.myHome.dotfiles.lazygit.copyLink.packageSource == "nixpkgs" then (with pkgs; [ lazygit ]) else [];
 
       xdg.configFile."lazygit/config.yml".source = ./.config/lazygit/config.yml;
     })
 
     # Tmux 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && config.myHome.dotfiles.tmux.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.tmux.packageSource == "flake" then [
+        if config.myHome.dotfiles.tmux.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.tmux.packageSource == "nixpkgs" then (with pkgs; [ tmux ]) else [];
+        ] else if config.myHome.dotfiles.tmux.copyLink.packageSource == "nixpkgs" then (with pkgs; [ tmux ]) else [];
 
       xdg.configFile = {
         "tmux/tmux.conf".source = ./.config/tmux/tmux.conf;
@@ -156,11 +156,11 @@
     })
 
     # Zellij 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zellij.enable && config.myHome.dotfiles.zellij.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zellij.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.zellij.packageSource == "flake" then [
+        if config.myHome.dotfiles.zellij.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.zellij.packageSource == "nixpkgs" then (with pkgs; [ zellij ]) else [];
+        ] else if config.myHome.dotfiles.zellij.copyLink.packageSource == "nixpkgs" then (with pkgs; [ zellij ]) else [];
 
       xdg.configFile = {
         "zellij/config.kdl".source = ./.config/zellij/config.kdl;
@@ -170,11 +170,11 @@
     })
 
     # Rofi 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rofi.enable && config.myHome.dotfiles.rofi.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rofi.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.rofi.packageSource == "flake" then [
+        if config.myHome.dotfiles.rofi.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.rofi.packageSource == "nixpkgs" then (with pkgs; [ rofi ]) else [];
+        ] else if config.myHome.dotfiles.rofi.copyLink.packageSource == "nixpkgs" then (with pkgs; [ rofi ]) else [];
 
       xdg.configFile = {
         "rofi/config.rasi".source = ./.config/rofi/config.rasi;
@@ -184,11 +184,11 @@
     })
 
     # Sherlock 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.sherlock.enable && config.myHome.dotfiles.sherlock.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.sherlock.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.sherlock.packageSource == "flake" then [
+        if config.myHome.dotfiles.sherlock.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.sherlock.packageSource == "nixpkgs" then (with pkgs; [ sherlock ]) else [];
+        ] else if config.myHome.dotfiles.sherlock.copyLink.packageSource == "nixpkgs" then (with pkgs; [ sherlock ]) else [];
 
       xdg.configFile = {
         "sherlock/config.toml".source = ./.config/sherlock/config.toml;
@@ -203,21 +203,21 @@
     })
 
     # RMPC 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rmpc.enable && config.myHome.dotfiles.rmpc.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rmpc.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.rmpc.packageSource == "flake" then [
+        if config.myHome.dotfiles.rmpc.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.rmpc.packageSource == "nixpkgs" then (with pkgs; [ rmpc ]) else [];
+        ] else if config.myHome.dotfiles.rmpc.copyLink.packageSource == "nixpkgs" then (with pkgs; [ rmpc ]) else [];
 
       xdg.configFile."rmpc/config.toml".source = ./.config/rmpc/config.toml;
     })
 
     # Yazi 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.yazi.packageSource == "flake" then [
+        if config.myHome.dotfiles.yazi.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.yazi.packageSource == "nixpkgs" then (with pkgs; [ yazi ]) else [];
+        ] else if config.myHome.dotfiles.yazi.copyLink.packageSource == "nixpkgs" then (with pkgs; [ yazi ]) else [];
 
       xdg.configFile = {
         "yazi/yazi.toml".source = ./.config/yazi/yazi.toml;
@@ -230,41 +230,41 @@
     })
 
     # Qutebrowser 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.qutebrowser.enable && config.myHome.dotfiles.qutebrowser.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.qutebrowser.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.qutebrowser.packageSource == "flake" then [
+        if config.myHome.dotfiles.qutebrowser.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.qutebrowser.packageSource == "nixpkgs" then (with pkgs; [ qutebrowser ]) else [];
+        ] else if config.myHome.dotfiles.qutebrowser.copyLink.packageSource == "nixpkgs" then (with pkgs; [ qutebrowser ]) else [];
 
       xdg.configFile."qutebrowser/config.py".source = ./.config/qutebrowser/config.py;
     })
 
     # OBS Studio 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.obs-studio.enable && config.myHome.dotfiles.obs-studio.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.obs-studio.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.obs-studio.packageSource == "flake" then [
+        if config.myHome.dotfiles.obs-studio.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.obs-studio.packageSource == "nixpkgs" then (with pkgs; [ obs-studio ]) else [];
+        ] else if config.myHome.dotfiles.obs-studio.copyLink.packageSource == "nixpkgs" then (with pkgs; [ obs-studio ]) else [];
 
       xdg.configFile."obs-studio/README.md".source = ./.config/obs-studio/README.md;
     })
 
     # VSCode 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.enable && config.myHome.dotfiles.vscode.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.vscode.packageSource == "flake" then [
+        if config.myHome.dotfiles.vscode.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.vscode.packageSource == "nixpkgs" then (with pkgs; [ vscode ]) else [];
+        ] else if config.myHome.dotfiles.vscode.copyLink.packageSource == "nixpkgs" then (with pkgs; [ vscode ]) else [];
 
       xdg.configFile."Code/User/settings.json".source = ./.config/Code/User/settings.json;
     })
 
     # Zed 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.enable && config.myHome.dotfiles.zed.method == "copyLink") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.copyLink.enable) {
       home.packages =
-        if config.myHome.dotfiles.zed.packageSource == "flake" then [
+        if config.myHome.dotfiles.zed.copyLink.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.dotfiles.zed.packageSource == "nixpkgs" then (with pkgs; [ zed-editor ]) else [];
+        ] else if config.myHome.dotfiles.zed.copyLink.packageSource == "nixpkgs" then (with pkgs; [ zed-editor ]) else [];
 
       xdg.configFile."zed/settings.json".source = ./.config/zed/settings.json;
     })

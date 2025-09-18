@@ -6,7 +6,7 @@ in
 {
   config = lib.mkMerge [
     # Niri 生态系统包配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.packages.enable && config.myHome.desktop.niri.packages.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.packages.realTime.enable) {
       home.packages = with pkgs; [
         grim                   # Wayland 截图工具
         slurp                  # 区域选择工具
@@ -23,7 +23,7 @@ in
     })
 
     # Niri 环境变量配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.environment.enable && config.myHome.desktop.niri.environment.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.environment.realTime.enable) {
       home.sessionVariables = {
         # Niri 相关环境变量
         XDG_CURRENT_DESKTOP = "niri";
@@ -46,9 +46,9 @@ in
     })
 
     # Niri 核心配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.niri.enable && config.myHome.desktop.niri.niri.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.niri.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.niri.niri.packageSource == "flake" then [
+        if config.myHome.desktop.niri.niri.realTime.packageSource == "flake" then [
           # 使用 Niri 官方 flake 中的最新版本
           inputs.niri.packages.${pkgs.system}.niri
           # 其他相关包仍使用 nixpkgs
@@ -57,7 +57,7 @@ in
           pkgs.sunsetr
           pkgs.apple-cursor
           pkgs.xwayland-satellite
-        ] else if config.myHome.desktop.niri.niri.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.niri.realTime.packageSource == "nixpkgs" then (with pkgs; [
           # 使用 nixpkgs 中的稳定版本
           niri
           niriswitcher
@@ -74,11 +74,11 @@ in
     })
 
     # Waybar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.waybar.enable && config.myHome.desktop.niri.waybar.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.waybar.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.niri.waybar.packageSource == "flake" then [
+        if config.myHome.desktop.niri.waybar.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.waybar.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
+        ] else if config.myHome.desktop.niri.waybar.realTime.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
 
       xdg.configFile = {
         "waybar/config".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/waybar/config";
@@ -91,11 +91,11 @@ in
     })
 
     # Ironbar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.ironbar.enable && config.myHome.desktop.niri.ironbar.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.ironbar.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.niri.ironbar.packageSource == "flake" then [
+        if config.myHome.desktop.niri.ironbar.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.ironbar.packageSource == "nixpkgs" then (with pkgs; [ ironbar ]) else [];
+        ] else if config.myHome.desktop.niri.ironbar.realTime.packageSource == "nixpkgs" then (with pkgs; [ ironbar ]) else [];
 
       xdg.configFile = {
         "ironbar/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/ironbar/config.toml";
@@ -104,11 +104,11 @@ in
     })
 
     # Rofi 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.rofi.enable && config.myHome.desktop.niri.rofi.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.rofi.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.niri.rofi.packageSource == "flake" then [
+        if config.myHome.desktop.niri.rofi.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.rofi.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.rofi.realTime.packageSource == "nixpkgs" then (with pkgs; [
           rofi
         ]) else [];
 
@@ -119,11 +119,11 @@ in
     })
 
     # Fuzzel 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.fuzzel.enable && config.myHome.desktop.niri.fuzzel.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.fuzzel.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.niri.fuzzel.packageSource == "flake" then [
+        if config.myHome.desktop.niri.fuzzel.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.fuzzel.packageSource == "nixpkgs" then (with pkgs; [ fuzzel lxgw-wenkai ]) else [];
+        ] else if config.myHome.desktop.niri.fuzzel.realTime.packageSource == "nixpkgs" then (with pkgs; [ fuzzel lxgw-wenkai ]) else [];
 
       xdg.configFile = {
         "fuzzel/fuzzel.ini".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/fuzzel/fuzzel.ini";
@@ -131,11 +131,11 @@ in
     })
 
     # Swaylock 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swaylock.enable && config.myHome.desktop.niri.swaylock.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swaylock.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.niri.swaylock.packageSource == "flake" then [
+        if config.myHome.desktop.niri.swaylock.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.swaylock.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.swaylock.realTime.packageSource == "nixpkgs" then (with pkgs; [
           swaylock
           lxgw-wenkai
         ]) else [];
@@ -146,11 +146,11 @@ in
     })
 
     # Swayidle 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swayidle.enable && config.myHome.desktop.niri.swayidle.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swayidle.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.niri.swayidle.packageSource == "flake" then [
+        if config.myHome.desktop.niri.swayidle.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.swayidle.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.swayidle.realTime.packageSource == "nixpkgs" then (with pkgs; [
           swayidle
           brightnessctl    # 亮度控制（用于渐进式节能）
           libnotify        # 通知支持
@@ -162,11 +162,11 @@ in
     })
 
     # Wlogout 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.wlogout.enable && config.myHome.desktop.niri.wlogout.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.wlogout.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.niri.wlogout.packageSource == "flake" then [
+        if config.myHome.desktop.niri.wlogout.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.wlogout.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.wlogout.realTime.packageSource == "nixpkgs" then (with pkgs; [
           wlogout
         ]) else [];
 
@@ -178,11 +178,11 @@ in
     })
 
     # Dunst 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.dunst.enable && config.myHome.desktop.niri.dunst.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.dunst.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.niri.dunst.packageSource == "flake" then [
+        if config.myHome.desktop.niri.dunst.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.dunst.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.dunst.realTime.packageSource == "nixpkgs" then (with pkgs; [
           dunst
         ]) else [];
 
@@ -194,11 +194,11 @@ in
     })
 
     # Mako 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.mako.enable && config.myHome.desktop.niri.mako.method == "realTime") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.mako.realTime.enable) {
       home.packages =
-        if config.myHome.desktop.niri.mako.packageSource == "flake" then [
+        if config.myHome.desktop.niri.mako.realTime.packageSource == "flake" then [
           # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.mako.packageSource == "nixpkgs" then (with pkgs; [
+        ] else if config.myHome.desktop.niri.mako.realTime.packageSource == "nixpkgs" then (with pkgs; [
           mako
           lxgw-wenkai         # 霞鹜文楷
         ]) else [];
