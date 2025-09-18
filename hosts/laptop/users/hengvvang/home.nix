@@ -69,7 +69,6 @@
         appearance = {
           homeManager = {
             enable = true;
-            packageSource = "nixpkgs";
           };
         };
       };
