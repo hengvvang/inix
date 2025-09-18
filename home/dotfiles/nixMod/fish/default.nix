@@ -46,16 +46,8 @@
 
       # 插件配置 - 扩展Fish功能
       plugins = [
-        # z - 智能目录跳转插件
-        {
-          name = "z";
-          src = pkgs.fetchFromGitHub {
-            owner = "jethrokuan";
-            repo = "z";
-            rev = "ddeb28a7b6a1f0ec6dae40c636e5ca4908ad160a";
-            sha256 = "0c5i7sdrsp0q3vbziqzdyqn4fmp235ax4mn4zslrswvn8g3fvdyh";
-          };
-        }
+        # 注意：z 插件已被移除，因为我们使用 zoxide 作为目录跳转工具
+        # zoxide 通过 develop/devenv 模块自动配置，提供更好的功能
 
         # 其他插件可以在这里添加
         # 例如：fzf fish集成、git提示等
