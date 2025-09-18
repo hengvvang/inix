@@ -29,12 +29,22 @@
     environment = {
       realTime = {
         enable = lib.mkEnableOption "Enable Niri environment variables via realTime method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = "Source for packages installation";
+        };
       };
       homeManager = {
         enable = lib.mkEnableOption "Enable Niri environment variables via homeManager method" // { default = true; };
       };
       copyLink = {
         enable = lib.mkEnableOption "Enable Niri environment variables via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = "Source for packages installation";
+        };
       };
     };
 

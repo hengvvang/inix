@@ -32,15 +32,6 @@
       };
       homeManager = {
         enable = lib.mkEnableOption "Enable homeManager method for Hyprland ecosystem packages" // { default = false; };
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = ''
-            Source for packages installation when using homeManager method:
-            - none: Don't install packages
-            - nixpkgs: Use packages from nixpkgs
-            - flake: Use packages from flake
-          '';
-        };
       };
     };
 
@@ -332,4 +323,5 @@
         enable = lib.mkEnableOption "Enable homeManager method for IronBar configuration" // { default = false; };
       };
     };
-  }
+  };
+}
