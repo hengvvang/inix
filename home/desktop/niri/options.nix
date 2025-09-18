@@ -55,10 +55,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Niri package installation:
-            - none: Don't install Niri package (use system-level installation)
-            - nixpkgs: Use stable Niri package from nixpkgs
-            - flake: Use newer Niri package from official upstream flake
           '';
         };
       };
@@ -73,10 +69,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Niri package installation:
-            - none: Don't install Niri package (use system-level installation)
-            - nixpkgs: Use stable Niri package from nixpkgs
-            - flake: Use newer Niri package from official upstream flake
           '';
         };
       };
@@ -92,10 +84,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Waybar package installation:
-            - none: Don't install Waybar package
-            - nixpkgs: Use Waybar package from nixpkgs
-            - flake: Use Waybar package from flake
           '';
         };
       };
@@ -110,10 +98,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Waybar package installation:
-            - none: Don't install Waybar package
-            - nixpkgs: Use Waybar package from nixpkgs
-            - flake: Use Waybar package from flake
           '';
         };
       };
@@ -129,10 +113,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Ironbar package installation:
-            - none: Don't install Ironbar package
-            - nixpkgs: Use Ironbar package from nixpkgs
-            - flake: Use Ironbar package from flake
           '';
         };
       };
@@ -156,10 +136,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Rofi package installation:
-            - none: Don't install Rofi package
-            - nixpkgs: Use Rofi package from nixpkgs
-            - flake: Use Rofi package from flake
           '';
         };
       };
@@ -174,10 +150,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Rofi package installation:
-            - none: Don't install Rofi package
-            - nixpkgs: Use Rofi package from nixpkgs
-            - flake: Use Rofi package from flake
           '';
         };
       };
@@ -193,10 +165,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "none";
           description = ''
-            Source for Fuzzel package installation:
-            - none: Don't install Fuzzel package (use system-level installation)
-            - nixpkgs: Use Fuzzel package from nixpkgs
-            - flake: Use Fuzzel package from flake
           '';
         };
       };
@@ -211,10 +179,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "none";
           description = ''
-            Source for Fuzzel package installation:
-            - none: Don't install Fuzzel package (use system-level installation)
-            - nixpkgs: Use Fuzzel package from nixpkgs
-            - flake: Use Fuzzel package from flake
           '';
         };
       };
@@ -230,10 +194,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Swaylock package installation:
-            - none: Don't install Swaylock package
-            - nixpkgs: Use Swaylock package from nixpkgs
-            - flake: Use Swaylock package from flake
           '';
         };
       };
@@ -248,10 +208,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Swaylock package installation:
-            - none: Don't install Swaylock package
-            - nixpkgs: Use Swaylock package from nixpkgs
-            - flake: Use Swaylock package from flake
           '';
         };
       };
@@ -267,10 +223,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Swayidle package installation:
-            - none: Don't install Swayidle package
-            - nixpkgs: Use Swayidle package from nixpkgs
-            - flake: Use Swayidle package from flake
           '';
         };
       };
@@ -285,10 +237,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Swayidle package installation:
-            - none: Don't install Swayidle package
-            - nixpkgs: Use Swayidle package from nixpkgs
-            - flake: Use Swayidle package from flake
           '';
         };
       };
@@ -304,10 +252,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Wlogout package installation:
-            - none: Don't install Wlogout package
-            - nixpkgs: Use Wlogout package from nixpkgs
-            - flake: Use Wlogout package from flake
           '';
         };
       };
@@ -316,16 +260,12 @@
         configPath = lib.mkOption {
           type = lib.types.str;
           default = ".config/wlogout";
-          description = "Path to Wlogout configuration directory";
+          description = "";
         };
         packageSource = lib.mkOption {
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Wlogout package installation:
-            - none: Don't install Wlogout package
-            - nixpkgs: Use Wlogout package from nixpkgs
-            - flake: Use Wlogout package from flake
           '';
         };
       };
@@ -341,10 +281,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Dunst package installation:
-            - none: Don't install Dunst package
-            - nixpkgs: Use Dunst package from nixpkgs
-            - flake: Use Dunst package from flake
           '';
         };
       };
@@ -353,16 +289,12 @@
         configPath = lib.mkOption {
           type = lib.types.str;
           default = ".config/dunst";
-          description = "Path to Dunst configuration directory";
+          description = "";
         };
         packageSource = lib.mkOption {
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Dunst package installation:
-            - none: Don't install Dunst package
-            - nixpkgs: Use Dunst package from nixpkgs
-            - flake: Use Dunst package from flake
           '';
         };
       };
@@ -378,10 +310,6 @@
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Mako package installation:
-            - none: Don't install Mako package
-            - nixpkgs: Use Mako package from nixpkgs
-            - flake: Use Mako package from flake
           '';
         };
       };
@@ -390,16 +318,12 @@
         configPath = lib.mkOption {
           type = lib.types.str;
           default = ".config/mako";
-          description = "Path to Mako configuration directory";
+          description = "";
         };
         packageSource = lib.mkOption {
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = ''
-            Source for Mako package installation:
-            - none: Don't install Mako package
-            - nixpkgs: Use Mako package from nixpkgs
-            - flake: Use Mako package from flake
           '';
         };
       };
