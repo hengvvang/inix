@@ -101,11 +101,6 @@
           enable = true;
         };
       };
-      tmux = {
-        homeManager = {
-          enable = true;
-        };
-      };
       git = {
         homeManager = {
           enable = true;
@@ -121,11 +116,6 @@
           enable = true;
         };
       };
-      qutebrowser = {
-        homeManager = {
-          enable = false;
-        };
-      };
       alacritty = {
         copyLink = {
           enable = true;
@@ -139,21 +129,6 @@
       sherlock = {
         copyLink = {
           enable = true;
-        };
-      };
-      zed = {
-        copyLink = {
-          enable = false;
-        };
-      };
-      vscode = {
-        copyLink = {
-          enable = false;
-        };
-      };
-      rofi = {
-        copyLink = {
-          enable = false;
         };
       };
       ghostty = {
