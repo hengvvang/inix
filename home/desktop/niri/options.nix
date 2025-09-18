@@ -4,6 +4,14 @@
   options.myHome.desktop.niri = {
 
     packages = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Niri ecosystem packages via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = "Source for packages installation";
+        };
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Niri ecosystem packages via realTime method";
         packageSource = lib.mkOption {
@@ -13,20 +21,20 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Niri ecosystem packages via homeManager method" // { default = true; };
+        enable = lib.mkEnableOption "Enable Niri ecosystem packages via homeManager method";
       };
+    };
+
+    # 环境变量选项
+    environment = {
       copyLink = {
-        enable = lib.mkEnableOption "Enable Niri ecosystem packages via copyLink method";
+        enable = lib.mkEnableOption "Enable Niri environment variables via copyLink method";
         packageSource = lib.mkOption {
           type = lib.types.enum [ "none" "nixpkgs" "flake" ];
           default = "nixpkgs";
           description = "Source for packages installation";
         };
       };
-    };
-
-    # 环境变量选项
-    environment = {
       realTime = {
         enable = lib.mkEnableOption "Enable Niri environment variables via realTime method";
         packageSource = lib.mkOption {
@@ -36,19 +44,24 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Niri environment variables via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Niri environment variables via copyLink method";
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = "Source for packages installation";
-        };
+        enable = lib.mkEnableOption "Enable Niri environment variables via homeManager method";
       };
     };
 
     niri = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Niri core configuration via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = ''
+            Source for Niri package installation:
+            - none: Don't install Niri package (use system-level installation)
+            - nixpkgs: Use stable Niri package from nixpkgs
+            - flake: Use newer Niri package from official upstream flake
+          '';
+        };
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Niri core configuration via realTime method";
         configPath = lib.mkOption {
@@ -68,24 +81,24 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Niri core configuration via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Niri core configuration via copyLink method";
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = ''
-            Source for Niri package installation:
-            - none: Don't install Niri package (use system-level installation)
-            - nixpkgs: Use stable Niri package from nixpkgs
-            - flake: Use newer Niri package from official upstream flake
-          '';
-        };
+        enable = lib.mkEnableOption "Enable Niri core configuration via homeManager method";
       };
     };
 
     waybar = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Waybar configuration via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = ''
+            Source for Waybar package installation:
+            - none: Don't install Waybar package
+            - nixpkgs: Use Waybar package from nixpkgs
+            - flake: Use Waybar package from flake
+          '';
+        };
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Waybar configuration via realTime method";
         configPath = lib.mkOption {
@@ -105,45 +118,11 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Waybar configuration via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Waybar configuration via copyLink method";
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = ''
-            Source for Waybar package installation:
-            - none: Don't install Waybar package
-            - nixpkgs: Use Waybar package from nixpkgs
-            - flake: Use Waybar package from flake
-          '';
-        };
+        enable = lib.mkEnableOption "Enable Waybar configuration via homeManager method";
       };
     };
 
     ironbar = {
-      realTime = {
-        enable = lib.mkEnableOption "Enable Ironbar configuration via realTime method";
-        configPath = lib.mkOption {
-          type = lib.types.str;
-          default = ".config/ironbar";
-          description = "Path to Ironbar configuration directory";
-        };
-      };
-      homeManager = {
-        enable = lib.mkEnableOption "Enable Ironbar configuration via homeManager method" // { default = true; };
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = ''
-            Source for Ironbar package installation:
-            - none: Don't install Ironbar package
-            - nixpkgs: Use Ironbar package from nixpkgs
-            - flake: Use Ironbar package from flake
-          '';
-        };
-      };
       copyLink = {
         enable = lib.mkEnableOption "Enable Ironbar configuration via copyLink method";
         packageSource = lib.mkOption {
@@ -157,9 +136,33 @@
           '';
         };
       };
+      realTime = {
+        enable = lib.mkEnableOption "Enable Ironbar configuration via realTime method";
+        configPath = lib.mkOption {
+          type = lib.types.str;
+          default = ".config/ironbar";
+          description = "Path to Ironbar configuration directory";
+        };
+      };
+      homeManager = {
+        enable = lib.mkEnableOption "Enable Ironbar configuration via homeManager method";
+      };
     };
 
     rofi = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Rofi configuration via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = ''
+            Source for Rofi package installation:
+            - none: Don't install Rofi package
+            - nixpkgs: Use Rofi package from nixpkgs
+            - flake: Use Rofi package from flake
+          '';
+        };
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Rofi configuration via realTime method";
         configPath = lib.mkOption {
@@ -179,24 +182,24 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Rofi configuration via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Rofi configuration via copyLink method";
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = ''
-            Source for Rofi package installation:
-            - none: Don't install Rofi package
-            - nixpkgs: Use Rofi package from nixpkgs
-            - flake: Use Rofi package from flake
-          '';
-        };
+        enable = lib.mkEnableOption "Enable Rofi configuration via homeManager method";
       };
     };
 
     fuzzel = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Fuzzel configuration via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "none";
+          description = ''
+            Source for Fuzzel package installation:
+            - none: Don't install Fuzzel package (use system-level installation)
+            - nixpkgs: Use Fuzzel package from nixpkgs
+            - flake: Use Fuzzel package from flake
+          '';
+        };
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Fuzzel configuration via realTime method";
         configPath = lib.mkOption {
@@ -216,24 +219,24 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Fuzzel configuration via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Fuzzel configuration via copyLink method";
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "none";
-          description = ''
-            Source for Fuzzel package installation:
-            - none: Don't install Fuzzel package (use system-level installation)
-            - nixpkgs: Use Fuzzel package from nixpkgs
-            - flake: Use Fuzzel package from flake
-          '';
-        };
+        enable = lib.mkEnableOption "Enable Fuzzel configuration via homeManager method";
       };
     };
 
     swaylock = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Swaylock configuration via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = ''
+            Source for Swaylock package installation:
+            - none: Don't install Swaylock package
+            - nixpkgs: Use Swaylock package from nixpkgs
+            - flake: Use Swaylock package from flake
+          '';
+        };
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Swaylock configuration via realTime method";
         configPath = lib.mkOption {
@@ -253,24 +256,24 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Swaylock configuration via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Swaylock configuration via copyLink method";
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = ''
-            Source for Swaylock package installation:
-            - none: Don't install Swaylock package
-            - nixpkgs: Use Swaylock package from nixpkgs
-            - flake: Use Swaylock package from flake
-          '';
-        };
+        enable = lib.mkEnableOption "Enable Swaylock configuration via homeManager method";
       };
     };
 
     swayidle = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Swayidle configuration via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = ''
+            Source for Swayidle package installation:
+            - none: Don't install Swayidle package
+            - nixpkgs: Use Swayidle package from nixpkgs
+            - flake: Use Swayidle package from flake
+          '';
+        };
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Swayidle configuration via realTime method";
         configPath = lib.mkOption {
@@ -290,24 +293,24 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Swayidle configuration via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Swayidle configuration via copyLink method";
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = ''
-            Source for Swayidle package installation:
-            - none: Don't install Swayidle package
-            - nixpkgs: Use Swayidle package from nixpkgs
-            - flake: Use Swayidle package from flake
-          '';
-        };
+        enable = lib.mkEnableOption "Enable Swayidle configuration via homeManager method";
       };
     };
 
     wlogout = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Wlogout configuration via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = ''
+            Source for Wlogout package installation:
+            - none: Don't install Wlogout package
+            - nixpkgs: Use Wlogout package from nixpkgs
+            - flake: Use Wlogout package from flake
+          '';
+        };
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Wlogout configuration via realTime method";
         configPath = lib.mkOption {
@@ -327,24 +330,24 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Wlogout configuration via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Wlogout configuration via copyLink method";
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = ''
-            Source for Wlogout package installation:
-            - none: Don't install Wlogout package
-            - nixpkgs: Use Wlogout package from nixpkgs
-            - flake: Use Wlogout package from flake
-          '';
-        };
+        enable = lib.mkEnableOption "Enable Wlogout configuration via homeManager method";
       };
     };
 
     dunst = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Dunst configuration via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = ''
+            Source for Dunst package installation:
+            - none: Don't install Dunst package
+            - nixpkgs: Use Dunst package from nixpkgs
+            - flake: Use Dunst package from flake
+          '';
+        };
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Dunst configuration via realTime method";
         configPath = lib.mkOption {
@@ -364,24 +367,24 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Dunst configuration via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Dunst configuration via copyLink method";
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = ''
-            Source for Dunst package installation:
-            - none: Don't install Dunst package
-            - nixpkgs: Use Dunst package from nixpkgs
-            - flake: Use Dunst package from flake
-          '';
-        };
+        enable = lib.mkEnableOption "Enable Dunst configuration via homeManager method";
       };
     };
 
     mako = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Mako configuration via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = ''
+            Source for Mako package installation:
+            - none: Don't install Mako package
+            - nixpkgs: Use Mako package from nixpkgs
+            - flake: Use Mako package from flake
+          '';
+        };
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Mako configuration via realTime method";
         configPath = lib.mkOption {
@@ -401,32 +404,19 @@
         };
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Mako configuration via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Mako configuration via copyLink method";
-        packageSource = lib.mkOption {
-          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
-          default = "nixpkgs";
-          description = ''
-            Source for Mako package installation:
-            - none: Don't install Mako package
-            - nixpkgs: Use Mako package from nixpkgs
-            - flake: Use Mako package from flake
-          '';
-        };
+        enable = lib.mkEnableOption "Enable Mako configuration via homeManager method";
       };
     };
 
     appearance = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Niri appearance configuration via copyLink method";
+      };
       realTime = {
         enable = lib.mkEnableOption "Enable Niri appearance configuration via realTime method";
       };
       homeManager = {
-        enable = lib.mkEnableOption "Enable Niri appearance configuration via homeManager method" // { default = true; };
-      };
-      copyLink = {
-        enable = lib.mkEnableOption "Enable Niri appearance configuration via copyLink method";
+        enable = lib.mkEnableOption "Enable Niri appearance configuration via homeManager method";
       };
     };
   };
