@@ -4,17 +4,7 @@
   myHome = {
     dotfiles = {
       enable = true;
-      vim = {
-        homeManager = {
-          enable = true;
-        };
-      };
       zsh = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      bash = {
         homeManager = {
           enable = true;
         };
@@ -24,22 +14,7 @@
           enable = true;
         };
       };
-      nushell = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      tmux = {
-        homeManager = {
-          enable = true;
-        };
-      };
       git = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      lazygit = {
         homeManager = {
           enable = true;
         };
@@ -49,52 +24,12 @@
           enable = true;
         };
       };
-      qutebrowser = {
-        homeManager = {
-          enable = false;
-        };
-      };
-      alacritty = {
-        copyLink = {
-          enable = false;  # WSL 中通常不需要
-        };
-      };
-      obs-studio = {
-        homeManager = {
-          enable = false;
-        };
-      };
-      sherlock = {
-        copyLink = {
-          enable = true;
-        };
-      };
       yazi = {
         homeManager = {
           enable = true;
         };
       };
       zellij = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      ripgrep = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      fd = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      tealdeer = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      lsd = {
         homeManager = {
           enable = true;
         };

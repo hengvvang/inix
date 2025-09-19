@@ -9,16 +9,6 @@
 
     dotfiles = {
       enable = true;
-      vim = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      bash = {
-        homeManager = {
-          enable = true;
-        };
-      };
       fish = {
         homeManager = {
           enable = true;
@@ -29,27 +19,7 @@
           enable = true;
         };
       };
-      git = {
-        homeManager = {
-          enable = true;
-        };
-      };
       starship = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      ripgrep = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      fd = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      lsd = {
         homeManager = {
           enable = true;
         };
@@ -72,19 +42,6 @@
       fonts = {
         enable = true;
         preset = "basic";
-      };
-      stylix = {
-        enable = false;
-      };
-    };
-
-    services = {
-      media = {
-        mpd.enable = false;
-      };
-      proxy = {
-        v2ray.enable = false;
-        mihomo.enable = false;
       };
     };
   };

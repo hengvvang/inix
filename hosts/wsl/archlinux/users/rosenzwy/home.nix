@@ -4,17 +4,7 @@
   myHome = {
     dotfiles = {
       enable = true;
-      vim = {
-        homeManager = {
-          enable = true;
-        };
-      };
       zsh = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      bash = {
         homeManager = {
           enable = true;
         };
@@ -24,67 +14,7 @@
           enable = true;
         };
       };
-      nushell = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      tmux = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      git = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      lazygit = {
-        homeManager = {
-          enable = true;
-        };
-      };
       starship = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      qutebrowser = {
-        homeManager = {
-          enable = false;
-        };
-      };
-      alacritty = {
-        copyLink = {
-          enable = true;
-        };
-      };
-      obs-studio = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      sherlock = {
-        copyLink = {
-          enable = true;
-        };
-      };
-      zed = {
-        copyLink = {
-          enable = false;
-        };
-      };
-      vscode = {
-        copyLink = {
-          enable = false;
-        };
-      };
-      rofi = {
-        copyLink = {
-          enable = false;
-        };
-      };
-      ghostty = {
         homeManager = {
           enable = true;
         };
@@ -95,16 +25,6 @@
         };
       };
       zellij = {
-        copyLink = {
-          enable = true;
-        };
-      };
-      rio = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      rmpc = {
         copyLink = {
           enable = true;
         };

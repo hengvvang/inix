@@ -3,12 +3,8 @@
 {
   home.packages = [
     inputs.zen-browser.packages.${pkgs.system}.twilight
-    # pkgs.qutebrowser
     pkgs.google-chrome
-    # pkgs.firefox
-
-    pkgs.qq
-    pkgs.wechat
+    pkgs.firefox
 
     # inputs.zed-editor.packages.${pkgs.system}.default
     pkgs.zed-editor
