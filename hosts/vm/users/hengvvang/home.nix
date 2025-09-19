@@ -8,7 +8,7 @@
     };
 
     dotfiles = {
-      enable = false;
+      enable = true;
       zsh = {
         homeManager = {
           enable = true;
