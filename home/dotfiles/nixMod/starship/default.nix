@@ -27,17 +27,9 @@
           disabled = false;
           symbols = {
             NixOS = "❄";
-            Ubuntu = "";
-            Debian = "";
             Arch = "";
-            Fedora = "";
-            Manjaro = "";
-            openSUSE = "";
-            CentOS = "";
             Redhat = "";
-            Linux = "";
-            Macos = "";
-            Windows = "";
+            Fedora = "";
           };
         };
 
@@ -149,15 +141,6 @@
             }
           ];
         };
-
-        memory_usage = {
-          disabled = false;
-          threshold = 70;
-          symbol = "💾";
-          style = "fg:#FF4500 bold";
-          format = "[◢](fg:#8A2BE2 bold)[$symbol$ram($ram_pct) ](bold $style)[◤](fg:#32CD32 bold)";
-        };
-
       };
     };
   };
