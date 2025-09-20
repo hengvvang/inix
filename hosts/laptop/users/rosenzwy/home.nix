@@ -5,6 +5,73 @@
     desktop = {
       enable = true;
       preset = "niri";
+      niri = {
+        packages = {
+          copyLink = {
+            enable = true;
+            packageSource = "nixpkgs";
+          };
+        };
+        environment = {
+          copyLink = {
+            enable = true;
+            packageSource = "none";
+          };
+        };
+        niri = {
+          copyLink = {
+            enable = true;
+            packageSource = "nixpkgs";
+          };
+        };
+        waybar = {
+          copyLink = {
+            enable = true;
+            packageSource = "nixpkgs";
+          };
+        };
+        rofi = {
+          copyLink = {
+            enable = true;
+            packageSource = "nixpkgs";
+          };
+        };
+        fuzzel = {
+          copyLink = {
+            enable = true;
+            packageSource = "nixpkgs";
+          };
+        };
+        swaylock = {
+          copyLink = {
+            enable = true;
+            packageSource = "nixpkgs";
+          };
+        };
+        swayidle = {
+          copyLink = {
+            enable = true;
+            packageSource = "nixpkgs";
+          };
+        };
+        wlogout = {
+          copyLink = {
+            enable = true;
+            packageSource = "nixpkgs";
+          };
+        };
+        dunst = {
+          copyLink = {
+            enable = true;
+            packageSource = "nixpkgs";
+          };
+        };
+        appearance = {
+          homeManager = {
+            enable = true;
+          };
+        };
+      };
     };
 
     dotfiles = {
@@ -34,17 +101,7 @@
           enable = true;
         };
       };
-      tmux = {
-        homeManager = {
-          enable = true;
-        };
-      };
       git = {
-        homeManager = {
-          enable = true;
-        };
-      };
-      lazygit = {
         homeManager = {
           enable = true;
         };
@@ -52,11 +109,6 @@
       starship = {
         homeManager = {
           enable = true;
-        };
-      };
-      qutebrowser = {
-        homeManager = {
-          enable = false;
         };
       };
       alacritty = {
@@ -67,26 +119,6 @@
       obs-studio = {
         homeManager = {
           enable = true;
-        };
-      };
-      sherlock = {
-        copyLink = {
-          enable = true;
-        };
-      };
-      zed = {
-        copyLink = {
-          enable = false;
-        };
-      };
-      vscode = {
-        copyLink = {
-          enable = false;
-        };
-      };
-      rofi = {
-        copyLink = {
-          enable = false;
         };
       };
       ghostty = {

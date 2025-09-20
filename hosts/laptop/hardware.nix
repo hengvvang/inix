@@ -10,23 +10,22 @@
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" "tun" "tap" ];  # 添加 TUN/TAP 支持
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/7b48b3c8-91aa-49ed-9f93-9619d77948fa";
+    { device = "/dev/disk/by-uuid/5de9334a-976e-4432-8666-1954f39def7a";
       fsType = "btrfs";
-      options = [ "subvol=@" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/38ED-9FE2";
+    { device = "/dev/disk/by-uuid/3D58-E0E1";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/4038dac9-ff87-432c-9589-0baf46d575e5"; }
+    [ { device = "/dev/disk/by-uuid/dc3c979b-9f80-4b53-82a1-c2df04f1d527"; }
     ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

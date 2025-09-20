@@ -66,11 +66,6 @@
             packageSource = "nixpkgs";
           };
         };
-        appearance = {
-          homeManager = {
-            enable = true;
-          };
-        };
       };
     };
 
