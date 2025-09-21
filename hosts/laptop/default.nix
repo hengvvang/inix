@@ -73,10 +73,10 @@
       # pkgs.nvd                  # Nix 版本差异比较工具
   ];
   programs.clash-verge = {
-      enable = true;
       package = pkgs.clash-verge-rev;
+      enable = true;
+      autoStart = true;
       tunMode = true;
-      # autoStart = true;
       serviceMode = true;
   };
   programs.steam = {
