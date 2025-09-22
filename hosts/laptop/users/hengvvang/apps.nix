@@ -50,7 +50,8 @@
     ripgrep
     difftastic
     delta
-    tealdeer  #tldr
+    # tealdeer
+    tldr
     tree
     broot
     navi
@@ -102,11 +103,12 @@
     just
     devenv
     # rust
-    rustc
-    cargo
-    rustfmt
-    clippy
-    rust-analyzer
+    rustup
+    # rustc
+    # cargo
+    # rustfmt
+    # clippy
+    # rust-analyzer
     mdbook
     # python
     uv
