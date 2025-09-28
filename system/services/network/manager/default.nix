@@ -42,8 +42,7 @@
     ]
     # 图形化网络工具 - 通用
     ++ lib.optionals (config.mySystem.services.network.manager.tools.enable && config.mySystem.services.network.manager.tools.gui) [
-      pkgs.wireshark
-      pkgs.zenmap
+      # pkgs.zenmap
     ]
     # NetworkManager 专用图形界面
     ++ lib.optionals (config.mySystem.services.network.manager.tools.enable &&
