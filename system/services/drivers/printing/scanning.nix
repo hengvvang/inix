@@ -19,7 +19,7 @@ in
       ] ++ lib.optionals cfg.drivers.epson [
         utsushi          # Epson 扫描器
       ];
-      
+
       # 网络扫描配置
       netConf = lib.mkIf cfg.scanning.network ''
         # 允许本地网络扫描器
@@ -28,7 +28,7 @@ in
         172.16.0.0/12
       '';
     };
-    
+
     # === 扫描工具包 ===
     environment.systemPackages = with pkgs; [
       # 基础扫描工具
@@ -38,7 +38,7 @@ in
       # 图形扫描工具
       simple-scan       # GNOME 简单扫描
       xsane            # 功能丰富的扫描工具
-      gscan2pdf        # 扫描到 PDF
+      # gscan2pdf        # 扫描到 PDF (临时禁用:上游测试失败)
     ] ++ lib.optionals cfg.scanning.network [
       # 网络扫描支持
       sane-airscan     # AirScan/eSCL 协议
@@ -46,26 +46,26 @@ in
       # HP 扫描工具
       hplip            # HP 扫描器工具
     ];
-    
+
     # === 用户组和权限 ===
     users.groups.scanner = {};
-    
+
     # 扫描设备权限
     services.udev.packages = with pkgs; [
       sane-backends
     ];
-    
+
     services.udev.extraRules = ''
       # USB 扫描器权限
       SUBSYSTEM=="usb", ENV{libsane_matched}=="yes", GROUP="scanner", MODE="0664"
-      
+
       # 网络扫描器发现
       SUBSYSTEM=="net", ACTION=="add", RUN+="${pkgs.sane-airscan}/bin/airscan-discover"
-      
+
       # 扫描器设备节点权限
       KERNEL=="sg[0-9]*", GROUP="scanner", MODE="0664"
     '';
-    
+
     # === 网络扫描防火墙 ===
     networking.firewall = lib.mkIf cfg.scanning.network {
       allowedTCPPorts = [
