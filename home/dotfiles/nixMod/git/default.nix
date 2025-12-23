@@ -6,9 +6,6 @@
       enable = true;
       package = pkgs.git;
 
-      userName = "hengvvang";
-      userEmail = "hengvvang@proton.me";
-
       # ===== 代码签名配置 =====
       # GPG 签名提交和标签（如果不使用 GPG 签名可以禁用）
       signing = {
@@ -25,96 +22,102 @@
         skipSmudge = false;      # 是否跳过 clone/pull 时自动下载对象
       };
 
-      # ===== 别名配置 =====
-      # 提高工作效率的 Git 别名
-      aliases = {
-        # 基础别名
-        a = "add";
-        aa = "add --all";
-        ai = "add --interactive";
-        ap = "add --patch";
+      # ===== 新版配置格式 =====
+      settings = {
+        # 用户信息
+        user = {
+          name = "hengvvang";
+          email = "hengvvang@proton.me";
+        };
 
-        # 分支相关
-        b = "branch";
-        ba = "branch --all";
-        bd = "branch --delete";
-        bD = "branch --delete --force";
-        br = "branch --remote";
+        # ===== 别名配置 =====
+        # 提高工作效率的 Git 别名
+        alias = {
+          # 基础别名
+          a = "add";
+          aa = "add --all";
+          ai = "add --interactive";
+          ap = "add --patch";
 
-        # 提交相关
-        c = "commit";
-        ca = "commit --all";
-        cam = "commit --all --message";
-        cm = "commit --message";
-        co = "checkout";
-        cob = "checkout -b";
+          # 分支相关
+          b = "branch";
+          ba = "branch --all";
+          bd = "branch --delete";
+          bD = "branch --delete --force";
+          br = "branch --remote";
 
-        # 差异相关
-        d = "diff";
-        dc = "diff --cached";
-        ds = "diff --stat";
+          # 提交相关
+          c = "commit";
+          ca = "commit --all";
+          cam = "commit --all --message";
+          cm = "commit --message";
+          co = "checkout";
+          cob = "checkout -b";
 
-        # 历史相关
-        l = "log --oneline";
-        lg = "log --oneline --graph";
+          # 差异相关
+          d = "diff";
+          dc = "diff --cached";
+          ds = "diff --stat";
 
-        # 推送拉取
-        p = "push";
-        pf = "push --force-with-lease";
-        pu = "push --set-upstream";
-        pl = "pull";
-        plo = "pull origin";
-        plr = "pull --rebase";
+          # 历史相关
+          l = "log --oneline";
+          lg = "log --oneline --graph";
 
-        # 状态和显示
-        s = "status";
-        ss = "status --short";
-        sh = "show";
-        sho = "show --pretty='format:' --name-only";
+          # 推送拉取
+          p = "push";
+          pf = "push --force-with-lease";
+          pu = "push --set-upstream";
+          pl = "pull";
+          plo = "pull origin";
+          plr = "pull --rebase";
 
-        # 暂存相关
-        st = "stash";
-        sta = "stash apply";
-        std = "stash drop";
-        stl = "stash list";
-        stp = "stash pop";
-        sts = "stash show";
+          # 状态和显示
+          s = "status";
+          ss = "status --short";
+          sh = "show";
+          sho = "show --pretty='format:' --name-only";
 
-        # 远程相关
-        r = "remote";
-        ra = "remote add";
-        rr = "remote remove";
-        rv = "remote --verbose";
+          # 暂存相关
+          st = "stash";
+          sta = "stash apply";
+          std = "stash drop";
+          stl = "stash list";
+          stp = "stash pop";
+          sts = "stash show";
 
-        # 重置相关
-        unstage = "reset HEAD --";
-        undo = "reset --soft HEAD^";
-        undohard = "reset --hard HEAD^";
+          # 远程相关
+          r = "remote";
+          ra = "remote add";
+          rr = "remote remove";
+          rv = "remote --verbose";
 
-        # 高级操作
-        amend = "commit --amend";
-        amendn = "commit --amend --no-edit";
-        rb = "rebase";
-        rbi = "rebase --interactive";
-        rbc = "rebase --continue";
-        rba = "rebase --abort";
+          # 重置相关
+          unstage = "reset HEAD --";
+          undo = "reset --soft HEAD^";
+          undohard = "reset --hard HEAD^";
 
-        # 查看贡献
-        contributors = "shortlog --summary --numbered";
+          # 高级操作
+          amend = "commit --amend";
+          amendn = "commit --amend --no-edit";
+          rb = "rebase";
+          rbi = "rebase --interactive";
+          rbc = "rebase --continue";
+          rba = "rebase --abort";
 
-        # 文件历史
-        filelog = "log -u";
-        fl = "log -u";
+          # 查看贡献
+          contributors = "shortlog --summary --numbered";
 
-        # 显示最近的标签
-        lasttag = "describe --tags --abbrev=0";
+          # 文件历史
+          filelog = "log -u";
+          fl = "log -u";
 
-        # 当前分支名
-        current-branch = "rev-parse --abbrev-ref HEAD";
-      };
+          # 显示最近的标签
+          lasttag = "describe --tags --abbrev=0";
 
-      # ===== 高级配置 =====
-      extraConfig = {
+          # 当前分支名
+          current-branch = "rev-parse --abbrev-ref HEAD";
+        };
+
         # 核心配置
         core = {
           editor = "vim";
@@ -297,7 +300,7 @@
         filesystem = {
           useBuiltinFSMonitor = true;
         };
-      };
+      }; # 结束 settings
 
       # ===== 忽略文件配置 =====
       ignores = [

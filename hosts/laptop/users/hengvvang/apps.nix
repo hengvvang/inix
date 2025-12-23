@@ -2,18 +2,18 @@
 
 {
   home.packages = [
-    inputs.zen-browser.packages.${pkgs.system}.twilight
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.twilight
     # pkgs.qutebrowser
     pkgs.google-chrome
     # pkgs.firefox
 
-    # inputs.zed-editor.packages.${pkgs.system}.default
+    # inputs.zed-editor.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs.zed-editor
     pkgs.vscode
 
 
     pkgs.qq
-    pkgs.wechat
+    # pkgs.wechat
     pkgs.discord
     pkgs.element-desktop
     pkgs.telegram-desktop
@@ -40,7 +40,7 @@
     nh                    # NixOS/Home Manager 助手
     nix-output-monitor    # 美化 Nix 构建输出 (提供 nom 命令)
     nix-tree             # 查看 Nix store 依赖关系
-    nixos-rebuild        # NixOS 系统重建工具
+    # nixos-rebuild      # NixOS 系统重建工具 (已被 nixos-rebuild-ng 替代，使用 nh 工具更佳)
     nvd                  # Nix 版本差异比较工具
 
     eza

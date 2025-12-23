@@ -7,7 +7,7 @@ in {
     # 安装 MPD 及可选客户端
     home.packages = with pkgs; [
       mpd           # Music Player Daemon - 核心服务
-    ] ++ optionals cfg.clients.mpc [ mpc-cli ]      # MPD 命令行客户端
+    ] ++ optionals cfg.clients.mpc [ mpc ]      # MPD 命令行客户端
       ++ optionals cfg.clients.rmpc [ rmpc ]; # 终端 MPD 客户端
 
     # MPD 用户级服务配置

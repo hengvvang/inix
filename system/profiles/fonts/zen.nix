@@ -14,7 +14,7 @@
         # 主要字体 - 禅意风格
         inter                # 现代简约设计
         source-sans-pro      # Adobe 清晰无衬线
-        ubuntu_font_family   # Ubuntu 温和字体
+        ubuntu-classic       # Ubuntu 温和字体
         # 衬线字体 - 禅意优雅
         source-serif-pro     # Adobe 现代衬线
         crimson              # 优雅阅读字体
@@ -44,7 +44,7 @@
         noto-fonts
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
-        noto-fonts-emoji
+        noto-fonts-color-emoji
         source-han-sans
         source-han-serif
         source-han-mono

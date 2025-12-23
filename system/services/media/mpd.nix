@@ -7,7 +7,7 @@ in
     # MPD 核心软件包
     environment.systemPackages = with pkgs; [
       mpd           # Music Player Daemon 核心服务
-      mpc-cli       # MPD 命令行客户端工具
+      mpc           # MPD 命令行客户端工具
     ];
 
     # 系统目录和权限管理

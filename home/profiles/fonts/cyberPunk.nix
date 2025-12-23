@@ -29,7 +29,7 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       source-han-sans
       source-han-serif
       source-han-mono
@@ -44,7 +44,7 @@
       inter                # 现代几何无衬线字体
       source-sans-pro      # Adobe 现代无衬线
       roboto               # Google 材质设计字体
-      ubuntu_font_family   # Ubuntu 现代字体族
+      ubuntu-classic       # Ubuntu 现代字体族
 
       # 中文字体 - 简洁现代
       lxgw-wenkai         # 霞鹜文楷

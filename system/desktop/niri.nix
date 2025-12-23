@@ -66,7 +66,7 @@
             extraPortals = [ pkgs.xdg-desktop-portal-gnome ];
             config = {
                 common = { default = [ "gnome" ]; };
-                niri = { default = [ "gnome" ]; };
+                niri = { default = lib.mkForce [ "gnome" ]; };
             };
         };
         # 仅包含 Niri 桌面环境运行所需的最基本包

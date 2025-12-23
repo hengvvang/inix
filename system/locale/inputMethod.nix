@@ -23,7 +23,7 @@
         enable = true;
         fcitx5.addons = with pkgs; [
           # 中文输入法
-          fcitx5-chinese-addons    # 中文拼音、五笔等
+          qt6Packages.fcitx5-chinese-addons    # 中文拼音、五笔等
           fcitx5-rime             # Rime 输入法引擎
 
           # 界面支持 (Wayland 优化)

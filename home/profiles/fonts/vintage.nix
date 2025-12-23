@@ -34,7 +34,7 @@
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif # Google 传统中文衬线
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       source-han-sans      # Adobe 思源黑体
       source-han-serif     # Adobe 思源宋体
       source-han-mono
@@ -53,7 +53,7 @@
 
       # 系统字体和图标支持
       noto-fonts
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       noto-fonts-extra
       liberation_ttf
       dejavu_fonts
