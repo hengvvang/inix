@@ -70,6 +70,16 @@ in
 
       xdg.configFile = {
         "niri/config.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/config.kdl";
+        "niri/startup.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/startup.kdl";
+        "niri/environment.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/environment.kdl";
+        "niri/input.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/input.kdl";
+        "niri/output.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/output.kdl";
+        "niri/layout.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/layout.kdl";
+        "niri/animations.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/animations.kdl";
+        "niri/gestures.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/gestures.kdl";
+        "niri/window-rules.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/window-rules.kdl";
+        "niri/recent-windows.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/recent-windows.kdl";
+        "niri/binds.kdl".source = config.lib.file.mkOutOfStoreSymlink "${currentDir}/.config/niri/binds.kdl";
       };
     })
 

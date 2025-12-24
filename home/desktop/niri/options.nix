@@ -158,6 +158,43 @@
       };
     };
 
+    vicinae = {
+      copyLink = {
+        enable = lib.mkEnableOption "Enable Vicinae configuration via copyLink method";
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = ''
+            Package source for Vicinae launcher.
+            - none: Do not install package
+            - nixpkgs: Use stable version from nixpkgs
+            - flake: Use latest version from official flake
+          '';
+        };
+      };
+      realTime = {
+        enable = lib.mkEnableOption "Enable Vicinae configuration via realTime method";
+        configPath = lib.mkOption {
+          type = lib.types.str;
+          default = ".config/vicinae";
+          description = "Path to Vicinae configuration directory";
+        };
+        packageSource = lib.mkOption {
+          type = lib.types.enum [ "none" "nixpkgs" "flake" ];
+          default = "nixpkgs";
+          description = ''
+            Package source for Vicinae launcher.
+            - none: Do not install package
+            - nixpkgs: Use stable version from nixpkgs
+            - flake: Use latest version from official flake
+          '';
+        };
+      };
+      homeManager = {
+        enable = lib.mkEnableOption "Enable Vicinae configuration via homeManager method";
+      };
+    };
+
     fuzzel = {
       copyLink = {
         enable = lib.mkEnableOption "Enable Fuzzel configuration via copyLink method";

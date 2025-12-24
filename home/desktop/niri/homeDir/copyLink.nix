@@ -67,6 +67,16 @@
 
       xdg.configFile = {
         "niri/config.kdl".source = ./.config/niri/config.kdl;
+        "niri/startup.kdl".source = ./.config/niri/startup.kdl;
+        "niri/environment.kdl".source = ./.config/niri/environment.kdl;
+        "niri/input.kdl".source = ./.config/niri/input.kdl;
+        "niri/output.kdl".source = ./.config/niri/output.kdl;
+        "niri/layout.kdl".source = ./.config/niri/layout.kdl;
+        "niri/animations.kdl".source = ./.config/niri/animations.kdl;
+        "niri/gestures.kdl".source = ./.config/niri/gestures.kdl;
+        "niri/window-rules.kdl".source = ./.config/niri/window-rules.kdl;
+        "niri/recent-windows.kdl".source = ./.config/niri/recent-windows.kdl;
+        "niri/binds.kdl".source = ./.config/niri/binds.kdl;
       };
     })
 
