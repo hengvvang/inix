@@ -52,9 +52,6 @@ spawn-at-startup "swww-daemon"
 // 其他工具
 // =============================================================================
 
-// Niri 窗口切换器
-spawn-at-startup "niriswitcher"
-
 // 日落色温调节工具
 spawn-at-startup "sunsetr"
 
