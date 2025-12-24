@@ -1,0 +1,359 @@
+// =============================================================================
+// niri 窗口规则配置
+// =============================================================================
+// 此文件定义各类窗口的外观和行为规则
+// 官方文档: https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
+//
+// 窗口规则按顺序应用，后面的规则会覆盖前面的规则
+// =============================================================================
+
+// =============================================================================
+// Firefox 画中画窗口
+// =============================================================================
+
+// Firefox 画中画播放器默认以浮动方式打开
+window-rule {
+    // app-id 正则表达式匹配:
+    // - 主机 Firefox (app-id 是 "firefox")
+    // - Flatpak Firefox (app-id 是 "org.mozilla.firefox")
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+
+    // 以浮动窗口模式打开
+    open-floating true
+}
+
+// =============================================================================
+// 全局基础样式
+// =============================================================================
+
+// 为所有窗口设置基础的圆角和阴影效果
+window-rule {
+    // 基础圆角半径: 12px，创造现代化的胶囊形状
+    geometry-corner-radius 12
+
+    // 裁剪窗口内容到几何边界
+    // 确保窗口内容不会溢出圆角区域
+    clip-to-geometry true
+
+    // 设置窗口为平铺状态
+    // 获得更好的边框和阴影绘制效果
+    tiled-state true
+
+    // 基础阴影效果
+    shadow {
+        // 启用阴影
+        on
+
+        // 柔和度: 模糊半径 25 像素
+        softness 25
+
+        // 扩散: 向外扩展 2 像素
+        spread 2
+
+        // 偏移: 向下 8 像素（模拟光源从上方照射）
+        offset x=0 y=8
+
+        // 阴影颜色: 深色半透明
+        color "#00000040"
+
+        // 在窗口后面绘制阴影
+        draw-behind-window true
+    }
+}
+
+// =============================================================================
+// 聚焦状态窗口
+// =============================================================================
+
+// 活跃（聚焦）窗口的样式
+window-rule {
+    // 匹配活跃窗口
+    match is-active=true
+
+    // 不透明度: 100% (完全不透明)
+    opacity 1.00
+
+    // 增强的阴影效果
+    shadow {
+        on
+
+        // 更大的模糊半径，创造更明显的浮动效果
+        softness 30
+
+        // 更大的扩散
+        spread 3
+
+        // 更大的偏移，增强深度感
+        offset x=0 y=10
+
+        // 更深的阴影颜色
+        color "#00000050"
+
+        draw-behind-window true
+    }
+}
+
+// =============================================================================
+// 非聚焦状态窗口
+// =============================================================================
+
+// 非活跃窗口的样式
+window-rule {
+    // 匹配非活跃窗口
+    match is-active=false
+
+    // 不透明度: 75% (高透明度，创造层次感)
+    opacity 0.75
+
+    // 较淡的阴影效果
+    shadow {
+        // 较小的模糊半径
+        softness 20
+
+        // 较小的扩散
+        spread 1
+
+        // 较小的偏移
+        offset x=0 y=6
+
+        // 更淡的阴影颜色
+        color "#00000030"
+
+        draw-behind-window true
+    }
+}
+
+// =============================================================================
+// 终端应用程序 (已禁用)
+// =============================================================================
+
+// 终端应用聚焦时的样式 (已注释，可根据需要启用)
+/-window-rule {
+    match is-active=true
+    match app-id="alacritty"
+    match app-id="ghostty"
+    match app-id="rio"
+    match app-id="kitty"
+    match app-id="wezterm"
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+
+    opacity 1.00
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+// 终端应用非聚焦时的样式 (已注释，可根据需要启用)
+/-window-rule {
+    match is-active=false
+    match app-id="alacritty"
+    match app-id="ghostty"
+    match app-id="rio"
+    match app-id="kitty"
+    match app-id="wezterm"
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+
+    opacity 0.78
+    geometry-corner-radius 10
+    clip-to-geometry true
+}
+
+// =============================================================================
+// 代码编辑器 (已禁用)
+// =============================================================================
+
+// 代码编辑器聚焦时的样式 (已注释，可根据需要启用)
+/-window-rule {
+    match is-active=true
+    match app-id="code"
+    match app-id="zed"
+    match title="Visual Studio Code"
+
+    opacity 1.00
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+// 代码编辑器非聚焦时的样式 (已注释，可根据需要启用)
+/-window-rule {
+    match is-active=false
+    match app-id="code"
+    match app-id="zed"
+    match title="Visual Studio Code"
+
+    opacity 0.75
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+// =============================================================================
+// 系统对话框和弹窗
+// =============================================================================
+
+// 文件选择器对话框样式
+window-rule {
+    // 匹配常见的文件对话框标题
+    match title="^Open File$"
+    match title="^Save As$"
+    match title="^Choose"
+    match title="^Select"
+    match title="^Browse"
+
+    // 适中的透明度，保持可读性
+    opacity 0.82
+
+    // 较大的圆角，更柔和的外观
+    geometry-corner-radius 16
+
+    clip-to-geometry true
+
+    // 更明显的阴影，突出对话框
+    shadow {
+        on
+        softness 35
+        spread 6
+        offset x=0 y=18
+        color "#00000070"
+        draw-behind-window true
+    }
+}
+
+// 确认对话框和警告弹窗样式
+window-rule {
+    // 匹配系统对话框
+    match app-id="zenity"
+    match title="^Confirm"
+    match title="^Warning"
+    match title="^Error"
+    match title="^Alert"
+    match title="^Question"
+
+    // 适中的透明度
+    opacity 0.85
+
+    // 较大的圆角
+    geometry-corner-radius 16
+
+    clip-to-geometry true
+
+    // 强烈的阴影，引起注意
+    shadow {
+        on
+        softness 40
+        spread 8
+        offset x=0 y=22
+        color "#00000080"
+        draw-behind-window true
+    }
+}
+
+// 系统设置和偏好设置样式
+window-rule {
+    // 匹配设置应用
+    match app-id="gnome-control-center"
+    match app-id="org.gnome.Settings"
+    match app-id="systemsettings"
+    match title="Preferences"
+    match title="Settings"
+
+    // 较高的不透明度
+    opacity 0.88
+
+    // 中等圆角
+    geometry-corner-radius 14
+
+    clip-to-geometry true
+}
+
+// =============================================================================
+// 通知和菜单
+// =============================================================================
+
+// 通知系统样式
+window-rule {
+    // 匹配通知守护进程
+    match app-id="mako"
+    match app-id="dunst"
+    match app-id="org.freedesktop.Notifications"
+    match title="^notification"
+
+    // 较高的透明度
+    opacity 0.78
+
+    // 更大的圆角，柔和的外观
+    geometry-corner-radius 25
+
+    clip-to-geometry true
+
+    // 中等阴影
+    shadow {
+        softness 25
+        spread 3
+        offset x=0 y=12
+        color "#00000045"
+        draw-behind-window true
+    }
+}
+
+// 右键菜单和下拉菜单样式
+window-rule {
+    // 匹配各种菜单
+    match title="^Context Menu$"
+    match title="^Menu$"
+    match app-id="rofi"
+    match app-id="dmenu"
+    match app-id="wofi"
+
+    // 适中的透明度
+    opacity 0.80
+
+    // 中等圆角
+    geometry-corner-radius 12
+
+    clip-to-geometry true
+
+    // 基础阴影
+    shadow {
+        softness 20
+        spread 2
+        offset x=0 y=8
+        color "#00000040"
+        draw-behind-window true
+    }
+}
+
+// =============================================================================
+// 浮动窗口
+// =============================================================================
+
+// 浮动窗口的特殊样式
+window-rule {
+    // 匹配浮动窗口
+    match is-floating=true
+
+    // 更大的圆角
+    geometry-corner-radius 16
+
+    clip-to-geometry true
+
+    // 更强烈的阴影，强调浮动效果
+    shadow {
+        on
+        softness 40
+        spread 5
+        offset x=0 y=15
+        color "#00000065"
+        draw-behind-window true
+    }
+
+    // 浮动窗口的特殊焦点环
+    focus-ring {
+        // 焦点环宽度
+        width 2
+
+        // 活跃焦点环: 蓝色渐变
+        active-gradient from="#007AFF" to="#5AC8FA" angle=135 relative-to="workspace-view" in="oklch longer hue"
+
+        // 非活跃焦点环: 灰色渐变
+        inactive-gradient from="#48484a" to="#636366" angle=135
+    }
+}

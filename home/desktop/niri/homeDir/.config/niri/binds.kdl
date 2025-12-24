@@ -1,0 +1,498 @@
+// =============================================================================
+// niri 快捷键绑定配置
+// =============================================================================
+// 此文件定义所有键盘快捷键和鼠标/触摸板手势
+// 官方文档: https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+//
+// "Mod" 修饰符说明:
+// - 在 TTY 上运行时 = Super 键 (Windows 键)
+// - 作为 winit 窗口运行时 = Alt 键
+//
+// 大多数操作也可以通过 IPC 调用: `niri msg action do-something`
+// =============================================================================
+
+binds {
+    // ==========================================================================
+    // 帮助和信息
+    // ==========================================================================
+
+    // 显示重要热键列表
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    // ==========================================================================
+    // 应用程序启动
+    // ==========================================================================
+
+    // 打开终端 (Ghostty)
+    Mod+Return hotkey-overlay-title="打开终端: ghostty" {
+        spawn "ghostty";
+    }
+
+    // 运行应用启动器 (Rofi)
+    Mod+Slash hotkey-overlay-title="运行应用程序: rofi" {
+        spawn "rofi" "-show" "drun";
+    }
+
+    // 启动浏览器 (Zen Browser)
+    Mod+B hotkey-overlay-title="运行浏览器: zen-browser" {
+        spawn "zen";
+    }
+
+    // 锁定屏幕 (Swaylock)
+    Ctrl+Mod+Escape hotkey-overlay-title="锁定屏幕: swaylock" {
+        spawn "swaylock";
+    }
+
+    // 电源菜单 (Wlogout)
+    Ctrl+Mod+Shift+Escape hotkey-overlay-title="电源菜单: wlogout" {
+        spawn "wlogout";
+    }
+
+    // ==========================================================================
+    // Shell 命令示例
+    // ==========================================================================
+
+    // 切换屏幕阅读器 (Orca)
+    // 使用 shell 执行复杂命令
+    Mod+Alt+S hotkey-overlay-title=null {
+        spawn "sh" "-c" "pkill orca || exec orca";
+    }
+
+    // ==========================================================================
+    // 音频控制
+    // ==========================================================================
+    // allow-when-locked=true 使这些快捷键在锁屏时也能工作
+
+    // 提高音量
+    XF86AudioRaiseVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+";
+    }
+
+    // 降低音量
+    XF86AudioLowerVolume allow-when-locked=true {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-";
+    }
+
+    // 静音/取消静音
+    XF86AudioMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+    }
+
+    // 麦克风静音/取消静音
+    XF86AudioMicMute allow-when-locked=true {
+        spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+    }
+
+    // ==========================================================================
+    // 亮度控制
+    // ==========================================================================
+
+    // 提高屏幕亮度
+    XF86MonBrightnessUp allow-when-locked=true {
+        spawn "brightnessctl" "--class=backlight" "set" "+10%";
+    }
+
+    // 降低屏幕亮度
+    XF86MonBrightnessDown allow-when-locked=true {
+        spawn "brightnessctl" "--class=backlight" "set" "10%-";
+    }
+
+    // ==========================================================================
+    // 概览模式
+    // ==========================================================================
+
+    // 切换概览模式 (显示所有工作区和窗口的缩略图)
+    // 也可以通过以下方式触发:
+    // - 将鼠标移到左上角热角
+    // - 在触摸板上四指向上滑动
+    Mod+Ctrl+O repeat=false {
+        toggle-overview;
+    }
+
+    // ==========================================================================
+    // 窗口管理
+    // ==========================================================================
+
+    // 关闭当前窗口
+    Mod+Q repeat=false {
+        close-window;
+    }
+
+    // ==========================================================================
+    // 焦点移动 (列/窗口)
+    // ==========================================================================
+
+    // 方向键: 在列之间移动焦点
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+
+    // 方向键: 在列内的窗口之间移动焦点
+    Mod+Down  { focus-window-down; }
+    Mod+Up    { focus-window-up; }
+
+    // Vim 风格: 在列之间移动焦点
+    Mod+H { focus-column-left; }
+    Mod+L { focus-column-right; }
+
+    // Vim 风格: 在列内的窗口之间移动焦点
+    Mod+J { focus-window-down; }
+    Mod+K { focus-window-up; }
+
+    // 跨工作区移动焦点的备选命令 (已禁用)
+    // 当到达列中第一个或最后一个窗口时，自动切换到相邻工作区
+    // Mod+J { focus-window-or-workspace-down; }
+    // Mod+K { focus-window-or-workspace-up; }
+
+    // 跳转到第一列
+    Mod+Home { focus-column-first; }
+    Mod+Ctrl+Left { focus-column-first; }
+    Mod+Ctrl+H { focus-column-first; }
+
+    // 跳转到最后一列
+    Mod+End { focus-column-last; }
+    Mod+Ctrl+Right { focus-column-last; }
+    Mod+Ctrl+L { focus-column-last; }
+
+    // ==========================================================================
+    // 移动窗口/列
+    // ==========================================================================
+
+    // 方向键: 左右移动列
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+
+    // 方向键: 在列内上下移动窗口
+    Mod+Shift+Down  { move-window-down; }
+    Mod+Shift+Up    { move-window-up; }
+
+    // Vim 风格: 左右移动列
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+L { move-column-right; }
+
+    // Vim 风格: 在列内上下移动窗口
+    Mod+Shift+J { move-window-down; }
+    Mod+Shift+K { move-window-up; }
+
+    // 跨工作区移动窗口的备选命令 (已禁用)
+    // Mod+Shift+J { move-window-down-or-to-workspace-down; }
+    // Mod+Shift+K { move-window-up-or-to-workspace-up; }
+
+    // 移动列到第一位置
+    Mod+Shift+Home { move-column-to-first; }
+    Mod+Ctrl+Shift+Left { move-column-to-first; }
+    Mod+Ctrl+Shift+H { move-column-to-first; }
+
+    // 移动列到最后位置
+    Mod+Shift+End { move-column-to-last; }
+    Mod+Ctrl+Shift+Right { move-column-to-last; }
+    Mod+Ctrl+Shift+L { move-column-to-last; }
+
+    // ==========================================================================
+    // 工作区焦点切换
+    // ==========================================================================
+
+    // 切换到上一个工作区
+    Mod+Ctrl+K { focus-workspace-up; }
+    Mod+Ctrl+Up { focus-workspace-up; }
+
+    // 切换到下一个工作区
+    Mod+Ctrl+J { focus-workspace-down; }
+    Mod+Ctrl+Down { focus-workspace-down; }
+
+    // ==========================================================================
+    // 移动列到其他工作区
+    // ==========================================================================
+
+    // 移动当前列到上一个工作区
+    Mod+Ctrl+Shift+Up { move-column-to-workspace-up; }
+    Mod+Ctrl+Shift+K { move-column-to-workspace-up; }
+
+    // 移动当前列到下一个工作区
+    Mod+Ctrl+Shift+Down { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+J { move-column-to-workspace-down; }
+
+    // 只移动单个窗口的备选命令 (已禁用)
+    // Mod+Ctrl+Page_Down { move-window-to-workspace-down; }
+
+    // ==========================================================================
+    // 移动整个工作区
+    // ==========================================================================
+
+    // 向下移动整个工作区
+    Mod+Ctrl+Shift+Page_Down { move-workspace-down; }
+    Mod+Ctrl+Shift+D { move-workspace-down; }
+
+    // 向上移动整个工作区
+    Mod+Ctrl+Shift+Page_Up { move-workspace-up; }
+    Mod+Ctrl+Shift+U { move-workspace-up; }
+
+    // ==========================================================================
+    // 显示器间焦点移动
+    // ==========================================================================
+
+    // 方向键: 在显示器之间移动焦点
+    Mod+Alt+Left  { focus-monitor-left; }
+    Mod+Alt+Down  { focus-monitor-down; }
+    Mod+Alt+Up    { focus-monitor-up; }
+    Mod+Alt+Right { focus-monitor-right; }
+
+    // Vim 风格: 在显示器之间移动焦点
+    Mod+Alt+H { focus-monitor-left; }
+    Mod+Alt+J { focus-monitor-down; }
+    Mod+Alt+K { focus-monitor-up; }
+    Mod+Alt+L { focus-monitor-right; }
+
+    // ==========================================================================
+    // 移动列到其他显示器
+    // ==========================================================================
+
+    // 方向键: 移动列到其他显示器
+    Mod+Alt+Shift+Left  { move-column-to-monitor-left; }
+    Mod+Alt+Shift+Down  { move-column-to-monitor-down; }
+    Mod+Alt+Shift+Up    { move-column-to-monitor-up; }
+    Mod+Alt+Shift+Right { move-column-to-monitor-right; }
+
+    // Vim 风格: 移动列到其他显示器
+    Mod+Alt+Shift+H { move-column-to-monitor-left; }
+    Mod+Alt+Shift+J { move-column-to-monitor-down; }
+    Mod+Alt+Shift+K { move-column-to-monitor-up; }
+    Mod+Alt+Shift+L { move-column-to-monitor-right; }
+
+    // 只移动单个窗口的备选命令 (已禁用)
+    // 不建议使用，因为一个列至少包含一个窗口
+    // 想移动窗口可以通过快捷键排出多余窗口
+    // Mod+Shift+Ctrl+Left { move-window-to-monitor-left; }
+
+    // ==========================================================================
+    // 移动工作区到其他显示器
+    // ==========================================================================
+
+    // 方向键: 移动整个工作区到其他显示器
+    Mod+Alt+Ctrl+Shift+Up    { move-workspace-to-monitor-up; }
+    Mod+Alt+Ctrl+Shift+Down  { move-workspace-to-monitor-down; }
+    Mod+Alt+Ctrl+Shift+Left  { move-workspace-to-monitor-left; }
+    Mod+Alt+Ctrl+Shift+Right { move-workspace-to-monitor-right; }
+
+    // Vim 风格: 移动整个工作区到其他显示器
+    Mod+Alt+Ctrl+Shift+K { move-workspace-to-monitor-up; }
+    Mod+Alt+Ctrl+Shift+J { move-workspace-to-monitor-down; }
+    Mod+Alt+Ctrl+Shift+H { move-workspace-to-monitor-left; }
+    Mod+Alt+Ctrl+Shift+L { move-workspace-to-monitor-right; }
+
+    // ==========================================================================
+    // 滚轮绑定
+    // ==========================================================================
+    // 这些绑定的行为会根据 natural-scroll 设置改变方向
+
+    // 滚轮左右滚动: 在列之间移动焦点
+    Mod+WheelScrollDown { focus-column-right; }
+    Mod+WheelScrollUp   { focus-column-left; }
+
+    // Shift + 滚轮左右滚动: 移动列
+    Mod+Shift+WheelScrollDown { move-column-right; }
+    Mod+Shift+WheelScrollUp   { move-column-left; }
+
+    // 备选滚轮绑定 (已禁用)
+    // Mod+WheelScrollDown      { focus-window-down; }
+    // Mod+WheelScrollUp        { focus-window-up; }
+    // Mod+WheelScrollRight     { focus-column-right; }
+    // Mod+WheelScrollLeft      { focus-column-left; }
+    // Mod+Shift+WheelScrollDown  { move-window-down; }
+    // Mod+Shift+WheelScrollUp    { move-window-up; }
+    // Mod+Shift+WheelScrollRight { move-column-right; }
+    // Mod+Shift+WheelScrollLeft  { move-column-left; }
+
+    // Ctrl + 滚轮: 在工作区之间切换焦点
+    // cooldown-ms=150 防止快速滚动导致意外切换
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 {
+        focus-workspace-down;
+    }
+    Mod+Ctrl+WheelScrollUp cooldown-ms=150 {
+        focus-workspace-up;
+    }
+
+    // Ctrl+Shift + 滚轮: 移动列到其他工作区
+    Mod+Ctrl+Shift+WheelScrollDown cooldown-ms=150 {
+        move-column-to-workspace-down;
+    }
+    Mod+Ctrl+Shift+WheelScrollUp cooldown-ms=150 {
+        move-column-to-workspace-up;
+    }
+
+    // ==========================================================================
+    // 触摸板滚动绑定
+    // ==========================================================================
+    // 触摸板滚动是连续的，会被分割成离散间隔
+    // 这些绑定受触摸板的 natural-scroll 影响
+    // 由于默认启用了 natural-scroll，这些绑定是"反向"的
+
+    // 触摸板垂直滚动: 音量控制
+    Mod+TouchpadScrollDown {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+";
+    }
+    Mod+TouchpadScrollUp {
+        spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-";
+    }
+
+    // Shift + 触摸板垂直滚动: 亮度控制
+    Mod+Shift+TouchpadScrollDown {
+        spawn "brightnessctl" "--class=backlight" "set" "+5%";
+    }
+    Mod+Shift+TouchpadScrollUp {
+        spawn "brightnessctl" "--class=backlight" "set" "5%-";
+    }
+
+    // ==========================================================================
+    // 按索引切换工作区
+    // ==========================================================================
+    // 注意: niri 是动态工作区系统
+    // 引用比当前工作区数量更大的索引将引用最底部的(空)工作区
+
+    // 切换到工作区 1-8
+    Ctrl+Mod+1 { focus-workspace 1; }
+    Ctrl+Mod+2 { focus-workspace 2; }
+    Ctrl+Mod+3 { focus-workspace 3; }
+    Ctrl+Mod+4 { focus-workspace 4; }
+    Ctrl+Mod+5 { focus-workspace 5; }
+    Ctrl+Mod+6 { focus-workspace 6; }
+    Ctrl+Mod+7 { focus-workspace 7; }
+    Ctrl+Mod+8 { focus-workspace 8; }
+
+    // 特殊工作区
+    Ctrl+Mod+9 { focus-workspace 255; }  // 最后一个工作区
+    Ctrl+Mod+0 { focus-workspace 1; }    // 返回第一个工作区
+
+    // 移动列到指定工作区
+    Ctrl+Mod+Shift+1 { move-column-to-workspace 1; }
+    Ctrl+Mod+Shift+2 { move-column-to-workspace 2; }
+    Ctrl+Mod+Shift+3 { move-column-to-workspace 3; }
+    Ctrl+Mod+Shift+4 { move-column-to-workspace 4; }
+    Ctrl+Mod+Shift+5 { move-column-to-workspace 5; }
+    Ctrl+Mod+Shift+6 { move-column-to-workspace 6; }
+    Ctrl+Mod+Shift+7 { move-column-to-workspace 7; }
+    Ctrl+Mod+Shift+8 { move-column-to-workspace 8; }
+    Ctrl+Mod+Shift+9 { move-column-to-workspace 255; }
+    Ctrl+Mod+Shift+0 { move-column-to-workspace 0; }
+
+    // 只移动单个窗口的备选命令 (已禁用)
+    // Mod+Ctrl+1 { move-window-to-workspace 1; }
+
+    // ==========================================================================
+    // 工作区快速切换
+    // ==========================================================================
+
+    // 在当前和之前的工作区之间切换
+    Mod+Tab { focus-workspace-previous; }
+
+    // ==========================================================================
+    // 列内窗口合并/分离
+    // ==========================================================================
+
+    // 以下绑定将窗口移入和移出列:
+    // - 如果窗口单独存在，将其合并到侧边的列中
+    // - 如果窗口已经在列中，将其分离出来
+
+    // 向左合并或向右分离窗口
+    Mod+Shift+period { consume-or-expel-window-left; }
+
+    // 向右合并或向左分离窗口
+    Mod+Shift+comma  { consume-or-expel-window-right; }
+
+    // 将右侧窗口合并到当前列的底部
+    Mod+Comma  { consume-window-into-column; }
+
+    // 将当前列底部的窗口分离到右侧
+    Mod+Period { expel-window-from-column; }
+
+    // ==========================================================================
+    // 窗口/列大小调整
+    // ==========================================================================
+
+    // 循环切换预设的列宽度
+    Mod+R { switch-preset-column-width; }
+
+    // 循环切换预设的窗口高度
+    Mod+Shift+R { switch-preset-window-height; }
+
+    // 重置窗口高度为默认值
+    Mod+Ctrl+R { reset-window-height; }
+
+    // 最大化列 (占据整个工作区宽度)
+    Mod+M { maximize-column; }
+
+    // 全屏化窗口
+    Mod+Shift+M { fullscreen-window; }
+
+    // 让列"填充剩余空间" (已禁用)
+    // Mod+F { expand-column-to-available-width; }
+
+    // 切换列的标签化显示
+    Mod+T { toggle-column-tabbed-display; }
+
+    // 将当前列居中
+    Mod+C { center-column; }
+
+    // 将所有完全可见的列居中
+    Mod+Shift+C { center-visible-columns; }
+
+    // 调整列宽度
+    // 支持的格式:
+    // - "1000"   : 设置为 1000 像素
+    // - "-5"     : 减少 5 像素
+    // - "+5"     : 增加 5 像素
+    // - "25%"    : 设置为屏幕宽度的 25%
+    // - "-10%"   : 减少屏幕宽度的 10%
+    // - "+10%"   : 增加屏幕宽度的 10%
+    Mod+Minus { set-column-width "-5%"; }
+    Mod+Equal { set-column-width "+5%"; }
+
+    // 调整窗口高度 (格式同上)
+    Mod+Shift+Minus { set-window-height "-5%"; }
+    Mod+Shift+Equal { set-window-height "+5%"; }
+
+    // ==========================================================================
+    // 浮动窗口管理
+    // ==========================================================================
+
+    // 在浮动和平铺布局之间切换当前窗口
+    Mod+Ctrl+F { toggle-window-floating; }
+
+    // 在浮动窗口和平铺窗口之间切换焦点
+    Mod+Ctrl+S { switch-focus-between-floating-and-tiling; }
+
+    // 切换布局的操作 (已禁用)
+    // Mod+BracketRight { switch-layout "next"; }
+    // Mod+BracketLeft  { switch-layout "prev"; }
+
+    // ==========================================================================
+    // 截图
+    // ==========================================================================
+
+    // 打开截图 UI (选择区域截图)
+    Print { screenshot; }
+
+    // 截取整个屏幕
+    Ctrl+Print { screenshot-screen; }
+
+    // 截取当前窗口
+    Alt+Print { screenshot-window; }
+
+    // ==========================================================================
+    // 系统控制
+    // ==========================================================================
+
+    // 切换键盘快捷键抑制
+    // allow-inhibiting=false 确保即使有抑制器活跃时也能处理此绑定
+    Mod+Escape allow-inhibiting=false {
+        toggle-keyboard-shortcuts-inhibit;
+    }
+
+    // 退出 niri (显示确认对话框)
+    Mod+Shift+Q { quit; }
+
+    // 经典的 Ctrl+Alt+Delete 组合键退出
+    Ctrl+Alt+Delete { quit; }
+
+    // 关闭显示器
+    Mod+Shift+P { power-off-monitors; }
+}
