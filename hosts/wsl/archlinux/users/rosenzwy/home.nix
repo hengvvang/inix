@@ -21,11 +21,11 @@
       };
       yazi = {
         enable = true;
-        style = "copyStyle";
+        configStyle = "copyFiles";
       };
       zellij = {
         enable = true;
-        style = "copyStyle";
+        configStyle = "copyFiles";
       };
     };
 

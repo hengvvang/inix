@@ -6,7 +6,7 @@
     ./qt.nix
   ];
 
-  config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.appearance.enable && config.myHome.desktop.niri.appearance.style == "nixStyle") {
+  config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.appearance.enable && config.myHome.desktop.niri.appearance.configStyle == "homeManager") {
 
     # ========== macOS 风格主题包 ==========
     home.packages = with pkgs; [

@@ -11,83 +11,83 @@
         enable = true;
         vim = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         zsh = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         bash = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         fish = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         nushell = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         tmux = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         git = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         lazygit = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         starship = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         qutebrowser = {
           enable = false;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         alacritty = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         obs-studio = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         sherlock = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         yazi = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         zellij = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         ripgrep = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         fd = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         tealdeer = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         lsd = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
         xonsh = {
           enable = true;
-          style = "nixStyle";
+          configStyle = "homeManager";
         };
       };
 

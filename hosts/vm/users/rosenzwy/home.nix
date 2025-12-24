@@ -11,15 +11,15 @@
       enable = true;
       fish = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       yazi = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       starship = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
     };
 

@@ -2,7 +2,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.appearance.enable && config.myHome.desktop.hyprland.appearance.style == "nixStyle") {
+  config = lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.appearance.enable && config.myHome.desktop.hyprland.appearance.configStyle == "homeManager") {
     # ========== GTK 配置 ==========
     gtk = {
       enable = true;

@@ -3,7 +3,7 @@
 {
   config = lib.mkMerge [
     # Bash 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.bash.enable && config.myHome.dotfiles.bash.configStyle == "copyFiles") {
       home.packages = [ pkgs.bash ];
       home.file = {
         ".bashrc".source = ./.bashrc;
@@ -14,7 +14,7 @@
     })
 
     # Zsh 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.configStyle == "copyFiles") {
       home.packages = [ pkgs.zsh ];
       home.file = {
         ".zshrc".source = ./.zshrc;
@@ -26,13 +26,13 @@
     })
 
     # Vim 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vim.enable && config.myHome.dotfiles.vim.configStyle == "copyFiles") {
       home.packages = [ pkgs.vim ];
       home.file.".vimrc".source = ./.vimrc;
     })
 
     # Fish 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.fish.enable && config.myHome.dotfiles.fish.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.fish.enable && config.myHome.dotfiles.fish.configStyle == "copyFiles") {
       home.packages = [ pkgs.fish ];
       xdg.configFile = {
         "fish/config.fish".source = ./.config/fish/config.fish;
@@ -43,7 +43,7 @@
     })
 
     # Nushell 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.nushell.enable && config.myHome.dotfiles.nushell.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.nushell.enable && config.myHome.dotfiles.nushell.configStyle == "copyFiles") {
       home.packages = [ pkgs.nushell ];
       xdg.configFile = {
         "nushell/env.nu".source = ./.config/nushell/env.nu;
@@ -52,13 +52,13 @@
     })
 
     # Starship 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.enable && config.myHome.dotfiles.starship.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.starship.enable && config.myHome.dotfiles.starship.configStyle == "copyFiles") {
       home.packages = [ pkgs.starship ];
       xdg.configFile."starship.toml".source = ./.config/starship.toml;
     })
 
     # Alacritty 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.enable && config.myHome.dotfiles.alacritty.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.alacritty.enable && config.myHome.dotfiles.alacritty.configStyle == "copyFiles") {
       home.packages = [ pkgs.alacritty ];
       xdg.configFile = {
         "alacritty/alacritty.toml".source = ./.config/alacritty/alacritty.toml;
@@ -67,7 +67,7 @@
     })
 
     # Ghostty 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.ghostty.enable && config.myHome.dotfiles.ghostty.configStyle == "copyFiles") {
       home.packages = [ pkgs.ghostty ];
       xdg.configFile = {
         "ghostty/config".source = ./.config/ghostty/config;
@@ -76,7 +76,7 @@
     })
 
     # Rio 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rio.enable && config.myHome.dotfiles.rio.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rio.enable && config.myHome.dotfiles.rio.configStyle == "copyFiles") {
       home.packages = [ pkgs.rio ];
       xdg.configFile = {
         "rio/config.toml".source = ./.config/rio/config.toml;
@@ -85,7 +85,7 @@
     })
 
     # Git 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.git.enable && config.myHome.dotfiles.git.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.git.enable && config.myHome.dotfiles.git.configStyle == "copyFiles") {
       home.packages = [ pkgs.git ];
       xdg.configFile = {
         "git/config".source = ./.config/git/gitconfig;
@@ -94,13 +94,13 @@
     })
 
     # Lazygit 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.enable && config.myHome.dotfiles.lazygit.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.lazygit.enable && config.myHome.dotfiles.lazygit.configStyle == "copyFiles") {
       home.packages = [ pkgs.lazygit ];
       xdg.configFile."lazygit/config.yml".source = ./.config/lazygit/config.yml;
     })
 
     # Tmux 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && config.myHome.dotfiles.tmux.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.tmux.enable && config.myHome.dotfiles.tmux.configStyle == "copyFiles") {
       home.packages = [ pkgs.tmux ];
       xdg.configFile = {
         "tmux/tmux.conf".source = ./.config/tmux/tmux.conf;
@@ -109,7 +109,7 @@
     })
 
     # Zellij 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zellij.enable && config.myHome.dotfiles.zellij.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zellij.enable && config.myHome.dotfiles.zellij.configStyle == "copyFiles") {
       home.packages = [ pkgs.zellij ];
       xdg.configFile = {
         "zellij/config.kdl".source = ./.config/zellij/config.kdl;
@@ -119,7 +119,7 @@
     })
 
     # Rofi 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rofi.enable && config.myHome.dotfiles.rofi.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rofi.enable && config.myHome.dotfiles.rofi.configStyle == "copyFiles") {
       home.packages = [ pkgs.rofi ];
       xdg.configFile = {
         "rofi/config.rasi".source = ./.config/rofi/config.rasi;
@@ -129,7 +129,7 @@
     })
 
     # Sherlock 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.sherlock.enable && config.myHome.dotfiles.sherlock.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.sherlock.enable && config.myHome.dotfiles.sherlock.configStyle == "copyFiles") {
       home.packages = [ pkgs.sherlock ];
       xdg.configFile = {
         "sherlock/config.toml".source = ./.config/sherlock/config.toml;
@@ -144,13 +144,13 @@
     })
 
     # RMPC 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rmpc.enable && config.myHome.dotfiles.rmpc.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.rmpc.enable && config.myHome.dotfiles.rmpc.configStyle == "copyFiles") {
       home.packages = [ pkgs.rmpc ];
       xdg.configFile."rmpc/config.toml".source = ./.config/rmpc/config.toml;
     })
 
     # Yazi 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.yazi.enable && config.myHome.dotfiles.yazi.configStyle == "copyFiles") {
       home.packages = [ pkgs.yazi ];
       xdg.configFile = {
         "yazi/yazi.toml".source = ./.config/yazi/yazi.toml;
@@ -163,25 +163,25 @@
     })
 
     # Qutebrowser 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.qutebrowser.enable && config.myHome.dotfiles.qutebrowser.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.qutebrowser.enable && config.myHome.dotfiles.qutebrowser.configStyle == "copyFiles") {
       home.packages = [ pkgs.qutebrowser ];
       xdg.configFile."qutebrowser/config.py".source = ./.config/qutebrowser/config.py;
     })
 
     # OBS Studio 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.obs-studio.enable && config.myHome.dotfiles.obs-studio.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.obs-studio.enable && config.myHome.dotfiles.obs-studio.configStyle == "copyFiles") {
       home.packages = [ pkgs.obs-studio ];
       xdg.configFile."obs-studio/README.md".source = ./.config/obs-studio/README.md;
     })
 
     # VSCode 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.enable && config.myHome.dotfiles.vscode.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vscode.enable && config.myHome.dotfiles.vscode.configStyle == "copyFiles") {
       home.packages = [ pkgs.vscode ];
       xdg.configFile."Code/User/settings.json".source = ./.config/Code/User/settings.json;
     })
 
     # Zed 配置
-    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.enable && config.myHome.dotfiles.zed.style == "copyStyle") {
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zed.enable && config.myHome.dotfiles.zed.configStyle == "copyFiles") {
       home.packages = [ pkgs.zed-editor ];
       xdg.configFile."zed/settings.json".source = ./.config/zed/settings.json;
     })

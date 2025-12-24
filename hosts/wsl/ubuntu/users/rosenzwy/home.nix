@@ -6,23 +6,23 @@
       enable = true;
       zsh = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       fish = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       starship = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       yazi = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       zellij = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
     };
 

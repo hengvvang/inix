@@ -3,7 +3,7 @@
 {
   config = lib.mkMerge [
     # Niri 生态系统包配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.packages.enable && config.myHome.desktop.niri.packages.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.packages.enable && config.myHome.desktop.niri.packages.configStyle == "copyFiles") {
       home.packages = with pkgs; [
         grim                   # Wayland 截图工具
         slurp                  # 区域选择工具
@@ -20,7 +20,7 @@
     })
 
     # Niri 环境变量配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.environment.enable && config.myHome.desktop.niri.environment.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.environment.enable && config.myHome.desktop.niri.environment.configStyle == "copyFiles") {
       home.sessionVariables = {
         # Niri 相关环境变量
         XDG_CURRENT_DESKTOP = "niri";
@@ -43,7 +43,7 @@
     })
 
     # Niri 核心配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.niri.enable && config.myHome.desktop.niri.niri.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.niri.enable && config.myHome.desktop.niri.niri.configStyle == "copyFiles") {
       home.packages = with pkgs; [
         niri
         swww
@@ -68,7 +68,7 @@
     })
 
     # Waybar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.waybar.enable && config.myHome.desktop.niri.waybar.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.waybar.enable && config.myHome.desktop.niri.waybar.configStyle == "copyFiles") {
       home.packages = [ pkgs.waybar ];
 
       xdg.configFile = {
@@ -82,7 +82,7 @@
     })
 
     # Ironbar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.ironbar.enable && config.myHome.desktop.niri.ironbar.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.ironbar.enable && config.myHome.desktop.niri.ironbar.configStyle == "copyFiles") {
       home.packages = [ pkgs.ironbar ];
 
       xdg.configFile = {
@@ -92,7 +92,7 @@
     })
 
     # Rofi 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.rofi.enable && config.myHome.desktop.niri.rofi.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.rofi.enable && config.myHome.desktop.niri.rofi.configStyle == "copyFiles") {
       home.packages = [ pkgs.rofi ];
 
       xdg.configFile = {
@@ -102,7 +102,7 @@
     })
 
     # Vicinae 配置 (现代化应用启动器)
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.vicinae.enable && config.myHome.desktop.niri.vicinae.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.vicinae.enable && config.myHome.desktop.niri.vicinae.configStyle == "copyFiles") {
       home.packages = [ pkgs.vicinae ];
 
       # Vicinae 配置文件
@@ -112,7 +112,7 @@
     })
 
     # Fuzzel 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.fuzzel.enable && config.myHome.desktop.niri.fuzzel.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.fuzzel.enable && config.myHome.desktop.niri.fuzzel.configStyle == "copyFiles") {
       home.packages = with pkgs; [ fuzzel lxgw-wenkai ];
 
       xdg.configFile = {
@@ -121,7 +121,7 @@
     })
 
     # Swaylock 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swaylock.enable && config.myHome.desktop.niri.swaylock.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swaylock.enable && config.myHome.desktop.niri.swaylock.configStyle == "copyFiles") {
       home.packages = with pkgs; [ swaylock lxgw-wenkai ];
 
       xdg.configFile = {
@@ -130,7 +130,7 @@
     })
 
     # Swayidle 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swayidle.enable && config.myHome.desktop.niri.swayidle.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swayidle.enable && config.myHome.desktop.niri.swayidle.configStyle == "copyFiles") {
       home.packages = with pkgs; [
         swayidle
         brightnessctl    # 亮度控制（用于渐进式节能）
@@ -143,7 +143,7 @@
     })
 
     # Wlogout 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.wlogout.enable && config.myHome.desktop.niri.wlogout.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.wlogout.enable && config.myHome.desktop.niri.wlogout.configStyle == "copyFiles") {
       home.packages = [ pkgs.wlogout ];
 
       xdg.configFile = {
@@ -154,7 +154,7 @@
     })
 
     # Dunst 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.dunst.enable && config.myHome.desktop.niri.dunst.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.dunst.enable && config.myHome.desktop.niri.dunst.configStyle == "copyFiles") {
       home.packages = [ pkgs.dunst ];
 
       xdg.configFile = {
@@ -165,7 +165,7 @@
     })
 
     # Mako 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.mako.enable && config.myHome.desktop.niri.mako.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.mako.enable && config.myHome.desktop.niri.mako.configStyle == "copyFiles") {
       home.packages = with pkgs; [
         mako
         lxgw-wenkai         # 霞鹜文楷

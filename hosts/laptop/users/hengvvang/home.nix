@@ -8,47 +8,47 @@
       niri = {
         packages = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         environment = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         niri = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         waybar = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         rofi = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         vicinae = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         fuzzel = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         swaylock = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         swayidle = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         wlogout = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
         dunst = {
           enable = true;
-          style = "copyStyle";
+          configStyle = "copyFiles";
         };
       };
     };
@@ -57,67 +57,67 @@
       enable = true;
       vim = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       zsh = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       bash = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       fish = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       nushell = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       git = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       lazygit = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       starship = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       alacritty = {
         enable = true;
-        style = "copyStyle";
+        configStyle = "copyFiles";
       };
       obs-studio = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       sherlock = {
         enable = true;
-        style = "copyStyle";
+        configStyle = "copyFiles";
       };
       ghostty = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       yazi = {
         enable = true;
-        style = "copyStyle";
+        configStyle = "copyFiles";
       };
       zellij = {
         enable = true;
-        style = "copyStyle";
+        configStyle = "copyFiles";
       };
       rio = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       rmpc = {
         enable = true;
-        style = "copyStyle";
+        configStyle = "copyFiles";
       };
     };
 

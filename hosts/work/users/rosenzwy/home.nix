@@ -22,63 +22,63 @@
       enable = true;
       vim = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       zsh = {
         enable = false;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       bash = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       fish = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       nushell = {
         enable = false;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       yazi = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       ghostty = {
         enable = false;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       alacritty = {
         enable = false;
-        style = "copyStyle";
+        configStyle = "copyFiles";
       };
       tmux = {
         enable = false;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       git = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       lazygit = {
         enable = false;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       starship = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       ripgrep = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       fd = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       lsd = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
     };
 

@@ -3,7 +3,7 @@
 {
   config = lib.mkMerge [
     # Hyprland 生态系统包配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.packages.enable && config.myHome.desktop.hyprland.packages.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.packages.enable && config.myHome.desktop.hyprland.packages.configStyle == "copyFiles") {
       home.packages = with pkgs; [
         # Hyprland 生态系统工具
         grimblast           # 截图工具 (Hyprland 优化版)
@@ -21,7 +21,7 @@
     })
 
     # Hyprland 环境变量配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.environment.enable && config.myHome.desktop.hyprland.environment.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.environment.enable && config.myHome.desktop.hyprland.environment.configStyle == "copyFiles") {
       home.sessionVariables = {
         # Hyprland 相关环境变量
         XDG_CURRENT_DESKTOP = "Hyprland";
@@ -43,7 +43,7 @@
     })
 
     # Hyprland 核心配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.hypr.enable && config.myHome.desktop.hyprland.hypr.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.hypr.enable && config.myHome.desktop.hyprland.hypr.configStyle == "copyFiles") {
       home.packages = with pkgs; [
         hyprland
         xdg-desktop-portal-hyprland
@@ -72,7 +72,7 @@
     })
 
     # Waybar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.waybar.enable && config.myHome.desktop.hyprland.waybar.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.waybar.enable && config.myHome.desktop.hyprland.waybar.configStyle == "copyFiles") {
       home.packages = [ pkgs.waybar ];
 
       xdg.configFile = {
@@ -82,7 +82,7 @@
     })
 
     # Dunst 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.dunst.enable && config.myHome.desktop.hyprland.dunst.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.dunst.enable && config.myHome.desktop.hyprland.dunst.configStyle == "copyFiles") {
       home.packages = [ pkgs.dunst ];
 
       xdg.configFile = {
@@ -93,7 +93,7 @@
     })
 
     # Rofi 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.rofi.enable && config.myHome.desktop.hyprland.rofi.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.rofi.enable && config.myHome.desktop.hyprland.rofi.configStyle == "copyFiles") {
       home.packages = with pkgs; [
         rofi
         whitesur-icon-theme
@@ -112,7 +112,7 @@
     })
 
     # Swappy 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.swappy.enable && config.myHome.desktop.hyprland.swappy.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.swappy.enable && config.myHome.desktop.hyprland.swappy.configStyle == "copyFiles") {
       home.packages = [ pkgs.swappy ];
 
       xdg.configFile = {
@@ -121,7 +121,7 @@
     })
 
     # Wlogout 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.wlogout.enable && config.myHome.desktop.hyprland.wlogout.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.wlogout.enable && config.myHome.desktop.hyprland.wlogout.configStyle == "copyFiles") {
       home.packages = [ pkgs.wlogout ];
 
       xdg.configFile = {
@@ -131,7 +131,7 @@
     })
 
     # Fuzzel 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.fuzzel.enable && config.myHome.desktop.hyprland.fuzzel.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.fuzzel.enable && config.myHome.desktop.hyprland.fuzzel.configStyle == "copyFiles") {
       home.packages = [ pkgs.fuzzel ];
 
       xdg.configFile = {
@@ -140,7 +140,7 @@
     })
 
     # Ironbar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.ironbar.enable && config.myHome.desktop.hyprland.ironbar.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.ironbar.enable && config.myHome.desktop.hyprland.ironbar.configStyle == "copyFiles") {
       home.packages = [ pkgs.ironbar ];
 
       xdg.configFile = {
@@ -150,7 +150,7 @@
     })
 
     # Swaylock 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.swaylock.enable && config.myHome.desktop.hyprland.swaylock.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.swaylock.enable && config.myHome.desktop.hyprland.swaylock.configStyle == "copyFiles") {
       home.packages = with pkgs; [ swaylock lxgw-wenkai ];
 
       xdg.configFile = {
@@ -159,7 +159,7 @@
     })
 
     # Swayidle 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.swayidle.enable && config.myHome.desktop.hyprland.swayidle.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.swayidle.enable && config.myHome.desktop.hyprland.swayidle.configStyle == "copyFiles") {
       home.packages = with pkgs; [
         swayidle
         brightnessctl    # 亮度控制（用于渐进式节能）
@@ -172,7 +172,7 @@
     })
 
     # Mako 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.mako.enable && config.myHome.desktop.hyprland.mako.style == "copyStyle") {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "hyprland" && config.myHome.desktop.hyprland.mako.enable && config.myHome.desktop.hyprland.mako.configStyle == "copyFiles") {
       home.packages = with pkgs; [
         mako
         lxgw-wenkai         # 霞鹜文楷

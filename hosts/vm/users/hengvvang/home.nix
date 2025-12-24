@@ -11,27 +11,27 @@
       enable = true;
       zsh = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       fish = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       starship = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       ghostty = {
         enable = true;
-        style = "nixStyle";
+        configStyle = "homeManager";
       };
       yazi = {
         enable = true;
-        style = "copyStyle";
+        configStyle = "copyFiles";
       };
       zellij = {
         enable = true;
-        style = "copyStyle";
+        configStyle = "copyFiles";
       };
     };
 
