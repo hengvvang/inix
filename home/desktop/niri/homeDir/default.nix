@@ -2,6 +2,6 @@
 
 {
   imports = [
-    ./copyLink.nix
+    ./copyStyle.nix
   ];
 }
