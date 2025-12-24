@@ -103,7 +103,8 @@
 
     # Vicinae 配置 (现代化应用启动器)
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.vicinae.enable && config.myHome.desktop.niri.vicinae.configStyle == "copyFiles") {
-      home.packages = [ pkgs.vicinae ];
+      # home.packages = [ inputs.vicinae.packages.${pkgs.system}.default ];
+      home.packages = with pkgs; [ vicinae lxgw-wenkai ];
 
       # Vicinae 配置文件
       xdg.configFile = {

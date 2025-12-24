@@ -27,6 +27,10 @@
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak/";
     };
+    vicinae = {
+      url = "github:vicinaehq/vicinae";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-sops = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
