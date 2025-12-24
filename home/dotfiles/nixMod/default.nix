@@ -23,5 +23,6 @@
     ./vscode
     ./zed
     ./rofi
+    ./vicinae
   ];
 }

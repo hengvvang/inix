@@ -185,5 +185,14 @@
       home.packages = [ pkgs.zed-editor ];
       xdg.configFile."zed/settings.json".source = ./.config/zed/settings.json;
     })
+
+    # Vicinae 配置
+    (lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.vicinae.enable && config.myHome.dotfiles.vicinae.configStyle == "copyFiles") {
+      home.packages = with pkgs; [
+        vicinae       # 现代化应用启动器
+        lxgw-wenkai   # 霞鹜文楷字体,用于中文显示
+      ];
+      xdg.configFile."vicinae/settings.json".source = ./.config/vicinae/settings.json;
+    })
   ];
 }

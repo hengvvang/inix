@@ -192,5 +192,14 @@
         description = "Configuration style: homeManager (Home Manager) or copyFiles (copy files)";
       };
     };
+
+    vicinae = {
+      enable = lib.mkEnableOption "Enable vicinae configuration" // { default = false; };
+      configStyle = lib.mkOption {
+        type = lib.types.enum [ "homeManager" "copyFiles" ];
+        default = "homeManager";
+        description = "Configuration style: homeManager (Home Manager) or copyFiles (copy files)";
+      };
+    };
   };
 }
