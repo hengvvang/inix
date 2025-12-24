@@ -9,6 +9,12 @@
 // - 作为 winit 窗口运行时 = Alt 键
 //
 // 大多数操作也可以通过 IPC 调用: `niri msg action do-something`
+//
+// 窗口切换器 (Alt+Tab):
+// - niri 25.11+ 内置了窗口切换器，配置在 config.kdl 的 recent-windows 块中
+// - Alt+Tab / Alt+Shift+Tab 用于窗口切换
+// - Alt+` / Alt+Shift+` 用于在同一应用的窗口间切换
+// - 详见: https://github.com/YaLTeR/niri/wiki/Configuration:-Recent-Windows
 // =============================================================================
 
 binds {
@@ -32,6 +38,11 @@ binds {
     Mod+Slash hotkey-overlay-title="运行应用程序: rofi" {
         spawn "rofi" "-show" "drun";
     }
+
+    // 运行应用启动器 (Vicinae)
+    // Mod+Slash hotkey-overlay-title="运行 Vicinae 启动器" {
+        // spawn "vicinae";
+    // }
 
     // 启动浏览器 (Zen Browser)
     Mod+B hotkey-overlay-title="运行浏览器: zen-browser" {
@@ -117,20 +128,6 @@ binds {
     Mod+Q repeat=false {
         close-window;
     }
-
-    // ==========================================================================
-    // 窗口切换器 (Window Switcher)
-    // ==========================================================================
-    // niri 25.11+ 内置的窗口选择器，可以快速切换到任意窗口
-    // 显示所有打开窗口的列表，支持键盘和鼠标选择
-
-    // Alt+Tab: 打开窗口切换器
-    // 按住 Alt 键并按 Tab 浏览所有窗口
-    Alt+Tab { switch-focus-window; }
-
-    // Alt+Shift+Tab: 反向切换窗口 (可选)
-    // 如果窗口切换器支持反向遍历，可以使用这个快捷键
-    Alt+Shift+Tab { switch-focus-window-reverse; }
 
     // ==========================================================================
     // 焦点移动 (列/窗口)
@@ -396,7 +393,12 @@ binds {
     // ==========================================================================
 
     // 在当前和之前的工作区之间切换
-    Mod+Tab { focus-workspace-previous; }
+    // 注意: Mod+Tab 已被移除，以支持 Alt+Tab 窗口切换器
+    // 如需工作区切换，请使用 Mod+Ctrl+J/K 或其他快捷键
+    // Mod+Tab { focus-workspace-previous; }
+
+    // 备选: 使用 Mod+Grave (`) 切换工作区
+    Mod+grave { focus-workspace-previous; }
 
     // ==========================================================================
     // 列内窗口合并/分离

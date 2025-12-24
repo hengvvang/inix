@@ -118,6 +118,22 @@ in
       };
     })
 
+    # Vicinae 配置 (现代化应用启动器)
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.vicinae.realTime.enable) {
+      home.packages =
+        if config.myHome.desktop.niri.vicinae.realTime.packageSource == "flake" then [
+          # 如果使用 flake 源，设置为空数组
+        ] else if config.myHome.desktop.niri.vicinae.realTime.packageSource == "nixpkgs" then (with pkgs; [
+          # vicinae: 高性能的原生启动器，类似 Raycast
+          # 功能: 应用启动、文件搜索、剪贴板历史、计算器、emoji 选择器等
+          vicinae
+        ]) else [];
+
+      # Vicinae 会在 ~/.config/vicinae/ 自动创建配置文件
+      # 主要配置文件: ~/.config/vicinae/settings.json
+      # 可以通过 GUI 设置或手动编辑
+    })
+
     # Fuzzel 配置
     (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.fuzzel.realTime.enable) {
       home.packages =
