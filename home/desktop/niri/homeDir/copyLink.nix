@@ -33,10 +33,7 @@
         SDL_VIDEODRIVER = "wayland";
         CLUTTER_BACKEND = "wayland";
         MOZ_ENABLE_WAYLAND = "1";
-        # 输入法支持
-        QT_IM_MODULE = "fcitx";
-        GTK_IM_MODULE = "fcitx";
-        XMODIFIERS = "@im=fcitx";
+        # 输入法环境变量由 system/locale/inputMethod.nix 统一管理
         WLR_NO_HARDWARE_CURSORS = "1";
         NIXOS_OZONE_WL = "1";
       };

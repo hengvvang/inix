@@ -39,10 +39,7 @@
             # Mozilla 应用程序启用 Wayland 支持
             MOZ_ENABLE_WAYLAND = "1";
 
-            # 输入法支持
-            QT_IM_MODULE = "fcitx";
-            GTK_IM_MODULE = "fcitx";
-            XMODIFIERS = "@im=fcitx";
+            # 输入法环境变量由 system/locale/inputMethod.nix 统一管理
 
             # ========== Xwayland 缩放配置 ==========
             # GTK 应用程序缩放

@@ -124,7 +124,7 @@
   ],
   // 类型: array - 标尺位置列表
   // 代码提示和悬停 (Code Hints and Hover)
-  "editor.hover.enabled": true,
+  "editor.hover.enabled": "on",
   // 类型: boolean - 启用悬停提示
   "editor.hover.delay": 300,
   // 类型: number - 悬停延迟时间（毫秒）
