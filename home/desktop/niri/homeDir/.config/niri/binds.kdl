@@ -35,14 +35,14 @@ binds {
     }
 
     // 运行应用启动器 (Rofi)
-    Mod+Slash hotkey-overlay-title="运行应用程序: rofi" {
-        spawn "rofi" "-show" "drun";
-    }
+    // Mod+Slash hotkey-overlay-title="运行应用程序: rofi" {
+    //     spawn "rofi" "-show" "drun";
+    // }
 
     // 运行应用启动器 (Vicinae)
-    // Mod+Slash hotkey-overlay-title="运行 Vicinae 启动器" {
-        // spawn "vicinae";
-    // }
+    Mod+Slash hotkey-overlay-title="运行 Vicinae 启动器" {
+        spawn "vicinae" "toggle";
+    }
 
     // 启动浏览器 (Zen Browser)
     Mod+B hotkey-overlay-title="运行浏览器: zen-browser" {
