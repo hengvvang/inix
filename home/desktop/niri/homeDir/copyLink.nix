@@ -126,9 +126,10 @@
           vicinae
         ]) else [];
 
-      # Vicinae 会在 ~/.config/vicinae/ 自动创建配置文件
-      # 主要配置文件: ~/.config/vicinae/settings.json
-      # 可以通过 GUI 设置或手动编辑
+      # Vicinae 配置文件
+      xdg.configFile = {
+        "vicinae/settings.json".source = ./.config/vicinae/settings.json;
+      };
     })
 
     # Fuzzel 配置

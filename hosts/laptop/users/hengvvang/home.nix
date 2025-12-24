@@ -36,6 +36,12 @@
             packageSource = "nixpkgs";
           };
         };
+        vicinae = {
+          copyLink = {
+            enable = true;
+            packageSource = "nixpkgs";
+          };
+        };
         fuzzel = {
           copyLink = {
             enable = true;
