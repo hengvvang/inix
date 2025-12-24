@@ -52,17 +52,17 @@ in
           # 使用 Niri 官方 flake 中的最新版本
           inputs.niri.packages.${pkgs.system}.niri
           # 其他相关包仍使用 nixpkgs
-          pkgs.niriswitcher
           pkgs.swww
           pkgs.sunsetr
           pkgs.apple-cursor
+          # xwayland-satellite: 提供更好的 Xwayland 体验，按需启动 X11 应用
           pkgs.xwayland-satellite
         ] else if config.myHome.desktop.niri.niri.realTime.packageSource == "nixpkgs" then (with pkgs; [
           # 使用 nixpkgs 中的稳定版本
           niri
-          niriswitcher
           swww
           apple-cursor
+          # xwayland-satellite: 提供更好的 Xwayland 体验，按需启动 X11 应用
           xwayland-satellite
         ]) else [
           # packageSource == "none": 不安装任何包
