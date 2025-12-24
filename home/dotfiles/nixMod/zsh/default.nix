@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
-  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.homeManager.enable) {
+  config = lib.mkIf (config.myHome.dotfiles.enable && config.myHome.dotfiles.zsh.enable && config.myHome.dotfiles.zsh.style == "nixStyle") {
     # Zsh Shell 配置 - 使用 Home Manager
     programs.zsh = {
       enable = true;

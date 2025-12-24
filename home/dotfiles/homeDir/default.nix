@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./copyLink.nix
-    ./realTime.nix
+    ./copyStyle.nix
   ];
 }

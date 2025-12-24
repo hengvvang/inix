@@ -5,29 +5,24 @@
     dotfiles = {
       enable = true;
       zsh = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       fish = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       starship = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       yazi = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       zellij = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
     };
 

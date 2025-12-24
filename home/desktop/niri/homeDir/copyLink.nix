@@ -3,7 +3,7 @@
 {
   config = lib.mkMerge [
     # Niri 生态系统包配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.packages.copyLink.enable) {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.packages.enable && config.myHome.desktop.niri.packages.style == "copyStyle") {
       home.packages = with pkgs; [
         grim                   # Wayland 截图工具
         slurp                  # 区域选择工具
@@ -20,7 +20,7 @@
     })
 
     # Niri 环境变量配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.environment.copyLink.enable) {
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.environment.enable && config.myHome.desktop.niri.environment.style == "copyStyle") {
       home.sessionVariables = {
         # Niri 相关环境变量
         XDG_CURRENT_DESKTOP = "niri";
@@ -43,27 +43,14 @@
     })
 
     # Niri 核心配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.niri.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.niri.copyLink.packageSource == "flake" then [
-          # 使用 Niri 官方 flake 中的最新版本
-          inputs.niri.packages.${pkgs.system}.niri
-          # 其他相关包仍使用 nixpkgs
-          pkgs.swww
-          pkgs.sunsetr
-          pkgs.apple-cursor
-          # xwayland-satellite: 提供更好的 Xwayland 体验，按需启动 X11 应用
-          pkgs.xwayland-satellite
-        ] else if config.myHome.desktop.niri.niri.copyLink.packageSource == "nixpkgs" then (with pkgs; [
-          # 使用 nixpkgs 中的稳定版本
-          niri
-          swww
-          apple-cursor
-          # xwayland-satellite: 提供更好的 Xwayland 体验，按需启动 X11 应用
-          xwayland-satellite
-        ]) else [
-          # packageSource == "none": 不安装任何包
-        ];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.niri.enable && config.myHome.desktop.niri.niri.style == "copyStyle") {
+      home.packages = with pkgs; [
+        niri
+        swww
+        apple-cursor
+        # xwayland-satellite: 提供更好的 Xwayland 体验，按需启动 X11 应用
+        xwayland-satellite
+      ];
 
       xdg.configFile = {
         "niri/config.kdl".source = ./.config/niri/config.kdl;
@@ -81,11 +68,8 @@
     })
 
     # Waybar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.waybar.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.waybar.copyLink.packageSource == "flake" then [
-          # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.waybar.copyLink.packageSource == "nixpkgs" then (with pkgs; [ waybar ]) else [];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.waybar.enable && config.myHome.desktop.niri.waybar.style == "copyStyle") {
+      home.packages = [ pkgs.waybar ];
 
       xdg.configFile = {
         "waybar/config".source = ./.config/waybar/config;
@@ -98,11 +82,8 @@
     })
 
     # Ironbar 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.ironbar.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.ironbar.copyLink.packageSource == "flake" then [
-          # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.ironbar.copyLink.packageSource == "nixpkgs" then (with pkgs; [ ironbar ]) else [];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.ironbar.enable && config.myHome.desktop.niri.ironbar.style == "copyStyle") {
+      home.packages = [ pkgs.ironbar ];
 
       xdg.configFile = {
         "ironbar/config.toml".source = ./.config/ironbar/config.toml;
@@ -111,13 +92,8 @@
     })
 
     # Rofi 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.rofi.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.rofi.copyLink.packageSource == "flake" then [
-          # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.rofi.copyLink.packageSource == "nixpkgs" then (with pkgs; [
-          rofi
-        ]) else [];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.rofi.enable && config.myHome.desktop.niri.rofi.style == "copyStyle") {
+      home.packages = [ pkgs.rofi ];
 
       xdg.configFile = {
         "rofi/config.rasi".source = ./.config/rofi/config.rasi;
@@ -126,15 +102,8 @@
     })
 
     # Vicinae 配置 (现代化应用启动器)
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.vicinae.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.vicinae.copyLink.packageSource == "flake" then [
-          # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.vicinae.copyLink.packageSource == "nixpkgs" then (with pkgs; [
-          # vicinae: 高性能的原生启动器，类似 Raycast
-          # 功能: 应用启动、文件搜索、剪贴板历史、计算器、emoji 选择器等
-          vicinae
-        ]) else [];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.vicinae.enable && config.myHome.desktop.niri.vicinae.style == "copyStyle") {
+      home.packages = [ pkgs.vicinae ];
 
       # Vicinae 配置文件
       xdg.configFile = {
@@ -143,11 +112,8 @@
     })
 
     # Fuzzel 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.fuzzel.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.fuzzel.copyLink.packageSource == "flake" then [
-          # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.fuzzel.copyLink.packageSource == "nixpkgs" then (with pkgs; [ fuzzel lxgw-wenkai ]) else [];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.fuzzel.enable && config.myHome.desktop.niri.fuzzel.style == "copyStyle") {
+      home.packages = with pkgs; [ fuzzel lxgw-wenkai ];
 
       xdg.configFile = {
         "fuzzel/fuzzel.ini".source = ./.config/fuzzel/fuzzel.ini;
@@ -155,14 +121,8 @@
     })
 
     # Swaylock 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swaylock.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.swaylock.copyLink.packageSource == "flake" then [
-          # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.swaylock.copyLink.packageSource == "nixpkgs" then (with pkgs; [
-          swaylock
-          lxgw-wenkai
-        ]) else [];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swaylock.enable && config.myHome.desktop.niri.swaylock.style == "copyStyle") {
+      home.packages = with pkgs; [ swaylock lxgw-wenkai ];
 
       xdg.configFile = {
         "swaylock/config".source = ./.config/swaylock/config;
@@ -170,15 +130,12 @@
     })
 
     # Swayidle 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swayidle.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.swayidle.copyLink.packageSource == "flake" then [
-          # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.swayidle.copyLink.packageSource == "nixpkgs" then (with pkgs; [
-          swayidle
-          brightnessctl    # 亮度控制（用于渐进式节能）
-          libnotify        # 通知支持
-        ]) else [];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.swayidle.enable && config.myHome.desktop.niri.swayidle.style == "copyStyle") {
+      home.packages = with pkgs; [
+        swayidle
+        brightnessctl    # 亮度控制（用于渐进式节能）
+        libnotify        # 通知支持
+      ];
 
       xdg.configFile = {
         "swayidle/config".source = ./.config/swayidle/config;
@@ -186,13 +143,8 @@
     })
 
     # Wlogout 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.wlogout.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.wlogout.copyLink.packageSource == "flake" then [
-          # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.wlogout.copyLink.packageSource == "nixpkgs" then (with pkgs; [
-          wlogout
-        ]) else [];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.wlogout.enable && config.myHome.desktop.niri.wlogout.style == "copyStyle") {
+      home.packages = [ pkgs.wlogout ];
 
       xdg.configFile = {
         "wlogout/layout".source = ./.config/wlogout/layout;
@@ -202,13 +154,8 @@
     })
 
     # Dunst 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.dunst.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.dunst.copyLink.packageSource == "flake" then [
-          # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.dunst.copyLink.packageSource == "nixpkgs" then (with pkgs; [
-          dunst
-        ]) else [];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.dunst.enable && config.myHome.desktop.niri.dunst.style == "copyStyle") {
+      home.packages = [ pkgs.dunst ];
 
       xdg.configFile = {
         "dunst/dunstrc".source = ./.config/dunst/dunstrc;
@@ -218,14 +165,11 @@
     })
 
     # Mako 配置
-    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.mako.copyLink.enable) {
-      home.packages =
-        if config.myHome.desktop.niri.mako.copyLink.packageSource == "flake" then [
-          # 如果使用 flake 源，设置为空数组
-        ] else if config.myHome.desktop.niri.mako.copyLink.packageSource == "nixpkgs" then (with pkgs; [
-          mako
-          lxgw-wenkai         # 霞鹜文楷
-        ]) else [];
+    (lib.mkIf (config.myHome.desktop.enable && config.myHome.desktop.preset == "niri" && config.myHome.desktop.niri.mako.enable && config.myHome.desktop.niri.mako.style == "copyStyle") {
+      home.packages = with pkgs; [
+        mako
+        lxgw-wenkai         # 霞鹜文楷
+      ];
 
       xdg.configFile = {
         "mako/config".source = ./.config/mako/config;

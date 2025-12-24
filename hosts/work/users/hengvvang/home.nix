@@ -10,99 +10,80 @@
     dotfiles = {
       enable = true;
       vim = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       zsh = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       bash = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       fish = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       nushell = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       tmux = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       git = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       lazygit = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       starship = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       qutebrowser = {
-        homeManager = {
-          enable = false;
-        };
+        enable = false;
+        style = "nixStyle";
       };
       alacritty = {
-        copyLink = {
-          enable = true;
-        };
+        enable = true;
+        style = "copyStyle";
       };
       obs-studio = {
-        homeManager = {
-          enable = false;  # 工作环境不需要
-        };
+        enable = false;  # 工作环境不需要
+        style = "nixStyle";
       };
       sherlock = {
-        copyLink = {
-          enable = true;
-        };
+        enable = true;
+        style = "copyStyle";
       };
       yazi = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       zellij = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       ripgrep = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       fd = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       tealdeer = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       lsd = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
     };
 

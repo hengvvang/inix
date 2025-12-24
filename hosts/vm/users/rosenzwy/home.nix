@@ -10,19 +10,16 @@
     dotfiles = {
       enable = true;
       fish = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       yazi = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       starship = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
     };
 

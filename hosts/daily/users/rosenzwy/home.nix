@@ -21,79 +21,64 @@
     dotfiles = {
       enable = true;
       vim = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       zsh = {
-        homeManager = {
-          enable = false;
-        };
+        enable = false;
+        style = "nixStyle";
       };
       bash = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       fish = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       nushell = {
-        homeManager = {
-          enable = false;
-        };
+        enable = false;
+        style = "nixStyle";
       };
       yazi = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       ghostty = {
-        homeManager = {
-          enable = false;
-        };
+        enable = false;
+        style = "nixStyle";
       };
       alacritty = {
-        copyLink = {
-          enable = false;
-        };
+        enable = false;
+        style = "copyStyle";
       };
       tmux = {
-        homeManager = {
-          enable = false;
-        };
+        enable = false;
+        style = "nixStyle";
       };
       git = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       lazygit = {
-        homeManager = {
-          enable = false;
-        };
+        enable = false;
+        style = "nixStyle";
       };
       starship = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       ripgrep = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       fd = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       lsd = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
     };
 

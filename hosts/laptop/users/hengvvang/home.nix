@@ -7,70 +7,48 @@
       preset = "niri";
       niri = {
         packages = {
-          copyLink = {
-            enable = true;
-            packageSource = "nixpkgs";
-          };
+          enable = true;
+          style = "copyStyle";
         };
         environment = {
-          copyLink = {
-            enable = true;
-            packageSource = "none";
-          };
+          enable = true;
+          style = "copyStyle";
         };
         niri = {
-          copyLink = {
-            enable = true;
-            packageSource = "nixpkgs";
-          };
+          enable = true;
+          style = "copyStyle";
         };
         waybar = {
-          copyLink = {
-            enable = true;
-            packageSource = "nixpkgs";
-          };
+          enable = true;
+          style = "copyStyle";
         };
         rofi = {
-          copyLink = {
-            enable = true;
-            packageSource = "nixpkgs";
-          };
+          enable = true;
+          style = "copyStyle";
         };
         vicinae = {
-          copyLink = {
-            enable = true;
-            packageSource = "nixpkgs";
-          };
+          enable = true;
+          style = "copyStyle";
         };
         fuzzel = {
-          copyLink = {
-            enable = true;
-            packageSource = "nixpkgs";
-          };
+          enable = true;
+          style = "copyStyle";
         };
         swaylock = {
-          copyLink = {
-            enable = true;
-            packageSource = "nixpkgs";
-          };
+          enable = true;
+          style = "copyStyle";
         };
         swayidle = {
-          copyLink = {
-            enable = true;
-            packageSource = "nixpkgs";
-          };
+          enable = true;
+          style = "copyStyle";
         };
         wlogout = {
-          copyLink = {
-            enable = true;
-            packageSource = "nixpkgs";
-          };
+          enable = true;
+          style = "copyStyle";
         };
         dunst = {
-          copyLink = {
-            enable = true;
-            packageSource = "nixpkgs";
-          };
+          enable = true;
+          style = "copyStyle";
         };
       };
     };
@@ -78,84 +56,68 @@
     dotfiles = {
       enable = true;
       vim = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       zsh = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       bash = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       fish = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       nushell = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       git = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       lazygit = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       starship = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       alacritty = {
-        copyLink = {
-          enable = true;
-        };
+        enable = true;
+        style = "copyStyle";
       };
       obs-studio = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       sherlock = {
-        copyLink = {
-          enable = true;
-        };
+        enable = true;
+        style = "copyStyle";
       };
       ghostty = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       yazi = {
-        copyLink = {
-          enable = true;
-        };
+        enable = true;
+        style = "copyStyle";
       };
       zellij = {
-        copyLink = {
-          enable = true;
-        };
+        enable = true;
+        style = "copyStyle";
       };
       rio = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       rmpc = {
-        copyLink = {
-          enable = true;
-        };
+        enable = true;
+        style = "copyStyle";
       };
     };
 

@@ -10,36 +10,28 @@
     dotfiles = {
       enable = true;
       zsh = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       fish = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       starship = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       ghostty = {
-        homeManager = {
-          enable = true;
-        };
+        enable = true;
+        style = "nixStyle";
       };
       yazi = {
-        copyLink = {
-          enable = true;
-          packageSource = "nixpkgs";
-        };
+        enable = true;
+        style = "copyStyle";
       };
       zellij = {
-        copyLink = {
-          enable = true;
-          packageSource = "nixpkgs";
-        };
+        enable = true;
+        style = "copyStyle";
       };
     };
 

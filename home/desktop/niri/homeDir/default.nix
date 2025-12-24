@@ -3,6 +3,5 @@
 {
   imports = [
     ./copyLink.nix
-    ./realTime.nix
   ];
 }
