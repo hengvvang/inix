@@ -35,9 +35,9 @@ binds {
     }
 
     // 运行应用启动器 (Rofi)
-    // Mod+Slash hotkey-overlay-title="运行应用程序: rofi" {
-    //     spawn "rofi" "-show" "drun";
-    // }
+    Mod+D hotkey-overlay-title="运行应用程序: rofi" {
+        spawn "rofi" "-show" "drun";
+    }
 
     // 运行应用启动器 (Vicinae)
     Mod+Slash hotkey-overlay-title="运行 Vicinae 启动器" {
