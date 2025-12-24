@@ -20,14 +20,12 @@
         };
       };
       yazi = {
-        copyLink = {
-          enable = true;
-        };
+        enable = true;
+        style = "copyStyle";
       };
       zellij = {
-        copyLink = {
-          enable = true;
-        };
+        enable = true;
+        style = "copyStyle";
       };
     };
 
